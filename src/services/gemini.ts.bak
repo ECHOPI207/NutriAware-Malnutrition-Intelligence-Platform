@@ -1,0 +1,371 @@
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+// NOTE: Mock responses removed to force Real AI usage. 
+// If API fails, user will see the error message.
+
+export const BMI_MEAL_PLANS = {
+  en: {
+    underweight: {
+      breakfast: "Avocado toast with two poached eggs and a smoothie (banana, berries, full-fat yogurt, and honey).",
+      lunch: "Creamy pasta with grilled chicken, spinach, and parmesan cheese.",
+      dinner: "Salmon fillet with mashed potatoes and roasted vegetables.",
+      snacks: "Trail mix (nuts, seeds, dried fruit) and a protein bar.",
+    },
+    healthy: {
+      breakfast: "Oatmeal topped with fresh fruit and walnuts.",
+      lunch: "Quinoa salad with chickpeas, cucumber, cherry tomatoes, and feta cheese.",
+      dinner: "Grilled turkey breast with steamed broccoli and sweet potato.",
+      snacks: "Greek yogurt with a drizzle of honey.",
+    },
+    overweight: {
+      breakfast: "Scrambled egg whites with spinach and whole grain toast.",
+      lunch: "Grilled chicken salad with mixed greens and balsamic vinaigrette (low oil).",
+      dinner: "Baked white fish with zucchini noodles and tomato sauce.",
+      snacks: "Carrot sticks with hummus.",
+    },
+    obese: {
+      breakfast: "Green smoothie (spinach, cucumber, green apple, lemon) and a unsalted almond.",
+      lunch: "Lentil soup with a side of mixed green salad (lemon dressing only).",
+      dinner: "Grilled chicken breast with steamed asparagus and cauliflower rice.",
+      snacks: "Sliced cucumber or celery sticks.",
+    },
+  },
+  ar: {
+    underweight: {
+      breakfast: "توست الأفوكادو مع بيضتين مسلوقتين وعصير سموثي (موز، توت، زبادي كامل الدسم، وعسل).",
+      lunch: "مكرونة بالصوص الكريمي مع صدور دجاج مشوية، سبانخ، وجبنة بارميزان.",
+      dinner: "شريحة سلمون مع بطاطس مهروسة وخضروات مشوية.",
+      snacks: "مكسرات مشكلة (لوز، جوز، فواكه مجففة) وشريط بروتين.",
+    },
+    healthy: {
+      breakfast: "شوفان مع فواكه طازجة وجوز.",
+      lunch: "سلطة كينوا مع حمص، خيار، طماطم كرزية، وجبنة فيتا.",
+      dinner: "صدر ديك رومي مشوي مع بروكلي مطهو على البخار وبطاطا حلوة.",
+      snacks: "زبادي يوناني مع قليل من العسل.",
+    },
+    overweight: {
+      breakfast: "بياض بيض مخفوق مع سبانخ وشريحة خبز حبوب كاملة.",
+      lunch: "سلطة دجاج مشوي مع خضروات ورقية وقليل من صلصة البلسميك (زيت قليل).",
+      dinner: "سمك أبيض مشوي في الفرن مع نودلز الكوسة وصوص الطماطم.",
+      snacks: "أصابع جزر مع حمص.",
+    },
+    obese: {
+      breakfast: "سموثي أخضر (سبانخ، خيار، تفاح أخضر، ليمون) وحبات لوز غير مملحة.",
+      lunch: "شوربة عدس مع سلطة خضراء جانبية (تتبيلة ليمون فقط).",
+      dinner: "صدر دجاج مشوي مع هليون مطهو على البخار وأرز القرنبيط.",
+      snacks: "شرائح خيار أو أعواد كرفس.",
+    },
+  },
+};
+
+export const CONDITION_MEAL_PLANS = {
+  en: {
+    proteinDeficiency: {
+      protocolTitle: 'Protocol for Protein-Energy Malnutrition (PEM)',
+      goal: 'High Energy, High Protein (HEHP).',
+      strategy: 'Increase Caloric Density and meal frequency (6-8 small meals/day). Focus on "Fortification at Home".',
+      breakfast: "**Option 1 (Animal Source):** Fried eggs with butter + Baladi bread + Cheddar/Rumi cheese + Whole milk.\n\n**Option 2 (Plant-Based):** Fava beans (Ful) with generous olive oil & Tahini + Bread + Wheat cereal with milk (Belila) & nuts.\n\n**Option 3 (Quick):** Power Smoothie: Whole milk + Banana + Oats + Peanut butter + Honey.",
+      lunch: "**Option 1:** White rice (cooked with broth) + 1/4 Chicken or fatty meat cuts + Sautéed vegetables.\n\n**Option 2 (Vegetarian):** Egyptian Koshary (extra lentils & chickpeas) + Tomato sauce + Green salad with olive oil.\n\n**Option 3:** Béchamel Macaroni (with minced meat & Mozzarella for extra calories).",
+      dinner: "**Option 1:** Tuna salad with mayonnaise & sweet corn + Fino bread/Toast.\n\n**Option 2:** Flour & Egg omelet with veggies (Ojja) + Cottage cheese with olive oil.\n\n**Option 3:** Hot Cocoa with whole milk + Cream cheese sandwich.",
+      snacks: "**Snack 1:** Whole yogurt + Nuts (Almonds/Walnuts) + Honey. OR Halawa Tahinia sandwich with cream.\n\n**Snack 2:** Roasted sweet potato with butter and cinnamon. OR Popcorn (oil-popped) + Peanuts.",
+      tips: [
+        "**Fortification at Home:** Add powdered milk, butter, cream, or nut flour to meals to increase calories without increasing volume.",
+        "Ensure 6-8 small meals per day.",
+        "Avoid low-calorie foods that fill the stomach without nutrition (e.g., clear tea, watery soups)."
+      ]
+    },
+    ironDeficiency: {
+      protocolTitle: 'Protocol for Iron Deficiency Anemia',
+      goal: 'Replenish iron stores + Enhance bioavailability.',
+      strategy: 'Iron Source + Vitamin C (Enhancer) – Inhibitors (No Tea/Coffee/High Calcium with meals).',
+      breakfast: "**Option (Heme/Non-Heme):** Fava beans with cumin + Boiled egg + Brown bread (Bran).\n\n**Enhancer:** Fresh Orange/Guava juice OR Tomato & Bell pepper slices.\n\n**Avoid:** Tea, Coffee, Milk (Separate by 2 hours).",
+      lunch: "**Top Choice:** Grilled Liver (Beef/Chicken).\n**Alt:** Lean red meat OR Spinach cooked with minced meat.\n\n**Enhancer:** Green salad with lemon dressing & bell peppers OR Lentil soup with lemon.\n**Avoid:** Carbonated drinks, Tea.",
+      dinner: "**Option:** Hummus salad with Tahini + Grilled Eggplant (Plant iron).\n**Alt:** Black Molasses with Tahini + Bread.\n\n**Enhancer:** Lemon mint juice.\n**Avoid:** Dairy products (Calcium inhibits iron absorption).",
+      snacks: "**Option:** Handful of dried fruits (Raisins, Apricots, Figs) + Unsalted nuts (Cashews/Pistachios).\n**Enhancer:** Kiwi or Strawberries.",
+      tips: [
+        "**Golden Rule:** Always combine iron sources with Vitamin C (Lemon, Orange, Pepper) to triple absorption.",
+        "Avoid inhibitors like Tea, Coffee, and Calcium supplements with iron-rich meals.",
+        "Cook in cast-iron skillets if possible to increase iron content."
+      ]
+    },
+    vitaminD: {
+      protocolTitle: 'Protocol for Rickets & Osteoporosis',
+      goal: 'Support bone density and mineralization.',
+      strategy: 'Calcium rich foods + Vitamin D sources. Note: Vit D often requires supplementation.',
+      breakfast: "**Core:** Omelet (Yolk is rich in Vit D) + Cottage/Cheddar cheese + Fortified milk.\n\n**Alternative:** Greek Yogurt (Higher protein/calcium) + Chia seeds.",
+      lunch: "**Core:** Fatty Fish (Salmon, Mackerel, Sardines). **Sardines with bones** are excellent calcium sources.\n\n**Alternative:** Broccoli or Cauliflower (Plant calcium) + Grilled Chicken.",
+      dinner: "**Core:** Leafy green salad (Arugula, Spinach, Kale) with Feta cheese & Olive oil.\n\n**Alternative:** Warm milk before bed.",
+      snacks: "**Option:** Laban Rayeb (Fermented milk) or Yogurt + Dried Figs (Calcium-rich).\n\n**Alternative:** Almonds (Highest calcium nut).",
+      tips: [
+        "Vitamin D is rare in food in therapeutic amounts; consult a doctor for supplements.",
+        "Sun exposure (10-15 mins/day) is crucial for Vitamin D synthesis.",
+        "Calcium is best absorbed when taken in smaller amounts throughout the day."
+      ]
+    },
+    obesity: {
+      protocolTitle: 'Protocol for Obesity (Overnutrition)',
+      goal: 'Caloric Deficit with High Satiety.',
+      strategy: 'High Protein, High Fiber, Complex Carbs, Moderate Healthy Fats. Target: 40% Protein, 30% Fat, 30% Carbs.',
+      breakfast: "**Option 1:** Boiled egg + Leafy greens (Cucumber/Lettuce) + 1/2 Brown bread or Whole wheat toast.\n\n**Option 2:** Oatmeal cooked with Skim milk + Sliced Apple & Cinnamon (No sugar).",
+      lunch: "**MyPlate Method:** 1/2 Plate Green Salad + 1/4 Grilled Protein (Fish/Chicken) + 1/4 Complex Carbs (Brown rice/Bulgur/Freekeh).\n\n**Alternative:** Vegetable Tagine (Oil-free/Sautéed) + Lean meat piece + 3 tbsp Rice.",
+      dinner: "**Option 1:** Tuna can (water-packed/drained oil) + Large green salad.\n\n**Option 2:** Light Yogurt + Flaxseeds + Lemon squeeze.",
+      snacks: "**Option 1:** Medium fruit (Apple/Pear) OR Carrot & Cucumber sticks.\n\n**Option 2:** Air-popped Popcorn (No oil/Salt).",
+      tips: [
+        "**Food Exchange Lists:** Use food exchanges to swap carb sources (e.g., 1 Slice Bread = 3 tbsp Rice = 1 Small Potato).",
+        "Focus on 'Volumetrics': Eating foods with high water/fiber content to feel full.",
+        "Drink water 30 mins before meals."
+      ]
+    },
+    diabetes: {
+      protocolTitle: 'Diabetes Management (General)',
+      goal: 'Blood Sugar Control',
+      strategy: 'Low Glycemic Index, Consistent Carbohydrates.',
+      breakfast: 'Steel-cut oats with cinnamon, berries, and a handful of nuts',
+      lunch: 'Grilled chicken salad with mixed greens, avocado, and olive oil dressing',
+      dinner: 'Baked salmon with roasted Brussels sprouts and cauliflower rice',
+      snacks: 'Celery with peanut butter, or a small handful of almonds',
+      tips: [
+        "Monitor blood sugar regularly.",
+        "Focus on low-GI foods."
+      ]
+    }
+  },
+  ar: {
+    proteinDeficiency: {
+      protocolTitle: 'بروتوكول علاج نقص الطاقة والبروتين (النحافة/الهزال)',
+      goal: 'نظام عالي السعرات، عالي البروتين (HEHP).',
+      strategy: 'زيادة كثافة الطعام (Caloric Density) في كل لقمة، وركز على "التدعيم المنزلي".',
+      breakfast: "**الخيار الأول (حيواني):** بيض مقلي بالزبدة + رغيف خبز بلدي + قطعة جبن شيدر/رومي + كوب حليب كامل الدسم.\n\n**الخيار الثاني (نباتي/اقتصادي):** فول مدمس مضاف إليه زيت زيتون وطحينة بكمية وفيرة + خبز + كوب بليلة بالمكسرات والحليب.\n\n**الخيار الثالث (سريع):** سموذي الطاقة: حليب كامل الدسم + موز + شوفان + ملعقة زبدة فول سوداني + عسل.",
+      lunch: "**الخيار الأول:** أرز أبيض (مطهو بمرقة دسمة) + ربع دجاجة أو لحم (قطعية دسمة) + خضار مطبوخ (سوتيه أو طاجن).\n\n**الخيار الثاني:** كشري مصري (مع زيادة العدس والحمص) + صلصة + سلطة خضراء مضاف إليها زيت زيتون.\n\n**الخيار الثالث:** مكرونة بالبشاميل (مع لحم مفروم وجبن موزاريلا لزيادة السعرات).",
+      dinner: "**الخيار الأول:** سلطة تونة بالمايونيز والذرة الحلوة + خبز فينو/توست.\n\n**الخيار الثاني:** عجة بيض بالخضروات والدقيق (لزيادة الكربوهيدرات) + جبن قريش بزيت الزيتون.\n\n**الخيار الثالث:** كوب كاكاو ساخن بالحليب كامل الدسم + ساندوتش جبن كريمي.",
+      snacks: "**سناك 1:** كوب زبادي كامل الدسم + مكسرات (لوز/عين جمل) + عسل. أو سندوتش حلاوة طحينية بالقشطة.\n\n**سناك 2:** بطاطا حلوة مشوية مع زبدة وقرفة. أو فشار محضر بالزيت + حفنة سوداني. أو قطعة كيك منزلي غنية.",
+      tips: [
+        "**التدعيم المنزلي (Fortification):** أضف الحليب البودرة، الزبدة، الكريمة، أو طحين المكسرات إلى الوجبات لزيادة السعرات دون زيادة حجم الطعام.",
+        "تناول 6-8 وجبات صغيرة على مدار اليوم بدلاً من 3 وجبات كبيرة.",
+        "تجنب شرب السوائل (الشاي/الماء) أثناء الأكل لتجنب الامتلاء المبكر."
+      ]
+    },
+    ironDeficiency: {
+      protocolTitle: 'بروتوكول علاج أنيميا نقص الحديد',
+      goal: 'تعويض مخازن الحديد + تحسين الامتصاص.',
+      strategy: 'القاعدة الذهبية: مصدر حديد + فيتامين C (للامتصاص) - مثبطات (شاي/قهوة/كالسيوم).',
+      breakfast: "**الخيار:** فول مدمس بالكمون + بيض مسلوق + خبز أسمر (ردة).\n\n**معزز الامتصاص (إجباري):** كوب عصير برتقال أو جوافة طازج، أو طماطم وفلفل ألوان.\n\n**الممنوعات:** الشاي والقهوة والحليب (يفصل بينهم ساعتين).",
+      lunch: "**الخيار الأقوى:** كبدة (بقري أو دجاج) مشوية أو إسكندراني.\n**بديل:** لحم أحمر قليل الدهن أو سبانخ مطبوخة مع لحم مفروم.\n\n**معزز الامتصاص:** سلطة خضراء غنية بالليمون والفلفل الرومي، أو شربة عدس بالليمون.\n**الممنوعات:** المشروبات الغازية والشاي.",
+      dinner: "**الخيار:** سلطة حمص بالطحينة + باذنجان مشوي (حديد نباتي).\n**بديل:** عسل أسود بالطحينة + خبز.\n\n**معزز الامتصاص:** عصير ليمون بالنعناع.\n**الممنوعات:** منتجات الألبان (الكالسيوم يعيق امتصاص الحديد).",
+      snacks: "**الخيار:** حفنة من الفواكه المجففة (زبيب، مشمشية، تين) + مكسرات غير مملحة (كاجو/فستق).\n\n**معزز الامتصاص:** ثمرة كيوي أو فراولة.",
+      tips: [
+        "لا تشرب الشاي أو القهوة بعد الأكل مباشرة (انتظر ساعتين على الأقل).",
+        "احرص دائمًا على وجود مصدر لفيتامين سي (ليمون، برتقال، فلفل) مع الوجبات الغنية بالحديد.",
+        "منتجات الألبان تعيق امتصاص الحديد، لذا اجعلها في وجبة منفصلة (مثل العشاء أو الإفطار إذا لم يكن هو الوجبة الغنية بالحديد)."
+      ]
+    },
+    vitaminD: {
+      protocolTitle: 'بروتوكول علاج هشاشة العظام والكساح',
+      goal: 'دعم بناء العظام وتعويض نقص الكالسيوم وفيتامين د.',
+      strategy: 'مصادر الكالسيوم + فيتامين د (ملاحظة: فيتامين د غالباً يحتاج لمكملات دوائية).',
+      breakfast: "**الأساسي:** بيض أومليت (صفار البيض غني بـ D) + جبن قريش أو جبن شيدر + كوب حليب مدعم.\n\n**البديل:** زبادي يوناني (بروتين وكالسيوم أعلى) + بذور الشيا (غنية بالكالسيوم).",
+      lunch: "**الأساسي:** سمك (خاصة الأسماك الدهنية: سلمون، ماكريل، سردين، تونة). **السردين بالعظم** مصدر رائع للكالسيوم.\n\n**البديل:** بروكلي أو قرنبيط (مصادر نباتية للكالسيوم) + دجاج مشوي.",
+      dinner: "**الأساسي:** سلطة خضراء ورقية (جرجير، سبانخ، كرنب) مع جبن فيتا وزيت زيتون.\n\n**البديل:** كوب حليب دافئ قبل النوم.",
+      snacks: "**الخيار:** لبن رائب أو زبادي + تين مجفف (غني جداً بالكالسيوم).\n\n**البديل:** حفنة لوز (اللوز من أغنى المكسرات بالكالسيوم).",
+      tips: [
+        "التعرض للشمس (10-15 دقيقة يومياً) ضروري جداً لتصنيع فيتامين د في الجسم.",
+        "فيتامين د نادر في الطعام بكميات علاجية كبيرة، لذا استشر الطبيب بخصوص المكملات.",
+        "وزع مصادر الكالسيوم على مدار اليوم لضمان أفضل امتصاص."
+      ]
+    },
+    obesity: {
+      protocolTitle: 'بروتوكول علاج السمنة (فرط التغذية)',
+      goal: 'تقليل السعرات (Caloric Deficit) مع الحفاظ على الشب (High Satiety).',
+      strategy: 'بروتين عالي، ألياف عالية، كربوهيدرات معقدة، دهون صحية معتدلة. (40% بروتين، 30% دهون، 30% كارب).',
+      breakfast: "**الخيار الأول:** بيض مسلوق + خضروات ورقية (خيار/خس) + نصف رغيف سن أو شريحة توست بني.\n\n**الخيار الثاني:** شوفان مطبوخ بالحليب خالي الدسم + تفاحة مقطعة وقرفة (بدون سكر).",
+      lunch: "**طبق مقسم (MyPlate):** نصفه سلطة خضراء + ربع بروتين مشوي (سمك/دجاج) + ربع كربوهيدرات معقدة (أرز بني/برغل/فريكة).\n\n**البديل:** طاجن خضروات (ني في ني) + قطعة لحم خالية من الدهن + 3 ملاعق أرز.",
+      dinner: "**الخيار الأول:** علبة تونة (مصفاة من الزيت) مع سلطة خضراء كبيرة.\n\n**الخيار الثاني:** كوب زبادي لايت + عصرة ليمون وبذور كتان.",
+      snacks: "**الخيار:** ثمرة فاكهة متوسطة (تفاح/كمثرى) أو خيار وجزر مقطع.\n\n**البديل:** كوب فشار (بدون زيت أو قليل جداً) محضر بالهواء.",
+      tips: [
+        "**نظام البدائل (Food Exchange Lists):** تعلم تبديل النشويات (مثلاً: ربع رغيف = 3 ملاعق أرز = حبة بطاطس صغيرة).",
+        "احرص على شرب الماء بكثرة لزيادة الحرق والشعور بالشبع.",
+        "ابدأ الطعام دائمًا بالسلطة الخضراء."
+      ]
+    },
+    diabetes: {
+      protocolTitle: 'إدارة مرض السكري (عام)',
+      goal: 'التحكم في سكر الدم',
+      strategy: 'مؤشر جلايسيمي منخفض، كربوهيدرات ثابتة.',
+      breakfast: 'شوفان مقطع مع قرفة، توت، وحفنة من المكسرات',
+      lunch: 'سلطة دجاج مشوي مع خضروات ورقية، أفوكادو، وتتبيلة زيت زيتون',
+      dinner: 'سلمون مخبوز مع كرنب بروكسل مشوي وأرز القرنبيط',
+      snacks: 'كرفس مع زبدة فول سوداني، أو حفنة صغيرة من اللوز',
+      tips: [
+        "راقب سكر الدم بانتظام.",
+        "ركز على الأطعمة ذات المؤشر الجلايسيمي المنخفض."
+      ]
+    }
+  },
+};
+
+export const TODDLER_MEAL_PLANS = {
+  en: {
+    healthy: {
+      breakfast: "Oatmeal cooked with milk and mashed banana.",
+      lunch: "Soft cooked mixed vegetables with mashed rice and lentils.",
+      dinner: "Minced chicken with mashed sweet potato and carrots.",
+      snacks: "Slices of ripe papaya or yogurt.",
+    },
+    moderate_malnutrition: {
+      breakfast: "Fortified porridge with milk, sugar, and oil/butter (energy dense).",
+      lunch: "Khichdi (rice and lentils) with extra ghee/oil and mashed leafy greens.",
+      dinner: "Mashed egg with potato and a small amount of oil.",
+      snacks: "Banana or boiled sweet potato.",
+    },
+    severe_malnutrition: {
+      breakfast: "Ready-to-Use Therapeutic Food (RUTF) if prescribed, or high-energy milk porridge.",
+      lunch: "Soft, nutrient-dense puree of chicken, pumpkin, and oil.",
+      dinner: "Enriched mashed potato with milk, egg yolk, and butter.",
+      snacks: "Breast milk (if breastfeeding) or high-calorie fortified drink.",
+    },
+  },
+  ar: {
+    healthy: {
+      breakfast: "شوفان مطبوخ بالحليب والموز المهروس.",
+      lunch: "خضروات مشكلة مطبوخة جيدًا مع أرز مهروس وعدس.",
+      dinner: "دجاج مفروم مع بطاطا حلوة مهروسة وجزر.",
+      snacks: "شرائح بابايا ناضجة أو زبادي.",
+    },
+    moderate_malnutrition: {
+      breakfast: "عصيدة مدعمة بالحليب والسكر والزيت/الزبدة (كثيفة الطاقة).",
+      lunch: "كشري (أرز وعدس) مع سمن/زيت إضافي وخضروات ورقية مهروسة.",
+      dinner: "بيض مهروس مع بطاطس وكمية صغيرة من الزيت.",
+      snacks: "موز أو بطاطا حلوة مسلوقة.",
+    },
+    severe_malnutrition: {
+      breakfast: "الغذاء العلاجي الجاهز للاستخدام (RUTF) إذا وصفه الطبيب، أو عصيدة حليب عالية الطاقة.",
+      lunch: "هريس ناعم وغني بالمغذيات من الدجاج والقرع والزيت.",
+      dinner: "بطاطس مهروسة غنية بالحليب وصفار البيض والزبدة.",
+      snacks: "حليب الأم (إذا كانت الرضاعة طبيعية) أو مشروب مدعم عالي السعرات.",
+    },
+  },
+};
+
+export const CHILD_BMI_MEAL_PLANS = {
+  en: {
+    underweight: {
+      breakfast: "Whole milk yogurt with granola and sliced bananas.",
+      lunch: "Peanut butter and jelly sandwich on whole wheat bread with a side of apple slices.",
+      dinner: "Pasta with meat sauce and sprinkled cheese, plus steamed carrots.",
+      snacks: "Cheese stick and whole grain crackers.",
+    },
+    healthy: {
+      breakfast: "Scrambled eggs with toast and orange wedges.",
+      lunch: "Turkey and cheese roll-ups with cherry tomatoes.",
+      dinner: "Baked chicken nuggets (homemade) with sweet potato fries and peas.",
+      snacks: "Yogurt tube or fresh fruit.",
+    },
+    overweight: {
+      breakfast: "Oatmeal with berries and low-fat milk.",
+      lunch: "Chicken wrap with lettuce and bell peppers in a whole wheat tortilla.",
+      dinner: "Grilled fish tacos with corn and salsa.",
+      snacks: "Air-popped popcorn (no butter) or carrot sticks.",
+    },
+    obese: {
+      breakfast: "Fruit smoothie (berries, spinach, water/milk) and a hard-boiled egg.",
+      lunch: "Turkey sandwich on whole wheat (lots of veggies, light mayo) and grapes.",
+      dinner: "Baked chicken breast with steamed broccoli and brown rice.",
+      snacks: "Apple slices or cucumber wheels.",
+    },
+  },
+  ar: {
+    underweight: {
+      breakfast: "زبادي كامل الدسم مع الجرانولا وشرائح الموز.",
+      lunch: "ساندويتش زبدة الفول السوداني والمربى على خبز قمح كامل مع شرائح تفاح.",
+      dinner: "مكرونة بصوص اللحم والجبن المبشور، مع جزر مطهو على البخار.",
+      snacks: "أصابع جبن وبسكويت حبوب كاملة.",
+    },
+    healthy: {
+      breakfast: "بيض مخفوق مع توست وشرائح برتقال.",
+      lunch: "لفائف الديك الرومي والجبن مع طماطم كرزية.",
+      dinner: "ناجتس الدجاج المخبوز (منزلي الصنع) مع بطاطا حلوة وبازلاء.",
+      snacks: "زبادي أو فاكهة طازجة.",
+    },
+    overweight: {
+      breakfast: "شوفان مع توت وحليب قليل الدسم.",
+      lunch: "لفائف دجاج مع خس وفلفل ألوان في خبز تورتيلا قمح كامل.",
+      dinner: "تاكو السمك المشوي مع ذرة وسلطة.",
+      snacks: "فشار بدون زيت أو أصابع جزر.",
+    },
+    obese: {
+      breakfast: "سموثي فواكه (توت، سبانخ، ماء/حليب) وبيض مسلوق.",
+      lunch: "ساندويتش ديك رومي على خبز قمح كامل (كثير من الخضار) وعنب.",
+      dinner: "صدر دجاج مخبوز مع بروكلي مطهو على البخار وأرز بني.",
+      snacks: "شرائح تفاح أو دوائر خيار.",
+    },
+  },
+};
+
+export function detectLanguage(text: string): 'en' | 'ar' {
+  const arabicPattern = /[\u0600-\u06FF]/;
+  return arabicPattern.test(text) ? 'ar' : 'en';
+}
+
+// Initialize Gemini
+let genAI: GoogleGenerativeAI | null = null;
+let model: any = null;
+
+if (apiKey) {
+  try {
+    genAI = new GoogleGenerativeAI(apiKey);
+    model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+  } catch (error) {
+    console.error("Error initializing Gemini:", error);
+  }
+}
+
+// Main Chat Function
+export async function sendChatMessage(
+  messages: { role: 'user' | 'assistant'; content: string }[],
+  userLanguage: string
+): Promise<string> {
+  const lang = (userLanguage === 'ar' || userLanguage === 'en') ? userLanguage : 'en';
+
+  // 1. Check API Key validity
+  if (!apiKey) {
+    return lang === 'ar'
+      ? "خطأ في الإعدادات: مفتاح API مفقود. يرجى التأكد من إضافته في متغيرات البيئة."
+      : "Configuration Error: API Key is missing. Please check your Vercel environment variables.";
+  }
+
+  // 2. Check Model initialization
+  if (!model) {
+    return lang === 'ar'
+      ? "خطأ في التشغيل: لم يتم تهيئة نموذج الذكاء الاصطناعي بشكل صحيح."
+      : "Initialization Error: AI Model not initialized. Check console for details.";
+  }
+
+  // 3. Attempt to generate content
+  try {
+
+
+    const lastMessage = messages[messages.length - 1].content;
+
+    const context = lang === 'ar'
+      ? `أنت مساعد تغذية ذكي (Nutri-Bot). مهمتك تقديم نصائح علمية ودقيقة حول التغذية. جاوب على أي سؤال يطرحه المستخدم بوضوح. لا تستخدم إجابات محفوظة.`
+      : `You are Nutri-Bot, an intelligent nutrition assistant. Answer ANY nutrition-related question the user asks accurately and helpfully. Do not use canned responses.`;
+
+    const prompt = `${context}\n\nUser: ${lastMessage}\nAssistant:`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    if (text) return text;
+
+    throw new Error("Empty response from AI");
+
+  } catch (error: any) {
+    console.error("Gemini API Error:", error);
+    return lang === 'ar'
+      ? `عذرًا، حدث خطأ: ${error.message || 'خطأ غير معروف'}`
+      : `Sorry, Error: ${error.message || 'Unknown Error'}`;
+  }
+}

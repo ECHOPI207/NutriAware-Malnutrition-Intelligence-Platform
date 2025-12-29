@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Premium Light Mode Palette - "Clinical Clean" */
+    --background: 210 40% 98%; /* Cool Off-White */
+    --foreground: 222 47% 11%; /* Deep Navy Text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand Colors - High Contrast & Vibrancy */
+    --primary: 221 83% 53%; /* Vivid Blue */
+    --primary-foreground: 210 40% 98%;
+    --primary-light: 217 91% 60%;
+
+    --secondary: 158 55% 45%; /* Trust Green */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 151 55% 42%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    /* Charting */
+    --chart-1: 221 83% 53%;
+    --chart-2: 158 64% 52%;
+    --chart-3: 31 97% 58%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 345 96% 67%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47.4% 11.2%;
+    --primary-light: 217 91% 70%;
+
+    --secondary: 158 64% 52%;
+    --secondary-foreground: 210 40% 98%;
+    --secondary-light: 158 64% 62%;
+
+    --muted: 217 33% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217 33% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 25%;
+    --input: 217 33% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Light Mode ONLY: Subtle Grid Pattern for "Tech/Medical" feel */
+  body:not(.dark) {
+    background-image: 
+      radial-gradient(hsla(var(--primary)/0.08) 1px, transparent 1px),
+      radial-gradient(hsla(var(--primary)/0.05) 1px, transparent 1px);
+    background-size: 32px 32px, 16px 16px;
+    background-position: 0 0, 16px 16px;
+    background-attachment: fixed;
+  }
+
+  [dir="rtl"] {
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  [dir="ltr"] {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-bold;
+  }
+}
+
+@layer utilities {
+  /* Premium Glass Effects */
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
+  }
+  
+  .dark .glass {
+    @apply bg-black/40 border-white/10;
+  }
+
+  /* Text Gradients */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500;
+  }
+  
+  .dark .gradient-text {
+    @apply from-blue-400 to-cyan-300;
+  }
+
+  /* Smooth Transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  /* Card Enhancements for Light Mode specifically */
+  .card-premium {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300;
+  }
+  
+  .dark .card-premium {
+    @apply bg-card border-border shadow-none hover:bg-muted/50;
+  }
+
+  /* Input Fields Redesign */
+  input, textarea, select {
+    @apply bg-background border-input ring-offset-background transition-all duration-200 rounded-xl;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    @apply outline-none ring-2 ring-primary/20 border-primary shadow-[0_0_0_4px_rgba(59,130,246,0.1)];
+  }
+
+  /* Button Redesign */
+  .btn-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 border-none transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  
+  /* Scrollbar Aesthetics */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+  }
+
+  /* RTL/LTR Utils */
+  .rtl { direction: rtl; }
+  .ltr { direction: ltr; }
+}
+
+/* Auth Pages Specifics */
+.auth-gradient-bg {
+  background: radial-gradient(circle at top left, hsla(var(--primary)/0.15), transparent 40%),
+              radial-gradient(circle at bottom right, hsla(var(--secondary)/0.15), transparent 40%);
+}
+
+/* Enhanced Table Styles for Better Arabic Content Display */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.prose thead {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+}
+
+.prose th {
+  padding: 16px 20px !important;
+  text-align: right !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.025em;
+  border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: none !important;
+}
+
+.prose th:last-child {
+  border-right: none !important;
+}
+
+.prose tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.prose tbody tr:hover {
+  background-color: #e0f2fe;
+}
+
+.prose td {
+  padding: 16px 20px !important;
+  text-align: right !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  border-right: 1px solid #e5e7eb !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  vertical-align: top !important;
+}
+
+.prose td:last-child {
+  border-right: none !important;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Dark mode support */
+.dark .prose table {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .prose tbody tr:nth-child(even) {
+  background-color: #111827;
+}
+
+.dark .prose tbody tr:hover {
+  background-color: #1e40af;
+}
+
+.dark .prose td {
+  border-color: #374151 !important;
+  color: #f9fafb;
+}

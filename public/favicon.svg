@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <!-- Vibrant Green Gradient for Apple -->
+    <linearGradient id="appleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80" /> <!-- Green 400 -->
+      <stop offset="100%" style="stop-color:#16a34a" /> <!-- Green 600 -->
+    </linearGradient>
+    
+    <!-- Tech Blue Gradient for Pulse -->
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6" /> <!-- Blue 500 -->
+      <stop offset="100%" style="stop-color:#1d4ed8" /> <!-- Blue 700 -->
+    </linearGradient>
+    
+    <!-- Soft Shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Apple Body (Centered & Filled) -->
+  <path d="M50 88C64 88 78 78 82 60C85 45 75 35 68 35C63 35 58 38 56 40C54 40 50 35 44 35C35 35 25 42 22 55C18 72 30 88 44 88C46 88 48 86 50 86C52 86 54 88 50 88Z" 
+        fill="url(#appleGrad)" 
+        filter="url(#shadow)" />
+        
+  <!-- Leaf -->
+  <path d="M52 15C52 15 58 25 50 32C50 32 42 25 52 15Z" 
+        fill="#15803d" />
+  <path d="M52 15C52 15 50 25 58 28C58 28 62 18 52 15Z" 
+        fill="#22c55e" />
+
+  <!-- Activity Pulse Circle (Floating Badge style) -->
+  <circle cx="75" cy="75" r="18" fill="white" filter="url(#shadow)" />
+  
+  <!-- Pulse Line inside Badge -->
+  <path d="M66 75L70 75L73 66L79 84L82 75L86 75" 
+        stroke="url(#pulseGrad)" 
+        stroke-width="3.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none" />
+</svg>

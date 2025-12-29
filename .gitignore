@@ -1,0 +1,100 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production build
+dist/
+build/
+
+# Environment variables - NEVER COMMIT THESE
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+.env.test
+.env.development.local
+.env.staging.local
+.env.production.local
+.env.test.local
+.env.*.local
+
+# Backup environment files
+.env.backup
+.env.*.backup
+*.env.backup
+
+# Environment validation
+.env.validation
+.env.schema
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Vercel
+.vercel/
+
+# Supabase
+supabase/.temp/
+
+# Trash folder
+_trash/
+
+# Test files
+*.test.js
+test-*.mjs
+debug-*.mjs
+complete-system-test.mjs
+fix-*.mjs
+list-*.mjs
+check-*.mjs
+force-*.mjs
+test-*.html
+
+# Temporary files
+*.backup
+*.bak
+*_output.txt
+*.timestamp-*
+# Local Netlify folder
+.netlify
+
+.vercel
+.env*.local

@@ -1,0 +1,526 @@
+{
+  "roles": {
+    "admin": "Administrator",
+    "doctor": "Doctor",
+    "user": "User",
+    "nutritionist": "Nutritionist"
+  },
+  "nav": {
+    "home": "Home",
+    "malnutritionTypes": "Nutrition Guide",
+    "articles": "Articles",
+    "aiTools": "AI Tools",
+    "assessment": "Checkup",
+    "knowledge": "Knowledge Hub",
+    "about": "About NutriAware",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "userManagement": "User Management",
+    "contentManagement": "Content Management",
+    "activityMonitoring": "Activity Monitoring",
+    "adminControls": "Admin Controls",
+    "messages": "Messages & Consultations",
+    "medicalConsultation": "Medical Consultations",
+    "doctorControls": "Doctor Controls",
+    "doctorDashboard": "Doctor Dashboard"
+  },
+  "header": {
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email Address",
+    "passwordLabel": "Password",
+    "confirmPassword": "Confirm Password",
+    "fullName": "Full Name",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "createAccount": "Create an account",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "createAccountTitle": "Create New Account",
+    "joinPlatform": "Join NutriAware Platform",
+    "orSignupWithEmail": "Or signup with email",
+    "fullName": "Full Name",
+    "enterFullName": "Enter your full name",
+    "confirmPassword": "Confirm Password",
+    "reEnterPassword": "Re-enter password",
+    "passwordMismatch": "Passwords do not match",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "accountCreated": "Account created successfully!",
+    "agreeToTerms": "I agree to",
+    "alreadyHaveAccount": "Already have an account?",
+    "signingUp": "Creating account...",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithFacebook": "Continue with Facebook",
+    "orLoginWithEmail": "Or login with email",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password",
+    "termsAgreement": "By logging in, you agree to our",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "error": "Error",
+    "success": "Success",
+    "checkEmail": "Check your email",
+    "welcomeBack": "Welcome back!",
+    "loginSuccess": "You have successfully logged in",
+    "accountCreated": "Account Created!",
+    "checkEmailVerification": "Please check your email to verify your account",
+    "loginFailed": "Login Failed",
+    "registrationFailed": "Registration Failed",
+    "verifyEmail": "Please verify your email address first",
+    "userNotFound": "User not found",
+    "wrongPassword": "Wrong password",
+    "invalidCredentials": "Invalid credentials. Please try again",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating Account...",
+    "signInToAccount": "Sign in to your account",
+    "enterEmailAccess": "Enter your email below to access your dashboard",
+    "createNewAccount": "Create an account",
+    "enterDetailsCreate": "Enter your details below to create your account",
+    "orContinueWith": "Or continue with",
+    "orRegisterWith": "Or register with",
+    "password": {
+      "length": "At least 8 characters",
+      "uppercase": "One uppercase letter",
+      "lowercase": "One lowercase letter",
+      "number": "One number",
+      "special": "One special character"
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Invalid email address",
+      "passwordMatch": "Passwords do not match",
+      "terms": "You must agree to the terms"
+    },
+    "terms": "I agree to the Terms of Service and Privacy Policy"
+  },
+  "hero": {
+    "title": "Understanding Malnutrition",
+    "subtitle": "Empowering Communities Through Nutrition Intelligence",
+    "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to address global malnutrition challenges.",
+    "cta": "Explore Now",
+    "learnMore": "Learn More"
+  },
+  "stats": {
+    "title": "Global Malnutrition Crisis",
+    "egyptTitle": "Malnutrition in Egypt",
+    "hunger": {
+      "value": "828M",
+      "label": "People Facing Hunger",
+      "description": "Worldwide population affected by chronic hunger"
+    },
+    "stunting": {
+      "value": "149M",
+      "label": "Children Stunted",
+      "description": "Children under 5 affected by stunting"
+    },
+    "obesity": {
+      "value": "2.5B",
+      "label": "Adults Overweight",
+      "description": "Adults living with overweight or obesity"
+    },
+    "wasting": {
+      "value": "45M",
+      "label": "Children Wasted",
+      "description": "Children under 5 suffering from wasting"
+    },
+    "egypt": {
+      "stunting": {
+        "value": "13%",
+        "label": "Stunting Rate",
+        "description": "Children under 5 affected by stunting (2021)"
+      },
+      "overweight": {
+        "value": "11.5%",
+        "label": "Childhood Overweight",
+        "description": "Children under 5 suffering from excess weight"
+      },
+      "anemia": {
+        "value": "43%",
+        "label": "Anemia in Children",
+        "description": "Children aged 6-59 months affected by anemia"
+      },
+      "obesity": {
+        "value": "40%",
+        "label": "Adult Obesity",
+        "description": "Adult population living with obesity"
+      },
+      "source": "Source: Egypt Demographic and Health Survey (EDHS), UNICEF"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive Nutrition Support",
+    "assessment": {
+      "title": "Smart Assessment",
+      "description": "Evaluate your health with our BMI, calorie, and macro calculators."
+    },
+    "consultation": {
+      "title": "AI Consultation",
+      "description": "Get instant answers to your nutrition questions with our AI Chatbot."
+    },
+    "planning": {
+      "title": "Meal Planning",
+      "description": "Generate personalized meal plans tailored to your specific needs."
+    },
+    "knowledge": {
+      "title": "Knowledge Hub",
+      "description": "Access a library of evidence-based articles on nutrition and health."
+    }
+  },
+  "mission": {
+    "title": "Our Mission",
+    "subtitle": "Bridging Technology and Nutrition Science",
+    "description": "NutriAware is a university graduation project for the Nutrition Technology & Food Safety program, designed to raise awareness about malnutrition and provide accessible diagnostic support tools.",
+    "academic": "Academic Excellence",
+    "academicDesc": "Research-backed content aligned with nutrition science standards",
+    "social": "Social Impact",
+    "socialDesc": "Addressing real-world malnutrition challenges through technology",
+    "accessible": "Accessible Tools",
+    "accessibleDesc": "Free AI-powered assessment and guidance for everyone"
+  },
+  "categories": {
+    "all": "All Categories",
+    "undernutrition": "Undernutrition",
+    "overnutrition": "Overnutrition",
+    "foodSafety": "Food Safety",
+    "children": "Children",
+    "adults": "Adults",
+    "filterByCategory": "Filter by Category",
+    "filterByAge": "Filter by Age Group"
+  },
+  "articles": {
+    "title": "Knowledge Hub",
+    "subtitle": "Evidence-Based Nutrition Information",
+    "readMore": "Read More",
+    "keyTakeaways": "Key Takeaways",
+    "relatedArticles": "Related Articles"
+  },
+  "assessment": {
+    "title": "Assessment Tools",
+    "subtitle": "Evaluate Your Nutritional Status",
+    "bmi": {
+      "title": "BMI Calculator",
+      "description": "Calculate your Body Mass Index and get personalized health recommendations",
+      "weight": "Weight (kg)",
+      "height": "Height (cm)",
+      "age": "Age (years)",
+      "calculate": "Calculate BMI",
+      "result": "Your BMI",
+      "category": "Category",
+      "recommendations": "Recommendations",
+      "status": {
+        "underweight": "Underweight",
+        "normal": "Normal weight",
+        "overweight": "Overweight",
+        "obese": "Obese"
+      },
+      "advice": {
+        "underweight": "Consider increasing calorie intake with nutrient-dense foods. Consult a healthcare provider for personalized advice.",
+        "normal": "Maintain your healthy weight through balanced diet and regular physical activity.",
+        "overweight": "Consider adopting healthier eating habits and increasing physical activity. Consult a healthcare provider.",
+        "obese": "It is recommended to consult with a healthcare provider for a comprehensive weight management plan."
+      }
+    },
+    "calorie": {
+      "title": "Calorie & Macro Estimator",
+      "description": "Get personalized daily calorie and macronutrient recommendations",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "activity": "Activity Level",
+      "sedentary": "Sedentary",
+      "light": "Light Activity",
+      "moderate": "Moderate Activity",
+      "active": "Very Active",
+      "intense": "Intense Activity",
+      "goal": "Health Goal",
+      "maintain": "Maintain Weight",
+      "lose": "Lose Weight",
+      "gain": "Gain Weight",
+      "calculate": "Calculate Needs",
+      "dailyCalories": "Daily Calories",
+      "protein": "Protein",
+      "carbs": "Carbohydrates",
+      "fats": "Fats"
+    },
+    "child": {
+      "title": "Child Assessment"
+    }
+  },
+  "aiTools": {
+    "title": "AI-Powered Tools",
+    "subtitle": "Intelligent Nutrition Support",
+    "protocol": {
+      "goal": "Goal",
+      "strategy": "Strategy",
+      "tips": "Professional Tips"
+    },
+    "chatbot": {
+      "title": "Nutri-Bot Assistant",
+      "description": "Your 24/7 nutrition consultant powered by AI",
+      "placeholder": "Ask me anything about nutrition...",
+      "send": "Send"
+    },
+    "mealGenerator": {
+      "title": "NutriScribe",
+      "description": "Get personalized meal plans based on your nutritional needs",
+      "condition": "Select Your Condition",
+      "ironDeficiency": "Iron Deficiency",
+      "vitaminD": "Vitamin D Deficiency",
+      "proteinDeficiency": "Protein Deficiency",
+      "obesity": "Obesity Management",
+      "diabetes": "Diabetes Management",
+      "generate": "Generate Meal Plan",
+      "generating": "Generating your personalized meal plan...",
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snacks": "Snacks"
+    },
+    "bmiMealGenerator": {
+      "title": "BMI Meal Planner",
+      "description": "Scientific meal plans based on your Body Mass Index",
+      "height": "Height (cm)",
+      "weight": "Weight (kg)",
+      "age": "Age (years)",
+      "group": "Group",
+      "adult": "Adult (19+)",
+      "child": "Child (5-18)",
+      "toddler": "Toddler (<5)",
+      "muac": "MUAC (cm)",
+      "years": "Years",
+      "months": "Months",
+      "calculate": "Generate Plan",
+      "yourBmi": "Result",
+      "severe_malnutrition": "Severe Acute Malnutrition (Red)",
+      "desc_severe_malnutrition": "Critical condition requiring immediate medical attention. This indicates severe wasting and high risk of complications.",
+      "moderate_malnutrition": "Moderate Acute Malnutrition (Yellow)",
+      "desc_moderate_malnutrition": "Warning sign indicating significant weight loss. Specialized nutritional support is needed to prevent deterioration.",
+      "category": "Category",
+      "underweight": "Underweight",
+      "desc_underweight": "Your weight is lower than recommended for your height. This may affect your immunity and energy levels. Consult a nutritionist for a healthy weight gain plan.",
+      "healthy": "Healthy Weight",
+      "desc_healthy": "Congratulations! Your weight is in the healthy range. Keep up the balanced diet and regular physical activity.",
+      "overweight": "Overweight",
+      "desc_overweight": "Your weight is slightly above the healthy range. Adopting a balanced diet and increasing physical activity can help you reach a healthy weight.",
+      "obese": "Obesity",
+      "desc_obese": "Your weight is significantly higher than recommended, which may increase health risks. Professional medical advice and a lifestyle change plan are recommended.",
+      "steps": "Recommendations",
+      "references": {
+        "title": "Reference Tables & Standards",
+        "who_growth": {
+          "title": "WHO Growth Standards (0-5 Years)",
+          "desc": "Based on World Health Organization (WHO) Child Growth Standards. Assessment relies on Weight-for-Age and age-appropriate feeding practices.",
+          "source": "Source: WHO Child Growth Standards"
+        },
+        "bmi_age": {
+          "title": "BMI-for-Age (5-19 Years)",
+          "desc": "Simplified Z-score classification based on WHO & CDC references:",
+          "p5": "< 5th Percentile: Underweight",
+          "p5_85": "5th - 85th Percentile: Healthy Weight",
+          "p85_95": "85th - 95th Percentile: Overweight",
+          "p95": "> 95th Percentile: Obesity",
+          "source": "Source: WHO Growth Reference 5-19"
+        },
+        "adult_bmi": {
+          "title": "Adult BMI Categories (20+ Years)",
+          "underw": "< 18.5: Underweight",
+          "healthy": "18.5 - 24.9: Healthy Weight",
+          "overw": "25 - 29.9: Overweight",
+          "obese": "30+: Obesity",
+          "note": "Note: These are general guidelines. Individual health factors may apply."
+        }
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Medical Analytics Dashboard",
+    "subtitle": "Real-time patient insights & monitoring",
+    "last7Days": "Last 7 Days",
+    "last30Days": "Last 30 Days",
+    "exportCSV": "Export CSV",
+    "totalVisits": "Total Visits",
+    "uniqueSessions": "Unique Sessions",
+    "assessmentUsage": "Assessment Usage",
+    "bmiGrowthChecks": "BMI & Growth Checks",
+    "deviceUsage": "Device Usage",
+    "trafficOverview": "Traffic Overview",
+    "trafficSubtitle": "Daily active users over time",
+    "healthStatus": "Health Status Distribution",
+    "bmiCategories": "BMI Categories",
+    "favorites": "Favorite Articles",
+    "bmiHistory": "BMI History",
+    "noFavorites": "No favorite articles yet",
+    "noBmiHistory": "No BMI calculations yet",
+    "alerts": {
+      "title": "High Risk Patients",
+      "subtitle": "Recent assessments flagged as outside normal ranges"
+    },
+    "messages": {
+      "title": "Patient Feedback",
+      "subtitle": "Recent messages from contact form"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in Touch",
+    "pageDescription": "We're here to help you. Contact us for any questions, suggestions, or to get specialized medical consultation",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message. Please try again.",
+    "generalFeedback": "General Feedback",
+    "medicalConsultation": "Medical Consultation",
+    "sendMessage": "Send us a Message",
+    "feedbackDescription": "Have suggestions or found a bug? Let us know via email",
+    "emailUs": "Email Us",
+    "whatsapp": "WhatsApp",
+    "location": "Location",
+    "workingHours": "Working Hours",
+    "forGeneralInquiries": "For general inquiries",
+    "instantMessaging": "Instant messaging support",
+    "teamHeadquarters": "Team headquarters",
+    "continuousSupport": "Continuous support",
+    "available247": "Available 24/7",
+    "cairo": "Cairo, Egypt",
+    "namePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your email address",
+    "messageLabel": "Message / Feedback",
+    "messagePlaceholder": "Write your message or feedback here... We value your opinions and suggestions",
+    "fillAllFields": "Please fill in all fields",
+    "successDescription": "Thank you! Your message has been saved and we'll get back to you soon",
+    "localSaveSuccess": "Your message has been saved locally. Thank you!"
+  },
+  "footer": {
+    "description": "Empowering communities through nutrition intelligence and AI-powered health tools.",
+    "smartServices": "Smart Services",
+    "medicalSupport": "Medical Support",
+    "getInTouch": "Get in Touch",
+    "nutritionAssessment": "Nutrition Assessment",
+    "aiTools": "AI Tools",
+    "medicalConsultation": "Medical Consultation",
+    "knowledgeCenter": "Knowledge Center",
+    "aboutPlatform": "About Platform",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "location": "Cairo, Egypt",
+    "available247": "Available 24/7",
+    "allRightsReserved": "All rights reserved",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "2025 NutriAware",
+    "madeWith": "Made with",
+    "forBetterNutrition": "for better nutrition",
+    "developedBy": "Developed by echo-π"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "date": "Date",
+    "type": "Type",
+    "value": "Value",
+    "status": "Status",
+    "noData": "No data available",
+    "name": "Name",
+    "and": "and",
+    "message": "Message"
+  },
+  "about": {
+    "title": "About the Project",
+    "commitment": "This project represents our commitment to addressing global malnutrition challenges through innovative technology and evidence-based nutrition science.",
+    "university": {
+      "name": "October 6 University",
+      "faculty": "Applied Health Sciences Technology",
+      "program": "Technology of Nutrition and Food Safety"
+    },
+    "team": {
+      "title": "Project Team",
+      "subtitle": "Dedicated students working on malnutrition awareness"
+    },
+    "supervisors": {
+      "title": "Under Supervision",
+      "subtitle": "Expert guidance from distinguished faculty members"
+    },
+    "members": {
+      "omar": "Omar Youssef Ammar",
+      "shahd": "Shahd Mahmoud Mohammed",
+      "manar": "Manar Anwer Mohamed Ali",
+      "mai": "Mai Ragab Mohamed",
+      "mina": "Mina Megalaa Najeb",
+      "ahmed": "Ahmed AbdRabo Mohamed",
+      "mostafa": "Mostafa Saad Karam Saad"
+    },
+    "services": {
+      "title": "What We Offer",
+      "subtitle": "Complete Tools to Support You and Your Family",
+      "knowledge": {
+        "title": "Learn from Trusted Sources",
+        "description": "A comprehensive library of articles based on scientific research and international organizations (like WHO), helping you understand nutrition correctly."
+      },
+      "ai": {
+        "title": "AI at Your Service",
+        "description": "Smart tools to make your life easier:",
+        "chatbot": "Nutri-Bot Assistant: Ask any nutrition question and get an instant answer.",
+        "mealPlanner": "NutriScribe: Generate a complete meal plan tailored to your condition (Diabetes, Iron Deficiency, Weight Loss, etc.).",
+        "bmiMealPlanner": "BMI Meal Planner: Get a meal plan scientifically designed for you or your child based on Body Mass Index and age."
+      },
+      "assessment": {
+        "title": "Check Your Health",
+        "description": "Simple tools to evaluate your status:",
+        "calculators": "Accurate calculators for Body Mass Index (BMI) and your daily Calorie & Nutrient needs.",
+        "child": "Child Assessment: Monitor your child's growth and detect early signs of malnutrition."
+      },
+      "expert": {
+        "title": "Talk to Experts",
+        "description": "We are here to help. You can contact specialists directly via WhatsApp or Email to discuss your child's case. We also value your feedback to improve the platform."
+      }
+    },
+    "supervisorNames": {
+      "suzan": "Dr. Suzan Shawky"
+    },
+    "roles": {
+      "professor": "Professor",
+      "doctor": "Doctor",
+      "student": "Student"
+    }
+  },
+  "features": {
+    "ai_assessment": {
+      "title": "Smart Health Assessment",
+      "description": "Comprehensive analysis of your nutritional status using advanced AI technology."
+    },
+    "medical_consultation": {
+      "title": "Specialized Consultation",
+      "description": "Direct connection with top doctors and nutritionists for personalized care."
+    },
+    "knowledge_center": {
+      "title": "Knowledge Library",
+      "description": "Your trusted source for medical and ending nutrition info, backed by scientific research."
+    },
+    "ai_tools": {
+      "title": "Smart Planning Tools",
+      "description": "Your personal assistant for generating healthy meal plans and tracking your lifestyle intelligently."
+    }
+  }
+}

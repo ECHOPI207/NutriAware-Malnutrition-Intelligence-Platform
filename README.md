@@ -64,9 +64,11 @@ npm run build
 │   ├── components/  # Reusable UI components
 │   ├── contexts/    # React Context providers (Auth, Theme, etc.)
 │   ├── features/    # Feature-specific logic
+│   ├── hooks/       # Custom React hooks
+│   ├── lib/         # Utilities and configuration (Firebase, Utils)
 │   ├── pages/       # Application routes/pages
 │   ├── services/    # API and external service integrations
-│   └── utils/       # Helper functions
+│   └── types/       # TypeScript type definitions
 ```
 
 ## License

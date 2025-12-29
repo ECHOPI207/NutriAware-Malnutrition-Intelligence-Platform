@@ -13,7 +13,7 @@ NutriAware is a comprehensive malnutrition intelligence platform combining AI te
 ## Tech Stack
 
 - **Frontend**: React, Vite, TypeScript, TailwindCSS
-- **Backend & Auth**: Firebase / Supabase (Configurable)
+- **Backend & Auth**: Firebase
 - **State Management**: React Context & Hooks
 - **Testing**: Vitest, React Testing Library
 

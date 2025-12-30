@@ -1,34 +1,44 @@
-import Home from './pages/Home';
-import Knowledge from './pages/Knowledge';
-import Articles from './pages/Articles';
-import ArticleDetail from './pages/ArticleDetail';
-import Assessment from './pages/Assessment';
-import AITools from './pages/AITools';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import MessagesAndConsultations from './pages/MessagesAndConsultations';
-import NewMedicalConsultation from './pages/NewMedicalConsultation';
-import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
-import DoctorDashboard from './pages/doctor/Dashboard';
-import ConsultationManagement from './pages/doctor/ConsultationManagement';
-import AdminDashboard from './pages/admin/Dashboard';
-import UserManagement from './pages/admin/UserManagement';
-import SystemSettings from './pages/admin/SystemSettings';
-import ContentManagement from './pages/admin/ContentManagement';
-import ActivityMonitoring from './pages/admin/ActivityMonitoring';
-import BackupManagement from './pages/admin/BackupManagement';
-import SecuritySettings from './pages/admin/SecuritySettings';
-import Dashboard from './pages/Dashboard';
-import { SimpleSignup } from './pages/auth/SimpleSignup';
-import { SimpleLogin } from './pages/auth/SimpleLogin';
-import { AuthCallback } from './pages/auth/AuthCallback';
-import Profile from './pages/Profile';
-import NotFound from './pages/NotFound';
+import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-
 import type { ReactNode } from 'react';
-import { UserRole, roleManager } from './services/role-manager';
+import { UserRole } from './services/role-manager';
+
+// Lazy load components
+const Home = lazy(() => import('./pages/Home'));
+const Knowledge = lazy(() => import('./pages/Knowledge'));
+const Articles = lazy(() => import('./pages/Articles'));
+const ArticleDetail = lazy(() => import('./pages/ArticleDetail'));
+const Assessment = lazy(() => import('./pages/Assessment'));
+const AITools = lazy(() => import('./pages/AITools'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const MessagesAndConsultations = lazy(() => import('./pages/MessagesAndConsultations'));
+const NewMedicalConsultation = lazy(() => import('./pages/NewMedicalConsultation'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Profile = lazy(() => import('./pages/Profile'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+// Admin pages
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
+const ConsultationManagement = lazy(() => import('./pages/doctor/ConsultationManagement'));
+const UserManagement = lazy(() => import('./pages/admin/UserManagement'));
+const SystemSettings = lazy(() => import('./pages/admin/SystemSettings'));
+const ContentManagement = lazy(() => import('./pages/admin/ContentManagement'));
+const ActivityMonitoring = lazy(() => import('./pages/admin/ActivityMonitoring'));
+const BackupManagement = lazy(() => import('./pages/admin/BackupManagement'));
+const SecuritySettings = lazy(() => import('./pages/admin/SecuritySettings'));
+
+// Doctor pages
+const DoctorDashboard = lazy(() => import('./pages/doctor/Dashboard'));
+
+// Dashboard
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+
+// Auth pages (Handle named exports)
+const SimpleSignup = lazy(() => import('./pages/auth/SimpleSignup').then(module => ({ default: module.SimpleSignup })));
+const SimpleLogin = lazy(() => import('./pages/auth/SimpleLogin').then(module => ({ default: module.SimpleLogin })));
+const AuthCallback = lazy(() => import('./pages/auth/AuthCallback').then(module => ({ default: module.AuthCallback })));
 
 export interface RouteConfig {
   name: string;
@@ -285,7 +295,6 @@ const routes: RouteConfig[] = [
     visible: false,
     showInNavigation: () => false
   },
-
   {
     name: 'Admin Shortcut',
     translationKey: 'Admin',
@@ -305,87 +314,3 @@ const routes: RouteConfig[] = [
 ];
 
 export default routes;
-
-// Route access validation utilities
-export const routeUtils = {
-  /**
-   * Check if a user can access a specific route
-   */
-  canAccessRoute(route: RouteConfig, userRole: UserRole): boolean {
-    // If no role requirements, allow access
-    if (!route.requiredRole && !route.requiredPermission) {
-      return true;
-    }
-
-    // Check permission-based access first
-    if (route.requiredPermission) {
-      if (!roleManager.hasPermission(userRole, route.requiredPermission)) {
-        return false;
-      }
-    }
-
-    // Check role-based access
-    if (route.requiredRole) {
-      const requiredRoles = Array.isArray(route.requiredRole) ? route.requiredRole : [route.requiredRole];
-
-      if (route.allowHigherRoles !== false) {
-        // Default behavior: allow higher roles
-        return requiredRoles.some(role =>
-          roleManager.hasHigherOrEqualRole(userRole, role)
-        );
-      } else {
-        // Exact role match required
-        return roleManager.hasAnyRole(userRole, requiredRoles);
-      }
-    }
-
-    return true;
-  },
-
-  /**
-   * Get routes that should be visible in navigation for a specific role
-   */
-  getNavigationRoutes(userRole: UserRole): RouteConfig[] {
-    return routes.filter(route => {
-      // Check if route should show in navigation
-      if (route.showInNavigation && !route.showInNavigation(userRole)) {
-        return false;
-      }
-
-      // Check if user can access the route
-      return this.canAccessRoute(route, userRole);
-    });
-  },
-
-  /**
-   * Find a route by path
-   */
-  findRouteByPath(path: string): RouteConfig | undefined {
-    return routes.find(route => route.path === path);
-  },
-
-  /**
-   * Get the appropriate fallback path for a route and user role
-   */
-  getFallbackPath(route: RouteConfig, userRole: UserRole): string {
-    if (route.fallbackPath) {
-      return route.fallbackPath;
-    }
-
-    return roleManager.getDefaultRedirectPath(userRole);
-  },
-
-  /**
-   * Get all routes that require authentication
-   */
-  getProtectedRoutes(): RouteConfig[] {
-    return routes.filter(route => route.requiredRole || route.requiredPermission);
-  },
-
-  /**
-   * Get all public routes (no authentication required)
-   */
-  getPublicRoutes(): RouteConfig[] {
-    return routes.filter(route => !route.requiredRole && !route.requiredPermission);
-  }
-};

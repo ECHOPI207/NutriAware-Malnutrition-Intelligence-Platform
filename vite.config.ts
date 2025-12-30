@@ -15,5 +15,19 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        // drop_console: true, // Keep console logs for debugging
+        // drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+  }
 });
-

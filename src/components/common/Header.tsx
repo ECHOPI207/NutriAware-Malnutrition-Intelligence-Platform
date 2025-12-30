@@ -47,6 +47,7 @@ const Header = () => {
     const newLang = i18n.language === 'en' ? 'ar' : 'en';
     i18n.changeLanguage(newLang);
     document.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = newLang;
   };
 
   const handleLogout = async () => {
@@ -93,7 +94,7 @@ const Header = () => {
         {/* --- Logo Section --- */}
         <div className="flex-shrink-0 flex items-center gap-2">
           <div className="md:hidden mr-2 rtl:mr-0 rtl:ml-2">
-            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}>
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
@@ -138,7 +139,7 @@ const Header = () => {
               size="icon"
               onClick={toggleTheme}
               className="h-8 w-8 rounded-full hover:bg-background"
-              title={theme === 'dark' ? "Light Mode" : "Dark Mode"}
+              aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
             >
               {theme === 'dark' ? <Sun className="h-4 w-4 text-yellow-500" /> : <Moon className="h-4 w-4 text-indigo-500" />}
             </Button>
@@ -147,7 +148,7 @@ const Header = () => {
               size="icon"
               onClick={toggleLanguage}
               className="h-8 w-8 rounded-full hover:bg-background"
-              title="Change Language"
+              aria-label="Change language"
             >
               <Languages className="h-4 w-4" />
             </Button>
@@ -157,7 +158,7 @@ const Header = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 ring-2 ring-transparent hover:ring-primary/20 transition-all">
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 ring-2 ring-transparent hover:ring-primary/20 transition-all" aria-label="Open user menu">
                     <Avatar className="h-10 w-10 border-2 border-background shadow-sm">
                       <AvatarImage src={userProfile?.photoURL} alt={userProfile?.displayName || "User"} />
                       <AvatarFallback className="bg-primary/10 text-primary font-bold">

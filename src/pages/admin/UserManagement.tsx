@@ -488,6 +488,13 @@ const UserManagement: React.FC = () => {
     }
   };
 
+  const getGenderLabel = (gender?: string) => {
+    const g = gender?.toLowerCase();
+    if (g === 'male' || g === 'm') return isRTL ? 'ذكر' : 'Male';
+    if (g === 'female' || g === 'f') return isRTL ? 'أنثى' : 'Female';
+    return isRTL ? 'غير محدد' : 'Not specified';
+  };
+
   if (userProfile?.role !== 'admin') {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -1180,7 +1187,7 @@ const UserManagement: React.FC = () => {
                     </div>
                     <div className="space-y-2">
                       <Label className="text-sm font-medium">{isRTL ? 'الجنس' : 'Gender'}</Label>
-                      <p className="text-sm">{selectedUser.gender === 'male' ? (isRTL ? 'ذكر' : 'Male') : (isRTL ? 'أنثى' : 'Female')}</p>
+                      <p className="text-sm">{getGenderLabel(selectedUser.gender)}</p>
                     </div>
                     <div className="space-y-2">
                       <Label className="text-sm font-medium">{isRTL ? 'حالة المستخدم' : 'User Status'}</Label>

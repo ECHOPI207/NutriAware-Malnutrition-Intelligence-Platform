@@ -40,7 +40,7 @@ const Profile: React.FC = () => {
                 location: userProfile.location || '',
                 bio: userProfile.bio || '',
                 photoURL: userProfile.photoURL || user?.photoURL || '',
-                gender: userProfile.gender || 'male',
+                gender: (userProfile.gender || 'male').toLowerCase(),
                 birthDate: userProfile.birthDate || ''
             });
         }

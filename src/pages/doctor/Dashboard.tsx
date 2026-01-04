@@ -36,7 +36,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import EmptyState from '@/components/common/EmptyState';
 import { useMessages } from '@/components/messages/useMessages';
 import { MessageList } from '@/components/messages/MessageList';
 import { useDoctorStats } from './useDoctorStats';
@@ -305,15 +304,14 @@ const DoctorDashboard: React.FC = () => {
                         }) : (
                           <TableRow>
                             <TableCell colSpan={6} className="h-64 text-center">
-                              <EmptyState
-                                icon={Users}
-                                title={isRTL ? 'لا يوجد مرضى' : 'No Patients Found'}
-                                description={isRTL ? 'لم يتم العثور على سجلات مرضى' : 'No patient records found'}
-                                action={{
-                                  label: isRTL ? 'تحديث' : 'Refresh',
-                                  onClick: refreshStats
-                                }}
-                              />
+                              <div className="flex flex-col items-center justify-center h-full p-4">
+                                <Users className="h-12 w-12 text-muted-foreground mb-4" />
+                                <h3 className="text-lg font-semibold">{isRTL ? 'لا يوجد مرضى' : 'No Patients Found'}</h3>
+                                <p className="text-muted-foreground mb-4">{isRTL ? 'لم يتم العثور على سجلات مرضى' : 'No patient records found'}</p>
+                                <Button variant="outline" onClick={refreshStats}>
+                                  {isRTL ? 'تحديث' : 'Refresh'}
+                                </Button>
+                              </div>
                             </TableCell>
                           </TableRow>
                         )}

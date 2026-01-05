@@ -189,8 +189,10 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:grid md:grid-cols-3 items-center gap-4 text-center md:text-start">
 
             {/* Side 1 - Copyright */}
-            <div className="text-sm text-slate-500 dark:text-slate-500 order-2 md:order-1 justify-self-start">
-              © 2025 NutriAware. <span className="hidden sm:inline">|</span> {t('footer.allRightsReserved')}
+            <div className="text-sm text-slate-500 dark:text-slate-500 order-2 md:order-1 justify-self-start flex flex-wrap justify-center md:justify-start items-center gap-2 rtl:flex-row-reverse">
+              <span dir="ltr">© {new Date().getFullYear()} NutriAware.</span>
+              <span className="hidden sm:inline">|</span>
+              <span>{t('footer.allRightsReserved')}</span>
             </div>
 
             {/* Center - Made with Love */}

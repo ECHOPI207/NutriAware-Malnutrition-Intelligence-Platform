@@ -155,13 +155,13 @@ const Footer: React.FC = () => {
               <Users className="h-5 w-5 text-accent dark:text-indigo-400" />
               <span>{t('footer.getInTouch')}</span>
             </h3>
-            <div className="space-y-4 w-full">
+            <div className="space-y-2 w-full">
               <div className="text-center">
                 <a href="mailto:support@nutriaware.info" className="group flex items-center justify-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors text-base p-2 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg">
                   <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded-full group-hover:bg-primary group-hover:text-white transition-colors">
                     <Mail className="h-4 w-4" />
                   </div>
-                  <span className="truncate force-ltr">support@nutriaware.info</span>
+                  <span className="truncate" dir="ltr">support@nutriaware.info</span>
                 </a>
               </div>
               <div className="text-center">
@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
                   <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded-full group-hover:bg-secondary group-hover:text-white transition-colors">
                     <Phone className="h-4 w-4" />
                   </div>
-                  <span className="force-ltr font-mono pointer-events-none">+20 100 076 1895</span>
+                  <span className="pointer-events-none" dir="ltr">+20 100 076 1895</span>
                 </a>
               </div>
               <div className="text-center">

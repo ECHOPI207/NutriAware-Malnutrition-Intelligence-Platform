@@ -156,8 +156,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
 
             {onReadMore && (
               <Button
-                variant="outline"
                 size="sm"
+                className="btn-gradient shadow-md"
                 onClick={() => onReadMore(article)}
               >
                 {isRTL ? 'اقرأ المزيد' : 'Read More'}
@@ -244,16 +244,16 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             </span>
           </div>
 
-          {onReadMore && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onReadMore(article)}
-            >
-              {isRTL ? 'اقرأ المزيد' : 'Read More'}
-              {isRTL ? <ArrowLeft className="h-4 w-4 mr-2" /> : <ArrowRight className="h-4 w-4 ml-2" />}
-            </Button>
-          )}
+            {onReadMore && (
+              <Button
+                size="sm"
+                className="btn-gradient shadow-md"
+                onClick={() => onReadMore(article)}
+              >
+                {isRTL ? 'اقرأ المزيد' : 'Read More'}
+                {isRTL ? <ArrowLeft className="h-4 w-4 mr-2" /> : <ArrowRight className="h-4 w-4 ml-2" />}
+              </Button>
+            )}
         </div>
       </CardContent>
     </Card>

@@ -1,4 +1,4 @@
-import { Children } from "react";
+
 
 export interface Article {
   id: string;
@@ -28,90 +28,132 @@ export const articles: Article[] = [
     id: '1',
     title: {
       en: 'Growth Assessment and Interpretation of Growth Charts',
-      ar: 'تقييم النمو وتفسير مخططات النمو'
+      ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال'
     },
     excerpt: {
-      en: 'Growth charts are scientifically validated tools used to track child development and detect nutritional problems early.',
-      ar: 'مخططات النمو هي أدوات علمية مُعتمدة تُستخدم لتتبع نمو الطفل واكتشاف المشاكل الغذائية مبكراً.'
+      en: 'Growth monitoring is the first line of defense for detecting health or nutritional issues early. Learn how to interpret growth charts and what they mean for your child.',
+      ar: 'تُعد مراقبة النمو تمثيلاً حقيقياً لخط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية في وقت مبكر. تعرف على كيفية تفسير مخططات النمو وما تعنيه لطفلك.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `Monitoring growth represents the first line of defense for detecting any health or nutritional problem. Growth charts are the scientifically validated tools used by clinicians and researchers to track a child's development and compare it with globally established healthy growth standards.
+      en: `Monitoring growth is the true representation of the first line of defense for detecting any health or nutritional problem at an early stage. Growth charts are scientifically validated tools used by doctors to track a child's growth and compare it to global healthy growth standards.
 
-**Key Anthropometric Measurements:**
+**First: How does malnutrition affect children's growth?**
 
-Growth charts rely on a set of measurements compared to healthy children of the same age and sex:
+Malnutrition is not just "hunger", but an imbalance in nutrients that leads to potentially permanent effects:
 
-- **Weight-for-Age:** Monitors acute changes in nutritional status.
-- **Length/Stature-for-Age:** Reflects long-term nutritional history. Low values are often indicative of stunting, a form of chronic malnutrition.
-- **Head Circumference-for-Age:** Critically important during the first two years of life, as it mirrors brain growth rates.
-- **BMI-for-Age:** Applied from age two onward to assess thinness or obesity.
+*   **Physical Growth (Stunting and Wasting):** Deficiency of proteins and calories leads to stunted height (stunting) or severe weight loss (wasting), making the child's structure weaker than their peers.
+*   **Mental and Cognitive Development:** The brain needs fats and minerals (like Iron and Zinc) to grow. Malnutrition in the early years may lead to delayed academic achievement and cognitive deficits.
+*   **Weak Immune System:** A malnourished child is more susceptible to recurrent infections, and every illness leads to a further decline in growth (a vicious cycle).
+*   **Delayed Motor Skills:** The child may be delayed in sitting, walking, or running due to poor muscle mass and lack of energy.
 
-**Understanding Percentiles and Their Interpretation:**
+**Second: Key Anthropometric Measurements**
 
-When a child's measurement is plotted on the chart, it aligns with a specific percentile that indicates their position relative to peers:
+Charts rely on measurements compared to children of the same age and gender:
 
-- **Healthy growth:** Maintaining the child's individual trajectory between the 5th and 85th percentiles.
-- **Underweight or wasting:** Weight or BMI falling below the 5th percentile.
-- **Overweight or obesity:** BMI falling above the 95th percentile.
+*   **Weight-for-Age:** Monitors acute and immediate changes in nutritional status.
+*   **Height-for-Age:** Reflects long-term nutritional history (the primary indicator of stunting).
+*   **Head Circumference:** Reflects brain development and growth during the first two years.
+*   **Body Mass Index (BMI):** Used from age two to assess thinness or obesity.
 
-**Red Flags Not to Be Overlooked:**
+**Third: Understanding "Percentiles" and Interpreting Them**
 
-- **Crossing Percentiles:** A sudden drop across two or more major percentile lines.
-- **Weight Plateau or Loss:** Weight remaining unchanged for over a month, or actual weight loss.
-- **Disproportionate Growth:** Excessively rapid weight gain without appropriate linear growth.
+A percentile is the child's rank among 100 peers:
 
-Growth monitoring should be performed regularly during well-child visits, with measurements plotted accurately on standardized growth charts. Any concerning patterns should prompt further nutritional assessment and intervention.
+*   **Normal Range:** Maintaining a steady path between the 5th and 85th percentiles.
+*   **Underweight:** When the measurement falls below the 5th percentile.
+*   **Overweight/Obesity:** If BMI exceeds the 85th or 95th percentile.
+*   **Note:** Doctors tend to use WHO charts for children under two years, and CDC charts for those older.
+
+**Fourth: The "Pattern" Rule and Genetic Factors**
+
+Do not look at the single number, but look at:
+
+*   **Trend:** Is the child growing consistently on their own curve?
+*   **Genetics:** Parents' height determines the genetic "ceiling" for the child's growth, which is a key factor in assessment.
+
+**Fifth: Warning Signs Requiring Intervention**
+
+*   **Crossing Percentile Lines:** A sudden drop crossing two major lines on the chart.
+*   **Growth Plateau:** Stalled weight or height gain for an unexplained period.
+*   **Disproportionate Growth:** Excessive weight gain not matched by healthy skeletal growth.
+
+**Conclusion**
+
+The goal of growth monitoring is not to reach a fixed ideal weight, but to ensure the child is on their natural path, away from malnutrition risks that could affect their physical and mental future.
+
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
 *   [Centers for Disease Control and Prevention (CDC) - Growth Charts](https://www.cdc.gov/growthcharts/index.htm)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `مراقبة النمو تمثل خط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية. مخططات النمو هي الأدوات المُعتمدة علمياً التي يستخدمها الأطباء والباحثون لتتبع نمو الطفل ومقارنته بمعايير النمو الصحي المُعتمدة عالمياً.
+      ar: `تُعد مراقبة النمو تمثيلاً حقيقياً لخط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية في وقت مبكر. مخططات النمو هي الأدوات العلمية المعتمدة التي يستخدمها الأطباء لتتبع نمو الطفل ومقارنته بمعايير النمو الصحي العالمية.
 
-  **القياسات الأنثروبومترية الرئيسية:**
+**أولاً: كيف يؤثر سوء التغذية على نمو الأطفال؟**
 
-  تعتمد مخططات النمو على مجموعة من القياسات مقارنة بالأطفال الأصحاء من نفس العمر والجنس:
+سوء التغذية ليس مجرد "جوع"، بل هو اختلال في توازن العناصر الغذائية يؤدي إلى آثار قد تكون دائمة:
 
-  - **الوزن مقابل العمر:** يراقب التغيرات الحادة في الحالة الغذائية.
-  - **الطول/القامة مقابل العمر:** يعكس التاريخ الغذائي طويل الأمد. القيم المنخفضة غالباً ما تشير إلى التقزم، وهو شكل من أشكال سوء التغذية المزمن.
-  - **محيط الرأس مقابل العمر:** مهم للغاية خلال السنتين الأوليين من الحياة، حيث يعكس معدلات نمو الدماغ.
-  - **مؤشر كتلة الجسم مقابل العمر:** يُطبق من عمر سنتين فصاعداً لتقييم النحافة أو السمنة.
+* **النمو البدني (التقزم والهزال):** يؤدي نقص البروتينات والسعرات إلى توقف الطول (التقزم) أو فقدان الوزن الحاد (الهزال)، مما يجعل بنية الطفل أضعف من أقرانه.
+* **التطور الذهني والإدراكي:** الدماغ يحتاج إلى دهون ومعادن (مثل الحديد والزنك) لينمو. سوء التغذية في السنوات الأولى قد يؤدي إلى تأخر في التحصيل الدراسي ونقص في القدرات الذهنية.
+* **ضعف الجهاز المناعي:** الطفل المصاب بسوء التغذية يكون أكثر عرضة للإصابة بالعدوى المتكررة، وكل وعكة صحية تؤدي بدورها إلى تراجع أكبر في النمو (حلقة مفرغة).
+* **تأخر المهارات الحركية:** قد يتأخر الطفل في الجلوس، المشي، أو الركض بسبب ضعف الكتلة العضلية ونقص الطاقة.
 
-  **فهم المئينات وتفسيرها:**
+**ثانياً: القياسات الأنثروبومترية الرئيسية**
 
-  عندما يتم رسم قياس الطفل على المخطط، فإنه يتوافق مع مئين محدد يشير إلى موقعه بالنسبة لأقرانه:
+تعتمد المخططات على قياسات تُقارن بالأطفال من نفس العمر والجنس:
 
-  - **النمو الصحي:** الحفاظ على مسار الطفل الفردي بين المئين الخامس والخامس والثمانين.
-  - **نقص الوزن أو الهزال:** الوزن أو مؤشر كتلة الجسم يقع أقل من المئين الخامس.
-  - **زيادة الوزن أو السمنة:** مؤشر كتلة الجسم يقع أعلى من المئين الخامس والتسعين.
+* **الوزن مقابل العمر:** يراقب التغيرات الحادة والآنية في الحالة الغذائية.
+* **الطول مقابل العمر:** يعكس التاريخ الغذائي طويل الأمد (المؤشر الأساسي للتقزم).
+* **محيط الرأس:** يعكس تطور ونمو الدماغ خلال أول سنتين.
+* **مؤشر كتلة الجسم (BMI):** يُستخدم من عمر سنتين لتقييم النحافة أو السمنة.
 
-  **علامات التحذير التي لا يجب تجاهلها:**
+**ثالثاً: فهم "المئينات" (Percentiles) وتفسيرها**
 
-  - **عبور المئينات:** انخفاض مفاجئ عبر خطين رئيسيين أو أكثر من خطوط المئين.
-  - **ثبات الوزن أو فقدانه:** بقاء الوزن دون تغيير لأكثر من شهر، أو فقدان الوزن الفعلي.
-  - **النمو غير المتناسب:** زيادة سريعة مفرطة في الوزن دون نمو خطي مناسب.
+المئين هو ترتيب الطفل بين 100 طفل من أقرانه:
 
-  يجب إجراء مراقبة النمو بانتظام خلال زيارات الطفل السليم، مع رسم القياسات بدقة على مخططات النمو المعيارية. أي أنماط مثيرة للقلق يجب أن تدفع إلى مزيد من التقييم الغذائي والتدخل.
+* **النطاق الطبيعي:** الحفاظ على مسار ثابت بين المئين الـ 5 والـ 85.
+* **نقص الوزن:** عندما يقع القياس أقل من المئين الـ 5.
+* **زيادة الوزن/السمنة:** إذا تجاوز مؤشر كتلة الجسم المئين الـ 85 أو الـ 95.
+* **تنبيه:** يميل الأطباء لاستخدام مخططات WHO للأطفال تحت سنتين، ومخططات CDC لما فوق ذلك.
 
-  **المصادر:**
-  *   [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
-  *   [Centers for Disease Control and Prevention (CDC) - Growth Charts](https://www.cdc.gov/growthcharts/index.htm)
-  *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+**رابعاً: قاعدة "النمط" والعوامل الوراثية**
+
+لا تنظر إلى الرقم المنفرد، بل انظر إلى:
+
+* **المسار (Trend):** هل ينمو الطفل بشكل متسق على منحنى خاص به؟
+* **الوراثة:** طول الوالدين يحدد "السقف" الوراثي لنمو الطفل، وهو عامل أساسي في التقييم.
+
+**خامساً: علامات تحذيرية تستدعي التدخل**
+
+* **عبور خطوط المئين:** انخفاض مفاجئ يتخطى خطين رئيسيين على المخطط.
+* **ثبات النمو:** توقف زيادة الوزن أو الطول لفترة غير مبررة.
+* **النمو غير المتناسب:** زيادة مفرطة في الوزن لا يواكبها نمو طولي سليم.
+
+**الخلاصة**
+
+إن الهدف من مراقبة النمو ليس الوصول لوزن مثالي ثابت، بل التأكد من أن الطفل يسير في مساره الطبيعي بعيداً عن مخاطر سوء التغذية التي قد تؤثر على مستقبله البدني والذهني.
+
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
+
+**المصادر:**
+* [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
+* [Centers for Disease Control and Prevention (CDC) - Growth Charts](https://www.cdc.gov/growthcharts/index.htm)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [
-        'Growth charts are essential tools for early detection of nutritional problems',
-        'Percentiles indicate a child\'s position relative to healthy peers',
-        'Crossing percentile lines is a red flag requiring investigation',
-        'Regular monitoring during well-child visits is crucial'
+        'Growth monitoring detects health issues early',
+        'Malnutrition impacts physical, mental, and immune health',
+        'Percentiles show a child\'s rank among peers',
+        'Watch for crossing percentiles or growth plateaus'
       ],
       ar: [
-        'مخططات النمو أدوات أساسية للكشف المبكر عن المشاكل الغذائية',
-        'المئينات تشير إلى موقع الطفل بالنسبة لأقرانه الأصحاء',
-        'عبور خطوط المئين علامة تحذير تتطلب التحقيق',
-        'المراقبة المنتظمة خلال زيارات الطفل السليم أمر حاسم'
+        'مراقبة النمو تكتشف المشاكل الصحية مبكراً',
+        'سوء التغذية يؤثر على الصحة الجسدية والذهنية والمناعية',
+        'المئينات توضح ترتيب الطفل بين أقرانه',
+        'انتبه لعبور خطوط المئين أو توقف النمو'
       ]
     },
     imageUrl: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&q=80',
@@ -120,132 +162,106 @@ Growth monitoring should be performed regularly during well-child visits, with m
     id: '2',
     title: {
       en: 'Nutrition in Infancy and Complementary Feeding',
-      ar: 'التغذية في مرحلة الرضاعة والتغذية التكميلية'
+      ar: 'التغذية في مرحلة الرضاعة و التغذية التكميلية'
     },
     excerpt: {
-      en: 'The first year of life is marked by rapid growth. Proper nutrition during infancy lays the foundation for lifelong health.',
-      ar: 'السنة الأولى من الحياة تتميز بنمو سريع. التغذية السليمة خلال مرحلة الرضاعة تضع الأساس للصحة مدى الحياة.'
+      en: 'Infancy and the subsequent complementary feeding period are critical for building a child\'s physical and cognitive foundation. Learn about growth stages, feeding patterns, and the immunization schedule.',
+      ar: 'تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**Infant Growth and Body Composition:**
+      en: `Infancy and the subsequent complementary feeding period are critical for building a child's physical and cognitive foundation. Here are the details on nutrition, growth stages, and the basic immunization schedule:
 
-The first year of life is marked by rapid growth. Birth weight typically doubles between 4–6 months, and triples by one year of age. Length increases by approximately 25 cm during the first year. This rapid growth requires adequate nutrition to support physical and cognitive development.
+**1. Child Growth and Body Composition:**
 
-**Exclusive Breastfeeding (0-6 months):**
+The first year is characterized by explosive growth; birth weight doubles between 4-6 months, triples by one year, and length increases by about 25 cm. After age one, the growth rate slows slightly but becomes more stable until age 5.
 
-Breast milk is the optimal source of nutrition for infants, providing:
+**2. Appetite and Feeding Pattern (Birth to 5 years):**
 
-- Perfect balance of nutrients
-- Antibodies and immune factors
-- Easy digestibility
-- Protection against infections and allergies
-- Bonding between mother and infant
+*   **0-6 Months (Exclusive Breastfeeding):** The child relies entirely on milk.
+    *   **Frequency:** 8 to 12 feedings daily (every 2-3 hours).
+    *   **Amount:** Starts from 30-60 ml in the first days, reaching 120-180 ml per feed by the fourth month.
+    *   **Note:** Giving water is strictly prohibited as milk provides sufficient hydration.
 
-The World Health Organization recommends exclusive breastfeeding for the first 6 months of life, meaning no other foods or liquids, not even water.
+*   **6 Months to 2 Years (Complementary Feeding and Integration):**
+    *   **How to Integrate:** Milk remains the primary source, and solid food is offered "between" feedings.
+    *   **6-8 Months:** (2 meals daily) + Breastfeeding. Amount: 2 tablespoons per meal, increasing gradually.
+    *   **9-11 Months:** (3 meals daily) + Breastfeeding. Amount: About half a cup (125 ml) per meal.
+    *   **12-24 Months:** (3 main meals + 2 snacks) with continued breastfeeding.
 
-**Complementary Feeding (6-24 months):**
+*   **2-5 Years:** "Physiological anorexia" appears, which is normal due to slowed growth. Hunger and fullness signals must be respected.
 
-Complementary foods must be introduced at the appropriate time to meet the child's increasing nutritional demands:
+**3. Basic Essential Vaccinations (Post-Newborn):**
 
-- **6 months:** Introduction of first foods alongside continued breastfeeding. Start with iron-rich foods such as fortified cereals, pureed meats, or legumes.
-- **7-8 months:** Gradually increase food consistency and variety. Introduce mashed and soft finger foods.
-- **9-11 months:** Offer chopped family foods and encourage self-feeding.
-- **12-24 months:** Continue breastfeeding while offering a variety of family foods.
+*   **Age 2, 4, 6 Months:** Pentavalent (DTP-HepB-Hib) and Polio vaccines.
+*   **Age 1 Year and 18 Months:** MMR (Measles, Mumps, Rubella) and booster doses.
+*   **Important Additional Vaccinations:** Rotavirus (to prevent gastroenteritis) and Pneumococcal vaccines.
 
-**Critical Micronutrients:**
+**4. Warnings and Critical Nutrients:**
 
-- **Iron:** Stores become insufficient after 4–6 months; therefore, additional dietary iron sources are essential. Iron-rich foods include meat, poultry, fish, fortified cereals, and legumes.
-- **Zinc:** Important for growth and immune function. Found in meat, dairy, and whole grains.
-- **Vitamin D:** Essential for bone health. Breastfed infants may need supplementation.
-- **Vitamin A:** Critical for vision and immune function. Found in orange and yellow vegetables.
+*   **Vitamin D:** Given at a dose of 400 IU from the first day of birth to ensure bone health.
+*   **Prohibited Before Age One:** Honey (botulism risk), cow's milk as a main drink, and salt and sugar completely.
+*   **Safety Alert:** Cut food longitudinally and safely, and avoid nuts and whole grapes to prevent choking.
 
-**Important Warnings:**
-
-- Cow's milk must NOT be introduced before one year of age due to its low iron content and potential to cause intestinal bleeding.
-- Honey should be avoided before 12 months due to risk of infant botulism.
-- Avoid added salt and sugar in infant foods.
-- Never force-feed; respect the infant's hunger and satiety cues.
-
-**Responsive Feeding:**
-
-Feed slowly and patiently, encourage but do not force eating, talk to the child during feeding, and maintain eye contact. This approach promotes healthy eating behaviors and prevents feeding difficulties.
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding)
 *   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `**نمو الرضيع وتكوين الجسم:**
+      ar: `تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي:
 
-السنة الأولى من الحياة تتميز بنمو سريع. عادة ما يتضاعف وزن الولادة بين 4-6 أشهر، ويتضاعف ثلاث مرات بحلول عمر سنة واحدة. يزداد الطول بحوالي 25 سم خلال السنة الأولى. هذا النمو السريع يتطلب تغذية كافية لدعم النمو البدني والمعرفي.
+**1. نمو الطفل وتكوين الجسم:**
 
-**الرضاعة الطبيعية الحصرية (0-6 أشهر):**
+تتميز السنة الأولى بنمو انفجاري؛ حيث يتضاعف وزن الولادة بين 4-6 أشهر، ويتضاعف ثلاث مرات بحلول عمر سنة، ويزداد الطول بحوالي 25 سم. بعد عمر السنة، يتباطأ معدل النمو قليلاً لكنه يصبح أكثر استقراراً حتى عمر 5 سنوات.
 
-حليب الأم هو المصدر الأمثل للتغذية للرضع، حيث يوفر:
+**2. الشهية ونمط التغذية (من يوم إلى 5 سنوات):**
 
-- توازن مثالي للعناصر الغذائية
-- الأجسام المضادة وعوامل المناعة
-- سهولة الهضم
-- الحماية من العدوى والحساسية
-- الترابط بين الأم والرضيع
+* **من 0-6 أشهر (الرضاعة الحصرية):** يعتمد الطفل كلياً على الحليب.
+    * **عدد المرات:** من 8 إلى 12 رضعة يومياً (كل 2-3 ساعات تقريباً).
+    * **الكمية:** تبدأ من 30-60 مل في الأيام الأولى، وتصل إلى 120-180 مل لكل رضعة بحلول الشهر الرابع.
+    * **ملاحظة:** يُمنع تماماً إعطاء الماء لأن الحليب يوفر الترطيب الكافي.
 
-توصي منظمة الصحة العالمية بالرضاعة الطبيعية الحصرية للأشهر الستة الأولى من الحياة، أي عدم تناول أي أطعمة أو سوائل أخرى، ولا حتى الماء.
+* **من 6 أشهر إلى سنتين (التغذية التكميلية والدمج):**
+    * **كيفية الدمج:** يظل الحليب هو المصدر الأساسي، ونقدم الطعام الصلب "بين" الرضعات.
+    * **6-8 أشهر:** (وجبتان يومياً) + الرضاعة. الكمية: ملعقتان كبيرتان لكل وجبة وتزيد تدريجياً.
+    * **9-11 شهر:** (3 وجبات يومياً) + الرضاعة. الكمية: حوالي نصف كوب (125 مل) لكل وجبة.
+    * **12-24 شهر:** (3 وجبات أساسية + 2 خفيفة) مع استمرار الرضاعة.
 
-**التغذية التكميلية (6-24 شهراً):**
+* **من 2-5 سنوات:** يظهر "ضعف الشهية الفسيولوجي"، وهو أمر طبيعي نتيجة تباطؤ النمو. يجب احترام إشارات الجوع والشبع.
 
-يجب إدخال الأطعمة التكميلية في الوقت المناسب لتلبية الاحتياجات الغذائية المتزايدة للطفل:
+**3. التطعيمات الأساسية (ما بعد حديثي الولادة):**
 
-- **6 أشهر:** إدخال الأطعمة الأولى جنباً إلى جنب مع استمرار الرضاعة الطبيعية. ابدأ بالأطعمة الغنية بالحديد مثل الحبوب المدعمة أو اللحوم المهروسة أو البقوليات.
+* **عمر 2، 4، 6 أشهر:** التطعيمات الخماسية وشلل الأطفال.
+* **عمر سنة و18 شهراً:** تطعيم MMR (الحصبة، النكاف، الحصبة الألمانية) والجرعات التنشيطية.
+* **تطعيمات إضافية هامة:** تطعيم الروتا (للوقاية من النزلات المعوية) وتطعيم المكورات الرئوية.
 
-- **7-8 أشهر:** زيادة قوام الطعام وتنوعه تدريجياً. قدم الأطعمة المهروسة والأطعمة الطرية التي يمكن تناولها باليد.
+**4. تحذيرات ومغذيات حرجة:**
 
-- **9-11 شهراً:** قدم أطعمة العائلة المقطعة وشجع على التغذية الذاتية.
+* **فيتامين (د):** يُعطى بجرعة 400 وحدة دولية منذ اليوم الأول للولادة لضمان صحة العظام.
+* **ممنوعات قبل عمر السنة:** العسل (خطر التسمم السجقي)، حليب البقر كشراب أساسي، والملح والسكر تماماً.
+* **تنبيه الأمان:** تقطيع الطعام بشكل طولي وآمن وتجنب المكسرات والعنب الكامل لتجنب الاختناق.
 
-- **12-24 شهراً:** استمر في الرضاعة الطبيعية مع تقديم مجموعة متنوعة من أطعمة العائلة.
-
-**المغذيات الدقيقة الحرجة:**
-
-- **الحديد:** تصبح المخزونات غير كافية بعد 4-6 أشهر؛ لذلك، مصادر الحديد الغذائية الإضافية ضرورية. الأطعمة الغنية بالحديد تشمل اللحوم والدواجن والأسماك والحبوب المدعمة والبقوليات.
-
-- **الزنك:** مهم للنمو ووظيفة المناعة. يوجد في اللحوم ومنتجات الألبان والحبوب الكاملة.
-
-- **فيتامين د:** ضروري لصحة العظام. قد يحتاج الرضع الذين يرضعون رضاعة طبيعية إلى مكملات.
-
-- **فيتامين أ:** حاسم للرؤية ووظيفة المناعة. يوجد في الخضروات البرتقالية والصفراء.
-
-**تحذيرات مهمة:**
-
-- يجب عدم إدخال حليب البقر قبل عمر سنة واحدة بسبب محتواه المنخفض من الحديد واحتمال تسببه في نزيف معوي.
-
-- يجب تجنب العسل قبل 12 شهراً بسبب خطر التسمم الغذائي للرضع.
-
-- تجنب إضافة الملح والسكر في أطعمة الرضع.
-
-- لا تجبر الطفل على الأكل أبداً؛ احترم إشارات الجوع والشبع لدى الرضيع.
-
-**التغذية المستجيبة:**
-
-أطعم ببطء وصبر، شجع ولكن لا تجبر على الأكل، تحدث إلى الطفل أثناء الإطعام، وحافظ على التواصل البصري. هذا النهج يعزز سلوكيات الأكل الصحية ويمنع صعوبات التغذية.
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
 
 **المصادر:**
-*   [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding)
-*   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)
-`,
+* [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding)
+* [UNICEF - Nutrition](https://www.unicef.org/nutrition)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [
-        'Exclusive breastfeeding for first 6 months is optimal',
-        'Introduce iron-rich complementary foods at 6 months',
-        'Cow\'s milk should not be given before 12 months',
-        'Responsive feeding promotes healthy eating behaviors'
+        'Exclusive breastfeeding for the first 6 months is crucial',
+        'Complementary feeding starts at 6 months with gradual texture increase',
+        'Vitamin D (400 IU) is required from day one',
+        'Avoid honey, cow\'s milk, salt, and sugar before age one'
       ],
       ar: [
-        'الرضاعة الطبيعية الحصرية للأشهر الستة الأولى هي الأمثل',
-        'قدم الأطعمة التكميلية الغنية بالحديد في عمر 6 أشهر',
-        'لا ينبغي إعطاء حليب البقر قبل 12 شهراً',
-        'التغذية المستجيبة تعزز سلوكيات الأكل الصحية'
+        'الرضاعة الطبيعية الحصرية لأول 6 أشهر ضرورية',
+        'تبدأ التغذية التكميلية من 6 أشهر مع التدرج في القوام',
+        'فيتامين د (400 وحدة) ضروري من اليوم الأول',
+        'يُمنع العسل وحليب البقر والملح والسكر قبل عمر السنة'
       ]
     },
     imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
@@ -257,186 +273,166 @@ Feed slowly and patiently, encourage but do not force eating, talk to the child 
       ar: 'التغذية في الأمراض الحرجة والأطفال الخدج'
     },
     excerpt: {
-      en: 'Critically ill children and preterm infants have unique nutritional needs requiring specialized therapeutic approaches.',
+      en: 'Critically ill children and preterm infants have unique nutritional needs. Learn about feeding goals, metabolic responses, and management in the PICU and for preterm babies.',
       ar: 'الأطفال المرضى بشكل حرج والأطفال الخدج لديهم احتياجات غذائية فريدة تتطلب أساليب علاجية متخصصة.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**Nutritional Care for Children in the Pediatric Intensive Care Unit (PICU):**
+      en: `Critically ill children and preterm infants have unique nutritional needs requiring specialized therapeutic approaches.
 
-Critically ill children experience profound metabolic disturbances that significantly impact their nutritional status and requirements.
+**Nutritional Care for Children in the Pediatric Intensive Care Unit (PICU):**
+
+Critically ill children suffer from profound metabolic disturbances that significantly affect their nutritional status and requirements.
 
 **Metabolic Response to Injury:**
-
 The body's response to critical illness occurs in two phases:
-
-- **Catabolic Phase (Ebb Phase):** Immediate response characterized by decreased metabolic rate, reduced cardiac output, and shock. This phase typically lasts 24-48 hours.
-
-- **Flow Phase:** Characterized by hypermetabolism, increased energy expenditure, protein catabolism, and insulin resistance. This phase can last weeks to months depending on illness severity.
+*   **Catabolic Phase (Ebb Phase):** Immediate response characterized by decreased metabolic rate, reduced cardiac output, and shock. This phase typically lasts 24-48 hours.
+*   **Flow Phase:** Characterized by hypermetabolism, increased energy expenditure, protein breakdown, and insulin resistance. This phase can last from weeks to months depending on the severity of the illness.
 
 **Nutritional Goals in PICU:**
+*   Prevent further nutritional deterioration.
+*   Support immune function.
+*   Promote wound healing and recovery.
+*   Reduce complications.
 
-- Prevent further nutritional deterioration
-- Support immune function
-- Promote wound healing and recovery
-- Minimize complications
-
-**Dual Feeding Challenge:**
-
-- **Underfeeding:** Compromises immunity, delays wound healing, prolongs mechanical ventilation, and increases infection risk.
-- **Overfeeding:** May hinder mechanical ventilation (increased CO2 production), cause hepatic dysfunction (fatty liver), hyperglycemia, and electrolyte imbalances.
+**The Dual Feeding Challenge:**
+*   **Underfeeding:** Weakens immunity, delays wound healing, prolongs mechanical ventilation, and increases infection risk.
+*   **Overfeeding:** May hinder mechanical ventilation (increased CO2 production), cause liver dysfunction (fatty liver), hyperglycemia, and electrolyte imbalances.
+*   **Refeeding Syndrome:** Serious metabolic disturbances occurring when feeding is started rapidly after a period of starvation/malnutrition, leading to sudden electrolyte imbalances (Phosphorus, Potassium, Magnesium) and cardiac/respiratory risks.
 
 **Therapeutic Protocols:**
-
-- **Enteral Nutrition (EN) is Preferred:** Should begin early (within 24-48 hours) when hemodynamically stable. EN maintains gut integrity, reduces infection risk, and is more physiologic than parenteral nutrition.
-
-- **High Protein Requirements:** These children require high protein doses, starting at a minimum of 1.5 g/kg/day, and may need up to 2-3 g/kg/day depending on illness severity and degree of catabolism.
-
-- **Energy Requirements:** Typically 1.2-1.5 times resting energy expenditure, but should be individualized based on indirect calorimetry when available.
+*   **Enteral Nutrition is Preferred:** Should begin early (within 24-48 hours) when the patient is hemodynamically stable. Enteral nutrition preserves gut integrity, reduces infection risk, and is more physiological than parenteral nutrition.
+*   **High Protein Requirements:** These children need high protein doses, starting at a minimum of 1.5 g/kg/day, potentially up to 2-3 g/kg/day depending on illness severity and catabolism.
+*   **Energy Requirements:** Usually 1.2-1.5 times resting energy expenditure, but should be customized based on indirect calorimetry when available.
 
 **Nutrition in Preterm Infants:**
-
-A preterm infant (born before 37 weeks of gestation) has not completed the accumulation of essential nutrient stores that normally occurs during the third trimester.
+A preterm infant (born before 37 weeks) has not completed the accumulation of essential nutrient stores that typically occurs during the third trimester.
 
 **Unique Challenges:**
+*   Immature digestive tract.
+*   Limited nutrient stores (especially Calcium, Phosphorus, Iron).
+*   Increased metabolic demands.
+*   Immature organ systems.
 
-- Immature gastrointestinal tract
-- Limited nutrient stores (especially calcium, phosphorus, iron)
-- Increased metabolic demands
-- Immature organ systems
+**Importance of Trophic Feeding:**
+Giving very small amounts of milk (10-20 ml/kg/day) to "stimulate" the digestive system, not for calories. It enhances gut maturity, reduces parenteral nutrition duration, and lowers Necrotizing Enterocolitis (NEC) risk.
 
 **Nutritional Goal:**
-
-To mimic the rapid intrauterine growth that would have occurred before term, aiming for growth rates of 15-20 g/kg/day.
+Mimic the rapid intrauterine growth that would have occurred, aiming for growth rates of 15-20 g/kg/day.
 
 **Human Milk Fortification:**
-
-Breast milk for preterm infants requires fortifiers to increase its protein, calcium, phosphorus, and caloric content. Standard fortification typically provides:
-
-- Additional protein: 0.8-1.0 g/100 mL
-- Increased calcium and phosphorus for bone mineralization
-- Enhanced caloric density: 24-26 kcal/oz (vs. 20 kcal/oz in unfortified milk)
+Breast milk for preterm infants requires fortifiers to increase Protein, Calcium, Phosphorus, and Calories. Standard fortification usually provides:
+*   Additional Protein: 0.8-1.0 g/100 ml.
+*   Increased Calcium and Phosphorus for bone mineralization.
+*   Improved Caloric Density: 24-26 kcal/oz (vs 20 kcal/oz in unfortified milk).
 
 **Specialized Preterm Formulas:**
-
-When mother's milk is unavailable, specialized preterm formulas provide:
-
-- Higher protein content (2.4-3.0 g/100 kcal)
-- Increased minerals for bone growth
-- Enhanced caloric density
-- Easily digestible fats and proteins
+When breast milk is unavailable, specialized formulas provide:
+*   Higher protein content (2.4-3.0 g/100 kcal).
+*   Increased minerals for bone growth.
+*   Improved caloric density.
+*   Easily digestible fats and proteins.
 
 **Monitoring and Complications:**
+Careful monitoring is essential for:
+*   Growth parameters (Weight, Length, Head Circumference).
+*   Feeding tolerance.
+*   Metabolic bone disease.
+*   Risk of Necrotizing Enterocolitis (NEC).
+*   Nutritional deficiencies.
 
-Close monitoring is essential for:
+Transitioning from hospital to home requires careful planning to ensure continued optimal nutrition and growth.
 
-- Growth parameters (weight, length, head circumference)
-- Feeding tolerance
-- Metabolic bone disease
-- Necrotizing enterocolitis (NEC) risk
-- Nutritional deficiencies
-
-The transition from hospital to home requires careful planning to ensure continued optimal nutrition and growth.
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
 *   [American Academy of Pediatrics (AAP)](https://www.aap.org/)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `**الرعاية الغذائية للأطفال في وحدة العناية المركزة للأطفال:**
+      ar: `الأطفال المرضى بشكل حرج والأطفال الخدج لديهم احتياجات غذائية فريدة تتطلب أساليب علاجية متخصصة.
 
+**الرعاية الغذائية للأطفال في وحدة العناية المركزة للأطفال:**
 يعاني الأطفال المرضى بشكل حرج من اضطرابات استقلابية عميقة تؤثر بشكل كبير على حالتهم الغذائية ومتطلباتهم.
 
 **الاستجابة الأيضية للإصابة:**
-
 استجابة الجسم للمرض الحرج تحدث في مرحلتين:
-
-- **المرحلة الهدمية (مرحلة الجزر):** استجابة فورية تتميز بانخفاض معدل الأيض، وانخفاض النتاج القلبي، والصدمة. تستمر هذه المرحلة عادة 24-48 ساعة.
-
-- **مرحلة التدفق:** تتميز بفرط الأيض، وزيادة إنفاق الطاقة، وتقويض البروتين، ومقاومة الأنسولين. يمكن أن تستمر هذه المرحلة من أسابيع إلى أشهر اعتماداً على شدة المرض.
+* **المرحلة الهدمية (مرحلة الجزر):** استجابة فورية تتميز بانخفاض معدل الأيض، وانخفاض النتاج القلبي، والصدمة. تستمر هذه المرحلة عادة 24-48 ساعة.
+* **مرحلة التدفق:** تتميز بفرط الأيض، وزيادة إنفاق الطاقة، وتقويض البروتين، ومقاومة الأنسولين. يمكن أن تستمر هذه المرحلة من أسابيع إلى أشهر اعتماداً على شدة المرض.
 
 **الأهداف الغذائية في وحدة العناية المركزة:**
-
-- منع المزيد من التدهور الغذائي
-- دعم وظيفة المناعة
-- تعزيز التئام الجروح والتعافي
-- تقليل المضاعفات
+* منع المزيد من التدهور الغذائي
+* دعم وظيفة المناعة
+* تعزيز التئام الجروح والتعافي
+* تقليل المضاعفات
 
 **تحدي التغذية المزدوج:**
-
-- **نقص التغذية:** يضعف المناعة، ويؤخر التئام الجروح، ويطيل التهوية الميكانيكية، ويزيد من خطر العدوى.
-
-- **الإفراط في التغذية:** قد يعيق التهوية الميكانيكية (زيادة إنتاج ثاني أكسيد الكربون)، ويسبب خلل وظيفي كبدي (الكبد الدهني)، وارتفاع السكر في الدم، واختلال التوازن الكهربائي.
+* **نقص التغذية:** يضعف المناعة، ويؤخر التئام الجروح، ويطيل التهوية الميكانيكية، ويزيد من خطر العدوى.
+* **الإفراط في التغذية:** قد يعيق التهوية الميكانيكية (زيادة إنتاج ثاني أكسيد الكربون)، ويسبب خلل وظيفي كبدي (الكبد الدهني)، وارتفاع السكر في الدم، واختلال التوازن الكهربائي.
+* **متلازمة إعادة التغذية (Refeeding Syndrome):** هي اضطرابات أيضية خطيرة تحدث عند البدء السريع بالتغذية بعد فترة من الجوع أو نقص التغذية الحاد، مما يؤدي إلى خلل مفاجئ في الأملاح (مثل الفسفور والبوتاسيوم والمغنيسيوم) ويشكل خطراً على وظائف القلب والرئة.
 
 **البروتوكولات العلاجية:**
-
-- **التغذية المعوية مفضلة:** يجب أن تبدأ مبكراً (خلال 24-48 ساعة) عندما يكون المريض مستقراً ديناميكياً. التغذية المعوية تحافظ على سلامة الأمعاء، وتقلل من خطر العدوى، وهي أكثر فسيولوجية من التغذية الوريدية.
-
-- **متطلبات البروتين العالية:** يحتاج هؤلاء الأطفال إلى جرعات عالية من البروتين، تبدأ من 1.5 جم/كجم/يوم كحد أدنى، وقد يحتاجون إلى 2-3 جم/كجم/يوم اعتماداً على شدة المرض ودرجة التقويض.
-
-- **متطلبات الطاقة:** عادة 1.2-1.5 مرة من إنفاق الطاقة أثناء الراحة، ولكن يجب تخصيصها بناءً على قياس السعرات الحرارية غير المباشر عند توفره.
+* **التغذية المعوية مفضلة:** يجب أن تبدأ مبكراً (خلال 24-48 ساعة) عندما يكون المريض مستقراً ديناميكياً. التغذية المعوية تحافظ على سلامة الأمعاء، وتقلل من خطر العدوى، وهي أكثر فسيولوجية من التغذية الوريدية.
+* **متطلبات البروتين العالية:** يحتاج هؤلاء الأطفال إلى جرعات عالية من البروتين، تبدأ من 1.5 جم/كجم/يوم كحد أدنى، وقد يحتاجون إلى 2-3 جم/كجم/يوم اعتماداً على شدة المرض ودرجة التقويض.
+* **متطلبات الطاقة:** عادة 1.2-1.5 مرة من إنفاق الطاقة أثناء الراحة، ولكن يجب تخصيصها بناءً على قياس السعرات الحرارية غير المباشر عند توفره.
 
 **التغذية في الأطفال الخدج:**
-
 الطفل الخديج (المولود قبل 37 أسبوعاً من الحمل) لم يكمل تراكم مخزونات العناصر الغذائية الأساسية التي تحدث عادة خلال الثلث الثالث من الحمل.
 
 **التحديات الفريدة:**
+* الجهاز الهضمي غير الناضج
+* مخزونات محدودة من العناصر الغذائية (خاصة الكالسيوم والفوسفور والحديد)
+* زيادة المتطلبات الأيضية
+* أنظمة الأعضاء غير الناضجة
 
-- الجهاز الهضمي غير الناضج
-- مخزونات محدودة من العناصر الغذائية (خاصة الكالسيوم والفوسفور والحديد)
-- زيادة المتطلبات الأيضية
-- أنظمة الأعضاء غير الناضجة
+**أهمية التغذية الضئيلة (Trophic Feeding):**
+هي إعطاء كميات صغيرة جداً من الحليب (10-20 مل/كجم/يوم) بهدف "تحفيز" الجهاز الهضمي وليس لتوفير السعرات. تكمن أهميتها في تعزيز نضج الأمعاء، تقليل فترة الاعتماد على التغذية الوريدية، وتقليل خطر الإصابة بالتهاب الأمعاء والقولون الناخر (NEC).
 
 **الهدف الغذائي:**
-
 محاكاة النمو السريع داخل الرحم الذي كان سيحدث قبل الولادة، بهدف معدلات نمو 15-20 جم/كجم/يوم.
 
 **تدعيم حليب الأم:**
-
 حليب الأم للأطفال الخدج يتطلب مدعمات لزيادة محتواه من البروتين والكالسيوم والفوسفور والسعرات الحرارية. التدعيم القياسي عادة يوفر:
-
-- بروتين إضافي: 0.8-1.0 جم/100 مل
-- زيادة الكالسيوم والفوسفور لتمعدن العظام
-- كثافة حرارية محسنة: 24-26 سعرة حرارية/أونصة (مقابل 20 سعرة حرارية/أونصة في الحليب غير المدعم)
+* بروتين إضافي: 0.8-1.0 جم/100 مل
+* زيادة الكالسيوم والفوسفور لتمعدن العظام
+* كثافة حرارية محسنة: 24-26 سعرة حرارية/أونصة (مقابل 20 سعرة حرارية/أونصة في الحليب غير المدعم)
 
 **تركيبات الخدج المتخصصة:**
-
 عندما يكون حليب الأم غير متاح، توفر تركيبات الخدج المتخصصة:
-
-- محتوى بروتين أعلى (2.4-3.0 جم/100 سعرة حرارية)
-- زيادة المعادن لنمو العظام
-- كثافة حرارية محسنة
-- دهون وبروتينات سهلة الهضم
+* محتوى بروتين أعلى (2.4-3.0 جم/100 سعرة حرارية)
+* زيادة المعادن لنمو العظام
+* كثافة حرارية محسنة
+* دهون وبروتينات سهلة الهضم
 
 **المراقبة والمضاعفات:**
-
 المراقبة الدقيقة ضرورية لـ:
-
-- معايير النمو (الوزن، الطول، محيط الرأس)
-- تحمل التغذية
-- مرض العظام الأيضي
-- خطر التهاب الأمعاء والقولون الناخر
-- نقص التغذية
+* معايير النمو (الوزن، الطول، محيط الرأس)
+* تحمل التغذية
+* مرض العظام الأيضي
+* خطر التهاب الأمعاء والقولون الناخر
+* نقص التغذية
 
 الانتقال من المستشفى إلى المنزل يتطلب تخطيطاً دقيقاً لضمان استمرار التغذية والنمو الأمثل.
 
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
+
 **المصادر:**
-*   [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
-*   [American Academy of Pediatrics (AAP)](https://www.aap.org/)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+* [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
+* [American Academy of Pediatrics (AAP)](https://www.aap.org/)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [
-        'Critically ill children require high protein intake (minimum 1.5 g/kg/day)',
-        'Early enteral nutrition is preferred when hemodynamically stable',
-        'Preterm infants need fortified breast milk or specialized formulas',
-        'Close monitoring prevents both underfeeding and overfeeding complications'
+        'High protein intake is essential for critically ill children',
+        'Enteral nutrition should start early if possible',
+        'Refeeding syndrome is a critical risk to monitor',
+        'Preterm infants need fortified milk or special formulas'
       ],
       ar: [
-        'الأطفال المرضى بشكل حرج يحتاجون إلى تناول بروتين عالي (1.5 جم/كجم/يوم كحد أدنى)',
-        'التغذية المعوية المبكرة مفضلة عندما يكون المريض مستقراً',
-        'الأطفال الخدج يحتاجون إلى حليب أم مدعم أو تركيبات متخصصة',
-        'المراقبة الدقيقة تمنع مضاعفات نقص التغذية والإفراط فيها'
+        'تناول البروتين العالي أساسي للأطفال المرضى بشدة',
+        'يجب بدء التغذية المعوية مبكراً إن أمكن',
+        'متلازمة إعادة التغذية خطر يجب مراقبته',
+        'الأطفال الخدج يحتاجون حليباً مدعماً أو تركيبات خاصة'
       ]
     },
     imageUrl: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80',
@@ -444,176 +440,176 @@ The transition from hospital to home requires careful planning to ensure continu
   {
     id: '11',
     title: {
-      en: 'Early Life Nutritional Programming',
+      en: 'Childhood Obesity Starting from Pregnancy',
       ar: 'السمنة في مرحلة الطفولة بدءًا من الحمل'
     },
     excerpt: {
-      en: 'What happens during pregnancy doesn\'t stay in pregnancy. Discover how fetal programming shapes a child\'s metabolic future.',
+      en: 'What happens during pregnancy impacts your child\'s future. Discover how fetal programming shapes metabolic health and increases obesity risk.',
       ar: 'ما يحدث أثناء الحمل يؤثر على مستقبل الطفل. اكتشف كيف تشكل البرمجة الجنينية الصحة الأيضية للطفل وتزيد مخاطر السمنة.'
     },
     category: 'overnutrition',
     ageGroup: 'children',
     content: {
-      en: `**Early Life Nutritional Programming: From Fetal Origins of Childhood Obesity to Low Birth Weight Causes and Management**
+      en: `**Childhood Obesity Starting from Pregnancy: How Does It Begin?**
 
-**Childhood Obesity Beginning During Pregnancy: Mechanisms and Determinants**
+A scientific concept known as **Fetal Programming** indicates that everything a mother is exposed to during pregnancy is biologically "recorded" in the fetus's body, affecting their health and metabolic functions after birth.
 
-A biological concept known as fetal programming explains how maternal conditions during pregnancy are biologically "recorded" by the fetus. These intrauterine exposures influence metabolic regulation and disease risk after birth.
+**1) Maternal Obesity or Excessive Weight Gain During Pregnancy**
 
-**1) Maternal Obesity or Excessive Gestational Weight Gain**
+If the mother is overweight before pregnancy or gains excessive weight during pregnancy, the child is more likely to:
 
-When a mother is overweight before pregnancy or gains excessive weight during gestation, the child is more likely to:
+*   Be born with a high weight (Macrosomia)
+*   Have a larger number of fat cells
+*   Have a higher risk of developing obesity in childhood
 
-*   Be born large for gestational age (macrosomia)
-*   Have an increased number of adipocytes
-*   Develop obesity during childhood
-
-*Scientific explanation:*
-Elevated maternal insulin and leptin levels cross the placenta, stimulating fetal fat deposition.
+**Scientific Explanation:** High levels of maternal insulin and leptin crossing to the fetus stimulate fat storage.
 
 **2) Unhealthy Maternal Diet**
 
-Maternal consumption of:
+When the mother relies on:
 
-*   Excessive sugar
+*   Excessive amounts of sugar
 *   Fast food
 *   Saturated fats
-*   Sugar-sweetened beverages
-*   Excess calories
+*   Sweetened beverages
+*   Surplus calories
 
-Increases the likelihood that the child will:
+The child becomes more likely to:
 
-*   Store fat more easily
+*   Store fat easily
 *   Develop insulin resistance
-*   Experience increased hunger after birth
+*   Experience frequent hunger after birth
 
-**3) Gestational Diabetes Mellitus**
+**3) Gestational Diabetes**
 
-This is one of the strongest contributors to future obesity.
+Considered one of the strongest causes of future obesity.
 
-Elevated maternal blood glucose crosses the placenta → fetal pancreatic hyperinsulinemia → increased fetal fat storage.
+Elevated maternal blood sugar transfers to the fetus → fetal pancreas responds by secreting large amounts of insulin → leading to increased fat storage.
 
-👉 These children are three times more likely to develop obesity after the age of two.
+👉 These children are three times more likely to develop obesity after age two.
 
 **4) Smoking During Pregnancy**
 
-Smoking restricts fetal growth. After birth, the infant tends to increase food intake as a compensatory mechanism, thereby increasing the risk of obesity.
+Leads to intrauterine growth restriction, and after birth, the child tends to consume larger amounts of food to compensate, increasing obesity risk.
 
 **5) Low Physical Activity During Pregnancy**
 
-Regular maternal movement helps regulate insulin and hormonal balance. Physical inactivity increases fetal fat accumulation.
+Regular physical activity helps regulate insulin and hormones. Lack of movement leads to increased fetal fat storage.
 
-**Postnatal Nutritional Factors Increasing Obesity Risk**
+**Postnatal Factors Increasing Obesity Risk**
 
-*   Early introduction of energy-dense foods
-*   Formula feeding without medical indication
-*   Sugary drinks and ultra-processed foods
+*   Early introduction of heavy foods
+*   Reliance on formula milk without medical necessity
+*   Offering sugary drinks and unhealthy meals
 *   Irregular feeding schedules
-*   Using food as a reward or calming strategy
-*   Insufficient physical activity
+*   Using food as a reward or for soothing
+*   Low physical activity
 
-**Prevention and Management**
-**During Pregnancy**
+**Prevention and Treatment**
+
+**First: During Pregnancy**
 
 Healthy maternal diet includes:
 
 *   Vegetables and fruits
-*   Lean protein sources
+*   Lean proteins
 *   Healthy fats (fish, olive oil, nuts)
-*   Reduced sugar intake
-*   Adequate hydration
+*   Reducing sugar
+*   Drinking sufficient water
 *   Regular, balanced meals
 
-*   **Monthly monitoring of gestational weight gain** (recommended gain depends on pre-pregnancy BMI)
-*   **Early treatment of gestational diabetes** - This is one of the most critical preventive measures against childhood obesity.
-*   **Light physical activity** - Walking 20–30 minutes daily.
+*   **Monthly monitoring of weight gain** (normal gain depends on pre-pregnancy BMI)
+*   **Early treatment of gestational diabetes:** One of the most important steps to prevent child obesity.
+*   **Light physical activity:** Like walking 20–30 minutes daily.
 
-**After Birth**
+**Second: After Birth**
 
-*   **Breastfeeding** is the preferred feeding method
-*   No added sugar in infant foods
-*   Delay juices and sweetened foods
-*   Emphasize natural foods (vegetables, fruits, protein)
-*   Avoid using food as a reward
-*   Encourage daily physical activity
+*   **Breastfeeding** is the preferred choice
+*   No added sugar to baby food
+*   Delaying juices and sweetened foods
+*   Relying on natural foods (vegetables, fruits, protein)
+*   Not using food as a reward
+*   Encouraging daily physical movement
 
-**If the Child Already Has Obesity (After Age 2)**
+**If the Child is Already Obese (After Age 2):**
 
-*   Reduce sugars and sweetened beverages
-*   Increase vegetable and protein intake
-*   Eliminate fast food
-*   Establish regular sleep routines (poor sleep increases appetite-regulating hormones)
+*   Reduce sugars and sweetened drinks
+*   Increase vegetables and protein
+*   Stop fast food
+*   Regulate sleep schedules (sleep disruption increases appetite hormones)
 *   Daily physical activity
-*   Follow-up with a pediatric nutrition specialist when weight is elevated
+*   Follow up with a pediatric nutritionist if weight is high
 
-**Causes of Low Birth Weight**
+**Causes of Low Birth Weight at Birth**
 
-*   Premature birth before 37 weeks of gestation
-*   Intrauterine growth restriction due to malnutrition or placental dysfunction
+*   Preterm birth before week 37
+*   Intrauterine growth restriction due to malnutrition or placental issues
 *   Maternal malnutrition during pregnancy
 *   Maternal smoking or exposure to secondhand smoke
-*   Chronic maternal diseases such as hypertension and diabetes
+*   Chronic maternal diseases like hypertension and diabetes
 *   Infections during pregnancy
-*   Multiple gestation (twins or higher-order pregnancies)
-*   Alcohol or drug abuse
+*   Multiple pregnancy (twins or more)
+*   Alcohol or drug use
 *   Very young or advanced maternal age
 
 **Nutritional Causes of Low Birth Weight**
 
-Low birth weight may result from inadequate intake of nutrients essential for fetal growth, including:
+Linked to deficiency of essential nutrients for fetal growth, including:
 
-**1) Insufficient Energy Intake**
-Failure to meet maternal energy requirements can impair fetal growth.
+**1) Caloric Deficiency**
+Mother not getting enough energy affects fetal growth.
 
 **2) Protein Deficiency**
-Protein is essential for fetal tissue formation and musculoskeletal growth. Deficiency slows fetal development.
+Protein is essential for building fetal tissues, muscles, and bones; deficiency slows growth.
 
 **3) Deficiency of Essential Vitamins and Minerals**
-*   **Iron:** Deficiency leads to maternal anemia and reduced oxygen delivery to the fetus
-*   **Folic acid:** Deficiency increases the risk of congenital anomalies and growth retardation
-*   **Calcium and Vitamin D:** Essential for skeletal development
-*   **Iodine and Zinc:** Deficiencies impair brain and somatic growth
+*   **Iron:** Deficiency causes anemia and reduces oxygen delivery to fetus
+*   **Folic Acid:** Deficiency increases risk of deformities and growth delay
+*   **Calcium and Vitamin D:** Important for bone formation
+*   **Iodine and Zinc:** Deficiency affects brain and body growth
 
-**4) Poor Overall Nutrition or Excessively Restrictive Diets**
-Severe dietary restriction or imbalanced diets may result in reduced birth weight.
+**4) General Malnutrition or Strict Diets**
+Severe dietary restrictions or unbalanced diets may lead to low birth weight.
 
 **Genetic Causes of Low Birth Weight**
 
-*   **Parental genetic stature:** Naturally small or thin parents may have infants with lower birth weight due to hereditary factors.
-*   **Genetic or chromosomal disorders:** Certain genetic mutations or chromosomal abnormalities (e.g., Down syndrome) can impair fetal growth.
-*   **Family history:** A history of low birth weight increases recurrence risk.
+*   **Parental Genetic Size:** If parents are thin or short, the child may be born naturally smaller.
+*   **Genetic or Chromosomal Disorders:** Some syndromes (like Down syndrome) may affect fetal growth.
+*   **Family History:** History of low birth weight increases recurrence probability.
 
-**Postnatal Care and Management of Low Birth Weight Infants**
+**Care and Treatment After Birth of Low Birth Weight Infant**
 
-Management depends on the degree of low birth weight and the infant’s overall condition and includes:
+Depends on severity and general condition, includes:
 
 **1) Immediate Medical Care**
-*   Assessment of birth weight, length, and head circumference
-*   Monitoring vital functions (respiration, blood glucose, body temperature)
-*   Incubator care for very low birth weight infants (<1.5 kg)
+*   Assessing weight, length, head circumference
+*   Checking vital functions (breathing, sugar, temperature)
+*   Incubator admission if weight is < 1.5 kg
 
 **2) Nutrition**
 *   Early and frequent breastfeeding
-*   Fortified breast milk or formula when medically indicated
-*   Nutritional supplementation under medical supervision when required
+*   Using fortified milk or formula when medically needed
+*   Nutritional supplements under medical supervision if necessary
 
-**3) Thermoregulation**
+**3) Maintaining Body Temperature**
 *   Continuous warming
-*   Skin-to-skin contact (“kangaroo care”)
+*   Kangaroo care (skin-to-skin contact)
 
 **4) Infection Prevention**
-*   Hand hygiene before handling the infant
-*   Avoiding crowded environments
-*   Adherence to vaccination schedules
+*   Hand washing before touching baby
+*   Avoiding crowds
+*   Adhering to vaccination schedule
 
-**5) Monitoring and Follow-Up**
-*   Weekly weight monitoring or as medically advised
-*   Growth surveillance (length, head circumference, motor and cognitive development)
-*   Screening for complications such as anemia or gastrointestinal disorders
+**5) Periodic Follow-up**
+*   Weekly weight monitoring or as advised
+*   Monitoring growth and motor/mental development
+*   Screening for potential issues like anemia
 
-**6) Psychological and Family Support**
-*   Educating caregivers on feeding and infant care
-*   Encouraging physical contact and interaction to support emotional and physical development
+**6) Psychological Family Support**
+*   Educating parents on care and feeding methods
+*   Encouraging physical and emotional interaction with the child
+
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
@@ -627,34 +623,33 @@ Management depends on the degree of low birth weight and the infant’s overall 
 
 إذا كانت الأم تعاني من زيادة الوزن قبل الحمل أو اكتسبت وزنًا زائدًا بشكل مفرط أثناء الحمل، فإن الطفل يكون أكثر عرضة لـ:
 
-*   الولادة بوزن مرتفع (العملقة الجنينية – Macrosomia)
-*   امتلاك عدد أكبر من الخلايا الدهنية
-*   ارتفاع خطر الإصابة بالسمنة في مرحلة الطفولة
+* **الولادة بوزن مرتفع (العملقة الجنينية – Macrosomia)**
+* **امتلاك عدد أكبر من الخلايا الدهنية**
+* **ارتفاع خطر الإصابة بالسمنة في مرحلة الطفولة**
 
-*التفسير العلمي:*
-ارتفاع مستويات الإنسولين واللبتين لدى الأم وانتقالها إلى الجنين يؤدي إلى تحفيز تخزين الدهون.
+**التفسير العلمي:** ارتفاع مستويات الإنسولين واللبتين لدى الأم وانتقالها إلى الجنين يؤدي إلى تحفيز تخزين الدهون.
 
 **2) النظام الغذائي غير الصحي للأم**
 
 عند اعتماد الأم على:
 
-*   كميات مفرطة من السكر
-*   الوجبات السريعة
-*   الدهون المشبعة
-*   المشروبات المحلاة
-*   فائض السعرات الحرارية
+* **كميات مفرطة من السكر**
+* **الوجبات السريعة**
+* **الدهون المشبعة**
+* **المشروبات المحلاة**
+* **فائض السعرات الحرارية**
 
 يزداد احتمال أن يصبح الطفل أكثر قابلية لـ:
 
-*   تخزين الدهون بسهولة
-*   تطور مقاومة الإنسولين
-*   الشعور بالجوع بشكل متكرر بعد الولادة
+* **تخزين الدهون بسهولة**
+* **تطور مقاومة الإنسولين**
+* **الشعور بالجوع بشكل متكرر بعد الولادة**
 
 **3) سكري الحمل**
 
 يُعد من أقوى الأسباب المؤدية للسمنة لاحقًا.
 
-ارتفاع مستوى السكر في دم الأم ينتقل إلى الجنين → فيستجيب البنكرياس الجنيني بإفراز كميات كبيرة من الإنسولين → مما يؤدي إلى زيادة تخزين الدهون.
+ارتفاع مستوى السكر في دم الأم ينتقل إلى الجنين ← فيستجيب البنكرياس الجنيني بإفراز كميات كبيرة من الإنسولين ← مما يؤدي إلى زيادة تخزين الدهون.
 
 👉 هؤلاء الأطفال أكثر عرضة للإصابة بالسمنة بثلاثة أضعاف بعد عمر السنتين.
 
@@ -664,125 +659,137 @@ Management depends on the degree of low birth weight and the infant’s overall 
 
 **5) قلة النشاط البدني أثناء الحمل**
 
-يساعد النشاط البدني المنتظم على تنظيم الإنسولين والهرمونات.
-أما قلة الحركة فتؤدي إلى زيادة تخزين الدهون لدى الجنين.
+يساعد النشاط البدني المنتظم على تنظيم الإنسولين والهرمونات. أما قلة الحركة فتؤدي إلى زيادة تخزين الدهون لدى الجنين.
 
 **عوامل ما بعد الولادة التي تزيد خطر السمنة**
 
-*   إدخال الأغذية الثقيلة في وقت مبكر
-*   الاعتماد على الحليب الصناعي دون داعٍ طبي
-*   تقديم المشروبات السكرية والوجبات غير الصحية
-*   عدم انتظام مواعيد التغذية
-*   استخدام الطعام كوسيلة للمكافأة أو التهدئة
-*   قلة النشاط البدني
+* **إدخال الأغذية الثقيلة في وقت مبكر**
+* **الاعتماد على الحليب الصناعي دون داعٍ طبي**
+* **تقديم المشروبات السكرية والوجبات غير الصحية**
+* **عدم انتظام مواعيد التغذية**
+* **استخدام الطعام كوسيلة للمكافأة أو التهدئة**
+* **قلة النشاط البدني**
 
 **الوقاية والعلاج**
+
 **أولًا: أثناء الحمل**
 
 النظام الغذائي الصحي للأم يشمل:
 
-*   الخضروات والفواكه
-*   البروتينات قليلة الدهون
-*   الدهون الصحية (الأسماك، زيت الزيتون، المكسرات)
-*   تقليل السكر
-*   شرب كميات كافية من الماء
-*   وجبات منتظمة ومتوازنة
+* **الخضروات والفواكه**
+* **البروتينات قليلة الدهون**
+* **الدهون الصحية (الأسماك، زيت الزيتون، المكسرات)**
+* **تقليل السكر**
+* **شرب كميات كافية من الماء**
+* **وجبات منتظمة ومتوازنة**
 
-*   **المتابعة الشهرية لزيادة الوزن** (تعتمد الزيادة الطبيعية على مؤشر كتلة الجسم قبل الحمل)
-*   **العلاج المبكر لسكري الحمل** ويُعد من أهم خطوات الوقاية من سمنة الطفل.
-*   **ممارسة نشاط بدني خفيف** مثل المشي من 20–30 دقيقة يوميًا.
+* **المتابعة الشهرية لزيادة الوزن** (تعتمد الزيادة الطبيعية على مؤشر كتلة الجسم قبل الحمل)
+* **العلاج المبكر لسكري الحمل** ويُعد من أهم خطوات الوقاية من سمنة الطفل.
+* **ممارسة نشاط بدني خفيف** مثل المشي من 20–30 دقيقة يوميًا.
 
 **ثانيًا: بعد الولادة**
 
-*   **الرضاعة الطبيعية** هي الخيار المفضل
-*   عدم إضافة السكر لطعام الطفل
-*   تأخير العصائر والأطعمة المحلاة
-*   الاعتماد على الأغذية الطبيعية (خضروات، فواكه، بروتين)
-*   عدم استخدام الطعام كمكافأة
-*   تشجيع الطفل على الحركة اليومية
+* **الرضاعة الطبيعية** هي الخيار المفضل
+* **عدم إضافة السكر لطعام الطفل**
+* **تأخير العصائر والأطعمة المحلاة**
+* **الاعتماد على الأغذية الطبيعية (خضروات، فواكه، بروتين)**
+* **عدم استخدام الطعام كمكافأة**
+* **تشجيع الطفل على الحركة اليومية**
 
 **في حال إصابة الطفل بالسمنة (بعد عمر سنتين):**
 
-*   تقليل السكريات والمشروبات المحلاة
-*   زيادة الخضروات والبروتين
-*   إيقاف الوجبات السريعة
-*   تنظيم مواعيد النوم (اضطراب النوم يزيد هرمونات الشهية)
-*   نشاط بدني يومي
-*   المتابعة مع أخصائي تغذية أطفال عند ارتفاع الوزن
+* **تقليل السكريات والمشروبات المحلاة**
+* **زيادة الخضروات والبروتين**
+* **إيقاف الوجبات السريعة**
+* **تنظيم مواعيد النوم (اضطراب النوم يزيد هرمونات الشهية)**
+* **نشاط بدني يومي**
+* **المتابعة مع أخصائي تغذية أطفال عند ارتفاع الوزن**
 
 **أسباب انخفاض وزن المولود عند الولادة**
 
-*   الولادة المبكرة قبل الأسبوع 37
-*   ضعف النمو داخل الرحم نتيجة سوء التغذية أو مشكلات المشيمة
-*   سوء تغذية الأم أثناء الحمل
-*   تدخين الأم أو التعرض للتدخين السلبي
-*   الأمراض المزمنة لدى الأم مثل ارتفاع الضغط والسكري
-*   العدوى أثناء الحمل
-*   الحمل المتعدد (توائم أو أكثر)
-*   تعاطي الكحول أو المخدرات
-*   صغر أو كبر سن الأم بشكل مفرط
+* **الولادة المبكرة قبل الأسبوع 37**
+* **ضعف النمو داخل الرحم نتيجة سوء التغذية أو مشكلات المشيمة**
+* **سوء تغذية الأم أثناء الحمل**
+* **تدخين الأم أو التعرض للتدخين السلبي**
+* **الأمراض المزمنة لدى الأم مثل ارتفاع الضغط والسكري**
+* **العدوى أثناء الحمل**
+* **الحمل المتعدد (توائم أو أكثر)**
+* **تعاطي الكحول أو المخدرات**
+* **صغر أو كبر سن الأم بشكل مفرط**
 
 **الأسباب التغذوية لانخفاض وزن المولود**
 
 ترتبط بنقص العناصر الغذائية الضرورية لنمو الجنين، وتشمل:
 
 **1) نقص السعرات الحرارية**
+
 عدم حصول الأم على طاقة كافية يؤدي إلى تأثر نمو الجنين.
 
 **2) نقص البروتين**
+
 البروتين أساسي لبناء أنسجة الجنين ونمو العضلات والعظام، ونقصه يبطئ النمو.
 
 **3) نقص الفيتامينات والمعادن الأساسية**
-*   **الحديد:** نقصه يسبب فقر الدم ويقلل وصول الأكسجين للجنين
-*   **حمض الفوليك:** نقصه يزيد خطر التشوهات وتأخر النمو
-*   **الكالسيوم وفيتامين د:** مهمان لتكوين العظام
-*   **اليود والزنك:** نقصهما يؤثر على نمو الدماغ والجسم
+
+* **الحديد:** نقصه يسبب فقر الدم ويقلل وصول الأكسجين للجنين
+* **حمض الفوليك:** نقصه يزيد خطر التشوهات وتأخر النمو
+* **الكالسيوم وفيتامين د:** مهمان لتكوين العظام
+* **اليود والزنك:** نقصهما يؤثر على نمو الدماغ والجسم
 
 **4) سوء التغذية العام أو الحميات القاسية**
+
 القيود الغذائية الشديدة أو الأنظمة غير المتوازنة قد تؤدي لانخفاض وزن الولادة.
 
 **الأسباب الوراثية لانخفاض وزن المولود**
 
-*   **الحجم الوراثي للوالدين:** إذا كان الوالدان نحيفين أو قصيري القامة، قد يولد الطفل بوزن أقل طبيعيًا.
-*   **الاضطرابات الجينية أو الصبغية:** بعض المتلازمات الوراثية (مثل متلازمة داون) قد تؤثر على نمو الجنين.
-*   **التاريخ العائلي:** وجود تاريخ عائلي لانخفاض وزن المواليد يزيد من احتمالية تكراره.
+* **الحجم الوراثي للوالدين:** إذا كان الوالدان نحيفين أو قصيري القامة، قد يولد الطفل بوزن أقل طبيعيًا.
+* **الاضطرابات الجينية أو الصبغية:** بعض المتلازمات الوراثية (مثل متلازمة داون) قد تؤثر على نمو الجنين.
+* **التاريخ العائلي:** وجود تاريخ عائلي لانخفاض وزن المواليد يزيد من احتمالية تكراره.
 
 **الرعاية والعلاج بعد ولادة طفل منخفض الوزن**
 
 تعتمد على شدة انخفاض الوزن والحالة العامة للطفل، وتشمل:
 
 **1) الرعاية الطبية الفورية**
-*   تقييم الوزن والطول ومحيط الرأس
-*   فحص الوظائف الحيوية (التنفس، السكر، الحرارة)
-*   إدخال الحاضنة إذا كان الوزن أقل من 1.5 كغ
+
+* **تقييم الوزن والطول ومحيط الرأس**
+* **فحص الوظائف الحيوية (التنفس، السكر، الحرارة)**
+* **إدخال الحاضنة إذا كان الوزن أقل من 1.5 كغ**
 
 **2) التغذية**
-*   الرضاعة الطبيعية المبكرة والمتكررة
-*   استخدام حليب مدعّم أو حليب صناعي عند الحاجة الطبية
-*   مكملات غذائية بإشراف طبي عند الضرورة
+
+* **الرضاعة الطبيعية المبكرة والمتكررة**
+* **استخدام حليب مدعّم أو حليب صناعي عند الحاجة الطبية**
+* **مكملات غذائية بإشراف طبي عند الضرورة**
 
 **3) الحفاظ على حرارة الجسم**
-*   التدفئة المستمرة
-*   استخدام رعاية “الكنغر” (ملامسة الجلد للجلد)
+
+* **التدفئة المستمرة**
+* **استخدام رعاية “الكنغر” (ملامسة الجلد للجلد)**
 
 **4) الوقاية من العدوى**
-*   غسل اليدين قبل لمس الطفل
-*   تجنب الزحام
-*   الالتزام بجدول التطعيمات
+
+* **غسل اليدين قبل لمس الطفل**
+* **تجنب الزحام**
+* **الالتزام بجدول التطعيمات**
 
 **5) المتابعة الدورية**
-*   متابعة الوزن أسبوعيًا أو حسب توصية الطبيب
-*   مراقبة النمو والتطور الحركي والعقلي
-*   الكشف عن مشكلات محتملة مثل فقر الدم
+
+* **متابعة الوزن أسبوعيًا أو حسب توصية الطبيب**
+* **مراقبة النمو والتطور الحركي والعقلي**
+* **الكشف عن مشكلات محتملة مثل فقر الدم**
 
 **6) الدعم النفسي للأسرة**
-*   تعليم الوالدين طرق الرعاية والرضاعة
-*   تشجيع التفاعل الجسدي والعاطفي مع الطفل
+
+* **تعليم الوالدين طرق الرعاية والرضاعة**
+* **تشجيع التفاعل الجسدي والعاطفي مع الطفل**
+
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
 
 **المصادر:**
-*   [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
-*   [UNICEF - Early Childhood Development](https://www.unicef.org/early-childhood-development)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+* [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
+* [UNICEF - Early Childhood Development](https://www.unicef.org/early-child-development)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [
@@ -815,37 +822,54 @@ Management depends on the degree of low birth weight and the infant’s overall 
     content: {
       en: `**Understanding Protein-Energy Malnutrition (PEM)**
 
-Protein-Energy Malnutrition (PEM) is a form of undernutrition that occurs when dietary intake does not provide sufficient protein and/or energy (calories) to meet the body’s physiological requirements. It represents a major public health problem, particularly in low- and middle-income countries, and is most prevalent among infants and young children.
-According to the World Health Organization (WHO), undernutrition results from insufficient intake of energy and essential nutrients, leading to weight loss, impaired growth, weakened immunity, and increased risk of morbidity and mortality.
+Protein-Energy Malnutrition (PEM) is a form of undernutrition resulting from insufficient dietary intake of protein and/or energy (calories) to meet the body’s physiological needs. This disorder represents a major public health problem, especially in low- and middle-income countries, and is most common among infants and young children.
+
+According to the World Health Organization (WHO), undernutrition results from insufficient intake of energy and essential nutrients, leading to weight loss, growth impairment, weakened immunity, and increased morbidity and mortality rates.
 
 **Causes of Protein-Energy Malnutrition**
 
-PEM develops due to inadequate intake of protein-rich and energy-dense foods, food insecurity and poverty, recurrent infections that increase nutrient requirements and reduce absorption, and poor infant and young child feeding practices.
+PEM arises from several factors, most notably insufficient intake of protein- and energy-rich foods, food insecurity and poverty, recurrent infections which increase nutritional needs and reduce absorption, and improper infant and young child feeding practices.
 
-When the body does not receive adequate nutrients, it begins to utilize its own fat and muscle stores to maintain vital functions, leading to wasting and weakness.
+When the body does not receive enough nutrients, it begins to consume its own fat and muscle stores to maintain vital functions, leading to wasting and general weakness.
 
-**Clinical Forms of PEM**
+**Clinical Forms of Protein-Energy Malnutrition**
 
-Protein-Energy Malnutrition presents as a spectrum of conditions, including:
+PEM manifests in a spectrum of clinical conditions, including:
 
 **Marasmus**
-A severe form of undernutrition caused by prolonged deficiency of total energy intake. It is characterized by extreme wasting of muscle and fat tissues.
+
+A severe form of undernutrition resulting from long-term deficiency in total dietary energy, characterized by severe wasting of muscle mass and fat tissue.
+**Distinctive Sign:** The child appears with an "Old man face" due to loss of cheek fat.
 
 **Kwashiorkor**
-A condition primarily associated with inadequate protein intake, often accompanied by edema, fatty liver, skin changes, and hair discoloration.
+
+A condition primarily associated with dietary protein deficiency, often accompanied by edema, fatty liver, skin changes, and hair discoloration.
+**Distinctive Sign:** The child appears with a "Moon face" and abdominal protrusion due to fluid accumulation (edema) and enlarged liver.
 
 **Marasmic-Kwashiorkor**
-A mixed form showing features of both marasmus and kwashiorkor.
+
+A mixed form showing features of both Marasmus and Kwashiorkor together.
 
 **WHO Classification and Public Health Impact**
 
-The WHO classifies PEM under undernutrition, which includes **Wasting** (low weight-for-height), **Stunting** (low height-for-age), and **Underweight** (low weight-for-age).
+WHO classifies PEM under the category of undernutrition, which includes **Wasting** (low weight for height), **Stunting** (low height for age), and **Underweight** (low weight for age).
 
-WHO reports that undernutrition is associated with nearly half of all deaths among children under five years of age worldwide. Children suffering from protein-energy malnutrition are more susceptible to infections, delayed cognitive development, and long-term health complications.
+**Diagnostic Tool:** WHO uses "Mid-Upper Arm Circumference" (MUAC) measurement as a quick and simple tool to diagnose undernutrition in communities via a colored tape indicating risk level.
+
+WHO reports indicate that undernutrition is associated with nearly half of all deaths among children under five globally. Children with PEM are also more susceptible to infections, delayed cognitive development, and long-term health complications.
+
+**Therapeutic Intervention (Recovery Path)**
+
+According to medical protocols, treatment passes through two main phases:
+
+1.  **Stabilization Phase:** Focuses on treating dehydration, infection, and electrolyte imbalance.
+2.  **Rehabilitation Phase:** Gradual start of intensive feeding (such as therapeutic peanut butter RUTF).
 
 **Conclusion**
 
-Protein-Energy Malnutrition is a preventable yet serious condition resulting from inadequate intake of protein and energy. In line with WHO guidance, addressing PEM requires adequate nutrition, improved food security, effective public health policies, and early detection and management, especially among vulnerable populations such as infants and young children.
+Protein-Energy Malnutrition is a serious preventable condition resulting from insufficient protein and energy intake. According to WHO guidelines, addressing this problem requires providing adequate nutrition, enhancing food security, and implementing effective public health policies, along with early detection and appropriate therapeutic intervention, especially for the most vulnerable groups such as infants and young children.
+
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Malnutrition](https://www.who.int/news-room/fact-sheets/detail/malnutrition)
@@ -870,10 +894,12 @@ Protein-Energy Malnutrition is a preventable yet serious condition resulting fro
 **الماراسموس (Marasmus)**
 
 شكل شديد من سوء التغذية ناتج عن نقص طويل الأمد في إجمالي الطاقة الغذائية، ويتميز بهزال شديد في الكتلة العضلية والأنسجة الدهنية.
+**علامة مميزة:** يظهر الطفل بوجه يشبه "وجه كبار السن" (Old man face) نتيجة فقدان دهون الخدين.
 
 **الكواشيوركور (Kwashiorkor)**
 
 حالة ترتبط أساسًا بنقص البروتين الغذائي، وغالبًا ما تكون مصحوبة بالوذمات، والكبد الدهني، وتغيرات جلدية، وتبدل لون الشعر.
+**علامة مميزة:** يظهر الطفل بـ "وجه القمر" (Moon face) وبروز البطن نتيجة تجمع السوائل (الوذمة) وتضخم الكبد.
 
 **الماراسموس-كواشيوركور (Marasmic-Kwashiorkor)**
 
@@ -883,16 +909,27 @@ Protein-Energy Malnutrition is a preventable yet serious condition resulting fro
 
 تصنّف منظمة الصحة العالمية سوء التغذية البروتيني-الطاقي ضمن فئة سوء التغذية، والتي تشمل **الهزال (Wasting)** (انخفاض الوزن بالنسبة للطول)، **التقزم (Stunting)** (انخفاض الطول بالنسبة للعمر)، و**نقص الوزن (Underweight)** (انخفاض الوزن بالنسبة للعمر).
 
+**أداة التشخيص:** تستخدم منظمة الصحة العالمية قياس "محيط منتصف أعلى الذراع" (MUAC) كأداة سريعة وبسيطة لتشخيص سوء التغذية في المجتمعات عبر شريط ملون يحدد درجة الخطورة.
+
 وتشير تقارير منظمة الصحة العالمية إلى أن سوء التغذية يرتبط بما يقرب من نصف الوفيات بين الأطفال دون سن الخامسة عالميًا. كما أن الأطفال المصابين بسوء التغذية البروتيني-الطاقي يكونون أكثر عرضة للإصابة بالعدوى، وتأخر النمو المعرفي، والمضاعفات الصحية طويلة الأمد.
+
+**التدخل العلاجي (مسار التعافي)**
+
+وفقاً للبروتوكولات الطبية، يمر العلاج بمرحلتين أساسيتين:
+
+1. **مرحلة الاستقرار (Stabilization):** تركز على علاج الجفاف، العدوى، واختلال الأملاح.
+2. **مرحلة التأهيل (Rehabilitation):** البدء بالتدريج في التغذية المكثفة (مثل زبدة الفول السوداني العلاجية RUTF).
 
 **الخلاصة**
 
 يُعد سوء التغذية البروتيني-الطاقي حالة خطيرة يمكن الوقاية منها، وتنجم عن عدم كفاية تناول البروتين والطاقة. ووفقًا لإرشادات منظمة الصحة العالمية، فإن التصدي لهذه المشكلة يتطلب توفير تغذية كافية، وتعزيز الأمن الغذائي، وتطبيق سياسات صحية عامة فعّالة، إلى جانب الكشف المبكر والتدخل العلاجي المناسب، خاصة لدى الفئات الأكثر عرضة للخطر مثل الرضع وصغار الأطفال.
 
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
+
 **المصادر:**
-*   [World Health Organization (WHO) - Malnutrition](https://www.who.int/news-room/fact-sheets/detail/malnutrition)
-*   [UNICEF - Malnutrition](https://www.unicef.org/nutrition/malnutrition)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+* [World Health Organization (WHO) - Malnutrition](https://www.who.int/news-room/fact-sheets/detail/malnutrition)
+* [UNICEF - Malnutrition](https://www.unicef.org/nutrition/malnutrition)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [
@@ -923,68 +960,114 @@ Protein-Energy Malnutrition is a preventable yet serious condition resulting fro
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**General Management of Newborns: Care from Birth to Neonatal Period**
+      en: `**General Management of Newborns**
 
-The neonatal period (the first 28 days of life) is widely regarded as the most vulnerable time for a child's survival and health. Proper management during this phase establishes the foundation for healthy growth and development.
+The neonatal period (first 28 days of life) is the most critical period for a child's survival and health. Proper management during this phase lays the foundation for healthy growth and development.
 
-**1) Immediate Care at Birth**
+**First: Immediate Care and Vaccinations**
 
-The newborn must be dried immediately to prevent hypothermia. Placing the baby on the mother’s chest favors skin-to-skin contact, promoting bonding and helping regulate temperature and heart rate. Delayed cord clamping (waiting 1–3 minutes) is recommended to increase iron stores and blood volume.
+**Care at Birth:**
+The newborn must be dried immediately to prevent hypothermia. Placing the baby on the mother's chest promotes bonding and helps regulate temperature and heart rate. It is recommended to delay cord clamping (wait 1–3 minutes) to increase iron stores and blood volume.
 
-**2) Essential Newborn Care (First 24 Hours)**
+**Essential Newborn Care (First 24 Hours):**
+Essential steps include administering Vitamin K injection to prevent bleeding, applying antibiotic eye ointment to prevent infection, and receiving the first dose of Hepatitis B vaccine. A comprehensive assessment should also be performed to check for birth defects, respiratory distress, or other urgent concerns.
 
-Essential steps include Vitamin K injection to prevent hemorrhagic disease, applying antibiotic eye ointment to prevent infection, and administering the first dose of Hepatitis B vaccination. A thorough assessment is also conducted to check for birth defects, respiratory distress, or other immediate concerns.
+**Newborn Vaccinations:**
+Immediately at birth: Includes BCG (Tuberculosis) vaccine, Hepatitis B vaccine, and Zero dose Polio. (Note: In some countries, BCG is given within the first 40 days).
 
-**3) Ongoing Daily Care**
+**Second: Daily Care and Nutrition**
 
-**A. Feeding (Nutrition)**
-Exclusive breastfeeding is recommended for the first 6 months, ideally 8–12 times per 24 hours (on demand). Signs of adequate feeding include the baby sleeping well after feeds, gaining weight, and having 6+ wet diapers/day.
+**Nutrition:**
+Exclusive breastfeeding is recommended for the first six months, at a rate of 8–12 times every 24 hours (on demand). Early hunger signs (like sucking hands or restlessness) should be monitored and responded to before the baby reaches the stage of severe crying. Signs of adequate nutrition include the baby sleeping well after feeding, gaining weight, and having 6+ wet diapers/day.
 
-**B. Hygiene and Cord Care**
-Keep the umbilical cord stump clean and dry; avoid applying alcohol or herbal remedies unless prescribed. Delay the first bath for at least 24 hours to preserve body heat, then bathe 2–3 times a week. Clean the diaper area gently with water or fragrance-free wipes to prevent rash.
+**Important Addition:** Most modern medical protocols recommend starting Vitamin D drops (400 IU) daily from the first day of birth, especially for breastfed babies.
 
-**C. Sleep Safety (SIDS Prevention)**
-Always place the baby on their back to sleep on a firm mattress. Avoid pillows, soft toys, or loose bedding in the crib. The baby should share the parents’ room but sleep in a separate crib for the first 6 months.
+**Hygiene and Umbilical Cord Care:**
+Keep the umbilical cord stump clean and dry; "Dry Care" (leaving it to air dry) is the best method to speed up separation, and avoid applying alcohol or herbal remedies unless prescribed by a doctor. Delay the first bath for at least 24 hours to maintain body temperature, then bathe 2–3 times a week. Clean the diaper area gently with water or fragrance-free wipes to prevent rash.
 
-**4) Warning Signs (When to Seek Medical Help)**
+**Third: Sleep Patterns and Physical Activity**
 
-Parents should seek immediate medical attention if the newborn shows signs such as fever (> 38°C) or hypothermia (< 36.5°C), difficulty breathing (fast breathing, grunting, chest indrawing), jaundice (yellowing of skin/eyes, especially in the first 24 hours), feeding difficulties, inactivity/lethargy, signs of infection around the umbilical cord, or convulsions.
+**Sleep Pattern and Needs:**
+*   **0–3 Months:** Sleeps 14–17 hours daily (in short cycles).
+*   **4–12 Months:** Needs 12–16 hours, with sleep stabilizing at night and two naps during the day.
+*   **1–5 Years:** Needs 10–14 hours, and naps gradually decrease until often disappearing by age five.
+
+**Safe Sleep (SIDS Prevention):**
+Always place the baby on their back to sleep on a firm mattress, and avoid pillows or soft toys in the crib. The baby should sleep in the parents' room but in a separate crib for the first six months. Avoid overheating the baby with very heavy clothes; maintain a moderate environment and clothing temperature.
+
+**Physical Activity and Motor Development:**
+To ensure holistic growth, attention must be paid to vital aspects supporting motor and mental development:
+*   **In Infancy (Early Activity):** Infants need 30 to 60 minutes distributed throughout the day. Activity is calculated via Tummy Time while awake. (Example: Placing the baby on their tummy to try lifting their head; this strengthens neck and back muscles and prevents flat head).
+*   **From 1–5 Years:** Physical activity for 180 minutes daily (free play, running, jumping).
+
+**Fourth: Warning Signs (When to Seek Medical Help)**
+
+Parents must seek immediate medical care if the newborn shows signs such as:
+*   Fever (> 38°C) or Hypothermia (< 36.5°C).
+*   Difficulty breathing (fast breathing, grunting, chest retractions).
+*   Jaundice (yellowing of skin/eyes, especially in first 24 hours).
+*   Feeding difficulties, lethargy, signs of infection around the umbilical cord, or convulsions.
+
+**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Newborn Health](https://www.who.int/health-topics/newborn-health)
 *   [UNICEF - Newborn Care](https://www.unicef.org/health/newborn-health)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `** الإدارة العامة لحديثي الولادة: الرعاية من الولادة حتى فترة ما بعد الولادة**
+      ar: `**الإدارة العامة لحديثي الولادة**
 
-      تُعد فترة حديثي الولادة (أول 28 يومًا من الحياة) الفترة الأكثر حساسية لبقاء الطفل وصحته. الإدارة السليمة خلال هذه المرحلة تضع الأساس للنمو والتطور الصحي.
+تُعد فترة حديثي الولادة (أول 28 يومًا من الحياة) الفترة الأكثر حساسية لبقاء الطفل وصحته. الإدارة السليمة خلال هذه المرحلة تضع الأساس للنمو والتطور الصحي.
 
-      ** 1) الرعاية الفورية عند الولادة **
+**أولاً: الرعاية الفورية والتطعيمات**
 
-      يجب تجفيف المولود فورًا لمنع انخفاض حرارة الجسم. وضع الطفل على صدر الأم يعزز الترابط ويساعد في تنظيم درجة الحرارة ومعدل ضربات القلب. يُنصح بتأخير قطع الحبل السري (الانتظار 1 - 3 دقائق) لزيادة مخزون الحديد وحجم الدم.
+**الرعاية عند الولادة:**
+يجب تجفيف المولود فورًا لمنع انخفاض حرارة الجسم. وضع الطفل على صدر الأم يعزز الترابط ويساعد في تنظيم درجة الحرارة ومعدل ضربات القلب. يُنصح بتأخير قطع الحبل السري (الانتظار 1 - 3 دقائق) لزيادة مخزون الحديد وحجم الدم.
 
-      ** 2) رعاية حديثي الولادة الأساسية (أول 24 ساعة) **
+**رعاية حديثي الولادة الأساسية (أول 24 ساعة):**
+تشمل الخطوات الأساسية إعطاء حقنة فيتامين ك لمنع النزيف، وضع مرهم مضاد حيوي للعين لمنع العدوى، وتلقي الجرعة الأولى من لقاح التهاب الكبد ب. كما يجب إجراء تقييم شامل للتحقق من العيوب الخلقية، الضائقة التنفسية، أو أي مخاوف عاجلة أخرى.
 
-      تشمل الخطوات الأساسية إعطاء حقنة فيتامين ك لمنع النزيف، وضع مرهم مضاد حيوي للعين لمنع العدوى، وتلقي الجرعة الأولى من لقاح التهاب الكبد ب. كما يجب إجراء تقييم شامل للتحقق من العيوب الخلقية، الضائقة التنفسية، أو أي مخاوف عاجلة أخرى.
+**تطعيمات حديثي الولادة:**
+عند الولادة مباشرة: تشمل تطعيم (الدرن / BCG)، وتطعيم التهاب الكبد الوبائي B، والجرعة الصفرية من شلل الأطفال. (ملاحظة: في بعض الدول يُعطى تطعيم الدرن خلال الأربعين يومًا الأولى من عمر الطفل).
 
-      ** 3) الرعاية اليومية المستمرة **
+**ثانياً: الرعاية اليومية والتغذية**
 
-      ** أ.التغذية **
-      يُوصى بالرضاعة الطبيعية الحصرية للأشهر الستة الأولى، بمعدل 8 - 12 مرة كل 24 ساعة (عند الطلب). تشمل علامات كفاية التغذية نوم الطفل جيدًا بعد الرضاعة، واكتساب الوزن، ووجود 6+ حفاضات مبللة/يومياً.
+**التغذية:**
+يُوصى بالرضاعة الطبيعية الحصرية للأشهر الستة الأولى، بمعدل 8 - 12 مرة كل 24 ساعة (عند الطلب). يجب مراقبة علامات الجوع المبكرة (مثل مص اليدين أو التململ) والاستجابة لها قبل وصول الطفل لمرحلة البكاء الشديد. تشمل علامات كفاية التغذية نوم الطفل جيدًا بعد الرضاعة، واكتساب الوزن، ووجود 6+ حفاضات مبللة/يومياً.
 
-      ** ب.النظافة والعناية بالحبل السري **
-      حافظ على بقايا الحبل السري نظيفة وجافة؛ تجنب وضع الكحول أو العلاجات العشبية ما لم يصفها الطبيب. أخر الاستحمام الأول لمدة 24 ساعة على الأقل للحفاظ على حرارة الجسم، ثم استحم 2 - 3 مرات أسبوعياً. نظف منطقة الحفاض برفق بالماء أو مناديل خالية من العطر لمنع الطفح الجلدي.
+**إضافة هامة:** تنصح معظم البروتوكولات الطبية الحديثة ببدء نقاط فيتامين د (400 وحدة دولية) يوميًا منذ اليوم الأول للولادة، خاصة للأطفال الذين يعتمدون على الرضاعة الطبيعية.
 
-      ** ج.سلامة النوم (الوقاية من الموت المفاجئ) **
-      ضع الطفل دائمًا على ظهره للنوم على مرتبة صلبة، وتجنب الوسائد أو الألعاب اللينة في السرير. يجب أن ينام الطفل في غرفة الوالدين ولكن في سرير منفصل للأشهر الستة الأولى.
+**النظافة والعناية بالحبل السري:**
+حافظ على بقايا الحبل السري نظيفة وجافة؛ "العناية الجافة" (ترك السرة لتجف بالهواء) هي الطريقة الأفضل لتسريع سقوطها، وتجنب وضع الكحول أو العلاجات العشبية ما لم يصفها الطبيب. أخر الاستحمام الأول لمدة 24 ساعة على الأقل للحفاظ على حرارة الجسم، ثم استحم 2 - 3 مرات أسبوعياً. نظف منطقة الحفاض برفق بالماء أو مناديل خالية من العطر لمنع الطفح الجلدي.
 
-      ** 4) علامات التحذير (متى تطلب المساعدة الطبية) **
+**ثالثاً: نمط النوم والنشاط البدني**
 
-      يجب على الوالدين طلب العناية الطبية الفورية إذا ظهرت على المولود علامات مثل الحمى (> 38 درجة مئوية) أو انخفاض حرارة الجسم (< 36.5 درجة مئوية)، صعوبة التنفس (تنفس سريع، شخير، انكماش الصدر)، اليرقان (اصفرار الجلد/العينين، خاصة في أول 24 ساعة)، صعوبات التغذية، الخمول، علامات العدوى حول الحبل السري، أو التشنجات.
+**نمط النوم واحتياجاته:**
+* **0-3 أشهر:** ينام 14-17 ساعة يومياً (في دورات قصيرة).
+* **4-12 شهر:** يحتاج 12-16 ساعة، مع استقرار النوم ليلاً وقيلولتين نهاراً.
+* **1-5 سنوات:** يحتاج 10-14 ساعة، وتقل القيلولة تدريجياً حتى تختفي غالباً عند سن الخامسة.
 
-      **المصادر:**
-      *   [World Health Organization (WHO) - Newborn Health](https://www.who.int/health-topics/newborn-health)
-      *   [UNICEF - Newborn Care](https://www.unicef.org/health/newborn-health)
-      *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+**سلامة النوم (الوقاية من الموت المفاجئ):**
+ضع الطفل دائمًا على ظهره للنوم على مرتبة صلبة، وتجنب الوسائد أو الألعاب اللينة في السرير. يجب أن ينام الطفل في غرفة الوالدين ولكن في سرير منفصل للأشهر الستة الأولى. تجنب الإفراط في تدفئة الطفل بملابس ثقيلة جداً، حيث يجب الحفاظ على درجة حرارة معتدلة للمحيط وللملابس.
+
+**النشاط البدني والتطور الحركي:**
+لضمان نمو متكامل، يجب الاهتمام بالجوانب الحيوية التي تدعم التطور الحركي والذهني للطفل:
+* **في مرحلة الرضاعة (النشاط المبكر):** يحتاج الرضيع من 30 إلى 60 دقيقة موزعة على مدار اليوم. يتم حساب النشاط من خلال وقت البطن (Tummy Time) وهو مستيقظ. (مثال: وضع الطفل على بطنه ليحاول رفع رأسه؛ هذا يقوي عضلات الرقبة والظهر ويمنع تسطح الرأس).
+* **من 1-5 سنوات:** ممارسة نشاط بدني لمدة 180 دقيقة يومياً (لعب حر، جري، وقفز).
+
+**رابعاً: علامات التحذير (متى تطلب المساعدة الطبية)**
+
+يجب على الوالدين طلب العناية الطبية الفورية إذا ظهرت على المولود علامات مثل:
+* **الحمى (> 38 درجة مئوية) أو انخفاض حرارة الجسم (< 36.5 درجة مئوية).**
+* **صعوبة التنفس (تنفس سريع، شخير، انكماش الصدر).**
+* **اليرقان (اصفرار الجلد/العينين، خاصة في أول 24 ساعة).**
+* **صعوبات التغذية، الخمول، علامات العدوى حول الحبل السري، أو التشنجات.**
+
+**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
+
+**المصادر:**
+* [World Health Organization (WHO) - Newborn Health](https://www.who.int/health-topics/newborn-health)
+* [UNICEF - Newborn Care](https://www.unicef.org/health/newborn-health)
+* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
     },
     keyTakeaways: {
       en: [

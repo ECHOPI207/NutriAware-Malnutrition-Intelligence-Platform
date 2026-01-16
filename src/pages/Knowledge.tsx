@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Filter } from 'lucide-react';
+import { Filter, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -108,11 +108,16 @@ const Knowledge: React.FC = () => {
                   <p className="text-muted-foreground mb-4 line-clamp-3">
                     {article.excerpt[language as 'en' | 'ar']}
                   </p>
-                  <Button asChild variant="link" className="p-0">
-                    <Link to={`/knowledge/${article.id}`}>
-                      {t('articles.readMore')} →
-                    </Link>
-                  </Button>
+                  <Link to={`/knowledge/${article.id}`} className="w-full">
+                    <Button className="w-full btn-gradient group/btn shadow-md">
+                      {t('articles.readMore')}
+                      {language === 'ar' ? (
+                        <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover/btn:-translate-x-1" />
+                      ) : (
+                        <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                      )}
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>

@@ -6,6 +6,7 @@ import { UserRole } from './services/role-manager';
 // Lazy load components
 const Home = lazy(() => import('./pages/Home'));
 const Knowledge = lazy(() => import('./pages/Knowledge'));
+const Services = lazy(() => import('./pages/Services'));
 const Articles = lazy(() => import('./pages/Articles'));
 const ArticleDetail = lazy(() => import('./pages/ArticleDetail'));
 const Assessment = lazy(() => import('./pages/Assessment'));
@@ -61,6 +62,14 @@ const routes: RouteConfig[] = [
     element: <Home />,
     visible: true,
     showInNavigation: () => true
+  },
+  {
+    name: 'Services',
+    translationKey: 'nav.services',
+    path: '/services',
+    element: <Services />,
+    visible: true,
+    showInNavigation: () => false // Hidden from main nav, accessible via button
   },
   {
     name: 'Malnutrition Types',

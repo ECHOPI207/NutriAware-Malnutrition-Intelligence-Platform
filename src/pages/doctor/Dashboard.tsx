@@ -40,6 +40,7 @@ import { useMessages } from '@/components/messages/useMessages';
 import { MessageList } from '@/components/messages/MessageList';
 import { useDoctorStats } from './useDoctorStats';
 import { getBMICategoryLabel, getBMICategoryStatus } from '@/lib/bmi-utils';
+import { UserDirectory } from '@/components/users/UserDirectory';
 
 const DoctorDashboard: React.FC = () => {
   const { i18n } = useTranslation();
@@ -155,6 +156,10 @@ const DoctorDashboard: React.FC = () => {
                 <TabsTrigger value="tools" className="px-4 py-2.5 rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary flex items-center gap-2">
                   <FileText className="h-4 w-4" />
                   <span>{isRTL ? 'الأدوات' : 'Tools'}</span>
+                </TabsTrigger>
+                <TabsTrigger value="directory" className="px-4 py-2.5 rounded-lg data-[state=active]:bg-primary/10 data-[state=active]:text-primary flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  <span>{isRTL ? 'الدليل' : 'Directory'}</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -374,6 +379,18 @@ const DoctorDashboard: React.FC = () => {
               </div>
             </TabsContent>
 
+            <TabsContent value="directory" className="space-y-6">
+              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-8 text-white mb-6 shadow-lg">
+                <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                  <Users className="h-6 w-6" />
+                  {isRTL ? 'دليل المستخدمين' : 'User Directory'}
+                </h2>
+                <p className="text-white/90">
+                  {isRTL ? 'تصفح قائمة الأطباء والمشرفين والمستخدمين في المنصة' : 'Browse all platform doctors, admins, and users'}
+                </p>
+              </div>
+              <UserDirectory />
+            </TabsContent>
           </Tabs>
         </div>
       </div>

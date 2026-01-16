@@ -145,6 +145,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return unsubscribe;
   }, []);
 
+  // Session Timeout Logic
+  useEffect(() => {
+    // 4 hours in milliseconds
+    const TIMEOUT_DURATION = 4 * 60 * 60 * 1000;
+    
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const resetTimer = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      if (user) {
+        timeoutId = setTimeout(() => {
+          // Auto logout
+          console.log('Session timed out due to inactivity');
+          logout();
+          window.location.href = '/auth/login?reason=timeout';
+        }, TIMEOUT_DURATION);
+      }
+    };
+
+    // Events to listen for activity
+    const events = ['mousedown', 'keydown', 'scroll', 'touchstart'];
+
+    const handleActivity = () => {
+      resetTimer();
+    };
+
+    if (user) {
+      // Setup listeners
+      events.forEach(event => {
+        window.addEventListener(event, handleActivity);
+      });
+      // Initial start
+      resetTimer();
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      events.forEach(event => {
+        window.removeEventListener(event, handleActivity);
+      });
+    };
+  }, [user]);
+
   // Sign in with email and password
   const signIn = async (email: string, password: string) => {
     setLoading(true);

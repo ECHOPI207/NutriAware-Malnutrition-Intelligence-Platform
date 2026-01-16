@@ -210,7 +210,7 @@ const Home: React.FC = () => {
             <p className="text-lg text-muted-foreground">{isRTL ? 'مجموعة شاملة من الأدوات التي تساعدك على تحسين نمط حياتك' : 'Comprehensive tools to help you improve your lifestyle.'}</p>
             <div className="flex justify-center">
               <Link to="/services">
-                <Button variant="ghost" className="text-primary hover:bg-primary/5 group">
+                <Button size="lg" className="px-8 rounded-xl btn-gradient shadow-xl shadow-blue-500/20">
                   {isRTL ? 'عرض كل الخدمات' : 'View All Services'}
                   <ArrowRight className={`w-4 h-4 mx-2 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                 </Button>
@@ -231,10 +231,10 @@ const Home: React.FC = () => {
                     <div>
                       <h3 className="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors">{t(`features.${feature.key}.title`)}</h3>
                       <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">{t(`features.${feature.key}.description`)}</p>
-                      <div className="flex items-center justify-center text-primary font-medium text-sm group-hover:underline decoration-2 underline-offset-4">
+                      <Button variant="outline" size="sm" className="w-full mt-2 group-hover:bg-primary group-hover:text-white transition-colors">
                         {isRTL ? 'المزيد' : 'Learn more'}
                         <ArrowRight className={`w-4 h-4 mx-1 ${isRTL ? 'rotate-180' : ''}`} />
-                      </div>
+                      </Button>
                     </div>
                   </div>
                 </Link>

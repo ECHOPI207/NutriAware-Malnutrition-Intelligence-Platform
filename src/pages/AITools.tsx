@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { sendChatMessage, CONDITION_MEAL_PLANS } from '@/services/gemini';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
@@ -349,7 +350,7 @@ const AITools: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="h-[600px] flex flex-col">
+              <Card className="h-[850px] flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Utensils className="h-6 w-6 text-secondary" />
@@ -359,9 +360,32 @@ const AITools: React.FC = () => {
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col min-h-0 overflow-hidden">
                   <div className="space-y-4 mb-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="condition">{t('aiTools.mealGenerator.condition')}</Label>
-                      <Select value={selectedCondition} onValueChange={setSelectedCondition}>
+
+                    <div className="flex items-center mb-2">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button 
+                            variant="ghost" 
+                            className="p-0 h-auto font-medium text-base text-primary hover:bg-transparent hover:text-primary/80 flex items-center gap-2"
+                          >
+                            {t('aiTools.mealGenerator.nutritionalStandards')}
+                            <Info className="h-4 w-4" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80" align="start">
+                          <div className="space-y-2">
+                             <h4 className="font-semibold leading-none text-foreground flex items-center gap-2">
+                               <Info className="h-4 w-4 text-primary" />
+                               {language === 'ar' ? 'إرشادات غذائية (WHO)' : 'WHO Nutritional Guidelines'}
+                             </h4>
+                             <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                               {t('assessment.calorie.whoGuidelines')}
+                             </p>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                    <Select value={selectedCondition} onValueChange={setSelectedCondition}>
                         <SelectTrigger id="condition">
                           <SelectValue placeholder={t('aiTools.mealGenerator.condition')} />
                         </SelectTrigger>
@@ -373,7 +397,7 @@ const AITools: React.FC = () => {
                           <SelectItem value="diabetes">{t('aiTools.mealGenerator.diabetes')}</SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
+
                     <Button onClick={generateMealPlan} className="w-full" disabled={!selectedCondition || isGenerating}>
                       {isGenerating ? (
                         <>
@@ -384,6 +408,7 @@ const AITools: React.FC = () => {
                         t('aiTools.mealGenerator.generate')
                       )}
                     </Button>
+                    
                   </div>
 
                   {mealPlan && (
@@ -454,7 +479,7 @@ const AITools: React.FC = () => {
                         )}
 
                         <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                          <h3 className={`font-semibold text-accent mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                          <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🌅 {t('aiTools.mealGenerator.breakfast')}
                           </h3>
                           <div className="text-sm text-foreground leading-relaxed">
@@ -512,7 +537,7 @@ const AITools: React.FC = () => {
                           </div>
                         </div>
                         <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                          <h3 className={`font-semibold text-secondary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                          <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🌙 {t('aiTools.mealGenerator.dinner')}
                           </h3>
                           <div className="text-sm text-foreground leading-relaxed">
@@ -541,7 +566,7 @@ const AITools: React.FC = () => {
                           </div>
                         </div>
                         <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                          <h3 className={`font-semibold text-accent mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+                          <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🍎 {t('aiTools.mealGenerator.snacks')}
                           </h3>
                           <div className="text-sm text-foreground leading-relaxed">

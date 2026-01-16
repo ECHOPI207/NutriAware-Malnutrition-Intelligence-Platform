@@ -64,7 +64,7 @@ const ActivityMonitoring: React.FC = () => {
     doctorUsers: 0,
     regularUsers: 0
   });
-  const [loading, setLoading] = useState(true);
+
   const [activeTab, setActiveTab] = useState('overview');
 
   const isRTL = i18n.language === 'ar';
@@ -109,7 +109,7 @@ const ActivityMonitoring: React.FC = () => {
 
   const fetchUserStats = async () => {
     try {
-      setLoading(true);
+
 
       // Fetch real user data
       const usersQuery = query(collection(db, 'users'));
@@ -148,8 +148,6 @@ const ActivityMonitoring: React.FC = () => {
       });
     } catch (error) {
       console.error('Error fetching user stats:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -232,49 +230,49 @@ const ActivityMonitoring: React.FC = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="card-primary">
+            <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-white/90">
+                    <p className="text-sm font-medium text-muted-foreground">
                       {isRTL ? 'إجمالي المستخدمين' : 'Total Users'}
                     </p>
-                    <p className="text-2xl font-bold text-white">{userStats.totalUsers}</p>
+                    <p className="text-2xl font-bold text-foreground">{userStats.totalUsers}</p>
                   </div>
-                  <Users className="h-8 w-8 text-white/80" />
+                  <Users className="h-8 w-8 text-primary" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="card-secondary">
+            <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-white/90">
+                    <p className="text-sm font-medium text-muted-foreground">
                       {isRTL ? 'المستخدمين النشطين' : 'Active Users'}
                     </p>
-                    <p className="text-2xl font-bold text-white">{userStats.activeUsers}</p>
+                    <p className="text-2xl font-bold text-foreground">{userStats.activeUsers}</p>
                   </div>
-                  <TrendingUp className="h-8 w-8 text-white/80" />
+                  <TrendingUp className="h-8 w-8 text-green-600" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="card-accent">
+            <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-white/90">
+                    <p className="text-sm font-medium text-muted-foreground">
                       {isRTL ? 'مستخدمين جدد' : 'New Users'}
                     </p>
-                    <p className="text-2xl font-bold text-white">{userStats.newUsers}</p>
+                    <p className="text-2xl font-bold text-foreground">{userStats.newUsers}</p>
                   </div>
-                  <User className="h-8 w-8 text-white/80" />
+                  <User className="h-8 w-8 text-purple-600" />
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="card-info">
+            <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>

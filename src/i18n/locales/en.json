@@ -248,7 +248,8 @@
       "dailyCalories": "Daily Calories",
       "protein": "Protein",
       "carbs": "Carbohydrates",
-      "fats": "Fats"
+      "fats": "Fats",
+      "whoGuidelines": "Standard ratios recommended by WHO are usually:\nCarbohydrates: 45-65%\nProtein: 10-35%\nFats: 20-35%"
     },
     "child": {
       "title": "Child Assessment"
@@ -272,6 +273,7 @@
       "title": "NutriScribe",
       "description": "Get personalized meal plans based on your nutritional needs",
       "condition": "Select Your Condition",
+      "nutritionalStandards": "Nutritional Standards",
       "ironDeficiency": "Iron Deficiency",
       "vitaminD": "Vitamin D Deficiency",
       "proteinDeficiency": "Protein Deficiency",

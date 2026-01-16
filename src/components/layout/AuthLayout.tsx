@@ -1,8 +1,10 @@
 
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { useOutlet, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Suspense } from 'react';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 
 export const AuthLayout: React.FC = () => {
     const { t, i18n } = useTranslation();
@@ -18,7 +20,19 @@ export const AuthLayout: React.FC = () => {
                             <span className="text-3xl font-bold gradient-text">NutriAware</span>
                         </Link>
                     </div>
-                    <Outlet />
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={useLocation().pathname}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <Suspense fallback={<LoadingSpinner size="md" centered className="py-12" />}>
+                                {useOutlet()}
+                            </Suspense>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
 

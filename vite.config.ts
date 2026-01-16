@@ -25,7 +25,14 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore', 'firebase/storage', 'firebase/analytics'],
+          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-label', 'class-variance-authority', 'clsx', 'tailwind-merge'],
+          'vendor-charts': ['recharts'],
+          'vendor-animation': ['framer-motion'],
+          'vendor-utils': ['date-fns', 'lucide-react']
+        }
       }
     },
     chunkSizeWarningLimit: 1000,

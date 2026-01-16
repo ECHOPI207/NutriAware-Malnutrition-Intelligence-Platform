@@ -752,29 +752,29 @@ const UserManagement: React.FC = () => {
             filteredUsers.map((userData) => (
               <Card key={userData.uid} className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-start gap-4 w-full md:w-auto">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                         {userData.photoURL ? (
                           <img src={userData.photoURL} alt={userData.displayName} className="w-12 h-12 rounded-full" />
                         ) : (
                           <Users className="h-6 w-6 text-primary" />
                         )}
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold">{userData.displayName || userData.email}</h3>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <h3 className="font-semibold truncate max-w-[200px]">{userData.displayName || userData.email}</h3>
                           {getRoleBadge(userData.role)}
                           {getStatusBadge(userData.status, userData.isActive, userData.emailVerified, userData.suspendedUntil)}
                         </div>
-                        <p className="text-sm text-muted-foreground">{userData.email}</p>
+                        <p className="text-sm text-muted-foreground break-all">{userData.email}</p>
                         {userData.phoneNumber && (
-                          <p className="text-xs text-muted-foreground flex items-center gap-1">
+                          <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                             <Phone className="h-3 w-3" />
                             {userData.phoneNumber}
                           </p>
                         )}
-                        <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
                             {userData.createdAt?.toDate?.()?.toLocaleDateString(isRTL ? 'ar-EG' : 'en-US') || 'تاريخ غير محدد'}
@@ -789,7 +789,7 @@ const UserManagement: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 self-end md:self-auto w-full md:w-auto justify-end">
                       {/* View Details */}
                       <Button
                         variant="ghost"

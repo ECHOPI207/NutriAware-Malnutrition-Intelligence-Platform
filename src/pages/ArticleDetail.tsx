@@ -21,10 +21,11 @@ interface Article {
   imageUrl: string;
   featuredImage?: string;
   keyTakeaways: { en: string[]; ar: string[] };
+  slug?: string;
 }
 
 const ArticleDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
   const { language } = useLanguage();
   const [article, setArticle] = useState<Article | null>(null);
@@ -32,21 +33,38 @@ const ArticleDetail: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id) {
-        fetchArticle(id);
+    if (slug) {
+        fetchArticle(slug);
     }
-  }, [id]);
+  }, [slug]);
 
-  const fetchArticle = async (articleId: string) => {
+  const fetchArticle = async (slugOrId: string) => {
     try {
         setLoading(true);
-        const docRef = doc(db, 'articles', articleId);
-        const docSnap = await getDoc(docRef);
+        let articleData: Article | null = null;
+        let articleId = slugOrId;
 
-        if (docSnap.exists()) {
-            const data = docSnap.data() as Article;
-            setArticle({ ...data, id: docSnap.id });
-            fetchRelated(data.category, docSnap.id);
+        // 1. Try to find by slug
+        const q = query(collection(db, 'articles'), where('slug', '==', slugOrId));
+        const slugSnapshot = await getDocs(q);
+
+        if (!slugSnapshot.empty) {
+            const docSnap = slugSnapshot.docs[0];
+            articleData = { ...docSnap.data(), id: docSnap.id } as Article;
+            articleId = docSnap.id;
+        } else {
+            // 2. Fallback: Try to find by ID
+            const docRef = doc(db, 'articles', slugOrId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                articleData = { ...docSnap.data(), id: docSnap.id } as Article;
+            }
+        }
+
+        if (articleData) {
+            setArticle(articleData);
+            fetchRelated(articleData.category, articleId);
         } else {
             console.log('No such document!');
         }
@@ -118,6 +136,12 @@ const ArticleDetail: React.FC = () => {
     }
   };
 
+  const getLocalizedContent = (content: { en: string; ar: string } | undefined) => {
+    if (!content) return '';
+    const lang = language as 'en' | 'ar';
+    return content[lang] || content[lang === 'en' ? 'ar' : 'en'] || '';
+  };
+
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -138,7 +162,7 @@ const ArticleDetail: React.FC = () => {
               <div className="aspect-video bg-muted rounded-lg overflow-hidden mb-6">
                 <img
                   src={article.featuredImage || article.imageUrl}
-                  alt={article.title[language as 'en' | 'ar']}
+                  alt={getLocalizedContent(article.title)}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -148,11 +172,11 @@ const ArticleDetail: React.FC = () => {
               </Badge>
 
               <h1 className="text-3xl xl:text-4xl font-bold mb-4">
-                {article.title[language as 'en' | 'ar']}
+                {getLocalizedContent(article.title)}
               </h1>
 
               <p className="text-lg text-muted-foreground mb-6">
-                {article.excerpt ? article.excerpt[language as 'en' | 'ar'] : ''}
+                {getLocalizedContent(article.excerpt)}
               </p>
 
               <div 
@@ -173,7 +197,7 @@ const ArticleDetail: React.FC = () => {
                     ),
                   }}
                 >
-                  {dedent(article.content[language as 'en' | 'ar'])}
+                  {dedent(getLocalizedContent(article.content))}
                 </ReactMarkdown>
               </div>
             </motion.article>
@@ -217,14 +241,14 @@ const ArticleDetail: React.FC = () => {
                         relatedArticles.map(relatedArticle => (
                             <Link
                               key={relatedArticle.id}
-                              to={`/knowledge/${relatedArticle.id}`}
+                              to={`/knowledge/${relatedArticle.slug || relatedArticle.id}`}
                               className="block p-3 rounded-lg hover:bg-muted transition-colors"
                             >
                               <h4 className="font-medium text-sm mb-1">
-                                {relatedArticle.title[language as 'en' | 'ar']}
+                                {getLocalizedContent(relatedArticle.title)}
                               </h4>
                               <p className="text-xs text-muted-foreground line-clamp-2">
-                                {relatedArticle.excerpt[language as 'en' | 'ar']}
+                                {getLocalizedContent(relatedArticle.excerpt)}
                               </p>
                             </Link>
                           ))

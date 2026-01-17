@@ -90,7 +90,7 @@ const routes: RouteConfig[] = [
   {
     name: 'Article Detail',
     translationKey: 'nav.malnutritionTypes',
-    path: '/knowledge/:id',
+    path: '/knowledge/:slug',
     element: <ArticleDetail />,
     visible: false,
     showInNavigation: () => false

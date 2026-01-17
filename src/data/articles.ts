@@ -27,63 +27,63 @@ export const articles: Article[] = [
   {
     id: '1',
     title: {
-      en: 'Growth Assessment and Interpretation of Growth Charts',
+      en: 'A Guide to Growth Assessment and Interpretation of Pediatric Growth Charts',
       ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال'
     },
     excerpt: {
-      en: 'Growth monitoring is the first line of defense for detecting health or nutritional issues early. Learn how to interpret growth charts and what they mean for your child.',
+      en: 'Growth monitoring constitutes a veritable first line of defense for the early detection of any health or nutritional issues. Learn how to interpret growth charts and their implications for your child.',
       ar: 'تُعد مراقبة النمو تمثيلاً حقيقياً لخط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية في وقت مبكر. تعرف على كيفية تفسير مخططات النمو وما تعنيه لطفلك.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `Monitoring growth is the true representation of the first line of defense for detecting any health or nutritional problem at an early stage. Growth charts are scientifically validated tools used by doctors to track a child's growth and compare it to global healthy growth standards.
+      en: `**A Guide to Growth Assessment and Interpretation of Pediatric Growth Charts**
 
-**First: How does malnutrition affect children's growth?**
+Growth monitoring constitutes a veritable first line of defense for the early detection of any health or nutritional issues. Learn how to interpret growth charts and their implications for your child.
 
-Malnutrition is not just "hunger", but an imbalance in nutrients that leads to potentially permanent effects:
+Growth monitoring represents the true first line of defense for detecting health or nutritional problems at an early stage. Growth charts are validated scientific tools utilized by physicians to track a child's growth and compare it against global healthy growth standards.
 
-*   **Physical Growth (Stunting and Wasting):** Deficiency of proteins and calories leads to stunted height (stunting) or severe weight loss (wasting), making the child's structure weaker than their peers.
-*   **Mental and Cognitive Development:** The brain needs fats and minerals (like Iron and Zinc) to grow. Malnutrition in the early years may lead to delayed academic achievement and cognitive deficits.
-*   **Weak Immune System:** A malnourished child is more susceptible to recurrent infections, and every illness leads to a further decline in growth (a vicious cycle).
-*   **Delayed Motor Skills:** The child may be delayed in sitting, walking, or running due to poor muscle mass and lack of energy.
+**First: How Does Malnutrition Affect Child Growth?**
+Malnutrition is not merely "hunger"; rather, it is a nutrient imbalance leading to effects that may be permanent:
+
+*   **Physical Growth (Stunting and Wasting):** Deficiencies in proteins and calories lead to halted linear growth (stunting) or severe weight loss (wasting), rendering the child’s physique weaker than that of their peers.
+*   **Mental and Cognitive Development:** The brain requires fats and minerals (such as iron and zinc) to develop. Malnutrition in the early years may lead to delayed academic achievement and deficits in cognitive abilities.
+*   **Weakened Immune System:** A malnourished child is more susceptible to recurrent infections, and each health episode leads, in turn, to a further regression in growth (a vicious cycle).
+*   **Delayed Motor Skills:** The child may be delayed in sitting, walking, or running due to poor muscle mass and energy deficiency.
 
 **Second: Key Anthropometric Measurements**
-
-Charts rely on measurements compared to children of the same age and gender:
+Growth charts rely on measurements compared against children of the same age and gender:
 
 *   **Weight-for-Age:** Monitors acute and immediate changes in nutritional status.
 *   **Height-for-Age:** Reflects long-term nutritional history (the primary indicator of stunting).
 *   **Head Circumference:** Reflects brain development and growth during the first two years.
-*   **Body Mass Index (BMI):** Used from age two to assess thinness or obesity.
+*   **Body Mass Index (BMI):** Utilized from age two onwards to assess underweight or obesity.
 
-**Third: Understanding "Percentiles" and Interpreting Them**
+**Third: Understanding and Interpreting Percentiles**
+A percentile represents the child's rank among 100 peers:
 
-A percentile is the child's rank among 100 peers:
-
-*   **Normal Range:** Maintaining a steady path between the 5th and 85th percentiles.
+*   **The Normal Range:** Maintaining a consistent trajectory between the 5th and 85th percentiles.
 *   **Underweight:** When the measurement falls below the 5th percentile.
-*   **Overweight/Obesity:** If BMI exceeds the 85th or 95th percentile.
-*   **Note:** Doctors tend to use WHO charts for children under two years, and CDC charts for those older.
+*   **Overweight/Obesity:** If the BMI exceeds the 85th or 95th percentile.
+*   **Note:** Physicians tend to use WHO charts for children under two years of age, and CDC charts for those older.
 
 **Fourth: The "Pattern" Rule and Genetic Factors**
+Do not look at the single number; rather, observe:
 
-Do not look at the single number, but look at:
-
-*   **Trend:** Is the child growing consistently on their own curve?
-*   **Genetics:** Parents' height determines the genetic "ceiling" for the child's growth, which is a key factor in assessment.
+*   **The Trend:** Is the child growing consistently along their own curve?
+*   **Genetics:** Parental height determines the genetic "ceiling" for the child's growth, which is a fundamental factor in the assessment.
 
 **Fifth: Warning Signs Requiring Intervention**
 
 *   **Crossing Percentile Lines:** A sudden drop crossing two major lines on the chart.
-*   **Growth Plateau:** Stalled weight or height gain for an unexplained period.
-*   **Disproportionate Growth:** Excessive weight gain not matched by healthy skeletal growth.
+*   **Growth Stagnation:** Unjustified cessation of weight gain or height increase.
+*   **Disproportionate Growth:** Excessive weight gain not accompanied by proper linear growth.
 
 **Conclusion**
 
-The goal of growth monitoring is not to reach a fixed ideal weight, but to ensure the child is on their natural path, away from malnutrition risks that could affect their physical and mental future.
+The objective of growth monitoring is not to achieve a fixed ideal weight, but to ensure that the child is progressing along their natural trajectory, free from the risks of malnutrition that could impact their physical and mental future.
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
@@ -161,53 +161,52 @@ The goal of growth monitoring is not to reach a fixed ideal weight, but to ensur
   {
     id: '2',
     title: {
-      en: 'Nutrition in Infancy and Complementary Feeding',
+      en: 'Infant Nutrition and Complementary Feeding',
       ar: 'التغذية في مرحلة الرضاعة و التغذية التكميلية'
     },
     excerpt: {
-      en: 'Infancy and the subsequent complementary feeding period are critical for building a child\'s physical and cognitive foundation. Learn about growth stages, feeding patterns, and the immunization schedule.',
+      en: 'The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child\'s physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.'s physical and cognitive foundation. Learn about growth stages, feeding patterns, and the immunization schedule.',
       ar: 'تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `Infancy and the subsequent complementary feeding period are critical for building a child's physical and cognitive foundation. Here are the details on nutrition, growth stages, and the basic immunization schedule:
+      en: `**Infant Nutrition and Complementary Feeding**
 
-**1. Child Growth and Body Composition:**
+The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child's physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.
 
-The first year is characterized by explosive growth; birth weight doubles between 4-6 months, triples by one year, and length increases by about 25 cm. After age one, the growth rate slows slightly but becomes more stable until age 5.
+**1. Child Growth and Body Composition**
+The first year is characterized by explosive growth; birth weight doubles between 4 and 6 months and triples by one year of age, while length increases by approximately 25 cm. After one year, the growth rate decelerates slightly but becomes more stable until the age of five.
 
-**2. Appetite and Feeding Pattern (Birth to 5 years):**
+**2. Appetite and Feeding Pattern (From Day One to 5 Years)**
 
-*   **0-6 Months (Exclusive Breastfeeding):** The child relies entirely on milk.
-    *   **Frequency:** 8 to 12 feedings daily (every 2-3 hours).
-    *   **Amount:** Starts from 30-60 ml in the first days, reaching 120-180 ml per feed by the fourth month.
-    *   **Note:** Giving water is strictly prohibited as milk provides sufficient hydration.
+*   **0–6 Months (Exclusive Breastfeeding):** The child relies entirely on milk.
+    *   **Frequency:** 8 to 12 feedings daily (approximately every 2–3 hours).
+    *   **Quantity:** Starts at 30–60 ml in the first days, reaching 120–180 ml per feeding by the fourth month.
+    *   **Note:** Giving water is strictly prohibited, as milk provides adequate hydration.
 
 *   **6 Months to 2 Years (Complementary Feeding and Integration):**
-    *   **How to Integrate:** Milk remains the primary source, and solid food is offered "between" feedings.
-    *   **6-8 Months:** (2 meals daily) + Breastfeeding. Amount: 2 tablespoons per meal, increasing gradually.
-    *   **9-11 Months:** (3 meals daily) + Breastfeeding. Amount: About half a cup (125 ml) per meal.
-    *   **12-24 Months:** (3 main meals + 2 snacks) with continued breastfeeding.
+    *   **Integration Method:** Milk remains the primary source, and solid food is offered "between" feedings.
+    *   **6–8 Months:** (Two meals daily) + Breastfeeding. Quantity: Two tablespoons per meal, increasing gradually.
+    *   **9–11 Months:** (3 meals daily) + Breastfeeding. Quantity: Approximately half a cup (125 ml) per meal.
+    *   **12–24 Months:** (3 main meals + 2 snacks) with continued breastfeeding.
 
-*   **2-5 Years:** "Physiological anorexia" appears, which is normal due to slowed growth. Hunger and fullness signals must be respected.
+*   **2–5 Years:** "Physiological anorexia" appears, which is normal due to growth deceleration. Hunger and satiety cues must be respected.
 
-**3. Basic Essential Vaccinations (Post-Newborn):**
+**3. Essential Immunizations (Post-Neonatal)**
+*   **Ages 2, 4, 6 Months:** Pentavalent vaccines and Polio.
+*   **Age 1 Year and 18 Months:** MMR vaccine (Measles, Mumps, Rubella) and booster doses.
+*   **Important Additional Vaccinations:** Rotavirus vaccine (for prevention of gastroenteritis) and Pneumococcal vaccine.
 
-*   **Age 2, 4, 6 Months:** Pentavalent (DTP-HepB-Hib) and Polio vaccines.
-*   **Age 1 Year and 18 Months:** MMR (Measles, Mumps, Rubella) and booster doses.
-*   **Important Additional Vaccinations:** Rotavirus (to prevent gastroenteritis) and Pneumococcal vaccines.
-
-**4. Warnings and Critical Nutrients:**
-
-*   **Vitamin D:** Given at a dose of 400 IU from the first day of birth to ensure bone health.
-*   **Prohibited Before Age One:** Honey (botulism risk), cow's milk as a main drink, and salt and sugar completely.
+**4. Warnings and Critical Nutrients**
+*   **Vitamin D:** Administered at a dose of 400 IU from the first day of birth to ensure bone health.
+*   **Prohibitions Before Age One:** Honey (risk of botulism), cow's milk as a primary drink, and salt and sugar entirely.
 *   **Safety Alert:** Cut food longitudinally and safely, and avoid nuts and whole grapes to prevent choking.
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
-*   [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding)
+*   [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/health-topics/infant-nutrition)
 *   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
       ar: `تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي:
@@ -273,78 +272,79 @@ The first year is characterized by explosive growth; birth weight doubles betwee
       ar: 'التغذية في الأمراض الحرجة والأطفال الخدج'
     },
     excerpt: {
-      en: 'Critically ill children and preterm infants have unique nutritional needs. Learn about feeding goals, metabolic responses, and management in the PICU and for preterm babies.',
+      en: 'Critically ill children and premature infants have unique nutritional needs requiring specialized therapeutic approaches.',
       ar: 'الأطفال المرضى بشكل حرج والأطفال الخدج لديهم احتياجات غذائية فريدة تتطلب أساليب علاجية متخصصة.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `Critically ill children and preterm infants have unique nutritional needs requiring specialized therapeutic approaches.
+      en: `**Nutrition in Critical Illness and Preterm Infants**
 
-**Nutritional Care for Children in the Pediatric Intensive Care Unit (PICU):**
+Critically ill children and premature infants have unique nutritional needs requiring specialized therapeutic approaches.
 
-Critically ill children suffer from profound metabolic disturbances that significantly affect their nutritional status and requirements.
+**Nutritional Care in the Pediatric Intensive Care Unit (PICU)**
+Critically ill children suffer from profound metabolic disturbances that significantly impact their nutritional status and requirements.
 
-**Metabolic Response to Injury:**
+**The Metabolic Response to Injury**
 The body's response to critical illness occurs in two phases:
-*   **Catabolic Phase (Ebb Phase):** Immediate response characterized by decreased metabolic rate, reduced cardiac output, and shock. This phase typically lasts 24-48 hours.
-*   **Flow Phase:** Characterized by hypermetabolism, increased energy expenditure, protein breakdown, and insulin resistance. This phase can last from weeks to months depending on the severity of the illness.
+*   **The Catabolic Phase (Ebb Phase):** An immediate response characterized by hypometabolism, decreased cardiac output, and shock. This phase typically lasts 24–48 hours.
+*   **The Flow Phase:** Characterized by hypermetabolism, increased energy expenditure, protein catabolism, and insulin resistance. This phase can last from weeks to months depending on the severity of the illness.
 
-**Nutritional Goals in PICU:**
-*   Prevent further nutritional deterioration.
-*   Support immune function.
-*   Promote wound healing and recovery.
-*   Reduce complications.
+**Nutritional Goals in the ICU**
+*   Preventing further nutritional deterioration.
+*   Supporting immune function.
+*   Promoting wound healing and recovery.
+*   Reducing complications.
 
-**The Dual Feeding Challenge:**
-*   **Underfeeding:** Weakens immunity, delays wound healing, prolongs mechanical ventilation, and increases infection risk.
-*   **Overfeeding:** May hinder mechanical ventilation (increased CO2 production), cause liver dysfunction (fatty liver), hyperglycemia, and electrolyte imbalances.
-*   **Refeeding Syndrome:** Serious metabolic disturbances occurring when feeding is started rapidly after a period of starvation/malnutrition, leading to sudden electrolyte imbalances (Phosphorus, Potassium, Magnesium) and cardiac/respiratory risks.
+**The Double Burden of Nutrition Challenge**
+*   **Underfeeding:** Impairs immunity, delays wound healing, prolongs mechanical ventilation, and increases the risk of infection.
+*   **Overfeeding:** May hinder mechanical ventilation (due to increased carbon dioxide production), cause hepatic dysfunction (fatty liver), hyperglycemia, and electrolyte imbalances.
+*   **Refeeding Syndrome:** Serious metabolic disturbances that occur upon the rapid initiation of feeding following a period of starvation or severe malnutrition, leading to sudden electrolyte imbalances (such as phosphorus, potassium, and magnesium) and posing a risk to cardiac and pulmonary functions.
 
-**Therapeutic Protocols:**
-*   **Enteral Nutrition is Preferred:** Should begin early (within 24-48 hours) when the patient is hemodynamically stable. Enteral nutrition preserves gut integrity, reduces infection risk, and is more physiological than parenteral nutrition.
-*   **High Protein Requirements:** These children need high protein doses, starting at a minimum of 1.5 g/kg/day, potentially up to 2-3 g/kg/day depending on illness severity and catabolism.
-*   **Energy Requirements:** Usually 1.2-1.5 times resting energy expenditure, but should be customized based on indirect calorimetry when available.
+**Therapeutic Protocols**
+*   **Enteral Nutrition is Preferred:** Should be initiated early (within 24–48 hours) when the patient is hemodynamically stable. Enteral nutrition maintains gut integrity, reduces the risk of infection, and is more physiological than parenteral nutrition.
+*   **High Protein Requirements:** These children require high doses of protein, starting at a minimum of 1.5 g/kg/day, and may need 2–3 g/kg/day depending on illness severity and degree of catabolism.
+*   **Energy Requirements:** Typically 1.2–1.5 times the resting energy expenditure, but should be individualized based on indirect calorimetry when available.
 
-**Nutrition in Preterm Infants:**
-A preterm infant (born before 37 weeks) has not completed the accumulation of essential nutrient stores that typically occurs during the third trimester.
+**Nutrition in Preterm Infants**
+The preterm infant (born before 37 weeks of gestation) has not completed the accumulation of essential nutrient stores that typically occurs during the third trimester of pregnancy.
 
-**Unique Challenges:**
-*   Immature digestive tract.
-*   Limited nutrient stores (especially Calcium, Phosphorus, Iron).
-*   Increased metabolic demands.
+**Unique Challenges**
+*   Immature gastrointestinal tract.
+*   Limited nutrient stores (especially calcium, phosphorus, and iron).
+*   Increased metabolic requirements.
 *   Immature organ systems.
 
-**Importance of Trophic Feeding:**
-Giving very small amounts of milk (10-20 ml/kg/day) to "stimulate" the digestive system, not for calories. It enhances gut maturity, reduces parenteral nutrition duration, and lowers Necrotizing Enterocolitis (NEC) risk.
+**The Importance of Trophic Feeding**
+The administration of very small amounts of milk (10–20 ml/kg/day) aimed at "priming" the gastrointestinal tract rather than providing calories. Its importance lies in promoting gut maturation, reducing the duration of dependence on parenteral nutrition, and lowering the risk of Necrotizing Enterocolitis (NEC).
 
-**Nutritional Goal:**
-Mimic the rapid intrauterine growth that would have occurred, aiming for growth rates of 15-20 g/kg/day.
+**Nutritional Goal**
+Mimicking the rapid intrauterine growth that would have occurred prenatally, aiming for growth rates of 15–20 g/kg/day.
 
-**Human Milk Fortification:**
-Breast milk for preterm infants requires fortifiers to increase Protein, Calcium, Phosphorus, and Calories. Standard fortification usually provides:
-*   Additional Protein: 0.8-1.0 g/100 ml.
-*   Increased Calcium and Phosphorus for bone mineralization.
-*   Improved Caloric Density: 24-26 kcal/oz (vs 20 kcal/oz in unfortified milk).
+**Fortification of Human Milk**
+Breast milk for preterm infants requires fortifiers to increase its protein, calcium, phosphorus, and caloric content. Standard fortification typically provides:
+*   Additional protein: 0.8–1.0 g/100 ml.
+*   Increased calcium and phosphorus: For bone mineralization.
+*   Improved caloric density: 24–26 kcal/oz (versus 20 kcal/oz in unfortified milk).
 
-**Specialized Preterm Formulas:**
-When breast milk is unavailable, specialized formulas provide:
-*   Higher protein content (2.4-3.0 g/100 kcal).
+**Specialized Preterm Formulas**
+When breast milk is unavailable, specialized preterm formulas provide:
+*   Higher protein content (2.4–3.0 g/100 kcal).
 *   Increased minerals for bone growth.
 *   Improved caloric density.
 *   Easily digestible fats and proteins.
 
-**Monitoring and Complications:**
+**Monitoring and Complications**
 Careful monitoring is essential for:
-*   Growth parameters (Weight, Length, Head Circumference).
+*   Growth parameters (weight, length, head circumference).
 *   Feeding tolerance.
 *   Metabolic bone disease.
 *   Risk of Necrotizing Enterocolitis (NEC).
-*   Nutritional deficiencies.
+*   Nutritional deficiency.
 
-Transitioning from hospital to home requires careful planning to ensure continued optimal nutrition and growth.
+Transition from hospital to home requires careful planning to ensure continued optimal nutrition and growth.
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
@@ -444,7 +444,7 @@ Transitioning from hospital to home requires careful planning to ensure continue
       ar: 'السمنة في مرحلة الطفولة بدءًا من الحمل'
     },
     excerpt: {
-      en: 'What happens during pregnancy impacts your child\'s future. Discover how fetal programming shapes metabolic health and increases obesity risk.',
+      en: 'What occurs during pregnancy impacts the child\'s future. Discover how fetal programming shapes the child\'s metabolic health and increases obesity risks.'s future. Discover how fetal programming shapes metabolic health and increases obesity risk.',
       ar: 'ما يحدث أثناء الحمل يؤثر على مستقبل الطفل. اكتشف كيف تشكل البرمجة الجنينية الصحة الأيضية للطفل وتزيد مخاطر السمنة.'
     },
     category: 'overnutrition',
@@ -452,17 +452,17 @@ Transitioning from hospital to home requires careful planning to ensure continue
     content: {
       en: `**Childhood Obesity Starting from Pregnancy: How Does It Begin?**
 
-A scientific concept known as **Fetal Programming** indicates that everything a mother is exposed to during pregnancy is biologically "recorded" in the fetus's body, affecting their health and metabolic functions after birth.
+There exists a scientific concept known as **Fetal Programming**, which indicates that everything the mother is exposed to during pregnancy is biologically "recorded" in the fetus's body, influencing their health and metabolic functions after birth.
 
 **1) Maternal Obesity or Excessive Weight Gain During Pregnancy**
 
-If the mother is overweight before pregnancy or gains excessive weight during pregnancy, the child is more likely to:
+If the mother suffers from overweight prior to pregnancy or gains excessive weight during gestation, the child is more susceptible to:
 
-*   Be born with a high weight (Macrosomia)
-*   Have a larger number of fat cells
-*   Have a higher risk of developing obesity in childhood
+*   **High birth weight (Macrosomia)**
+*   **Possessing a higher number of adipocytes (fat cells)**
+*   **Elevated risk of developing obesity in childhood**
 
-**Scientific Explanation:** High levels of maternal insulin and leptin crossing to the fetus stimulate fat storage.
+**Scientific Explanation:** Elevated levels of insulin and leptin in the mother transfer to the fetus, stimulating fat storage.
 
 **2) Unhealthy Maternal Diet**
 
@@ -472,144 +472,144 @@ When the mother relies on:
 *   Fast food
 *   Saturated fats
 *   Sweetened beverages
-*   Surplus calories
+*   Caloric surplus
 
-The child becomes more likely to:
+The probability increases that the child will become more prone to:
 
-*   Store fat easily
-*   Develop insulin resistance
-*   Experience frequent hunger after birth
+*   Storing fat easily
+*   Developing insulin resistance
+*   Experiencing frequent hunger postpartum
 
 **3) Gestational Diabetes**
 
-Considered one of the strongest causes of future obesity.
+Considered one of the strongest predictors of subsequent obesity.
 
-Elevated maternal blood sugar transfers to the fetus → fetal pancreas responds by secreting large amounts of insulin → leading to increased fat storage.
+High blood sugar levels in the mother transfer to the fetus -> the fetal pancreas responds by secreting large quantities of insulin -> leading to increased fat storage.
 
-👉 These children are three times more likely to develop obesity after age two.
+👉 **Note:** These children are three times more likely to develop obesity after the age of two.
 
 **4) Smoking During Pregnancy**
 
-Leads to intrauterine growth restriction, and after birth, the child tends to consume larger amounts of food to compensate, increasing obesity risk.
+Leads to the inhibition of fetal growth within the womb (Intrauterine Growth Restriction). Postpartum, the child tends to consume larger quantities of food to compensate, increasing the risk of obesity.
 
-**5) Low Physical Activity During Pregnancy**
+**5) Lack of Physical Activity During Pregnancy**
 
-Regular physical activity helps regulate insulin and hormones. Lack of movement leads to increased fetal fat storage.
+Regular physical activity helps regulate insulin and hormones. Conversely, a sedentary lifestyle leads to increased fat storage in the fetus.
 
 **Postnatal Factors Increasing Obesity Risk**
 
-*   Early introduction of heavy foods
-*   Reliance on formula milk without medical necessity
-*   Offering sugary drinks and unhealthy meals
+*   Early introduction of heavy solid foods
+*   Reliance on formula feeding without medical necessity
+*   Provision of sugary drinks and unhealthy meals
 *   Irregular feeding schedules
-*   Using food as a reward or for soothing
-*   Low physical activity
+*   Using food as a means of reward or soothing
+*   Lack of physical activity
 
 **Prevention and Treatment**
 
 **First: During Pregnancy**
 
-Healthy maternal diet includes:
+A healthy maternal diet includes:
 
 *   Vegetables and fruits
 *   Lean proteins
 *   Healthy fats (fish, olive oil, nuts)
-*   Reducing sugar
-*   Drinking sufficient water
-*   Regular, balanced meals
+*   Reduction of sugar intake
+*   Drinking adequate amounts of water
+*   Regular and balanced meals
 
-*   **Monthly monitoring of weight gain** (normal gain depends on pre-pregnancy BMI)
-*   **Early treatment of gestational diabetes:** One of the most important steps to prevent child obesity.
-*   **Light physical activity:** Like walking 20–30 minutes daily.
+*   **Monthly Weight Monitoring:** Normal gain depends on the pre-pregnancy Body Mass Index (BMI).
+*   **Early Treatment of Gestational Diabetes:** Considered one of the most important steps in preventing childhood obesity.
+*   **Moderate Physical Activity:** Such as walking for 20–30 minutes daily.
 
 **Second: After Birth**
 
-*   **Breastfeeding** is the preferred choice
-*   No added sugar to baby food
-*   Delaying juices and sweetened foods
-*   Relying on natural foods (vegetables, fruits, protein)
-*   Not using food as a reward
-*   Encouraging daily physical movement
+*   **Breastfeeding:** The preferred option.
+*   **Avoiding the addition of sugar to the child's food.**
+*   **Delaying juices and sweetened foods.**
+*   **Reliance on natural foods (vegetables, fruits, protein).**
+*   **Avoiding the use of food as a reward.**
+*   **Encouraging the child to engage in daily movement.**
 
-**If the Child is Already Obese (After Age 2):**
+**In case of childhood obesity (after age two):**
 
-*   Reduce sugars and sweetened drinks
-*   Increase vegetables and protein
-*   Stop fast food
-*   Regulate sleep schedules (sleep disruption increases appetite hormones)
+*   Reducing sugars and sweetened beverages
+*   Increasing vegetables and protein
+*   Eliminating fast food
+*   Regulating sleep schedules (sleep disruption increases appetite hormones)
 *   Daily physical activity
-*   Follow up with a pediatric nutritionist if weight is high
+*   Follow-up with a pediatric nutritionist if weight is elevated
 
-**Causes of Low Birth Weight at Birth**
+**Causes of Low Birth Weight at Delivery**
 
-*   Preterm birth before week 37
-*   Intrauterine growth restriction due to malnutrition or placental issues
+*   Preterm birth before the 37th week
+*   Intrauterine Growth Restriction (IUGR) due to malnutrition or placental issues
 *   Maternal malnutrition during pregnancy
-*   Maternal smoking or exposure to secondhand smoke
-*   Chronic maternal diseases like hypertension and diabetes
+*   Maternal smoking or exposure to passive smoking
+*   Maternal chronic diseases such as hypertension and diabetes
 *   Infections during pregnancy
-*   Multiple pregnancy (twins or more)
-*   Alcohol or drug use
-*   Very young or advanced maternal age
+*   Multiple pregnancies (twins or more)
+*   Alcohol or drug abuse
+*   Extremes of maternal age (very young or advanced maternal age)
 
 **Nutritional Causes of Low Birth Weight**
 
-Linked to deficiency of essential nutrients for fetal growth, including:
+These are linked to deficiencies in nutrients essential for fetal growth, including:
 
 **1) Caloric Deficiency**
-Mother not getting enough energy affects fetal growth.
+The mother's failure to obtain sufficient energy leads to compromised fetal growth.
 
 **2) Protein Deficiency**
-Protein is essential for building fetal tissues, muscles, and bones; deficiency slows growth.
+Protein is fundamental for building fetal tissues and the growth of muscles and bones; its deficiency slows growth.
 
-**3) Deficiency of Essential Vitamins and Minerals**
-*   **Iron:** Deficiency causes anemia and reduces oxygen delivery to fetus
-*   **Folic Acid:** Deficiency increases risk of deformities and growth delay
+**3) Essential Vitamin and Mineral Deficiencies**
+*   **Iron:** Deficiency causes anemia and reduces oxygen delivery to the fetus
+*   **Folic Acid:** Deficiency increases the risk of malformations and growth retardation
 *   **Calcium and Vitamin D:** Important for bone formation
-*   **Iodine and Zinc:** Deficiency affects brain and body growth
+*   **Iodine and Zinc:** Deficiencies affect brain and body growth
 
-**4) General Malnutrition or Strict Diets**
-Severe dietary restrictions or unbalanced diets may lead to low birth weight.
+**4) General Malnutrition or Restrictive Diets**
+Severe dietary restrictions or unbalanced regimens may lead to low birth weight.
 
 **Genetic Causes of Low Birth Weight**
 
-*   **Parental Genetic Size:** If parents are thin or short, the child may be born naturally smaller.
-*   **Genetic or Chromosomal Disorders:** Some syndromes (like Down syndrome) may affect fetal growth.
-*   **Family History:** History of low birth weight increases recurrence probability.
+*   **Parental Genetic Size:** If parents are naturally thin or of short stature, the child may be born with a naturally lower weight.
+*   **Genetic or Chromosomal Disorders:** Certain genetic syndromes (such as Down syndrome) may affect fetal growth.
+*   **Family History:** A family history of low birth weight increases the likelihood of recurrence.
 
-**Care and Treatment After Birth of Low Birth Weight Infant**
+**Care and Treatment After the Birth of a Low Birth Weight Infant**
 
-Depends on severity and general condition, includes:
+Management depends on the severity of the low weight and the general condition of the child, including:
 
 **1) Immediate Medical Care**
-*   Assessing weight, length, head circumference
-*   Checking vital functions (breathing, sugar, temperature)
-*   Incubator admission if weight is < 1.5 kg
+*   Assessment of weight, length, and head circumference
+*   Examination of vital functions (respiration, blood sugar, temperature)
+*   Admission to an incubator if the weight is less than 1.5 kg
 
 **2) Nutrition**
 *   Early and frequent breastfeeding
-*   Using fortified milk or formula when medically needed
-*   Nutritional supplements under medical supervision if necessary
+*   Use of fortified milk or formula if medically necessary
+*   Nutritional supplements under medical supervision when necessary
 
 **3) Maintaining Body Temperature**
 *   Continuous warming
-*   Kangaroo care (skin-to-skin contact)
+*   Use of "Kangaroo Care" (skin-to-skin contact)
 
 **4) Infection Prevention**
-*   Hand washing before touching baby
-*   Avoiding crowds
-*   Adhering to vaccination schedule
+*   Hand washing before touching the child
+*   Avoiding crowded places
+*   Adherence to the vaccination schedule
 
 **5) Periodic Follow-up**
-*   Weekly weight monitoring or as advised
-*   Monitoring growth and motor/mental development
-*   Screening for potential issues like anemia
+*   Weekly weight monitoring or as recommended by the physician
+*   Monitoring of growth as well as motor and mental development
+*   Screening for potential issues such as anemia
 
-**6) Psychological Family Support**
+**6) Psychosocial Support for the Family**
 *   Educating parents on care and feeding methods
 *   Encouraging physical and emotional interaction with the child
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
@@ -814,62 +814,54 @@ Depends on severity and general condition, includes:
       ar: 'فهم سوء التغذية البروتيني-الطاقي'
     },
     excerpt: {
-      en: 'PEM is more than just hunger. Learn about Marasmus, Kwashiorkor, and the critical interventions needed to save lives.',
+      en: 'Protein malnutrition is not merely hunger. Learn about Marasmus, Kwashiorkor, and critical life-saving interventions.',
       ar: 'سوء التغذية البروتيني ليس مجرد جوع. تعرف على الماراسموس والكواشيوركور والتدخلات الحاسمة لإنقاذ الحياة.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
       en: `**Understanding Protein-Energy Malnutrition (PEM)**
+Protein-Energy Malnutrition (PEM) is a form of malnutrition resulting from inadequate dietary intake of protein and/or energy (calories) to meet the body's physiological needs. This disorder represents a major public health problem, particularly in low- and middle-income countries, and appears most commonly among infants and young children.
 
-Protein-Energy Malnutrition (PEM) is a form of undernutrition resulting from insufficient dietary intake of protein and/or energy (calories) to meet the body’s physiological needs. This disorder represents a major public health problem, especially in low- and middle-income countries, and is most common among infants and young children.
-
-According to the World Health Organization (WHO), undernutrition results from insufficient intake of energy and essential nutrients, leading to weight loss, growth impairment, weakened immunity, and increased morbidity and mortality rates.
+According to the World Health Organization (WHO), malnutrition stems from the inadequate intake of energy and essential nutrients, leading to weight loss, growth disruption, immune impairment, and increased rates of morbidity and mortality.
 
 **Causes of Protein-Energy Malnutrition**
+PEM arises as a result of several factors, most notably the inadequate intake of protein- and energy-rich foods, food insecurity and poverty, recurrent infections which increase nutritional needs and reduce absorption, and improper infant and young child feeding practices.
 
-PEM arises from several factors, most notably insufficient intake of protein- and energy-rich foods, food insecurity and poverty, recurrent infections which increase nutritional needs and reduce absorption, and improper infant and young child feeding practices.
-
-When the body does not receive enough nutrients, it begins to consume its own fat and muscle stores to maintain vital functions, leading to wasting and general weakness.
+When the body does not receive sufficient nutrients, it begins to consume its own stores of fat and muscle to maintain vital functions, leading to wasting and general weakness.
 
 **Clinical Forms of Protein-Energy Malnutrition**
-
 PEM manifests in a spectrum of clinical conditions, including:
 
-**Marasmus**
+1.  **Marasmus:** A severe form of malnutrition resulting from a long-term deficiency in total dietary energy, characterized by severe wasting of muscle mass and adipose tissue.
+    *   **Distinctive Sign:** The child appears with a face resembling an "Old man face" due to the loss of buccal fat pads (cheek fat).
 
-A severe form of undernutrition resulting from long-term deficiency in total dietary energy, characterized by severe wasting of muscle mass and fat tissue.
-**Distinctive Sign:** The child appears with an "Old man face" due to loss of cheek fat.
+2.  **Kwashiorkor:** A condition primarily associated with dietary protein deficiency, often accompanied by edema, fatty liver, dermatological changes, and hair discoloration.
+    *   **Distinctive Sign:** The child appears with a "Moon face" and abdominal distension due to fluid accumulation (edema) and hepatomegaly (enlarged liver).
 
-**Kwashiorkor**
+3.  **Marasmic-Kwashiorkor:** A mixed form where features of both Marasmus and Kwashiorkor appear simultaneously.
 
-A condition primarily associated with dietary protein deficiency, often accompanied by edema, fatty liver, skin changes, and hair discoloration.
-**Distinctive Sign:** The child appears with a "Moon face" and abdominal protrusion due to fluid accumulation (edema) and enlarged liver.
+**WHO Classification and General Health Impact**
+The WHO classifies PEM within the category of malnutrition, which includes:
 
-**Marasmic-Kwashiorkor**
+*   **Wasting:** Low weight-for-height.
+*   **Stunting:** Low height-for-age.
+*   **Underweight:** Low weight-for-age.
 
-A mixed form showing features of both Marasmus and Kwashiorkor together.
+**Diagnostic Tool:** The WHO utilizes the "Mid-Upper Arm Circumference" (MUAC) measurement as a rapid and simple tool to diagnose malnutrition in communities via a color-coded tape that determines the degree of severity.
 
-**WHO Classification and Public Health Impact**
-
-WHO classifies PEM under the category of undernutrition, which includes **Wasting** (low weight for height), **Stunting** (low height for age), and **Underweight** (low weight for age).
-
-**Diagnostic Tool:** WHO uses "Mid-Upper Arm Circumference" (MUAC) measurement as a quick and simple tool to diagnose undernutrition in communities via a colored tape indicating risk level.
-
-WHO reports indicate that undernutrition is associated with nearly half of all deaths among children under five globally. Children with PEM are also more susceptible to infections, delayed cognitive development, and long-term health complications.
+WHO reports indicate that malnutrition is linked to approximately half of all deaths among children under five years of age globally. Furthermore, children with PEM are more susceptible to infection, delayed cognitive development, and long-term health complications.
 
 **Therapeutic Intervention (Recovery Path)**
+According to medical protocols, treatment proceeds through two fundamental phases:
 
-According to medical protocols, treatment passes through two main phases:
-
-1.  **Stabilization Phase:** Focuses on treating dehydration, infection, and electrolyte imbalance.
-2.  **Rehabilitation Phase:** Gradual start of intensive feeding (such as therapeutic peanut butter RUTF).
+*   **Stabilization Phase:** Focuses on treating dehydration, infection, and electrolyte imbalance.
+*   **Rehabilitation Phase:** The gradual initiation of intensive feeding (such as Ready-to-Use Therapeutic Food - RUTF like therapeutic peanut butter).
 
 **Conclusion**
+Protein-Energy Malnutrition is a serious, preventable condition resulting from inadequate protein and energy intake. According to WHO guidelines, addressing this issue requires providing adequate nutrition, enhancing food security, and implementing effective public health policies, alongside early detection and appropriate therapeutic intervention, especially among the most vulnerable groups such as infants and young children.
 
-Protein-Energy Malnutrition is a serious preventable condition resulting from insufficient protein and energy intake. According to WHO guidelines, addressing this problem requires providing adequate nutrition, enhancing food security, and implementing effective public health policies, along with early detection and appropriate therapeutic intervention, especially for the most vulnerable groups such as infants and young children.
-
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Malnutrition](https://www.who.int/news-room/fact-sheets/detail/malnutrition)
@@ -950,69 +942,59 @@ Protein-Energy Malnutrition is a serious preventable condition resulting from in
   {
     id: '13',
     title: {
-      en: 'General Management of Newborns',
+      en: 'General Management of the Newborn',
       ar: 'الإدارة العامة لحديثي الولادة'
     },
     excerpt: {
-      en: 'Essential guide for new parents covering thermoregulation, feeding safety, hygiene, and SIDS prevention.',
+      en: 'An Essential Guide for New Parents Covering Thermoregulation, Nutritional Safety, Hygiene, and Prevention of Sudden Infant Death Syndrome (SIDS).',
       ar: 'دليل أساسي للآباء الجدد يغطي تنظيم الحرارة، سلامة التغذية، النظافة، والوقاية من الموت المفاجئ للرضع.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**General Management of Newborns**
+      en: `**General Management of the Newborn**
 
-The neonatal period (first 28 days of life) is the most critical period for a child's survival and health. Proper management during this phase lays the foundation for healthy growth and development.
+The neonatal period (the first 28 days of life) constitutes the most critical interval for child survival and health. Proper management during this phase establishes the foundation for healthy growth and development.
 
 **First: Immediate Care and Vaccinations**
 
-**Care at Birth:**
-The newborn must be dried immediately to prevent hypothermia. Placing the baby on the mother's chest promotes bonding and helps regulate temperature and heart rate. It is recommended to delay cord clamping (wait 1–3 minutes) to increase iron stores and blood volume.
-
-**Essential Newborn Care (First 24 Hours):**
-Essential steps include administering Vitamin K injection to prevent bleeding, applying antibiotic eye ointment to prevent infection, and receiving the first dose of Hepatitis B vaccine. A comprehensive assessment should also be performed to check for birth defects, respiratory distress, or other urgent concerns.
-
-**Newborn Vaccinations:**
-Immediately at birth: Includes BCG (Tuberculosis) vaccine, Hepatitis B vaccine, and Zero dose Polio. (Note: In some countries, BCG is given within the first 40 days).
+*   **Care at Birth:** The newborn must be dried immediately to prevent hypothermia. Placing the infant on the mother’s chest promotes bonding and assists in regulating body temperature and heart rate. It is advisable to delay umbilical cord clamping (waiting 1–3 minutes) to increase iron stores and blood volume.
+*   **Basic Neonatal Care (First 24 Hours):** Essential steps include administering a Vitamin K injection to prevent hemorrhagic disease, applying antibiotic eye ointment to prevent infection, and receiving the first dose of the Hepatitis B vaccine. A comprehensive assessment must also be conducted to screen for congenital anomalies, respiratory distress, or other urgent concerns.
+*   **Neonatal Vaccinations:** Immediately upon birth: These include the BCG vaccine (Tuberculosis), Hepatitis B vaccine, and the zero dose of the Polio vaccine. (Note: In some nations, the BCG vaccine is administered within the first forty days of the infant's life).
 
 **Second: Daily Care and Nutrition**
 
-**Nutrition:**
-Exclusive breastfeeding is recommended for the first six months, at a rate of 8–12 times every 24 hours (on demand). Early hunger signs (like sucking hands or restlessness) should be monitored and responded to before the baby reaches the stage of severe crying. Signs of adequate nutrition include the baby sleeping well after feeding, gaining weight, and having 6+ wet diapers/day.
-
-**Important Addition:** Most modern medical protocols recommend starting Vitamin D drops (400 IU) daily from the first day of birth, especially for breastfed babies.
-
-**Hygiene and Umbilical Cord Care:**
-Keep the umbilical cord stump clean and dry; "Dry Care" (leaving it to air dry) is the best method to speed up separation, and avoid applying alcohol or herbal remedies unless prescribed by a doctor. Delay the first bath for at least 24 hours to maintain body temperature, then bathe 2–3 times a week. Clean the diaper area gently with water or fragrance-free wipes to prevent rash.
+*   **Nutrition:** Exclusive breastfeeding is recommended for the first six months, at a frequency of 8–12 times per 24 hours (on demand). Early hunger cues (such as hand sucking or restlessness) must be observed and responded to prior to the onset of severe crying. Signs of adequate nutrition include the infant sleeping well post-feeding, weight gain, and the presence of 6+ wet diapers daily.
+*   **Important Addition:** Most modern medical protocols advise initiating Vitamin D drops (400 IU) daily from the first day of life, particularly for breastfed infants.
+*   **Hygiene and Umbilical Cord Care:** Maintain the umbilical cord stump clean and dry; "dry care" (allowing the navel to air dry) is the optimal method to accelerate separation. Avoid applying alcohol or herbal remedies unless prescribed by a physician. Delay the first bath for at least 24 hours to maintain body temperature, then bathe 2–3 times weekly. Gently clean the diaper area with water or fragrance-free wipes to prevent diaper rash.
 
 **Third: Sleep Patterns and Physical Activity**
 
-**Sleep Pattern and Needs:**
+**Sleep Patterns and Needs:**
 *   **0–3 Months:** Sleeps 14–17 hours daily (in short cycles).
-*   **4–12 Months:** Needs 12–16 hours, with sleep stabilizing at night and two naps during the day.
-*   **1–5 Years:** Needs 10–14 hours, and naps gradually decrease until often disappearing by age five.
+*   **4–12 Months:** Requires 12–16 hours, with sleep consolidation at night and two daytime naps.
+*   **1–5 Years:** Requires 10–14 hours, with naps decreasing gradually until often disappearing by age five.
 
-**Safe Sleep (SIDS Prevention):**
-Always place the baby on their back to sleep on a firm mattress, and avoid pillows or soft toys in the crib. The baby should sleep in the parents' room but in a separate crib for the first six months. Avoid overheating the baby with very heavy clothes; maintain a moderate environment and clothing temperature.
+**Sleep Safety (Prevention of Sudden Death):** Always place the infant on their back to sleep on a firm mattress, avoiding pillows or soft toys in the crib. The infant should sleep in the parents' room but in a separate crib for the first six months. Avoid overheating the child with excessively heavy clothing; a moderate ambient and clothing temperature must be maintained.
 
 **Physical Activity and Motor Development:**
-To ensure holistic growth, attention must be paid to vital aspects supporting motor and mental development:
-*   **In Infancy (Early Activity):** Infants need 30 to 60 minutes distributed throughout the day. Activity is calculated via Tummy Time while awake. (Example: Placing the baby on their tummy to try lifting their head; this strengthens neck and back muscles and prevents flat head).
-*   **From 1–5 Years:** Physical activity for 180 minutes daily (free play, running, jumping).
+To ensure holistic growth, attention must be paid to vital aspects supporting the child's motor and cognitive development:
+*   **In Infancy (Early Activity):** The infant requires 30 to 60 minutes distributed throughout the day. Activity is calculated via "Tummy Time" while awake. (Example: Placing the child on their stomach to attempt head lifting; this strengthens neck and back muscles and prevents plagiocephaly/flat head syndrome).
+*   **From 1–5 Years:** Engaging in physical activity for 180 minutes daily (free play, running, and jumping).
 
-**Fourth: Warning Signs (When to Seek Medical Help)**
+**Fourth: Warning Signs (When to Seek Medical Assistance)**
+Parents must seek immediate medical attention if the newborn exhibits signs such as:
 
-Parents must seek immediate medical care if the newborn shows signs such as:
-*   Fever (> 38°C) or Hypothermia (< 36.5°C).
-*   Difficulty breathing (fast breathing, grunting, chest retractions).
-*   Jaundice (yellowing of skin/eyes, especially in first 24 hours).
-*   Feeding difficulties, lethargy, signs of infection around the umbilical cord, or convulsions.
+*   Fever (> 38°C) or hypothermia (< 36.5°C).
+*   Respiratory distress (rapid breathing, grunting, chest retractions).
+*   Jaundice (yellowing of the skin/eyes, especially in the first 24 hours).
+*   Feeding difficulties, lethargy, signs of infection around the umbilical cord, or seizures.
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and does not in any way replace consultation with a specialist doctor or regular follow-up with the pediatrician monitoring your child's health condition.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Newborn Health](https://www.who.int/health-topics/newborn-health)
-*   [UNICEF - Newborn Care](https://www.unicef.org/health/newborn-health)
+*   [UNICEF - Newborn Care](https://www.unicef.org/health/newborn-care)
 *   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
       ar: `**الإدارة العامة لحديثي الولادة**
 
@@ -1088,210 +1070,91 @@ Parents must seek immediate medical care if the newborn shows signs such as:
   {
     id: '14',
     title: {
-      en: 'Vitamin and Mineral Deficiencies in Children: Diagnosis, Management, and Prevention',
+      en: 'Vitamin and Mineral Deficiency in Children: Diagnosis, Treatment, and Prevention',
       ar: 'نقص الفيتامينات والمعادن عند الأطفال: التشخيص، العلاج، والوقاية'
     },
     excerpt: {
-      en: 'From Vitamin D to Iron, discover the most common deficiencies, their silent signs, and how to treat them effectively.',
+      en: 'From Vitamin D to Iron, learn about the most common deficiencies, their silent signs, and how to treat them effectively.',
       ar: 'من فيتامين د إلى الحديد، تعرف على أكثر أوجه النقص شيوعاً، وعلاماتها الصامتة، وكيفية علاجها بفعالية.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**Vitamin Deficiencies in Children: Causes and Comprehensive Management**
+      en: `**Vitamin Deficiency in Children: Causes, Comprehensive Therapeutic Interventions, and Prevention**
 
-**Most Common Vitamin Deficiencies in Children (from Most to Least Prevalent)**
+**Most Common Vitamin Deficiencies in Children (Ranked from Highest to Lowest Prevalence)**
 
-**1. Vitamin D (Prevalence: 30–50%)**
-*   **Most Affected Age Group:** Infants and children in low-sunlight regions.
+1.  **Vitamin D (Prevalence: 30–50%):** Most Vulnerable Age Group: Infants and children in regions with low sun exposure.
+2.  **Iron "Anemia" (Prevalence: 25–40%):** Most Vulnerable Age Group: From 6 months to 3 years, and adolescents.
+3.  **Vitamin B12 (Prevalence: 10–15%):** Most Vulnerable Age Group: Vegetarian children and those with digestive disorders.
+4.  **Vitamin A (Prevalence: 10–20%):** Most Vulnerable Age Group: Developing nations and low-income regions.
+5.  **Vitamin C (Prevalence: 5–10%):** Most Vulnerable Age Group: Children who refuse fruits and vegetables.
 
-**2. Iron (Anemia) (Prevalence: 25–40%)**
-*   **Most Affected Age Group:** 6 months–3 years, adolescents.
+**Detailed Causes of Vitamin Deficiency in Children**
 
-**3. Vitamin B12 (Prevalence: 10–15%)**
-*   **Most Affected Age Group:** Vegetarian children, children with gastrointestinal disorders.
+**First: Dietary Causes (Account for approximately 70% of cases)**
+*   **Feeding and Nutrition in Early Stages:** Exclusive breastfeeding without Vitamin D supplementation, use of unfortified milk, or weaning that is too early or delayed.
+*   **Unhealthy Eating Habits:** Picky eating, excessive consumption of processed foods, or lack of dietary diversity.
+*   **Imbalanced Diet:** Excessive milk consumption at the expense of other food groups, or strict vegetarian diets without compensation.
 
-**4. Vitamin A (Prevalence: 10–20%)**
-*   **Most Affected Age Group:** Developing countries, low-income regions.
+**Second: Medical Causes (Account for approximately 20% of cases)**
+*   **Gastrointestinal Diseases:** Celiac Disease, Crohn's disease, Cystic Fibrosis, or parasites.
+*   **Chronic Diseases:** Renal or hepatic failure, congenital heart disease, or malignancies.
+*   **Medications:** Long-term antibiotics, epilepsy medications, or antacids.
 
-**5. Vitamin C (Prevalence: 5–10%)**
-*   **Most Affected Age Group:** Children who refuse fruits and vegetables.
+**Third: Environmental and Social Causes (Account for approximately 10% of cases)**
+*   Poverty, poor food storage, lack of sunlight, or misconceptions regarding nutrition.
 
-**Detailed Causes of Vitamin Deficiencies**
+**Clinical Manifestations of Vitamin Deficiency**
 
-**First: Nutritional Causes (≈70% of cases)**
+1.  **Vitamin D Deficiency:** Delayed walking, bowed legs (Rickets), bone pain, excessive sweating, impaired growth.
+2.  **Iron Deficiency (Anemia):** Pallor, fatigue, poor concentration, pica (craving non-food items), weakened immunity.
+3.  **Vitamin B12 Deficiency:** Numbness, balance disorders, glossitis, memory deficits, mood swings.
+4.  **Vitamin A Deficiency:** Dry eyes/night vision issues, dry skin, "gooseflesh", frequent infections.
+5.  **Vitamin C Deficiency:** Gingival bleeding, slow wound healing, joint pain, dry/brittle hair.
 
-**1. Infant Feeding and Early Nutrition**
-*   Exclusive breastfeeding without vitamin D supplementation.
-*   Use of non-fortified milk.
-*   Early or delayed weaning.
+**Diagnosis and Therapeutic Intervention**
 
-**2. Poor Eating Habits**
-*   Picky eating.
-*   Excessive consumption of ultra-processed foods (snacks, chocolate, industrial juices).
-*   Lack of dietary variety.
+**Phase I: Medical Assessment and Diagnosis**
+*   **Examination:** Weight/height, assessment of bones/teeth/skin.
+*   **Labs:** CBC, Vitamin D, B12, Ferritin, Zinc, Calcium.
 
-**3. Unbalanced Diet**
-*   Excessive milk intake at the expense of other foods.
-*   Strict vegetarian diets without proper supplementation.
-*   Reliance mainly on carbohydrates.
-
-**Second: Medical Causes (≈20% of cases)**
-
-**1. Gastrointestinal Diseases**
-*   Celiac disease.
-*   Crohn’s disease and ulcerative colitis.
-*   Cystic fibrosis.
-*   Intestinal parasitic infections.
-
-**2. Chronic Diseases**
-*   Chronic kidney or liver disease.
-*   Congenital heart disease.
-*   Cancer and its treatments.
-
-**3. Medications Causing Deficiencies**
-*   Long-term use of certain antibiotics.
-*   Antiepileptic drugs.
-*   Antacids.
-
-**Third: Environmental and Social Causes (≈10% of cases)**
-
-*   Poverty and food insecurity.
-*   Improper food storage and preparation.
-*   Limited sun exposure.
-*   Incorrect family dietary beliefs.
-
-**Clinical Manifestations of Vitamin Deficiencies**
-
-**1. Vitamin D Deficiency**
-*   Delayed walking and teething.
-*   Bowing of the legs (rickets).
-*   Bone and muscle pain.
-*   Excessive sweating, especially of the head.
-*   Impaired linear growth.
-
-**2. Iron Deficiency (Anemia)**
-*   Pallor of the skin and lips.
-*   Persistent fatigue and lethargy.
-*   Poor concentration and academic performance.
-*   Pica (craving non-food items such as dirt or ice).
-*   Reduced immunity.
-
-**3. Vitamin B12 Deficiency**
-*   Tingling and numbness of extremities.
-*   Gait instability and balance problems.
-*   Glossitis with tongue redness.
-*   Memory and concentration impairment.
-*   Depression and mood changes.
-
-**4. Vitamin A Deficiency**
-*   Dry eyes and night blindness.
-*   Dry, scaly skin.
-*   Follicular hyperkeratosis (gooseflesh appearance).
-*   Increased susceptibility to infections.
-
-**5. Vitamin C Deficiency**
-*   Bleeding gums and loose teeth.
-*   Delayed wound healing.
-*   Joint pain.
-*   Dry, brittle hair.
-
-**Diagnosis and Practical Management**
-
-**Phase One: Diagnostic Evaluation**
-
-**1. Comprehensive Clinical Examination**
-*   Measurement of weight, height, and head circumference.
-*   Assessment of bones, teeth, gums, and skin.
-
-**2. Basic Laboratory Investigations**
-*   Complete Blood Count (CBC).
-*   25-Hydroxy Vitamin D.
-*   Vitamin B12.
-*   Serum Ferritin.
-*   Zinc and Calcium.
-*   Vitamin A and E (if indicated).
-
-**Phase Two: Dietary Management**
-
-**Dietary Sources of Essential Vitamins**
-
-*   **Vitamin D:** Sun exposure (10 minutes morning), eggs, fatty fish, fortified milk.
+**Phase II: Dietary Therapy**
+*   **Vitamin D:** Sunlight, eggs, fatty fish, fortified milk.
 *   **Iron:** Liver, red meat, poultry, legumes, spinach.
-*   **Vitamin B12:** Meat, fish, eggs, dairy products.
+*   **Vitamin B12:** Meat, fish, eggs, dairy.
 *   **Vitamin A:** Carrots, sweet potatoes, apricots, liver.
-*   **Vitamin C:** Oranges, strawberries, bell peppers, broccoli.
+*   **Vitamin C:** Citrus fruits, strawberries, peppers, broccoli.
 
-**Suggested Daily Meal Plan for a Child (3–6 Years)**
-*   **Breakfast (7 AM):** Egg + half loaf of bread + fortified milk.
-*   **Snack 1 (10 AM):** Apple or banana.
-*   **Lunch (1 PM):** 4 tablespoons of rice + cooked vegetables + meat/chicken/fish.
-*   **Snack 2 (4 PM):** Yogurt + honey + ground nuts.
-*   **Dinner (7 PM):** Cheese or yogurt + bread + cucumber and carrots.
+**Phase III: Pharmacological Supplements (By Prescription Only)**
+*   **Vitamin D:** 1000–2000 IU daily or 50,000 IU weekly for 3–6 months.
+*   **Iron:** 3–6 mg/kg/day for 3–6 months.
+*   **Vitamin B12:** 1000 micrograms weekly depending on deficiency.
+*   **Multivitamins:** Daily syrup as needed.
 
-**Phase Three: Pharmacological Supplementation (By Prescription Only)**
+**Prevention of Vitamin Deficiency**
 
-*   **Vitamin D:** 1,000–2,000 IU daily or 50,000 IU weekly (based on weight) for 3–6 months.
-*   **Iron:** 3–6 mg/kg/day (ferrous sulfate) for 3–6 months.
-*   **Vitamin B12:** 1,000 µg weekly (oral or injectable) according to deficiency.
-*   **Multivitamins:** Daily syrup containing vitamins A, B, C, D, E, zinc as needed.
+**Preventive Program by Age Group:**
+*   **Birth to 6 Months:** Exclusive breastfeeding + 400 IU Vitamin D.
+*   **6 Months to 1 Year:** Iron-rich foods, continue Vitamin D, fruits/veggies.
+*   **1 to 5 Years:** 3 meals + snacks, include all food groups, limit processed foods.
+*   **6 Years+:** Nutritional education, annual checkups.
 
-**Prevention of Vitamin Deficiencies**
+**Red Flags Requiring Immediate Medical Attention:**
+*   Growth arrest or weight loss.
+*   Severe pallor with lethargy.
+*   Delay in motor or linguistic development.
+*   Behavioral changes or recurrent infections.
 
-**Age-Specific Preventive Program**
+**Actionable Family Plan:**
+*   **Week 1:** Visit pediatrician, basic analyses, evaluate diet.
+*   **Month 1:** Start treatment, modify diet, first follow-up.
+*   **Month 3:** Follow-up analyses, assess improvement.
 
-**Birth to 6 Months:**
-*   Exclusive breastfeeding.
-*   Vitamin D supplementation (400 IU daily).
-*   Adequate sun exposure.
+**Concluding Recommendations**
+Proper nutrition in childhood represents the cornerstone of an individual's future health. Early detection of vitamin deficiencies and appropriate nutritional and therapeutic intervention constitute a long-term health investment.
 
-**6 Months to 1 Year:**
-*   Introduction of iron-rich foods (pureed meats, legumes).
-*   Continued vitamin D supplementation.
-*   Gradual diversification of fruits and vegetables.
-
-**1–5 Years:**
-*   Three main meals plus 2–3 snacks daily.
-*   Daily inclusion of all six food groups.
-*   Limitation of processed foods.
-
-**6 Years and Older:**
-*   Nutrition education and healthy food choices.
-*   Regular growth monitoring.
-*   Annual blood screening.
-
-**Warning Signs Requiring Immediate Medical Attention**
-*   Growth failure or unexplained weight loss.
-*   Severe pallor with lethargy and fatigue.
-*   Significant delay in motor or speech development.
-*   Behavioral changes (irritability, lethargy, persistent crying).
-*   Recurrent infections.
-
-**Quick Action Plan for Parents**
-
-**Within One Week:**
-*   Visit a pediatrician.
-*   Perform basic laboratory tests.
-*   Assess the current dietary pattern.
-
-**Within One Month:**
-*   Initiate prescribed treatment.
-*   Modify dietary habits.
-*   First follow-up visit.
-
-**Within Three Months:**
-*   Follow-up laboratory tests.
-*   Reassessment of growth and symptoms.
-*   Adjustment of the management plan based on results.
-
-**Key Practical Tips**
-*   Do not force a child to eat; make mealtime enjoyable.
-*   Lead by example—children imitate adults.
-*   Be creative in food presentation (shapes, colors, storytelling).
-*   Involve children in food selection and preparation.
-*   Be patient; nutritional improvement takes time.
-
-**Remember:** Proper childhood nutrition is an investment in your child’s future health. Prevention is always easier and more effective than treatment.
+**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
 
 **Resources:**
 *   [World Health Organization (WHO) - Nutrition](https://www.who.int/health-topics/nutrition)

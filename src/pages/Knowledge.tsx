@@ -17,6 +17,7 @@ interface Article {
   category: string;
   imageUrl: string;
   featuredImage?: string; // Admin might use this name
+  slug?: string;
 }
 
 const Knowledge: React.FC = () => {
@@ -72,6 +73,12 @@ const Knowledge: React.FC = () => {
     }
   };
 
+  const getLocalizedContent = (content: { en: string; ar: string } | undefined) => {
+    if (!content) return '';
+    const lang = language as 'en' | 'ar';
+    return content[lang] || content[lang === 'en' ? 'ar' : 'en'] || '';
+  };
+
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,10 +125,10 @@ const Knowledge: React.FC = () => {
                 >
                 <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden group">
                     <div className="aspect-video bg-muted overflow-hidden">
-                    <Link to={`/knowledge/${article.id}`}>
+                    <Link to={`/knowledge/${article.slug || article.id}`}>
                         <img
                         src={article.featuredImage || article.imageUrl}
-                        alt={article.title[language as 'en' | 'ar']}
+                        alt={getLocalizedContent(article.title)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                     </Link>
@@ -133,16 +140,16 @@ const Knowledge: React.FC = () => {
                         </Badge>
                     </div>
                     <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                        <Link to={`/knowledge/${article.id}`}>
-                        {article.title[language as 'en' | 'ar']}
+                        <Link to={`/knowledge/${article.slug || article.id}`}>
+                        {getLocalizedContent(article.title)}
                         </Link>
                     </CardTitle>
                     </CardHeader>
                     <CardContent>
                     <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {article.excerpt[language as 'en' | 'ar']}
+                        {getLocalizedContent(article.excerpt)}
                     </p>
-                    <Link to={`/knowledge/${article.id}`} className="w-full">
+                    <Link to={`/knowledge/${article.slug || article.id}`} className="w-full">
                         <Button className="w-full btn-gradient group/btn shadow-md">
                         {t('articles.readMore')}
                         {language === 'ar' ? (

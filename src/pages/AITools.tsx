@@ -251,14 +251,14 @@ const AITools: React.FC = () => {
             </TabsTrigger>
             <TabsTrigger 
               value="meal-generator" 
-              className="gap-2 h-12 rounded-xl data-[state=active]:bg-secondary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-white/5"
+              className="gap-2 h-12 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10"
             >
               <Utensils className="h-5 w-5" />
               {t('aiTools.mealGenerator.title')}
             </TabsTrigger>
             <TabsTrigger 
               value="bmi-calculator" 
-              className="gap-2 h-12 rounded-xl data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-white/5"
+              className="gap-2 h-12 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10"
             >
               <Scale className="h-5 w-5" />
               {t('aiTools.bmiMealGenerator.title')}
@@ -473,22 +473,22 @@ const AITools: React.FC = () => {
                             {mealPlan.goal && (
                               <div className="bg-primary/10 p-3 rounded-md text-sm">
                                 <span className="font-semibold block mb-1">{t('aiTools.protocol.goal', 'Goal')}:</span>
-                                <div className="prose prose-sm max-w-none dark:prose-invert text-foreground">
+                                <div className="prose prose-sm max-w-none dark:prose-invert text-slate-100">
                                   <ReactMarkdown
                                     components={{
                                       table: ({ node, ...props }) => (
                                         <div className="overflow-x-auto my-4">
-                                          <table className="min-w-full border-collapse border border-border rounded-lg" {...props} />
+                                          <table className="min-w-full border-collapse border border-white/20 rounded-lg" {...props} />
                                         </div>
                                       ),
-                                      thead: ({ node, ...props }) => <thead className="bg-muted/50" {...props} />,
+                                      thead: ({ node, ...props }) => <thead className="bg-white/10" {...props} />,
                                       tbody: ({ node, ...props }) => <tbody {...props} />,
-                                      tr: ({ node, ...props }) => <tr className="border-b border-border hover:bg-muted/30" {...props} />,
+                                      tr: ({ node, ...props }) => <tr className="border-b border-white/10 hover:bg-white/5" {...props} />,
                                       th: ({ node, ...props }) => (
-                                        <th className="border border-border px-4 py-2 text-left font-semibold bg-muted/70" {...props} />
+                                        <th className="border border-white/20 px-4 py-2 text-left font-semibold bg-white/10" {...props} />
                                       ),
                                       td: ({ node, ...props }) => (
-                                        <td className="border border-border px-4 py-2 text-sm" {...props} />
+                                        <td className="border border-white/20 px-4 py-2 text-sm" {...props} />
                                       ),
                                     }}
                                   >
@@ -500,22 +500,22 @@ const AITools: React.FC = () => {
                             {mealPlan.strategy && (
                               <div className="bg-secondary/10 p-3 rounded-md text-sm">
                                 <span className="font-semibold block mb-1">{t('aiTools.protocol.strategy', 'Strategy')}:</span>
-                                <div className="prose prose-sm max-w-none dark:prose-invert text-foreground">
+                                <div className="prose prose-sm max-w-none dark:prose-invert text-slate-100">
                                   <ReactMarkdown
                                     components={{
                                       table: ({ node, ...props }) => (
                                         <div className="overflow-x-auto my-4">
-                                          <table className="min-w-full border-collapse border border-border rounded-lg" {...props} />
+                                          <table className="min-w-full border-collapse border border-white/20 rounded-lg" {...props} />
                                         </div>
                                       ),
-                                      thead: ({ node, ...props }) => <thead className="bg-muted/50" {...props} />,
+                                      thead: ({ node, ...props }) => <thead className="bg-white/10" {...props} />,
                                       tbody: ({ node, ...props }) => <tbody {...props} />,
-                                      tr: ({ node, ...props }) => <tr className="border-b border-border hover:bg-muted/30" {...props} />,
+                                      tr: ({ node, ...props }) => <tr className="border-b border-white/10 hover:bg-white/5" {...props} />,
                                       th: ({ node, ...props }) => (
-                                        <th className="border border-border px-4 py-2 text-left font-semibold bg-muted/70" {...props} />
+                                        <th className="border border-white/20 px-4 py-2 text-left font-semibold bg-white/10" {...props} />
                                       ),
                                       td: ({ node, ...props }) => (
-                                        <td className="border border-border px-4 py-2 text-sm" {...props} />
+                                        <td className="border border-white/20 px-4 py-2 text-sm" {...props} />
                                       ),
                                     }}
                                   >
@@ -527,11 +527,11 @@ const AITools: React.FC = () => {
                           </div>
                         )}
 
-                        <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                        <div className={`p-5 rounded-2xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                           <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🌅 {t('aiTools.mealGenerator.breakfast')}
                           </h3>
-                          <div className="text-sm text-foreground leading-relaxed">
+                          <div className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed font-medium">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                               <ReactMarkdown
                                 components={{
@@ -556,11 +556,11 @@ const AITools: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                        <div className={`p-5 rounded-2xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                           <h3 className={`font-semibold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             ☀️ {t('aiTools.mealGenerator.lunch')}
                           </h3>
-                          <div className="text-sm text-foreground leading-relaxed">
+                          <div className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed font-medium">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                               <ReactMarkdown
                                 components={{
@@ -585,11 +585,11 @@ const AITools: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                        <div className={`p-5 rounded-2xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                           <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🌙 {t('aiTools.mealGenerator.dinner')}
                           </h3>
-                          <div className="text-sm text-foreground leading-relaxed">
+                          <div className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed font-medium">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                               <ReactMarkdown
                                 components={{
@@ -614,11 +614,11 @@ const AITools: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        <div className={`p-4 bg-gradient-bg rounded-lg border border-border shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                        <div className={`p-5 rounded-2xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                           <h3 className={`font-bold text-primary mb-2 flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
                             🍎 {t('aiTools.mealGenerator.snacks')}
                           </h3>
-                          <div className="text-sm text-foreground leading-relaxed">
+                          <div className="text-sm text-gray-700 dark:text-slate-200 leading-relaxed font-medium">
                             <div className="prose prose-sm max-w-none dark:prose-invert">
                               <div className="prose prose-sm max-w-none dark:prose-invert">
                                 <ReactMarkdown
@@ -680,9 +680,9 @@ const AITools: React.FC = () => {
                   <Card className="h-fit border-0 shadow-xl bg-card/95 backdrop-blur-xl ring-1 ring-border/20">
                      <div className="bg-gradient-to-r from-accent/20 via-accent/10 to-transparent p-1 h-1.5 w-full rounded-t-xl" />
                     <CardHeader className="pb-4">
-                      <CardTitle className="flex items-center gap-3 text-xl">
-                        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center border border-accent/20">
-                             <Scale className="h-5 w-5 text-accent" />
+                      <CardTitle className="flex items-center gap-3 text-xl text-foreground">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                             <Scale className="h-5 w-5 text-primary" />
                         </div>
                         {t('aiTools.bmiMealGenerator.title')}
                       </CardTitle>
@@ -761,7 +761,7 @@ const AITools: React.FC = () => {
 
                         <Button
                           onClick={calculateClinicalPlan}
-                          className="w-full h-14 text-lg font-bold bg-accent hover:bg-accent/90 text-white shadow-lg shadow-accent/20 rounded-xl mt-4"
+                          className="w-full h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 rounded-xl mt-4"
                           disabled={!age || isBmiGenerating}
                         >
                           {isBmiGenerating ? (
@@ -865,40 +865,40 @@ const AITools: React.FC = () => {
 
                       {/* Meal Plan Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="p-3 bg-gradient-bg rounded border border-border/50">
-                          <h4 className="font-semibold text-accent mb-2 flex items-center gap-2 text-sm">
+                        <div className="p-4 rounded-xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm">
+                          <h4 className="font-bold text-primary mb-2 flex items-center gap-2 text-sm">
                             🌅 {t('aiTools.mealGenerator.breakfast')}
                           </h4>
-                          <ul className="text-xs sm:text-sm text-muted-foreground list-disc list-inside space-y-1">
+                          <ul className="text-xs sm:text-sm text-gray-700 dark:text-slate-200 list-disc list-inside space-y-1 font-medium">
                             {clinicalPlan.mealPlan.breakfast.map((s, i) => <li key={i}>{s}</li>)}
                           </ul>
                         </div>
                         {clinicalPlan.mealPlan.lunch.length > 0 && (
-                          <div className="p-3 bg-gradient-bg rounded border border-border/50">
-                            <h4 className="font-semibold text-primary mb-2 flex items-center gap-2 text-sm">
+                          <div className="p-4 rounded-xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm">
+                            <h4 className="font-bold text-primary mb-2 flex items-center gap-2 text-sm">
                               ☀️ {t('aiTools.mealGenerator.lunch')}
                             </h4>
-                            <ul className="text-xs sm:text-sm text-muted-foreground list-disc list-inside space-y-1">
+                            <ul className="text-xs sm:text-sm text-gray-700 dark:text-slate-200 list-disc list-inside space-y-1 font-medium">
                               {clinicalPlan.mealPlan.lunch.map((s, i) => <li key={i}>{s}</li>)}
                             </ul>
                           </div>
                         )}
                         {clinicalPlan.mealPlan.dinner.length > 0 && (
-                          <div className="p-3 bg-gradient-bg rounded border border-border/50">
-                            <h4 className="font-semibold text-secondary mb-2 flex items-center gap-2 text-sm">
+                          <div className="p-4 rounded-xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm">
+                            <h4 className="font-bold text-primary mb-2 flex items-center gap-2 text-sm">
                               🌙 {t('aiTools.mealGenerator.dinner')}
                             </h4>
-                            <ul className="text-xs sm:text-sm text-muted-foreground list-disc list-inside space-y-1">
+                            <ul className="text-xs sm:text-sm text-gray-700 dark:text-slate-200 list-disc list-inside space-y-1 font-medium">
                               {clinicalPlan.mealPlan.dinner.map((s, i) => <li key={i}>{s}</li>)}
                             </ul>
                           </div>
                         )}
                         {((clinicalPlan.mealPlan.snacks1?.length ?? 0) > 0 || (clinicalPlan.mealPlan.snacks2?.length ?? 0) > 0) && (
-                          <div className="p-3 bg-gradient-bg rounded border border-border/50">
-                            <h4 className="font-semibold text-accent mb-2 flex items-center gap-2 text-sm">
+                          <div className="p-4 rounded-xl border border-border/50 bg-white/60 dark:bg-slate-950/50 backdrop-blur-xl shadow-sm">
+                            <h4 className="font-bold text-primary mb-2 flex items-center gap-2 text-sm">
                               🍎 {t('aiTools.mealGenerator.snacks')}
                             </h4>
-                            <ul className="text-xs sm:text-sm text-muted-foreground list-disc list-inside space-y-1">
+                            <ul className="text-xs sm:text-sm text-gray-700 dark:text-slate-200 list-disc list-inside space-y-1 font-medium">
                               {clinicalPlan.mealPlan.snacks1?.map((s, i) => <li key={'s1' + i}>{s}</li>)}
                               {clinicalPlan.mealPlan.snacks2?.map((s, i) => <li key={'s2' + i}>{s}</li>)}
                             </ul>
@@ -908,12 +908,12 @@ const AITools: React.FC = () => {
 
                       {/* Prohibited Items */}
                       {clinicalPlan.prohibited && (
-                        <div className="mt-4 p-3 bg-red-50/50 rounded border border-red-100">
-                          <h4 className="font-semibold text-red-700 text-xs mb-2 flex items-center gap-2">
+                        <div className="mt-4 p-4 rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/20">
+                          <h4 className="font-bold text-red-600 dark:text-red-400 text-xs mb-2 flex items-center gap-2">
                             <Info className="h-3 w-3" />
                             {t('common.forbidden')}
                           </h4>
-                          <p className="text-xs text-red-600">{clinicalPlan.prohibited.join(' • ')}</p>
+                          <p className="text-xs text-red-700 dark:text-red-300 font-medium leading-relaxed">{clinicalPlan.prohibited.join(' • ')}</p>
                         </div>
                       )}
 

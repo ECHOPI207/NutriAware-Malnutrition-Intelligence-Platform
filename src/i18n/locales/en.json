@@ -426,6 +426,7 @@
     "developedBy": "Developed by echo-π"
   },
   "common": {
+    "forbidden": "Forbidden Items",
     "loading": "Loading...",
     "error": "An error occurred",
     "tryAgain": "Try Again",

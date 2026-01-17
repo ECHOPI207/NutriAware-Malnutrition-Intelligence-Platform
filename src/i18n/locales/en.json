@@ -41,18 +41,14 @@
     "rememberMe": "Remember me",
     "forgotPassword": "Forgot password?",
     "createAccount": "Create an account",
-    "alreadyHaveAccount": "Already have an account?",
     "dontHaveAccount": "Don't have an account?",
     "createAccountTitle": "Create New Account",
     "joinPlatform": "Join NutriAware Platform",
     "orSignupWithEmail": "Or signup with email",
-    "fullName": "Full Name",
     "enterFullName": "Enter your full name",
-    "confirmPassword": "Confirm Password",
     "reEnterPassword": "Re-enter password",
     "passwordMismatch": "Passwords do not match",
     "passwordTooShort": "Password must be at least 6 characters",
-    "accountCreated": "Account created successfully!",
     "agreeToTerms": "I agree to",
     "alreadyHaveAccount": "Already have an account?",
     "signingUp": "Creating account...",
@@ -446,7 +442,8 @@
     "noData": "No data available",
     "name": "Name",
     "and": "and",
-    "message": "Message"
+    "message": "Message",
+    "noRelated": "No related articles found"
   },
   "about": {
     "title": "About the Project",

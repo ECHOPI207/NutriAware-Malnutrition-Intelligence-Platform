@@ -43,18 +43,14 @@
     "rememberMe": "تذكرني",
     "forgotPassword": "نسيت كلمة المرور؟",
     "createAccount": "إنشاء حساب جديد",
-    "alreadyHaveAccount": "لديك حساب بالفعل؟",
     "dontHaveAccount": "ليس لديك حساب؟",
     "createAccountTitle": "إنشاء حساب جديد",
     "joinPlatform": "انضم إلى منصة نيوتري أوير",
     "orSignupWithEmail": "أو التسجيل بالبريد الإلكتروني",
-    "fullName": "الاسم الكامل",
     "enterFullName": "أدخل اسمك الكامل",
-    "confirmPassword": "تأكيد كلمة المرور",
     "reEnterPassword": "أعد إدخال كلمة المرور",
     "passwordMismatch": "كلمة المرور غير متطابقة",
     "passwordTooShort": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
-    "accountCreated": "تم إنشاء الحساب بنجاح!",
     "agreeToTerms": "أوافق على",
     "alreadyHaveAccount": "لديك حساب بالفعل؟",
     "signingUp": "جاري إنشاء الحساب...",
@@ -448,7 +444,8 @@
     "noData": "لا توجد بيانات متاحة",
     "name": "الاسم",
     "and": "و",
-    "message": "الرسالة"
+    "message": "الرسالة",
+    "noRelated": "لا توجد مقالات ذات صلة"
   },
   "about": {
     "title": "عن المشروع",

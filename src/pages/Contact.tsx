@@ -24,6 +24,8 @@ import { useAuth } from '@/features/auth/firebase-auth-context';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MedicalConsultation from './MedicalConsultation';
 
+
+
 const Contact: React.FC = () => {
   const { t } = useTranslation();
   const { language } = useLanguage();
@@ -75,6 +77,7 @@ const Contact: React.FC = () => {
     } catch (error: any) {
       console.error("Feedback submission error:", error);
 
+      // Fallback to local storage if Firebase fails (offline mode etc)
       try {
         const feedbackData = {
           id: Date.now(),
@@ -190,9 +193,9 @@ const Contact: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
               >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 group cursor-pointer border-2 border-border/20 hover:border-primary/30">
+                <Card className="h-full hover:shadow-lg transition-all duration-300 group cursor-pointer border-2 border-border/20 hover:border-primary/30 bg-background/50 backdrop-blur-sm">
                   <CardContent className="p-6 text-center">
-                    <div className={`w-16 h-16 rounded-2xl ${method.bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-16 h-16 rounded-2xl ${method.bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
                       <Icon className={`h-8 w-8 ${method.color}`} />
                     </div>
                     <h3 className="font-bold text-lg mb-2 text-foreground text-center">
@@ -238,96 +241,105 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Tabs value={activeTab} onValueChange={(value: any) => setActiveTab(value)} className="max-w-4xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 mb-8 max-w-md mx-auto h-12">
-              <TabsTrigger value="feedback" className="flex items-center gap-2 text-sm sm:text-base">
+            <TabsList className="grid w-full grid-cols-2 mb-8 max-w-md mx-auto h-14 bg-muted/50 p-1 rounded-full">
+              <TabsTrigger value="feedback" className="flex items-center gap-2 text-sm sm:text-base rounded-full h-full data-[state=active]:bg-background data-[state=active]:shadow-sm">
                 <MessageCircle className="h-4 w-4" />
                 {t('contact.generalFeedback')}
               </TabsTrigger>
-              <TabsTrigger value="consultation" className="flex items-center gap-2 text-sm sm:text-base">
+              <TabsTrigger value="consultation" className="flex items-center gap-2 text-sm sm:text-base rounded-full h-full data-[state=active]:bg-background data-[state=active]:shadow-sm">
                 <Stethoscope className="h-4 w-4" />
                 {t('contact.medicalConsultation')}
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="feedback">
-              <Card className="border-2 border-border/20 shadow-lg">
-                <CardHeader className="text-center pb-6">
-                  <CardTitle className="text-2xl sm:text-3xl font-bold flex items-center justify-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <SendIcon className="h-6 w-6 text-primary" />
+              <Card className="border-0 shadow-2xl bg-card/95 backdrop-blur-xl overflow-hidden ring-1 ring-border/20">
+                <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-1 h-1.5 w-full" />
+                <CardHeader className="text-center pb-8 pt-10">
+                  <CardTitle className="text-2xl sm:text-4xl font-bold flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shadow-inner ring-1 ring-primary/20">
+                      <SendIcon className="h-8 w-8 text-primary" />
                     </div>
-                    {t('contact.sendMessage')}
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+                      {t('contact.sendMessage')}
+                    </span>
                   </CardTitle>
-                  <CardDescription className="text-lg">
+                  <CardDescription className="text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
                     {t('contact.feedbackDescription')}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-6 sm:p-8">
-                  <form onSubmit={handleFeedbackSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-base font-semibold block">
+                <CardContent className="p-6 sm:p-10 pt-4">
+                  <form onSubmit={handleFeedbackSubmit} className="space-y-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <Label htmlFor="name" className="text-base font-bold text-foreground block">
                           {t('contact.name')}
                         </Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder={t('contact.namePlaceholder')}
-                          className="h-12 text-base"
+                        <div className="relative">
+                          <Input
+                            id="name"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            placeholder={t('contact.namePlaceholder')}
+                            className="h-14 text-base pl-4 pr-4 bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 focus:bg-background transition-all duration-300 rounded-xl hover:border-primary/50"
+                            style={{ textAlign: isRTL ? 'right' : 'left' }}
+                            dir={isRTL ? 'rtl' : 'ltr'}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <Label htmlFor="email" className="text-base font-bold text-foreground block">
+                          {t('contact.email')}
+                        </Label>
+                        <div className="relative">
+                          <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            placeholder={t('contact.emailPlaceholder')}
+                            className="h-14 text-base pl-4 pr-4 bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 focus:bg-background transition-all duration-300 rounded-xl hover:border-primary/50"
+                            style={{ textAlign: 'left' }}
+                            dir="ltr"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <Label htmlFor="message" className="text-base font-bold text-foreground block">
+                        {t('contact.messageLabel')}
+                      </Label>
+                      <div className="relative">
+                        <Textarea
+                          id="message"
+                          rows={6}
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          placeholder={t('contact.messagePlaceholder')}
+                          className="text-base resize-none pl-4 pr-4 pt-4 bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 focus:bg-background transition-all duration-300 rounded-xl min-h-[180px] hover:border-primary/50"
                           style={{ textAlign: isRTL ? 'right' : 'left' }}
                           dir={isRTL ? 'rtl' : 'ltr'}
                           required
                         />
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-base font-semibold block">
-                          {t('contact.email')}
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder={t('contact.emailPlaceholder')}
-                          className="h-12 text-base"
-                          style={{ textAlign: 'left' }}
-                          dir="ltr"
-                          required
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-base font-semibold block">
-                        {t('contact.messageLabel')}
-                      </Label>
-                      <Textarea
-                        id="message"
-                        rows={6}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder={t('contact.messagePlaceholder')}
-                        className="text-base resize-none"
-                        style={{ textAlign: isRTL ? 'right' : 'left' }}
-                        dir={isRTL ? 'rtl' : 'ltr'}
-                        required
-                      />
                     </div>
                     
                     <Button 
                       type="submit" 
-                      className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg hover:shadow-xl transition-all duration-300" 
+                      className="w-full h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 rounded-xl" 
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
                         <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-current mr-3"></div>
                           {t('contact.sending')}
                         </>
                       ) : (
                         <>
-                          <SendIcon className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                          <SendIcon className={`h-6 w-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                           {t('contact.send')}
                         </>
                       )}

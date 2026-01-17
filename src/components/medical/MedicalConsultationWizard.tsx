@@ -21,7 +21,8 @@ import {
   Send,
   Heart,
   Shield,
-  X
+  X,
+  CheckCircle
 } from 'lucide-react';
 
 interface ConsultationData {
@@ -238,12 +239,12 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
                 {isRTL ? 'من هو المريض؟' : 'Who is the patient?'}
               </h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 {isRTL ? 'اختر نوع الاستشارة المطلوبة' : 'Select the type of consultation needed'}
               </p>
             </div>
@@ -251,33 +252,61 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
             <RadioGroup
               value={formData.consultationType}
               onValueChange={(value) => updateFormData('consultationType', value as 'self' | 'child')}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
               dir={isRTL ? 'rtl' : 'ltr'}
             >
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900/20 cursor-pointer transition-colors border-slate-200 dark:border-slate-800">
-                <RadioGroupItem value="self" id="self" />
-                <Label htmlFor="self" className="flex items-center gap-2 cursor-pointer flex-1">
-                  <User className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                  <div className={isRTL ? 'text-right' : 'text-left'}>
-                    <div className="font-medium text-slate-900 dark:text-slate-100">{isRTL ? 'لنفسي' : 'For Myself'}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
-                      {isRTL ? 'استشارة طبية شخصية' : 'Personal medical consultation'}
-                    </div>
+              <div 
+                onClick={() => updateFormData('consultationType', 'self')}
+                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${
+                  formData.consultationType === 'self' 
+                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' 
+                    : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
+                }`}
+              >
+                <RadioGroupItem value="self" id="self" className="sr-only" />
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+                   formData.consultationType === 'self' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                }`}>
+                  <User className="h-6 w-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-lg text-foreground mb-1">{isRTL ? 'لنفسي' : 'For Myself'}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {isRTL ? 'استشارة طبية شخصية' : 'Personal medical consultation'}
                   </div>
-                </Label>
+                </div>
+                {formData.consultationType === 'self' && (
+                  <div className="absolute top-4 right-4 rtl:right-auto rtl:left-4 text-primary">
+                    <CheckCircle className="h-5 w-5" />
+                  </div>
+                )}
               </div>
 
-              <div className="flex items-center space-x-2 rtl:space-x-reverse p-4 border rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900/20 cursor-pointer transition-colors border-slate-200 dark:border-slate-800">
-                <RadioGroupItem value="child" id="child" />
-                <Label htmlFor="child" className="flex items-center gap-2 cursor-pointer flex-1">
-                  <Baby className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                  <div className={isRTL ? 'text-right' : 'text-left'}>
-                    <div className="font-medium text-slate-900 dark:text-slate-100">{isRTL ? 'لطفلي' : 'For My Child'}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
-                      {isRTL ? 'استشارة طبية للأطفال' : 'Pediatric medical consultation'}
-                    </div>
+              <div 
+                onClick={() => updateFormData('consultationType', 'child')}
+                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${
+                  formData.consultationType === 'child' 
+                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' 
+                    : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
+                }`}
+              >
+                <RadioGroupItem value="child" id="child" className="sr-only" />
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+                   formData.consultationType === 'child' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                }`}>
+                  <Baby className="h-6 w-6" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-lg text-foreground mb-1">{isRTL ? 'لطفلي' : 'For My Child'}</div>
+                  <div className="text-sm text-muted-foreground">
+                    {isRTL ? 'استشارة طبية للأطفال' : 'Pediatric medical consultation'}
                   </div>
-                </Label>
+                </div>
+                {formData.consultationType === 'child' && (
+                  <div className="absolute top-4 right-4 rtl:right-auto rtl:left-4 text-primary">
+                    <CheckCircle className="h-5 w-5" />
+                  </div>
+                )}
               </div>
             </RadioGroup>
           </div>
@@ -285,20 +314,20 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
 
       case 2:
         return (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">
+          <div className="space-y-8">
+            <div className="text-center mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3">
                 {isRTL ? 'المعلومات الأساسية' : 'Basic Information'}
               </h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 {isRTL ? 'أدخل المعلومات الأساسية للمريض' : 'Enter basic patient information'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="age" className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Label htmlFor="age" className="flex items-center gap-2 text-base font-bold text-foreground">
+                  <Calendar className="h-4 w-4 text-primary" />
                   {formData.consultationType === 'self' 
                     ? (isRTL ? 'العمر (سنة)' : 'Age (years)')
                     : (isRTL ? 'عمر الطفل' : 'Child Age')
@@ -313,9 +342,10 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                     value={formData.patientAge || ''}
                     onChange={(e) => updateFormData('patientAge', parseInt(e.target.value) || undefined)}
                     placeholder={isRTL ? 'أدخل العمر' : 'Enter age'}
+                    className="h-14 text-base bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 transition-all rounded-xl"
                   />
                 ) : (
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <Input
                       id="age"
                       type="number"
@@ -324,17 +354,16 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                       value={formData.childAge || ''}
                       onChange={(e) => updateFormData('childAge', parseInt(e.target.value) || undefined)}
                       placeholder={isRTL ? 'أدخل العمر' : 'Enter age'}
-                      className="flex-1"
+                      className="flex-1 h-14 text-base bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 transition-all rounded-xl"
                     />
                     <Select
                       value={formData.childAgeUnit}
                       onValueChange={(value) => {
                         updateFormData('childAgeUnit', value as 'months' | 'years');
-                        // Reset age when changing unit to avoid confusion
                         updateFormData('childAge', undefined);
                       }}
                     >
-                      <SelectTrigger className="w-28">
+                      <SelectTrigger className="w-32 h-14 bg-muted/40 border-2 border-border/60 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -345,23 +374,23 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                   </div>
                 )}
                 {formData.consultationType === 'child' && (
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground font-medium px-1">
                     {isRTL 
-                      ? 'للأطفال أقل من سنتين، يُفضل استخدام الشهور للدقة'
-                      : 'For children under 2 years, months are preferred for accuracy'
+                      ? 'للأطفال أقل من سنتين، يُفضل استخدام الشهور'
+                      : 'For children under 2 years, use months'
                     }
                   </p>
                 )}
               </div>
 
               {formData.consultationType === 'child' && (
-                <div className="space-y-2">
-                  <Label>{isRTL ? 'جنس الطفل' : 'Child Gender'}</Label>
+                <div className="space-y-3">
+                  <Label className="text-base font-bold text-foreground">{isRTL ? 'جنس الطفل' : 'Child Gender'}</Label>
                   <Select
                     value={formData.childGender}
                     onValueChange={(value) => updateFormData('childGender', value as 'male' | 'female')}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="h-14 bg-muted/40 border-2 border-border/60 rounded-xl">
                       <SelectValue placeholder={isRTL ? 'اختر الجنس' : 'Select gender'} />
                     </SelectTrigger>
                     <SelectContent>
@@ -372,9 +401,9 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                 </div>
               )}
 
-              <div className="space-y-2">
-                <Label htmlFor="weight" className="flex items-center gap-2">
-                  <Weight className="h-4 w-4" />
+              <div className="space-y-3">
+                <Label htmlFor="weight" className="flex items-center gap-2 text-base font-bold text-foreground">
+                  <Weight className="h-4 w-4 text-primary" />
                   {isRTL ? 'الوزن (كيلوجرام)' : 'Weight (kg)'}
                 </Label>
                 <Input
@@ -385,12 +414,13 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                   value={formData.weight || ''}
                   onChange={(e) => updateFormData('weight', parseFloat(e.target.value) || undefined)}
                   placeholder={isRTL ? 'أدخل الوزن' : 'Enter weight'}
+                  className="h-14 text-base bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 transition-all rounded-xl"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="height" className="flex items-center gap-2">
-                  <Ruler className="h-4 w-4" />
+              <div className="space-y-3">
+                <Label htmlFor="height" className="flex items-center gap-2 text-base font-bold text-foreground">
+                  <Ruler className="h-4 w-4 text-primary" />
                   {isRTL ? 'الطول (سنتيمتر)' : 'Height (cm)'}
                 </Label>
                 <Input
@@ -400,6 +430,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                   value={formData.height || ''}
                   onChange={(e) => updateFormData('height', parseFloat(e.target.value) || undefined)}
                   placeholder={isRTL ? 'أدخل الطول' : 'Enter height'}
+                  className="h-14 text-base bg-muted/40 border-2 border-border/60 focus:border-primary focus:ring-primary/20 transition-all rounded-xl"
                 />
               </div>
             </div>

@@ -24,7 +24,8 @@ import {
   AlertCircle,
   Eye,
   MessageSquare,
-  Lock
+  Lock,
+  ChevronRight
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import MedicalConsultationWizard from '@/components/medical/MedicalConsultationWizard';
@@ -515,79 +516,112 @@ const NewMedicalConsultation: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="container mx-auto px-4 py-8 sm:py-12" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
-            <Stethoscope className="h-8 w-8" />
+        
+        {/* Header Section */}
+        <div className="mb-10 text-center sm:text-start relative">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="absolute -top-12 left-0 rtl:right-auto rtl:left-0 ltr:left-0 ltr:right-auto sm:static sm:mb-4 gap-2 text-muted-foreground hover:text-primary"
+            onClick={() => window.location.href = '/contact'}
+          >
+             <ChevronRight className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
+             {isRTL ? 'العودة لصفحة اتصل بنا' : 'Back to Contact Us'}
+          </Button>
+
+          <div className="flex w-fit mx-auto sm:mx-0 items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 mb-4">
+             <Stethoscope className="h-4 w-4" />
+             {isRTL ? 'العيادة الإلكترونية' : 'E-Clinic'}
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent inline-block">
             {isRTL ? 'الاستشارات الطبية' : 'Medical Consultations'}
           </h1>
-          <p className="text-muted-foreground">
-            {isRTL ? 'احصل على استشارة طبية متخصصة من أطبائنا المعتمدين' : 'Get professional medical consultation from our certified doctors'}
+          <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed mx-auto sm:mx-0">
+            {isRTL ? 'احصل على استشارة طبية متخصصة من أطبائنا المعتمدين بأسرع وقت' : 'Get professional medical consultation from our certified doctors quickly and efficiently'}
           </p>
         </div>
 
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'new' | 'history')}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="new" className="flex items-center gap-2">
-              <Plus className="h-4 w-4" />
+          <TabsList className="grid w-full grid-cols-2 max-w-md mb-8 h-14 bg-muted/50 p-1 rounded-full mx-auto">
+            <TabsTrigger value="new" className="flex items-center gap-2 rounded-full h-full data-[state=active]:bg-background data-[state=active]:shadow-sm text-base">
+              <Plus className="h-5 w-5" />
               {isRTL ? 'استشارة جديدة' : 'New Consultation'}
             </TabsTrigger>
-            <TabsTrigger value="history" className="flex items-center gap-2">
-              <History className="h-4 w-4" />
+            <TabsTrigger value="history" className="flex items-center gap-2 rounded-full h-full data-[state=active]:bg-background data-[state=active]:shadow-sm text-base">
+              <History className="h-5 w-5" />
               {isRTL ? 'استشاراتي' : 'My Consultations'}
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="new" className="mt-6">
-            <Card>
-              <CardHeader className="text-center">
-                <CardTitle className="flex items-center justify-center gap-2">
-                  <Stethoscope className="h-6 w-6" />
-                  {isRTL ? 'بدء استشارة طبية جديدة' : 'Start New Medical Consultation'}
+            <Card className="border-0 shadow-2xl bg-card/95 backdrop-blur-xl overflow-hidden ring-1 ring-border/20">
+               <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-1 h-1.5 w-full" />
+              <CardHeader className="text-center pb-8 pt-10">
+                <CardTitle className="flex flex-col items-center justify-center gap-4 text-2xl sm:text-3xl">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shadow-inner ring-1 ring-primary/20">
+                    <Stethoscope className="h-8 w-8 text-primary" />
+                  </div>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+                    {isRTL ? 'بدء استشارة طبية جديدة' : 'Start New Medical Consultation'}
+                  </span>
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-lg mt-2 font-medium">
                   {isRTL ? 'سنقوم بطرح بعض الأسئلة لمساعدة الطبيب في فهم حالتك بشكل أفضل' : 'We will ask some questions to help the doctor better understand your condition'}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="text-center space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                  <div className="flex items-center justify-center gap-2 p-4 bg-slate-50 dark:bg-slate-900/20 rounded-lg border border-slate-200 dark:border-slate-800">
-                    <User className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                    <span className="text-slate-700 dark:text-slate-300">{isRTL ? 'معلومات المريض' : 'Patient Information'}</span>
+              <CardContent className="text-center space-y-8 px-6 sm:px-10 pb-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-2xl border border-border/50 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
+                      <User className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <span className="font-bold text-foreground">{isRTL ? 'معلومات المريض' : 'Patient Information'}</span>
+                    <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'البيانات الشخصية والعمر' : 'Personal data & age'}</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 p-4 bg-slate-50 dark:bg-slate-900/20 rounded-lg border border-slate-200 dark:border-slate-800">
-                    <Activity className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                    <span className="text-slate-700 dark:text-slate-300">{isRTL ? 'الأعراض والتاريخ الطبي' : 'Symptoms & Medical History'}</span>
+                  <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-2xl border border-border/50 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-3">
+                      <Activity className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <span className="font-bold text-foreground">{isRTL ? 'الأعراض والتاريخ' : 'Symptoms & History'}</span>
+                     <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'تفاصيل الحالة الصحية' : 'Health condition details'}</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 p-4 bg-slate-50 dark:bg-slate-900/20 rounded-lg border border-slate-200 dark:border-slate-800">
-                    <MessageCircle className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                    <span className="text-slate-700 dark:text-slate-300">{isRTL ? 'السؤال الطبي' : 'Medical Question'}</span>
+                  <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-2xl border border-border/50 hover:bg-muted/50 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-3">
+                      <MessageCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
+                    </div>
+                    <span className="font-bold text-foreground">{isRTL ? 'السؤال الطبي' : 'Medical Question'}</span>
+                     <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'استفسارك للطبيب' : 'Your inquiry for doctor'}</span>
                   </div>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-slate-900/20 p-4 rounded-lg border border-slate-200 dark:border-slate-800">
-                  <div className="flex items-center gap-2 mb-2">
-                    <AlertCircle className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                    <span className="font-medium text-slate-800 dark:text-slate-200">
-                      {isRTL ? 'ملاحظة مهمة' : 'Important Note'}
-                    </span>
+                <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-2xl border border-amber-200 dark:border-amber-800/30 text-start">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-amber-100 dark:bg-amber-900/40 rounded-lg mt-1 shrink-0">
+                         <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-500" />
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-amber-900 dark:text-amber-400 text-base mb-1">
+                          {isRTL ? 'ملاحظة مهمة' : 'Important Note'}
+                        </h4>
+                        <p className="text-sm text-amber-800 dark:text-amber-300/90 leading-relaxed">
+                            {isRTL 
+                            ? 'سيتم الرد على استشارتك من قبل طبيب مختص خلال ساعة إلى ساعتين حسب الأولوية. في حالات الطوارئ القصوى، يرجى التوجه لأقرب مستشفى فوراً.'
+                            : 'Your consultation will be answered by a specialist doctor within 1-2 hours depending on priority. In case of extreme emergency, please go to the nearest hospital immediately.'
+                            }
+                        </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">
-                    {isRTL 
-                      ? 'سيتم الرد على استشارتك من قبل طبيب مختص خلال ساعة إلى ساعتين حسب الأولوية. في حالات الطوارئ، يرجى التوجه لأقرب مستشفى.'
-                      : 'Your consultation will be answered by a specialist doctor within 1-2 hours depending on priority. In case of emergency, please go to the nearest hospital.'
-                    }
-                  </p>
                 </div>
 
                 <Button 
                   onClick={() => setShowWizard(true)}
                   size="lg"
-                  className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="w-full sm:w-auto min-w-[240px] h-14 text-lg font-bold bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg hover:shadow-primary/25 transition-all duration-300 rounded-xl"
                 >
-                  <Plus className="h-5 w-5" />
-                  {isRTL ? 'بدء الاستشارة' : 'Start Consultation'}
+                  <Plus className={`h-6 w-6 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  {isRTL ? 'بدء الاستشارة الآن' : 'Start Consultation Now'}
                 </Button>
               </CardContent>
             </Card>

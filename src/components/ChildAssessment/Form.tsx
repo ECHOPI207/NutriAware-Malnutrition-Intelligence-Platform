@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calculator, RotateCcw, Info, ImageIcon } from 'lucide-react';
+import { Calculator, RotateCcw, Info, ImageIcon, CheckCircle2 } from 'lucide-react';
 import { getTranslation, ChildAssessmentLanguage } from './i18n';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
@@ -34,6 +34,7 @@ interface FormProps {
 
 const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalculating }) => {
   const t = getTranslation(language);
+  const isRTL = language === 'ar';
   
   const [ageUnit, setAgeUnit] = useState<'months' | 'years'>('months');
   const [ageValue, setAgeValue] = useState<string>('');
@@ -71,7 +72,7 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
     if (!formData.ageMonths) {
       newErrors.ageMonths = t.form.validation.ageRequired;
     } else if (formData.ageMonths < 0 || formData.ageMonths > 228) {
-      newErrors.ageMonths = language === 'ar' 
+      newErrors.ageMonths = isRTL 
         ? 'العمر يجب أن يكون بين 0 و 228 شهر (0-19 سنة)'
         : 'Age must be between 0 and 228 months (0-19 years)';
     }
@@ -88,7 +89,7 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
       // نطاقات مختلفة حسب العمر
       const maxWeight = ageGroup === 'under5' ? 50 : 120;
       if (formData.weightKg < 2 || formData.weightKg > maxWeight) {
-        newErrors.weightKg = language === 'ar'
+        newErrors.weightKg = isRTL
           ? `الوزن يجب أن يكون بين 2 و ${maxWeight} كجم`
           : `Weight must be between 2 and ${maxWeight} kg`;
       }
@@ -100,15 +101,16 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
     } else {
       // نطاقات مختلفة حسب العمر
       const maxHeight = ageGroup === 'under5' ? 150 : 200;
-      if (formData.heightCm < 40 || formData.heightCm > maxHeight) {
-        newErrors.heightCm = language === 'ar'
-          ? `الطول يجب أن يكون بين 40 و ${maxHeight} سم`
-          : `Height must be between 40 and ${maxHeight} cm`;
+      if (formData.heightCm <= 0 || formData.heightCm > maxHeight) {
+        newErrors.heightCm = isRTL
+          ? `الطول يجب أن يكون بين 0 و ${maxHeight} سم`
+          : `Height must be between 0 and ${maxHeight} cm`;
       }
     }
 
     // التحقق من MUAC (اختياري للأطفال أقل من 5 سنوات فقط)
-    if (ageGroup === 'under5' && formData.muacMm && (formData.muacMm < 80 || formData.muacMm > 250)) {
+    // Validate only if value is provided
+    if (ageGroup === 'under5' && formData.muacMm && (formData.muacMm < 0 || formData.muacMm > 250)) {
       newErrors.muacMm = t.form.validation.muacRange;
     }
 
@@ -133,43 +135,49 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
       muacMm: undefined
     });
     setErrors({});
+    setAgeValue('');
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Calculator className="w-5 h-5" />
+    <Card className="border-0 shadow-xl bg-card/60 backdrop-blur-xl ring-1 ring-border/20 overflow-hidden">
+      <div className="h-1.5 w-full bg-gradient-to-r from-accent/80 to-accent/20" />
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-3 text-2xl">
+           <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+             <Calculator className="w-6 h-6 text-accent" />
+           </div>
           {t.form.calculate}
         </CardTitle>
-        <CardDescription>{t.subtitle}</CardDescription>
+        <CardDescription className="text-base">{t.subtitle}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <CardContent className="p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* العمر مع اختيار الوحدة */}
-          <div className="space-y-2">
-            <Label htmlFor="age">
-              {language === 'ar' ? 'العمر' : 'Age'}
+          <div className="space-y-3">
+            <Label htmlFor="age" className="text-base font-medium">
+              {isRTL ? 'العمر' : 'Age'}
             </Label>
-            <div className="flex gap-2">
-              <Input
-                id="age"
-                type="number"
-                min="0"
-                max={ageUnit === 'months' ? '228' : '19'}
-                step={ageUnit === 'months' ? '1' : '0.1'}
-                placeholder={ageUnit === 'months' 
-                  ? (language === 'ar' ? 'أدخل العمر بالأشهر' : 'Enter age in months')
-                  : (language === 'ar' ? 'أدخل العمر بالسنوات' : 'Enter age in years')
-                }
-                value={ageValue}
-                onChange={(e) => {
-                  setAgeValue(e.target.value);
-                  const months = calculateAgeMonths(e.target.value, ageUnit);
-                  setFormData({ ...formData, ageMonths: months });
-                }}
-                className={`flex-1 ${errors.ageMonths ? 'border-red-500' : ''}`}
-              />
+            <div className="flex gap-3">
+              <div className="relative flex-1">
+                 <Input
+                  id="age"
+                  type="number"
+                  min="0"
+                  max={ageUnit === 'months' ? '228' : '19'}
+                  step={ageUnit === 'months' ? '1' : '0.1'}
+                  placeholder={ageUnit === 'months' 
+                    ? (isRTL ? 'مثال: 12' : 'Example: 12')
+                    : (isRTL ? 'مثال: 1.5' : 'Example: 1.5')
+                  }
+                  value={ageValue}
+                  onChange={(e) => {
+                    setAgeValue(e.target.value);
+                    const months = calculateAgeMonths(e.target.value, ageUnit);
+                    setFormData({ ...formData, ageMonths: months });
+                  }}
+                  className={`h-12 bg-background/50 border-2 border-border/40 focus:border-accent/50 focus:ring-accent/20 rounded-xl text-lg px-4 ${isRTL ? 'text-right' : 'text-left'} ${errors.ageMonths ? 'border-destructive' : ''}`}
+                />
+              </div>
               <Select
                 value={ageUnit}
                 onValueChange={(value: 'months' | 'years') => {
@@ -181,27 +189,30 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
                   }
                 }}
               >
-                <SelectTrigger className="w-[120px]">
+                <SelectTrigger className="w-[110px] sm:w-[140px] h-12 bg-background/50 border-2 border-border/40 focus:ring-accent/20 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="months">
-                    {language === 'ar' ? 'أشهر' : 'Months'}
+                    {isRTL ? 'أشهر' : 'Months'}
                   </SelectItem>
                   <SelectItem value="years">
-                    {language === 'ar' ? 'سنوات' : 'Years'}
+                    {isRTL ? 'سنوات' : 'Years'}
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
             {errors.ageMonths && (
-              <p className="text-sm text-red-500">{errors.ageMonths}</p>
+              <p className="text-sm font-medium text-destructive mt-1 flex items-center gap-1">
+                 <Info className="w-3 h-3" /> {errors.ageMonths}
+              </p>
             )}
-            {formData.ageMonths && (
-              <p className="text-xs text-muted-foreground">
-                {language === 'ar' 
-                  ? `العمر: ${formData.ageMonths} شهر (${(formData.ageMonths / 12).toFixed(1)} سنة)`
-                  : `Age: ${formData.ageMonths} months (${(formData.ageMonths / 12).toFixed(1)} years)`
+            {formData.ageMonths && !errors.ageMonths && (
+              <p className="text-sm font-medium text-accent flex items-center gap-1.5 bg-accent/5 p-2 rounded-lg">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                {isRTL 
+                  ? `العمر المحسوب: ${formData.ageMonths} شهر (${(formData.ageMonths / 12).toFixed(1)} سنة)`
+                  : `Calculated Age: ${formData.ageMonths} months (${(formData.ageMonths / 12).toFixed(1)} years)`
                 }
               </p>
             )}
@@ -209,124 +220,118 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
 
           {/* تنبيه الفئة العمرية */}
           {ageGroup && (
-            <Alert>
-              <Info className="h-4 w-4" />
-              <AlertDescription>
+            <Alert className="bg-primary/5 border-primary/20">
+              <Info className="h-5 w-5 text-primary" />
+              <AlertDescription className="text-sm font-medium leading-relaxed">
                 {ageGroup === 'under5' ? (
-                  language === 'ar' 
-                    ? '📊 طفل أقل من 5 سنوات - سيتم حساب: BMI-for-age، الوزن للطول، الوزن للعمر، الطول للعمر، ومحيط الذراع (MUAC)'
-                    : '📊 Child under 5 years - Will calculate: BMI-for-age, Weight-for-Length, Weight-for-Age, Height-for-Age, and MUAC'
+                  isRTL 
+                    ? 'الطفل أقل من 5 سنوات: سيتم حساب مؤشرات النمو (WHO) ومحيط الذراع (MUAC)'
+                    : 'Child under 5: Will calculate WHO growth standards & MUAC'
                 ) : (
-                  language === 'ar'
-                    ? '📊 طفل 5 سنوات فأكثر - سيتم حساب: BMI-for-age percentiles، الطول للعمر، والوزن للعمر'
-                    : '📊 Child 5 years and above - Will calculate: BMI-for-age percentiles, Height-for-age, and Weight-for-age'
+                  isRTL
+                    ? 'الطفل 5 سنوات فأكثر: سيتم حساب مؤشرات كتلة الجسم للعمر (Percentiles)'
+                    : 'Child 5+ years: Will calculate BMI-for-age percentiles'
                 )}
               </AlertDescription>
             </Alert>
           )}
 
-          {/* الجنس */}
-          <div className="space-y-2">
-            <Label htmlFor="sex">{t.form.sex}</Label>
-            <Select
-              value={formData.sex}
-              onValueChange={(value: 'male' | 'female') => setFormData({ ...formData, sex: value })}
-            >
-              <SelectTrigger className={errors.sex ? 'border-red-500' : ''}>
-                <SelectValue placeholder={t.form.selectSex} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="male">{t.form.male}</SelectItem>
-                <SelectItem value="female">{t.form.female}</SelectItem>
-              </SelectContent>
-            </Select>
-            {errors.sex && (
-              <p className="text-sm text-red-500">{errors.sex}</p>
-            )}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             {/* الجنس */}
+            <div className="space-y-3">
+              <Label htmlFor="sex" className="text-base font-medium">{t.form.sex}</Label>
+              <Select
+                value={formData.sex}
+                onValueChange={(value: 'male' | 'female') => setFormData({ ...formData, sex: value })}
+              >
+                <SelectTrigger className={`h-12 bg-background/50 border-2 border-border/40 focus:ring-accent/20 rounded-xl ${errors.sex ? 'border-destructive' : ''}`}>
+                  <SelectValue placeholder={t.form.selectSex} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="male">{t.form.male}</SelectItem>
+                  <SelectItem value="female">{t.form.female}</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.sex && (
+                <p className="text-sm font-medium text-destructive mt-1">{errors.sex}</p>
+              )}
+            </div>
 
-          {/* الوزن */}
-          <div className="space-y-2">
-            <Label htmlFor="weightKg">{t.form.weightKg}</Label>
-            <Input
-              id="weightKg"
-              type="number"
-              min="2"
-              max={ageGroup === 'under5' ? '50' : '120'}
-              step="0.1"
-              placeholder={t.form.weightPlaceholder}
-              value={formData.weightKg || ''}
-              onChange={(e) => setFormData({ ...formData, weightKg: parseFloat(e.target.value) })}
-              className={errors.weightKg ? 'border-red-500' : ''}
-            />
-            {errors.weightKg && (
-              <p className="text-sm text-red-500">{errors.weightKg}</p>
-            )}
-          </div>
+            {/* الوزن */}
+            <div className="space-y-3">
+              <Label htmlFor="weightKg" className="text-base font-medium">{t.form.weightKg}</Label>
+              <div className="relative" dir="ltr">
+                 <Input
+                  id="weightKg"
+                  type="number"
+                  min="2"
+                  max={ageGroup === 'under5' ? '50' : '120'}
+                  step="0.1"
+                  placeholder="0.0"
+                  value={formData.weightKg || ''}
+                  onChange={(e) => setFormData({ ...formData, weightKg: parseFloat(e.target.value) })}
+                  className={`h-12 bg-background/50 border-2 border-border/40 focus:border-accent/50 focus:ring-accent/20 rounded-xl text-lg pr-12 pl-4 text-left ${errors.weightKg ? 'border-destructive' : ''}`}
+                  style={{ direction: 'ltr', textAlign: 'left' }}
+                />
+                <div className="absolute top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium pointer-events-none right-4">
+                   kg
+                </div>
+              </div>
+              {errors.weightKg && (
+                <p className="text-sm font-medium text-destructive mt-1">{errors.weightKg}</p>
+              )}
+            </div>
 
-          {/* الطول */}
-          <div className="space-y-2">
-            <Label htmlFor="heightCm">{t.form.heightCm}</Label>
-            <Input
-              id="heightCm"
-              type="number"
-              min="40"
-              max={ageGroup === 'under5' ? '150' : '200'}
-              step="0.1"
-              placeholder={t.form.heightPlaceholder}
-              value={formData.heightCm || ''}
-              onChange={(e) => setFormData({ ...formData, heightCm: parseFloat(e.target.value) })}
-              className={errors.heightCm ? 'border-red-500' : ''}
-            />
-            {errors.heightCm && (
-              <p className="text-sm text-red-500">{errors.heightCm}</p>
-            )}
-          </div>
+            {/* الطول */}
+            <div className="space-y-3">
+              <Label htmlFor="heightCm" className="text-base font-medium">{t.form.heightCm}</Label>
+              <div className="relative" dir="ltr">
+                 <Input
+                  id="heightCm"
+                  type="number"
+                  min="0"
+                  max={ageGroup === 'under5' ? '150' : '200'}
+                  step="0.1"
+                  placeholder="0.0"
+                  value={formData.heightCm || ''}
+                  onChange={(e) => setFormData({ ...formData, heightCm: parseFloat(e.target.value) })}
+                  className={`h-12 bg-background/50 border-2 border-border/40 focus:border-accent/50 focus:ring-accent/20 rounded-xl text-lg pr-12 pl-4 text-left ${errors.heightCm ? 'border-destructive' : ''}`}
+                  style={{ direction: 'ltr', textAlign: 'left' }}
+                />
+                 <div className="absolute top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium pointer-events-none right-4">
+                   cm
+                </div>
+              </div>
+              {errors.heightCm && (
+                <p className="text-sm font-medium text-destructive mt-1">{errors.heightCm}</p>
+              )}
+            </div>
+
+            </div>
 
           {/* MUAC (اختياري - فقط للأطفال أقل من 5 سنوات) */}
           {ageGroup === 'under5' && (
-            <div className="space-y-2">
-              <Label htmlFor="muacMm">{t.form.muacMm}</Label>
-              <Input
-                id="muacMm"
-                type="number"
-                min="80"
-                max="250"
-                step="1"
-                placeholder={t.form.muacPlaceholder}
-                value={formData.muacMm || ''}
-                onChange={(e) => setFormData({ ...formData, muacMm: e.target.value ? parseFloat(e.target.value) : undefined })}
-                className={errors.muacMm ? 'border-red-500' : ''}
-              />
-              {errors.muacMm && (
-                <p className="text-sm text-red-500">{errors.muacMm}</p>
-              )}
-              
-              {/* معلومات MUAC مع الصورة */}
-              <Alert className="mt-2">
-                <Info className="h-4 w-4" />
-                <AlertDescription className="flex items-center justify-between gap-2">
-                  <span className="text-sm">
-                    {language === 'ar' 
-                      ? 'محيط منتصف الذراع (MUAC) - مؤشر مهم لتقييم سوء التغذية الحاد' 
-                      : 'Mid-Upper Arm Circumference (MUAC) - Important indicator for acute malnutrition'}
-                  </span>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="muacMm" className="text-base font-medium">
+                    {t.form.muacMm} <span className="text-muted-foreground text-sm font-normal">({isRTL ? 'اختياري' : 'Optional'})</span>
+                </Label>
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="outline" size="sm" className="flex items-center gap-1">
+                      <Button variant="ghost" size="sm" className="h-6 gap-1.5 text-xs text-muted-foreground hover:text-primary p-0 px-2 rounded-full border border-border/50">
                         <ImageIcon className="h-3 w-3" />
-                        {language === 'ar' ? 'عرض الصورة' : 'View Image'}
+                        {isRTL ? 'كيف أقيس؟' : 'How to measure?'}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-4xl">
                       <DialogHeader>
                         <DialogTitle>
-                          {language === 'ar' 
+                          {isRTL 
                             ? 'كيفية قياس محيط منتصف الذراع (MUAC)' 
                             : 'How to Measure Mid-Upper Arm Circumference (MUAC)'}
                         </DialogTitle>
                         <DialogDescription>
-                          {language === 'ar'
+                          {isRTL
                             ? 'استخدم شريط القياس الملون لتحديد حالة التغذية للطفل'
                             : 'Use the colored measuring tape to determine the child\'s nutritional status'}
                         </DialogDescription>
@@ -341,26 +346,44 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
                       </div>
                     </DialogContent>
                   </Dialog>
-                </AlertDescription>
-              </Alert>
+              </div>
+              
+              <div className="relative" dir="ltr">
+                <Input
+                  id="muacMm"
+                  type="number"
+                  step="1"
+                  placeholder="00"
+                  value={formData.muacMm || ''}
+                  onChange={(e) => setFormData({ ...formData, muacMm: e.target.value ? parseFloat(e.target.value) : undefined })}
+                  className={`h-12 bg-background/50 border-2 border-border/40 focus:border-accent/50 focus:ring-accent/20 transition-all text-lg pr-12 pl-4 text-left`} // Padding for unit
+                  style={{ direction: 'ltr', textAlign: 'left' }}
+                />
+                <div className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none text-muted-foreground font-medium bg-muted/30 h-full px-3 border-l border-border/40 right-0 rounded-r-md">
+                    mm
+                </div>
+              </div>
+              {errors.muacMm && (
+                <p className="text-sm font-medium text-destructive mt-1">{errors.muacMm}</p>
+              )}
             </div>
           )}
 
           {/* أزرار الإجراءات */}
-          <div className="flex gap-2 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 pt-6">
             <Button
               type="submit"
               disabled={isCalculating}
-              className="flex-1"
+              className="flex-1 h-14 text-lg font-bold rounded-xl bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 transition-all active:scale-[0.98]"
             >
               {isCalculating ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
                   {t.form.calculating}
                 </>
               ) : (
                 <>
-                  <Calculator className="w-4 h-4 mr-2" />
+                  <Calculator className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   {t.form.calculate}
                 </>
               )}
@@ -370,8 +393,9 @@ const ChildAssessmentForm: React.FC<FormProps> = ({ language, onSubmit, isCalcul
               variant="outline"
               onClick={handleReset}
               disabled={isCalculating}
+               className="h-14 px-8 text-base font-semibold rounded-xl border-2 border-muted hover:bg-muted/50 hover:text-foreground transition-all"
             >
-              <RotateCcw className="w-4 h-4 mr-2" />
+              <RotateCcw className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
               {t.form.reset}
             </Button>
           </div>

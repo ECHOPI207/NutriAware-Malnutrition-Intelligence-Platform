@@ -18,17 +18,17 @@ export interface ChildAssessment {
 }
 
 export interface ChildAssessmentInput {
-  userId?: string;
+  userId?: string | null;
   session_id: string;
   age_months: number;
   sex: 'male' | 'female';
   weight_kg: number;
   height_cm: number;
-  muac_mm?: number;
+  muac_mm?: number | null;
   bmi: number;
-  bmi_zscore?: number;
+  bmi_zscore?: number | null;
   bmi_category: string;
-  muac_category?: string;
+  muac_category?: string | null;
   recommendations: Record<string, unknown>;
 }
 

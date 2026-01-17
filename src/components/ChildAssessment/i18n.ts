@@ -34,18 +34,26 @@ export const childAssessmentTranslations = {
     },
     results: {
       title: 'نتائج التقييم',
-      bmi: 'مؤشر كتلة الجسم (BMI)',
-      zScore: 'Z-Score (BMI-for-age)',
+      analysis: 'تحليل النمو',
+      analysisDesc: 'تقرير مفصل لحالة الطفل',
+      bmi: 'مؤشر كتلة الجسم',
+      bmiZScore: 'مؤشر كتلة الجسم للعمر (Z-Score)',
+      zScore: 'Z-Score',
       classification: 'التصنيف',
       muacClassification: 'تصنيف MUAC',
       recommendations: 'التوصيات',
       aiRecommendations: 'توصيات ذكية',
       processingAI: 'جاري معالجة التوصيات الذكية...',
-      disclaimer: '⚠️ تنبيه هام: المعلومات المقدمة للتوجيه فقط ولا تغني عن الاستشارة الطبية. راجع طبيب أطفال متخصص في حالات الشدة أو للحصول على تقييم شامل.',
+      disclaimer: '⚠️ تنبيه هام: المعلومات المقدمة للتوجيه فقط ولا تغني عن الاستشارة الطبية.',
       nutritionSummary: 'ملخص الحالة التغذوية',
       dietaryAdvice: 'نصائح غذائية',
-      noResults: 'لا توجد نتائج بعد. املأ النموذج واضغط على "احسب التقييم".',
-      savedToHistory: 'تم حفظ التقييم في السجل'
+      waiting: 'بانتظار البيانات',
+      waitingDesc: 'أدخل بيانات الطفل (العمر، الوزن، الطول) للحصول على تقييم شامل.',
+      noResults: 'لا توجد نتائج بعد',
+      savedToHistory: 'تم حفظ التقييم في السجل',
+      share: 'مشاركة',
+      print: 'طباعة',
+      downloadReport: 'تحميل التقرير (PDF)'
     },
     history: {
       title: 'سجل التقييمات',
@@ -90,6 +98,40 @@ export const childAssessmentTranslations = {
         advice1: 'استشر طبيب أطفال وأخصائي تغذية لوضع خطة شاملة لإدارة الوزن',
         advice2: 'ركز على تغيير نمط الحياة للعائلة بأكملها مع دعم نفسي واجتماعي'
       }
+    },
+    medicalReport: {
+      reportTitle: 'تقرير الحالة التغذوية للطفل',
+      generatedOn: 'تاريخ التقرير',
+      childInfo: 'بيانات الطفل',
+      measurements: 'القياسات الحيوية',
+      results: 'نتائج التقييم',
+      medicalAdvice: 'خطة العمل الطبية والإرشادات',
+      beforeVisit: 'قبل زيارة الطبيب',
+      duringVisit: 'أثناء زيارة الطبيب (أسئلة مقترحة)',
+      afterVisit: 'الرعاية المنزلية والمتابعة',
+      footerDisclaimer: 'هذا التقرير تم إنشاؤه بواسطة منصة NutriAware. النتائج استرشادية ولا تغني عن التشخيص الطبي المتخصص.',
+      actions: {
+        severe: {
+          before: ['تجهيز السجل المرضي للطفل وأي تحاليل سابقة', 'تسجيل قائمة بالأعراض المصاحبة (مثل فقدان الشهية، الخمول)', 'التوجه فوراً لأقرب مستشفى أو مركز متخصص'],
+          during: ['هل يحتاج الطفل إلى حجز بالمستشفى؟', 'هل يحتاج إلى أغذية علاجية جاهزة (RUTF)؟', 'ما هي التحاليل المطلوبة لاستبعاد الأمراض المصاحبة؟'],
+          after: ['الالتزام التام بمواعيد الأدوية والمكملات', 'متابعة الوزن أسبوعياً', 'عدم إجبار الطفل على الأكل والتركيز على وجبات صغيرة متكررة']
+        },
+        moderate: {
+          before: ['تسجيل ما يتناوله الطفل لمدة 3 أيام', 'تجهيز قائمة بالأطعمة التي يرفضها الطفل'],
+          during: ['هل نحتاج لمكملات غذائية (حديد، فيتامينات)؟', 'ما هو الوزن المستهدف ومتى يجب الوصول إليه؟', 'هل هناك طفيليات معوية تحتاج لعلاج؟'],
+          after: ['إثراء الوجبات بالسعرات (إضافة زيت زيتون، طحينة)', 'تقديم وجبة إضافية قبل النوم', 'متابعة الوزن كل أسبوعين']
+        },
+        normal: {
+          before: ['مراجعة جدول التطعيمات', 'تسجيل أي ملاحظات حول نشاط الطفل'],
+          during: ['كيف نحافظ على هذا المعدل الطبيعي؟', 'ما هي الفيتامينات الوقائية المناسبة لهذا العمر؟'],
+          after: ['الاستمرار على التنوع الغذائي', 'متابعة النمو كل 6 أشهر', 'تعزيز النشاط البدني']
+        },
+        obese: {
+          before: ['تسجيل العادات الغذائية والنشاط البدني', 'تجنب لوم الطفل أو إشعاره بالذنب'], 
+          during: ['تحليل الغدة الدرقية ووظائف الكبد؟', 'كيف نتعامل مع الجوع المستمر؟', 'خطة نشاط بدني مناسبة لا تضر المفاصل'],
+          after: ['تغيير نمط حياة الأسرة بالكامل وليس الطفل فقط', 'توفير بدائل صحية للوجبات الخفيفة', 'التركيز على المشي والحركة اليومية']
+        }
+      }
     }
   },
   en: {
@@ -125,18 +167,26 @@ export const childAssessmentTranslations = {
     },
     results: {
       title: 'Assessment Results',
+      analysis: 'Growth Analysis',
+      analysisDesc: 'Detailed report of child status',
       bmi: 'Body Mass Index (BMI)',
-      zScore: 'Z-Score (BMI-for-age)',
+      bmiZScore: 'BMI-for-Age (Z-Score)',
+      zScore: 'Z-Score',
       classification: 'Classification',
       muacClassification: 'MUAC Classification',
       recommendations: 'Recommendations',
       aiRecommendations: 'AI-Powered Recommendations',
       processingAI: 'Processing AI recommendations...',
-      disclaimer: '⚠️ Important Notice: Information provided is for guidance only and does not replace medical consultation. Consult a pediatrician for severe cases or comprehensive assessment.',
+      disclaimer: '⚠️ Important Notice: Information provided is for guidance only.',
       nutritionSummary: 'Nutritional Status Summary',
       dietaryAdvice: 'Dietary Advice',
-      noResults: 'No results yet. Fill the form and click "Calculate Assessment".',
-      savedToHistory: 'Assessment saved to history'
+      waiting: 'Waiting for Data',
+      waitingDesc: 'Enter child data (age, weight, height) to get a comprehensive assessment.',
+      noResults: 'No results yet',
+      savedToHistory: 'Assessment saved to history',
+      share: 'Share',
+      print: 'Print',
+      downloadReport: 'Download Report (PDF)'
     },
     history: {
       title: 'Assessment History',
@@ -148,7 +198,7 @@ export const childAssessmentTranslations = {
       classification: 'Classification',
       noHistory: 'No assessment history yet',
       clear: 'Clear History',
-      export: 'Export as JSON'
+      export: 'Download Report'
     },
     aiAdvice: {
       severe: {
@@ -181,9 +231,44 @@ export const childAssessmentTranslations = {
         advice1: 'Consult pediatrician and nutritionist for comprehensive weight management plan',
         advice2: 'Focus on lifestyle changes for entire family with psychological and social support'
       }
+    },
+    medicalReport: {
+      reportTitle: 'Child Nutritional Status Report',
+      generatedOn: 'Report Date',
+      childInfo: 'Child Information',
+      measurements: 'Vital Measurements',
+      results: 'Assessment Results',
+      medicalAdvice: 'Medical Action Plan & Guidance',
+      beforeVisit: 'Before Doctor Visit',
+      duringVisit: 'During Visit (Suggested Questions)',
+      afterVisit: 'Home Care & Follow-up',
+      footerDisclaimer: 'This report was generated by NutriAware Platform. Results are for guidance only and do not replace professional medical diagnosis.',
+      actions: {
+        severe: {
+          before: ['Prepare child medical history and previous labs', 'Record list of symptoms (e.g., loss of appetite, lethargy)', 'Go immediately to the nearest hospital or specialized center'],
+          during: ['Does the child need hospitalization?', 'Is Ready-to-Use Therapeutic Food (RUTF) needed?', 'What lab tests are needed to rule out complications?'],
+          after: ['Strict adherence to medication/supplement schedule', 'Weekly weight monitoring', 'Do not force feed; focus on small frequent meals']
+        },
+        moderate: {
+          before: ['Record child food intake for 3 days', 'List foods the child refuses'],
+          during: ['Do we need nutritional supplements (Iron, Vitamins)?', 'What is the target weight and timeline?', 'Are there intestinal parasites needing treatment?'],
+          after: ['Enrich meals with calories (add olive oil, spreads)', 'Offer extra meal before bedtime', 'Bi-weekly weight monitoring']
+        },
+        normal: {
+          before: ['Review vaccination schedule', 'Note any observations about child activity'],
+          during: ['How to maintain this healthy rate?', 'What preventive vitamins are suitable for this age?'],
+          after: ['Continue dietary diversity', 'Monitor growth every 6 months', 'Promote physical activity']
+        },
+        obese: {
+          before: ['Record dietary habits and physical activity', 'Avoid shaming or blaming the child'],
+          during: ['Thyroid and liver function tests?', 'How to manage constant hunger?', 'Physical activity plan safe for joints'],
+          after: ['Lifestyle change for the whole family, not just the child', 'Provide healthy snack alternatives', 'Focus on daily walking and movement']
+        }
+      }
     }
   }
 };
+
 
 export type ChildAssessmentLanguage = 'ar' | 'en';
 

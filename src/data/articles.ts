@@ -165,7 +165,7 @@ The objective of growth monitoring is not to achieve a fixed ideal weight, but t
       ar: 'التغذية في مرحلة الرضاعة و التغذية التكميلية'
     },
     excerpt: {
-      en: 'The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child\'s physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.'s physical and cognitive foundation. Learn about growth stages, feeding patterns, and the immunization schedule.',
+      en: 'The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child\'s physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.',
       ar: 'تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي.'
     },
     category: 'undernutrition',
@@ -444,7 +444,7 @@ Transition from hospital to home requires careful planning to ensure continued o
       ar: 'السمنة في مرحلة الطفولة بدءًا من الحمل'
     },
     excerpt: {
-      en: 'What occurs during pregnancy impacts the child\'s future. Discover how fetal programming shapes the child\'s metabolic health and increases obesity risks.'s future. Discover how fetal programming shapes metabolic health and increases obesity risk.',
+      en: 'What occurs during pregnancy impacts the child\'s future. Discover how fetal programming shapes the child\'s metabolic health and increases obesity risks.',
       ar: 'ما يحدث أثناء الحمل يؤثر على مستقبل الطفل. اكتشف كيف تشكل البرمجة الجنينية الصحة الأيضية للطفل وتزيد مخاطر السمنة.'
     },
     category: 'overnutrition',

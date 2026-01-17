@@ -14,11 +14,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [language, setLanguage] = useState(i18n.language);
   const [direction, setDirection] = useState<'rtl' | 'ltr'>(i18n.language === 'ar' ? 'rtl' : 'ltr');
 
+  useEffect(() => {
+    setLanguage(i18n.language);
+    setDirection(i18n.language === 'ar' ? 'rtl' : 'ltr');
+  }, [i18n.language]);
+
   const toggleLanguage = () => {
     const newLang = language === 'ar' ? 'en' : 'ar';
     i18n.changeLanguage(newLang);
-    setLanguage(newLang);
-    setDirection(newLang === 'ar' ? 'rtl' : 'ltr');
+    // State will handle update via useEffect
   };
 
   useEffect(() => {

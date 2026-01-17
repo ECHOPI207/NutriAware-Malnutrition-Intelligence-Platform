@@ -45,7 +45,7 @@ const ArticleDetail: React.FC = () => {
 
         if (docSnap.exists()) {
             const data = docSnap.data() as Article;
-            setArticle({ id: docSnap.id, ...data });
+            setArticle({ ...data, id: docSnap.id });
             fetchRelated(data.category, docSnap.id);
         } else {
             console.log('No such document!');

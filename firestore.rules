@@ -1,0 +1,128 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Helper Functions ---
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if the user is accessing their own data
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Check if user has a specific role (checks both Custom Claims and Firestore document)
+    function hasRole(role) {
+      return isAuthenticated() && (
+        (request.auth.token.keys().hasAny(['role']) && request.auth.token.role == role) ||
+        (
+          exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role
+        )
+      );
+    }
+
+    // Check if user is Staff (Admin, Doctor, or Nutritionist)
+    function isStaff() {
+      return hasRole('admin') || hasRole('doctor') || hasRole('nutritionist');
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    // --- Collection Rules ---
+
+    // Users Collection
+    match /users/{userId} {
+      // Users can read their own profile. Staff can read all profiles (for directory/management).
+      allow read: if isOwner(userId) || isStaff();
+      
+      // Users can update their own profile. Admins can update any.
+      allow update: if isOwner(userId) || isAdmin();
+      
+      // Only Admins can delete users.
+      allow delete: if isAdmin();
+      
+      // Allow creation during signup
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Articles (Knowledge Base)
+    match /articles/{articleId} {
+      // Public read if published. Staff can read all (drafts).
+      allow read: if resource.data.status == 'published' || isStaff();
+      
+      // Only Admins (or Staff with permission) can create/update/delete
+      // Assuming ContentManagement is Admin only based on routes.tsx
+      allow write: if isAdmin();
+    }
+
+    // Medical Consultations
+    match /medicalConsultations/{consultationId} {
+      // Patient can read own. Doctor/Admin can read all (or assigned ones).
+      // Allowing staff to read all for now to match current app logic.
+      allow read: if (resource.data.patientId == request.auth.uid) || isStaff();
+      
+      // Patient can create. Participants can update (reply).
+      allow create: if isAuthenticated() && request.resource.data.patientId == request.auth.uid;
+      allow update: if (resource.data.patientId == request.auth.uid) || isStaff();
+    }
+
+    // Feedback / Messages
+    match /feedback/{itemId} {
+      allow read: if (resource.data.userId == request.auth.uid) || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if (resource.data.userId == request.auth.uid) || isStaff();
+      allow delete: if isAdmin(); // Only admins delete feedback usually
+    }
+
+    // Patient Health Data Collections
+    // (bmi_calculations, calorie_calculations, child_assessments, meal_plans, chat_conversations)
+    match /bmi_calculations/{docId} {
+      allow read: if resource.data.userId == request.auth.uid || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if resource.data.userId == request.auth.uid || isAdmin();
+    }
+
+    match /calorie_calculations/{docId} {
+      allow read: if resource.data.userId == request.auth.uid || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if resource.data.userId == request.auth.uid || isAdmin();
+    }
+
+    match /child_assessments/{docId} {
+      allow read: if resource.data.userId == request.auth.uid || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if resource.data.userId == request.auth.uid || isAdmin();
+    }
+
+    match /meal_plans/{docId} {
+      allow read: if resource.data.userId == request.auth.uid || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if resource.data.userId == request.auth.uid || isAdmin();
+    }
+
+    match /chat_conversations/{docId} {
+      allow read: if resource.data.userId == request.auth.uid || isStaff();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if resource.data.userId == request.auth.uid || isStaff();
+    }
+
+    // Audit Logs
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAuthenticated(); // Application logs user actions
+      allow update, delete: if false; // Audit logs should be immutable
+    }
+
+    // Default: Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

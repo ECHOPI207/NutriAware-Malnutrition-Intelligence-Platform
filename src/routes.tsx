@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { UserRole } from './services/role-manager';

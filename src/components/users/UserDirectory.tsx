@@ -5,8 +5,6 @@ import { db } from '@/lib/firebase';
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -24,7 +22,6 @@ import {
   Stethoscope,
   Phone,
   Mail,
-  MapPin
 } from 'lucide-react';
 
 interface User {

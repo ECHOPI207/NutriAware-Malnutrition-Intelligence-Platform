@@ -113,6 +113,20 @@ service cloud.firestore {
       allow update: if resource.data.userId == request.auth.uid || isStaff();
     }
 
+    // Project Evaluation Survey
+    match /project_evaluations/{docId} {
+      allow create: if true; // Allow anyone to submit the survey
+      allow read: if isStaff();
+      allow update, delete: if isStaff();
+    }
+
+    // System Settings (Survey Config, Security, etc.)
+    match /system_settings/{docId} {
+      // Allow public read only for survey_config
+      allow read: if (docId == 'survey_config') || isAdmin();
+      allow write: if isAdmin();
+    }
+
     // Audit Logs
     match /audit_logs/{logId} {
       allow read: if isAdmin();

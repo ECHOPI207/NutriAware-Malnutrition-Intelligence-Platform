@@ -29,6 +29,8 @@ const ContentManagement = lazy(() => import('./pages/admin/ContentManagement'));
 const ActivityMonitoring = lazy(() => import('./pages/admin/ActivityMonitoring'));
 const BackupManagement = lazy(() => import('./pages/admin/BackupManagement'));
 const SecuritySettings = lazy(() => import('./pages/admin/SecuritySettings'));
+const SurveyResults = lazy(() => import('./pages/admin/SurveyResults'));
+const SurveyManagement = lazy(() => import('./pages/admin/SurveyManagement'));
 
 // Doctor pages
 const DoctorDashboard = lazy(() => import('./pages/doctor/Dashboard'));
@@ -40,6 +42,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const SimpleSignup = lazy(() => import('./pages/auth/SimpleSignup').then(module => ({ default: module.SimpleSignup })));
 const SimpleLogin = lazy(() => import('./pages/auth/SimpleLogin').then(module => ({ default: module.SimpleLogin })));
 const AuthCallback = lazy(() => import('./pages/auth/AuthCallback').then(module => ({ default: module.AuthCallback })));
+const ProjectEvaluation = lazy(() => import('./pages/ProjectEvaluation'));
 
 export interface RouteConfig {
   name: string;
@@ -60,6 +63,14 @@ const routes: RouteConfig[] = [
     translationKey: 'nav.home',
     path: '/',
     element: <Home />,
+    visible: true,
+    showInNavigation: () => true
+  },
+  {
+    name: 'Project Evaluation',
+    translationKey: 'Project Evaluation', // Using direct string as fallback
+    path: '/project-evaluation',
+    element: <ProjectEvaluation />,
     visible: true,
     showInNavigation: () => true
   },
@@ -237,6 +248,28 @@ const routes: RouteConfig[] = [
     requiredPermission: 'canManageSystem',
     fallbackPath: '/admin/dashboard',
     showInNavigation: (role) => role === 'admin'
+  },
+  {
+    name: 'Survey Results',
+    translationKey: 'nav.surveyResults',
+    path: '/admin/survey-results',
+    element: <SurveyResults />,
+    visible: false,
+    requiredRole: ['admin', 'doctor', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/doctor
+    requiredPermission: 'canAccessAdminDashboard', 
+    fallbackPath: '/dashboard',
+    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
+  },
+  {
+    name: 'Survey Management',
+    translationKey: 'nav.surveyManagement',
+    path: '/admin/survey-management',
+    element: <SurveyManagement />,
+    visible: false,
+    requiredRole: ['admin', 'doctor', 'nutritionist'],
+    requiredPermission: 'canAccessAdminDashboard',
+    fallbackPath: '/dashboard',
+    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
   },
   {
     name: 'Doctor Dashboard',

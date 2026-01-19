@@ -5,7 +5,7 @@ import {
   Menu, X, Sun, Moon, Languages,
   LogOut, LayoutDashboard, Settings,
   Users, FileText, Activity, MessageSquare,
-  Stethoscope
+  Stethoscope, BarChart2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -71,11 +71,15 @@ const Header = () => {
     { name: 'nav.userManagement', path: '/admin/users', icon: Users },
     { name: 'nav.contentManagement', path: '/admin/content', icon: FileText },
     { name: 'nav.activityMonitoring', path: '/admin/activity', icon: Activity },
+    { name: 'nav.surveyResults', path: '/admin/survey-results', icon: BarChart2 },
+    { name: 'nav.surveyManagement', path: '/admin/survey-management', icon: Settings },
     { name: 'nav.messages', path: '/messages', icon: MessageSquare },
   ];
 
   const doctorLinks = [
     { name: 'nav.doctorDashboard', path: '/doctor/dashboard', icon: LayoutDashboard },
+    { name: 'nav.surveyResults', path: '/admin/survey-results', icon: BarChart2 },
+    { name: 'nav.surveyManagement', path: '/admin/survey-management', icon: Settings },
     { name: 'nav.messages', path: '/messages', icon: MessageSquare },
   ];
 

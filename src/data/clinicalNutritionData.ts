@@ -62,7 +62,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                         breakfast: ["حبوب مدعمة بالحديد + لبن الأم", "شوفان مطحون ناعم + لبن الأم"],
                         snacks1: ["صفار بيض مهروس: 2-3 مرات أسبوعيًا"],
                         lunch: ["كوسة + جزر مهروسين", "بطاطس + قرع مهروسين", "عدس مهروس أو لحم مفروم ناعم"],
-                        dinner: ["تفاح مهروس", "كمثرى مهروسة", "زبادي طبيعي"]
+                        snacks2: ["تفاح مهروس", "كمثرى مهروسة"],
+                        dinner: ["زبادي طبيعي", "أرز مهروس + خضار"]
                     },
                     calorieRange: { min: 600, max: 900 },
                     macros: { fatPercent: 40, carbPercent: 50, ironMg: 11, calciumMg: 260 },
@@ -150,7 +151,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["بيض + عيش", "فول + عيش", "جبنة + عيش"],
                     snacks1: ["فاكهة", "زبادي"],
                     lunch: ["نشويات + بروتين + خضار"],
-                    dinner: ["بيض", "تونة", "زبادي + عيش"]
+                    snacks2: ["كوب لبن", "فاكهة صغيرة"],
+                    dinner: ["زبادي + عيش", "جبنة + خضار"]
                 },
                 calorieRange: { min: 1800, max: 2800 },
                 macros: { proteinPerKg: 1.0, fatPercent: 28, carbPercent: 47, calciumMg: 1300, ironMg: 11 }
@@ -163,7 +165,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["بيض مسلوق + عيش أسمر", "فول بدون زيت"],
                     snacks1: ["فاكهة واحدة"],
                     lunch: ["دجاج مشوي + خضار + كمية نشويات صغيرة"],
-                    dinner: ["زبادي", "بيض مسلوق"]
+                    snacks2: ["خيار أو جزر", "كوب لبن خالي الدسم"],
+                    dinner: ["زبادي", "جبنة قريش + خضار"]
                 },
                 calorieRange: { min: 1600, max: 2200 },
                 macros: { proteinPerKg: 1.0, fatPercent: 25, carbPercent: 50, calciumMg: 1300, ironMg: 11 },
@@ -175,9 +178,10 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                 action: "- تقليل السكريات والمقليات\n- زيادة الحركة\n- بدون حرمان",
                 mealPlan: {
                     breakfast: ["فول بدون زيت", "بيض مسلوق"],
-                    lunch: ["دجاج/سمك مشوي + طبق خضار كبير"],
                     snacks1: ["فاكهة واحدة"],
-                    dinner: ["زبادي", "شوربة خضار"]
+                    lunch: ["دجاج/سمك مشوي + طبق خضار كبير"],
+                    snacks2: ["خيار", "كوب لبن خالي الدسم"],
+                    dinner: ["زبادي", "شوربة عدس"]
                 },
                 calorieRange: { min: 1400, max: 2000 },
                 macros: { proteinPerKg: 1.0, fatPercent: 25, carbPercent: 50, calciumMg: 1300, ironMg: 11 },
@@ -195,7 +199,7 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     snacks1: ["مكسرات", "تمر", "زبادي"],
                     lunch: ["أرز/مكرونة + دجاج/لحمة + خضار"],
                     snacks2: ["زبدة فول سوداني + خبز", "عصير طبيعي"],
-                    dinner: ["بيض", "فول", "تونة + عيش"]
+                    dinner: ["عدس + عيش أسمر", "فول مدمس + سلطة", "زبادي + لبنة + خبز"]
                 },
                 calorieRange: { min: 2200, max: 3000 },
                 macros: { proteinPerKg: 1.2, fatPercent: 30, carbPercent: 45, fiberTarget: 28, calciumMg: 1000, ironMg: 8 }
@@ -208,7 +212,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["فول + عيش", "بيض + عيش"],
                     snacks1: ["فاكهة", "زبادي"],
                     lunch: ["نشويات + بروتين + سلطة"],
-                    dinner: ["خفيف: بيض، تونة، أو زبادي"]
+                    snacks2: ["كوب لبن", "حفنة مكسرات"],
+                    dinner: ["عدس + سلطة", "فول + عيش أسمر", "زبادي + لبنة + خضار"]
                 },
                 calorieRange: { min: 1800, max: 2500 },
                 macros: { proteinPerKg: 1.0, fatPercent: 28, carbPercent: 47, fiberTarget: 28, calciumMg: 1000, ironMg: 8 }
@@ -221,8 +226,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["بيض مسلوق + عيش أسمر"],
                     snacks1: ["فاكهة"],
                     lunch: ["بروتين مشوي + خضار + نشويات محدودة"],
-                    snacks2: ["زبادي + شوربة خضار"],
-                    dinner: []
+                    snacks2: ["زبادي", "خيار أو جزر"],
+                    dinner: ["شوربة عدس", "جبنة قريش + سلطة", "لبنة + خضار + خبز أسمر"]
                 },
                 calorieRange: { min: 1500, max: 2000 },
                 macros: { proteinPerKg: 1.2, fatPercent: 25, carbPercent: 45, fiberTarget: 30, calciumMg: 1000, ironMg: 8 }
@@ -236,7 +241,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["فول بدون زيت أو بيض مسلوق"],
                     snacks1: ["فاكهة"],
                     lunch: ["دجاج/سمك مشوي + خضار"],
-                    dinner: ["زبادي أو شوربة خضار"]
+                    snacks2: ["خيار", "كوب لبن خالي الدسم"],
+                    dinner: ["زبادي خالي الدسم", "شوربة عدس", "حمص + سلطة"]
                 },
                 calorieRange: { min: 1200, max: 1800 },
                 macros: { proteinPerKg: 1.2, fatPercent: 25, carbPercent: 45, fiberTarget: 30, calciumMg: 1000, ironMg: 8 }
@@ -250,7 +256,7 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     snacks1: ["زبادي + تمر", "مكسرات"],
                     lunch: ["سمك مشوي / دجاج + أرز + خضار"],
                     snacks2: ["كوب لبن", "فاكهة"],
-                    dinner: ["شوربة عدس + خبز", "بيض + سلطة"]
+                    dinner: ["شوربة عدس + خبز", "زبادي + لبنة + خضار", "جبنة بيضاء + سلطة"]
                 },
                 calorieRange: { min: 1600, max: 2200 },
                 macros: { proteinPerKg: 1.5, fatPercent: 25, carbPercent: 45, fiberTarget: 25, calciumMg: 1200, ironMg: 8 },
@@ -283,7 +289,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                         breakfast: ["Iron-fortified Cereal + Breastmilk", "Fine Oats + Breastmilk"],
                         snacks1: ["Mashed egg yolk: 2-3 times/week"],
                         lunch: ["Mashed Zucchini + Carrots", "Potato + Pumpkin mash", "Mashed lentils or fine minced meat"],
-                        dinner: ["Mashed Apple", "Mashed Pear", "Natural Yogurt"]
+                        snacks2: ["Mashed Apple", "Mashed Pear"],
+                        dinner: ["Natural Yogurt", "Mashed rice + vegetables"]
                     },
                     calorieRange: { min: 600, max: 900 },
                     macros: { fatPercent: 40, carbPercent: 50, ironMg: 11, calciumMg: 260 },
@@ -371,7 +378,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["Egg + Bread", "Beans + Bread", "Cheese + Bread"],
                     snacks1: ["Fruit", "Yogurt"],
                     lunch: ["Carbs + Protein + Salad (Rice/Pasta + Chicken/Fish)"],
-                    dinner: ["Egg", "Tuna", "Yogurt + Bread"]
+                    snacks2: ["Glass of Milk", "Small Fruit"],
+                    dinner: ["Yogurt + Bread", "Cheese + Vegetables"]
                 },
                 calorieRange: { min: 1800, max: 2800 },
                 macros: { proteinPerKg: 1.0, fatPercent: 28, carbPercent: 47, calciumMg: 1300, ironMg: 11 }
@@ -384,7 +392,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["Boiled Egg + Brown Bread", "Beans (no oil)"],
                     snacks1: ["One Fruit"],
                     lunch: ["Grilled Chicken + Vegetables + Small Carbs", "Fish + Salad + Boiled Potato"],
-                    dinner: ["Yogurt", "Boiled Egg"]
+                    snacks2: ["Cucumber or Carrots", "Low-fat Milk"],
+                    dinner: ["Yogurt", "Cottage Cheese + Vegetables"]
                 },
                 calorieRange: { min: 1600, max: 2200 },
                 macros: { proteinPerKg: 1.0, fatPercent: 25, carbPercent: 50, calciumMg: 1300, ironMg: 11 },
@@ -396,9 +405,10 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                 action: "- Reduce sugars/fried foods\n- Increase movement\n- No deprivation",
                 mealPlan: {
                     breakfast: ["Beans (no oil)", "Boiled Egg"],
-                    lunch: ["Grilled Chicken/Fish + Large Salad"],
                     snacks1: ["One Fruit"],
-                    dinner: ["Yogurt", "Vegetable Soup"]
+                    lunch: ["Grilled Chicken/Fish + Large Salad"],
+                    snacks2: ["Cucumber", "Low-fat Milk"],
+                    dinner: ["Yogurt", "Lentil Soup"]
                 },
                 calorieRange: { min: 1400, max: 2000 },
                 macros: { proteinPerKg: 1.0, fatPercent: 25, carbPercent: 50, calciumMg: 1300, ironMg: 11 },
@@ -416,7 +426,7 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     snacks1: ["Nuts", "Dates", "Yogurt"],
                     lunch: ["Rice/Pasta + Chicken/Meat + Vegetables"],
                     snacks2: ["Peanut butter + Bread", "Fresh Juice"],
-                    dinner: ["Eggs", "Beans", "Tuna + Bread"]
+                    dinner: ["Lentil Soup + Brown Bread", "Beans + Salad", "Yogurt + Labneh + Bread"]
                 },
                 calorieRange: { min: 2200, max: 3000 },
                 macros: { proteinPerKg: 1.2, fatPercent: 30, carbPercent: 45, fiberTarget: 28, calciumMg: 1000, ironMg: 8 }
@@ -429,7 +439,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["Beans + Bread", "Eggs + Bread"],
                     snacks1: ["Fruit", "Yogurt"],
                     lunch: ["Carbs + Protein + Salad"],
-                    dinner: ["Light: Eggs, Tuna, or Yogurt"]
+                    snacks2: ["Glass of Milk", "Handful of Nuts"],
+                    dinner: ["Lentils + Salad", "Beans + Brown Bread", "Yogurt + Labneh + Vegetables"]
                 },
                 calorieRange: { min: 1800, max: 2500 },
                 macros: { proteinPerKg: 1.0, fatPercent: 28, carbPercent: 47, fiberTarget: 28, calciumMg: 1000, ironMg: 8 }
@@ -442,8 +453,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["Boiled Egg + Brown Bread"],
                     snacks1: ["Fruit"],
                     lunch: ["Grilled Protein + Vegetables + Limited Carbs"],
-                    snacks2: ["Yogurt + Vegetable Soup"],
-                    dinner: []
+                    snacks2: ["Yogurt", "Cucumber or Carrots"],
+                    dinner: ["Lentil Soup", "Cottage Cheese + Salad", "Labneh + Vegetables + Brown Bread"]
                 },
                 calorieRange: { min: 1500, max: 2000 },
                 macros: { proteinPerKg: 1.2, fatPercent: 25, carbPercent: 45, fiberTarget: 30, calciumMg: 1000, ironMg: 8 }
@@ -457,7 +468,8 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     breakfast: ["Beans (no oil) or Boiled Egg"],
                     snacks1: ["Fruit"],
                     lunch: ["Grilled Chicken/Fish + Vegetables"],
-                    dinner: ["Yogurt or Vegetable Soup"]
+                    snacks2: ["Cucumber", "Low-fat Milk"],
+                    dinner: ["Low-fat Yogurt", "Lentil Soup", "Hummus + Salad"]
                 },
                 calorieRange: { min: 1200, max: 1800 },
                 macros: { proteinPerKg: 1.2, fatPercent: 25, carbPercent: 45, fiberTarget: 30, calciumMg: 1000, ironMg: 8 }
@@ -471,7 +483,7 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                     snacks1: ["Yogurt + Dates", "Nuts"],
                     lunch: ["Grilled Fish / Chicken + Rice + Vegetables"],
                     snacks2: ["Glass of Milk", "Fruit"],
-                    dinner: ["Lentil Soup + Bread", "Egg + Salad"]
+                    dinner: ["Lentil Soup + Bread", "Yogurt + Labneh + Vegetables", "White Cheese + Salad"]
                 },
                 calorieRange: { min: 1600, max: 2200 },
                 macros: { proteinPerKg: 1.5, fatPercent: 25, carbPercent: 45, fiberTarget: 25, calciumMg: 1200, ironMg: 8 },

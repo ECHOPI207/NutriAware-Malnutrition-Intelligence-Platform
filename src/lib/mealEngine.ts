@@ -99,7 +99,8 @@ function buildMealOption(
     targetCalories: number,
     slot: 'breakfast' | 'lunch' | 'dinner' | 'snack',
     usedIds: Set<string>,
-    lang: 'en' | 'ar'
+    lang: 'en' | 'ar',
+    isAdult: boolean = false
 ): MealOption | null {
     const slotFoods = foods.filter(f => f.mealSlot.includes(slot) && !usedIds.has(f.id));
     if (slotFoods.length === 0) return null;
@@ -109,42 +110,80 @@ function buildMealOption(
 
     // For main meals: pick a protein + carb + vegetable
     if (slot === 'lunch' || slot === 'dinner') {
-        // Try mixed meal first
-        const mixed = slotFoods.filter(f => f.category === 'mixed');
-        if (mixed.length > 0) {
-            const pick = mixed[Math.floor(Math.random() * mixed.length)];
-            selected.push(pick);
-            usedIds.add(pick.id);
-            remainingCals -= pick.calories;
-            // Add a side vegetable
-            const vegs = slotFoods.filter(f => f.category === 'vegetable' && !usedIds.has(f.id));
-            if (vegs.length > 0 && remainingCals > 20) {
-                const veg = vegs[Math.floor(Math.random() * vegs.length)];
-                selected.push(veg);
-                remainingCals -= veg.calories;
+        // For ADULT DINNERS: prioritize plant protein and dairy
+        if (slot === 'dinner' && isAdult) {
+            // First try plant protein or dairy items
+            const plantDairy = slotFoods.filter(f =>
+                (f.isPlantProtein || f.isDairy) && !usedIds.has(f.id)
+            );
+            if (plantDairy.length > 0) {
+                const pick = plantDairy[Math.floor(Math.random() * plantDairy.length)];
+                selected.push(pick);
+                usedIds.add(pick.id);
+                remainingCals -= pick.calories;
+                // Add a side: bread or vegetable
+                const sides = slotFoods.filter(f =>
+                    (f.category === 'vegetable' || f.category === 'carb') && !usedIds.has(f.id)
+                );
+                if (sides.length > 0 && remainingCals > 20) {
+                    const side = sides[Math.floor(Math.random() * sides.length)];
+                    selected.push(side);
+                    remainingCals -= side.calories;
+                }
+            } else {
+                // Fallback: any dairy or protein
+                const proteins = slotFoods.filter(f => (f.category === 'protein' || f.category === 'dairy') && !usedIds.has(f.id));
+                if (proteins.length > 0) {
+                    const p = proteins[Math.floor(Math.random() * proteins.length)];
+                    selected.push(p);
+                    usedIds.add(p.id);
+                    remainingCals -= p.calories;
+                }
+                const vegs = slotFoods.filter(f => f.category === 'vegetable' && !usedIds.has(f.id));
+                if (vegs.length > 0 && remainingCals > 20) {
+                    const v = vegs[Math.floor(Math.random() * vegs.length)];
+                    selected.push(v);
+                    remainingCals -= v.calories;
+                }
             }
         } else {
-            // Pick protein
-            const proteins = slotFoods.filter(f => f.category === 'protein' || f.category === 'dairy');
-            if (proteins.length > 0) {
-                const p = proteins[Math.floor(Math.random() * proteins.length)];
-                selected.push(p);
-                usedIds.add(p.id);
-                remainingCals -= p.calories;
-            }
-            // Pick carb
-            const carbs = slotFoods.filter(f => f.category === 'carb' && !usedIds.has(f.id));
-            if (carbs.length > 0 && remainingCals > 50) {
-                const c = carbs[Math.floor(Math.random() * carbs.length)];
-                selected.push(c);
-                remainingCals -= c.calories;
-            }
-            // Pick vegetable
-            const vegs = slotFoods.filter(f => f.category === 'vegetable' && !usedIds.has(f.id));
-            if (vegs.length > 0 && remainingCals > 20) {
-                const v = vegs[Math.floor(Math.random() * vegs.length)];
-                selected.push(v);
-                remainingCals -= v.calories;
+            // Standard lunch/dinner (or child dinner)
+            const mixed = slotFoods.filter(f => f.category === 'mixed');
+            if (mixed.length > 0) {
+                const pick = mixed[Math.floor(Math.random() * mixed.length)];
+                selected.push(pick);
+                usedIds.add(pick.id);
+                remainingCals -= pick.calories;
+                // Add a side vegetable
+                const vegs = slotFoods.filter(f => f.category === 'vegetable' && !usedIds.has(f.id));
+                if (vegs.length > 0 && remainingCals > 20) {
+                    const veg = vegs[Math.floor(Math.random() * vegs.length)];
+                    selected.push(veg);
+                    remainingCals -= veg.calories;
+                }
+            } else {
+                // Pick protein
+                const proteins = slotFoods.filter(f => f.category === 'protein' || f.category === 'dairy');
+                if (proteins.length > 0) {
+                    const p = proteins[Math.floor(Math.random() * proteins.length)];
+                    selected.push(p);
+                    usedIds.add(p.id);
+                    remainingCals -= p.calories;
+                }
+                // Pick carb
+                const carbs = slotFoods.filter(f => f.category === 'carb' && !usedIds.has(f.id));
+                if (carbs.length > 0 && remainingCals > 50) {
+                    const c = carbs[Math.floor(Math.random() * carbs.length)];
+                    selected.push(c);
+                    remainingCals -= c.calories;
+                }
+                // Pick vegetable
+                const vegs = slotFoods.filter(f => f.category === 'vegetable' && !usedIds.has(f.id));
+                if (vegs.length > 0 && remainingCals > 20) {
+                    const v = vegs[Math.floor(Math.random() * vegs.length)];
+                    selected.push(v);
+                    remainingCals -= v.calories;
+                }
             }
         }
     } else if (slot === 'breakfast') {
@@ -214,7 +253,8 @@ function generateAlternatives(
     slot: 'breakfast' | 'lunch' | 'dinner' | 'snack',
     count: number,
     dayIndex: number,
-    lang: 'en' | 'ar'
+    lang: 'en' | 'ar',
+    isAdult: boolean = false
 ): MealOption[] {
     const alternatives: MealOption[] = [];
     const globalUsed = new Set<string>();
@@ -228,7 +268,7 @@ function generateAlternatives(
     for (let i = 0; i < count; i++) {
         // Per-alternative used set (allow reuse across alternatives, just not within same alternative)
         const attemptUsed = new Set<string>();
-        const option = buildMealOption(sortedFoods, targetCalories, slot, attemptUsed, lang);
+        const option = buildMealOption(sortedFoods, targetCalories, slot, attemptUsed, lang, isAdult);
         if (option) {
             // Avoid duplicate labels
             const isDuplicate = alternatives.some(a => a.label.en === option.label.en);
@@ -264,7 +304,8 @@ function generateDayPlan(
     foods: FoodItem[],
     targetCalories: number,
     dayIndex: number,
-    lang: 'en' | 'ar'
+    lang: 'en' | 'ar',
+    isAdult: boolean = false
 ): DayPlan {
     const altCount = 4; // 3-5 alternatives per slot
 
@@ -274,7 +315,7 @@ function generateDayPlan(
         snack1: generateAlternatives(foods, Math.round(targetCalories * MEAL_DISTRIBUTION.snack1), 'snack', 3, dayIndex, lang),
         lunch: generateAlternatives(foods, Math.round(targetCalories * MEAL_DISTRIBUTION.lunch), 'lunch', altCount, dayIndex + 2, lang),
         snack2: generateAlternatives(foods, Math.round(targetCalories * MEAL_DISTRIBUTION.snack2), 'snack', 3, dayIndex + 1, lang),
-        dinner: generateAlternatives(foods, Math.round(targetCalories * MEAL_DISTRIBUTION.dinner), 'dinner', altCount, dayIndex + 4, lang),
+        dinner: generateAlternatives(foods, Math.round(targetCalories * MEAL_DISTRIBUTION.dinner), 'dinner', altCount, dayIndex + 4, lang, isAdult),
     };
 }
 
@@ -377,9 +418,10 @@ export function calculateGoalCalories(
 export function generateWeeklyPlan(input: MealEngineInput): WeeklyPlan {
     const filteredFoods = filterFoods(input);
     const days: DayPlan[] = [];
+    const isAdult = input.ageYears >= 18;
 
     for (let d = 0; d < 7; d++) {
-        days.push(generateDayPlan(filteredFoods, input.targetCalories, d, input.language));
+        days.push(generateDayPlan(filteredFoods, input.targetCalories, d, input.language, isAdult));
     }
 
     const groceryList = buildGroceryList(days, input.language);

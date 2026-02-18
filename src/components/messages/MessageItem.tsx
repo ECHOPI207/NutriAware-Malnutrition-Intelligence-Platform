@@ -90,7 +90,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({
 
   const getTypeBadge = (type: string) => {
     return type === 'consultation'
-      ? <Badge variant="outline" className="text-green-600 border-green-600">{isRTL ? 'استشارة طبية' : 'Medical Consultation'}</Badge>
+      ? <Badge variant="outline" className="text-green-600 border-green-600">{isRTL ? 'توجيه غذائي' : 'Nutritional Guidance'}</Badge>
       : <Badge variant="outline" className="text-blue-600 border-blue-600">{isRTL ? 'رسالة عامة' : 'General Message'}</Badge>;
   };
 
@@ -123,7 +123,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({
             </div>
             <CardTitle className="text-base sm:text-lg break-words">
               {item.type === 'consultation'
-                ? (isRTL ? 'استشارة طبية' : 'Medical Consultation')
+                ? (isRTL ? 'توجيه غذائي' : 'Nutritional Guidance')
                 : (item as Message).subject}
             </CardTitle>
             <CardDescription className="flex items-center gap-2 mt-1">

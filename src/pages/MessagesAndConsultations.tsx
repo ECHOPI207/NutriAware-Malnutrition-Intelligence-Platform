@@ -48,10 +48,10 @@ const MessagesAndConsultations: React.FC = () => {
               </div>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {userProfile?.role === 'admin'
-                  ? (isRTL ? 'إدارة شاملة لجميع الرسائل والاستشارات الطبية' : 'Comprehensive management of all messages and medical consultations')
+                  ? (isRTL ? 'إدارة شاملة لجميع الرسائل والتوجيهات الغذائية' : 'Comprehensive management of all messages and nutritional guidance')
                   : userProfile?.role === 'doctor'
-                    ? (isRTL ? 'الرسائل والاستشارات الطبية' : 'Messages and medical consultations')
-                    : (isRTL ? 'رسائلك واستشاراتك الطبية' : 'Your messages and medical consultations')
+                    ? (isRTL ? 'الرسائل والتوجيهات الغذائية' : 'Messages and nutritional guidance')
+                    : (isRTL ? 'رسائلك وتوجيهاتك الغذائية' : 'Your messages and nutritional guidance')
                 }
               </p>
             </div>

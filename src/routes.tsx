@@ -139,7 +139,7 @@ const routes: RouteConfig[] = [
     showInNavigation: () => true
   },
   {
-    name: 'Medical Consultation',
+    name: 'Nutritional Guidance',
     translationKey: 'nav.medicalConsultation',
     path: '/medical-consultation',
     element: <NewMedicalConsultation />,
@@ -256,7 +256,7 @@ const routes: RouteConfig[] = [
     element: <SurveyResults />,
     visible: false,
     requiredRole: ['admin', 'doctor', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/doctor
-    requiredPermission: 'canAccessAdminDashboard', 
+    requiredPermission: 'canAccessAdminDashboard',
     fallbackPath: '/dashboard',
     showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
   },

@@ -116,7 +116,7 @@ const Home: React.FC = () => {
                 <Link to="/assessment">
                   <Button size="lg" className="w-full sm:w-auto h-14 px-8 rounded-2xl text-lg btn-gradient shadow-xl shadow-blue-500/20">
                     <Brain className="h-5 w-5 mx-2" />
-                    {isRTL ? 'ابدأ التشخيص وعلاج' : 'Start Diagnosis'}
+                    {isRTL ? 'ابدأ التقييم الغذائي' : 'Start Nutritional Assessment'}
                   </Button>
                 </Link>
                 <Link to="/about">
@@ -184,7 +184,7 @@ const Home: React.FC = () => {
                 key={stat.key}
                 className="h-full"
               >
-                <div 
+                <div
                   className="card-premium p-6 text-center h-full hover:-translate-y-1 transition-transform cursor-default group border-border bg-white dark:bg-slate-800 shadow-sm hover:shadow-md"
                 >
                   <div className={`w-12 h-12 mx-auto rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform duration-300`}>

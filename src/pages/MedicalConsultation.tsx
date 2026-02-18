@@ -37,7 +37,7 @@ const MedicalConsultation: React.FC = () => {
               {isRTL ? 'هذه الصفحة مخصصة للأطباء والإداريين فقط' : 'This page is for doctors and administrators only'}
             </p>
             <Button onClick={() => navigate('/medical-consultation')}>
-              {isRTL ? 'الذهاب للاستشارات الطبية' : 'Go to Medical Consultations'}
+              {isRTL ? 'الذهاب للتوجيهات الغذائية' : 'Go to Nutritional Guidance'}
             </Button>
           </CardContent>
         </Card>
@@ -51,7 +51,7 @@ const MedicalConsultation: React.FC = () => {
         <CardContent className="text-center py-8">
           <Stethoscope className="h-12 w-12 text-primary mx-auto mb-4" />
           <h3 className="text-lg font-semibold mb-2">
-            {isRTL ? 'إدارة الاستشارات الطبية' : 'Medical Consultation Management'}
+            {isRTL ? 'إدارة التوجيهات الغذائية' : 'Nutritional Guidance Management'}
           </h3>
           <p className="text-muted-foreground mb-4">
             {isRTL ? 'يرجى استخدام لوحة التحكم المخصصة لإدارة الاستشارات' : 'Please use the dedicated dashboard to manage consultations'}

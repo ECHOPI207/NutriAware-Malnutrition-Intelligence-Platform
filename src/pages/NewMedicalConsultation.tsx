@@ -146,7 +146,7 @@ const NewMedicalConsultation: React.FC = () => {
     try {
       setLoading(true);
       // console.log('Fetching consultations for user:', user.uid);
-      
+
       const consultationsQuery = query(
         collection(db, 'medicalConsultations'),
         where('patientId', '==', user.uid)
@@ -176,10 +176,10 @@ const NewMedicalConsultation: React.FC = () => {
       // console.log('Consultations loaded successfully:', fetchedConsultations.length);
     } catch (error) {
       console.error('Error fetching consultations:', error);
-      
+
       // More specific error handling
       let errorMessage = isRTL ? "حدث خطأ في تحميل الاستشارات" : "Error loading consultations";
-      
+
       if (error instanceof Error) {
         if (error.message.includes('permission-denied')) {
           errorMessage = isRTL ? "ليس لديك صلاحية للوصول لهذه البيانات" : "Permission denied to access consultations";
@@ -187,7 +187,7 @@ const NewMedicalConsultation: React.FC = () => {
           errorMessage = isRTL ? "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً" : "Service unavailable, please try again later";
         }
       }
-      
+
       toast({
         variant: "destructive",
         title: isRTL ? "خطأ" : "Error",
@@ -287,9 +287,9 @@ const NewMedicalConsultation: React.FC = () => {
 
       // Test connection before attempting to create
       try {
-          await addDoc(collection(db, 'medicalConsultations'), consultationData);
-          // console.log('Consultation created with ID:', docRef.id);
-        } catch (firestoreError) {
+        await addDoc(collection(db, 'medicalConsultations'), consultationData);
+        // console.log('Consultation created with ID:', docRef.id);
+      } catch (firestoreError) {
         console.error('Firestore error:', firestoreError);
         throw firestoreError;
       }
@@ -304,12 +304,12 @@ const NewMedicalConsultation: React.FC = () => {
       fetchConsultations();
     } catch (error) {
       console.error('Error creating consultation:', error);
-      
+
       let errorMessage = isRTL ? "حدث خطأ في إرسال الاستشارة" : "Error sending consultation";
-      
+
       if (error instanceof Error) {
         console.error('Error details:', error.message);
-        
+
         if (error.message.includes('permission-denied')) {
           errorMessage = isRTL ? "ليس لديك صلاحية لإنشاء استشارة" : "Permission denied to create consultation";
         } else if (error.message.includes('unavailable')) {
@@ -320,7 +320,7 @@ const NewMedicalConsultation: React.FC = () => {
           errorMessage = isRTL ? "مشكلة في الاتصال، يرجى التحقق من الإنترنت" : "Network error, please check your connection";
         }
       }
-      
+
       toast({
         variant: "destructive",
         title: isRTL ? "خطأ" : "Error",
@@ -384,13 +384,13 @@ const NewMedicalConsultation: React.FC = () => {
       });
     } catch (error) {
       console.error('Error sending message:', error);
-      
+
       let errorMessage = isRTL ? "حدث خطأ في إرسال الرسالة" : "Error sending message";
-      
+
       if (error instanceof Error && error.message.includes('permission-denied')) {
         errorMessage = isRTL ? "ليس لديك صلاحية لإرسال رسائل لهذه الاستشارة" : "Permission denied to send messages to this consultation";
       }
-      
+
       toast({
         variant: "destructive",
         title: isRTL ? "خطأ" : "Error",
@@ -403,25 +403,25 @@ const NewMedicalConsultation: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { 
-        label: isRTL ? 'في الانتظار' : 'Pending', 
+      pending: {
+        label: isRTL ? 'في الانتظار' : 'Pending',
         className: 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800',
-        icon: Clock 
+        icon: Clock
       },
-      in_progress: { 
-        label: isRTL ? 'قيد المراجعة' : 'In Progress', 
+      in_progress: {
+        label: isRTL ? 'قيد المراجعة' : 'In Progress',
         className: 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800',
-        icon: Activity 
+        icon: Activity
       },
-      replied: { 
-        label: isRTL ? 'تم الرد' : 'Replied', 
+      replied: {
+        label: isRTL ? 'تم الرد' : 'Replied',
         className: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800',
-        icon: CheckCircle 
+        icon: CheckCircle
       },
-      closed: { 
-        label: isRTL ? 'مغلقة' : 'Closed', 
+      closed: {
+        label: isRTL ? 'مغلقة' : 'Closed',
         className: 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-900/20 dark:text-gray-300 dark:border-gray-800',
-        icon: CheckCircle 
+        icon: CheckCircle
       }
     };
 
@@ -438,20 +438,20 @@ const NewMedicalConsultation: React.FC = () => {
 
   const getPriorityBadge = (priority: string) => {
     const priorityConfig = {
-      low: { 
-        label: isRTL ? 'منخفضة' : 'Low', 
+      low: {
+        label: isRTL ? 'منخفضة' : 'Low',
         className: 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-900/20 dark:text-gray-300 dark:border-gray-800'
       },
-      medium: { 
-        label: isRTL ? 'متوسطة' : 'Medium', 
+      medium: {
+        label: isRTL ? 'متوسطة' : 'Medium',
         className: 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800'
       },
-      high: { 
-        label: isRTL ? 'عالية' : 'High', 
+      high: {
+        label: isRTL ? 'عالية' : 'High',
         className: 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800'
       },
-      urgent: { 
-        label: isRTL ? 'عاجلة' : 'Urgent', 
+      urgent: {
+        label: isRTL ? 'عاجلة' : 'Urgent',
         className: 'bg-red-100 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800'
       }
     };
@@ -492,7 +492,7 @@ const NewMedicalConsultation: React.FC = () => {
               {isRTL ? 'يرجى تسجيل الدخول' : 'Please Login'}
             </h3>
             <p className="text-muted-foreground mb-4">
-              {isRTL ? 'يجب تسجيل الدخول للوصول للاستشارات الطبية' : 'You need to login to access medical consultations'}
+              {isRTL ? 'يجب تسجيل الدخول للوصول للتوجيهات الغذائية' : 'You need to login to access nutritional guidance'}
             </p>
             <Button onClick={() => window.location.href = '/auth/login'}>
               {isRTL ? 'تسجيل الدخول' : 'Login'}
@@ -518,28 +518,28 @@ const NewMedicalConsultation: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8 sm:py-12" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Header Section */}
         <div className="mb-10 text-center sm:text-start relative">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             className="absolute -top-12 left-0 rtl:right-auto rtl:left-0 ltr:left-0 ltr:right-auto sm:static sm:mb-4 gap-2 text-muted-foreground hover:text-primary"
             onClick={() => window.location.href = '/contact'}
           >
-             <ChevronRight className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
-             {isRTL ? 'العودة لصفحة اتصل بنا' : 'Back to Contact Us'}
+            <ChevronRight className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`} />
+            {isRTL ? 'العودة لصفحة اتصل بنا' : 'Back to Contact Us'}
           </Button>
 
           <div className="flex w-fit mx-auto sm:mx-0 items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 mb-4">
-             <Stethoscope className="h-4 w-4" />
-             {isRTL ? 'العيادة الإلكترونية' : 'E-Clinic'}
+            <Stethoscope className="h-4 w-4" />
+            {isRTL ? 'العيادة الإلكترونية' : 'E-Clinic'}
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent inline-block">
-            {isRTL ? 'الاستشارات الطبية' : 'Medical Consultations'}
+            {isRTL ? 'التوجيهات الغذائية' : 'Nutritional Guidance'}
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed mx-auto sm:mx-0">
-            {isRTL ? 'احصل على استشارة طبية متخصصة من أطبائنا المعتمدين بأسرع وقت' : 'Get professional medical consultation from our certified doctors quickly and efficiently'}
+            {isRTL ? 'احصل على توجيه غذائي متخصص من فريقنا المعتمد بأسرع وقت' : 'Get specialized nutritional guidance from our certified team quickly and efficiently'}
           </p>
         </div>
 
@@ -557,14 +557,14 @@ const NewMedicalConsultation: React.FC = () => {
 
           <TabsContent value="new" className="mt-6">
             <Card className="border-0 shadow-2xl bg-card/95 backdrop-blur-xl overflow-hidden ring-1 ring-border/20">
-               <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-1 h-1.5 w-full" />
+              <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-1 h-1.5 w-full" />
               <CardHeader className="text-center pb-8 pt-10">
                 <CardTitle className="flex flex-col items-center justify-center gap-4 text-2xl sm:text-3xl">
                   <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shadow-inner ring-1 ring-primary/20">
                     <Stethoscope className="h-8 w-8 text-primary" />
                   </div>
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
-                    {isRTL ? 'بدء استشارة طبية جديدة' : 'Start New Medical Consultation'}
+                    {isRTL ? 'بدء توجيه غذائي جديد' : 'Start New Nutritional Guidance'}
                   </span>
                 </CardTitle>
                 <CardDescription className="text-lg mt-2 font-medium">
@@ -585,37 +585,37 @@ const NewMedicalConsultation: React.FC = () => {
                       <Activity className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <span className="font-bold text-foreground">{isRTL ? 'الأعراض والتاريخ' : 'Symptoms & History'}</span>
-                     <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'تفاصيل الحالة الصحية' : 'Health condition details'}</span>
+                    <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'تفاصيل الحالة الصحية' : 'Health condition details'}</span>
                   </div>
                   <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-2xl border border-border/50 hover:bg-muted/50 transition-colors">
                     <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-3">
                       <MessageCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
                     </div>
                     <span className="font-bold text-foreground">{isRTL ? 'السؤال الطبي' : 'Medical Question'}</span>
-                     <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'استفسارك للطبيب' : 'Your inquiry for doctor'}</span>
+                    <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'استفسارك للطبيب' : 'Your inquiry for doctor'}</span>
                   </div>
                 </div>
 
                 <div className="bg-amber-50 dark:bg-amber-900/10 p-6 rounded-2xl border border-amber-200 dark:border-amber-800/30 text-start">
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-amber-100 dark:bg-amber-900/40 rounded-lg mt-1 shrink-0">
-                         <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-500" />
+                      <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-500" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-amber-900 dark:text-amber-400 text-base mb-1">
-                          {isRTL ? 'ملاحظة مهمة' : 'Important Note'}
-                        </h4>
-                        <p className="text-sm text-amber-800 dark:text-amber-300/90 leading-relaxed">
-                            {isRTL 
-                            ? 'سيتم الرد على استشارتك من قبل طبيب مختص خلال ساعة إلى ساعتين حسب الأولوية. في حالات الطوارئ القصوى، يرجى التوجه لأقرب مستشفى فوراً.'
-                            : 'Your consultation will be answered by a specialist doctor within 1-2 hours depending on priority. In case of extreme emergency, please go to the nearest hospital immediately.'
-                            }
-                        </p>
+                      <h4 className="font-bold text-amber-900 dark:text-amber-400 text-base mb-1">
+                        {isRTL ? 'ملاحظة مهمة' : 'Important Note'}
+                      </h4>
+                      <p className="text-sm text-amber-800 dark:text-amber-300/90 leading-relaxed">
+                        {isRTL
+                          ? 'سيتم الرد على استشارتك من قبل أخصائي تغذية خلال ساعة إلى ساعتين حسب الأولوية. في حالات الطوارئ القصوى، يرجى التوجه لأقرب مستشفى فوراً.'
+                          : 'Your consultation will be answered by a nutrition specialist within 1-2 hours depending on priority. In case of extreme emergency, please go to the nearest hospital immediately.'
+                        }
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                <Button 
+                <Button
                   onClick={() => setShowWizard(true)}
                   size="lg"
                   className="w-full sm:w-auto min-w-[240px] h-14 text-lg font-bold bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg hover:shadow-primary/25 transition-all duration-300 rounded-xl"
@@ -644,7 +644,7 @@ const NewMedicalConsultation: React.FC = () => {
                       {isRTL ? 'لا توجد استشارات' : 'No Consultations'}
                     </h3>
                     <p className="text-muted-foreground mb-4">
-                      {isRTL ? 'لم تقم بإنشاء أي استشارة طبية بعد' : 'You haven\'t created any medical consultations yet'}
+                      {isRTL ? 'لم تقم بإنشاء أي توجيه غذائي بعد' : 'You haven\'t created any nutritional guidance requests yet'}
                     </p>
                     <Button onClick={() => setActiveTab('new')}>
                       {isRTL ? 'إنشاء استشارة جديدة' : 'Create New Consultation'}
@@ -670,7 +670,7 @@ const NewMedicalConsultation: React.FC = () => {
                                 <Baby className="h-5 w-5" />
                               )}
                               <span className="font-medium">
-                                {consultation.consultationType === 'self' 
+                                {consultation.consultationType === 'self'
                                   ? (isRTL ? 'استشارة شخصية' : 'Personal Consultation')
                                   : (isRTL ? 'استشارة طفل' : 'Child Consultation')
                                 }
@@ -708,13 +708,12 @@ const NewMedicalConsultation: React.FC = () => {
                             <div>
                               <span className="text-sm font-medium">{isRTL ? 'العمر' : 'Age'}:</span>
                               <p className="text-sm">
-                                {consultation.consultationType === 'self' 
+                                {consultation.consultationType === 'self'
                                   ? `${consultation.patientAge} ${isRTL ? 'سنة' : 'years'}`
-                                  : `${consultation.childAge} ${
-                                      consultation.childAgeUnit === 'months' 
-                                        ? (isRTL ? 'شهر' : 'months')
-                                        : (isRTL ? 'سنة' : 'years')
-                                    } (${consultation.childGender === 'male' ? (isRTL ? 'ذكر' : 'Male') : (isRTL ? 'أنثى' : 'Female')})`
+                                  : `${consultation.childAge} ${consultation.childAgeUnit === 'months'
+                                    ? (isRTL ? 'شهر' : 'months')
+                                    : (isRTL ? 'سنة' : 'years')
+                                  } (${consultation.childGender === 'male' ? (isRTL ? 'ذكر' : 'Male') : (isRTL ? 'أنثى' : 'Female')})`
                                 }
                               </p>
                             </div>
@@ -769,11 +768,10 @@ const NewMedicalConsultation: React.FC = () => {
                                       className={`flex ${message.senderType === 'patient' ? 'justify-end' : 'justify-start'}`}
                                     >
                                       <div
-                                        className={`max-w-[70%] p-3 rounded-lg ${
-                                          message.senderType === 'patient'
+                                        className={`max-w-[70%] p-3 rounded-lg ${message.senderType === 'patient'
                                             ? 'bg-primary text-primary-foreground'
                                             : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700'
-                                        }`}
+                                          }`}
                                       >
                                         <div className="flex items-center gap-2 mb-1">
                                           <span className="text-xs font-medium">
@@ -798,12 +796,12 @@ const NewMedicalConsultation: React.FC = () => {
                               <Label htmlFor={`message-${consultation.id}`}>
                                 {isRTL ? 'رسالة متابعة' : 'Follow-up Message'}
                               </Label>
-                              
+
                               {consultation.isLocked ? (
                                 <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                                   <Lock className="h-4 w-4 text-red-600 dark:text-red-400" />
                                   <span className="text-sm text-red-700 dark:text-red-300">
-                                    {isRTL 
+                                    {isRTL
                                       ? 'الاستشارة مقفلة من قبل الطبيب - لا يمكن إرسال رسائل جديدة'
                                       : 'Consultation locked by doctor - cannot send new messages'
                                     }

@@ -28,7 +28,7 @@ import {
 interface ConsultationData {
   // Step 1: Patient Type
   consultationType: 'self' | 'child';
-  
+
   // Step 2: Basic Info
   patientAge?: number;
   childAge?: number;
@@ -36,7 +36,7 @@ interface ConsultationData {
   childGender?: 'male' | 'female';
   weight?: number;
   height?: number;
-  
+
   // Step 3: Medical History (Adults) / Child Info
   medicalHistory?: string;
   currentMedications?: string;
@@ -44,7 +44,7 @@ interface ConsultationData {
   chronicConditions?: string[];
   previousSurgeries?: string;
   familyMedicalHistory?: string;
-  
+
   // Child-specific
   appetite?: 'excellent' | 'good' | 'fair' | 'poor';
   activityLevel?: 'very_active' | 'active' | 'normal' | 'low' | 'very_low';
@@ -52,13 +52,13 @@ interface ConsultationData {
   developmentConcerns?: string[];
   feedingHabits?: string;
   vaccinationStatus?: 'up_to_date' | 'delayed' | 'incomplete' | 'unknown';
-  
+
   // Step 4: Symptoms
   symptoms: string[];
   symptomDuration?: string;
   symptomSeverity?: 'mild' | 'moderate' | 'severe';
   painLevel?: number;
-  
+
   // Step 5: Main Question
   mainQuestion: string;
   urgencyLevel?: 'routine' | 'urgent' | 'emergency';
@@ -217,18 +217,18 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
   const handleSubmit = () => {
     if (canProceedToNext()) {
       console.log('Wizard submitting data:', formData);
-      
+
       // Validate required fields before submitting
       if (!formData.mainQuestion.trim()) {
         console.error('Main question is empty');
         return;
       }
-      
+
       if (formData.symptoms.length === 0) {
         console.error('No symptoms selected');
         return;
       }
-      
+
       onSubmit(formData);
     } else {
       console.error('Cannot proceed - validation failed');
@@ -255,24 +255,22 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
               dir={isRTL ? 'rtl' : 'ltr'}
             >
-              <div 
+              <div
                 onClick={() => updateFormData('consultationType', 'self')}
-                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${
-                  formData.consultationType === 'self' 
-                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' 
+                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${formData.consultationType === 'self'
+                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
                     : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
-                }`}
+                  }`}
               >
                 <RadioGroupItem value="self" id="self" className="sr-only" />
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
-                   formData.consultationType === 'self' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-                }`}>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${formData.consultationType === 'self' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                  }`}>
                   <User className="h-6 w-6" />
                 </div>
                 <div className="flex-1">
                   <div className="font-bold text-lg text-foreground mb-1">{isRTL ? 'لنفسي' : 'For Myself'}</div>
                   <div className="text-sm text-muted-foreground">
-                    {isRTL ? 'استشارة طبية شخصية' : 'Personal medical consultation'}
+                    {isRTL ? 'توجيه غذائي شخصي' : 'Personal nutritional guidance'}
                   </div>
                 </div>
                 {formData.consultationType === 'self' && (
@@ -282,24 +280,22 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                 )}
               </div>
 
-              <div 
+              <div
                 onClick={() => updateFormData('consultationType', 'child')}
-                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${
-                  formData.consultationType === 'child' 
-                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10' 
+                className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${formData.consultationType === 'child'
+                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
                     : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
-                }`}
+                  }`}
               >
                 <RadioGroupItem value="child" id="child" className="sr-only" />
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
-                   formData.consultationType === 'child' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
-                }`}>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${formData.consultationType === 'child' ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'
+                  }`}>
                   <Baby className="h-6 w-6" />
                 </div>
                 <div className="flex-1">
                   <div className="font-bold text-lg text-foreground mb-1">{isRTL ? 'لطفلي' : 'For My Child'}</div>
                   <div className="text-sm text-muted-foreground">
-                    {isRTL ? 'استشارة طبية للأطفال' : 'Pediatric medical consultation'}
+                    {isRTL ? 'توجيه غذائي للأطفال' : 'Pediatric nutritional guidance'}
                   </div>
                 </div>
                 {formData.consultationType === 'child' && (
@@ -328,7 +324,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
               <div className="space-y-3">
                 <Label htmlFor="age" className="flex items-center gap-2 text-base font-bold text-foreground">
                   <Calendar className="h-4 w-4 text-primary" />
-                  {formData.consultationType === 'self' 
+                  {formData.consultationType === 'self'
                     ? (isRTL ? 'العمر (سنة)' : 'Age (years)')
                     : (isRTL ? 'عمر الطفل' : 'Child Age')
                   }
@@ -375,7 +371,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                 )}
                 {formData.consultationType === 'child' && (
                   <p className="text-xs text-muted-foreground font-medium px-1">
-                    {isRTL 
+                    {isRTL
                       ? 'للأطفال أقل من سنتين، يُفضل استخدام الشهور'
                       : 'For children under 2 years, use months'
                     }
@@ -442,7 +438,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
           <div className="space-y-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2">
-                {formData.consultationType === 'self' 
+                {formData.consultationType === 'self'
                   ? (isRTL ? 'التاريخ الطبي' : 'Medical History')
                   : (isRTL ? 'معلومات الطفل' : 'Child Information')
                 }
@@ -819,7 +815,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
           <div>
             <CardTitle className="flex items-center gap-2">
               <Stethoscope className="h-5 w-5" />
-              {isRTL ? 'استشارة طبية جديدة' : 'New Medical Consultation'}
+              {isRTL ? 'توجيه غذائي جديد' : 'New Nutritional Guidance'}
             </CardTitle>
             <CardDescription>
               {isRTL ? 'خطوة' : 'Step'} {currentStep} {isRTL ? 'من' : 'of'} {totalSteps}

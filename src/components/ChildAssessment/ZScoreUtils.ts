@@ -67,8 +67,8 @@ export function classifyBMIforAge(
       categoryAr: 'سوء تغذية حاد متوسط',
       severity: 'moderate',
       color: 'text-orange-600 dark:text-orange-400',
-      recommendation: 'Medical consultation recommended. Increase calorie-dense foods and monitor growth regularly.',
-      recommendationAr: 'يُنصح باستشارة طبية. زيادة الأطعمة الغنية بالسعرات الحرارية ومراقبة النمو بانتظام.'
+      recommendation: 'Specialized nutritional guidance recommended. Increase calorie-dense foods and monitor growth regularly.',
+      recommendationAr: 'يُنصح بتوجيه غذائي متخصص. زيادة الأطعمة الغنية بالسعرات الحرارية ومراقبة النمو بانتظام.'
     };
   } else if (z < -1) {
     return {
@@ -112,8 +112,8 @@ export function classifyBMIforAge(
       categoryAr: 'سمنة',
       severity: 'obese',
       color: 'text-red-600 dark:text-red-400',
-      recommendation: 'Medical consultation required. Comprehensive weight management program needed with healthcare team.',
-      recommendationAr: 'يتطلب استشارة طبية. برنامج شامل لإدارة الوزن مطلوب مع فريق الرعاية الصحية.'
+      recommendation: 'Specialized nutritional guidance required. Comprehensive weight management program needed with healthcare team.',
+      recommendationAr: 'يتطلب توجيه غذائي متخصص. برنامج شامل لإدارة الوزن مطلوب مع فريق الرعاية الصحية.'
     };
   }
 }
@@ -132,7 +132,7 @@ export function classifyMUAC(
 ): ClassificationResult {
   // معايير MUAC العامة للأطفال 6-59 شهر
   // ملاحظة: راجع البروتوكولات المحلية/WHO للقطع الدقيقة
-  
+
   if (ageMonths < 6) {
     return {
       category: 'MUAC Not Applicable',

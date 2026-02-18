@@ -23,7 +23,7 @@
     "activityMonitoring": "مراقبة النشاط",
     "adminControls": "تحكم المسؤول",
     "messages": "الرسائل والاستشارات",
-    "medicalConsultation": "الاستشارات الطبية",
+    "medicalConsultation": "التوجيهات الغذائية",
     "doctorControls": "لوحة الطبيب",
     "doctorDashboard": "لوحة الطبيب",
     "consultationManagement": "إدارة الاستشارات",
@@ -461,7 +461,7 @@
   "contact": {
     "title": "اتصل بنا",
     "subtitle": "تواصل معنا",
-    "pageDescription": "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات أو اقتراحات أو للحصول على استشارة طبية متخصصة",
+    "pageDescription": "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات أو اقتراحات أو للحصول على توجيه غذائي متخصص",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "message": "الرسالة",
@@ -470,7 +470,7 @@
     "success": "تم إرسال الرسالة بنجاح!",
     "error": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
     "generalFeedback": "تعليقات عامة",
-    "medicalConsultation": "استشارة طبية",
+    "medicalConsultation": "توجيه غذائي",
     "sendMessage": "أرسل لنا رسالة",
     "feedbackDescription": "لديك اقتراحات أو وجدت مشكلة؟ أخبرنا عبر البريد الإلكتروني",
     "emailUs": "البريد الإلكتروني",
@@ -498,7 +498,7 @@
     "getInTouch": "تواصل معنا",
     "nutritionAssessment": "تقييم التغذية",
     "aiTools": "أدوات الذكاء الاصطناعي",
-    "medicalConsultation": "استشارة طبية",
+    "medicalConsultation": "توجيه غذائي",
     "knowledgeCenter": "مركز المعرفة",
     "aboutPlatform": "عن المنصة",
     "contactUs": "تواصل معنا",
@@ -608,7 +608,7 @@
       "description": "تحليل شامل ودقيق لحالتك التغذوية باستخدام أحدث تقنيات الذكاء الاصطناعي."
     },
     "medical_consultation": {
-      "title": "استشارات طبية متخصصة",
+      "title": "توجيهات غذائية متخصصة",
       "description": "تواصل مباشر مع نخبة من الأطباء وأخصائيي التغذية للحصول على رعاية شخصية."
     },
     "knowledge_center": {

@@ -46,7 +46,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ allItems, isRTL }) => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-white btn-contrast">
-                {isRTL ? 'الاستشارات الطبية' : 'Medical Consultations'}
+                {isRTL ? 'التوجيهات الغذائية' : 'Nutritional Guidance'}
               </p>
               <p className="text-2xl font-bold text-white btn-contrast">
                 {allItems.filter(item => item.type === 'consultation').length}

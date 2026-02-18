@@ -236,7 +236,7 @@ export const CLINICAL_DATA: { en: ClinicalDataStructure; ar: ClinicalDataStructu
                 status: "سمنة",
                 message: "الوزن قد يؤثر على الصحة على المدى الطويل.",
                 action: "- عجز منظم\n- لا أقل من 1200 سعرة\n- إشراف طبي إذا BMI ≥ 35",
-                warning: "يرجى استشارة طبيب مختص للمتابعة.",
+                warning: "يرجى استشارة أخصائي تغذية للمتابعة.",
                 mealPlan: {
                     breakfast: ["فول بدون زيت أو بيض مسلوق"],
                     snacks1: ["فاكهة"],

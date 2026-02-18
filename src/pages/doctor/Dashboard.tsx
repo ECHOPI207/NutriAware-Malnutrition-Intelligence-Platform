@@ -44,7 +44,7 @@ import { UserDirectory } from '@/components/users/UserDirectory';
 
 const DoctorDashboard: React.FC = () => {
   const { i18n } = useTranslation();
-  const { user, logout } = useAuth();
+  const { user, userProfile, logout } = useAuth(); // Destructure userProfile
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [timeRange, setTimeRange] = useState<'7d' | '30d'>('7d');
@@ -72,7 +72,7 @@ const DoctorDashboard: React.FC = () => {
     deleteItem,
     closeConsultation,
     toggleConsultationLock,
-    userProfile
+    userProfile: _msgUserProfile
   } = useMessages({ enableMessages: true, enableConsultations: false });
 
   const isRTL = i18n.language === 'ar';
@@ -95,7 +95,7 @@ const DoctorDashboard: React.FC = () => {
       <div className={`min-h-screen flex items-center justify-center ${isRTL ? 'rtl' : 'ltr'}`}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">{isRTL ? 'جاري تحميل لوحة تحكم الطبيب...' : 'Loading Doctor Dashboard...'}</p>
+          <p className="text-muted-foreground">{isRTL ? 'جاري تحميل لوحة تحكم أخصائي التغذية...' : 'Loading Nutrition Specialist Dashboard...'}</p>
         </div>
       </div>
     );
@@ -110,12 +110,12 @@ const DoctorDashboard: React.FC = () => {
             <div className="space-y-2">
               <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
                 <Stethoscope className="h-6 w-6 md:h-8 md:w-8 text-white/90" />
-                {isRTL ? 'لوحة تحكم الطبيب' : 'Doctor Dashboard'}
+                {isRTL ? 'لوحة تحكم أخصائي التغذية' : 'Nutrition Specialist Dashboard'}
               </h1>
               <p className="text-white/80 text-sm md:text-base max-w-xl">
-                {isRTL ? `مرحباً د. ${user?.displayName || 'الطبيب'} - إدارة المرضى والتحليلات الطبية` : `Welcome Dr. ${user?.displayName || 'Doctor'} - Patient management and medical analytics`}
-              </p>
-            </div>
+                {isRTL ? `مرحباً أخصائي ${userProfile?.displayName || user?.displayName || 'التغذية'} - إدارة الحالات والتحليلات التغذوية` : `Welcome Specialist ${userProfile?.displayName || user?.displayName || 'Nutritionist'} - Patient management and nutritional analytics`}
+              </p >
+            </div >
             <div className="flex flex-wrap gap-2">
               <Button variant="outline" size="sm" onClick={() => setTimeRange('7d')} className={`bg-white/10 border-white/20 text-white hover:bg-white/20 ${timeRange === '7d' ? 'bg-white/20 border-white' : ''}`}>
                 {isRTL ? '7 أيام' : '7 Days'}
@@ -132,8 +132,8 @@ const DoctorDashboard: React.FC = () => {
                 {isRTL ? 'خروج' : 'Exit'}
               </Button>
             </div>
-          </div>
-        </div>
+          </div >
+        </div >
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -393,8 +393,8 @@ const DoctorDashboard: React.FC = () => {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
-    </ProtectedRoute>
+      </div >
+    </ProtectedRoute >
   );
 };
 

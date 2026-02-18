@@ -38,7 +38,7 @@ interface User {
 export const UserDirectory: React.FC = () => {
   const { i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
-  
+
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -67,7 +67,7 @@ export const UserDirectory: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const roleMap = {
       admin: { label: isRTL ? 'مدير النظام' : 'Admin', variant: 'destructive' as const, icon: Shield },
-      doctor: { label: isRTL ? 'طبيب' : 'Doctor', variant: 'default' as const, icon: Stethoscope },
+      doctor: { label: isRTL ? 'أخصائي تغذية علاجية' : 'Clinical Nutritionist', variant: 'default' as const, icon: Stethoscope },
       nutritionist: { label: isRTL ? 'أخصائي تغذية' : 'Nutritionist', variant: 'secondary' as const, icon: Stethoscope },
       user: { label: isRTL ? 'مستخدم' : 'User', variant: 'outline' as const, icon: Users }
     };
@@ -84,11 +84,11 @@ export const UserDirectory: React.FC = () => {
   };
 
   const filteredUsers = users.filter(user => {
-    const matchesSearch = 
+    const matchesSearch =
       user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.displayName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = roleFilter === 'all' || user.role === roleFilter;
-    
+
     return matchesSearch && matchesRole;
   });
 

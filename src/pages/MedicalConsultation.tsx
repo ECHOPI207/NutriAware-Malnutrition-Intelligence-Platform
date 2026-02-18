@@ -5,8 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import {
-  Stethoscope,
-  AlertTriangle
+  Stethoscope
 } from 'lucide-react';
 
 const MedicalConsultation: React.FC = () => {
@@ -23,26 +22,47 @@ const MedicalConsultation: React.FC = () => {
     }
   }, [user, userProfile, navigate]);
 
-  // Only show for doctors and admins
-  if (!user || !userProfile || !['doctor', 'admin', 'nutritionist'].includes(userProfile.role)) {
+  // Not logged in — show friendly message to register
+  if (!user) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <Card>
-          <CardContent className="text-center py-8">
-            <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">
-              {isRTL ? 'غير مصرح' : 'Unauthorized'}
+        <Card className="max-w-lg mx-auto border-0 shadow-2xl">
+          <CardContent className="text-center py-10 px-6">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Stethoscope className="h-8 w-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">
+              {isRTL ? 'خدمة التوجيه الغذائي' : 'Nutritional Guidance Service'}
             </h3>
-            <p className="text-muted-foreground mb-4">
-              {isRTL ? 'هذه الصفحة مخصصة للأطباء والإداريين فقط' : 'This page is for doctors and administrators only'}
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              {isRTL
+                ? 'هذه الخدمة متاحة للمسجلين على الموقع فقط. سجّل حسابك الآن حتى نتمكن من التواصل معك بسهولة وتقديم التوجيه الغذائي المناسب لحالتك.'
+                : 'This service is available for registered users only. Create your account now so we can easily communicate with you and provide the right nutritional guidance for your case.'}
             </p>
-            <Button onClick={() => navigate('/medical-consultation')}>
-              {isRTL ? 'الذهاب للتوجيهات الغذائية' : 'Go to Nutritional Guidance'}
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button onClick={() => navigate('/auth/login')} size="lg" className="font-bold">
+                {isRTL ? 'تسجيل الدخول' : 'Login'}
+              </Button>
+              <Button onClick={() => navigate('/auth/register')} variant="outline" size="lg" className="font-bold">
+                {isRTL ? 'إنشاء حساب جديد' : 'Create Account'}
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
     );
+  }
+
+  // Logged in regular users → redirect to consultation page
+  if (userProfile?.role === 'user') {
+    navigate('/medical-consultation');
+    return null;
+  }
+
+  // Non doctor/admin/nutritionist — shouldn't reach here, but fallback
+  if (!userProfile || !['doctor', 'admin', 'nutritionist'].includes(userProfile.role)) {
+    navigate('/medical-consultation');
+    return null;
   }
 
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-// Firebase page tracking stub - TODO: Implement with Firebase Analytics
+import { trackPageView as trackFirebaseVisit } from '@/services/visitorTracking';
 
 export const usePageTracking = () => {
     const location = useLocation();
@@ -26,6 +26,9 @@ export const usePageTracking = () => {
                     timestamp: new Date().toISOString()
                 });
                 localStorage.setItem('page_views', JSON.stringify(pageViews.slice(-100))); // Keep last 100 views
+
+                // Track in Firebase for admin analytics
+                trackFirebaseVisit();
             } catch (error) {
                 // Silently fail for analytics to not disturb user experience
                 if (import.meta.env.DEV) {

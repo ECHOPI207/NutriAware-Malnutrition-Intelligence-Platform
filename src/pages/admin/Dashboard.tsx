@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { collection, getDocs, query, orderBy, getCountFromServer, where, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { getDailyVisits, getTodayVisits, type DailyVisitData } from '@/services/visitorTracking';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -19,7 +20,8 @@ import {
   User,
   Lock,
   Database,
-  FileText
+  FileText,
+  Eye
 } from 'lucide-react';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 
@@ -81,6 +83,8 @@ const AdminDashboard: React.FC = () => {
     bmiCalculations: 0,
     childAssessments: 0
   });
+  const [visitorData, setVisitorData] = useState<DailyVisitData[]>([]);
+  const [todayVisitCount, setTodayVisitCount] = useState(0);
 
   const isRTL = i18n.language === 'ar';
 
@@ -91,12 +95,24 @@ const AdminDashboard: React.FC = () => {
   const loadAdminDashboardData = async () => {
     try {
       setLoading(true);
-      await loadSystemStats();
+      await Promise.all([
+        loadSystemStats(),
+        loadVisitorData(),
+      ]);
     } catch (error) {
       console.error('Error loading admin dashboard data:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const loadVisitorData = async () => {
+    const [visits, today] = await Promise.all([
+      getDailyVisits(14),
+      getTodayVisits(),
+    ]);
+    setVisitorData(visits);
+    setTodayVisitCount(today);
   };
 
   const loadSystemStats = async () => {
@@ -355,6 +371,105 @@ const AdminDashboard: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Daily Visitor Analytics Chart */}
+          <Card className="border-none shadow-md mb-8 overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white">
+              <CardTitle className="flex items-center gap-2 text-white">
+                <Eye className="w-5 h-5" />
+                {isRTL ? 'إحصائيات الزوار اليومية' : 'Daily Visitor Analytics'}
+              </CardTitle>
+              <CardDescription className="text-white/80">
+                {isRTL ? `زوار اليوم: ${todayVisitCount} — آخر 14 يوم` : `Today: ${todayVisitCount} visitors — Last 14 days`}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-6">
+              {visitorData.length === 0 ? (
+                <div className="text-center py-12 text-muted-foreground">
+                  <Eye className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                  <p>{isRTL ? 'لا توجد بيانات زيارات بعد' : 'No visitor data yet'}</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {/* Today highlight */}
+                  <div className="flex items-center justify-between p-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold shadow-md">
+                        <Eye className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-indigo-900 dark:text-indigo-100">{isRTL ? 'زوار اليوم' : "Today's Visitors"}</p>
+                        <p className="text-xs text-indigo-600 dark:text-indigo-400">{new Date().toLocaleDateString('ar-EG', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+                      </div>
+                    </div>
+                    <div className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">{todayVisitCount}</div>
+                  </div>
+
+                  {/* Bar chart */}
+                  <div className="mt-6">
+                    <div className="flex items-end gap-1 h-40">
+                      {visitorData.map((day, i) => {
+                        const maxCount = Math.max(...visitorData.map(d => d.count), 1);
+                        const heightPercent = (day.count / maxCount) * 100;
+                        const isToday = i === visitorData.length - 1;
+                        return (
+                          <div key={day.date} className="flex-1 flex flex-col items-center gap-1 group relative">
+                            {/* Tooltip */}
+                            <div className="absolute -top-8 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                              {day.label}: {day.count} {isRTL ? 'زائر' : 'visits'}
+                            </div>
+                            {/* Count label */}
+                            <span className="text-[10px] font-bold text-muted-foreground">{day.count}</span>
+                            {/* Bar */}
+                            <div
+                              className={`w-full rounded-t-md transition-all duration-300 ${isToday
+                                  ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
+                                  : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
+                                }`}
+                              style={{ height: `${Math.max(heightPercent, 4)}%`, minHeight: '4px' }}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {/* Date labels */}
+                    <div className="flex gap-1 mt-2">
+                      {visitorData.map((day, i) => (
+                        <div key={day.date} className="flex-1 text-center">
+                          <span className={`text-[9px] ${i === visitorData.length - 1
+                              ? 'font-bold text-indigo-600 dark:text-indigo-400'
+                              : 'text-muted-foreground'
+                            }`}>
+                            {day.label.split(' ')[0]}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Summary stats row */}
+                  <div className="grid grid-cols-3 gap-4 mt-4">
+                    <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-900">
+                      <p className="text-2xl font-bold text-foreground">{visitorData.reduce((sum, d) => sum + d.count, 0)}</p>
+                      <p className="text-xs text-muted-foreground">{isRTL ? 'إجمالي الزيارات' : 'Total Visits'}</p>
+                    </div>
+                    <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-900">
+                      <p className="text-2xl font-bold text-foreground">
+                        {visitorData.length > 0 ? Math.round(visitorData.reduce((sum, d) => sum + d.count, 0) / visitorData.length) : 0}
+                      </p>
+                      <p className="text-xs text-muted-foreground">{isRTL ? 'متوسط يومي' : 'Daily Average'}</p>
+                    </div>
+                    <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-900">
+                      <p className="text-2xl font-bold text-foreground">
+                        {visitorData.length > 0 ? Math.max(...visitorData.map(d => d.count)) : 0}
+                      </p>
+                      <p className="text-xs text-muted-foreground">{isRTL ? 'أعلى يوم' : 'Peak Day'}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           {/* System Management Actions */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/features/auth/firebase-auth-context';
@@ -26,7 +26,8 @@ import {
   Download,
   Stethoscope,
   Heart,
-  FileText
+  FileText,
+  Eye
 } from 'lucide-react';
 import {
   Table,
@@ -41,6 +42,7 @@ import { MessageList } from '@/components/messages/MessageList';
 import { useDoctorStats } from './useDoctorStats';
 import { getBMICategoryLabel, getBMICategoryStatus } from '@/lib/bmi-utils';
 import { UserDirectory } from '@/components/users/UserDirectory';
+import { getDailyVisits, getTodayVisits, type DailyVisitData } from '@/services/visitorTracking';
 
 const DoctorDashboard: React.FC = () => {
   const { i18n } = useTranslation();
@@ -76,6 +78,17 @@ const DoctorDashboard: React.FC = () => {
   } = useMessages({ enableMessages: true, enableConsultations: false });
 
   const isRTL = i18n.language === 'ar';
+  const [visitorData, setVisitorData] = useState<DailyVisitData[]>([]);
+  const [todayVisitCount, setTodayVisitCount] = useState(0);
+
+  useEffect(() => {
+    const loadVisitors = async () => {
+      const [visits, today] = await Promise.all([getDailyVisits(14), getTodayVisits()]);
+      setVisitorData(visits);
+      setTodayVisitCount(today);
+    };
+    loadVisitors();
+  }, []);
 
   const handleExportReport = () => {
     // Export functionality
@@ -205,6 +218,86 @@ const DoctorDashboard: React.FC = () => {
                 </Card>
               </div>
 
+              {/* Daily Visitor Analytics */}
+              <Card className="border-none shadow-md overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white">
+                  <CardTitle className="flex items-center gap-2 text-white text-lg">
+                    <Eye className="w-5 h-5" />
+                    {isRTL ? 'إحصائيات الزوار اليومية' : 'Daily Visitor Analytics'}
+                  </CardTitle>
+                  <CardDescription className="text-white/80">
+                    {isRTL ? `زوار اليوم: ${todayVisitCount} — آخر 14 يوم` : `Today: ${todayVisitCount} visitors — Last 14 days`}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6">
+                  {visitorData.length === 0 ? (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <Eye className="w-10 h-10 mx-auto mb-2 opacity-30" />
+                      <p>{isRTL ? 'لا توجد بيانات زيارات بعد' : 'No visitor data yet'}</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-full bg-indigo-500 text-white flex items-center justify-center shadow-md">
+                            <Eye className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-indigo-900 dark:text-indigo-100 text-sm">{isRTL ? 'زوار اليوم' : "Today's Visitors"}</p>
+                          </div>
+                        </div>
+                        <div className="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">{todayVisitCount}</div>
+                      </div>
+                      <div className="flex items-end gap-1 h-32">
+                        {visitorData.map((day, i) => {
+                          const maxCount = Math.max(...visitorData.map(d => d.count), 1);
+                          const heightPercent = (day.count / maxCount) * 100;
+                          const isToday = i === visitorData.length - 1;
+                          return (
+                            <div key={day.date} className="flex-1 flex flex-col items-center gap-1 group relative">
+                              <div className="absolute -top-8 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                                {day.label}: {day.count}
+                              </div>
+                              <span className="text-[10px] font-bold text-muted-foreground">{day.count}</span>
+                              <div
+                                className={`w-full rounded-t-md transition-all duration-300 ${isToday
+                                    ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
+                                    : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
+                                  }`}
+                                style={{ height: `${Math.max(heightPercent, 4)}%`, minHeight: '4px' }}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="flex gap-1">
+                        {visitorData.map((day, i) => (
+                          <div key={day.date} className="flex-1 text-center">
+                            <span className={`text-[9px] ${i === visitorData.length - 1 ? 'font-bold text-indigo-600' : 'text-muted-foreground'}`}>
+                              {day.label.split(' ')[0]}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-3 gap-3 mt-3">
+                        <div className="text-center p-2 rounded-lg bg-slate-50 dark:bg-slate-900">
+                          <p className="text-xl font-bold">{visitorData.reduce((s, d) => s + d.count, 0)}</p>
+                          <p className="text-[10px] text-muted-foreground">{isRTL ? 'إجمالي' : 'Total'}</p>
+                        </div>
+                        <div className="text-center p-2 rounded-lg bg-slate-50 dark:bg-slate-900">
+                          <p className="text-xl font-bold">{visitorData.length > 0 ? Math.round(visitorData.reduce((s, d) => s + d.count, 0) / visitorData.length) : 0}</p>
+                          <p className="text-[10px] text-muted-foreground">{isRTL ? 'متوسط' : 'Avg'}</p>
+                        </div>
+                        <div className="text-center p-2 rounded-lg bg-slate-50 dark:bg-slate-900">
+                          <p className="text-xl font-bold">{visitorData.length > 0 ? Math.max(...visitorData.map(d => d.count)) : 0}</p>
+                          <p className="text-[10px] text-muted-foreground">{isRTL ? 'أعلى' : 'Peak'}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card className="border-none shadow-md">
                   <CardHeader>
@@ -285,9 +378,9 @@ const DoctorDashboard: React.FC = () => {
                           const status = getBMICategoryStatus(rawCategory);
                           const cls =
                             status === 'error' ? 'text-red-500 border-red-200 bg-red-50' :
-                            status === 'warning' ? 'text-yellow-500 border-yellow-200 bg-yellow-50' :
-                            status === 'success' ? 'text-green-500 border-green-200 bg-green-50' :
-                            'text-blue-500 border-blue-200 bg-blue-50';
+                              status === 'warning' ? 'text-yellow-500 border-yellow-200 bg-yellow-50' :
+                                status === 'success' ? 'text-green-500 border-green-200 bg-green-50' :
+                                  'text-blue-500 border-blue-200 bg-blue-50';
                           return (
                             <TableRow key={i} className="hover:bg-muted/50">
                               <TableCell className="font-medium">{p.childName || p.name || 'Patient ' + (i + 1)}</TableCell>

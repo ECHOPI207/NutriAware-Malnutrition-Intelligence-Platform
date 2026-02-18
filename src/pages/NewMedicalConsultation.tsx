@@ -568,7 +568,7 @@ const NewMedicalConsultation: React.FC = () => {
                   </span>
                 </CardTitle>
                 <CardDescription className="text-lg mt-2 font-medium">
-                  {isRTL ? 'سنقوم بطرح بعض الأسئلة لمساعدة الطبيب في فهم حالتك بشكل أفضل' : 'We will ask some questions to help the doctor better understand your condition'}
+                  {isRTL ? 'سنقوم بطرح بعض الأسئلة لمساعدة أخصائي التغذية في فهم حالتك بشكل أفضل' : 'We will ask some questions to help the nutrition specialist better understand your condition'}
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center space-y-8 px-6 sm:px-10 pb-10">
@@ -577,7 +577,7 @@ const NewMedicalConsultation: React.FC = () => {
                     <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
                       <User className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <span className="font-bold text-foreground">{isRTL ? 'معلومات المريض' : 'Patient Information'}</span>
+                    <span className="font-bold text-foreground">{isRTL ? 'معلومات الحالة' : 'Case Information'}</span>
                     <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'البيانات الشخصية والعمر' : 'Personal data & age'}</span>
                   </div>
                   <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-2xl border border-border/50 hover:bg-muted/50 transition-colors">
@@ -591,8 +591,8 @@ const NewMedicalConsultation: React.FC = () => {
                     <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-3">
                       <MessageCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
                     </div>
-                    <span className="font-bold text-foreground">{isRTL ? 'السؤال الطبي' : 'Medical Question'}</span>
-                    <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'استفسارك للطبيب' : 'Your inquiry for doctor'}</span>
+                    <span className="font-bold text-foreground">{isRTL ? 'السؤال التغذوي' : 'Nutritional Question'}</span>
+                    <span className="text-xs text-muted-foreground mt-1">{isRTL ? 'استفسارك لأخصائي التغذية' : 'Your inquiry for the specialist'}</span>
                   </div>
                 </div>
 
@@ -769,8 +769,8 @@ const NewMedicalConsultation: React.FC = () => {
                                     >
                                       <div
                                         className={`max-w-[70%] p-3 rounded-lg ${message.senderType === 'patient'
-                                            ? 'bg-primary text-primary-foreground'
-                                            : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700'
+                                          ? 'bg-primary text-primary-foreground'
+                                          : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700'
                                           }`}
                                       >
                                         <div className="flex items-center gap-2 mb-1">
@@ -813,7 +813,7 @@ const NewMedicalConsultation: React.FC = () => {
                                     id={`message-${consultation.id}`}
                                     value={newMessage}
                                     onChange={(e) => setNewMessage(e.target.value)}
-                                    placeholder={isRTL ? 'اكتب رسالة للطبيب...' : 'Write a message to the doctor...'}
+                                    placeholder={isRTL ? 'اكتب رسالة لأخصائي التغذية...' : 'Write a message to the specialist...'}
                                     rows={3}
                                   />
                                   <Button

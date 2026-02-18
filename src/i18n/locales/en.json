@@ -504,7 +504,7 @@
     },
     "roles": {
       "professor": "Professor",
-      "doctor": "Doctor",
+      "doctor": "Nutrition Specialist",
       "student": "Student"
     }
   },
@@ -514,12 +514,12 @@
       "description": "Comprehensive analysis of your nutritional status using advanced AI technology."
     },
     "medical_consultation": {
-      "title": "Specialized Consultation",
-      "description": "Direct connection with top doctors and nutritionists for personalized care."
+      "title": "Specialized Nutritional Guidance",
+      "description": "Direct connection with top nutrition specialists for personalized care."
     },
     "knowledge_center": {
       "title": "Knowledge Library",
-      "description": "Your trusted source for medical and ending nutrition info, backed by scientific research."
+      "description": "Your trusted source for nutritional info, backed by scientific research."
     },
     "ai_tools": {
       "title": "Smart Planning Tools",

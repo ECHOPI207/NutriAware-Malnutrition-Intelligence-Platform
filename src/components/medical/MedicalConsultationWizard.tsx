@@ -258,8 +258,8 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
               <div
                 onClick={() => updateFormData('consultationType', 'self')}
                 className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${formData.consultationType === 'self'
-                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
-                    : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
+                  ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
+                  : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
                   }`}
               >
                 <RadioGroupItem value="self" id="self" className="sr-only" />
@@ -283,8 +283,8 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
               <div
                 onClick={() => updateFormData('consultationType', 'child')}
                 className={`relative flex items-center space-x-4 rtl:space-x-reverse p-6 border-2 rounded-2xl cursor-pointer transition-all duration-300 ${formData.consultationType === 'child'
-                    ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
-                    : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
+                  ? 'border-primary bg-primary/5 shadow-md shadow-primary/10'
+                  : 'border-border/60 hover:border-primary/50 hover:bg-muted/30'
                   }`}
               >
                 <RadioGroupItem value="child" id="child" className="sr-only" />
@@ -715,10 +715,10 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
           <div className="space-y-6">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-2">
-                {isRTL ? 'سؤالك الطبي' : 'Your Medical Question'}
+                {isRTL ? 'سؤالك التغذوي' : 'Your Nutritional Question'}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {isRTL ? 'اكتب سؤالك أو استفسارك الطبي بالتفصيل' : 'Write your medical question or inquiry in detail'}
+                {isRTL ? 'اكتب سؤالك أو استفسارك التغذوي بالتفصيل' : 'Write your nutritional question or inquiry in detail'}
               </p>
             </div>
 
@@ -732,7 +732,7 @@ const MedicalConsultationWizard: React.FC<MedicalConsultationWizardProps> = ({
                   id="mainQuestion"
                   value={formData.mainQuestion}
                   onChange={(e) => updateFormData('mainQuestion', e.target.value)}
-                  placeholder={isRTL ? 'اكتب سؤالك الطبي بالتفصيل...' : 'Write your medical question in detail...'}
+                  placeholder={isRTL ? 'اكتب سؤالك التغذوي بالتفصيل...' : 'Write your nutritional question in detail...'}
                   rows={5}
                   className="min-h-[120px]"
                 />

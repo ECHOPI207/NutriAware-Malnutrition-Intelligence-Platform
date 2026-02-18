@@ -684,36 +684,34 @@ const ProjectEvaluation = () => {
                             <div
                               key={item}
                               className={cn(
-                                "flex items-center space-x-3 space-x-reverse p-3 rounded-lg border transition-all cursor-pointer",
+                                "flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer select-none",
                                 isChecked
                                   ? (item === NO_ISSUES
-                                    ? "bg-green-50 border-green-200 dark:bg-green-900/10 dark:border-green-800"
-                                    : "bg-red-50 border-red-200 dark:bg-red-900/10 dark:border-red-800")
-                                  : "bg-card hover:bg-accent"
+                                    ? "bg-green-50 border-green-300 dark:bg-green-900/10 dark:border-green-800"
+                                    : "bg-red-50 border-red-300 dark:bg-red-900/10 dark:border-red-800")
+                                  : "bg-card hover:bg-accent border-dashed"
                               )}
-                              onClick={(e) => {
-                                e.preventDefault();
+                              onClick={() => {
                                 const current: string[] = field.value || [];
                                 if (isChecked) {
-                                  // Uncheck this item
                                   field.onChange(current.filter((v: string) => v !== item));
                                 } else if (item === NO_ISSUES) {
-                                  // "No issues" selected → clear all others, keep only this
                                   field.onChange([NO_ISSUES]);
                                 } else {
-                                  // Selecting a specific issue → remove "no issues" if present
                                   field.onChange([...current.filter((v: string) => v !== NO_ISSUES), item]);
                                 }
                               }}
                             >
-                              <Checkbox
-                                checked={isChecked}
-                                tabIndex={-1}
-                                className={item === NO_ISSUES && isChecked
-                                  ? "data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
-                                  : "data-[state=checked]:bg-red-500 data-[state=checked]:border-red-500"
-                                }
-                              />
+                              <div className={cn(
+                                "h-5 w-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors",
+                                isChecked
+                                  ? (item === NO_ISSUES
+                                    ? "bg-green-500 border-green-500 text-white"
+                                    : "bg-red-500 border-red-500 text-white")
+                                  : "border-muted-foreground/40 bg-background"
+                              )}>
+                                {isChecked && <CheckCircle2 size={14} />}
+                              </div>
                               <span className={cn("text-sm font-medium",
                                 isChecked
                                   ? (item === NO_ISSUES ? "text-green-700 dark:text-green-400" : "text-red-700 dark:text-red-400")

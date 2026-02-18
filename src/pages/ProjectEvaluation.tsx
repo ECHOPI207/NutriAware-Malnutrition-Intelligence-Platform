@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -63,12 +63,12 @@ const evaluationSchema = z.object({
 type EvaluationFormValues = z.infer<typeof evaluationSchema>;
 
 const LikertOption = ({ val, label, icon: Icon, selected, onClick }: any) => (
-  <div 
+  <div
     onClick={onClick}
     className={cn(
       "flex flex-col items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 w-full sm:w-auto flex-1 min-w-[70px]",
-      selected 
-        ? "border-primary bg-primary/10 text-primary shadow-sm scale-105" 
+      selected
+        ? "border-primary bg-primary/10 text-primary shadow-sm scale-105"
         : "border-muted bg-card hover:bg-accent/50 hover:border-primary/50 text-muted-foreground"
     )}
   >
@@ -84,7 +84,7 @@ const LikertScale = ({ name, question, control, rules = { required: true } }: { 
   const options = [
     { val: "1", label: "لا أوافق بشدة", icon: Frown },
     { val: "2", label: "لا أوافق", icon: Meh },
-    { val: "3", label: "محايد", icon:  Smile}, // Using generic icons for neutral
+    { val: "3", label: "محايد", icon: Smile }, // Using generic icons for neutral
     { val: "4", label: "أوافق", icon: ThumbsUp },
     { val: "5", label: "أوافق بشدة", icon: Heart }
   ];
@@ -108,10 +108,10 @@ const LikertScale = ({ name, question, control, rules = { required: true } }: { 
             {options.map((opt) => (
               <div key={opt.val} className="relative">
                 <RadioGroupItem value={opt.val} id={`${name}-${opt.val}`} className="peer sr-only" />
-                <LikertOption 
-                  val={opt.val} 
-                  label={opt.label} 
-                  icon={opt.icon} 
+                <LikertOption
+                  val={opt.val}
+                  label={opt.label}
+                  icon={opt.icon}
                   selected={field.value === opt.val}
                   onClick={() => field.onChange(opt.val)}
                 />
@@ -150,34 +150,34 @@ const DEFAULT_CONFIG = {
   ],
   intervention: {
     stories: [
-        { id: "q1", text: "كانت القصص جذابة بصرياً" },
-        { id: "q2", text: "كانت اللغة والمفاهيم مناسبة لعمر طفلي ويسهل عليه فهمها" },
-        { id: "q3", text: "المعلومات المقدمة ساهمت في تغيير مفاهيم خاطئة لدي أو لدى طفلي" },
-        { id: "q4", text: "نقلت القصة رسائل توعوية مفيدة حول التغذية الصحية" },
-        { id: "q5", text: "شجعت القصص طفلي على الاهتمام بالطعام الصحي" },
+      { id: "q1", text: "كانت القصص جذابة بصرياً" },
+      { id: "q2", text: "كانت اللغة والمفاهيم مناسبة لعمر طفلي ويسهل عليه فهمها" },
+      { id: "q3", text: "المعلومات المقدمة ساهمت في تغيير مفاهيم خاطئة لدي أو لدى طفلي" },
+      { id: "q4", text: "نقلت القصة رسائل توعوية مفيدة حول التغذية الصحية" },
+      { id: "q5", text: "شجعت القصص طفلي على الاهتمام بالطعام الصحي" },
     ],
     platform: {
-        usability: [
-            { id: "q1", text: "كان الدخول إلى المنصة عبر QR سهلاً" },
-            { id: "q2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها" },
-        ],
-        content: [
-            { id: "q1", text: "كانت المعلومات المقدمة موثوقة ومفيدة" },
-            { id: "q2", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق" },
-        ],
-        tools: [
-            { id: "q1", text: "كانت أدوات التقييم سهلة الفهم والاستخدام" },
-            { id: "q2", text: "ساعدتني نتائج التقييم على فهم حالة طفلي الغذائية" },
-        ],
-        consultation: [
-            { id: "q1", text: "كانت وسائل التواصل واضحة ومفهومة" },
-            { id: "q2", text: "شعرت بالاطمئنان لإمكانية طلب الاستشارة الغذائية" },
-        ]
+      usability: [
+        { id: "q1", text: "كان الدخول إلى المنصة عبر QR سهلاً" },
+        { id: "q2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها" },
+      ],
+      content: [
+        { id: "q1", text: "كانت المعلومات المقدمة موثوقة ومفيدة" },
+        { id: "q2", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق" },
+      ],
+      tools: [
+        { id: "q1", text: "كانت أدوات التقييم سهلة الفهم والاستخدام" },
+        { id: "q2", text: "ساعدتني نتائج التقييم على فهم حالة طفلي الغذائية" },
+      ],
+      consultation: [
+        { id: "q1", text: "كانت وسائل التواصل واضحة ومفهومة" },
+        { id: "q2", text: "شعرت بالاطمئنان لإمكانية طلب الاستشارة الغذائية" },
+      ]
     }
   },
   satisfaction: [
-      { id: "q1", text: "أنا راضٍ بشكل عام عن المشروع" },
-      { id: "q2", text: "أنصح غيري بالاطلاع على المنصة" },
+    { id: "q1", text: "أنا راضٍ بشكل عام عن المشروع" },
+    { id: "q2", text: "أنصح غيري بالاطلاع على المنصة" },
   ],
   behavioralIntent: [
     { id: "q1", text: "أنوي تطبيق تغييرات غذائية داخل المنزل" },
@@ -201,22 +201,22 @@ const ProjectEvaluation = () => {
 
   // Fetch Questions on Mount
 
-  useState(() => {
+  useEffect(() => {
     const fetchConfig = async () => {
-        try {
-            const docRef = doc(db, "system_settings", "survey_config");
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                // Merge with defaults to ensure safety
-                setSurveyConfig({ ...DEFAULT_CONFIG, ...docSnap.data() });
-            }
-        } catch (error) {
-            console.error("Failed to load survey questions:", error);
-            // Fallback is already set
+      try {
+        const docRef = doc(db, "system_settings", "survey_config");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          // Merge with defaults to ensure safety
+          setSurveyConfig({ ...DEFAULT_CONFIG, ...docSnap.data() });
         }
+      } catch (error) {
+        console.error("Failed to load survey questions:", error);
+        // Fallback is already set
+      }
     };
     fetchConfig();
-  });
+  }, []);
 
   const form = useForm<EvaluationFormValues>({
     resolver: zodResolver(evaluationSchema) as any,
@@ -274,17 +274,17 @@ const ProjectEvaluation = () => {
       toast({
         title: "تم الإرسال بنجاح",
         description: "تم إرسال تقييمك بنجاح، شكراً لمشاركتك!",
-        variant: "default", 
+        variant: "default",
         className: "bg-green-600 text-white border-none"
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error: any) {
       console.error("Submission Error Details:", error);
       // Show specific error if available
-      const errorMessage = error?.code === 'permission-denied' 
+      const errorMessage = error?.code === 'permission-denied'
         ? "عذراً، لا تملك الصلاحية لإرسال النموذج (خطأ في التصريح)."
         : error?.message || "حدث خطأ غير متوقع أثناء الإرسال.";
-        
+
       toast({
         variant: "destructive",
         title: "خطأ في الإرسال",
@@ -302,7 +302,7 @@ const ProjectEvaluation = () => {
       title: "بيانات ناقصة",
       description: "يرجى التأكد من ملء جميع الحقول المطلوبة والمميزة باللون الأحمر."
     });
-    
+
     // Find the first error and scroll to it recursively
     const findFirstErrorField = (errorObj: any, prefix = ''): string | null => {
       // If we are at a leaf node (has a message), return the current path
@@ -311,14 +311,14 @@ const ProjectEvaluation = () => {
       // Iterate through keys to find the first error
       for (const key in errorObj) {
         if (Object.prototype.hasOwnProperty.call(errorObj, key)) {
-            const newPrefix = prefix ? `${prefix}.${key}` : key;
-            const res = findFirstErrorField(errorObj[key], newPrefix);
-            if (res) return res;
+          const newPrefix = prefix ? `${prefix}.${key}` : key;
+          const res = findFirstErrorField(errorObj[key], newPrefix);
+          if (res) return res;
         }
       }
       return null;
     };
-    
+
     const firstErrorPath = findFirstErrorField(errors);
 
     if (firstErrorPath) {
@@ -333,15 +333,15 @@ const ProjectEvaluation = () => {
       let element: Element | null = null;
       for (const selector of selectors) {
         try {
-            element = document.querySelector(selector);
-            if (element) break;
-        } catch (e) {}
+          element = document.querySelector(selector);
+          if (element) break;
+        } catch (e) { }
       }
 
       // Fallback: Try finding a label that refers to it, or a section header nearby
       if (!element) {
-          // Sometimes radio groups don't have the exact name on the container, try searching by partial
-          element = document.querySelector(`[name^="${firstErrorPath.split('.')[0]}"]`);
+        // Sometimes radio groups don't have the exact name on the container, try searching by partial
+        element = document.querySelector(`[name^="${firstErrorPath.split('.')[0]}"]`);
       }
 
       if (element) {
@@ -389,8 +389,8 @@ const ProjectEvaluation = () => {
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12">
-          <motion.div 
-            initial={{ y: -20, opacity: 0 }} 
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             className="inline-block"
           >
@@ -399,7 +399,7 @@ const ProjectEvaluation = () => {
               {surveyConfig.meta?.title || "استبيان تقييم مشروع NutriAware"}
             </h1>
           </motion.div>
-          
+
           <div className="max-w-2xl mx-auto p-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed shadow-sm">
             <p className="font-medium text-slate-900 dark:text-slate-200">{surveyConfig.meta?.institution || "كلية تكنولوجيا العلوم الصحية التطبيقية - برنامج تكنولوجيا التغذية وسلامة الغذاء"}</p>
             <p>{surveyConfig.meta?.subtitle || "مشروع تخرج: سوء التغذية للأطفال"}</p>
@@ -407,14 +407,14 @@ const ProjectEvaluation = () => {
         </div>
 
         <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-10">
-          
+
           {/* Consent Form - Special Design */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <Card className="border-t-4 border-t-primary shadow-lg overflow-hidden border-x-0 border-b-0 md:border">
               <div className="bg-primary/5 p-6 border-b border-primary/10">
                 <h3 className="text-xl font-bold text-primary flex items-center gap-2">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm">1</span>
-                    نموذج الموافقة المستنيرة
+                  نموذج الموافقة المستنيرة
                 </h3>
               </div>
               <CardContent className="p-6 md:p-8 space-y-6">
@@ -424,7 +424,7 @@ const ProjectEvaluation = () => {
                   يهدف هذا الاستبيان إلى تقييم مشروع توعوي صحي يهدف إلى تحسين التغذية لدى الأطفال من خلال قصص قصيرة مصورة ومنصة إلكترونية تُعرف باسم NutriAware، والتي تحتوي على أدوات تقييم غذائي وتوصيات وخطط غذائية وذكاء اصطناعي وخدمات استشارة.
                   مشاركتكم طوعية بالكامل، ولا توجد أي مخاطر أو تبعات مترتبة على عدم المشاركة. جميع البيانات التي ستُجمع ستظل سرية ولن تُستخدم إلا لأغراض البحث العلمي وتحسين البرامج التعليمية.`}
                 </div>
-                
+
                 <div className="flex items-center p-4 bg-primary/5 rounded-lg border border-primary/20 transition-colors hover:bg-primary/10" dir="rtl">
                   <Controller
                     name="consent"
@@ -444,7 +444,7 @@ const ProjectEvaluation = () => {
                     )}
                   />
                 </div>
-                {form.formState.errors.consent && 
+                {form.formState.errors.consent &&
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-500 font-medium px-4">
                     ⚠️ {form.formState.errors.consent.message}
                   </motion.p>
@@ -456,27 +456,27 @@ const ProjectEvaluation = () => {
           {/* Demographics */}
           <Card className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
-              <SectionHeader 
-                title={surveyConfig.demographics?.title || "القسم الأول: البيانات الديموغرافية (لولي الأمر)"} 
-                description={surveyConfig.demographics?.description || "الهدف: تحديد المتغيرات المستقلة للتحليل."} 
+              <SectionHeader
+                title={surveyConfig.demographics?.title || "القسم الأول: البيانات الديموغرافية (لولي الأمر)"}
+                description={surveyConfig.demographics?.description || "الهدف: تحديد المتغيرات المستقلة للتحليل."}
               />
             </div>
             <CardContent className="p-6 md:p-8 space-y-8">
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="col-span-1 md:col-span-2 space-y-3">
-                   <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.parentName?.label || "اسم ولي الأمر (اختياري)"}</Label>
-                   <Controller
-                      name="demographics.parentName"
-                      control={form.control}
-                      render={({ field }) => (
-                        <input 
-                          {...field} 
-                          className="w-full p-3 rounded-lg border border-input bg-background text-foreground shadow-sm focus:outline-none focus:ring-1 focus:ring-primary"
-                          placeholder={surveyConfig.demographics?.fields?.parentName?.placeholder || "الاسم الثلاثي (اختياري)"}
-                        />
-                      )}
-                   />
+                  <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.parentName?.label || "اسم ولي الأمر (اختياري)"}</Label>
+                  <Controller
+                    name="demographics.parentName"
+                    control={form.control}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        className="w-full p-3 rounded-lg border border-input bg-background text-foreground shadow-sm focus:outline-none focus:ring-1 focus:ring-primary"
+                        placeholder={surveyConfig.demographics?.fields?.parentName?.placeholder || "الاسم الثلاثي (اختياري)"}
+                      />
+                    )}
+                  />
                 </div>
 
                 <div className="space-y-3">
@@ -487,15 +487,15 @@ const ProjectEvaluation = () => {
                     render={({ field }) => (
                       <RadioGroup id="demographics.relationship" onValueChange={field.onChange} value={field.value} className="grid grid-cols-3 gap-4" dir="rtl">
                         {(surveyConfig.demographics?.fields?.relationship?.options || ["أب", "أم", "أخرى"]).map((opt: string) => (
-                          <Label 
+                          <Label
                             key={opt}
                             className={cn(
                               "cursor-pointer rounded-xl border-2 p-4 text-center hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary peer-data-[state=checked]:text-primary [&:has([data-state=checked])]:border-primary [&:has([data-state=checked])]:bg-primary/5 [&:has([data-state=checked])]:text-primary transition-all",
                               field.value === opt ? "border-primary bg-primary/5 text-primary" : "border-muted"
                             )}
                           >
-                             <RadioGroupItem value={opt} id={`r-${opt}`} className="sr-only" />
-                             <span className="font-bold text-lg">{opt}</span>
+                            <RadioGroupItem value={opt} id={`r-${opt}`} className="sr-only" />
+                            <span className="font-bold text-lg">{opt}</span>
                           </Label>
                         ))}
                       </RadioGroup>
@@ -505,22 +505,22 @@ const ProjectEvaluation = () => {
 
                 <div className="space-y-3">
                   <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.parentAge?.label || "2. عمر ولي الأمر"} <span className="text-red-500">*</span></Label>
-                   <Controller
+                  <Controller
                     name="demographics.parentAge"
                     control={form.control}
                     render={({ field }) => (
                       <div id="demographics.parentAge" className="grid grid-cols-2 gap-3">
                         {(surveyConfig.demographics?.fields?.parentAge?.options || ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"]).map((opt: string) => (
-                           <div 
-                              key={opt}
-                              onClick={() => field.onChange(opt)}
-                              className={cn(
-                                "px-4 py-3 rounded-lg border text-center cursor-pointer transition-all text-sm font-medium",
-                                field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-md" : "bg-card hover:bg-accent hover:border-primary/50"
-                              )}
-                           >
-                             {opt}
-                           </div>
+                          <div
+                            key={opt}
+                            onClick={() => field.onChange(opt)}
+                            className={cn(
+                              "px-4 py-3 rounded-lg border text-center cursor-pointer transition-all text-sm font-medium",
+                              field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-md" : "bg-card hover:bg-accent hover:border-primary/50"
+                            )}
+                          >
+                            {opt}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -535,16 +535,16 @@ const ProjectEvaluation = () => {
                     render={({ field }) => (
                       <div id="demographics.education" className="flex flex-wrap gap-2">
                         {(surveyConfig.demographics?.fields?.education?.options || ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"]).map((opt: string) => (
-                           <div 
-                              key={opt}
-                              onClick={() => field.onChange(opt)}
-                              className={cn(
-                                "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
-                                field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm ring-2 ring-primary/20" : "bg-card hover:bg-accent"
-                              )}
-                           >
-                             {opt}
-                           </div>
+                          <div
+                            key={opt}
+                            onClick={() => field.onChange(opt)}
+                            className={cn(
+                              "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
+                              field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm ring-2 ring-primary/20" : "bg-card hover:bg-accent"
+                            )}
+                          >
+                            {opt}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -559,16 +559,16 @@ const ProjectEvaluation = () => {
                     render={({ field }) => (
                       <div id="demographics.childrenCount" className="grid grid-cols-3 gap-3">
                         {(surveyConfig.demographics?.fields?.childrenCount?.options || ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"]).map((opt: string) => (
-                           <div 
-                              key={opt}
-                              onClick={() => field.onChange(opt)}
-                              className={cn(
-                                "px-2 py-3 rounded-lg border text-center cursor-pointer transition-all text-sm font-medium flex items-center justify-center",
-                                field.value === opt ? "bg-primary text-primary-foreground border-primary" : "bg-card hover:bg-accent"
-                              )}
-                           >
-                             {opt}
-                           </div>
+                          <div
+                            key={opt}
+                            onClick={() => field.onChange(opt)}
+                            className={cn(
+                              "px-2 py-3 rounded-lg border text-center cursor-pointer transition-all text-sm font-medium flex items-center justify-center",
+                              field.value === opt ? "bg-primary text-primary-foreground border-primary" : "bg-card hover:bg-accent"
+                            )}
+                          >
+                            {opt}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -583,16 +583,16 @@ const ProjectEvaluation = () => {
                     render={({ field }) => (
                       <div id="demographics.childAge" className="grid grid-cols-2 md:grid-cols-5 gap-3">
                         {(surveyConfig.demographics?.fields?.childAge?.options || ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"]).map((opt: string) => (
-                           <div 
-                              key={opt}
-                              onClick={() => field.onChange(opt)}
-                              className={cn(
-                                "px-2 py-3 rounded-lg border text-center cursor-pointer transition-all text-xs md:text-sm font-medium flex items-center justify-center",
-                                field.value === opt ? "bg-primary text-primary-foreground border-primary" : "bg-card hover:bg-accent"
-                              )}
-                           >
-                             {opt}
-                           </div>
+                          <div
+                            key={opt}
+                            onClick={() => field.onChange(opt)}
+                            className={cn(
+                              "px-2 py-3 rounded-lg border text-center cursor-pointer transition-all text-xs md:text-sm font-medium flex items-center justify-center",
+                              field.value === opt ? "bg-primary text-primary-foreground border-primary" : "bg-card hover:bg-accent"
+                            )}
+                          >
+                            {opt}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -602,16 +602,16 @@ const ProjectEvaluation = () => {
             </CardContent>
           </Card>
 
-           {/* Health Indicators */}
+          {/* Health Indicators */}
           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
-              <SectionHeader 
-                title={surveyConfig.healthIndicators?.title || "القسم الثاني: المؤشرات الصحية (بيانات الطفل)"} 
-                description={surveyConfig.healthIndicators?.description || "الهدف: ربط الوعي بالحالة الصحية الواقعية"} 
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
+              <SectionHeader
+                title={surveyConfig.healthIndicators?.title || "القسم الثاني: المؤشرات الصحية (بيانات الطفل)"}
+                description={surveyConfig.healthIndicators?.description || "الهدف: ربط الوعي بالحالة الصحية الواقعية"}
               />
             </div>
             <CardContent className="p-6 md:p-8 space-y-8">
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.gender?.label || "6. جنس الطفل"} <span className="text-red-500">*</span></Label>
@@ -620,21 +620,21 @@ const ProjectEvaluation = () => {
                     control={form.control}
                     render={({ field }) => (
                       <RadioGroup id="healthIndicators.gender" onValueChange={field.onChange} value={field.value} className="flex gap-4" dir="rtl">
-                         {(surveyConfig.healthIndicators?.fields?.gender?.options || ["ذكر", "أنثى"]).map((opt: string) => (
-                           <Label
-                             key={opt}
-                             className={cn(
-                               "flex-1 px-4 py-6 rounded-xl border-2 text-center cursor-pointer transition-all font-bold text-lg flex flex-col items-center gap-2 hover:bg-accent",
-                               field.value === opt 
-                                 ? (opt === "ذكر" ? "bg-blue-50 border-blue-500 text-blue-700" : (opt === "أنثى" ? "bg-pink-50 border-pink-500 text-pink-700" : "bg-primary/5 border-primary text-primary"))
-                                 : "bg-card border-muted"
-                             )}
-                           >
-                              <RadioGroupItem value={opt} className="sr-only" />
-                              <span className="text-3xl">{opt === "ذكر" ? "👦" : (opt === "أنثى" ? "👧" : "👶")}</span>
-                              {opt}
-                           </Label>
-                         ))}
+                        {(surveyConfig.healthIndicators?.fields?.gender?.options || ["ذكر", "أنثى"]).map((opt: string) => (
+                          <Label
+                            key={opt}
+                            className={cn(
+                              "flex-1 px-4 py-6 rounded-xl border-2 text-center cursor-pointer transition-all font-bold text-lg flex flex-col items-center gap-2 hover:bg-accent",
+                              field.value === opt
+                                ? (opt === "ذكر" ? "bg-blue-50 border-blue-500 text-blue-700" : (opt === "أنثى" ? "bg-pink-50 border-pink-500 text-pink-700" : "bg-primary/5 border-primary text-primary"))
+                                : "bg-card border-muted"
+                            )}
+                          >
+                            <RadioGroupItem value={opt} className="sr-only" />
+                            <span className="text-3xl">{opt === "ذكر" ? "👦" : (opt === "أنثى" ? "👧" : "👶")}</span>
+                            {opt}
+                          </Label>
+                        ))}
                       </RadioGroup>
                     )}
                   />
@@ -646,18 +646,18 @@ const ProjectEvaluation = () => {
                     name="healthIndicators.weightPerception"
                     control={form.control}
                     render={({ field }) => (
-                       <div id="healthIndicators.weightPerception" className="flex flex-wrap gap-2">
+                      <div id="healthIndicators.weightPerception" className="flex flex-wrap gap-2">
                         {(surveyConfig.healthIndicators?.fields?.weightPerception?.options || ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"]).map((opt: string) => (
-                           <div 
-                              key={opt}
-                              onClick={() => field.onChange(opt)}
-                              className={cn(
-                                "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
-                                field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-card hover:bg-accent"
-                              )}
-                           >
-                             {opt}
-                           </div>
+                          <div
+                            key={opt}
+                            onClick={() => field.onChange(opt)}
+                            className={cn(
+                              "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
+                              field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm" : "bg-card hover:bg-accent"
+                            )}
+                          >
+                            {opt}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -666,52 +666,67 @@ const ProjectEvaluation = () => {
 
                 <div className="col-span-1 md:col-span-2 space-y-4 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
                   <Label className="text-base font-bold text-primary">{surveyConfig.healthIndicators?.fields?.healthIssues?.label || "8. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)"}</Label>
-                      <Controller
-                        name="healthIndicators.healthIssues"
-                        control={form.control}
-                        render={({ field }) => (
-                          <div id="healthIndicators.healthIssues" className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {(surveyConfig.healthIndicators?.fields?.healthIssues?.options || [
-                              "فقر دم (أنيميا)",
-                              "نقص فيتامين D",
-                              "سكري الأطفال",
-                              "حساسية طعام",
-                              "لا يعاني من أي مشاكل"
-                            ]).map((item: string) => (
-                              <div
-                                key={item}
-                                className={cn(
-                                  "flex items-center space-x-3 space-x-reverse p-3 rounded-lg border transition-all cursor-pointer",
-                                  field.value.includes(item) ? "bg-red-50 border-red-200 dark:bg-red-900/10 dark:border-red-800" : "bg-card hover:bg-accent"
-                                )}
-                                onClick={() => {
-                                  const current = field.value || [];
-                                  const updated = current.includes(item)
-                                    ? current.filter((v: string) => v !== item)
-                                    : [...current, item];
-                                  field.onChange(updated);
-                                }}
-                              >
-                                <Checkbox
-                                  checked={field.value.includes(item)}
-                                  onCheckedChange={(checked) => {
-                                    const current = field.value || [];
-                                    if (checked) {
-                                      field.onChange([...current, item]);
-                                    } else {
-                                      field.onChange(current.filter((v: string) => v !== item));
-                                    }
-                                  }}
-                                  className="data-[state=checked]:bg-red-500 data-[state=checked]:border-red-500"
-                                />
-                                <span className={cn("text-sm font-medium", field.value.includes(item) ? "text-red-700 dark:text-red-400" : "")}>{item}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      />
-                   <div className="flex items-center gap-2 mt-2">
-                     <span className="font-medium whitespace-nowrap">أخرى:</span>
+                  <Controller
+                    name="healthIndicators.healthIssues"
+                    control={form.control}
+                    render={({ field }) => (
+                      <div id="healthIndicators.healthIssues" className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {(surveyConfig.healthIndicators?.fields?.healthIssues?.options || [
+                          "فقر دم (أنيميا)",
+                          "نقص فيتامين D",
+                          "سكري الأطفال",
+                          "حساسية طعام",
+                          "لا يعاني من أي مشاكل"
+                        ]).map((item: string) => {
+                          const NO_ISSUES = "لا يعاني من أي مشاكل";
+                          const isChecked = (field.value || []).includes(item);
+                          return (
+                            <div
+                              key={item}
+                              className={cn(
+                                "flex items-center space-x-3 space-x-reverse p-3 rounded-lg border transition-all cursor-pointer",
+                                isChecked
+                                  ? (item === NO_ISSUES
+                                    ? "bg-green-50 border-green-200 dark:bg-green-900/10 dark:border-green-800"
+                                    : "bg-red-50 border-red-200 dark:bg-red-900/10 dark:border-red-800")
+                                  : "bg-card hover:bg-accent"
+                              )}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                const current: string[] = field.value || [];
+                                if (isChecked) {
+                                  // Uncheck this item
+                                  field.onChange(current.filter((v: string) => v !== item));
+                                } else if (item === NO_ISSUES) {
+                                  // "No issues" selected → clear all others, keep only this
+                                  field.onChange([NO_ISSUES]);
+                                } else {
+                                  // Selecting a specific issue → remove "no issues" if present
+                                  field.onChange([...current.filter((v: string) => v !== NO_ISSUES), item]);
+                                }
+                              }}
+                            >
+                              <Checkbox
+                                checked={isChecked}
+                                tabIndex={-1}
+                                className={item === NO_ISSUES && isChecked
+                                  ? "data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+                                  : "data-[state=checked]:bg-red-500 data-[state=checked]:border-red-500"
+                                }
+                              />
+                              <span className={cn("text-sm font-medium",
+                                isChecked
+                                  ? (item === NO_ISSUES ? "text-green-700 dark:text-green-400" : "text-red-700 dark:text-red-400")
+                                  : ""
+                              )}>{item}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  />
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="font-medium whitespace-nowrap">أخرى:</span>
                     <Controller
                       name="healthIndicators.otherHealthIssue"
                       control={form.control}
@@ -748,10 +763,10 @@ const ProjectEvaluation = () => {
                             )}
                           >
                             <div className={cn(
-                                  "h-4 w-4 rounded-full border flex items-center justify-center",
-                                  field.value.includes(item) ? "border-transparent" : "border-muted-foreground"
-                                )}>
-                                  {field.value.includes(item) && <CheckCircle2 size={16} />}
+                              "h-4 w-4 rounded-full border flex items-center justify-center",
+                              field.value.includes(item) ? "border-transparent" : "border-muted-foreground"
+                            )}>
+                              {field.value.includes(item) && <CheckCircle2 size={16} />}
                             </div>
                             {item}
                           </div>
@@ -766,12 +781,12 @@ const ProjectEvaluation = () => {
 
           {/* KAP Section - Redesigned Likert */}
           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b sticky top-0 z-10 opacity-95 backdrop-blur-sm">
-               <SectionHeader title="القسم الثالث: المعرفة والممارسات الغذائية (KAP)" />
-               <div className="flex justify-between items-center text-xs text-muted-foreground bg-white/50 dark:bg-black/20 p-2 rounded-lg">
-                 <span>1 = لا أوافق بشدة</span>
-                 <span>5 = أوافق بشدة</span>
-               </div>
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b sticky top-0 z-10 opacity-95 backdrop-blur-sm">
+              <SectionHeader title="القسم الثالث: المعرفة والممارسات الغذائية (KAP)" />
+              <div className="flex justify-between items-center text-xs text-muted-foreground bg-white/50 dark:bg-black/20 p-2 rounded-lg">
+                <span>1 = لا أوافق بشدة</span>
+                <span>5 = أوافق بشدة</span>
+              </div>
             </div>
             <CardContent className="p-6 md:p-8">
               <h3 className="flex items-center gap-2 font-bold text-lg mb-6 text-primary p-2 bg-primary/5 rounded-lg">
@@ -785,7 +800,7 @@ const ProjectEvaluation = () => {
               <div className="my-10 border-t-2 border-dashed" />
 
               <h3 className="flex items-center gap-2 font-bold text-lg mb-6 text-primary p-2 bg-primary/5 rounded-lg">
-                 <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+                <span className="w-1.5 h-6 bg-primary rounded-full"></span>
                 {surveyConfig.sectionTitles?.practices || "ب) الممارسات الغذائية داخل المنزل"}
               </h3>
               {surveyConfig.practices.map((q: any) => (
@@ -796,9 +811,9 @@ const ProjectEvaluation = () => {
 
           {/* Intervention Section */}
           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title={surveyConfig.sectionTitles?.intervention || "القسم الرابع: تقييم التدخل (Intervention Assessment)"} />
-             </div>
+            </div>
             <CardContent className="p-6 md:p-8">
               <h3 className="font-bold text-xl mb-6 text-slate-800 dark:text-slate-100">{surveyConfig.sectionTitles?.stories || "1. القصص القصيرة المصورة"}</h3>
               {surveyConfig.intervention.stories.map((q: any) => (
@@ -808,54 +823,54 @@ const ProjectEvaluation = () => {
               <div className="my-10 border-t-2 border-dashed" />
 
               <h3 className="font-bold text-xl mb-6 text-slate-800 dark:text-slate-100">2. منصة NutriAware الإلكترونية</h3>
-              
+
               <div className="pl-0 md:pl-4 space-y-8">
                 <div>
-                    <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.usability || "أ) قابلية الاستخدام"}</h4>
-                    {surveyConfig.intervention.platform.usability.map((q: any) => (
-                        <LikertScale key={q.id} name={`intervention.platform.usability.${q.id}`} question={q.text} control={form.control} />
-                    ))}
+                  <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.usability || "أ) قابلية الاستخدام"}</h4>
+                  {surveyConfig.intervention.platform.usability.map((q: any) => (
+                    <LikertScale key={q.id} name={`intervention.platform.usability.${q.id}`} question={q.text} control={form.control} />
+                  ))}
                 </div>
 
                 <div>
-                    <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.content || "ب) جودة المحتوى"}</h4>
-                    {surveyConfig.intervention.platform.content.map((q: any) => (
-                        <LikertScale key={q.id} name={`intervention.platform.content.${q.id}`} question={q.text} control={form.control} />
-                    ))}
+                  <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.content || "ب) جودة المحتوى"}</h4>
+                  {surveyConfig.intervention.platform.content.map((q: any) => (
+                    <LikertScale key={q.id} name={`intervention.platform.content.${q.id}`} question={q.text} control={form.control} />
+                  ))}
                 </div>
 
                 <div>
-                    <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.tools || "ج) أدوات التقييم والذكاء الاصطناعي"}</h4>
-                    {surveyConfig.intervention.platform.tools.map((q: any) => (
-                        <LikertScale key={q.id} name={`intervention.platform.tools.${q.id}`} question={q.text} control={form.control} />
-                    ))}
+                  <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">{surveyConfig.sectionTitles?.tools || "ج) أدوات التقييم والذكاء الاصطناعي"}</h4>
+                  {surveyConfig.intervention.platform.tools.map((q: any) => (
+                    <LikertScale key={q.id} name={`intervention.platform.tools.${q.id}`} question={q.text} control={form.control} />
+                  ))}
                 </div>
 
-                 <div>
-                    <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">د) التواصل والاستشارات</h4>
-                    {surveyConfig.intervention.platform.consultation.map((q: any) => (
-                        <LikertScale key={q.id} name={`intervention.platform.consultation.${q.id}`} question={q.text} control={form.control} />
-                    ))}
-                 </div>
+                <div>
+                  <h4 className="font-semibold text-lg mb-4 text-secondary-foreground bg-secondary/20 inline-block px-3 py-1 rounded-md">د) التواصل والاستشارات</h4>
+                  {surveyConfig.intervention.platform.consultation.map((q: any) => (
+                    <LikertScale key={q.id} name={`intervention.platform.consultation.${q.id}`} question={q.text} control={form.control} />
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
 
           {/* Satisfaction */}
           <Card className="shadow-md overflow-hidden bg-primary/5 border-primary/20">
-             <div className="p-6 border-b border-primary/10">
+            <div className="p-6 border-b border-primary/10">
               <SectionHeader title="القسم الخامس: الرضا العام" />
             </div>
             <CardContent className="p-6 md:p-8">
               {surveyConfig.satisfaction.map((q: any) => (
-                 <LikertScale key={q.id} name={`satisfaction.${q.id}`} question={q.text} control={form.control} />
+                <LikertScale key={q.id} name={`satisfaction.${q.id}`} question={q.text} control={form.control} />
               ))}
             </CardContent>
           </Card>
 
-           {/* Behavioral Intent */}
-           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
+          {/* Behavioral Intent */}
+          <Card className="shadow-md overflow-hidden">
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title="القسم السادس: الأثر السلوكي" />
             </div>
             <CardContent className="p-6 md:p-8">
@@ -865,9 +880,9 @@ const ProjectEvaluation = () => {
             </CardContent>
           </Card>
 
-           {/* Retrospective */}
-           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
+          {/* Retrospective */}
+          <Card className="shadow-md overflow-hidden">
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title="القسم السابع: تقييم ارتجاعي (Retrospective Self-assessment)" description="يرجى تقييم حالتك قبل المشروع وحالتك بعد المشروع" />
             </div>
             <CardContent className="p-6 md:p-8">
@@ -875,127 +890,127 @@ const ProjectEvaluation = () => {
                 {/* Knowledge */}
                 <div className="space-y-6">
                   <h4 className="font-bold text-xl text-center border-b pb-2">معرفتي بتغذية الأطفال</h4>
-                  
-                  <div className="space-y-4">
-                     {/* Before */}
-                     <div className="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
-                        <Label className="mb-4 block text-center text-muted-foreground font-semibold">قبل المشروع</Label>
-                        <Controller
-                            name="retrospective.knowledge.before"
-                            control={form.control}
-                             rules={{ required: true }}
-                            render={({ field }) => (
-                                <div className="flex justify-between gap-2">
-                                    {["منخفض", "متوسط", "عالٍ"].map(opt => (
-                                        <div 
-                                        key={opt}
-                                        onClick={() => field.onChange(opt)}
-                                        className={cn(
-                                            "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-medium text-sm",
-                                            field.value === opt ? "bg-slate-600 text-white shadow-md border-slate-600" : "bg-white dark:bg-slate-900 hover:border-slate-400"
-                                        )}
-                                        >
-                                        {opt}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        />
-                     </div>
 
-                     {/* After */}
-                     <div className="bg-primary/5 p-5 rounded-xl border border-primary/20">
-                        <Label className="mb-4 block text-center text-primary font-bold text-lg">بعد المشروع</Label>
-                        <Controller
-                            name="retrospective.knowledge.after"
-                            control={form.control}
-                             rules={{ required: true }}
-                            render={({ field }) => (
-                                <div className="flex justify-between gap-2">
-                                    {["منخفض", "متوسط", "عالٍ"].map(opt => (
-                                        <div 
-                                        key={opt}
-                                        onClick={() => field.onChange(opt)}
-                                        className={cn(
-                                            "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-bold text-sm",
-                                            field.value === opt ? "bg-primary text-primary-foreground shadow-lg scale-105 border-primary" : "bg-white dark:bg-slate-900 border-primary/30 hover:bg-primary/10"
-                                        )}
-                                        >
-                                        {opt}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        />
-                     </div>
+                  <div className="space-y-4">
+                    {/* Before */}
+                    <div className="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
+                      <Label className="mb-4 block text-center text-muted-foreground font-semibold">قبل المشروع</Label>
+                      <Controller
+                        name="retrospective.knowledge.before"
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <div className="flex justify-between gap-2">
+                            {["منخفض", "متوسط", "عالٍ"].map(opt => (
+                              <div
+                                key={opt}
+                                onClick={() => field.onChange(opt)}
+                                className={cn(
+                                  "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-medium text-sm",
+                                  field.value === opt ? "bg-slate-600 text-white shadow-md border-slate-600" : "bg-white dark:bg-slate-900 hover:border-slate-400"
+                                )}
+                              >
+                                {opt}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      />
+                    </div>
+
+                    {/* After */}
+                    <div className="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                      <Label className="mb-4 block text-center text-primary font-bold text-lg">بعد المشروع</Label>
+                      <Controller
+                        name="retrospective.knowledge.after"
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <div className="flex justify-between gap-2">
+                            {["منخفض", "متوسط", "عالٍ"].map(opt => (
+                              <div
+                                key={opt}
+                                onClick={() => field.onChange(opt)}
+                                className={cn(
+                                  "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-bold text-sm",
+                                  field.value === opt ? "bg-primary text-primary-foreground shadow-lg scale-105 border-primary" : "bg-white dark:bg-slate-900 border-primary/30 hover:bg-primary/10"
+                                )}
+                              >
+                                {opt}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Practices */}
                 <div className="space-y-6">
                   <h4 className="font-bold text-xl text-center border-b pb-2">ممارساتي الغذائية في المنزل</h4>
-                  
-                  <div className="space-y-4">
-                     {/* Before */}
-                     <div className="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
-                        <Label className="mb-4 block text-center text-muted-foreground font-semibold">قبل المشروع</Label>
-                        <Controller
-                            name="retrospective.practices.before"
-                            control={form.control}
-                             rules={{ required: true }}
-                            render={({ field }) => (
-                                <div className="flex justify-between gap-2">
-                                    {["منخفض", "متوسط", "عالٍ"].map(opt => (
-                                        <div 
-                                        key={opt}
-                                        onClick={() => field.onChange(opt)}
-                                        className={cn(
-                                            "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-medium text-sm",
-                                            field.value === opt ? "bg-slate-600 text-white shadow-md border-slate-600" : "bg-white dark:bg-slate-900 hover:border-slate-400"
-                                        )}
-                                        >
-                                        {opt}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        />
-                     </div>
 
-                     {/* After */}
-                     <div className="bg-primary/5 p-5 rounded-xl border border-primary/20">
-                        <Label className="mb-4 block text-center text-primary font-bold text-lg">بعد المشروع</Label>
-                        <Controller
-                            name="retrospective.practices.after"
-                            control={form.control}
-                            rules={{ required: true }}
-                            render={({ field }) => (
-                                <div className="flex justify-between gap-2">
-                                    {["منخفض", "متوسط", "عالٍ"].map(opt => (
-                                        <div 
-                                        key={opt}
-                                        onClick={() => field.onChange(opt)}
-                                        className={cn(
-                                            "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-bold text-sm",
-                                            field.value === opt ? "bg-primary text-primary-foreground shadow-lg scale-105 border-primary" : "bg-white dark:bg-slate-900 border-primary/30 hover:bg-primary/10"
-                                        )}
-                                        >
-                                        {opt}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        />
-                     </div>
+                  <div className="space-y-4">
+                    {/* Before */}
+                    <div className="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
+                      <Label className="mb-4 block text-center text-muted-foreground font-semibold">قبل المشروع</Label>
+                      <Controller
+                        name="retrospective.practices.before"
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <div className="flex justify-between gap-2">
+                            {["منخفض", "متوسط", "عالٍ"].map(opt => (
+                              <div
+                                key={opt}
+                                onClick={() => field.onChange(opt)}
+                                className={cn(
+                                  "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-medium text-sm",
+                                  field.value === opt ? "bg-slate-600 text-white shadow-md border-slate-600" : "bg-white dark:bg-slate-900 hover:border-slate-400"
+                                )}
+                              >
+                                {opt}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      />
+                    </div>
+
+                    {/* After */}
+                    <div className="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                      <Label className="mb-4 block text-center text-primary font-bold text-lg">بعد المشروع</Label>
+                      <Controller
+                        name="retrospective.practices.after"
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <div className="flex justify-between gap-2">
+                            {["منخفض", "متوسط", "عالٍ"].map(opt => (
+                              <div
+                                key={opt}
+                                onClick={() => field.onChange(opt)}
+                                className={cn(
+                                  "flex-1 py-3 px-2 rounded-lg text-center cursor-pointer transition-all border font-bold text-sm",
+                                  field.value === opt ? "bg-primary text-primary-foreground shadow-lg scale-105 border-primary" : "bg-white dark:bg-slate-900 border-primary/30 hover:bg-primary/10"
+                                )}
+                              >
+                                {opt}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-            {/* Open Questions */}
+          {/* Open Questions */}
           <Card className="shadow-md overflow-hidden">
-             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title="القسم الثامن: أسئلة مفتوحة" />
             </div>
             <CardContent className="p-6 md:p-8 space-y-8">
@@ -1006,11 +1021,11 @@ const ProjectEvaluation = () => {
                     name={`openQuestions.${q.id}` as any}
                     control={form.control}
                     render={({ field }) => (
-                      <Textarea 
-                        {...field} 
-                        id={q.id} 
-                        className="min-h-[120px] text-base leading-relaxed bg-slate-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-slate-950 transition-colors border-slate-200" 
-                        placeholder="شاركنا رأيك..." 
+                      <Textarea
+                        {...field}
+                        id={q.id}
+                        className="min-h-[120px] text-base leading-relaxed bg-slate-50 dark:bg-slate-900 focus:bg-white dark:focus:bg-slate-950 transition-colors border-slate-200"
+                        placeholder="شاركنا رأيك..."
                       />
                     )}
                   />
@@ -1020,20 +1035,20 @@ const ProjectEvaluation = () => {
           </Card>
 
           <div className="pt-6 pb-20">
-             <Button 
-                type="submit" 
-                className="w-full text-xl py-8 rounded-xl shadow-xl hover:shadow-2xl transition-all hover:scale-[1.01] bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90" 
-                size="lg" 
-                disabled={isSubmitting}
+            <Button
+              type="submit"
+              className="w-full text-xl py-8 rounded-xl shadow-xl hover:shadow-2xl transition-all hover:scale-[1.01] bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+              size="lg"
+              disabled={isSubmitting}
             >
-                {isSubmitting ? (
+              {isSubmitting ? (
                 <>
-                    <Loader2 className="mr-3 h-6 w-6 animate-spin" />
-                    جاري إرسال التقييم...
+                  <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                  جاري إرسال التقييم...
                 </>
-                ) : (
+              ) : (
                 "إرسال النموذج"
-                )}
+              )}
             </Button>
             <p className="text-center mt-4 text-muted-foreground text-sm">شكراً لمساهمتك في تحسين مستقبل أطفالنا</p>
           </div>

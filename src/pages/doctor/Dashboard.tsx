@@ -27,7 +27,8 @@ import {
   Stethoscope,
   Heart,
   FileText,
-  Eye
+  Eye,
+  MapPin
 } from 'lucide-react';
 import {
   Table,
@@ -42,7 +43,7 @@ import { MessageList } from '@/components/messages/MessageList';
 import { useDoctorStats } from './useDoctorStats';
 import { getBMICategoryLabel, getBMICategoryStatus } from '@/lib/bmi-utils';
 import { UserDirectory } from '@/components/users/UserDirectory';
-import { getDailyVisits, getTodayVisits, type DailyVisitData } from '@/services/visitorTracking';
+import { getDailyVisits, getTodayVisits, aggregateLocations, type DailyVisitData } from '@/services/visitorTracking';
 
 const DoctorDashboard: React.FC = () => {
   const { i18n } = useTranslation();
@@ -261,8 +262,8 @@ const DoctorDashboard: React.FC = () => {
                               <span className="text-[10px] font-bold text-muted-foreground">{day.count}</span>
                               <div
                                 className={`w-full rounded-t-md transition-all duration-300 ${isToday
-                                    ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
-                                    : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
+                                  ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
+                                  : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
                                   }`}
                                 style={{ height: `${Math.max(heightPercent, 4)}%`, minHeight: '4px' }}
                               />
@@ -293,6 +294,34 @@ const DoctorDashboard: React.FC = () => {
                           <p className="text-[10px] text-muted-foreground">{isRTL ? 'أعلى' : 'Peak'}</p>
                         </div>
                       </div>
+                      {/* Visitor Locations */}
+                      {(() => {
+                        const topLocations = aggregateLocations(visitorData).slice(0, 5);
+                        const maxLocCount = topLocations.length > 0 ? topLocations[0].count : 1;
+                        return topLocations.length > 0 ? (
+                          <div className="mt-4">
+                            <h4 className="text-xs font-bold mb-2 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 text-indigo-500" />
+                              {isRTL ? 'المواقع' : 'Locations'}
+                            </h4>
+                            <div className="space-y-1.5">
+                              {topLocations.map((loc, i) => (
+                                <div key={i} className="flex items-center gap-2">
+                                  <span className="text-xs text-foreground w-28 truncate">{loc.location}</span>
+                                  <div className="flex-1 h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div
+                                      className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full flex items-center justify-end pr-1.5"
+                                      style={{ width: `${Math.max((loc.count / maxLocCount) * 100, 12)}%` }}
+                                    >
+                                      <span className="text-[9px] font-bold text-white">{loc.count}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null;
+                      })()}
                     </div>
                   )}
                 </CardContent>

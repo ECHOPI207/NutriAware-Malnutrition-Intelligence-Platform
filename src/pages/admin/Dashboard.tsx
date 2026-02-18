@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { collection, getDocs, query, orderBy, getCountFromServer, where, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { getDailyVisits, getTodayVisits, type DailyVisitData } from '@/services/visitorTracking';
+import { getDailyVisits, getTodayVisits, aggregateLocations, type DailyVisitData } from '@/services/visitorTracking';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -21,7 +21,8 @@ import {
   Lock,
   Database,
   FileText,
-  Eye
+  Eye,
+  MapPin
 } from 'lucide-react';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 
@@ -423,8 +424,8 @@ const AdminDashboard: React.FC = () => {
                             {/* Bar */}
                             <div
                               className={`w-full rounded-t-md transition-all duration-300 ${isToday
-                                  ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
-                                  : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
+                                ? 'bg-gradient-to-t from-indigo-600 to-indigo-400 shadow-lg'
+                                : 'bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 hover:from-indigo-400 hover:to-indigo-300'
                                 }`}
                               style={{ height: `${Math.max(heightPercent, 4)}%`, minHeight: '4px' }}
                             />
@@ -437,8 +438,8 @@ const AdminDashboard: React.FC = () => {
                       {visitorData.map((day, i) => (
                         <div key={day.date} className="flex-1 text-center">
                           <span className={`text-[9px] ${i === visitorData.length - 1
-                              ? 'font-bold text-indigo-600 dark:text-indigo-400'
-                              : 'text-muted-foreground'
+                            ? 'font-bold text-indigo-600 dark:text-indigo-400'
+                            : 'text-muted-foreground'
                             }`}>
                             {day.label.split(' ')[0]}
                           </span>
@@ -466,6 +467,35 @@ const AdminDashboard: React.FC = () => {
                       <p className="text-xs text-muted-foreground">{isRTL ? 'أعلى يوم' : 'Peak Day'}</p>
                     </div>
                   </div>
+
+                  {/* Visitor Locations */}
+                  {(() => {
+                    const topLocations = aggregateLocations(visitorData).slice(0, 8);
+                    const maxLocCount = topLocations.length > 0 ? topLocations[0].count : 1;
+                    return topLocations.length > 0 ? (
+                      <div className="mt-6">
+                        <h4 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-indigo-500" />
+                          {isRTL ? 'المواقع الجغرافية للزوار' : 'Visitor Locations'}
+                        </h4>
+                        <div className="space-y-2">
+                          {topLocations.map((loc, i) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <span className="text-sm text-foreground w-36 truncate font-medium">{loc.location}</span>
+                              <div className="flex-1 h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div
+                                  className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-500 flex items-center justify-end pr-2"
+                                  style={{ width: `${Math.max((loc.count / maxLocCount) * 100, 10)}%` }}
+                                >
+                                  <span className="text-[10px] font-bold text-white">{loc.count}</span>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null;
+                  })()}
                 </div>
               )}
             </CardContent>

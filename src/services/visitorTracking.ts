@@ -1,12 +1,15 @@
 /**
  * Visitor Tracking Service
- * Tracks daily page views using Firestore.
+ * Tracks daily page views using Firestore with location data.
  * 
- * Structure: daily_visits/{YYYY-MM-DD} → { count, date, lastUpdated }
+ * Structure:
+ *   daily_visits/{YYYY-MM-DD} → { count, date, lastUpdated, locations: { "Cairo, Egypt": 5, ... } }
+ *   visitor_logs/{auto-id} → { date, city, country, region, timestamp }
+ * 
  * Each visitor increments the counter once per session (using sessionStorage).
  */
 import { db } from '@/lib/firebase';
-import { doc, getDoc, setDoc, increment, collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, increment, collection, query, orderBy, limit, getDocs, Timestamp, addDoc } from 'firebase/firestore';
 
 const SESSION_KEY = 'nutriaware_visit_tracked';
 
@@ -19,7 +22,25 @@ function getTodayKey(): string {
 }
 
 /**
- * Track a page view for today. Only counts once per browser session.
+ * Fetch visitor location from free IP geolocation API
+ */
+async function getVisitorLocation(): Promise<{ city: string; country: string; region: string }> {
+    try {
+        const response = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+        if (!response.ok) throw new Error('Geo API failed');
+        const data = await response.json();
+        return {
+            city: data.city || 'Unknown',
+            country: data.country_name || 'Unknown',
+            region: data.region || '',
+        };
+    } catch {
+        return { city: 'Unknown', country: 'Unknown', region: '' };
+    }
+}
+
+/**
+ * Track a page view for today with location. Only counts once per session.
  */
 export async function trackPageView(): Promise<void> {
     try {
@@ -29,28 +50,47 @@ export async function trackPageView(): Promise<void> {
         const alreadyTracked = sessionStorage.getItem(SESSION_KEY);
         if (alreadyTracked === todayKey) return;
 
+        // Get location (non-blocking)
+        const location = await getVisitorLocation();
+        const locationLabel = location.city !== 'Unknown'
+            ? `${location.city}, ${location.country}`
+            : location.country;
+
         const dayRef = doc(db, 'daily_visits', todayKey);
         const daySnap = await getDoc(dayRef);
 
         if (daySnap.exists()) {
-            // Increment existing counter
+            // Increment count and location counter
             await setDoc(dayRef, {
                 count: increment(1),
                 lastUpdated: Timestamp.now(),
+                [`locations.${locationLabel}`]: increment(1),
             }, { merge: true });
         } else {
-            // Create new day document
             await setDoc(dayRef, {
                 count: 1,
                 date: todayKey,
                 lastUpdated: Timestamp.now(),
+                locations: { [locationLabel]: 1 },
             });
         }
+
+        // Also log individual visit for detailed analytics
+        await addDoc(collection(db, 'visitor_logs'), {
+            date: todayKey,
+            city: location.city,
+            country: location.country,
+            region: location.region,
+            locationLabel,
+            timestamp: Timestamp.now(),
+            userAgent: navigator.userAgent,
+            screenWidth: window.innerWidth,
+            path: window.location.pathname,
+        }).catch(() => { }); // Don't fail if this log fails
 
         // Mark as tracked for this session
         sessionStorage.setItem(SESSION_KEY, todayKey);
     } catch (error) {
-        // Silently fail — don't break the app for analytics
         console.error('Failed to track page view:', error);
     }
 }
@@ -59,6 +99,12 @@ export interface DailyVisitData {
     date: string;       // YYYY-MM-DD
     count: number;
     label: string;      // formatted for display, e.g. "18 فبراير"
+    locations?: Record<string, number>; // "Cairo, Egypt" → count
+}
+
+export interface VisitorLocation {
+    location: string;
+    count: number;
 }
 
 /**
@@ -85,10 +131,10 @@ export async function getDailyVisits(days: number = 30): Promise<DailyVisitData[
                 date: dateStr,
                 count: data.count || 0,
                 label: `${parseInt(day, 10)} ${arabicMonths[monthIndex]}`,
+                locations: data.locations || {},
             };
         });
 
-        // Return oldest first for charts
         return results.reverse();
     } catch (error) {
         console.error('Failed to get daily visits:', error);
@@ -108,4 +154,24 @@ export async function getTodayVisits(): Promise<number> {
     } catch {
         return 0;
     }
+}
+
+/**
+ * Get aggregated location data across all days (or for specific days).
+ * Returns sorted by count descending.
+ */
+export function aggregateLocations(dailyData: DailyVisitData[]): VisitorLocation[] {
+    const locationMap: Record<string, number> = {};
+
+    for (const day of dailyData) {
+        if (day.locations) {
+            for (const [loc, count] of Object.entries(day.locations)) {
+                locationMap[loc] = (locationMap[loc] || 0) + (count as number);
+            }
+        }
+    }
+
+    return Object.entries(locationMap)
+        .map(([location, count]) => ({ location, count }))
+        .sort((a, b) => b.count - a.count);
 }

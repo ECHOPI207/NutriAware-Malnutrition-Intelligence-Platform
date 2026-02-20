@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Bot, Utensils, Send, Loader2, Scale, AlertTriangle, Info, CheckCircle, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { Bot, Utensils, Send, Loader2, Scale, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,13 +11,12 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { sendChatMessage, CONDITION_MEAL_PLANS } from '@/services/gemini';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
-import { CLINICAL_DATA, NutritionPlan } from '@/data/clinicalNutritionData';
 import BmiMealPlanner from '@/components/BmiMealPlanner';
+import { SurveyCTA } from '@/components/common/SurveyCTA';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -580,6 +579,7 @@ const AITools: React.FC = () => {
           </TabsContent>
         </Tabs>
       </div>
+      <SurveyCTA />
     </div>
   );
 };

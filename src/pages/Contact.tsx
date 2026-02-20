@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { 
-  Mail, 
-  Phone, 
-  ExternalLink, 
-  Send as SendIcon, 
-  MessageCircle, 
+import {
+  Mail,
+  Phone,
+  ExternalLink,
+  Send as SendIcon,
+  MessageCircle,
   Stethoscope,
   MapPin,
-  Clock
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -32,7 +34,7 @@ const Contact: React.FC = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   const isRTL = language === 'ar';
-  
+
   const [activeTab, setActiveTab] = useState<'feedback' | 'consultation'>('feedback');
   const [formData, setFormData] = useState({
     name: '',
@@ -43,7 +45,7 @@ const Contact: React.FC = () => {
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         title: t('common.error') || 'خطأ',
@@ -92,7 +94,7 @@ const Contact: React.FC = () => {
         const existingFeedback = JSON.parse(localStorage.getItem('feedback_submissions') || '[]');
         existingFeedback.push(feedbackData);
         localStorage.setItem('feedback_submissions', JSON.stringify(existingFeedback));
-        
+
         toast({
           title: t('contact.success') || 'تم الإرسال بنجاح!',
           description: t('contact.localSaveSuccess'),
@@ -153,7 +155,7 @@ const Contact: React.FC = () => {
   return (
     <div className={`min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 ${isRTL ? 'rtl' : 'ltr'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        
+
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -165,13 +167,13 @@ const Contact: React.FC = () => {
             <MessageCircle className="h-4 w-4" />
             {t('contact.subtitle')}
           </div>
-          
+
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6">
             <span className="bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent">
               {t('contact.title')}
             </span>
           </h1>
-          
+
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             {t('contact.pageDescription')}
           </p>
@@ -206,21 +208,19 @@ const Contact: React.FC = () => {
                         href={method.href}
                         target={method.href.startsWith('http') ? "_blank" : undefined}
                         rel={method.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                        className={`${method.color} font-medium hover:underline flex items-center justify-center gap-1 mb-2 text-center ${
-                          method.title.includes('WhatsApp') || method.title.includes('واتساب') || method.href.startsWith('mailto') 
-                            ? 'force-ltr-center' 
-                            : ''
-                        }`}
+                        className={`${method.color} font-medium hover:underline flex items-center justify-center gap-1 mb-2 text-center ${method.title.includes('WhatsApp') || method.title.includes('واتساب') || method.href.startsWith('mailto')
+                          ? 'force-ltr-center'
+                          : ''
+                          }`}
                       >
                         {method.value}
                         {method.href.startsWith('http') && <ExternalLink className="h-3 w-3" />}
                       </a>
                     ) : (
-                      <p className={`${method.color} font-medium mb-2 text-center ${
-                        method.title.includes('WhatsApp') || method.title.includes('واتساب') 
-                          ? 'force-ltr-center' 
-                          : ''
-                      }`}>
+                      <p className={`${method.color} font-medium mb-2 text-center ${method.title.includes('WhatsApp') || method.title.includes('واتساب')
+                        ? 'force-ltr-center'
+                        : ''
+                        }`}>
                         {method.value}
                       </p>
                     )}
@@ -307,7 +307,7 @@ const Contact: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-3">
                       <Label htmlFor="message" className="text-base font-bold text-foreground block">
                         {t('contact.messageLabel')}
@@ -326,10 +326,10 @@ const Contact: React.FC = () => {
                         />
                       </div>
                     </div>
-                    
-                    <Button 
-                      type="submit" 
-                      className="w-full h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 rounded-xl" 
+
+                    <Button
+                      type="submit"
+                      className="w-full h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 rounded-xl"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -353,6 +353,45 @@ const Contact: React.FC = () => {
               <MedicalConsultation />
             </TabsContent>
           </Tabs>
+        </motion.div>
+
+        {/* Project Evaluation CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-16"
+        >
+          <Card className="overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5 relative">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary" />
+            <CardContent className="p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-4 text-center md:text-start flex-1">
+                <div className="inline-flex items-center gap-2 bg-background px-3 py-1 rounded-full text-xs font-medium border shadow-sm text-primary mb-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  {t('survey.new') || (isRTL ? 'جديد' : 'New')}
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                  {isRTL ? 'هل استمتعت بتجربتك معنا؟' : 'Did you enjoy your experience?'}
+                </h3>
+                <p className="text-muted-foreground text-lg max-w-xl">
+                  {isRTL ?
+                    'ساعدنا في تحسين خدماتنا من خلال الإجابة على استبيان قصير لتقييم المشروع.' :
+                    'Help us improve our services by answering a short project evaluation survey.'}
+                </p>
+              </div>
+              <div className="shrink-0 w-full md:w-auto">
+                <Link to="/project-evaluation">
+                  <Button size="lg" className="w-full md:w-auto h-14 px-8 text-lg rounded-xl shadow-lg hover:shadow-primary/25 transition-all bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white border-0">
+                    {isRTL ? 'بدء التقييم' : 'Start Evaluation'}
+                    <ArrowRight className={`w-5 h-5 mx-2 ${isRTL ? 'rotate-180' : ''}`} />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </div>

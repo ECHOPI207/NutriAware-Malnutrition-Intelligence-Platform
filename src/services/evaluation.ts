@@ -4,6 +4,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 export interface EvaluationData {
   consent: boolean;
   demographics: {
+    parentName?: string;
     relationship: string;
     otherRelationship?: string;
     parentAge: string;
@@ -12,14 +13,15 @@ export interface EvaluationData {
     childAge: string;
   };
   healthIndicators: {
-    gender: string;
+    childGender: string;
+    guardianGender: string;
     weightPerception: string;
     healthIssues: string[];
     otherHealthIssue?: string;
     infoSources: string[];
     otherInfoSource?: string;
   };
-  knowledge: Record<string, string>; // Values 1-5 as strings
+  knowledge: Record<string, string>;
   practices: Record<string, string>;
   intervention: {
     stories: Record<string, string>;
@@ -32,6 +34,7 @@ export interface EvaluationData {
   };
   satisfaction: Record<string, string>;
   behavioralIntent: Record<string, string>;
+  nps?: string;
   retrospective: {
     knowledge: { before: string; after: string };
     practices: { before: string; after: string };

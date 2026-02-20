@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { SurveyCTA } from '@/components/common/SurveyCTA';
 
 interface Article {
   id: string;
@@ -40,13 +41,13 @@ const Knowledge: React.FC = () => {
       const q = query(collection(db, 'articles'), where('status', '==', 'published'));
       // Note: Ideally we add orderBy here but it requires a composite index with 'status'.
       // For now client-side sort or simplistic fetch is fine.
-      
+
       const snapshot = await getDocs(q);
       const fetched = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       })) as Article[];
-      
+
       setArticles(fetched);
     } catch (error) {
       console.error('Error fetching articles:', error);
@@ -111,61 +112,62 @@ const Knowledge: React.FC = () => {
         </div>
 
         {loading ? (
-             <div className="flex justify-center py-20">
-                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-             </div>
+          <div className="flex justify-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
         ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredArticles.map((article, index) => (
-                <motion.div
+              <motion.div
                 key={article.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
+              >
                 <Card className="h-full hover:shadow-lg transition-shadow overflow-hidden group">
-                    <div className="aspect-video bg-muted overflow-hidden">
+                  <div className="aspect-video bg-muted overflow-hidden">
                     <Link to={`/knowledge/${article.slug || article.id}`}>
-                        <img
+                      <img
                         src={article.featuredImage || article.imageUrl}
                         alt={getLocalizedContent(article.title)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                      />
                     </Link>
-                    </div>
-                    <CardHeader>
+                  </div>
+                  <CardHeader>
                     <div className="flex items-start justify-between gap-2 mb-2">
-                        <Badge className={getCategoryColor(article.category)}>
+                      <Badge className={getCategoryColor(article.category)}>
                         {t(`categories.${article.category}`)}
-                        </Badge>
+                      </Badge>
                     </div>
                     <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                        <Link to={`/knowledge/${article.slug || article.id}`}>
+                      <Link to={`/knowledge/${article.slug || article.id}`}>
                         {getLocalizedContent(article.title)}
-                        </Link>
+                      </Link>
                     </CardTitle>
-                    </CardHeader>
-                    <CardContent>
+                  </CardHeader>
+                  <CardContent>
                     <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {getLocalizedContent(article.excerpt)}
+                      {getLocalizedContent(article.excerpt)}
                     </p>
                     <Link to={`/knowledge/${article.slug || article.id}`} className="w-full">
-                        <Button className="w-full btn-gradient group/btn shadow-md">
+                      <Button className="w-full btn-gradient group/btn shadow-md">
                         {t('articles.readMore')}
                         {language === 'ar' ? (
-                            <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover/btn:-translate-x-1" />
+                          <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover/btn:-translate-x-1" />
                         ) : (
-                            <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                          <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
                         )}
-                        </Button>
+                      </Button>
                     </Link>
-                    </CardContent>
+                  </CardContent>
                 </Card>
-                </motion.div>
+              </motion.div>
             ))}
-            </div>
+          </div>
         )}
       </div>
+      <SurveyCTA />
     </div>
   );
 };

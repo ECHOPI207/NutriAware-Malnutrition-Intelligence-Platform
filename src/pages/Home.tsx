@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Logo from '@/components/common/Logo';
 import { Button } from '@/components/ui/button';
+import { SurveyCTA } from '@/components/common/SurveyCTA';
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -244,6 +245,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SurveyCTA />
     </div>
   );
 };

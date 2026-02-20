@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Users, Award, BookOpen, Bot, Calculator, ClipboardList } from 'lucide-react';
+import { Users, Award, BookOpen, Bot, Calculator } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ImageWithFallback } from '@/components/ui/image-with-fallback';
+import { SurveyCTA } from '@/components/common/SurveyCTA';
 
 interface TeamMember {
   name: string;
@@ -299,36 +300,7 @@ const About: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="mb-16"
-        >
-            <Card className="bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 border-2 border-primary/20 overflow-hidden relative">
-                <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 p-32 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-                
-                <CardContent className="p-8 md:p-12 text-center relative z-10">
-                    <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
-                        <ClipboardList className="w-8 h-8" />
-                    </div>
-                    
-                    <h2 className="text-3xl font-bold mb-4">{t('about.survey.title')}</h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-                        {t('about.survey.description')}
-                    </p>
-                    
-                    <a 
-                        href="/project-evaluation" 
-                        className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg hover:shadow-primary/25"
-                    >
-                        <ClipboardList className="w-5 h-5" />
-                        {t('about.survey.cta')}
-                    </a>
-                </CardContent>
-            </Card>
-        </motion.div>
+
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -345,6 +317,7 @@ const About: React.FC = () => {
           </Card>
         </motion.div>
       </div>
+      <SurveyCTA />
     </div>
   );
 };

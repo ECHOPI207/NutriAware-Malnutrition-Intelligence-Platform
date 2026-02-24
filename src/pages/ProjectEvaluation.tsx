@@ -14,10 +14,11 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Loader2, CheckCircle2, Frown, Meh, Smile, ThumbsUp, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getQuestionLabels, type SurveyQuestion } from '@/lib/surveyEngine';
+import { getQuestionLabels, DEFAULT_SECTION_ORDER, type SurveyQuestion, type SectionOrderEntry } from '@/lib/surveyEngine';
 
 const evaluationSchema = z.object({
   consent: z.boolean().refine(val => val === true, { message: "يجب الموافقة للمتابعة" }),
@@ -26,10 +27,11 @@ const evaluationSchema = z.object({
     relationship: z.string().min(1, "مطلوب"),
     otherRelationship: z.string().optional(),
     parentAge: z.string().min(1, "مطلوب"),
+    parentProfession: z.string().min(1, "مطلوب"),
     education: z.string().min(1, "مطلوب"),
     childrenCount: z.string().min(1, "مطلوب"),
     childAge: z.string().min(1, "مطلوب"),
-  }),
+  }).catchall(z.any()),
   healthIndicators: z.object({
     gender: z.string().min(1, "مطلوب"),
     weightPerception: z.string().min(1, "مطلوب"),
@@ -37,7 +39,7 @@ const evaluationSchema = z.object({
     otherHealthIssue: z.string().optional(),
     infoSources: z.array(z.string()).default([]),
     otherInfoSource: z.string().optional(),
-  }),
+  }).catchall(z.any()),
   knowledge: z.record(z.string(), z.string().min(1, "مطلوب")),
   practices: z.record(z.string(), z.string().min(1, "مطلوب")),
   intervention: z.object({
@@ -56,11 +58,7 @@ const evaluationSchema = z.object({
     knowledge: z.object({ before: z.string().min(1, "مطلوب"), after: z.string().min(1, "مطلوب") }),
     practices: z.object({ before: z.string().min(1, "مطلوب"), after: z.string().min(1, "مطلوب") }),
   }),
-  openQuestions: z.object({
-    likedMost: z.string().optional(),
-    challenges: z.string().optional(),
-    suggestions: z.string().optional(),
-  }),
+  openQuestions: z.record(z.string(), z.string().optional()),
 });
 
 type EvaluationFormValues = z.infer<typeof evaluationSchema>;
@@ -202,75 +200,88 @@ const SectionHeader = ({ title, description }: { title: string, description?: st
 // --- Default Data for Fallback ---
 const DEFAULT_CONFIG = {
   knowledge: [
-    { id: "q1", text: "أعلم أن سوء التغذية يشمل نقص العناصر وليس فقط نقص الوزن" },
-    { id: "q2", text: "أعلم أن الغذاء الصحي يجب أن يحتوي على الخضروات والفواكه يومياً" },
-    { id: "q3", text: "أعلم أن الإفراط في الوجبات السريعة يضر بصحة الطفل" },
-    { id: "q4", text: "أعلم علامات سوء التغذية مثل الإرهاق وضعف التركيز" },
+    { id: "KN1", text: "أعلم أن سوء التغذية يشمل نقص العناصر الغذائية الدقيقة وليس فقط نقص الوزن" },
+    { id: "KN2", text: "أعلم أن الغذاء الصحي اليومي للطفل يجب أن يحتوي على خضروات وفواكه طازجة" },
+    { id: "KN3", text: "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه" },
+    { id: "KN4", text: "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي" },
+    { id: "KN5_R", text: "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي" },
+    { id: "KN_AC", text: "يرجى اختيار \"أوافق\" لهذا السؤال للتأكد من انتباهك" },
   ],
   practices: [
-    { id: "q1", text: "أحرص على توفر الخضروات والفواكه في غذاء طفلي" },
-    { id: "q2", text: "أراقب استهلاك طفلي للحلويات والسكريات والمشروبات الغازية" },
-    { id: "q3", text: "نادرًا ما نتناول الوجبات السريعة في المنزل" },
-    { id: "q4", text: "أشجع طفلي على شرب الماء بانتظام" },
-    { id: "q5", text: "أقوم بقراءة البطاقة الغذائية (المكونات) قبل شراء المنتجات للطفل" },
-    { id: "q6", text: "أحرص على تقديم وجبة الإفطار لطفلي قبل الذهاب إلى المدرسة" },
-    { id: "q7", text: "أجد صعوبة في تقديم أغذية صحية بسبب تكلفتها المالية" },
+    { id: "PR1", text: "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي" },
+    { id: "PR2", text: "خلال الأسبوعين الماضيين، راقبت كمية الحلويات والسكريات التي يتناولها طفلي" },
+    { id: "PR3", text: "خلال الأسبوعين الماضيين، قللنا من تناول الوجبات السريعة في المنزل" },
+    { id: "PR4", text: "خلال الأسبوعين الماضيين، شجعت طفلي على شرب الماء بانتظام بدلاً من المشروبات الغازية" },
+    { id: "PR5", text: "خلال الأسبوعين الماضيين، قرأت البطاقة الغذائية قبل شراء المنتجات لطفلي" },
+    { id: "PR6", text: "خلال الأسبوعين الماضيين، حرصت على تقديم وجبة إفطار متوازنة لطفلي يومياً" },
+    { id: "PR7_R", text: "خلال الأسبوعين الماضيين، وجدت صعوبة في تقديم أغذية صحية بسبب التكلفة المالية" },
+    { id: "PR_AC", text: "يرجى اختيار \"لا أوافق بشدة\" لهذا السؤال" },
   ],
   intervention: {
     stories: [
-      { id: "q1", text: "كانت القصص جذابة بصرياً" },
-      { id: "q2", text: "كانت اللغة والمفاهيم مناسبة لعمر طفلي ويسهل عليه فهمها" },
-      { id: "q3", text: "المعلومات المقدمة ساهمت في تغيير مفاهيم خاطئة لدي أو لدى طفلي" },
-      { id: "q4", text: "نقلت القصة رسائل توعوية مفيدة حول التغذية الصحية" },
-      { id: "q5", text: "شجعت القصص طفلي على الاهتمام بالطعام الصحي" },
+      { id: "INT_ST1", text: "كانت القصص المصورة جذابة بصرياً ومشوقة لطفلي" },
+      { id: "INT_ST2", text: "كانت اللغة والمفاهيم في القصص مناسبة لعمر طفلي" },
+      { id: "INT_ST3", text: "ساهمت القصص في تصحيح مفاهيم غذائية خاطئة لدي أو لدى طفلي" },
+      { id: "INT_ST4", text: "نقلت القصص رسائل توعوية واضحة حول أهمية التغذية الصحية" },
+      { id: "INT_ST5", text: "شجعت القصص طفلي على الاهتمام بتناول الطعام الصحي" },
+      { id: "INT_ST6_R", text: "لم تضف القصص معلومات جديدة لم أكن أعرفها مسبقاً" },
     ],
     platform: {
       usability: [
-        { id: "q1", text: "كان الدخول إلى المنصة عبر QR سهلاً" },
-        { id: "q2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها" },
+        { id: "PX_US1", text: "كان الدخول إلى المنصة عبر رمز QR سهلاً ومباشراً" },
+        { id: "PX_US2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها المختلفة" },
       ],
       content: [
-        { id: "q1", text: "كانت المعلومات المقدمة موثوقة ومفيدة" },
-        { id: "q2", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق" },
+        { id: "PX_CN1", text: "كانت المعلومات الغذائية المقدمة في المنصة موثوقة ومفيدة" },
+        { id: "PX_CN2", text: "كانت خطط الوجبات المقترحة واقعية وقابلة للتطبيق في حياتنا اليومية" },
       ],
       tools: [
-        { id: "q1", text: "كانت أدوات التقييم سهلة الفهم والاستخدام" },
-        { id: "q2", text: "ساعدتني نتائج التقييم على فهم حالة طفلي الغذائية" },
+        { id: "PX_TL1", text: "كانت أدوات التقييم الغذائي سهلة الفهم والاستخدام" },
+        { id: "PX_TL2", text: "ساعدتني نتائج التقييم على فهم الحالة الغذائية لطفلي بوضوح" },
       ],
       consultation: [
-        { id: "q1", text: "كانت وسائل التواصل واضحة ومفهومة" },
-        { id: "q2", text: "شعرت بالاطمئنان لإمكانية طلب الاستشارة الغذائية" },
+        { id: "PX_CO1", text: "كانت وسائل التواصل مع المختصين واضحة وسهلة الوصول" },
+        { id: "PX_CO2", text: "شعرت بالاطمئنان لتوفر إمكانية طلب استشارة غذائية متخصصة" },
       ]
     }
   },
   satisfaction: [
-    { id: "q1", text: "أنا راضٍ بشكل عام عن المشروع" },
-    { id: "q2", text: "أنصح غيري بالاطلاع على المنصة" },
+    { id: "SAT1", text: "أنا راضٍ بشكل عام عن تجربتي مع مشروع NutriAware" },
+    { id: "SAT2", text: "حقق المشروع توقعاتي فيما يخص تحسين معرفتي بتغذية طفلي" },
+    { id: "SAT3", text: "أنصح أولياء الأمور الآخرين بالاطلاع على المنصة والاستفادة منها" },
+    { id: "SAT4_R", text: "لم يقدم المشروع فائدة واضحة تستحق الوقت المستثمر فيه" },
   ],
   behavioralIntent: [
-    { id: "q1", text: "أنوي تطبيق تغييرات غذائية داخل المنزل" },
-    { id: "q2", text: "أنوي تقليل الوجبات السريعة والحلويات" },
-    { id: "q3", text: "أنوي تشجيع طفلي على تناول الخضروات والفواكه" },
-    { id: "q4", text: "أنوي استخدام المنصة بانتظام" },
-    { id: "q5", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق" },
+    { id: "BI1", text: "أنوي تطبيق تغييرات غذائية صحية داخل المنزل بناءً على ما تعلمته" },
+    { id: "BI2", text: "أنوي تقليل استهلاك الوجبات السريعة والحلويات لأطفالي" },
+    { id: "BI3", text: "أنوي تشجيع أطفالي على تناول المزيد من الخضروات والفواكه يومياً" },
+    { id: "BI4", text: "أنوي استخدام منصة NutriAware بشكل منتظم لمتابعة تغذية أطفالي" },
+    { id: "BI5_R", text: "لا أعتقد أنني سأغير عاداتنا الغذائية الحالية بناءً على هذا المشروع" },
   ],
   openQuestions: [
-    { id: "likedMost", text: "1. ما أكثر ما أعجبك في المشروع؟" },
-    { id: "challenges", text: "2. ما التحديات التي تمنع تطبيق العادات الغذائية الصحية؟" },
-    { id: "suggestions", text: "3. اقتراحات للتحسين:" },
+    { id: "OE1", text: "ما أكثر ما أعجبك في مشروع NutriAware؟" },
+    { id: "OE2", text: "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟" },
+    { id: "OE3", text: "ما اقتراحاتك لتحسين المنصة أو المحتوى التوعوي؟" },
+    { id: "OE4", text: "كيف تعرفت على منصة NutriAware لأول مرة؟" },
   ],
   likertLabels: {
     "1": "لا أوافق بشدة", "2": "لا أوافق", "3": "محايد", "4": "أوافق", "5": "أوافق بشدة"
   },
-  npsQuestion: { id: "nps1", text: "ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟", type: "nps" },
+  npsQuestion: { id: "NPS1", text: "على مقياس من 0 إلى 10، ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟", type: "nps" },
   retrospectiveConfig: {
-    title: "القسم السابع: تقييم ارتجاعي (Retrospective Self-assessment)",
-    description: "يرجى تقييم حالتك قبل المشروع وحالتك بعد المشروع",
+    title: "القسم التاسع: تقييم ارتجاعي (Retrospective Pre-Then/Post Self-Assessment)",
+    description: "يرجى تقييم مستواك قبل وبعد استخدام NutriAware على مقياس من 1 (منخفض جدًا) إلى 10 (مرتفع جدًا)",
     mode: "slider",
-    knowledgeTitle: "معرفتي بتغذية الأطفال",
-    practicesTitle: "ممارساتي الغذائية في المنزل",
-    beforeLabel: "قبل المشروع",
-    afterLabel: "بعد المشروع",
+    dimensions: [
+      { id: "RETRO_KN", titleAr: "مستوى معرفتي بأساسيات تغذية الأطفال السليمة", titleEn: "Knowledge of child nutrition fundamentals" },
+      { id: "RETRO_PR", titleAr: "مستوى ممارساتي الغذائية الصحية في المنزل", titleEn: "Healthy dietary practices at home" },
+      { id: "RETRO_AW", titleAr: "مستوى وعيي بمخاطر سوء التغذية على أطفالي", titleEn: "Awareness of malnutrition risks" },
+      { id: "RETRO_CF", titleAr: "مستوى ثقتي في قدرتي على تخطيط وجبات صحية لأطفالي", titleEn: "Confidence in planning healthy meals" },
+    ],
+    knowledgeTitle: "مستوى معرفتي بأساسيات تغذية الأطفال السليمة",
+    practicesTitle: "مستوى ممارساتي الغذائية الصحية في المنزل",
+    beforeLabel: "قبل استخدام NutriAware",
+    afterLabel: "بعد استخدام NutriAware",
     options: ["منخفض", "متوسط", "عالٍ"]
   },
   formSectionHeaders: {
@@ -282,8 +293,32 @@ const DEFAULT_CONFIG = {
     intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
     satisfaction: "القسم السادس: الرضا العام",
     behavioral: "القسم السابع: الأثر السلوكي",
-    retrospective: "القسم الثامن: تقييم ارتجاعي",
-    open: "القسم التاسع: أسئلة مفتوحة"
+    nps: "القسم الثامن: صافي نقاط الترويج",
+    retrospective: "القسم التاسع: تقييم ارتجاعي (قبل/بعد)",
+    open: "القسم العاشر: أسئلة مفتوحة"
+  },
+  demographics: {
+    title: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
+    description: "الهدف: تحديد المتغيرات المستقلة للتحليل.",
+    fields: {
+      parentName: { id: "DEM_NAME", text: "اسم ولي الأمر (اختياري)", label: "اسم ولي الأمر (اختياري)", fieldType: "text", required: false, hidden: false, order: 0, outputType: "text", legacyKey: "parentName", placeholder: "الاسم الثلاثي (اختياري)", validation: { maxLength: 100 } },
+      relationship: { id: "DEM_RELATIONSHIP", text: "1. صلة القرابة بالطفل", label: "1. صلة القرابة بالطفل", fieldType: "radio", required: true, hidden: false, order: 1, outputType: "nominal", options: ["أب", "أم", "أخرى"], codingMap: { "أب": 1, "أم": 2, "أخرى": 3 }, legacyKey: "relationship" },
+      parentAge: { id: "DEM_PARENT_AGE", text: "2. عمر ولي الأمر", label: "2. عمر ولي الأمر", fieldType: "radio", required: true, hidden: false, order: 2, outputType: "ordinal", options: ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"], codingMap: { "أقل من 25 سنة": 1, "25 – 35 سنة": 2, "36 – 45 سنة": 3, "أكثر من 45 سنة": 4 }, legacyKey: "parentAge" },
+      parentProfession: { id: "DEM_PROFESSION", text: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", label: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", fieldType: "text", required: false, hidden: false, order: 3, outputType: "text", legacyKey: "parentProfession", placeholder: "أدخل المهنة هنا...", validation: { maxLength: 200 } },
+      education: { id: "DEM_EDUCATION", text: "4. المستوى التعليمي", label: "4. المستوى التعليمي", fieldType: "radio", required: true, hidden: false, order: 4, outputType: "ordinal", options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
+      childrenCount: { id: "DEM_CHILDREN_COUNT", text: "5. عدد الأطفال في الأسرة", label: "5. عدد الأطفال في الأسرة", fieldType: "radio", required: true, hidden: false, order: 5, outputType: "ordinal", options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
+      childAge: { id: "DEM_CHILD_AGE", text: "6. عمر الطفل المستهدف", label: "6. عمر الطفل المستهدف", fieldType: "radio", required: true, hidden: false, order: 6, outputType: "ordinal", options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" }
+    }
+  },
+  healthIndicators: {
+    title: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
+    description: "الهدف: ربط الوعي بالحالة الصحية الواقعية",
+    fields: {
+      gender: { id: "HI_GENDER", text: "7. جنس الطفل", label: "7. جنس الطفل", fieldType: "radio", required: true, hidden: false, order: 0, outputType: "nominal", options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
+      weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", label: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio", required: true, hidden: false, order: 1, outputType: "ordinal", options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
+      healthIssues: { id: "HI_HEALTH_ISSUES", text: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", label: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox", required: true, hidden: false, order: 2, outputType: "nominal", options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
+      infoSources: { id: "HI_INFO_SOURCES", text: "10. مصادر معلوماتكم حول تغذية الأطفال", label: "10. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox", required: true, hidden: false, order: 3, outputType: "nominal", options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
+    }
   }
 };
 
@@ -292,6 +327,7 @@ const ProjectEvaluation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [surveyConfig, setSurveyConfig] = useState<any>(DEFAULT_CONFIG);
+  const [sectionOrder, setSectionOrder] = useState<SectionOrderEntry[]>(DEFAULT_SECTION_ORDER);
 
   // Fetch Questions on Mount
 
@@ -301,8 +337,36 @@ const ProjectEvaluation = () => {
         const docRef = doc(db, "system_settings", "survey_config");
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          // Merge with defaults to ensure safety
-          setSurveyConfig({ ...DEFAULT_CONFIG, ...docSnap.data() });
+          const fbData = docSnap.data();
+          const mergedConfig = { ...DEFAULT_CONFIG, ...fbData };
+
+          // Deep Merge for highly dynamic fields to ensure new defaults survive
+          if (fbData.demographics?.fields) {
+            const mergedDemoFields: any = { ...DEFAULT_CONFIG.demographics.fields };
+            for (const [key, fbField] of Object.entries(fbData.demographics.fields)) {
+              mergedDemoFields[key] = { ...(mergedDemoFields[key] || {}), ...(fbField as any) };
+            }
+            mergedConfig.demographics.fields = mergedDemoFields;
+          }
+          if (fbData.healthIndicators?.fields) {
+            const mergedHealthFields: any = { ...DEFAULT_CONFIG.healthIndicators.fields };
+            for (const [key, fbField] of Object.entries(fbData.healthIndicators.fields)) {
+              mergedHealthFields[key] = { ...(mergedHealthFields[key] || {}), ...(fbField as any) };
+            }
+            mergedConfig.healthIndicators.fields = mergedHealthFields;
+          }
+          if (fbData.openQuestions) {
+            // Firestore-first: use saved questions directly as source of truth
+            // This prevents deleted questions from re-appearing from DEFAULT_CONFIG
+            mergedConfig.openQuestions = fbData.openQuestions;
+          }
+
+          // Load section order from Firestore
+          if (fbData.sectionOrder) {
+            setSectionOrder(fbData.sectionOrder);
+          }
+
+          setSurveyConfig(mergedConfig);
         }
       } catch (error) {
         console.error("Failed to load survey questions:", error);
@@ -362,6 +426,7 @@ const ProjectEvaluation = () => {
       };
 
       const cleanData = sanitizeData(data);
+      cleanData._schemaVersion = 2;
       console.log("Submitting data:", cleanData);
 
       await saveEvaluation(cleanData);
@@ -501,10 +566,11 @@ const ProjectEvaluation = () => {
           </div>
         </div>
 
-        <form onSubmit={form.handleSubmit(onSubmit, onError)} className="space-y-10">
+        <form onSubmit={form.handleSubmit(onSubmit, onError)} className="flex flex-col gap-10">
 
+          {/* Sections rendered in sectionOrder using CSS order */}
           {/* Consent Form - Special Design */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          <motion.div style={{ order: sectionOrder.findIndex(s => s.id === 'consent') }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <Card className="border-t-4 border-t-primary shadow-lg overflow-hidden border-x-0 border-b-0 md:border">
               <div className="bg-primary/5 p-6 border-b border-primary/10">
                 <h3 className="text-xl font-bold text-primary flex items-center gap-2">
@@ -549,7 +615,7 @@ const ProjectEvaluation = () => {
           </motion.div>
 
           {/* Demographics */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'demographics') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader
                 title={surveyConfig.demographics?.title || "القسم الأول: البيانات الديموغرافية (لولي الأمر)"}
@@ -623,7 +689,25 @@ const ProjectEvaluation = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.education?.label || "3. المستوى التعليمي"} <span className="text-red-500">*</span></Label>
+                  <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.parentProfession?.label || "3. مهنة ولي الأمر"} <span className="text-red-500">*</span></Label>
+                  <Controller
+                    name="demographics.parentProfession"
+                    control={form.control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        id="demographics.parentProfession"
+                        className="w-full text-base py-3"
+                        placeholder={surveyConfig.demographics?.fields?.parentProfession?.placeholder || "أدخل المهنة هنا..."}
+                        dir="rtl"
+                      />
+                    )}
+                  />
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="text-base font-semibold">{surveyConfig.demographics?.fields?.education?.label || "4. المستوى التعليمي"} <span className="text-red-500">*</span></Label>
                   <Controller
                     name="demographics.education"
                     control={form.control}
@@ -694,11 +778,52 @@ const ProjectEvaluation = () => {
                   />
                 </div>
               </div>
+
+              {/* Dynamic Demographics Custom Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {Object.entries(surveyConfig.demographics?.fields || {})
+                  .filter(([key]) => !['parentName', 'relationship', 'parentAge', 'parentProfession', 'education', 'childrenCount', 'childAge'].includes(key))
+                  .map(([key, fieldConfig]: [string, any]) => (
+                    <div key={key} className="space-y-3">
+                      <Label className="text-base font-semibold">{fieldConfig.label} <span className="text-red-500">*</span></Label>
+                      <Controller
+                        name={`demographics.${key}` as any}
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          fieldConfig.options ? (
+                            <div className="flex flex-wrap gap-2">
+                              {fieldConfig.options.map((opt: string) => (
+                                <div
+                                  key={opt}
+                                  onClick={() => field.onChange(opt)}
+                                  className={cn(
+                                    "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
+                                    field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm ring-2 ring-primary/20" : "bg-card hover:bg-accent"
+                                  )}
+                                >
+                                  {opt}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <Input
+                              {...field}
+                              className="w-full"
+                              placeholder="أدخل الإجابة هنا..."
+                              dir="rtl"
+                            />
+                          )
+                        )}
+                      />
+                    </div>
+                  ))}
+              </div>
             </CardContent>
           </Card>
 
           {/* Health Indicators */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'healthIndicators') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader
                 title={surveyConfig.healthIndicators?.title || "القسم الثاني: المؤشرات الصحية (بيانات الطفل)"}
@@ -709,7 +834,7 @@ const ProjectEvaluation = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.gender?.label || "6. جنس الطفل"} <span className="text-red-500">*</span></Label>
+                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.gender?.label || "7. جنس الطفل"} <span className="text-red-500">*</span></Label>
                   <Controller
                     name="healthIndicators.gender"
                     control={form.control}
@@ -736,7 +861,7 @@ const ProjectEvaluation = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.weightPerception?.label || "7. كيف تقيم وزن طفلك بالنسبة لعمره؟"} <span className="text-red-500">*</span></Label>
+                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.weightPerception?.label || "8. كيف تقيم وزن طفلك بالنسبة لعمره؟"} <span className="text-red-500">*</span></Label>
                   <Controller
                     name="healthIndicators.weightPerception"
                     control={form.control}
@@ -760,7 +885,7 @@ const ProjectEvaluation = () => {
                 </div>
 
                 <div className="col-span-1 md:col-span-2 space-y-4 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
-                  <Label className="text-base font-bold text-primary">{surveyConfig.healthIndicators?.fields?.healthIssues?.label || "8. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)"}</Label>
+                  <Label className="text-base font-bold text-primary">{surveyConfig.healthIndicators?.fields?.healthIssues?.label || "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)"}</Label>
                   <Controller
                     name="healthIndicators.healthIssues"
                     control={form.control}
@@ -829,7 +954,7 @@ const ProjectEvaluation = () => {
                 </div>
 
                 <div className="col-span-1 md:col-span-2 space-y-4">
-                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.infoSources?.label || "9. مصادر معلوماتكم حول تغذية الأطفال"}</Label>
+                  <Label className="text-base font-semibold">{surveyConfig.healthIndicators?.fields?.infoSources?.label || "10. مصادر معلوماتكم حول تغذية الأطفال"}</Label>
                   <Controller
                     name="healthIndicators.infoSources"
                     control={form.control}
@@ -869,11 +994,52 @@ const ProjectEvaluation = () => {
                   />
                 </div>
               </div>
+
+              {/* Dynamic Health Indicators Custom Fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {Object.entries(surveyConfig.healthIndicators?.fields || {})
+                  .filter(([key]) => !['gender', 'weightPerception', 'healthIssues', 'infoSources', 'otherHealthIssue'].includes(key))
+                  .map(([key, fieldConfig]: [string, any]) => (
+                    <div key={key} className="space-y-3">
+                      <Label className="text-base font-semibold">{fieldConfig.label} <span className="text-red-500">*</span></Label>
+                      <Controller
+                        name={`healthIndicators.${key}` as any}
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          fieldConfig.options ? (
+                            <div className="flex flex-wrap gap-2">
+                              {fieldConfig.options.map((opt: string) => (
+                                <div
+                                  key={opt}
+                                  onClick={() => field.onChange(opt)}
+                                  className={cn(
+                                    "px-4 py-2 rounded-full border cursor-pointer transition-all text-sm",
+                                    field.value === opt ? "bg-primary text-primary-foreground border-primary shadow-sm ring-2 ring-primary/20" : "bg-card hover:bg-accent"
+                                  )}
+                                >
+                                  {opt}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <Input
+                              {...field}
+                              className="w-full"
+                              placeholder="أدخل الإجابة هنا..."
+                              dir="rtl"
+                            />
+                          )
+                        )}
+                      />
+                    </div>
+                  ))}
+              </div>
             </CardContent>
           </Card>
 
           {/* KAP Section - Redesigned Likert */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'knowledge') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b sticky top-0 z-10 opacity-95 backdrop-blur-sm">
               <SectionHeader title={surveyConfig.formSectionHeaders?.knowledge || "القسم الثالث: المعرفة والممارسات الغذائية (KAP)"} />
             </div>
@@ -899,7 +1065,7 @@ const ProjectEvaluation = () => {
           </Card>
 
           {/* Intervention Section */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'intervention') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title={surveyConfig.formSectionHeaders?.intervention || surveyConfig.sectionTitles?.intervention || "القسم الرابع: تقييم التدخل (Intervention Assessment)"} />
             </div>
@@ -946,7 +1112,7 @@ const ProjectEvaluation = () => {
           </Card>
 
           {/* Satisfaction */}
-          <Card className="shadow-md overflow-hidden bg-primary/5 border-primary/20">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'satisfaction') }} className="shadow-md overflow-hidden bg-primary/5 border-primary/20">
             <div className="p-6 border-b border-primary/10">
               <SectionHeader title={surveyConfig.formSectionHeaders?.satisfaction || "القسم الخامس: الرضا العام"} />
             </div>
@@ -958,7 +1124,7 @@ const ProjectEvaluation = () => {
           </Card>
 
           {/* Behavioral Intent */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'behavioralIntent') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title={surveyConfig.formSectionHeaders?.behavioral || "القسم السادس: الأثر السلوكي"} />
             </div>
@@ -971,7 +1137,7 @@ const ProjectEvaluation = () => {
 
           {/* NPS */}
           {surveyConfig.npsQuestion?.text && (
-            <Card className="shadow-md overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-200 dark:border-blue-800">
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'nps') }} className="shadow-md overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-200 dark:border-blue-800">
               <div className="p-6 border-b border-blue-200 dark:border-blue-800">
                 <SectionHeader title="صافي نقاط الترويج (NPS)" description="ما مدى احتمال أن توصي بالمنصة؟" />
               </div>
@@ -982,7 +1148,7 @@ const ProjectEvaluation = () => {
           )}
 
           {/* Retrospective */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'retrospective') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title={surveyConfig.formSectionHeaders?.retrospective || surveyConfig.retrospectiveConfig?.title || "القسم السابع: تقييم ارتجاعي (Retrospective Self-assessment)"} description={surveyConfig.retrospectiveConfig?.description || "يرجى تقييم حالتك قبل المشروع وحالتك بعد المشروع"} />
             </div>
@@ -1082,7 +1248,7 @@ const ProjectEvaluation = () => {
           </Card>
 
           {/* Open Questions */}
-          <Card className="shadow-md overflow-hidden">
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'openQuestions') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
               <SectionHeader title={surveyConfig.formSectionHeaders?.open || "القسم الثامن: أسئلة مفتوحة"} />
             </div>
@@ -1107,7 +1273,7 @@ const ProjectEvaluation = () => {
             </CardContent>
           </Card>
 
-          <div className="pt-6 pb-20">
+          <div style={{ order: 99 }} className="pt-6 pb-20">
             <Button
               type="submit"
               className="w-full text-xl py-8 rounded-xl shadow-xl hover:shadow-2xl transition-all hover:scale-[1.01] bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"

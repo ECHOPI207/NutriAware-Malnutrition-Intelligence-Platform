@@ -9,12 +9,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
-import { Loader2, Plus, Trash2, Save, RefreshCw, ChevronDown, Pencil, AlertTriangle, Lightbulb, ArrowUpDown } from 'lucide-react';
+import { Loader2, Plus, Trash2, Save, RefreshCw, ChevronDown, Pencil, AlertTriangle, Lightbulb, ArrowUpDown, ChevronUp, Lock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 import {
     SCALE_PRESETS, QUESTION_TYPE_INFO, getScaleIcons,
     suggestScaleType, validateResearchQuality, getQuestionLabels, createDefaultQuestion,
-    type ScaleType, type ScaleLength, type QuestionType, type SurveyQuestion, type QualityWarning
+    FIELD_TYPE_INFO, OUTPUT_TYPE_INFO, convertFieldType, generateCodingMap, createDefaultField,
+    DEFAULT_SECTION_ORDER, validateSectionOrder, reorderItems, reindexSectionOrder,
+    type ScaleType, type ScaleLength, type QuestionType, type SurveyQuestion, type QualityWarning,
+    type FieldType, type OutputType, type UnifiedFieldSchema, type SectionOrderEntry
 } from '@/lib/surveyEngine';
 
 // --- Default Data ---
@@ -26,96 +30,79 @@ const DEFAULT_CONFIG = {
     },
     consent: {
         title: "نموذج الموافقة المستنيرة",
-        text: `حضرة ولي الأمر/الوصي الكريم،
-يهدف هذا الاستبيان إلى تقييم مشروع توعوي صحي يهدف إلى تحسين التغذية لدى الأطفال من خلال قصص قصيرة مصورة ومنصة إلكترونية تُعرف باسم NutriAware، والتي تحتوي على أدوات تقييم غذائي وتوصيات وخطط غذائية وذكاء اصطناعي وخدمات استشارة.
-مشاركتكم طوعية بالكامل، ولا توجد أي مخاطر أو تبعات مترتبة على عدم المشاركة. جميع البيانات التي ستُجمع ستظل سرية ولن تُستخدم إلا لأغراض البحث العلمي وتحسين البرامج التعليمية.`,
+        text: `حضرة ولي الأمر/الوصي الكريم،\r\nيهدف هذا الاستبيان إلى تقييم مشروع توعوي صحي يهدف إلى تحسين التغذية لدى الأطفال من خلال قصص قصيرة مصورة ومنصة إلكترونية تُعرف باسم NutriAware، والتي تحتوي على أدوات تقييم غذائي وتوصيات وخطط غذائية وذكاء اصطناعي وخدمات استشارة.\r\nمشاركتكم طوعية بالكامل، ولا توجد أي مخاطر أو تبعات مترتبة على عدم المشاركة. جميع البيانات التي ستُجمع ستظل سرية ولن تُستخدم إلا لأغراض البحث العلمي وتحسين البرامج التعليمية.`,
         agreeLabel: "أوافق على المشاركة في هذا البحث"
     },
-    demographics: {
-        title: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
-        description: "الهدف: تحديد المتغيرات المستقلة للتحليل.",
-        fields: {
-            parentName: { label: "اسم ولي الأمر (اختياري)", placeholder: "الاسم الثلاثي (اختياري)" },
-            relationship: { label: "1. صلة القرابة بالطفل", options: ["أب", "أم", "أخرى"] },
-            parentAge: { label: "2. عمر ولي الأمر", options: ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"] },
-            education: { label: "3. المستوى التعليمي", options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"] },
-            childrenCount: { label: "4. عدد الأطفال في الأسرة", options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"] },
-            childAge: { label: "5. عمر الطفل المستهدف", options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"] }
-        }
-    },
-    healthIndicators: {
-        title: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
-        description: "الهدف: ربط الوعي بالحالة الصحية الواقعية",
-        fields: {
-            gender: { label: "6. جنس الطفل", options: ["ذكر", "أنثى"] },
-            weightPerception: { label: "7. كيف تقيم وزن طفلك بالنسبة لعمره؟", options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"] },
-            healthIssues: { label: "8. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", options: ["فقر دم (أنيميا)", "نقص فيتامين D", "سكري الأطفال", "حساسية طعام", "لا يعاني من أي مشاكل", "لا أعلم", "لا توجد تشخيصات طبية رسمية", "أخرى"] },
-            infoSources: { label: "9. مصادر معلوماتكم حول تغذية الأطفال", options: ["الأطباء", "الإنترنت", "المدرسة", "الأهل والأصدقاء", "وسائل التواصل الاجتماعي", "أخرى"] }
-        }
-    },
     knowledge: [
-        { id: "q1", text: "أعلم أن سوء التغذية يشمل نقص العناصر وليس فقط نقص الوزن", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q2", text: "أعلم أن الغذاء الصحي يجب أن يحتوي على الخضروات والفواكه يومياً", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q3", text: "أعلم أن الإفراط في الوجبات السريعة يضر بصحة الطفل", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q4", text: "أعلم علامات سوء التغذية مثل الإرهاق وضعف التركيز", type: "likert", scaleType: "agreement", scaleLength: 5 },
+        { id: "KN1", text: "أعلم أن سوء التغذية يشمل نقص العناصر الغذائية الدقيقة وليس فقط نقص الوزن", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN2", text: "أعلم أن الغذاء الصحي اليومي للطفل يجب أن يحتوي على خضروات وفواكه طازجة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN3", text: "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN4", text: "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN5_R", text: "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN", reverseScored: true },
+        { id: "KN_AC", text: "يرجى اختيار \"أوافق\" لهذا السؤال للتأكد من انتباهك", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN", isAttentionCheck: true },
     ],
     practices: [
-        { id: "q1", text: "أحرص على توفر الخضروات والفواكه في غذاء طفلي", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q2", text: "أراقب استهلاك طفلي للحلويات والسكريات والمشروبات الغازية", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q3", text: "نادرًا ما نتناول الوجبات السريعة في المنزل", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q4", text: "أشجع طفلي على شرب الماء بانتظام", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q5", text: "أقوم بقراءة البطاقة الغذائية (المكونات) قبل شراء المنتجات للطفل", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q6", text: "أحرص على تقديم وجبة الإفطار لطفلي قبل الذهاب إلى المدرسة", type: "likert", scaleType: "frequency", scaleLength: 5 },
-        { id: "q7", text: "أجد صعوبة في تقديم أغذية صحية بسبب تكلفتها المالية", type: "likert", scaleType: "frequency", scaleLength: 5, reverseScored: true },
+        { id: "PR1", text: "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR2", text: "خلال الأسبوعين الماضيين، راقبت كمية الحلويات والسكريات التي يتناولها طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR3", text: "خلال الأسبوعين الماضيين، قللنا من تناول الوجبات السريعة في المنزل", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR4", text: "خلال الأسبوعين الماضيين، شجعت طفلي على شرب الماء بانتظام بدلاً من المشروبات الغازية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR5", text: "خلال الأسبوعين الماضيين، قرأت البطاقة الغذائية قبل شراء المنتجات لطفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR6", text: "خلال الأسبوعين الماضيين، حرصت على تقديم وجبة إفطار متوازنة لطفلي يومياً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "PR7_R", text: "خلال الأسبوعين الماضيين، وجدت صعوبة في تقديم أغذية صحية بسبب التكلفة المالية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين", reverseScored: true },
+        { id: "PR_AC", text: "يرجى اختيار \"لا أوافق بشدة\" لهذا السؤال", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", isAttentionCheck: true },
     ],
     intervention: {
         stories: [
-            { id: "q1", text: "كانت القصص جذابة بصرياً", type: "likert", scaleType: "agreement", scaleLength: 5 },
-            { id: "q2", text: "كانت اللغة والمفاهيم مناسبة لعمر طفلي ويسهل عليه فهمها", type: "likert", scaleType: "agreement", scaleLength: 5 },
-            { id: "q3", text: "المعلومات المقدمة ساهمت في تغيير مفاهيم خاطئة لدي أو لدى طفلي", type: "likert", scaleType: "agreement", scaleLength: 5 },
-            { id: "q4", text: "نقلت القصة رسائل توعوية مفيدة حول التغذية الصحية", type: "likert", scaleType: "agreement", scaleLength: 5 },
-            { id: "q5", text: "شجعت القصص طفلي على الاهتمام بالطعام الصحي", type: "likert", scaleType: "agreement", scaleLength: 5 },
+            { id: "INT_ST1", text: "كانت القصص المصورة جذابة بصرياً ومشوقة لطفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST" },
+            { id: "INT_ST2", text: "كانت اللغة والمفاهيم في القصص مناسبة لعمر طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST" },
+            { id: "INT_ST3", text: "ساهمت القصص في تصحيح مفاهيم غذائية خاطئة لدي أو لدى طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST" },
+            { id: "INT_ST4", text: "نقلت القصص رسائل توعوية واضحة حول أهمية التغذية الصحية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST" },
+            { id: "INT_ST5", text: "شجعت القصص طفلي على الاهتمام بتناول الطعام الصحي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST" },
+            { id: "INT_ST6_R", text: "لم تضف القصص معلومات جديدة لم أكن أعرفها مسبقاً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "INT_ST", reverseScored: true },
         ],
         platform: {
             usability: [
-                { id: "q1", text: "كان الدخول إلى المنصة عبر QR سهلاً", type: "likert", scaleType: "satisfaction", scaleLength: 5 },
-                { id: "q2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها", type: "likert", scaleType: "satisfaction", scaleLength: 5 },
+                { id: "PX_US1", text: "كان الدخول إلى المنصة عبر رمز QR سهلاً ومباشراً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_US" },
+                { id: "PX_US2", text: "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها المختلفة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_US" },
             ],
             content: [
-                { id: "q1", text: "كانت المعلومات المقدمة موثوقة ومفيدة", type: "likert", scaleType: "quality", scaleLength: 5 },
-                { id: "q2", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق", type: "likert", scaleType: "quality", scaleLength: 5 },
+                { id: "PX_CN1", text: "كانت المعلومات الغذائية المقدمة في المنصة موثوقة ومفيدة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_CN" },
+                { id: "PX_CN2", text: "كانت خطط الوجبات المقترحة واقعية وقابلة للتطبيق في حياتنا اليومية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_CN" },
             ],
             tools: [
-                { id: "q1", text: "كانت أدوات التقييم سهلة الفهم والاستخدام", type: "likert", scaleType: "satisfaction", scaleLength: 5 },
-                { id: "q2", text: "ساعدتني نتائج التقييم على فهم حالة طفلي الغذائية", type: "likert", scaleType: "agreement", scaleLength: 5 },
+                { id: "PX_TL1", text: "كانت أدوات التقييم الغذائي سهلة الفهم والاستخدام", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_TL" },
+                { id: "PX_TL2", text: "ساعدتني نتائج التقييم على فهم الحالة الغذائية لطفلي بوضوح", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_TL" },
             ],
             consultation: [
-                { id: "q1", text: "كانت وسائل التواصل واضحة ومفهومة", type: "likert", scaleType: "agreement", scaleLength: 5 },
-                { id: "q2", text: "شعرت بالاطمئنان لإمكانية طلب الاستشارة الغذائية", type: "likert", scaleType: "agreement", scaleLength: 5 },
+                { id: "PX_CO1", text: "كانت وسائل التواصل مع المختصين واضحة وسهلة الوصول", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_CO" },
+                { id: "PX_CO2", text: "شعرت بالاطمئنان لتوفر إمكانية طلب استشارة غذائية متخصصة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PX_CO" },
             ]
         }
     },
     satisfaction: [
-        { id: "q1", text: "أنا راضٍ بشكل عام عن المشروع", type: "likert", scaleType: "satisfaction", scaleLength: 5 },
-        { id: "q2", text: "أنصح غيري بالاطلاع على المنصة", type: "likert", scaleType: "agreement", scaleLength: 5 },
+        { id: "SAT1", text: "أنا راضٍ بشكل عام عن تجربتي مع مشروع NutriAware", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT" },
+        { id: "SAT2", text: "حقق المشروع توقعاتي فيما يخص تحسين معرفتي بتغذية طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT" },
+        { id: "SAT3", text: "أنصح أولياء الأمور الآخرين بالاطلاع على المنصة والاستفادة منها", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT" },
+        { id: "SAT4_R", text: "لم يقدم المشروع فائدة واضحة تستحق الوقت المستثمر فيه", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT", reverseScored: true },
     ],
     behavioralIntent: [
-        { id: "q1", text: "أنوي تطبيق تغييرات غذائية داخل المنزل", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q2", text: "أنوي تقليل الوجبات السريعة والحلويات", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q3", text: "أنوي تشجيع طفلي على تناول الخضروات والفواكه", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q4", text: "أنوي استخدام المنصة بانتظام", type: "likert", scaleType: "agreement", scaleLength: 5 },
-        { id: "q5", text: "كانت خطط الوجبات والأفكار المقترحة واقعية وقابلة للتطبيق", type: "likert", scaleType: "agreement", scaleLength: 5 },
+        { id: "BI1", text: "أنوي تطبيق تغييرات غذائية صحية داخل المنزل بناءً على ما تعلمته", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "BI" },
+        { id: "BI2", text: "أنوي تقليل استهلاك الوجبات السريعة والحلويات لأطفالي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "BI" },
+        { id: "BI3", text: "أنوي تشجيع أطفالي على تناول المزيد من الخضروات والفواكه يومياً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "BI" },
+        { id: "BI4", text: "أنوي استخدام منصة NutriAware بشكل منتظم لمتابعة تغذية أطفالي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "BI" },
+        { id: "BI5_R", text: "لا أعتقد أنني سأغير عاداتنا الغذائية الحالية بناءً على هذا المشروع", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "BI", reverseScored: true },
     ],
-    npsQuestion: { id: "nps1", text: "ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟", type: "nps" as QuestionType },
+    npsQuestion: { id: "NPS1", text: "على مقياس من 0 إلى 10، ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟", type: "nps" as QuestionType },
     openQuestions: [
-        { id: "likedMost", text: "1. ما أكثر ما أعجبك في المشروع؟" },
-        { id: "challenges", text: "2. ما التحديات التي تمنع تطبيق العادات الغذائية الصحية؟" },
-        { id: "suggestions", text: "3. اقتراحات للتحسين:" },
+        { id: "OE1", text: "ما أكثر ما أعجبك في مشروع NutriAware؟" },
+        { id: "OE2", text: "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟" },
+        { id: "OE3", text: "ما اقتراحاتك لتحسين المنصة أو المحتوى التوعوي؟" },
+        { id: "OE4", text: "كيف تعرفت على منصة NutriAware لأول مرة؟" },
     ],
     sectionTitles: {
         knowledge: "المعرفة الغذائية للوالدين",
         practices: "الممارسات الغذائية داخل المنزل",
-        intervention: "القسم الثالث: التدخل (قصص ومنصة NutriAware)",
+        intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
         stories: "1. القصص القصيرة المصورة",
         usability: "2. المنصة - قابلية الاستخدام",
         content: "2. المنصة - جودة المحتوى",
@@ -129,13 +116,19 @@ const DEFAULT_CONFIG = {
         "1": "لا أوافق بشدة", "2": "لا أوافق", "3": "محايد", "4": "أوافق", "5": "أوافق بشدة"
     },
     retrospectiveConfig: {
-        title: "القسم السابع: تقييم ارتجاعي (Retrospective Self-assessment)",
-        description: "يرجى تقييم حالتك قبل المشروع وحالتك بعد المشروع",
+        title: "القسم العاشر: تقييم ارتجاعي (Retrospective Pre-Then/Post Self-Assessment)",
+        description: "يرجى تقييم مستواك قبل وبعد استخدام NutriAware على مقياس من 1 (منخفض جدًا) إلى 10 (مرتفع جدًا)",
         mode: "slider" as "slider" | "mcq",
-        knowledgeTitle: "معرفتي بتغذية الأطفال",
-        practicesTitle: "ممارساتي الغذائية في المنزل",
-        beforeLabel: "قبل المشروع",
-        afterLabel: "بعد المشروع",
+        dimensions: [
+            { id: "RETRO_KN", titleAr: "مستوى معرفتي بأساسيات تغذية الأطفال السليمة", titleEn: "Knowledge of child nutrition fundamentals" },
+            { id: "RETRO_PR", titleAr: "مستوى ممارساتي الغذائية الصحية في المنزل", titleEn: "Healthy dietary practices at home" },
+            { id: "RETRO_AW", titleAr: "مستوى وعيي بمخاطر سوء التغذية على أطفالي", titleEn: "Awareness of malnutrition risks" },
+            { id: "RETRO_CF", titleAr: "مستوى ثقتي في قدرتي على تخطيط وجبات صحية لأطفالي", titleEn: "Confidence in planning healthy meals" },
+        ],
+        knowledgeTitle: "مستوى معرفتي بأساسيات تغذية الأطفال السليمة",
+        practicesTitle: "مستوى ممارساتي الغذائية الصحية في المنزل",
+        beforeLabel: "قبل استخدام NutriAware",
+        afterLabel: "بعد استخدام NutriAware",
         options: ["منخفض", "متوسط", "عالٍ"],
         sliderMin: 1, sliderMax: 10,
     },
@@ -148,11 +141,35 @@ const DEFAULT_CONFIG = {
         intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
         satisfaction: "القسم السادس: الرضا العام",
         behavioral: "القسم السابع: الأثر السلوكي",
-        retrospective: "القسم الثامن: تقييم ارتجاعي",
-        open: "القسم التاسع: أسئلة مفتوحة"
+        nps: "القسم الثامن: صافي نقاط الترويج",
+        retrospective: "القسم التاسع: تقييم ارتجاعي (قبل/بعد)",
+        open: "القسم العاشر: أسئلة مفتوحة"
     },
     researchMode: false,
     customTemplates: [] as Array<{ id: string; name: string; labels: Record<string, string>; scaleLength: number }>,
+    demographics: {
+        title: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
+        description: "الهدف: تحديد المتغيرات المستقلة للتحليل.",
+        fields: {
+            parentName: { id: "DEM_NAME", text: "اسم ولي الأمر (اختياري)", fieldType: "text" as FieldType, required: false, hidden: false, order: 0, outputType: "text" as OutputType, legacyKey: "parentName", validation: { maxLength: 100 } },
+            relationship: { id: "DEM_RELATIONSHIP", text: "1. صلة القرابة بالطفل", fieldType: "radio" as FieldType, required: true, hidden: false, order: 1, outputType: "nominal" as OutputType, options: ["أب", "أم", "أخرى"], codingMap: { "أب": 1, "أم": 2, "أخرى": 3 }, legacyKey: "relationship" },
+            parentAge: { id: "DEM_PARENT_AGE", text: "2. عمر ولي الأمر", fieldType: "radio" as FieldType, required: true, hidden: false, order: 2, outputType: "ordinal" as OutputType, options: ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"], codingMap: { "أقل من 25 سنة": 1, "25 – 35 سنة": 2, "36 – 45 سنة": 3, "أكثر من 45 سنة": 4 }, legacyKey: "parentAge" },
+            parentProfession: { id: "DEM_PROFESSION", text: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", fieldType: "text" as FieldType, required: false, hidden: false, order: 3, outputType: "text" as OutputType, legacyKey: "parentProfession", validation: { maxLength: 200 } },
+            education: { id: "DEM_EDUCATION", text: "4. المستوى التعليمي", fieldType: "radio" as FieldType, required: true, hidden: false, order: 4, outputType: "ordinal" as OutputType, options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
+            childrenCount: { id: "DEM_CHILDREN_COUNT", text: "5. عدد الأطفال في الأسرة", fieldType: "radio" as FieldType, required: true, hidden: false, order: 5, outputType: "ordinal" as OutputType, options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
+            childAge: { id: "DEM_CHILD_AGE", text: "6. عمر الطفل المستهدف", fieldType: "radio" as FieldType, required: true, hidden: false, order: 6, outputType: "ordinal" as OutputType, options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" }
+        }
+    },
+    healthIndicators: {
+        title: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
+        description: "الهدف: ربط الوعي بالحالة الصحية الواقعية",
+        fields: {
+            gender: { id: "HI_GENDER", text: "7. جنس الطفل", fieldType: "radio" as FieldType, required: true, hidden: false, order: 0, outputType: "nominal" as OutputType, options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
+            weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio" as FieldType, required: true, hidden: false, order: 1, outputType: "ordinal" as OutputType, options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
+            healthIssues: { id: "HI_HEALTH_ISSUES", text: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 2, outputType: "nominal" as OutputType, options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
+            infoSources: { id: "HI_INFO_SOURCES", text: "10. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 3, outputType: "nominal" as OutputType, options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
+        }
+    }
 };
 
 // --- Helper Components ---
@@ -380,35 +397,194 @@ const SimpleFieldEditor = ({ label, value, onChange, isTextArea }: {
     </div>
 );
 
-const OptionsEditor = ({ fieldConfig, onChange }: { fieldConfig: any; onChange: (v: any) => void }) => {
+const UnifiedFieldEditor = ({ fieldConfig, onChange, onRemove }: { fieldConfig: any; onChange: (v: any) => void; onRemove?: () => void }) => {
+    const [showAdvanced, setShowAdvanced] = useState(false);
+    const field = fieldConfig as UnifiedFieldSchema;
+    const hasOptions = ['radio', 'checkbox', 'select'].includes(field.fieldType || '');
+
     const handleOptionChange = (idx: number, val: string) => {
-        const newOpts = [...fieldConfig.options]; newOpts[idx] = val;
-        onChange({ ...fieldConfig, options: newOpts });
+        const newOpts = [...(field.options || [])]; newOpts[idx] = val;
+        const newCoding = generateCodingMap(newOpts);
+        onChange({ ...fieldConfig, options: newOpts, codingMap: newCoding });
     };
+
+    const handleTypeChange = (newType: FieldType) => {
+        const converted = convertFieldType(field, newType);
+        onChange(converted);
+    };
+
+    // Backward compat: if field has label but no text, use label
+    const displayText = field.text || (fieldConfig as any).label || '';
+
     return (
-        <div className="space-y-2 p-3 border rounded-lg">
-            <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">عنوان الحقل:</Label>
-                <Input value={fieldConfig.label} onChange={e => onChange({ ...fieldConfig, label: e.target.value })} dir="rtl" className="text-right h-8 text-sm" />
+        <div className="space-y-2 p-3 border rounded-lg bg-card relative group">
+            {/* Row 1: Text + Type Badge + Controls */}
+            <div className="flex gap-2 items-start">
+                <div className="flex-1 space-y-1.5">
+                    <Input value={displayText} onChange={e => onChange({ ...fieldConfig, text: e.target.value })} dir="rtl" className="text-right h-8 text-sm" placeholder="نص السؤال..." />
+                </div>
+                <div className="flex items-center gap-1 shrink-0">
+                    <span className="text-xs">{FIELD_TYPE_INFO[field.fieldType || 'radio']?.icon}</span>
+                    {onRemove && (
+                        <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500" onClick={onRemove}>
+                            <Trash2 size={12} />
+                        </Button>
+                    )}
+                </div>
             </div>
-            {fieldConfig.options && (
+
+            {/* Row 2: Type + Required + Advanced toggle */}
+            <div className="flex flex-wrap gap-2 items-center">
+                <Select value={field.fieldType || 'radio'} onValueChange={(v) => handleTypeChange(v as FieldType)}>
+                    <SelectTrigger className="h-7 w-[130px] text-[11px]">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {(Object.entries(FIELD_TYPE_INFO) as [FieldType, { labelAr: string; icon: string }][]).map(([type, info]) => (
+                            <SelectItem key={type} value={type} className="text-xs">
+                                {info.icon} {info.labelAr}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+
+                <label className="flex items-center gap-1.5 text-[11px]">
+                    <Switch checked={field.required !== false} onCheckedChange={v => onChange({ ...fieldConfig, required: v })} className="scale-[0.6]" />
+                    مطلوب
+                </label>
+
+                <label className="flex items-center gap-1.5 text-[11px]">
+                    <Switch checked={field.hidden || false} onCheckedChange={v => onChange({ ...fieldConfig, hidden: v })} className="scale-[0.6]" />
+                    مخفي
+                </label>
+
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] px-2 mr-auto" onClick={() => setShowAdvanced(!showAdvanced)}>
+                    <Pencil size={10} className="ml-1" /> {showAdvanced ? 'إخفاء' : 'متقدم'}
+                </Button>
+            </div>
+
+            {/* Summary badges — at-a-glance view of field config */}
+            <div className="flex flex-wrap gap-1.5 items-center" dir="rtl">
+                <span className={cn(
+                    "text-[10px] px-1.5 py-0.5 rounded font-medium",
+                    field.fieldType === 'text' ? "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300" :
+                        field.fieldType === 'number' ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300" :
+                            field.fieldType === 'date' ? "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300" :
+                                "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+                )}>
+                    {FIELD_TYPE_INFO[field.fieldType || 'radio']?.icon} {FIELD_TYPE_INFO[field.fieldType || 'radio']?.labelAr}
+                </span>
+                {hasOptions && field.options && (
+                    <>
+                        <span className="text-[10px] text-muted-foreground">{field.options.length} خيارات:</span>
+                        {field.options.slice(0, 4).map((opt: string, idx: number) => (
+                            <span key={idx} className="text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded">
+                                {opt}
+                            </span>
+                        ))}
+                        {field.options.length > 4 && (
+                            <span className="text-[10px] text-muted-foreground">+{field.options.length - 4}</span>
+                        )}
+                    </>
+                )}
+                {field.fieldType === 'text' && field.placeholder && (
+                    <span className="text-[10px] text-muted-foreground italic">📝 {field.placeholder}</span>
+                )}
+                {field.fieldType === 'number' && field.validation && (
+                    <span className="text-[10px] text-muted-foreground">
+                        🔢 {field.validation.min !== undefined ? `min: ${field.validation.min}` : ''} {field.validation.max !== undefined ? `max: ${field.validation.max}` : ''}
+                    </span>
+                )}
+                {field.outputType && (
+                    <span className="text-[10px] bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 px-1.5 py-0.5 rounded">
+                        📊 {OUTPUT_TYPE_INFO[field.outputType]?.labelAr || field.outputType}
+                    </span>
+                )}
+            </div>
+            {hasOptions && field.options && (
                 <div className="space-y-1.5">
                     <Label className="text-xs text-muted-foreground">الخيارات:</Label>
                     <div className="grid gap-1.5 pr-3 border-r-2">
-                        {fieldConfig.options.map((opt: string, idx: number) => (
-                            <div key={idx} className="flex gap-1.5">
-                                <Input value={opt} onChange={e => handleOptionChange(idx, e.target.value)} className="h-7 text-xs text-right" dir="rtl" />
+                        {field.options.map((opt: string, idx: number) => (
+                            <div key={idx} className="flex gap-1.5 items-center">
+                                <span className="text-[10px] text-muted-foreground w-4 text-center font-mono">{(field.codingMap?.[opt]) || idx + 1}</span>
+                                <Input value={opt} onChange={e => handleOptionChange(idx, e.target.value)} className="h-7 text-xs text-right flex-1" dir="rtl" />
                                 <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500"
-                                    onClick={() => onChange({ ...fieldConfig, options: fieldConfig.options.filter((_: any, i: number) => i !== idx) })}>
+                                    onClick={() => {
+                                        const newOpts = field.options!.filter((_: any, i: number) => i !== idx);
+                                        onChange({ ...fieldConfig, options: newOpts, codingMap: generateCodingMap(newOpts) });
+                                    }}>
                                     <Trash2 size={12} />
                                 </Button>
                             </div>
                         ))}
                         <Button variant="outline" size="sm" className="w-full h-7 text-xs border-dashed"
-                            onClick={() => onChange({ ...fieldConfig, options: [...fieldConfig.options, ""] })}>
+                            onClick={() => {
+                                const newOpts = [...(field.options || []), ""];
+                                onChange({ ...fieldConfig, options: newOpts, codingMap: generateCodingMap(newOpts) });
+                            }}>
                             <Plus size={10} className="ml-1" /> إضافة خيار
                         </Button>
                     </div>
+                </div>
+            )}
+
+            {/* Advanced panel */}
+            {showAdvanced && (
+                <div className="space-y-2 p-2 bg-muted/30 rounded border text-xs">
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="space-y-1">
+                            <Label className="text-[10px] text-muted-foreground">نوع المخرج (Output Type)</Label>
+                            <Select value={field.outputType || 'nominal'} onValueChange={(v) => onChange({ ...fieldConfig, outputType: v })}>
+                                <SelectTrigger className="h-7 text-[11px]">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {(Object.entries(OUTPUT_TYPE_INFO) as [OutputType, { labelAr: string }][]).map(([type, info]) => (
+                                        <SelectItem key={type} value={type} className="text-xs">{info.labelAr}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div className="space-y-1">
+                            <Label className="text-[10px] text-muted-foreground">معرّف المتغير (ID)</Label>
+                            <Input value={field.id || ''} onChange={e => onChange({ ...fieldConfig, id: e.target.value })} className="h-7 text-[11px] font-mono" />
+                        </div>
+                    </div>
+                    {/* Validation rules */}
+                    <div className="grid grid-cols-2 gap-2">
+                        {(field.fieldType === 'text' || field.fieldType === 'number') && (
+                            <>
+                                <div className="space-y-1">
+                                    <Label className="text-[10px] text-muted-foreground">{field.fieldType === 'number' ? 'الحد الأدنى' : 'أقل عدد أحرف'}</Label>
+                                    <Input type="number" value={field.validation?.min ?? field.validation?.minLength ?? ''}
+                                        onChange={e => onChange({ ...fieldConfig, validation: { ...field.validation, [field.fieldType === 'number' ? 'min' : 'minLength']: e.target.value ? Number(e.target.value) : undefined } })}
+                                        className="h-7 text-[11px]" />
+                                </div>
+                                <div className="space-y-1">
+                                    <Label className="text-[10px] text-muted-foreground">{field.fieldType === 'number' ? 'الحد الأقصى' : 'أكثر عدد أحرف'}</Label>
+                                    <Input type="number" value={field.validation?.max ?? field.validation?.maxLength ?? ''}
+                                        onChange={e => onChange({ ...fieldConfig, validation: { ...field.validation, [field.fieldType === 'number' ? 'max' : 'maxLength']: e.target.value ? Number(e.target.value) : undefined } })}
+                                        className="h-7 text-[11px]" />
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    {/* Coding map preview */}
+                    {field.codingMap && Object.keys(field.codingMap).length > 0 && (
+                        <div className="space-y-1">
+                            <Label className="text-[10px] text-muted-foreground">🔢 خريطة الترميز (Coding Map)</Label>
+                            <div className="flex flex-wrap gap-1">
+                                {Object.entries(field.codingMap).map(([label, code]) => (
+                                    <span key={label} className="text-[10px] px-1.5 py-0.5 bg-card border rounded font-mono">{code}={label}</span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {/* Legacy key */}
+                    {field.legacyKey && (
+                        <div className="text-[10px] text-muted-foreground">مفتاح قديم: <code className="font-mono bg-card px-1 rounded">{field.legacyKey}</code></div>
+                    )}
                 </div>
             )}
         </div>
@@ -438,6 +614,7 @@ const SurveyManagement = () => {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [config, setConfig] = useState<any>(DEFAULT_CONFIG);
+    const [sectionOrder, setSectionOrder] = useState<SectionOrderEntry[]>(DEFAULT_SECTION_ORDER);
 
     useEffect(() => { loadConfig(); }, []);
 
@@ -447,7 +624,36 @@ const SurveyManagement = () => {
             const docRef = doc(db, "system_settings", "survey_config");
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                setConfig({ ...DEFAULT_CONFIG, ...docSnap.data() });
+                const fbData = docSnap.data();
+                const mergedConfig = { ...DEFAULT_CONFIG, ...fbData };
+
+                if (fbData.demographics?.fields) {
+                    // Deep merge per field: DEFAULT schema props as fallback, Firestore overrides take priority
+                    const mergedDemoFields: any = { ...DEFAULT_CONFIG.demographics.fields };
+                    for (const [key, fbField] of Object.entries(fbData.demographics.fields)) {
+                        mergedDemoFields[key] = { ...(mergedDemoFields[key] || {}), ...(fbField as any) };
+                    }
+                    mergedConfig.demographics.fields = mergedDemoFields;
+                }
+                if (fbData.healthIndicators?.fields) {
+                    const mergedHealthFields: any = { ...DEFAULT_CONFIG.healthIndicators.fields };
+                    for (const [key, fbField] of Object.entries(fbData.healthIndicators.fields)) {
+                        mergedHealthFields[key] = { ...(mergedHealthFields[key] || {}), ...(fbField as any) };
+                    }
+                    mergedConfig.healthIndicators.fields = mergedHealthFields;
+                }
+                if (fbData.openQuestions) {
+                    // Firestore-first: use saved questions directly as source of truth
+                    // This prevents deleted questions from re-appearing from DEFAULT_CONFIG
+                    mergedConfig.openQuestions = fbData.openQuestions;
+                }
+
+                // Load section order from Firestore or use defaults
+                if (fbData.sectionOrder) {
+                    setSectionOrder(fbData.sectionOrder);
+                }
+
+                setConfig(mergedConfig);
             }
         } catch (error) {
             console.error("Error loading config:", error);
@@ -473,13 +679,65 @@ const SurveyManagement = () => {
         setSaving(true);
         try {
             const docRef = doc(db, "system_settings", "survey_config");
-            const sanitizedConfig = sanitizeForFirestore(JSON.parse(JSON.stringify(config)));
+            const configWithOrder = { ...config, sectionOrder: reindexSectionOrder(sectionOrder) };
+            const sanitizedConfig = sanitizeForFirestore(JSON.parse(JSON.stringify(configWithOrder)));
             await setDoc(docRef, sanitizedConfig);
             toast({ title: "تم الحفظ", description: "تم تحديث الاستبيان بنجاح", className: "bg-green-600 text-white border-none" });
         } catch (error: any) {
             console.error("Error saving config:", error);
             toast({ variant: "destructive", title: "خطأ في الحفظ", description: error?.message || "حدث خطأ أثناء حفظ التغييرات" });
         } finally { setSaving(false); }
+    };
+
+    // --- Section Reorder Handlers ---
+    const handleMoveSection = (fromIndex: number, direction: 'up' | 'down') => {
+        const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
+        if (toIndex < 0 || toIndex >= sectionOrder.length) return;
+
+        // Check locked constraints before moving
+        const section = sectionOrder[fromIndex];
+        const target = sectionOrder[toIndex];
+        if (section.is_locked && section.locked_reorderable === false) {
+            toast({ variant: "destructive", title: "غير مسموح", description: `قسم "${section.titleAr}" مقفل ولا يمكن تغيير ترتيبه.` });
+            return;
+        }
+        if (target.is_locked && target.locked_reorderable === false) {
+            toast({ variant: "destructive", title: "غير مسموح", description: `لا يمكن تجاوز قسم "${target.titleAr}" لأنه مقفل.` });
+            return;
+        }
+
+        const newOrder = reindexSectionOrder(reorderItems(sectionOrder, fromIndex, toIndex));
+
+        // Validate constraints
+        const { errors, warnings } = validateSectionOrder(newOrder);
+        if (errors.length > 0) {
+            toast({ variant: "destructive", title: "ترتيب غير صالح", description: errors[0] });
+            return;
+        }
+        if (warnings.length > 0) {
+            toast({ title: "⚠️ تنبيه", description: warnings[0] });
+        }
+
+        setSectionOrder(newOrder);
+    };
+
+    // --- Question Reorder within arrays ---
+    const handleMoveQuestion = (path: string, fromIndex: number, direction: 'up' | 'down') => {
+        const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
+        setConfig((prev: any) => {
+            const newConfig = JSON.parse(JSON.stringify(prev));
+            const pathParts = path.split('.');
+            let current = newConfig;
+            for (const part of pathParts) current = current[part];
+
+            if (toIndex < 0 || toIndex >= current.length) return prev;
+            const reordered = reorderItems(current, fromIndex, toIndex);
+            // Write back
+            let parent = newConfig;
+            for (let i = 0; i < pathParts.length - 1; i++) parent = parent[pathParts[i]];
+            parent[pathParts[pathParts.length - 1]] = reordered;
+            return newConfig;
+        });
     };
 
     const updateSection = (path: string, newValue: any) => {
@@ -524,6 +782,37 @@ const SurveyManagement = () => {
             let current = newConfig;
             for (const part of pathParts) current = current[part];
             current.splice(index, 1);
+            return newConfig;
+        });
+    };
+
+    const addSectionField = (path: string) => {
+        setConfig((prev: any) => {
+            const newConfig = JSON.parse(JSON.stringify(prev));
+            const pathParts = path.split('.');
+            let current = newConfig;
+            for (const part of pathParts) current = current[part];
+
+            const newKey = `custom_${Date.now()}`;
+            current[newKey] = createDefaultField({
+                id: newKey,
+                text: 'سؤال جديد',
+                fieldType: 'radio',
+                required: false,
+                order: Object.keys(current).length,
+            });
+            return newConfig;
+        });
+    };
+
+    const removeSectionField = (path: string, keyToRemove: string) => {
+        setConfig((prev: any) => {
+            const newConfig = JSON.parse(JSON.stringify(prev));
+            const pathParts = path.split('.');
+            let current = newConfig;
+            for (const part of pathParts) current = current[part];
+
+            delete current[keyToRemove];
             return newConfig;
         });
     };
@@ -610,164 +899,236 @@ const SurveyManagement = () => {
                     </Card>
                 )}
 
-                {/* 1. Meta */}
+                {/* Section Reorder Panel */}
+                <AccordionSection title="🔀 ترتيب أقسام الاستبيان">
+                    <p className="text-xs text-muted-foreground mb-3">اسحب أو استخدم الأسهم لإعادة ترتيب أقسام الاستبيان. الأقسام المقفلة لا يمكن نقلها.</p>
+                    <div className="space-y-1">
+                        {sectionOrder.map((section, idx) => {
+                            const isLocked = section.is_locked && section.locked_reorderable === false;
+                            return (
+                                <div key={section.id}
+                                    className={`flex items-center gap-2 p-2.5 rounded-lg border transition-colors ${isLocked ? 'bg-slate-100 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700' : 'bg-card hover:bg-accent/30 border-border'
+                                        }`}
+                                >
+                                    <div className="flex flex-col gap-0.5 shrink-0">
+                                        <Button variant="ghost" size="icon" className="h-5 w-5" disabled={idx === 0 || isLocked}
+                                            onClick={() => handleMoveSection(idx, 'up')}>
+                                            <ChevronUp size={12} />
+                                        </Button>
+                                        <Button variant="ghost" size="icon" className="h-5 w-5" disabled={idx === sectionOrder.length - 1 || isLocked}
+                                            onClick={() => handleMoveSection(idx, 'down')}>
+                                            <ChevronDown size={12} />
+                                        </Button>
+                                    </div>
+                                    <span className="text-xs text-muted-foreground font-mono w-5 text-center shrink-0">{idx + 1}</span>
+                                    {isLocked && <Lock size={12} className="text-amber-500 shrink-0" />}
+                                    <span className="text-sm flex-1">{section.icon} {section.titleAr}</span>
+                                    {isLocked && <span className="text-[10px] bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-1.5 py-0.5 rounded">مقفل</span>}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </AccordionSection>
+
+                {/* 1. Meta — always first, not in sectionOrder */}
                 <AccordionSection title="📋 بيانات الاستبيان الأساسية" defaultOpen>
                     <SimpleFieldEditor label="عنوان الاستبيان" value={config.meta?.title || ""} onChange={v => updateSection('meta.title', v)} />
                     <SimpleFieldEditor label="العنوان الفرعي" value={config.meta?.subtitle || ""} onChange={v => updateSection('meta.subtitle', v)} />
                     <SimpleFieldEditor label="اسم المؤسسة/الكلية" value={config.meta?.institution || ""} onChange={v => updateSection('meta.institution', v)} />
                 </AccordionSection>
 
-                {/* 2. Consent */}
-                <AccordionSection title="✅ نموذج الموافقة">
-                    <SimpleFieldEditor label="عنوان الموافقة" value={config.consent?.title || ""} onChange={v => updateSection('consent.title', v)} />
-                    <SimpleFieldEditor isTextArea label="نص الموافقة" value={config.consent?.text || ""} onChange={v => updateSection('consent.text', v)} />
-                    <SimpleFieldEditor label="نص زر الموافقة" value={config.consent?.agreeLabel || ""} onChange={v => updateSection('consent.agreeLabel', v)} />
-                </AccordionSection>
-
-                {/* 3. Demographics */}
-                <AccordionSection title="👤 البيانات الديموغرافية">
-                    <SimpleFieldEditor label="عنوان القسم" value={config.demographics?.title || ""} onChange={v => updateSection('demographics.title', v)} />
-                    <div className="space-y-3">
-                        {Object.entries(config.demographics?.fields || {}).map(([key, fieldConfig]: [string, any]) => (
-                            <OptionsEditor key={key} fieldConfig={fieldConfig} onChange={(newField: any) => updateSection(`demographics.fields.${key}`, newField)} />
-                        ))}
-                    </div>
-                </AccordionSection>
-
-                {/* 4. Health */}
-                <AccordionSection title="🏥 المؤشرات الصحية">
-                    <SimpleFieldEditor label="عنوان القسم" value={config.healthIndicators?.title || ""} onChange={v => updateSection('healthIndicators.title', v)} />
-                    <div className="space-y-3">
-                        {Object.entries(config.healthIndicators?.fields || {}).map(([key, fieldConfig]: [string, any]) => (
-                            <OptionsEditor key={key} fieldConfig={fieldConfig} onChange={(newField: any) => updateSection(`healthIndicators.fields.${key}`, newField)} />
-                        ))}
-                    </div>
-                </AccordionSection>
-
-                {/* 5. Knowledge */}
-                <AccordionSection title="📖 المعرفة الغذائية">
-                    {renderQuestionSection('knowledge', 'knowledge', config.knowledge || [])}
-                </AccordionSection>
-
-                {/* 6. Practices */}
-                <AccordionSection title="🍽️ الممارسات الغذائية">
-                    {renderQuestionSection('practices', 'practices', config.practices || [])}
-                </AccordionSection>
-
-                {/* 7. Intervention */}
-                <AccordionSection title="📚 التدخل (قصص ومنصة)">
-                    <div className="space-y-6">
-                        <div className="space-y-3">
-                            <h4 className="font-semibold text-sm border-b pb-2">القصص القصيرة المصورة</h4>
-                            {renderQuestionSection('stories', 'intervention.stories', config.intervention?.stories || [])}
-                        </div>
-                        <div className="space-y-3">
-                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - قابلية الاستخدام</h4>
-                            {renderQuestionSection('usability', 'intervention.platform.usability', config.intervention?.platform?.usability || [])}
-                        </div>
-                        <div className="space-y-3">
-                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - جودة المحتوى</h4>
-                            {renderQuestionSection('content', 'intervention.platform.content', config.intervention?.platform?.content || [])}
-                        </div>
-                        <div className="space-y-3">
-                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - الأدوات</h4>
-                            {renderQuestionSection('tools', 'intervention.platform.tools', config.intervention?.platform?.tools || [])}
-                        </div>
-                        <div className="space-y-3">
-                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - الاستشارات</h4>
-                            {renderQuestionSection('consultation', 'intervention.platform.consultation', config.intervention?.platform?.consultation || [])}
-                        </div>
-                    </div>
-                </AccordionSection>
-
-                {/* 8. Satisfaction */}
-                <AccordionSection title="⭐ الرضا العام">
-                    {renderQuestionSection('satisfaction', 'satisfaction', config.satisfaction || [])}
-                </AccordionSection>
-
-                {/* 9. Behavioral */}
-                <AccordionSection title="🎯 الأثر السلوكي">
-                    {renderQuestionSection('behavioralIntent', 'behavioralIntent', config.behavioralIntent || [])}
-                </AccordionSection>
-
-                {/* 10. NPS */}
-                <AccordionSection title="📈 صافي نقاط الترويج (NPS)">
-                    <p className="text-xs text-muted-foreground">سؤال NPS يُحسب تلقائيًا: Promoters (9-10) / Passives (7-8) / Detractors (0-6)</p>
-                    <SimpleFieldEditor label="نص السؤال" value={config.npsQuestion?.text || ""}
-                        onChange={v => updateSection('npsQuestion.text', v)} />
-                    <ScalePreview question={{ id: 'nps', text: '', type: 'nps' }} />
-                </AccordionSection>
-
-                {/* 11. Retrospective */}
-                <AccordionSection title="📊 التقييم الارتجاعي">
-                    <div className="space-y-3">
-                        <SimpleFieldEditor label="عنوان القسم" value={config.retrospectiveConfig?.title || ""} onChange={v => updateSection('retrospectiveConfig.title', v)} />
-                        <SimpleFieldEditor label="وصف القسم" value={config.retrospectiveConfig?.description || ""} onChange={v => updateSection('retrospectiveConfig.description', v)} />
-
-                        <div className="space-y-1">
-                            <Label className="text-sm font-semibold">نوع التقييم</Label>
-                            <Select value={config.retrospectiveConfig?.mode || "slider"} onValueChange={v => updateSection('retrospectiveConfig.mode', v)}>
-                                <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="slider">🎚️ شريط تمرير رقمي (1–10)</SelectItem>
-                                    <SelectItem value="mcq">☑️ خيارات تقليدية (منخفض/متوسط/عالٍ)</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-                        <SimpleFieldEditor label="عنوان فرعي - المعرفة" value={config.retrospectiveConfig?.knowledgeTitle || ""} onChange={v => updateSection('retrospectiveConfig.knowledgeTitle', v)} />
-                        <SimpleFieldEditor label="عنوان فرعي - الممارسات" value={config.retrospectiveConfig?.practicesTitle || ""} onChange={v => updateSection('retrospectiveConfig.practicesTitle', v)} />
-                        <SimpleFieldEditor label="عنوان: قبل المشروع" value={config.retrospectiveConfig?.beforeLabel || ""} onChange={v => updateSection('retrospectiveConfig.beforeLabel', v)} />
-                        <SimpleFieldEditor label="عنوان: بعد المشروع" value={config.retrospectiveConfig?.afterLabel || ""} onChange={v => updateSection('retrospectiveConfig.afterLabel', v)} />
-
-                        {config.retrospectiveConfig?.mode === 'mcq' && (
-                            <div className="space-y-1.5">
-                                <Label className="text-sm font-semibold">خيارات التقييم</Label>
-                                <div className="grid gap-1.5 pr-3 border-r-2">
-                                    {(config.retrospectiveConfig?.options || []).map((opt: string, idx: number) => (
-                                        <div key={idx} className="flex gap-1.5">
-                                            <Input value={opt} className="h-7 text-xs text-right" dir="rtl"
-                                                onChange={e => {
-                                                    const newOpts = [...config.retrospectiveConfig.options]; newOpts[idx] = e.target.value;
-                                                    updateSection('retrospectiveConfig.options', newOpts);
-                                                }} />
-                                            <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500"
-                                                onClick={() => updateSection('retrospectiveConfig.options', config.retrospectiveConfig.options.filter((_: any, i: number) => i !== idx))}>
-                                                <Trash2 size={12} />
-                                            </Button>
-                                        </div>
-                                    ))}
-                                    <Button variant="outline" size="sm" className="w-full h-7 text-xs border-dashed"
-                                        onClick={() => updateSection('retrospectiveConfig.options', [...(config.retrospectiveConfig?.options || []), ""])}>
-                                        <Plus size={10} className="ml-1" /> إضافة خيار
+                {/* Render sections in configured order */}
+                {sectionOrder.map(section => {
+                    switch (section.id) {
+                        case 'consent':
+                            return (
+                                <AccordionSection key="consent" title="✅ نموذج الموافقة">
+                                    <SimpleFieldEditor label="عنوان الموافقة" value={config.consent?.title || ""} onChange={v => updateSection('consent.title', v)} />
+                                    <SimpleFieldEditor isTextArea label="نص الموافقة" value={config.consent?.text || ""} onChange={v => updateSection('consent.text', v)} />
+                                    <SimpleFieldEditor label="نص زر الموافقة" value={config.consent?.agreeLabel || ""} onChange={v => updateSection('consent.agreeLabel', v)} />
+                                </AccordionSection>
+                            );
+                        case 'demographics':
+                            return (
+                                <AccordionSection key="demographics" title="👤 البيانات الديموغرافية">
+                                    <SimpleFieldEditor label="عنوان القسم" value={config.demographics?.title || ""} onChange={v => updateSection('demographics.title', v)} />
+                                    <div className="space-y-3">
+                                        {Object.entries(config.demographics?.fields || {}).map(([key, fieldConfig]: [string, any]) => (
+                                            <UnifiedFieldEditor key={key} fieldConfig={fieldConfig}
+                                                onChange={(newField: any) => updateSection(`demographics.fields.${key}`, newField)}
+                                                onRemove={() => removeSectionField('demographics.fields', key)}
+                                            />
+                                        ))}
+                                    </div>
+                                    <Button variant="outline" size="sm" className="w-full mt-3 border-dashed" onClick={() => addSectionField('demographics.fields')}>
+                                        <Plus size={14} className="ml-1" /> إضافة حقل جديد للبيانات الديموغرافية
                                     </Button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </AccordionSection>
+                                </AccordionSection>
+                            );
+                        case 'healthIndicators':
+                            return (
+                                <AccordionSection key="healthIndicators" title="🏥 المؤشرات الصحية">
+                                    <SimpleFieldEditor label="عنوان القسم" value={config.healthIndicators?.title || ""} onChange={v => updateSection('healthIndicators.title', v)} />
+                                    <div className="space-y-3">
+                                        {Object.entries(config.healthIndicators?.fields || {}).map(([key, fieldConfig]: [string, any]) => (
+                                            <UnifiedFieldEditor key={key} fieldConfig={fieldConfig}
+                                                onChange={(newField: any) => updateSection(`healthIndicators.fields.${key}`, newField)}
+                                                onRemove={() => removeSectionField('healthIndicators.fields', key)}
+                                            />
+                                        ))}
+                                    </div>
+                                    <Button variant="outline" size="sm" className="w-full mt-3 border-dashed" onClick={() => addSectionField('healthIndicators.fields')}>
+                                        <Plus size={14} className="ml-1" /> إضافة حقل جديد للمؤشرات الصحية
+                                    </Button>
+                                </AccordionSection>
+                            );
+                        case 'knowledge':
+                            return (
+                                <AccordionSection key="knowledge" title="📖 المعرفة الغذائية">
+                                    {renderQuestionSection('knowledge', 'knowledge', config.knowledge || [])}
+                                </AccordionSection>
+                            );
+                        case 'practices':
+                            return (
+                                <AccordionSection key="practices" title="🍽️ الممارسات الغذائية">
+                                    {renderQuestionSection('practices', 'practices', config.practices || [])}
+                                </AccordionSection>
+                            );
+                        case 'intervention':
+                            return (
+                                <AccordionSection key="intervention" title="📚 التدخل (قصص ومنصة)">
+                                    <div className="space-y-6">
+                                        <div className="space-y-3">
+                                            <h4 className="font-semibold text-sm border-b pb-2">القصص القصيرة المصورة</h4>
+                                            {renderQuestionSection('stories', 'intervention.stories', config.intervention?.stories || [])}
+                                        </div>
+                                        <div className="space-y-3">
+                                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - قابلية الاستخدام</h4>
+                                            {renderQuestionSection('usability', 'intervention.platform.usability', config.intervention?.platform?.usability || [])}
+                                        </div>
+                                        <div className="space-y-3">
+                                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - جودة المحتوى</h4>
+                                            {renderQuestionSection('content', 'intervention.platform.content', config.intervention?.platform?.content || [])}
+                                        </div>
+                                        <div className="space-y-3">
+                                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - الأدوات</h4>
+                                            {renderQuestionSection('tools', 'intervention.platform.tools', config.intervention?.platform?.tools || [])}
+                                        </div>
+                                        <div className="space-y-3">
+                                            <h4 className="font-semibold text-sm border-b pb-2">المنصة - الاستشارات</h4>
+                                            {renderQuestionSection('consultation', 'intervention.platform.consultation', config.intervention?.platform?.consultation || [])}
+                                        </div>
+                                    </div>
+                                </AccordionSection>
+                            );
+                        case 'satisfaction':
+                            return (
+                                <AccordionSection key="satisfaction" title="⭐ الرضا العام">
+                                    {renderQuestionSection('satisfaction', 'satisfaction', config.satisfaction || [])}
+                                </AccordionSection>
+                            );
+                        case 'behavioralIntent':
+                            return (
+                                <AccordionSection key="behavioralIntent" title="🎯 الأثر السلوكي">
+                                    {renderQuestionSection('behavioralIntent', 'behavioralIntent', config.behavioralIntent || [])}
+                                </AccordionSection>
+                            );
+                        case 'nps':
+                            return (
+                                <AccordionSection key="nps" title="📈 صافي نقاط الترويج (NPS)">
+                                    <p className="text-xs text-muted-foreground">سؤال NPS يُحسب تلقائيًا: Promoters (9-10) / Passives (7-8) / Detractors (0-6)</p>
+                                    <SimpleFieldEditor label="نص السؤال" value={config.npsQuestion?.text || ""}
+                                        onChange={v => updateSection('npsQuestion.text', v)} />
+                                    <ScalePreview question={{ id: 'nps', text: '', type: 'nps' }} />
+                                </AccordionSection>
+                            );
+                        case 'retrospective':
+                            return (
+                                <AccordionSection key="retrospective" title="📊 التقييم الارتجاعي">
+                                    <div className="space-y-3">
+                                        <SimpleFieldEditor label="عنوان القسم" value={config.retrospectiveConfig?.title || ""} onChange={v => updateSection('retrospectiveConfig.title', v)} />
+                                        <SimpleFieldEditor label="وصف القسم" value={config.retrospectiveConfig?.description || ""} onChange={v => updateSection('retrospectiveConfig.description', v)} />
 
-                {/* 12. Open Questions */}
-                <AccordionSection title="💬 الأسئلة المفتوحة">
-                    <SimpleFieldEditor label="عنوان القسم" value={config.sectionTitles?.openQuestions || ""}
-                        onChange={v => updateSection('sectionTitles.openQuestions', v)} />
-                    <div className="space-y-2">
-                        {(config.openQuestions || []).map((q: any, i: number) => (
-                            <div key={q.id} className="flex gap-2 items-center border rounded-lg p-2">
-                                <span className="text-xs text-muted-foreground font-mono shrink-0 w-6 text-center">{i + 1}</span>
-                                <Input value={q.text} className="flex-1 h-8 text-sm text-right" dir="rtl"
-                                    onChange={e => handleQuestionChange('openQuestions', i, { text: e.target.value })} />
-                                <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500"
-                                    onClick={() => handleRemoveQuestion('openQuestions', i)}>
-                                    <Trash2 size={12} />
-                                </Button>
-                            </div>
-                        ))}
-                        <Button variant="outline" size="sm" onClick={() => handleAddQuestion('openQuestions')} className="w-full border-dashed">
-                            <Plus size={14} className="ml-1" /> إضافة سؤال مفتوح
-                        </Button>
-                    </div>
-                </AccordionSection>
+                                        <div className="space-y-1">
+                                            <Label className="text-sm font-semibold">نوع التقييم</Label>
+                                            <Select value={config.retrospectiveConfig?.mode || "slider"} onValueChange={v => updateSection('retrospectiveConfig.mode', v)}>
+                                                <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="slider">🎚️ شريط تمرير رقمي (1–10)</SelectItem>
+                                                    <SelectItem value="mcq">☑️ خيارات تقليدية (منخفض/متوسط/عالٍ)</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        <SimpleFieldEditor label="عنوان فرعي - المعرفة" value={config.retrospectiveConfig?.knowledgeTitle || ""} onChange={v => updateSection('retrospectiveConfig.knowledgeTitle', v)} />
+                                        <SimpleFieldEditor label="عنوان فرعي - الممارسات" value={config.retrospectiveConfig?.practicesTitle || ""} onChange={v => updateSection('retrospectiveConfig.practicesTitle', v)} />
+                                        <SimpleFieldEditor label="عنوان: قبل المشروع" value={config.retrospectiveConfig?.beforeLabel || ""} onChange={v => updateSection('retrospectiveConfig.beforeLabel', v)} />
+                                        <SimpleFieldEditor label="عنوان: بعد المشروع" value={config.retrospectiveConfig?.afterLabel || ""} onChange={v => updateSection('retrospectiveConfig.afterLabel', v)} />
+
+                                        {config.retrospectiveConfig?.mode === 'mcq' && (
+                                            <div className="space-y-1.5">
+                                                <Label className="text-sm font-semibold">خيارات التقييم</Label>
+                                                <div className="grid gap-1.5 pr-3 border-r-2">
+                                                    {(config.retrospectiveConfig?.options || []).map((opt: string, idx: number) => (
+                                                        <div key={idx} className="flex gap-1.5">
+                                                            <Input value={opt} className="h-7 text-xs text-right" dir="rtl"
+                                                                onChange={e => {
+                                                                    const newOpts = [...config.retrospectiveConfig.options]; newOpts[idx] = e.target.value;
+                                                                    updateSection('retrospectiveConfig.options', newOpts);
+                                                                }} />
+                                                            <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500"
+                                                                onClick={() => updateSection('retrospectiveConfig.options', config.retrospectiveConfig.options.filter((_: any, i: number) => i !== idx))}>
+                                                                <Trash2 size={12} />
+                                                            </Button>
+                                                        </div>
+                                                    ))}
+                                                    <Button variant="outline" size="sm" className="w-full h-7 text-xs border-dashed"
+                                                        onClick={() => updateSection('retrospectiveConfig.options', [...(config.retrospectiveConfig?.options || []), ""])}>
+                                                        <Plus size={10} className="ml-1" /> إضافة خيار
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </AccordionSection>
+                            );
+                        case 'openQuestions':
+                            return (
+                                <AccordionSection key="openQuestions" title="💬 الأسئلة المفتوحة">
+                                    <SimpleFieldEditor label="عنوان القسم" value={config.sectionTitles?.openQuestions || ""}
+                                        onChange={v => updateSection('sectionTitles.openQuestions', v)} />
+                                    <div className="space-y-2">
+                                        {(config.openQuestions || []).map((q: any, i: number) => (
+                                            <div key={q.id} className="flex gap-2 items-center border rounded-lg p-2">
+                                                <div className="flex flex-col gap-0.5 shrink-0">
+                                                    <Button variant="ghost" size="icon" className="h-4 w-4" disabled={i === 0}
+                                                        onClick={() => handleMoveQuestion('openQuestions', i, 'up')}>
+                                                        <ChevronUp size={10} />
+                                                    </Button>
+                                                    <Button variant="ghost" size="icon" className="h-4 w-4" disabled={i === (config.openQuestions?.length || 0) - 1}
+                                                        onClick={() => handleMoveQuestion('openQuestions', i, 'down')}>
+                                                        <ChevronDown size={10} />
+                                                    </Button>
+                                                </div>
+                                                <span className="text-xs text-muted-foreground font-mono shrink-0 w-6 text-center">{i + 1}</span>
+                                                <Input value={q.text} className="flex-1 h-8 text-sm text-right" dir="rtl"
+                                                    onChange={e => handleQuestionChange('openQuestions', i, { text: e.target.value })} />
+                                                <Button variant="ghost" size="icon" className="h-7 w-7 text-red-500"
+                                                    onClick={() => handleRemoveQuestion('openQuestions', i)}>
+                                                    <Trash2 size={12} />
+                                                </Button>
+                                            </div>
+                                        ))}
+                                        <Button variant="outline" size="sm" onClick={() => handleAddQuestion('openQuestions')} className="w-full border-dashed">
+                                            <Plus size={14} className="ml-1" /> إضافة سؤال مفتوح
+                                        </Button>
+                                    </div>
+                                </AccordionSection>
+                            );
+                        default:
+                            return null;
+                    }
+                })}
 
                 {/* 13. Global Settings */}
                 <AccordionSection title="⚙️ إعدادات عامة">

@@ -26,13 +26,13 @@ service cloud.firestore {
       );
     }
 
-    // Check if user is Staff (Admin, Doctor, or Nutritionist)
+    // Check if user is Staff (Admin, Super Admin, Doctor, or Nutritionist)
     function isStaff() {
-      return hasRole('admin') || hasRole('doctor') || hasRole('nutritionist');
+      return hasRole('admin') || hasRole('super_admin') || hasRole('doctor') || hasRole('nutritionist');
     }
 
     function isAdmin() {
-      return hasRole('admin');
+      return hasRole('admin') || hasRole('super_admin');
     }
 
     // --- Collection Rules ---
@@ -132,6 +132,18 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow create: if isAuthenticated(); // Application logs user actions
       allow update, delete: if false; // Audit logs should be immutable
+    }
+
+    // Visitor Tracking
+    match /daily_visits/{day} {
+      allow read: if isStaff();
+      allow create, update: if true; // Public can increment stats
+    }
+
+    match /visitor_logs/{logId} {
+      allow read: if isStaff();
+      allow create: if true; // Public can log their visit
+      allow update, delete: if false;
     }
 
     // Default: Deny everything else

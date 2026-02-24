@@ -1,0 +1,645 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "NutriAware Survey Schema — Publication-Grade Research Instrument",
+    "version": "2.0.0",
+    "meta": {
+        "title": "استبيان تقييم مشروع NutriAware",
+        "subtitle": "مشروع تخرج: سوء التغذية للأطفال",
+        "institution": "كلية تكنولوجيا العلوم الصحية التطبيقية",
+        "language": "ar",
+        "direction": "rtl",
+        "estimatedCompletionMinutes": 8,
+        "theoreticalFramework": [
+            "KAP",
+            "TPB",
+            "TAM",
+            "Retrospective-Then"
+        ]
+    },
+    "sections": [
+        {
+            "id": "consent",
+            "order": 0,
+            "titleAr": "نموذج الموافقة المستنيرة",
+            "titleEn": "Informed Consent",
+            "type": "consent",
+            "required": true
+        },
+        {
+            "id": "demographics",
+            "order": 1,
+            "titleAr": "البيانات الديموغرافية",
+            "titleEn": "Demographics",
+            "type": "demographic",
+            "constructId": "DEM",
+            "theoreticalModel": "Control Variables",
+            "measurementLevel": "nominal/ordinal",
+            "fields": [
+                {
+                    "id": "DEM_RELATIONSHIP",
+                    "type": "radio",
+                    "labelAr": "صلة القرابة بالطفل",
+                    "options": [
+                        "أب",
+                        "أم",
+                        "أخرى"
+                    ]
+                },
+                {
+                    "id": "DEM_PARENT_AGE",
+                    "type": "radio",
+                    "labelAr": "عمر ولي الأمر",
+                    "options": [
+                        "أقل من 25 سنة",
+                        "25 – 35 سنة",
+                        "36 – 45 سنة",
+                        "أكثر من 45 سنة"
+                    ]
+                },
+                {
+                    "id": "DEM_PROFESSION",
+                    "type": "text",
+                    "labelAr": "مهنة ولي الأمر"
+                },
+                {
+                    "id": "DEM_EDUCATION",
+                    "type": "radio",
+                    "labelAr": "المستوى التعليمي",
+                    "options": [
+                        "أقل من ثانوي",
+                        "ثانوي",
+                        "دبلوم متوسط",
+                        "جامعي",
+                        "دراسات عليا"
+                    ]
+                },
+                {
+                    "id": "DEM_CHILDREN_COUNT",
+                    "type": "radio",
+                    "labelAr": "عدد الأطفال",
+                    "options": [
+                        "طفل واحد",
+                        "2-3 أطفال",
+                        "4 أطفال فأكثر"
+                    ]
+                },
+                {
+                    "id": "DEM_CHILD_AGE",
+                    "type": "radio",
+                    "labelAr": "عمر الطفل المستهدف",
+                    "options": [
+                        "أقل من 3 سنوات",
+                        "3–6 سنوات",
+                        "7–10 سنوات",
+                        "11–14 سنة",
+                        "أكبر من 14 سنة"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "healthIndicators",
+            "order": 2,
+            "titleAr": "المؤشرات الصحية",
+            "titleEn": "Health Indicators",
+            "type": "demographic",
+            "constructId": "HI",
+            "theoreticalModel": "KAP — Baseline",
+            "measurementLevel": "nominal/ordinal",
+            "fields": [
+                {
+                    "id": "HI_GENDER",
+                    "type": "radio",
+                    "labelAr": "جنس الطفل",
+                    "options": [
+                        "ذكر",
+                        "أنثى"
+                    ]
+                },
+                {
+                    "id": "HI_WEIGHT_PERCEPTION",
+                    "type": "radio",
+                    "labelAr": "تقييم وزن الطفل",
+                    "options": [
+                        "نحيف جداً",
+                        "طبيعي",
+                        "وزن زائد",
+                        "سمنة مفرطة",
+                        "لا أعلم"
+                    ]
+                },
+                {
+                    "id": "HI_HEALTH_ISSUES",
+                    "type": "checkbox",
+                    "labelAr": "المشاكل الصحية",
+                    "options": [
+                        "لا يعاني",
+                        "أنيميا",
+                        "نقص فيتامين د/كالسيوم",
+                        "نحافة",
+                        "سمنة",
+                        "حساسية طعام",
+                        "أخرى"
+                    ]
+                },
+                {
+                    "id": "HI_INFO_SOURCES",
+                    "type": "checkbox",
+                    "labelAr": "مصادر المعلومات",
+                    "options": [
+                        "طبيب أطفال",
+                        "أخصائي تغذية",
+                        "الإنترنت",
+                        "الأهل والأصدقاء",
+                        "الكتب العلمية"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "knowledge",
+            "order": 3,
+            "titleAr": "المعرفة الغذائية للوالدين",
+            "titleEn": "Nutritional Knowledge",
+            "type": "likert",
+            "constructId": "KN",
+            "theoreticalModel": "KAP — Knowledge",
+            "measurementLevel": "interval",
+            "scaleType": "agreement",
+            "scaleLength": 5,
+            "labels": {
+                "1": "لا أوافق بشدة",
+                "2": "لا أوافق",
+                "3": "محايد",
+                "4": "أوافق",
+                "5": "أوافق بشدة"
+            },
+            "items": [
+                {
+                    "id": "KN1",
+                    "textAr": "أعلم أن سوء التغذية يشمل نقص العناصر الغذائية الدقيقة وليس فقط نقص الوزن",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN2",
+                    "textAr": "أعلم أن الغذاء الصحي اليومي للطفل يجب أن يحتوي على خضروات وفواكه طازجة",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN3",
+                    "textAr": "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN4",
+                    "textAr": "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN5_R",
+                    "textAr": "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي",
+                    "reverseScored": true
+                },
+                {
+                    "id": "KN_AC",
+                    "textAr": "يرجى اختيار أوافق لهذا السؤال للتأكد من انتباهك",
+                    "isAttentionCheck": true,
+                    "expectedValue": 4
+                }
+            ],
+            "compositeIndex": "knowledgeScore"
+        },
+        {
+            "id": "practices",
+            "order": 4,
+            "titleAr": "الممارسات الغذائية داخل المنزل",
+            "titleEn": "Dietary Practices",
+            "type": "likert",
+            "constructId": "PR",
+            "theoreticalModel": "KAP — Practice",
+            "measurementLevel": "interval",
+            "scaleType": "agreement",
+            "scaleLength": 5,
+            "timeAnchor": "خلال الأسبوعين الماضيين",
+            "items": [
+                {
+                    "id": "PR1",
+                    "textAr": "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR2",
+                    "textAr": "خلال الأسبوعين الماضيين، راقبت كمية الحلويات والسكريات التي يتناولها طفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR3",
+                    "textAr": "خلال الأسبوعين الماضيين، قللنا من تناول الوجبات السريعة في المنزل",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR4",
+                    "textAr": "خلال الأسبوعين الماضيين، شجعت طفلي على شرب الماء بانتظام بدلاً من المشروبات الغازية",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR5",
+                    "textAr": "خلال الأسبوعين الماضيين، قرأت البطاقة الغذائية قبل شراء المنتجات لطفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR6",
+                    "textAr": "خلال الأسبوعين الماضيين، حرصت على تقديم وجبة إفطار متوازنة لطفلي يومياً",
+                    "reverseScored": false
+                },
+                {
+                    "id": "PR7_R",
+                    "textAr": "خلال الأسبوعين الماضيين، وجدت صعوبة في تقديم أغذية صحية بسبب التكلفة المالية",
+                    "reverseScored": true
+                },
+                {
+                    "id": "PR_AC",
+                    "textAr": "يرجى اختيار لا أوافق بشدة لهذا السؤال",
+                    "isAttentionCheck": true,
+                    "expectedValue": 1
+                }
+            ],
+            "compositeIndex": "practiceScore"
+        },
+        {
+            "id": "intervention_stories",
+            "order": 5,
+            "titleAr": "القصص القصيرة المصورة",
+            "titleEn": "Intervention Stories",
+            "type": "likert",
+            "constructId": "INT_ST",
+            "theoreticalModel": "Dose-Response",
+            "measurementLevel": "interval",
+            "items": [
+                {
+                    "id": "INT_ST1",
+                    "textAr": "كانت القصص المصورة جذابة بصرياً ومشوقة لطفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "INT_ST2",
+                    "textAr": "كانت اللغة والمفاهيم في القصص مناسبة لعمر طفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "INT_ST3",
+                    "textAr": "ساهمت القصص في تصحيح مفاهيم غذائية خاطئة لدي أو لدى طفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "INT_ST4",
+                    "textAr": "نقلت القصص رسائل توعوية واضحة حول أهمية التغذية الصحية",
+                    "reverseScored": false
+                },
+                {
+                    "id": "INT_ST5",
+                    "textAr": "شجعت القصص طفلي على الاهتمام بتناول الطعام الصحي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "INT_ST6_R",
+                    "textAr": "لم تضف القصص معلومات جديدة لم أكن أعرفها مسبقاً",
+                    "reverseScored": true
+                }
+            ],
+            "compositeIndex": "engagementScore"
+        },
+        {
+            "id": "platform_experience",
+            "order": 6,
+            "titleAr": "تجربة المنصة",
+            "titleEn": "Platform Experience (UX)",
+            "type": "likert",
+            "constructId": "PX",
+            "theoreticalModel": "TAM",
+            "measurementLevel": "interval",
+            "subConstructs": [
+                {
+                    "id": "PX_US",
+                    "titleAr": "قابلية الاستخدام",
+                    "items": [
+                        "PX_US1",
+                        "PX_US2"
+                    ]
+                },
+                {
+                    "id": "PX_CN",
+                    "titleAr": "جودة المحتوى",
+                    "items": [
+                        "PX_CN1",
+                        "PX_CN2"
+                    ]
+                },
+                {
+                    "id": "PX_TL",
+                    "titleAr": "الأدوات",
+                    "items": [
+                        "PX_TL1",
+                        "PX_TL2"
+                    ]
+                },
+                {
+                    "id": "PX_CO",
+                    "titleAr": "الاستشارات",
+                    "items": [
+                        "PX_CO1",
+                        "PX_CO2"
+                    ]
+                }
+            ],
+            "compositeIndex": "engagementScore"
+        },
+        {
+            "id": "satisfaction",
+            "order": 7,
+            "titleAr": "الرضا العام",
+            "titleEn": "Satisfaction",
+            "type": "likert",
+            "constructId": "SAT",
+            "theoreticalModel": "Expectation-Confirmation",
+            "measurementLevel": "interval",
+            "items": [
+                {
+                    "id": "SAT1",
+                    "textAr": "أنا راضٍ بشكل عام عن تجربتي مع مشروع NutriAware",
+                    "reverseScored": false
+                },
+                {
+                    "id": "SAT2",
+                    "textAr": "حقق المشروع توقعاتي فيما يخص تحسين معرفتي بتغذية طفلي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "SAT3",
+                    "textAr": "أنصح أولياء الأمور الآخرين بالاطلاع على المنصة والاستفادة منها",
+                    "reverseScored": false
+                },
+                {
+                    "id": "SAT4_R",
+                    "textAr": "لم يقدم المشروع فائدة واضحة تستحق الوقت المستثمر فيه",
+                    "reverseScored": true
+                }
+            ],
+            "compositeIndex": "satisfactionIndex"
+        },
+        {
+            "id": "behavioralIntent",
+            "order": 8,
+            "titleAr": "الأثر السلوكي",
+            "titleEn": "Behavioral Intention",
+            "type": "likert",
+            "constructId": "BI",
+            "theoreticalModel": "TPB",
+            "measurementLevel": "interval",
+            "items": [
+                {
+                    "id": "BI1",
+                    "textAr": "أنوي تطبيق تغييرات غذائية صحية داخل المنزل بناءً على ما تعلمته",
+                    "reverseScored": false
+                },
+                {
+                    "id": "BI2",
+                    "textAr": "أنوي تقليل استهلاك الوجبات السريعة والحلويات لأطفالي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "BI3",
+                    "textAr": "أنوي تشجيع أطفالي على تناول المزيد من الخضروات والفواكه يومياً",
+                    "reverseScored": false
+                },
+                {
+                    "id": "BI4",
+                    "textAr": "أنوي استخدام منصة NutriAware بشكل منتظم لمتابعة تغذية أطفالي",
+                    "reverseScored": false
+                },
+                {
+                    "id": "BI5_R",
+                    "textAr": "لا أعتقد أنني سأغير عاداتنا الغذائية الحالية بناءً على هذا المشروع",
+                    "reverseScored": true
+                }
+            ],
+            "compositeIndex": "behavioralChangeIndex"
+        },
+        {
+            "id": "nps",
+            "order": 9,
+            "titleAr": "صافي نقاط الترويج",
+            "titleEn": "Net Promoter Score",
+            "type": "nps",
+            "constructId": "NPS",
+            "theoreticalModel": "NPS (Reichheld)",
+            "measurementLevel": "ratio",
+            "scale": {
+                "min": 0,
+                "max": 10
+            },
+            "items": [
+                {
+                    "id": "NPS1",
+                    "textAr": "على مقياس من 0 إلى 10، ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟"
+                }
+            ]
+        },
+        {
+            "id": "retrospective",
+            "order": 10,
+            "titleAr": "تقييم ارتجاعي (قبل/بعد)",
+            "titleEn": "Retrospective Pre-Then/Post Self-Assessment",
+            "type": "slider_paired",
+            "constructId": "RETRO",
+            "theoreticalModel": "Retrospective-Then Design (Howard)",
+            "measurementLevel": "interval",
+            "scale": {
+                "min": 1,
+                "max": 10
+            },
+            "dimensions": [
+                {
+                    "id": "RETRO_KN",
+                    "titleAr": "مستوى معرفتي بأساسيات تغذية الأطفال السليمة"
+                },
+                {
+                    "id": "RETRO_PR",
+                    "titleAr": "مستوى ممارساتي الغذائية الصحية في المنزل"
+                },
+                {
+                    "id": "RETRO_AW",
+                    "titleAr": "مستوى وعيي بمخاطر سوء التغذية على أطفالي"
+                },
+                {
+                    "id": "RETRO_CF",
+                    "titleAr": "مستوى ثقتي في قدرتي على تخطيط وجبات صحية لأطفالي"
+                }
+            ],
+            "anchors": {
+                "before": "قبل استخدام NutriAware",
+                "after": "بعد استخدام NutriAware"
+            },
+            "analysis": [
+                "paired_ttest",
+                "wilcoxon_signed_rank",
+                "cohens_d"
+            ]
+        },
+        {
+            "id": "openEnded",
+            "order": 11,
+            "titleAr": "أسئلة مفتوحة",
+            "titleEn": "Open-ended Insights",
+            "type": "open",
+            "constructId": "OE",
+            "theoreticalModel": "Thematic Analysis",
+            "measurementLevel": "nominal",
+            "items": [
+                {
+                    "id": "OE1",
+                    "textAr": "ما أكثر ما أعجبك في مشروع NutriAware؟"
+                },
+                {
+                    "id": "OE2",
+                    "textAr": "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟"
+                },
+                {
+                    "id": "OE3",
+                    "textAr": "ما اقتراحاتك لتحسين المنصة أو المحتوى التوعوي؟"
+                },
+                {
+                    "id": "OE4",
+                    "textAr": "كيف تعرفت على منصة NutriAware لأول مرة؟"
+                }
+            ]
+        }
+    ],
+    "compositeIndices": {
+        "knowledgeScore": {
+            "items": [
+                "KN1",
+                "KN2",
+                "KN3",
+                "KN4",
+                "KN5_R"
+            ],
+            "reverseItems": [
+                "KN5_R"
+            ],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ]
+        },
+        "practiceScore": {
+            "items": [
+                "PR1",
+                "PR2",
+                "PR3",
+                "PR4",
+                "PR5",
+                "PR6",
+                "PR7_R"
+            ],
+            "reverseItems": [
+                "PR7_R"
+            ],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ]
+        },
+        "engagementScore": {
+            "items": [
+                "INT_ST1",
+                "INT_ST2",
+                "INT_ST3",
+                "INT_ST4",
+                "INT_ST5",
+                "INT_ST6_R",
+                "PX_US1",
+                "PX_US2",
+                "PX_CN1",
+                "PX_CN2",
+                "PX_TL1",
+                "PX_TL2",
+                "PX_CO1",
+                "PX_CO2"
+            ],
+            "reverseItems": [
+                "INT_ST6_R"
+            ],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ]
+        },
+        "satisfactionIndex": {
+            "items": [
+                "SAT1",
+                "SAT2",
+                "SAT3",
+                "SAT4_R"
+            ],
+            "reverseItems": [
+                "SAT4_R"
+            ],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ]
+        },
+        "behavioralChangeIndex": {
+            "items": [
+                "BI1",
+                "BI2",
+                "BI3",
+                "BI4",
+                "BI5_R"
+            ],
+            "reverseItems": [
+                "BI5_R"
+            ],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ]
+        }
+    },
+    "psychometricTargets": {
+        "cronbachAlpha": {
+            "minimum": 0.70,
+            "target": 0.80
+        },
+        "factorLoadingThreshold": 0.40,
+        "fitIndices": {
+            "CFI": 0.90,
+            "TLI": 0.90,
+            "RMSEA": 0.08,
+            "SRMR": 0.10
+        },
+        "minSampleSize": 200,
+        "semPath": "KN → PR → SAT → BI, PX → SAT"
+    },
+    "dataQualityRules": {
+        "attentionChecks": [
+            {
+                "id": "KN_AC",
+                "expectedValue": 4
+            },
+            {
+                "id": "PR_AC",
+                "expectedValue": 1
+            }
+        ],
+        "straightliningThreshold": 0.80,
+        "minResponseTimeSeconds": 120,
+        "missingDataThreshold": 0.20
+    }
+}

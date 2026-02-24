@@ -24,6 +24,12 @@ export interface SurveyQuestion {
     customLabels?: Record<string, string>;
     reverseScored?: boolean;
     includeNeutral?: boolean;
+    // Research-grade fields
+    constructId?: string;           // e.g., 'KN', 'PR', 'SAT', 'BI'
+    isAttentionCheck?: boolean;     // Marks item as attention-check
+    timeAnchor?: string;            // e.g., "خلال الأسبوعين الماضيين"
+    conditionalOn?: { questionId: string; value: string }; // Conditional logic
+    randomizeOptions?: boolean;     // Randomize option order
     // Legacy support
     answers?: Record<string, string>;
 }
@@ -295,6 +301,8 @@ export function getCodebook(questions: SurveyQuestion[], globalLabels?: Record<s
     scaleType: string;
     scaleLength: number;
     reverseScored: boolean;
+    constructId: string;
+    isAttentionCheck: boolean;
     valueLabelMap: Record<number, string>;
 }> {
     return questions.map(q => {
@@ -313,6 +321,8 @@ export function getCodebook(questions: SurveyQuestion[], globalLabels?: Record<s
             scaleType: q.scaleType || 'agreement',
             scaleLength: length,
             reverseScored: !!q.reverseScored,
+            constructId: q.constructId || '',
+            isAttentionCheck: !!q.isAttentionCheck,
             valueLabelMap,
         };
     });
@@ -358,3 +368,240 @@ export function createDefaultQuestion(overrides?: Partial<SurveyQuestion>): Surv
         ...overrides,
     };
 }
+
+// ============================================================
+// Unified Field Schema — Full Editing Flexibility Layer
+// ============================================================
+
+export type FieldType = 'radio' | 'checkbox' | 'text' | 'number' | 'likert' | 'nps' | 'slider' | 'select' | 'date';
+export type OutputType = 'nominal' | 'ordinal' | 'interval' | 'ratio' | 'text';
+
+export interface ValidationRules {
+    minLength?: number;
+    maxLength?: number;
+    min?: number;
+    max?: number;
+    pattern?: string;
+    customMessage?: string;
+}
+
+export interface UnifiedFieldSchema {
+    id: string;
+    text: string;
+    // Type system — fully switchable
+    fieldType: FieldType;
+    // Metadata layer
+    required: boolean;
+    hidden: boolean;
+    order: number;
+    constructId?: string;
+    // Options (for radio, checkbox, select)
+    options?: string[];
+    // Scale config (for likert, slider)
+    scaleType?: ScaleType;
+    scaleLength?: ScaleLength;
+    customLabels?: Record<string, string>;
+    reverseScored?: boolean;
+    // Validation manager
+    validation?: ValidationRules;
+    // Variable type converter
+    outputType: OutputType;
+    codingMap?: Record<string, number>;
+    // Conditional logic
+    conditionalOn?: { fieldId: string; value: string | string[] };
+    // Research fields
+    isAttentionCheck?: boolean;
+    timeAnchor?: string;
+    // Backward compatibility
+    legacyKey?: string;
+    // Legacy: simple label format (for migration from OptionsEditor config)
+    label?: string;
+    // UI placeholder
+    placeholder?: string;
+}
+
+// --- Generate numeric coding map from options ---
+export function generateCodingMap(options: string[]): Record<string, number> {
+    const map: Record<string, number> = {};
+    options.forEach((opt, idx) => {
+        map[opt] = idx + 1;
+    });
+    return map;
+}
+
+// --- Convert field type with automatic coding map update ---
+export function convertFieldType(
+    field: UnifiedFieldSchema,
+    newType: FieldType
+): UnifiedFieldSchema {
+    const updated = { ...field, fieldType: newType };
+
+    // Auto-adjust output type based on new field type
+    switch (newType) {
+        case 'radio':
+        case 'select':
+            updated.outputType = 'nominal';
+            if (updated.options && !updated.codingMap) {
+                updated.codingMap = generateCodingMap(updated.options);
+            }
+            break;
+        case 'checkbox':
+            updated.outputType = 'nominal';
+            break;
+        case 'text':
+        case 'date':
+            updated.outputType = 'text';
+            updated.codingMap = undefined;
+            break;
+        case 'number':
+            updated.outputType = 'ratio';
+            updated.codingMap = undefined;
+            break;
+        case 'likert':
+            updated.outputType = 'interval';
+            if (!updated.scaleType) updated.scaleType = 'agreement';
+            if (!updated.scaleLength) updated.scaleLength = 5;
+            break;
+        case 'nps':
+            updated.outputType = 'ratio';
+            updated.codingMap = undefined;
+            break;
+        case 'slider':
+            updated.outputType = 'interval';
+            break;
+    }
+
+    return updated;
+}
+
+// --- Create default unified field ---
+export function createDefaultField(overrides?: Partial<UnifiedFieldSchema>): UnifiedFieldSchema {
+    return {
+        id: `field_${Date.now()}`,
+        text: 'سؤال جديد',
+        fieldType: 'radio',
+        required: true,
+        hidden: false,
+        order: 0,
+        outputType: 'nominal',
+        options: ['خيار 1', 'خيار 2'],
+        codingMap: { 'خيار 1': 1, 'خيار 2': 2 },
+        ...overrides,
+    };
+}
+
+// --- Resolve a unified field to an export variable name ---
+export function resolveFieldToExportVar(field: UnifiedFieldSchema, prefix: string): string {
+    return `${prefix}_${field.id}`;
+}
+
+// --- FIELD_TYPE_INFO for UI ---
+export const FIELD_TYPE_INFO: Record<FieldType, { labelAr: string; labelEn: string; icon: string }> = {
+    radio: { labelAr: 'اختيار فردي', labelEn: 'Single Choice', icon: '🔘' },
+    checkbox: { labelAr: 'اختيار متعدد', labelEn: 'Multi-select', icon: '☑️' },
+    text: { labelAr: 'نص حر', labelEn: 'Free Text', icon: '✏️' },
+    number: { labelAr: 'رقم', labelEn: 'Number', icon: '🔢' },
+    likert: { labelAr: 'مقياس ليكرت', labelEn: 'Likert Scale', icon: '📊' },
+    nps: { labelAr: 'NPS', labelEn: 'Net Promoter Score', icon: '📈' },
+    slider: { labelAr: 'شريط تمرير', labelEn: 'Slider', icon: '🎚️' },
+    select: { labelAr: 'قائمة منسدلة', labelEn: 'Dropdown', icon: '📋' },
+    date: { labelAr: 'تاريخ', labelEn: 'Date', icon: '📅' },
+};
+
+export const OUTPUT_TYPE_INFO: Record<OutputType, { labelAr: string; labelEn: string }> = {
+    nominal: { labelAr: 'اسمي (تصنيفي)', labelEn: 'Nominal' },
+    ordinal: { labelAr: 'ترتيبي', labelEn: 'Ordinal' },
+    interval: { labelAr: 'فترة', labelEn: 'Interval' },
+    ratio: { labelAr: 'نسبي', labelEn: 'Ratio' },
+    text: { labelAr: 'نصي', labelEn: 'Text' },
+};
+
+// ============================================================
+// Section Ordering System
+// ============================================================
+
+export interface SectionOrderEntry {
+    id: string;
+    display_order: number;
+    is_locked?: boolean;
+    locked_reorderable?: boolean;
+    titleAr?: string;
+    icon?: string;
+}
+
+export const DEFAULT_SECTION_ORDER: SectionOrderEntry[] = [
+    { id: 'consent', display_order: 0, is_locked: true, locked_reorderable: false, titleAr: 'نموذج الموافقة', icon: '✅' },
+    { id: 'demographics', display_order: 1, titleAr: 'البيانات الديموغرافية', icon: '👤' },
+    { id: 'healthIndicators', display_order: 2, titleAr: 'المؤشرات الصحية', icon: '🏥' },
+    { id: 'knowledge', display_order: 3, titleAr: 'المعرفة الغذائية', icon: '📖' },
+    { id: 'practices', display_order: 4, titleAr: 'الممارسات الغذائية', icon: '🍽️' },
+    { id: 'intervention', display_order: 5, titleAr: 'التدخل', icon: '📦' },
+    { id: 'satisfaction', display_order: 6, titleAr: 'الرضا العام', icon: '⭐' },
+    { id: 'behavioralIntent', display_order: 7, titleAr: 'الأثر السلوكي', icon: '🎯' },
+    { id: 'nps', display_order: 8, titleAr: 'NPS', icon: '📈' },
+    { id: 'retrospective', display_order: 9, titleAr: 'التقييم الارتجاعي', icon: '🔄' },
+    { id: 'openQuestions', display_order: 10, titleAr: 'الأسئلة المفتوحة', icon: '💬' },
+];
+
+export interface OrderConstraintResult {
+    valid: boolean;
+    errors: string[];   // Hard constraints — block save
+    warnings: string[]; // Soft constraints — show but allow
+}
+
+export function validateSectionOrder(order: SectionOrderEntry[]): OrderConstraintResult {
+    const errors: string[] = [];
+    const warnings: string[] = [];
+
+    // Hard: Consent must be first
+    const consentIdx = order.findIndex(s => s.id === 'consent');
+    if (consentIdx !== 0) {
+        errors.push('يجب أن يظل نموذج الموافقة هو القسم الأول.');
+    }
+
+    // Hard: Non-reorderable locked sections must stay in place
+    const defaultMap = new Map(DEFAULT_SECTION_ORDER.map(s => [s.id, s]));
+    for (const section of order) {
+        const def = defaultMap.get(section.id);
+        if (def?.is_locked && def?.locked_reorderable === false) {
+            if (section.display_order !== def.display_order) {
+                errors.push(`قسم "${section.titleAr || section.id}" مقفل ولا يمكن تغيير ترتيبه.`);
+            }
+        }
+    }
+
+    // Soft: Demographics should come before satisfaction/behavioral
+    const demoIdx = order.findIndex(s => s.id === 'demographics');
+    const satIdx = order.findIndex(s => s.id === 'satisfaction');
+    const biIdx = order.findIndex(s => s.id === 'behavioralIntent');
+    if (demoIdx >= 0 && satIdx >= 0 && demoIdx > satIdx) {
+        warnings.push('يُفضّل أن تظهر البيانات الديموغرافية قبل قسم الرضا العام.');
+    }
+    if (demoIdx >= 0 && biIdx >= 0 && demoIdx > biIdx) {
+        warnings.push('يُفضّل أن تظهر البيانات الديموغرافية قبل قسم الأثر السلوكي.');
+    }
+
+    // Soft: NPS usually near end
+    const npsIdx = order.findIndex(s => s.id === 'nps');
+    if (npsIdx >= 0 && npsIdx < 5) {
+        warnings.push('يُفضّل وضع NPS قرب نهاية الاستبيان.');
+    }
+
+    return { valid: errors.length === 0, errors, warnings };
+}
+
+// --- Reorder utility: move item at fromIndex to toIndex ---
+export function reorderItems<T>(items: T[], fromIndex: number, toIndex: number): T[] {
+    if (fromIndex === toIndex) return items;
+    const result = [...items];
+    const [removed] = result.splice(fromIndex, 1);
+    result.splice(toIndex, 0, removed);
+    return result;
+}
+
+// --- Reindex display_order after reorder ---
+export function reindexSectionOrder(order: SectionOrderEntry[]): SectionOrderEntry[] {
+    return order.map((s, i) => ({ ...s, display_order: i }));
+}
+
+

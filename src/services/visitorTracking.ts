@@ -110,83 +110,60 @@ export interface VisitorLocation {
 /**
  * Get daily visit counts for the past N days.
  * Returns data sorted oldest → newest.
- * When no data exists, returns synthetic historical data (no Firestore writes needed).
+ * Replaces missing days with 0 counts.
  */
-export async function getDailyVisits(days: number = 30): Promise<DailyVisitData[]> {
+export async function getDailyVisits(days: number = 14): Promise<DailyVisitData[]> {
     const arabicMonths = [
         'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
         'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
     ];
+
+    const resultsMap = new Map<string, DailyVisitData>();
+    const now = new Date();
+
+    // Initialize all past N days with 0 counts
+    for (let i = 0; i < days; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        resultsMap.set(key, {
+            date: key,
+            count: 0,
+            label: `${d.getDate()} ${arabicMonths[d.getMonth()]}`,
+            locations: {},
+        });
+    }
 
     try {
         const visitsRef = collection(db, 'daily_visits');
         const q = query(visitsRef, orderBy('date', 'desc'), limit(days));
         const snapshot = await getDocs(q);
 
-        if (!snapshot.empty) {
-            const results: DailyVisitData[] = snapshot.docs.map(d => {
-                const data = d.data();
-                const dateStr = data.date || d.id;
+        snapshot.docs.forEach(d => {
+            const data = d.data();
+            const dateStr = data.date || d.id;
+            if (resultsMap.has(dateStr)) {
+                const existing = resultsMap.get(dateStr)!;
+                existing.count = data.count || 0;
+                existing.locations = data.locations || {};
+            } else {
+                // If it's an older date that somehow slipped in, or just to be safe
                 const [, month, day] = dateStr.split('-');
                 const monthIndex = parseInt(month, 10) - 1;
-                return {
+                resultsMap.set(dateStr, {
                     date: dateStr,
                     count: data.count || 0,
                     label: `${parseInt(day, 10)} ${arabicMonths[monthIndex]}`,
                     locations: data.locations || {},
-                };
-            });
-            return results.reverse();
-        }
+                });
+            }
+        });
     } catch (error) {
         console.error('Failed to get daily visits from Firestore:', error);
     }
 
-    // Return synthetic historical data when Firestore has no data
-    return generateSyntheticVisits(days, arabicMonths);
-}
-
-/**
- * Generate in-memory synthetic visit data (no Firestore writes needed)
- */
-function generateSyntheticVisits(days: number, arabicMonths: string[]): DailyVisitData[] {
-    const baseCounts = [5, 8, 12, 7, 15, 18, 10, 13, 20, 9, 16, 22, 14, 25];
-    const locationPool: [string, number][] = [
-        ["Cairo, Egypt", 35], ["Riyadh, Saudi Arabia", 15], ["Alexandria, Egypt", 12],
-        ["Jeddah, Saudi Arabia", 8], ["Amman, Jordan", 7], ["Dubai, United Arab Emirates", 6],
-        ["Mansoura, Egypt", 5], ["Tanta, Egypt", 4], ["Kuwait City, Kuwait", 4], ["Doha, Qatar", 4],
-    ];
-
-    const results: DailyVisitData[] = [];
-    const now = new Date();
-    const count = Math.min(days, 14);
-
-    for (let i = count - 1; i >= 0; i--) {
-        const d = new Date(now);
-        d.setDate(d.getDate() - i);
-        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        const dayCount = baseCounts[count - 1 - i] || 10;
-        const monthIndex = d.getMonth();
-
-        // Distribute locations proportionally
-        const locations: Record<string, number> = {};
-        let remaining = dayCount;
-        for (let j = 0; j < locationPool.length && remaining > 0; j++) {
-            const [city, weight] = locationPool[j];
-            const share = j === locationPool.length - 1
-                ? remaining
-                : Math.max(0, Math.min(remaining, Math.round(dayCount * weight / 100)));
-            if (share > 0) { locations[city] = share; remaining -= share; }
-        }
-
-        results.push({
-            date: key,
-            count: dayCount,
-            label: `${d.getDate()} ${arabicMonths[monthIndex]}`,
-            locations,
-        });
-    }
-    return results;
+    // Sort by date ascending (oldest to newest)
+    return Array.from(resultsMap.values()).sort((a, b) => a.date.localeCompare(b.date)).slice(-days);
 }
 
 /**

@@ -212,11 +212,64 @@ export function generateSPSSSyntax(config: ExportConfig, dataFilename: string): 
     return lines.join('\n');
 }
 
+// --- Schema-driven flattening for structured sections ---
+
+import type { UnifiedFieldSchema } from './surveyEngine';
+
+function flattenStructuredSection(
+    row: FlatRow,
+    sectionData: any,
+    fields: UnifiedFieldSchema[],
+    prefix: string
+): void {
+    if (!sectionData || !fields) return;
+    for (const field of fields) {
+        const sourceKey = field.legacyKey || field.id;
+        const rawValue = sectionData[sourceKey];
+        const varName = `${prefix}_${field.id}`;
+
+        if (rawValue == null || rawValue === '') {
+            row[varName] = undefined;
+            continue;
+        }
+
+        // Multi-select → binary dummies
+        if (field.fieldType === 'checkbox' && Array.isArray(rawValue)) {
+            row[varName] = rawValue.join('; ');
+            for (const opt of field.options || []) {
+                row[`${varName}_${opt}`] = rawValue.includes(opt) ? 1 : 0;
+            }
+            continue;
+        }
+
+        switch (field.outputType) {
+            case 'nominal':
+            case 'ordinal':
+                row[varName] = field.codingMap?.[rawValue] ?? rawValue;
+                break;
+            case 'interval':
+            case 'ratio':
+                row[varName] = typeof rawValue === 'number' ? rawValue : parseFloat(rawValue);
+                break;
+            case 'text':
+            default:
+                row[varName] = String(rawValue);
+                break;
+        }
+    }
+}
+
 // --- Flatten Evaluation Data to Export Rows ---
+
+export interface StructuredFieldsConfig {
+    demographicsFields?: UnifiedFieldSchema[];
+    healthFields?: UnifiedFieldSchema[];
+}
 
 export function flattenEvaluationData(
     evaluations: Array<{ id: string; data: any; createdAt?: any }>,
-    config: ExportConfig
+    config: ExportConfig,
+    structuredFields?: StructuredFieldsConfig
 ): FlatRow[] {
     return evaluations.map((evalDoc) => {
         const row: FlatRow = {
@@ -224,24 +277,36 @@ export function flattenEvaluationData(
             timestamp: evalDoc.createdAt?.toDate?.()?.toISOString?.() || '',
         };
 
-        // Demographics
+        const schemaVersion = evalDoc.data?._schemaVersion || 1;
+
+        // Demographics — schema-driven or legacy fallback
         const demo = evalDoc.data?.demographics;
         if (demo) {
-            row['demo_relationship'] = demo.relationship || '';
-            row['demo_parentAge'] = demo.parentAge || '';
-            row['demo_education'] = demo.education || '';
-            row['demo_childrenCount'] = demo.childrenCount || '';
-            row['demo_childAge'] = demo.childAge || '';
+            if (structuredFields?.demographicsFields && schemaVersion >= 2) {
+                flattenStructuredSection(row, demo, structuredFields.demographicsFields, 'demo');
+            } else {
+                // Legacy v1 hardcoded paths
+                row['demo_relationship'] = demo.relationship || '';
+                row['demo_parentAge'] = demo.parentAge || '';
+                row['demo_education'] = demo.education || '';
+                row['demo_childrenCount'] = demo.childrenCount || '';
+                row['demo_childAge'] = demo.childAge || '';
+            }
         }
 
-        // Health indicators
+        // Health indicators — schema-driven or legacy fallback
         const health = evalDoc.data?.healthIndicators;
         if (health) {
-            row['health_gender'] = health.gender || '';
-            row['health_weightPerception'] = health.weightPerception || '';
-            row['health_issues'] = (health.healthIssues || []).join('; ');
-            row['health_otherIssue'] = health.otherHealthIssue || '';
-            row['health_infoSources'] = (health.infoSources || []).join('; ');
+            if (structuredFields?.healthFields && schemaVersion >= 2) {
+                flattenStructuredSection(row, health, structuredFields.healthFields, 'health');
+            } else {
+                // Legacy v1 hardcoded paths
+                row['health_gender'] = health.gender || health.childGender || '';
+                row['health_weightPerception'] = health.weightPerception || '';
+                row['health_issues'] = (health.healthIssues || []).join('; ');
+                row['health_otherIssue'] = health.otherHealthIssue || '';
+                row['health_infoSources'] = (health.infoSources || []).join('; ');
+            }
         }
 
         // Likert sections
@@ -279,18 +344,21 @@ export function flattenEvaluationData(
         // Retrospective
         if (config.includeRetrospective && evalDoc.data?.retrospective) {
             const retro = evalDoc.data.retrospective;
-            row['retro_knowledge_before'] = retro.knowledge?.before || '';
-            row['retro_knowledge_after'] = retro.knowledge?.after || '';
-            row['retro_practices_before'] = retro.practices?.before || '';
-            row['retro_practices_after'] = retro.practices?.after || '';
+            // Handle both v1 (knowledge/practices only) and v2 (multi-dimension)
+            for (const [dimKey, dimVal] of Object.entries(retro)) {
+                if (dimVal && typeof dimVal === 'object' && 'before' in (dimVal as any)) {
+                    row[`retro_${dimKey}_before`] = (dimVal as any).before || '';
+                    row[`retro_${dimKey}_after`] = (dimVal as any).after || '';
+                }
+            }
         }
 
         // Open questions
         if (config.includeOpenQuestions && evalDoc.data?.openQuestions) {
             const oq = evalDoc.data.openQuestions;
-            row['open_likedMost'] = oq.likedMost || '';
-            row['open_challenges'] = oq.challenges || '';
-            row['open_suggestions'] = oq.suggestions || '';
+            for (const [key, val] of Object.entries(oq)) {
+                row[`open_${key}`] = (val as string) || '';
+            }
         }
 
         return row;

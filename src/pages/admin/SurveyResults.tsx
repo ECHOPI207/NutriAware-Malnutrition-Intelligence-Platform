@@ -61,6 +61,8 @@ export default function SurveyResults() {
   const [hasMore, setHasMore] = useState(true);
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('descriptive');
+  const [reverseCodedItems, setReverseCodedItems] = useState<Record<string, boolean>>({});
+  const [excludedItems, setExcludedItems] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
 
   const BATCH_SIZE = 100;
@@ -233,16 +235,39 @@ export default function SurveyResults() {
     const rConstructs: ReliabilityConstruct[] = config.sections.map(sec => {
       const itemsArrays: number[][] = [];
       const itemNames: string[] = [];
+      const itemTexts: string[] = [];
+
       sec.questions.forEach(q => {
         const varName = sec.key + '_' + q.id;
-        const vals = cleanData.map(r => r[varName]).filter(v => typeof v === 'number') as number[];
+        if (excludedItems[varName]) return; // Skip excluded items
+
+        let vals = cleanData.map(r => r[varName]).filter(v => typeof v === 'number') as number[];
+
         if (vals.length === cleanData.length && vals.length > 2) {
+          // Apply reverse coding logic
+          if (reverseCodedItems[varName] || q.reverseScored) {
+            const maxScale = q.scaleLength || 5;
+            vals = vals.map(v => maxScale + 1 - v);
+          }
           itemsArrays.push(vals);
           itemNames.push(varName);
+          itemTexts.push(q.text);
         }
       });
-      const result = itemsArrays.length >= 2 ? calculateReliability(itemsArrays, itemNames) : null;
-      return { constructNameAr: sec.titleAr, constructNameEn: sec.titleEn, result, items: itemNames.map((n, i) => ({ varName: n, text: sec.questions[i].text })) };
+
+      const result = calculateReliability(itemsArrays, itemNames);
+
+      return {
+        constructNameAr: sec.titleAr,
+        constructNameEn: sec.titleEn,
+        result,
+        items: itemNames.map((n, i) => ({
+          varName: n,
+          text: itemTexts[i] || n,
+          isReversed: reverseCodedItems[n] || false,
+          isExcluded: excludedItems[n] || false
+        }))
+      };
     });
 
     // 7. Pre/Post Analysis
@@ -311,11 +336,37 @@ export default function SurveyResults() {
     };
 
     return { researchConfig: config, flatData: fData, qualityResult: qResult, descriptiveDimensions: dDims, reliabilityConstructs: rConstructs, prePostComparisons: pComps, behavioralStats: { overallIndex, dimensions: bDims }, openEndedData: oData, academicReportData: aReportData };
-  }, [evaluations]);
+  }, [evaluations, reverseCodedItems, excludedItems]);
 
   // =======================================================================
   // EXPORT HANDLERS
   // =======================================================================
+
+  const handleToggleReverseCoding = (varName: string) => {
+    setReverseCodedItems(prev => ({ ...prev, [varName]: !prev[varName] }));
+  };
+
+  const handleToggleExcluded = (varName: string) => {
+    setExcludedItems(prev => ({ ...prev, [varName]: !prev[varName] }));
+  };
+
+  const handleBatchReliabilityAction = (reverses: string[], excludes: string[]) => {
+    if (reverses.length > 0) {
+      setReverseCodedItems(prev => {
+        const next = { ...prev };
+        reverses.forEach(v => { next[v] = true; });
+        return next;
+      });
+    }
+    if (excludes.length > 0) {
+      setExcludedItems(prev => {
+        const next = { ...prev };
+        excludes.forEach(v => { next[v] = true; });
+        return next;
+      });
+    }
+    toast({ title: '✅ تم تطبيق الإصلاح', description: 'تم تحديث الإعدادات وإعادة الحساب.' });
+  };
 
   const hCSV = () => { exportToCSV(flatData, 'NutriAware_Research_Data'); toast({ title: '✅ تم التصدير', description: 'ملف CSV المرمز جاهز' }); };
   const hCodebook = () => { exportCodebook(researchConfig, 'NutriAware_Codebook'); toast({ title: '✅ تم التصدير', description: 'تم تنزيل الدليل' }); };
@@ -387,7 +438,14 @@ export default function SurveyResults() {
           </TabsContent>
 
           <TabsContent value="reliability" className="mt-0 space-y-8">
-            {evaluations.length > 0 ? <ReliabilityPanel constructs={reliabilityConstructs} /> : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+            {evaluations.length > 0 ? (
+              <ReliabilityPanel
+                constructs={reliabilityConstructs}
+                onToggleReverseCoding={handleToggleReverseCoding}
+                onToggleExcluded={handleToggleExcluded}
+                onBatchAction={handleBatchReliabilityAction}
+              />
+            ) : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
           </TabsContent>
 
           <TabsContent value="impact" className="mt-0 space-y-8">

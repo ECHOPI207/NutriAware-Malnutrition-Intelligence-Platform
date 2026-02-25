@@ -20,6 +20,7 @@ const Footer: React.FC = () => {
   ];
 
   const medicalSupport = [
+    { to: "/faq", label: t('nav.faq') },
     { to: "/about", label: t('footer.aboutPlatform') },
     { to: "/contact", label: t('footer.contactUs') },
     { to: "/privacy", label: t('footer.privacyPolicy') },

@@ -1,12 +1,16 @@
 // ============================================================
-// NutriAware Survey Research Config — Composite Indices,
+// NutriAware Survey Research Config v3.0 — Composite Indices,
 // Psychometric Config, Variable Naming, Coding Guide
 // ============================================================
 
 // --- Construct Identifiers ---
 export type ConstructId =
-    | 'KN'        // Knowledge
-    | 'PR'        // Practices
+    | 'KN'        // Nutritional Knowledge
+    | 'FSK'       // Food Safety Knowledge
+    | 'FSP'       // Food Safety Practices
+    | 'ATT'       // Attitudes
+    | 'PR'        // Dietary Practices
+    | 'DDS'       // Dietary Diversity Score
     | 'INT_ST'    // Intervention Stories
     | 'PX_US'     // Platform Usability
     | 'PX_CN'     // Platform Content
@@ -15,6 +19,7 @@ export type ConstructId =
     | 'SAT'       // Satisfaction
     | 'BI'        // Behavioral Intention
     | 'NPS'       // Net Promoter Score
+    | 'IF'        // Intervention Fidelity
     | 'RETRO'     // Retrospective
     | 'OE';       // Open-ended
 
@@ -28,15 +33,16 @@ export interface CompositeIndex {
     scoringMethod: 'mean' | 'sum';
     range: [number, number];   // [min, max]
     cutoffs: { label: string; labelAr: string; min: number; max: number }[];
+    adequacyThreshold?: number; // For DDS
 }
 
 export const COMPOSITE_INDICES: Record<string, CompositeIndex> = {
-    knowledgeScore: {
-        id: 'KS',
+    nutritionalKnowledgeScore: {
+        id: 'NKS',
         nameAr: 'مؤشر المعرفة الغذائية',
-        nameEn: 'Knowledge Score',
-        items: ['KN1', 'KN2', 'KN3', 'KN4', 'KN5_R'],
-        reverseItems: ['KN5_R'],
+        nameEn: 'Nutritional Knowledge Score',
+        items: ['KN1', 'KN2', 'KN3', 'KN4', 'KN5', 'KN6', 'KN7', 'KN8', 'KN9', 'KN10', 'KN11_R'],
+        reverseItems: ['KN11_R'],
         scoringMethod: 'mean',
         range: [1, 5],
         cutoffs: [
@@ -45,10 +51,52 @@ export const COMPOSITE_INDICES: Record<string, CompositeIndex> = {
             { label: 'High', labelAr: 'مرتفع', min: 3.6, max: 5.0 },
         ],
     },
-    practiceScore: {
+    foodSafetyKnowledgeScore: {
+        id: 'FSKS',
+        nameAr: 'مؤشر معرفة سلامة الغذاء',
+        nameEn: 'Food Safety Knowledge Score',
+        items: ['FSK1', 'FSK2', 'FSK3', 'FSK4', 'FSK5'],
+        reverseItems: [],
+        scoringMethod: 'mean',
+        range: [1, 5],
+        cutoffs: [
+            { label: 'Low', labelAr: 'منخفض', min: 1.0, max: 2.0 },
+            { label: 'Moderate', labelAr: 'متوسط', min: 2.1, max: 3.5 },
+            { label: 'High', labelAr: 'مرتفع', min: 3.6, max: 5.0 },
+        ],
+    },
+    foodSafetyPracticeScore: {
+        id: 'FSPS',
+        nameAr: 'مؤشر ممارسات سلامة الغذاء',
+        nameEn: 'Food Safety Practice Score',
+        items: ['FSP1', 'FSP2', 'FSP3', 'FSP4', 'FSP5'],
+        reverseItems: [],
+        scoringMethod: 'mean',
+        range: [1, 5],
+        cutoffs: [
+            { label: 'Poor', labelAr: 'ضعيف', min: 1.0, max: 2.0 },
+            { label: 'Fair', labelAr: 'مقبول', min: 2.1, max: 3.5 },
+            { label: 'Good', labelAr: 'جيد', min: 3.6, max: 5.0 },
+        ],
+    },
+    attitudesScore: {
+        id: 'ATTS',
+        nameAr: 'مؤشر الاتجاهات',
+        nameEn: 'Attitudes Score',
+        items: ['ATT1', 'ATT2', 'ATT3', 'ATT4', 'ATT5'],
+        reverseItems: [],
+        scoringMethod: 'mean',
+        range: [1, 5],
+        cutoffs: [
+            { label: 'Negative', labelAr: 'سلبي', min: 1.0, max: 2.0 },
+            { label: 'Neutral', labelAr: 'محايد', min: 2.1, max: 3.5 },
+            { label: 'Positive', labelAr: 'إيجابي', min: 3.6, max: 5.0 },
+        ],
+    },
+    dietaryPracticeScore: {
         id: 'PS',
         nameAr: 'مؤشر الممارسات الغذائية',
-        nameEn: 'Practice Score',
+        nameEn: 'Dietary Practice Score',
         items: ['PR1', 'PR2', 'PR3', 'PR4', 'PR5', 'PR6', 'PR7_R'],
         reverseItems: ['PR7_R'],
         scoringMethod: 'mean',
@@ -58,6 +106,22 @@ export const COMPOSITE_INDICES: Record<string, CompositeIndex> = {
             { label: 'Fair', labelAr: 'مقبول', min: 2.1, max: 3.0 },
             { label: 'Good', labelAr: 'جيد', min: 3.1, max: 4.0 },
             { label: 'Excellent', labelAr: 'ممتاز', min: 4.1, max: 5.0 },
+        ],
+    },
+    dietaryDiversityScore: {
+        id: 'DDS',
+        nameAr: 'مؤشر التنوع الغذائي',
+        nameEn: 'Dietary Diversity Score',
+        items: ['DDS1', 'DDS2', 'DDS3', 'DDS4', 'DDS5', 'DDS6', 'DDS7', 'DDS8'],
+        reverseItems: [],
+        scoringMethod: 'sum',
+        range: [0, 8],
+        adequacyThreshold: 5,
+        cutoffs: [
+            { label: 'Very Low', labelAr: 'منخفض جدًا', min: 0, max: 2 },
+            { label: 'Low', labelAr: 'منخفض', min: 3, max: 4 },
+            { label: 'Adequate', labelAr: 'كافٍ', min: 5, max: 6 },
+            { label: 'High', labelAr: 'مرتفع', min: 7, max: 8 },
         ],
     },
     engagementScore: {
@@ -123,9 +187,23 @@ export const PSYCHOMETRIC_CONFIG = {
     },
     semPath: [
         { from: 'KN', to: 'PR', label: 'Knowledge → Practices' },
+        { from: 'FSK', to: 'FSP', label: 'Food Safety Knowledge → Food Safety Practices' },
+        { from: 'ATT', to: 'PR', label: 'Attitudes → Dietary Practices' },
+        { from: 'ATT', to: 'FSP', label: 'Attitudes → Food Safety Practices' },
         { from: 'PR', to: 'SAT', label: 'Practices → Satisfaction' },
         { from: 'SAT', to: 'BI', label: 'Satisfaction → Behavioral Intention' },
         { from: 'PX', to: 'SAT', label: 'Platform Experience → Satisfaction' },
+    ],
+    reliabilityTargets: [
+        { construct: 'KN', items: 11, target: 0.80, minimum: 0.70 },
+        { construct: 'FSK', items: 5, target: 0.75, minimum: 0.70 },
+        { construct: 'FSP', items: 5, target: 0.75, minimum: 0.70 },
+        { construct: 'ATT', items: 5, target: 0.75, minimum: 0.70 },
+        { construct: 'PR', items: 7, target: 0.80, minimum: 0.70 },
+        { construct: 'INT_ST', items: 6, target: 0.80, minimum: 0.70 },
+        { construct: 'PX', items: 8, target: 0.85, minimum: 0.70 },
+        { construct: 'SAT', items: 4, target: 0.80, minimum: 0.70 },
+        { construct: 'BI', items: 5, target: 0.80, minimum: 0.70 },
     ],
 };
 
@@ -180,6 +258,18 @@ export function computeCompositeScore(
     };
 }
 
+// --- Compute DDS Adequacy ---
+export function computeDDSAdequacy(
+    responses: Record<string, number>
+): { total: number; adequate: boolean } {
+    const ddsItems = ['DDS1', 'DDS2', 'DDS3', 'DDS4', 'DDS5', 'DDS6', 'DDS7', 'DDS8'];
+    const total = ddsItems.reduce((sum, item) => {
+        const val = responses[item];
+        return sum + (val === 1 ? 1 : 0);
+    }, 0);
+    return { total, adequate: total >= 5 };
+}
+
 // --- Detect Straightlining ---
 export function detectStraightlining(
     responses: Record<string, number>,
@@ -210,6 +300,6 @@ export function validateAttentionChecks(
 
 // --- Attention Check Definitions ---
 export const ATTENTION_CHECKS = [
-    { id: 'KN_AC', expectedValue: 4, section: 'knowledge' },   // "Please select Agree"
-    { id: 'PR_AC', expectedValue: 1, section: 'practices' },   // "Please select Strongly Disagree"
+    { id: 'KN_AC', expectedValue: 4, section: 'nutritionalKnowledge' },   // "Please select Agree"
+    { id: 'PR_AC', expectedValue: 1, section: 'dietaryPractices' },       // "Please select Strongly Disagree"
 ];

@@ -482,13 +482,14 @@ const AdminDashboard: React.FC = () => {
                           {topLocations.map((loc, i) => (
                             <div key={i} className="flex items-center gap-3">
                               <span className="text-sm text-foreground w-36 truncate font-medium">{loc.location}</span>
-                              <div className="flex-1 h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                                <div
-                                  className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-500 flex items-center justify-end pr-2"
-                                  style={{ width: `${Math.max((loc.count / maxLocCount) * 100, 10)}%` }}
-                                >
-                                  <span className="text-[10px] font-bold text-white">{loc.count}</span>
+                              <div className="flex-1 flex items-center gap-2">
+                                <div className="flex-1 h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-500"
+                                    style={{ width: `${Math.max((loc.count / maxLocCount) * 100, 2)}%` }}
+                                  />
                                 </div>
+                                <span className="text-xs font-bold text-muted-foreground min-w-[20px] text-right">{loc.count}</span>
                               </div>
                             </div>
                           ))}

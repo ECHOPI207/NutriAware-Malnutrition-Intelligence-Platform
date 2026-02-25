@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 
 import { toast } from 'sonner';
+import { trackProfileUpdate, logUserActivity } from '@/services/activityTracker';
 
 const Profile: React.FC = () => {
     const { user, userProfile, updateUserProfile, changePassword } = useAuth();
@@ -73,6 +74,10 @@ const Profile: React.FC = () => {
 
             toast.success(isRTL ? 'تم حفظ التغييرات بنجاح' : 'Changes saved successfully');
             setIsEditing(false);
+
+            // Track profile update
+            const changed = Object.keys(formData).filter(k => (formData as any)[k] !== ((userProfile as any)?.[k] || ''));
+            trackProfileUpdate(changed);
         } catch (error) {
             console.error('Error updating profile:', error);
             toast.error(isRTL ? 'حدث خطأ أثناء الحفظ' : 'Error saving changes');
@@ -96,6 +101,7 @@ const Profile: React.FC = () => {
         try {
             await changePassword(passwords.new);
             toast.success(isRTL ? 'تم تغيير كلمة المرور بنجاح' : 'Password changed successfully');
+            logUserActivity({ action: 'password_change', category: 'profile', details: 'تم تغيير كلمة المرور' });
             setShowPassModal(false);
             setPasswords({ new: '', confirm: '' });
         } catch (error: any) {

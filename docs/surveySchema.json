@@ -1,16 +1,21 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "NutriAware Survey Schema — Publication-Grade Research Instrument",
-    "version": "2.0.0",
+    "title": "NutriAware Survey Schema — Publication-Grade Research Instrument v3.0",
+    "version": "3.0.0",
     "meta": {
         "title": "استبيان تقييم مشروع NutriAware",
-        "subtitle": "مشروع تخرج: سوء التغذية للأطفال",
+        "titleEn": "NutriAware Project Evaluation Questionnaire",
+        "subtitle": "تدخل سلامة الغذاء وتغذية الطفل",
+        "subtitleEn": "Food Safety and Child Nutrition Intervention",
         "institution": "كلية تكنولوجيا العلوم الصحية التطبيقية",
         "language": "ar",
         "direction": "rtl",
-        "estimatedCompletionMinutes": 8,
+        "bilingualSupport": true,
+        "estimatedCompletionMinutes": 12,
         "theoreticalFramework": [
             "KAP",
+            "FAO-DDS",
+            "WHO Anthropometry",
             "TPB",
             "TAM",
             "Retrospective-Then"
@@ -23,76 +28,168 @@
             "titleAr": "نموذج الموافقة المستنيرة",
             "titleEn": "Informed Consent",
             "type": "consent",
-            "required": true
+            "required": true,
+            "preTest": true,
+            "postTest": true
         },
         {
             "id": "demographics",
             "order": 1,
             "titleAr": "البيانات الديموغرافية",
-            "titleEn": "Demographics",
+            "titleEn": "Demographic Information",
             "type": "demographic",
             "constructId": "DEM",
             "theoreticalModel": "Control Variables",
             "measurementLevel": "nominal/ordinal",
+            "preTest": true,
+            "postTest": false,
             "fields": [
                 {
                     "id": "DEM_RELATIONSHIP",
                     "type": "radio",
                     "labelAr": "صلة القرابة بالطفل",
+                    "labelEn": "Relationship to child",
                     "options": [
                         "أب",
                         "أم",
                         "أخرى"
+                    ],
+                    "optionsEn": [
+                        "Father",
+                        "Mother",
+                        "Other"
                     ]
                 },
                 {
                     "id": "DEM_PARENT_AGE",
                     "type": "radio",
                     "labelAr": "عمر ولي الأمر",
+                    "labelEn": "Parent age group",
                     "options": [
                         "أقل من 25 سنة",
-                        "25 – 35 سنة",
-                        "36 – 45 سنة",
+                        "25–35 سنة",
+                        "36–45 سنة",
                         "أكثر من 45 سنة"
+                    ],
+                    "optionsEn": [
+                        "Under 25",
+                        "25–35",
+                        "36–45",
+                        "Over 45"
                     ]
-                },
-                {
-                    "id": "DEM_PROFESSION",
-                    "type": "text",
-                    "labelAr": "مهنة ولي الأمر"
                 },
                 {
                     "id": "DEM_EDUCATION",
                     "type": "radio",
-                    "labelAr": "المستوى التعليمي",
+                    "labelAr": "أعلى مستوى تعليمي",
+                    "labelEn": "Highest education level",
                     "options": [
                         "أقل من ثانوي",
                         "ثانوي",
                         "دبلوم متوسط",
                         "جامعي",
                         "دراسات عليا"
+                    ],
+                    "optionsEn": [
+                        "Below secondary",
+                        "Secondary",
+                        "Diploma",
+                        "University",
+                        "Postgraduate"
+                    ]
+                },
+                {
+                    "id": "DEM_EMPLOYMENT",
+                    "type": "radio",
+                    "labelAr": "الحالة الوظيفية",
+                    "labelEn": "Employment status",
+                    "options": [
+                        "موظف بدوام كامل",
+                        "موظف بدوام جزئي",
+                        "عمل حر",
+                        "غير موظف",
+                        "متقاعد",
+                        "طالب"
+                    ],
+                    "optionsEn": [
+                        "Full-time",
+                        "Part-time",
+                        "Self-employed",
+                        "Unemployed",
+                        "Retired",
+                        "Student"
+                    ]
+                },
+                {
+                    "id": "DEM_INCOME",
+                    "type": "radio",
+                    "labelAr": "الدخل الشهري التقريبي للأسرة",
+                    "labelEn": "Approximate monthly household income",
+                    "options": [
+                        "أقل من 2,000 ريال",
+                        "2,000–5,000 ريال",
+                        "5,001–10,000 ريال",
+                        "10,001–15,000 ريال",
+                        "أكثر من 15,000 ريال",
+                        "أفضل عدم الإجابة"
+                    ],
+                    "optionsEn": [
+                        "Less than 2,000 SAR",
+                        "2,000–5,000 SAR",
+                        "5,001–10,000 SAR",
+                        "10,001–15,000 SAR",
+                        "More than 15,000 SAR",
+                        "Prefer not to answer"
                     ]
                 },
                 {
                     "id": "DEM_CHILDREN_COUNT",
                     "type": "radio",
                     "labelAr": "عدد الأطفال",
+                    "labelEn": "Number of children",
                     "options": [
                         "طفل واحد",
-                        "2-3 أطفال",
+                        "2–3 أطفال",
                         "4 أطفال فأكثر"
+                    ],
+                    "optionsEn": [
+                        "1",
+                        "2–3",
+                        "4 or more"
                     ]
                 },
                 {
                     "id": "DEM_CHILD_AGE",
                     "type": "radio",
                     "labelAr": "عمر الطفل المستهدف",
+                    "labelEn": "Target child age",
                     "options": [
                         "أقل من 3 سنوات",
                         "3–6 سنوات",
                         "7–10 سنوات",
-                        "11–14 سنة",
-                        "أكبر من 14 سنة"
+                        "11–14 سنة"
+                    ],
+                    "optionsEn": [
+                        "Under 3 years",
+                        "3–6 years",
+                        "7–10 years",
+                        "11–14 years"
+                    ]
+                },
+                {
+                    "id": "DEM_SCHOOL_TYPE",
+                    "type": "radio",
+                    "labelAr": "نوع مدرسة الطفل",
+                    "labelEn": "Type of child's school",
+                    "options": [
+                        "حكومية",
+                        "خاصة",
+                        "غير مسجل"
+                    ],
+                    "optionsEn": [
+                        "Public",
+                        "Private",
+                        "Not enrolled"
                     ]
                 }
             ]
@@ -100,38 +197,56 @@
         {
             "id": "healthIndicators",
             "order": 2,
-            "titleAr": "المؤشرات الصحية",
-            "titleEn": "Health Indicators",
+            "titleAr": "المؤشرات الصحية الأساسية",
+            "titleEn": "Baseline Health & Behavior",
             "type": "demographic",
             "constructId": "HI",
             "theoreticalModel": "KAP — Baseline",
             "measurementLevel": "nominal/ordinal",
+            "preTest": true,
+            "postTest": true,
             "fields": [
                 {
                     "id": "HI_GENDER",
                     "type": "radio",
                     "labelAr": "جنس الطفل",
+                    "labelEn": "Child's gender",
                     "options": [
                         "ذكر",
                         "أنثى"
+                    ],
+                    "optionsEn": [
+                        "Male",
+                        "Female"
                     ]
                 },
                 {
                     "id": "HI_WEIGHT_PERCEPTION",
                     "type": "radio",
-                    "labelAr": "تقييم وزن الطفل",
+                    "labelAr": "كيف تقيّم وزن طفلك؟",
+                    "labelEn": "How do you perceive your child's weight?",
                     "options": [
-                        "نحيف جداً",
+                        "نحيف جدًا",
+                        "نحيف",
                         "طبيعي",
                         "وزن زائد",
                         "سمنة مفرطة",
                         "لا أعلم"
+                    ],
+                    "optionsEn": [
+                        "Very underweight",
+                        "Underweight",
+                        "Normal",
+                        "Overweight",
+                        "Obese",
+                        "Don't know"
                     ]
                 },
                 {
                     "id": "HI_HEALTH_ISSUES",
                     "type": "checkbox",
-                    "labelAr": "المشاكل الصحية",
+                    "labelAr": "هل يعاني طفلك من أي مما يلي؟",
+                    "labelEn": "Does your child suffer from any of the following?",
                     "options": [
                         "لا يعاني",
                         "أنيميا",
@@ -140,33 +255,72 @@
                         "سمنة",
                         "حساسية طعام",
                         "أخرى"
+                    ],
+                    "optionsEn": [
+                        "None",
+                        "Anemia",
+                        "Vitamin D/Calcium deficiency",
+                        "Underweight",
+                        "Obesity",
+                        "Food allergy",
+                        "Other"
                     ]
                 },
                 {
                     "id": "HI_INFO_SOURCES",
                     "type": "checkbox",
-                    "labelAr": "مصادر المعلومات",
+                    "labelAr": "من أين تحصل على معلومات التغذية؟",
+                    "labelEn": "Where do you get nutrition information?",
                     "options": [
                         "طبيب أطفال",
                         "أخصائي تغذية",
-                        "الإنترنت",
+                        "الإنترنت/وسائل التواصل",
                         "الأهل والأصدقاء",
-                        "الكتب العلمية"
+                        "الكتب العلمية",
+                        "المدرسة"
+                    ],
+                    "optionsEn": [
+                        "Pediatrician",
+                        "Nutritionist",
+                        "Internet/Social media",
+                        "Family and friends",
+                        "Scientific books",
+                        "School"
+                    ]
+                },
+                {
+                    "id": "HI_FOOD_ILLNESS",
+                    "type": "radio",
+                    "labelAr": "كم مرة عانى طفلك من إسهال أو قيء بسبب الطعام خلال الشهر الماضي؟",
+                    "labelEn": "How many times did your child experience diarrhea or vomiting due to food in the past month?",
+                    "options": [
+                        "لا شيء",
+                        "1–2 مرة",
+                        "3–5 مرات",
+                        "أكثر من 5 مرات"
+                    ],
+                    "optionsEn": [
+                        "None",
+                        "1–2 times",
+                        "3–5 times",
+                        "More than 5 times"
                     ]
                 }
             ]
         },
         {
-            "id": "knowledge",
+            "id": "nutritionalKnowledge",
             "order": 3,
-            "titleAr": "المعرفة الغذائية للوالدين",
-            "titleEn": "Nutritional Knowledge",
+            "titleAr": "المعرفة الغذائية (موسّع)",
+            "titleEn": "Nutritional Knowledge (Expanded)",
             "type": "likert",
             "constructId": "KN",
             "theoreticalModel": "KAP — Knowledge",
             "measurementLevel": "interval",
             "scaleType": "agreement",
             "scaleLength": 5,
+            "preTest": true,
+            "postTest": true,
             "labels": {
                 "1": "لا أوافق بشدة",
                 "2": "لا أوافق",
@@ -174,136 +328,452 @@
                 "4": "أوافق",
                 "5": "أوافق بشدة"
             },
+            "labelsEn": {
+                "1": "Strongly Disagree",
+                "2": "Disagree",
+                "3": "Neutral",
+                "4": "Agree",
+                "5": "Strongly Agree"
+            },
             "items": [
                 {
                     "id": "KN1",
                     "textAr": "أعلم أن سوء التغذية يشمل نقص العناصر الغذائية الدقيقة وليس فقط نقص الوزن",
+                    "textEn": "I know that malnutrition includes micronutrient deficiencies, not just underweight",
                     "reverseScored": false
                 },
                 {
                     "id": "KN2",
                     "textAr": "أعلم أن الغذاء الصحي اليومي للطفل يجب أن يحتوي على خضروات وفواكه طازجة",
+                    "textEn": "I know that a child's daily healthy diet must include fresh vegetables and fruits",
                     "reverseScored": false
                 },
                 {
                     "id": "KN3",
-                    "textAr": "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه",
+                    "textAr": "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلبًا على صحة الطفل ونموه",
+                    "textEn": "I know that excessive fast food consumption negatively affects a child's health and growth",
                     "reverseScored": false
                 },
                 {
                     "id": "KN4",
                     "textAr": "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي",
+                    "textEn": "I know that signs of malnutrition in children include persistent fatigue and poor academic concentration",
                     "reverseScored": false
                 },
                 {
-                    "id": "KN5_R",
+                    "id": "KN5",
+                    "textAr": "أعلم أن البروتينات تدعم نمو العضلات والدهون الصحية تدعم نمو الدماغ",
+                    "textEn": "I know that proteins support muscle growth and healthy fats support brain development",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN6",
+                    "textAr": "أعلم أن الوجبة المتوازنة يجب أن تحتوي على كربوهيدرات وبروتين وخضروات",
+                    "textEn": "I know that a balanced meal should contain carbohydrates, protein, and vegetables",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN7",
+                    "textAr": "أعلم أن نقص الحديد يمكن أن يسبب فقر الدم وضعف التركيز عند الأطفال",
+                    "textEn": "I know that iron deficiency can cause anemia and poor concentration in children",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN8",
+                    "textAr": "أعلم أن فيتامين أ يدعم المناعة والرؤية، والكالسيوم يدعم نمو العظام",
+                    "textEn": "I know that Vitamin A supports immunity and vision, and calcium supports bone growth",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN9",
+                    "textAr": "أعلم أن تنوع الغذاء أهم من كمية الطعام وحدها",
+                    "textEn": "I know that dietary diversity is more important than food quantity alone",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN10",
+                    "textAr": "أعلم أن الطفل يحتاج إلى 5 مجموعات غذائية مختلفة على الأقل يوميًا",
+                    "textEn": "I know that a child needs at least 5 different food groups daily",
+                    "reverseScored": false
+                },
+                {
+                    "id": "KN11_R",
                     "textAr": "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي",
+                    "textEn": "I do not believe food quality significantly affects a child's academic performance",
                     "reverseScored": true
                 },
                 {
                     "id": "KN_AC",
                     "textAr": "يرجى اختيار أوافق لهذا السؤال للتأكد من انتباهك",
+                    "textEn": "Please select Agree for this item to confirm your attentiveness",
                     "isAttentionCheck": true,
                     "expectedValue": 4
                 }
             ],
-            "compositeIndex": "knowledgeScore"
+            "compositeIndex": "nutritionalKnowledgeScore"
         },
         {
-            "id": "practices",
+            "id": "foodSafetyKnowledge",
             "order": 4,
-            "titleAr": "الممارسات الغذائية داخل المنزل",
-            "titleEn": "Dietary Practices",
+            "titleAr": "المعرفة بسلامة الغذاء",
+            "titleEn": "Food Safety Knowledge",
             "type": "likert",
-            "constructId": "PR",
-            "theoreticalModel": "KAP — Practice",
+            "constructId": "FSK",
+            "theoreticalModel": "KAP — Food Safety Knowledge",
             "measurementLevel": "interval",
             "scaleType": "agreement",
             "scaleLength": 5,
+            "preTest": true,
+            "postTest": true,
+            "labels": {
+                "1": "لا أوافق بشدة",
+                "2": "لا أوافق",
+                "3": "محايد",
+                "4": "أوافق",
+                "5": "أوافق بشدة"
+            },
+            "labelsEn": {
+                "1": "Strongly Disagree",
+                "2": "Disagree",
+                "3": "Neutral",
+                "4": "Agree",
+                "5": "Strongly Agree"
+            },
+            "items": [
+                {
+                    "id": "FSK1",
+                    "textAr": "أعلم أن غسل اليدين بالماء والصابون ضروري قبل إعداد الطعام",
+                    "textEn": "I know that washing hands with soap and water is essential before preparing food",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSK2",
+                    "textAr": "أعلم أن اللحوم النيئة يجب فصلها عن الأطعمة الجاهزة للأكل",
+                    "textEn": "I know that raw meat must be separated from ready-to-eat foods",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSK3",
+                    "textAr": "أعلم أن الطعام المطبوخ يجب تبريده خلال ساعتين وتخزينه تحت 5 درجات مئوية",
+                    "textEn": "I know that cooked food should be refrigerated within two hours and stored below 5°C",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSK4",
+                    "textAr": "أعلم أن اللحوم والدواجن يجب طهيها جيدًا لدرجة حرارة آمنة للقضاء على البكتيريا",
+                    "textEn": "I know that meat and poultry must be thoroughly cooked to a safe temperature to kill bacteria",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSK5",
+                    "textAr": "أعلم أن المياه غير المعالجة والأطعمة منتهية الصلاحية يمكن أن تسبب أمراضًا خطيرة للأطفال",
+                    "textEn": "I know that untreated water and expired food can cause serious illnesses in children",
+                    "reverseScored": false
+                }
+            ],
+            "compositeIndex": "foodSafetyKnowledgeScore"
+        },
+        {
+            "id": "foodSafetyPractices",
+            "order": 5,
+            "titleAr": "ممارسات سلامة الغذاء",
+            "titleEn": "Food Safety Practices",
+            "type": "likert",
+            "constructId": "FSP",
+            "theoreticalModel": "KAP — Food Safety Practice",
+            "measurementLevel": "interval",
+            "scaleType": "frequency",
+            "scaleLength": 5,
+            "preTest": true,
+            "postTest": true,
+            "labels": {
+                "1": "أبدًا",
+                "2": "نادرًا",
+                "3": "أحيانًا",
+                "4": "غالبًا",
+                "5": "دائمًا"
+            },
+            "labelsEn": {
+                "1": "Never",
+                "2": "Rarely",
+                "3": "Sometimes",
+                "4": "Often",
+                "5": "Always"
+            },
+            "items": [
+                {
+                    "id": "FSP1",
+                    "textAr": "أغسل يدي بالماء والصابون قبل إعداد طعام طفلي",
+                    "textEn": "I wash my hands with soap and water before preparing my child's food",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSP2",
+                    "textAr": "أفصل اللحوم النيئة عن الأطعمة الجاهزة للأكل أثناء التحضير والتخزين",
+                    "textEn": "I separate raw meat from ready-to-eat foods during preparation and storage",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSP3",
+                    "textAr": "أتحقق من تواريخ انتهاء الصلاحية قبل شراء المنتجات الغذائية",
+                    "textEn": "I check expiration dates before purchasing food products",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSP4",
+                    "textAr": "أحفظ بقايا الطعام في الثلاجة بشكل صحيح وخلال وقت مناسب",
+                    "textEn": "I refrigerate leftovers properly and within an appropriate time",
+                    "reverseScored": false
+                },
+                {
+                    "id": "FSP5",
+                    "textAr": "أغسل الفواكه والخضروات جيدًا قبل تقديمها لطفلي",
+                    "textEn": "I wash fruits and vegetables thoroughly before serving them to my child",
+                    "reverseScored": false
+                }
+            ],
+            "compositeIndex": "foodSafetyPracticeScore"
+        },
+        {
+            "id": "attitudes",
+            "order": 6,
+            "titleAr": "اتجاهات الوالدين نحو سلامة الغذاء وتغذية الطفل",
+            "titleEn": "Parental Attitudes Toward Food Safety and Child Nutrition",
+            "type": "likert",
+            "constructId": "ATT",
+            "theoreticalModel": "KAP — Attitudes",
+            "measurementLevel": "interval",
+            "scaleType": "agreement",
+            "scaleLength": 5,
+            "preTest": true,
+            "postTest": true,
+            "labels": {
+                "1": "لا أوافق بشدة",
+                "2": "لا أوافق",
+                "3": "محايد",
+                "4": "أوافق",
+                "5": "أوافق بشدة"
+            },
+            "labelsEn": {
+                "1": "Strongly Disagree",
+                "2": "Disagree",
+                "3": "Neutral",
+                "4": "Agree",
+                "5": "Strongly Agree"
+            },
+            "items": [
+                {
+                    "id": "ATT1",
+                    "textAr": "أعتقد أن سلامة الغذاء لا تقل أهمية عن قيمته الغذائية",
+                    "textEn": "I believe food safety is as important as nutritional value",
+                    "reverseScored": false
+                },
+                {
+                    "id": "ATT2",
+                    "textAr": "أشعر بالمسؤولية تجاه تحسين تغذية طفلي",
+                    "textEn": "I feel responsible for improving my child's nutrition",
+                    "reverseScored": false
+                },
+                {
+                    "id": "ATT3",
+                    "textAr": "تعليم العادات الغذائية الصحية مبكرًا يؤثر على الصحة مدى الحياة",
+                    "textEn": "Teaching healthy eating habits early affects lifelong health",
+                    "reverseScored": false
+                },
+                {
+                    "id": "ATT4",
+                    "textAr": "التحقق من تواريخ الصلاحية وجودة الطعام أمر ضروري وليس اختياريًا",
+                    "textEn": "Checking expiration dates and food quality is essential, not optional",
+                    "reverseScored": false
+                },
+                {
+                    "id": "ATT5",
+                    "textAr": "نقص العناصر الغذائية الدقيقة يؤثر بشكل كبير على أداء الطفل",
+                    "textEn": "Micronutrient deficiencies significantly affect child performance",
+                    "reverseScored": false
+                }
+            ],
+            "compositeIndex": "attitudesScore"
+        },
+        {
+            "id": "dietaryPractices",
+            "order": 7,
+            "titleAr": "الممارسات الغذائية داخل المنزل",
+            "titleEn": "Dietary Practices at Home",
+            "type": "likert",
+            "constructId": "PR",
+            "theoreticalModel": "KAP — Dietary Practice",
+            "measurementLevel": "interval",
+            "scaleType": "agreement",
+            "scaleLength": 5,
+            "preTest": true,
+            "postTest": true,
             "timeAnchor": "خلال الأسبوعين الماضيين",
+            "timeAnchorEn": "During the past 2 weeks",
             "items": [
                 {
                     "id": "PR1",
                     "textAr": "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي",
+                    "textEn": "During the past 2 weeks, I ensured vegetables and fruits were included in my child's meals",
                     "reverseScored": false
                 },
                 {
                     "id": "PR2",
                     "textAr": "خلال الأسبوعين الماضيين، راقبت كمية الحلويات والسكريات التي يتناولها طفلي",
+                    "textEn": "During the past 2 weeks, I monitored the amount of sweets and sugars my child consumed",
                     "reverseScored": false
                 },
                 {
                     "id": "PR3",
                     "textAr": "خلال الأسبوعين الماضيين، قللنا من تناول الوجبات السريعة في المنزل",
+                    "textEn": "During the past 2 weeks, we reduced fast food consumption at home",
                     "reverseScored": false
                 },
                 {
                     "id": "PR4",
                     "textAr": "خلال الأسبوعين الماضيين، شجعت طفلي على شرب الماء بانتظام بدلاً من المشروبات الغازية",
+                    "textEn": "During the past 2 weeks, I encouraged my child to drink water regularly instead of soft drinks",
                     "reverseScored": false
                 },
                 {
                     "id": "PR5",
                     "textAr": "خلال الأسبوعين الماضيين، قرأت البطاقة الغذائية قبل شراء المنتجات لطفلي",
+                    "textEn": "During the past 2 weeks, I read the nutrition label before purchasing products for my child",
                     "reverseScored": false
                 },
                 {
                     "id": "PR6",
-                    "textAr": "خلال الأسبوعين الماضيين، حرصت على تقديم وجبة إفطار متوازنة لطفلي يومياً",
+                    "textAr": "خلال الأسبوعين الماضيين، حرصت على تقديم وجبة إفطار متوازنة لطفلي يوميًا",
+                    "textEn": "During the past 2 weeks, I ensured my child had a balanced breakfast daily",
                     "reverseScored": false
                 },
                 {
                     "id": "PR7_R",
                     "textAr": "خلال الأسبوعين الماضيين، وجدت صعوبة في تقديم أغذية صحية بسبب التكلفة المالية",
+                    "textEn": "During the past 2 weeks, I found it difficult to provide healthy food due to financial cost",
                     "reverseScored": true
                 },
                 {
                     "id": "PR_AC",
                     "textAr": "يرجى اختيار لا أوافق بشدة لهذا السؤال",
+                    "textEn": "Please select Strongly Disagree for this item",
                     "isAttentionCheck": true,
                     "expectedValue": 1
                 }
             ],
-            "compositeIndex": "practiceScore"
+            "compositeIndex": "dietaryPracticeScore"
+        },
+        {
+            "id": "dietaryDiversity",
+            "order": 8,
+            "titleAr": "مؤشر التنوع الغذائي (DDS) — استدعاء 24 ساعة",
+            "titleEn": "FAO Dietary Diversity Score (DDS) — 24-Hour Recall",
+            "type": "binary_checklist",
+            "constructId": "DDS",
+            "theoreticalModel": "FAO Minimum Dietary Diversity",
+            "measurementLevel": "nominal",
+            "preTest": true,
+            "postTest": true,
+            "instructionAr": "خلال الـ 24 ساعة الماضية (أمس من الصباح حتى وقت النوم)، هل تناول طفلك أيًا من المجموعات الغذائية التالية؟",
+            "instructionEn": "During the past 24 hours (yesterday from morning until bedtime), did your child consume any of the following food groups?",
+            "items": [
+                {
+                    "id": "DDS1",
+                    "textAr": "الحبوب والنشويات (أرز، مكرونة، خبز)",
+                    "textEn": "Cereals and grains (rice, pasta, bread)"
+                },
+                {
+                    "id": "DDS2",
+                    "textAr": "البقوليات (فول، عدس، حمص)",
+                    "textEn": "Legumes (beans, lentils, chickpeas)"
+                },
+                {
+                    "id": "DDS3",
+                    "textAr": "الحليب ومنتجات الألبان",
+                    "textEn": "Milk and dairy products"
+                },
+                {
+                    "id": "DDS4",
+                    "textAr": "اللحوم أو الدواجن أو الأسماك",
+                    "textEn": "Meat, poultry, or fish"
+                },
+                {
+                    "id": "DDS5",
+                    "textAr": "البيض",
+                    "textEn": "Eggs"
+                },
+                {
+                    "id": "DDS6",
+                    "textAr": "الخضروات الورقية الداكنة (سبانخ، ملوخية)",
+                    "textEn": "Dark green leafy vegetables (spinach, kale)"
+                },
+                {
+                    "id": "DDS7",
+                    "textAr": "فواكه/خضروات غنية بفيتامين أ (جزر، مانجو، بطاطا حلوة)",
+                    "textEn": "Vitamin A-rich fruits/vegetables (carrot, mango, sweet potato)"
+                },
+                {
+                    "id": "DDS8",
+                    "textAr": "فواكه أو خضروات أخرى",
+                    "textEn": "Other fruits or vegetables"
+                }
+            ],
+            "scoring": {
+                "method": "sum",
+                "range": [
+                    0,
+                    8
+                ],
+                "adequacyThreshold": 5,
+                "coding": "binary 0/1"
+            }
         },
         {
             "id": "intervention_stories",
-            "order": 5,
+            "order": 9,
             "titleAr": "القصص القصيرة المصورة",
             "titleEn": "Intervention Stories",
             "type": "likert",
             "constructId": "INT_ST",
             "theoreticalModel": "Dose-Response",
             "measurementLevel": "interval",
+            "preTest": false,
+            "postTest": true,
             "items": [
                 {
                     "id": "INT_ST1",
-                    "textAr": "كانت القصص المصورة جذابة بصرياً ومشوقة لطفلي",
+                    "textAr": "كانت القصص المصورة جذابة بصريًا ومشوقة لطفلي",
+                    "textEn": "The illustrated stories were visually attractive and engaging for my child",
                     "reverseScored": false
                 },
                 {
                     "id": "INT_ST2",
                     "textAr": "كانت اللغة والمفاهيم في القصص مناسبة لعمر طفلي",
+                    "textEn": "The language and concepts in the stories were age-appropriate for my child",
                     "reverseScored": false
                 },
                 {
                     "id": "INT_ST3",
                     "textAr": "ساهمت القصص في تصحيح مفاهيم غذائية خاطئة لدي أو لدى طفلي",
+                    "textEn": "The stories helped correct nutritional misconceptions I or my child had",
                     "reverseScored": false
                 },
                 {
                     "id": "INT_ST4",
                     "textAr": "نقلت القصص رسائل توعوية واضحة حول أهمية التغذية الصحية",
+                    "textEn": "The stories conveyed clear awareness messages about healthy nutrition importance",
                     "reverseScored": false
                 },
                 {
                     "id": "INT_ST5",
                     "textAr": "شجعت القصص طفلي على الاهتمام بتناول الطعام الصحي",
+                    "textEn": "The stories encouraged my child to be interested in eating healthy food",
                     "reverseScored": false
                 },
                 {
                     "id": "INT_ST6_R",
-                    "textAr": "لم تضف القصص معلومات جديدة لم أكن أعرفها مسبقاً",
+                    "textAr": "لم تضف القصص معلومات جديدة لم أكن أعرفها مسبقًا",
+                    "textEn": "The stories did not add any new information I didn't already know",
                     "reverseScored": true
                 }
             ],
@@ -311,17 +781,20 @@
         },
         {
             "id": "platform_experience",
-            "order": 6,
+            "order": 10,
             "titleAr": "تجربة المنصة",
             "titleEn": "Platform Experience (UX)",
             "type": "likert",
             "constructId": "PX",
             "theoreticalModel": "TAM",
             "measurementLevel": "interval",
+            "preTest": false,
+            "postTest": true,
             "subConstructs": [
                 {
                     "id": "PX_US",
                     "titleAr": "قابلية الاستخدام",
+                    "titleEn": "Usability",
                     "items": [
                         "PX_US1",
                         "PX_US2"
@@ -330,6 +803,7 @@
                 {
                     "id": "PX_CN",
                     "titleAr": "جودة المحتوى",
+                    "titleEn": "Content",
                     "items": [
                         "PX_CN1",
                         "PX_CN2"
@@ -338,6 +812,7 @@
                 {
                     "id": "PX_TL",
                     "titleAr": "الأدوات",
+                    "titleEn": "Tools",
                     "items": [
                         "PX_TL1",
                         "PX_TL2"
@@ -346,42 +821,91 @@
                 {
                     "id": "PX_CO",
                     "titleAr": "الاستشارات",
+                    "titleEn": "Consultation",
                     "items": [
                         "PX_CO1",
                         "PX_CO2"
                     ]
                 }
             ],
+            "items": [
+                {
+                    "id": "PX_US1",
+                    "textAr": "كان الدخول إلى المنصة عبر رمز QR سهلاً ومباشرًا",
+                    "textEn": "Accessing the platform via QR code was easy and straightforward"
+                },
+                {
+                    "id": "PX_US2",
+                    "textAr": "كانت المنصة سهلة الاستخدام والتنقل بين أقسامها المختلفة",
+                    "textEn": "The platform was easy to use and navigate between its sections"
+                },
+                {
+                    "id": "PX_CN1",
+                    "textAr": "كانت المعلومات الغذائية المقدمة في المنصة موثوقة ومفيدة",
+                    "textEn": "The nutritional information provided on the platform was reliable and useful"
+                },
+                {
+                    "id": "PX_CN2",
+                    "textAr": "كانت خطط الوجبات المقترحة واقعية وقابلة للتطبيق في حياتنا اليومية",
+                    "textEn": "The suggested meal plans were realistic and applicable to our daily life"
+                },
+                {
+                    "id": "PX_TL1",
+                    "textAr": "كانت أدوات التقييم الغذائي سهلة الفهم والاستخدام",
+                    "textEn": "The nutritional assessment tools were easy to understand and use"
+                },
+                {
+                    "id": "PX_TL2",
+                    "textAr": "ساعدتني نتائج التقييم على فهم الحالة الغذائية لطفلي بوضوح",
+                    "textEn": "The assessment results helped me clearly understand my child's nutritional status"
+                },
+                {
+                    "id": "PX_CO1",
+                    "textAr": "كانت وسائل التواصل مع المختصين واضحة وسهلة الوصول",
+                    "textEn": "The communication channels with specialists were clear and accessible"
+                },
+                {
+                    "id": "PX_CO2",
+                    "textAr": "شعرت بالاطمئنان لتوفر إمكانية طلب استشارة غذائية متخصصة",
+                    "textEn": "I felt reassured by the availability of specialist nutritional consultation"
+                }
+            ],
             "compositeIndex": "engagementScore"
         },
         {
             "id": "satisfaction",
-            "order": 7,
+            "order": 11,
             "titleAr": "الرضا العام",
             "titleEn": "Satisfaction",
             "type": "likert",
             "constructId": "SAT",
             "theoreticalModel": "Expectation-Confirmation",
             "measurementLevel": "interval",
+            "preTest": false,
+            "postTest": true,
             "items": [
                 {
                     "id": "SAT1",
                     "textAr": "أنا راضٍ بشكل عام عن تجربتي مع مشروع NutriAware",
+                    "textEn": "I am generally satisfied with my experience with the NutriAware project",
                     "reverseScored": false
                 },
                 {
                     "id": "SAT2",
                     "textAr": "حقق المشروع توقعاتي فيما يخص تحسين معرفتي بتغذية طفلي",
+                    "textEn": "The project met my expectations regarding improving my knowledge of my child's nutrition",
                     "reverseScored": false
                 },
                 {
                     "id": "SAT3",
                     "textAr": "أنصح أولياء الأمور الآخرين بالاطلاع على المنصة والاستفادة منها",
+                    "textEn": "I recommend other parents to explore and benefit from the platform",
                     "reverseScored": false
                 },
                 {
                     "id": "SAT4_R",
                     "textAr": "لم يقدم المشروع فائدة واضحة تستحق الوقت المستثمر فيه",
+                    "textEn": "The project did not provide clear benefits worth the time invested",
                     "reverseScored": true
                 }
             ],
@@ -389,37 +913,44 @@
         },
         {
             "id": "behavioralIntent",
-            "order": 8,
+            "order": 12,
             "titleAr": "الأثر السلوكي",
             "titleEn": "Behavioral Intention",
             "type": "likert",
             "constructId": "BI",
             "theoreticalModel": "TPB",
             "measurementLevel": "interval",
+            "preTest": false,
+            "postTest": true,
             "items": [
                 {
                     "id": "BI1",
                     "textAr": "أنوي تطبيق تغييرات غذائية صحية داخل المنزل بناءً على ما تعلمته",
+                    "textEn": "I intend to implement healthy dietary changes at home based on what I learned",
                     "reverseScored": false
                 },
                 {
                     "id": "BI2",
                     "textAr": "أنوي تقليل استهلاك الوجبات السريعة والحلويات لأطفالي",
+                    "textEn": "I intend to reduce fast food and sweets consumption for my children",
                     "reverseScored": false
                 },
                 {
                     "id": "BI3",
-                    "textAr": "أنوي تشجيع أطفالي على تناول المزيد من الخضروات والفواكه يومياً",
+                    "textAr": "أنوي تشجيع أطفالي على تناول المزيد من الخضروات والفواكه يوميًا",
+                    "textEn": "I intend to encourage my children to eat more vegetables and fruits daily",
                     "reverseScored": false
                 },
                 {
                     "id": "BI4",
                     "textAr": "أنوي استخدام منصة NutriAware بشكل منتظم لمتابعة تغذية أطفالي",
+                    "textEn": "I intend to use the NutriAware platform regularly to monitor my children's nutrition",
                     "reverseScored": false
                 },
                 {
                     "id": "BI5_R",
                     "textAr": "لا أعتقد أنني سأغير عاداتنا الغذائية الحالية بناءً على هذا المشروع",
+                    "textEn": "I do not think I will change our current dietary habits based on this project",
                     "reverseScored": true
                 }
             ],
@@ -427,13 +958,15 @@
         },
         {
             "id": "nps",
-            "order": 9,
+            "order": 13,
             "titleAr": "صافي نقاط الترويج",
             "titleEn": "Net Promoter Score",
             "type": "nps",
             "constructId": "NPS",
             "theoreticalModel": "NPS (Reichheld)",
             "measurementLevel": "ratio",
+            "preTest": false,
+            "postTest": true,
             "scale": {
                 "min": 0,
                 "max": 10
@@ -441,19 +974,22 @@
             "items": [
                 {
                     "id": "NPS1",
-                    "textAr": "على مقياس من 0 إلى 10، ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟"
+                    "textAr": "على مقياس من 0 إلى 10، ما مدى احتمال أن توصي بمنصة NutriAware لصديق أو فرد من عائلتك؟",
+                    "textEn": "On a scale of 0–10, how likely are you to recommend NutriAware to a friend or family member?"
                 }
             ]
         },
         {
             "id": "retrospective",
-            "order": 10,
+            "order": 14,
             "titleAr": "تقييم ارتجاعي (قبل/بعد)",
             "titleEn": "Retrospective Pre-Then/Post Self-Assessment",
             "type": "slider_paired",
             "constructId": "RETRO",
             "theoreticalModel": "Retrospective-Then Design (Howard)",
             "measurementLevel": "interval",
+            "preTest": false,
+            "postTest": true,
             "scale": {
                 "min": 1,
                 "max": 10
@@ -461,24 +997,30 @@
             "dimensions": [
                 {
                     "id": "RETRO_KN",
-                    "titleAr": "مستوى معرفتي بأساسيات تغذية الأطفال السليمة"
+                    "titleAr": "مستوى معرفتي بأساسيات تغذية الأطفال السليمة",
+                    "titleEn": "My level of knowledge about child nutrition fundamentals"
                 },
                 {
                     "id": "RETRO_PR",
-                    "titleAr": "مستوى ممارساتي الغذائية الصحية في المنزل"
+                    "titleAr": "مستوى ممارساتي الغذائية الصحية في المنزل",
+                    "titleEn": "My level of healthy dietary practices at home"
                 },
                 {
                     "id": "RETRO_AW",
-                    "titleAr": "مستوى وعيي بمخاطر سوء التغذية على أطفالي"
+                    "titleAr": "مستوى وعيي بمخاطر سوء التغذية على أطفالي",
+                    "titleEn": "My level of awareness about malnutrition risks for my children"
                 },
                 {
                     "id": "RETRO_CF",
-                    "titleAr": "مستوى ثقتي في قدرتي على تخطيط وجبات صحية لأطفالي"
+                    "titleAr": "مستوى ثقتي في قدرتي على تخطيط وجبات صحية لأطفالي",
+                    "titleEn": "My confidence level in my ability to plan healthy meals for my children"
                 }
             ],
             "anchors": {
                 "before": "قبل استخدام NutriAware",
-                "after": "بعد استخدام NutriAware"
+                "after": "بعد استخدام NutriAware",
+                "beforeEn": "Before using NutriAware",
+                "afterEn": "After using NutriAware"
             },
             "analysis": [
                 "paired_ttest",
@@ -487,53 +1029,338 @@
             ]
         },
         {
+            "id": "interventionFidelity",
+            "order": 15,
+            "titleAr": "دقة التدخل — استخدام المنصة",
+            "titleEn": "Intervention Fidelity — Platform Usage",
+            "type": "mixed",
+            "constructId": "IF",
+            "theoreticalModel": "Dose Monitoring",
+            "preTest": false,
+            "postTest": true,
+            "fields": [
+                {
+                    "id": "IF_LOGINS",
+                    "type": "radio",
+                    "labelAr": "كم مرة سجلت الدخول إلى NutriAware خلال الأسابيع الستة؟",
+                    "labelEn": "How many times did you log into NutriAware during the 6 weeks?",
+                    "options": [
+                        "0",
+                        "1–3",
+                        "4–6",
+                        "7–10",
+                        "أكثر من 10"
+                    ],
+                    "optionsEn": [
+                        "0",
+                        "1–3",
+                        "4–6",
+                        "7–10",
+                        "More than 10"
+                    ]
+                },
+                {
+                    "id": "IF_SECTIONS",
+                    "type": "checkbox",
+                    "labelAr": "أي الأقسام استخدمت؟",
+                    "labelEn": "Which sections did you use?",
+                    "options": [
+                        "خطط الوجبات",
+                        "التقييم الغذائي",
+                        "القصص",
+                        "الاستشارات",
+                        "المقالات",
+                        "حاسبة مؤشر كتلة الجسم"
+                    ],
+                    "optionsEn": [
+                        "Meal Plans",
+                        "Nutritional Assessment",
+                        "Stories",
+                        "Consultation",
+                        "Articles",
+                        "BMI Calculator"
+                    ]
+                },
+                {
+                    "id": "IF_STORIES",
+                    "type": "radio",
+                    "labelAr": "كم قصة قرأتها لطفلك؟",
+                    "labelEn": "How many stories did you read to your child?",
+                    "options": [
+                        "0",
+                        "1–2",
+                        "3–5",
+                        "6–8",
+                        "جميع القصص"
+                    ],
+                    "optionsEn": [
+                        "0",
+                        "1–2",
+                        "3–5",
+                        "6–8",
+                        "All stories"
+                    ]
+                }
+            ]
+        },
+        {
             "id": "openEnded",
-            "order": 11,
+            "order": 16,
             "titleAr": "أسئلة مفتوحة",
             "titleEn": "Open-ended Insights",
             "type": "open",
             "constructId": "OE",
             "theoreticalModel": "Thematic Analysis",
             "measurementLevel": "nominal",
+            "preTest": false,
+            "postTest": true,
             "items": [
                 {
                     "id": "OE1",
-                    "textAr": "ما أكثر ما أعجبك في مشروع NutriAware؟"
+                    "textAr": "ما أكثر ما أعجبك في مشروع NutriAware؟",
+                    "textEn": "What did you like most about NutriAware?"
                 },
                 {
                     "id": "OE2",
-                    "textAr": "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟"
+                    "textAr": "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟",
+                    "textEn": "What challenges do you face in implementing healthy dietary habits for your children?"
                 },
                 {
                     "id": "OE3",
-                    "textAr": "ما اقتراحاتك لتحسين المنصة أو المحتوى التوعوي؟"
+                    "textAr": "ما اقتراحاتك لتحسين المنصة أو المحتوى التوعوي؟",
+                    "textEn": "What are your suggestions for improving the platform or awareness content?"
                 },
                 {
                     "id": "OE4",
-                    "textAr": "كيف تعرفت على منصة NutriAware لأول مرة؟"
+                    "textAr": "كيف تعرفت على منصة NutriAware لأول مرة؟",
+                    "textEn": "How did you first learn about the NutriAware platform?"
                 }
             ]
         }
     ],
+    "anthropometricForm": {
+        "titleAr": "استمارة القياسات البشرية (يكملها الباحث فقط)",
+        "titleEn": "Anthropometric Assessment Form (Researcher-Completed Only)",
+        "fields": [
+            {
+                "id": "ANTH_WEIGHT",
+                "labelAr": "وزن الطفل (كجم)",
+                "labelEn": "Child weight (kg)",
+                "type": "number",
+                "precision": 0.1
+            },
+            {
+                "id": "ANTH_HEIGHT",
+                "labelAr": "طول الطفل (سم)",
+                "labelEn": "Child height (cm)",
+                "type": "number",
+                "precision": 0.1
+            },
+            {
+                "id": "ANTH_DOB",
+                "labelAr": "تاريخ الميلاد",
+                "labelEn": "Date of birth",
+                "type": "date"
+            },
+            {
+                "id": "ANTH_AGE",
+                "labelAr": "العمر بالأشهر",
+                "labelEn": "Age in months",
+                "type": "computed"
+            },
+            {
+                "id": "ANTH_SEX",
+                "labelAr": "الجنس",
+                "labelEn": "Sex",
+                "type": "radio",
+                "options": [
+                    "ذكر",
+                    "أنثى"
+                ],
+                "optionsEn": [
+                    "Male",
+                    "Female"
+                ]
+            },
+            {
+                "id": "ANTH_DATE",
+                "labelAr": "تاريخ القياس",
+                "labelEn": "Measurement date",
+                "type": "date"
+            }
+        ],
+        "derivedScores": [
+            "WAZ",
+            "HAZ",
+            "BAZ"
+        ],
+        "standard": "WHO AnthroPlus"
+    },
     "compositeIndices": {
-        "knowledgeScore": {
+        "nutritionalKnowledgeScore": {
+            "id": "NKS",
+            "nameAr": "مؤشر المعرفة الغذائية",
+            "nameEn": "Nutritional Knowledge Score",
             "items": [
                 "KN1",
                 "KN2",
                 "KN3",
                 "KN4",
-                "KN5_R"
+                "KN5",
+                "KN6",
+                "KN7",
+                "KN8",
+                "KN9",
+                "KN10",
+                "KN11_R"
             ],
             "reverseItems": [
-                "KN5_R"
+                "KN11_R"
             ],
             "method": "mean",
             "range": [
                 1,
                 5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Low",
+                    "labelAr": "منخفض",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Moderate",
+                    "labelAr": "متوسط",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "High",
+                    "labelAr": "مرتفع",
+                    "min": 3.6,
+                    "max": 5.0
+                }
             ]
         },
-        "practiceScore": {
+        "foodSafetyKnowledgeScore": {
+            "id": "FSKS",
+            "nameAr": "مؤشر معرفة سلامة الغذاء",
+            "nameEn": "Food Safety Knowledge Score",
+            "items": [
+                "FSK1",
+                "FSK2",
+                "FSK3",
+                "FSK4",
+                "FSK5"
+            ],
+            "reverseItems": [],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Low",
+                    "labelAr": "منخفض",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Moderate",
+                    "labelAr": "متوسط",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "High",
+                    "labelAr": "مرتفع",
+                    "min": 3.6,
+                    "max": 5.0
+                }
+            ]
+        },
+        "foodSafetyPracticeScore": {
+            "id": "FSPS",
+            "nameAr": "مؤشر ممارسات سلامة الغذاء",
+            "nameEn": "Food Safety Practice Score",
+            "items": [
+                "FSP1",
+                "FSP2",
+                "FSP3",
+                "FSP4",
+                "FSP5"
+            ],
+            "reverseItems": [],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Poor",
+                    "labelAr": "ضعيف",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Fair",
+                    "labelAr": "مقبول",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "Good",
+                    "labelAr": "جيد",
+                    "min": 3.6,
+                    "max": 5.0
+                }
+            ]
+        },
+        "attitudesScore": {
+            "id": "ATTS",
+            "nameAr": "مؤشر الاتجاهات",
+            "nameEn": "Attitudes Score",
+            "items": [
+                "ATT1",
+                "ATT2",
+                "ATT3",
+                "ATT4",
+                "ATT5"
+            ],
+            "reverseItems": [],
+            "method": "mean",
+            "range": [
+                1,
+                5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Negative",
+                    "labelAr": "سلبي",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Neutral",
+                    "labelAr": "محايد",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "Positive",
+                    "labelAr": "إيجابي",
+                    "min": 3.6,
+                    "max": 5.0
+                }
+            ]
+        },
+        "dietaryPracticeScore": {
+            "id": "PS",
+            "nameAr": "مؤشر الممارسات الغذائية",
+            "nameEn": "Dietary Practice Score",
             "items": [
                 "PR1",
                 "PR2",
@@ -550,9 +1377,61 @@
             "range": [
                 1,
                 5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Poor",
+                    "labelAr": "ضعيف",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Fair",
+                    "labelAr": "مقبول",
+                    "min": 2.1,
+                    "max": 3.0
+                },
+                {
+                    "label": "Good",
+                    "labelAr": "جيد",
+                    "min": 3.1,
+                    "max": 4.0
+                },
+                {
+                    "label": "Excellent",
+                    "labelAr": "ممتاز",
+                    "min": 4.1,
+                    "max": 5.0
+                }
             ]
         },
+        "dietaryDiversityScore": {
+            "id": "DDS",
+            "nameAr": "مؤشر التنوع الغذائي",
+            "nameEn": "Dietary Diversity Score",
+            "items": [
+                "DDS1",
+                "DDS2",
+                "DDS3",
+                "DDS4",
+                "DDS5",
+                "DDS6",
+                "DDS7",
+                "DDS8"
+            ],
+            "reverseItems": [],
+            "method": "sum",
+            "range": [
+                0,
+                8
+            ],
+            "adequacyThreshold": 5,
+            "standard": "FAO MDD"
+        },
         "engagementScore": {
+            "id": "ES",
+            "nameAr": "مؤشر التفاعل",
+            "nameEn": "Engagement Score",
             "items": [
                 "INT_ST1",
                 "INT_ST2",
@@ -576,9 +1455,32 @@
             "range": [
                 1,
                 5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Low",
+                    "labelAr": "منخفض",
+                    "min": 1.0,
+                    "max": 2.5
+                },
+                {
+                    "label": "Moderate",
+                    "labelAr": "متوسط",
+                    "min": 2.6,
+                    "max": 3.5
+                },
+                {
+                    "label": "High",
+                    "labelAr": "مرتفع",
+                    "min": 3.6,
+                    "max": 5.0
+                }
             ]
         },
         "satisfactionIndex": {
+            "id": "SI",
+            "nameAr": "مؤشر الرضا",
+            "nameEn": "Satisfaction Index",
             "items": [
                 "SAT1",
                 "SAT2",
@@ -592,9 +1494,32 @@
             "range": [
                 1,
                 5
+            ],
+            "cutoffs": [
+                {
+                    "label": "Dissatisfied",
+                    "labelAr": "غير راضٍ",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Neutral",
+                    "labelAr": "محايد",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "Satisfied",
+                    "labelAr": "راضٍ",
+                    "min": 3.6,
+                    "max": 5.0
+                }
             ]
         },
         "behavioralChangeIndex": {
+            "id": "BCI",
+            "nameAr": "مؤشر التغيير السلوكي",
+            "nameEn": "Behavioral Change Index",
             "items": [
                 "BI1",
                 "BI2",
@@ -609,6 +1534,26 @@
             "range": [
                 1,
                 5
+            ],
+            "cutoffs": [
+                {
+                    "label": "No Intent",
+                    "labelAr": "بدون نية",
+                    "min": 1.0,
+                    "max": 2.0
+                },
+                {
+                    "label": "Moderate",
+                    "labelAr": "متوسط",
+                    "min": 2.1,
+                    "max": 3.5
+                },
+                {
+                    "label": "Strong Intent",
+                    "labelAr": "نية قوية",
+                    "min": 3.6,
+                    "max": 5.0
+                }
             ]
         }
     },
@@ -625,7 +1570,7 @@
             "SRMR": 0.10
         },
         "minSampleSize": 200,
-        "semPath": "KN → PR → SAT → BI, PX → SAT"
+        "semPath": "KN → PR → SAT → BI, PX → SAT, FSK → FSP, ATT → PR"
     },
     "dataQualityRules": {
         "attentionChecks": [

@@ -17,6 +17,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import BmiMealPlanner from '@/components/BmiMealPlanner';
 import { SurveyCTA } from '@/components/common/SurveyCTA';
+import { trackToolUse, trackMealPlan } from '@/services/activityTracker';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -91,6 +92,9 @@ const AITools: React.FC = () => {
 
       const assistantMessage: Message = { role: 'assistant', content: response };
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Track chatbot usage
+      trackToolUse('Nutri-Bot شات بوت', inputMessage.substring(0, 100));
     } catch (error) {
       console.error('Chat error:', error);
       toast({
@@ -118,6 +122,8 @@ const AITools: React.FC = () => {
 
       if (plan) {
         setMealPlan(plan);
+        // Track meal plan generation
+        trackMealPlan(selectedCondition);
       }
       setIsGenerating(false);
     }, 2000);

@@ -60,9 +60,10 @@ const Header = () => {
 
   const navigation = [
     { name: 'nav.home', path: '/', translationKey: 'nav.home' },
+    { name: 'nav.knowledgeCenter', path: '/knowledge', translationKey: 'nav.knowledgeCenter' },
+    { name: 'nav.program', path: '/program', translationKey: 'nav.program' },
     { name: 'nav.assessment', path: '/assessment', translationKey: 'nav.assessment' },
     { name: 'nav.aiTools', path: '/ai-tools', translationKey: 'nav.aiTools' },
-    { name: 'nav.knowledge', path: '/knowledge', translationKey: 'nav.knowledge' },
     { name: 'nav.about', path: '/about', translationKey: 'nav.about' },
     { name: 'nav.contact', path: '/contact', translationKey: 'nav.contact' },
   ];
@@ -83,66 +84,71 @@ const Header = () => {
     { name: 'nav.messages', path: '/messages', icon: MessageSquare },
   ];
 
-
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 border-b",
+        "sticky top-0 z-50 w-full transition-colors duration-300 border-b",
         isScrolled
-          ? "bg-gradient-to-r from-slate-50 via-blue-50/30 to-green-50/20 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 backdrop-blur-md shadow-sm border-border/40"
-          : "bg-gradient-to-r from-slate-50/50 via-blue-50/20 to-green-50/10 dark:from-slate-900/50 dark:via-slate-800/50 dark:to-slate-900/50 backdrop-blur-sm border-transparent"
+          ? "bg-background/95 backdrop-blur-md shadow-sm border-border/40 supports-[backdrop-filter]:bg-background/60"
+          : "bg-background/80 backdrop-blur-sm border-transparent"
       )}
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
+      <div className="mx-auto flex w-full max-w-[1440px] px-4 md:px-6 h-[72px] items-center justify-between gap-2 lg:gap-4">
 
-        {/* --- Logo Section --- */}
-        <div className="flex-shrink-0 flex items-center gap-2">
-          <div className="md:hidden mr-2 rtl:mr-0 rtl:ml-2">
-            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}>
+        {/* --- 1. BRAND (RTL aware alignment) --- */}
+        <div className="flex shrink-0 items-center justify-start gap-2">
+          {/* Mobile Drawer Trigger */}
+          <div className="xl:hidden me-2">
+            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"} className="h-10 w-10 shrink-0">
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
 
-          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <div className="md:hidden">
+          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity focus-visible:outline-primary rounded-md p-1">
+            <div className="xl:hidden">
               <Logo size="sm" hideSubtitle />
             </div>
-            <div className="hidden md:block">
+            <div className="hidden xl:block">
               <Logo size="md" />
             </div>
           </Link>
         </div>
 
-        {/* --- Navigation Section (Centered) --- */}
-        <nav className="hidden md:flex flex-1 justify-center items-center">
-          <ul className="flex items-center gap-1 bg-secondary/50 p-1 rounded-full border border-border/50 backdrop-blur-sm">
-            {navigation.map((item) => (
-              <li key={item.path}>
-                <Link
-                  to={item.path}
-                  className={cn(
-                    "relative px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 block whitespace-nowrap",
-                    location.pathname === item.path
-                      ? "bg-background text-primary shadow-sm ring-1 ring-border/50"
-                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                  )}
-                >
-                  {t(item.translationKey)}
-                </Link>
-              </li>
-            ))}
+        {/* --- 2. MENU (Fluid gap & logical properties) --- */}
+        <nav className="hidden xl:flex flex-1 items-center justify-center overflow-hidden" aria-label="Main Navigation">
+          <ul className="flex items-center justify-center gap-2 max-w-full overflow-x-auto hide-scrollbar">
+            {navigation.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <li key={item.path} className="flex-shrink-0">
+                  <Link
+                    to={item.path}
+                    className={cn(
+                      "relative block font-bold transition-all duration-300 rounded-lg",
+                      "whitespace-nowrap flex items-center justify-center px-4 py-2",
+                      "text-[clamp(12px,1.1vw,14px)]", // Prevents text overflow cutting on large screens
+                      isActive
+                        ? "bg-primary/10 text-primary border-b-2 border-primary rounded-b-none shadow-none"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 focus-visible:bg-secondary/50"
+                    )}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {t(item.translationKey)}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
-        {/* --- Actions Section (Right) --- */}
-        <div className="flex-shrink-0 flex items-center gap-3">
-
-          <div className="flex items-center gap-1 bg-secondary/30 rounded-full p-1 border border-border/30">
+        {/* --- 3. ACTIONS (Strict logical gap and margins) --- */}
+        <div className="flex shrink-0 items-center justify-end gap-2 lg:gap-4">
+          <div className="flex items-center gap-1 bg-secondary/20 rounded-full p-1 border border-border/20">
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="h-8 w-8 rounded-full hover:bg-background"
+              className="h-9 w-9 rounded-full hover:bg-background transition-colors focus-visible:ring-1"
               aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
             >
               {theme === 'dark' ? <Sun className="h-4 w-4 text-yellow-500" /> : <Moon className="h-4 w-4 text-indigo-500" />}
@@ -151,18 +157,18 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={toggleLanguage}
-              className="h-8 w-8 rounded-full hover:bg-background"
+              className="h-9 w-9 rounded-full hover:bg-background transition-colors focus-visible:ring-1"
               aria-label="Change language"
             >
               <Languages className="h-4 w-4" />
             </Button>
           </div>
 
-          <div className="flex items-center ml-2 rtl:ml-0 rtl:mr-2">
+          <div className="flex items-center">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 ring-2 ring-transparent hover:ring-primary/20 transition-all" aria-label="Open user menu">
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0 ring-2 ring-transparent hover:ring-primary/20 transition-all focus-visible:ring-primary/50" aria-label="Open user menu">
                     <Avatar className="h-10 w-10 border-2 border-background shadow-sm">
                       <AvatarImage src={userProfile?.photoURL} alt={userProfile?.displayName || "User"} />
                       <AvatarFallback className="bg-primary/10 text-primary font-bold">
@@ -194,13 +200,13 @@ const Header = () => {
                       <>
                         <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2.5">
                           <Link to="/dashboard">
-                            <LayoutDashboard className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                            <LayoutDashboard className="me-3 h-4 w-4" />
                             <span>{t('nav.dashboard')}</span>
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2.5">
                           <Link to="/medical-consultation">
-                            <Stethoscope className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                            <Stethoscope className="me-3 h-4 w-4" />
                             <span>{t('nav.medicalConsultation')}</span>
                           </Link>
                         </DropdownMenuItem>
@@ -215,14 +221,14 @@ const Header = () => {
                         </DropdownMenuLabel>
                         <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2.5">
                           <Link to="/admin/dashboard">
-                            <LayoutDashboard className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                            <LayoutDashboard className="me-3 h-4 w-4" />
                             <span>{t('nav.adminDashboard')}</span>
                           </Link>
                         </DropdownMenuItem>
                         {adminLinks.map((link) => (
                           <DropdownMenuItem key={link.path} asChild className="cursor-pointer rounded-md p-2.5">
                             <Link to={link.path}>
-                              <link.icon className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                              <link.icon className="me-3 h-4 w-4" />
                               <span>{t(link.name)}</span>
                             </Link>
                           </DropdownMenuItem>
@@ -239,7 +245,7 @@ const Header = () => {
                         {doctorLinks.map((link) => (
                           <DropdownMenuItem key={link.path} asChild className="cursor-pointer rounded-md p-2.5">
                             <Link to={link.path}>
-                              <link.icon className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                              <link.icon className="me-3 h-4 w-4" />
                               <span>{t(link.name)}</span>
                             </Link>
                           </DropdownMenuItem>
@@ -251,7 +257,7 @@ const Header = () => {
 
                     <DropdownMenuItem asChild className="cursor-pointer rounded-md p-2.5">
                       <Link to="/profile">
-                        <Settings className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                        <Settings className="me-3 h-4 w-4" />
                         <span>{t('header.profile')}</span>
                       </Link>
                     </DropdownMenuItem>
@@ -259,21 +265,21 @@ const Header = () => {
 
                   <DropdownMenuSeparator />
 
-                  <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/20 rounded-md p-2.5">
-                    <LogOut className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
+                  <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10 rounded-md p-2.5">
+                    <LogOut className="me-3 h-4 w-4" />
                     <span>{t('header.logout')}</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="hidden md:flex items-center gap-3">
-                <Link to="/auth/login">
-                  <Button variant="outline" className="px-6 py-2 font-semibold border-2 border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary/50">
+              <div className="hidden xl:flex items-center gap-3">
+                <Link to="/auth/login" className="focus-visible:outline-primary rounded-md">
+                  <Button variant="outline" className="px-6 py-2 font-semibold border-2 border-primary/30 hover:bg-primary/10 hover:border-primary/50">
                     {t('header.login')}
                   </Button>
                 </Link>
-                <Link to="/auth/signup">
-                  <Button className="bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 px-6 py-2 font-semibold text-white shadow-lg">
+                <Link to="/auth/signup" className="focus-visible:outline-primary rounded-md">
+                  <Button className="bg-gradient-to-r from-primary to-blue-600 hover:opacity-90 px-6 py-2 font-semibold text-white shadow-md transition-opacity">
                     {t('header.register')}
                   </Button>
                 </Link>
@@ -283,34 +289,38 @@ const Header = () => {
         </div>
       </div>
 
-      {/* --- Mobile Menu Overlay --- */}
+      {/* --- MOBILE DRAWER (Positioned flush under header) --- */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur-md pb-4 animate-in slide-in-from-top-2">
-          <nav className="flex flex-col p-4 space-y-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={cn(
-                  "px-4 py-3 rounded-lg text-base font-bold transition-colors",
-                  location.pathname === item.path
-                    ? "bg-primary/10 text-primary"
-                    : "hover:bg-muted"
-                )}
-              >
-                {t(item.translationKey)}
-              </Link>
-            ))}
+        <div className="xl:hidden absolute top-[100%] left-0 right-0 border-b bg-background/95 backdrop-blur-md pb-6 shadow-lg animate-in slide-in-from-top-2 z-40">
+          <nav className="flex flex-col px-4 pt-2 space-y-1" aria-label="Mobile Navigation">
+            {navigation.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "px-4 py-3 rounded-xl text-base font-bold transition-all",
+                    isActive
+                      ? "bg-primary/10 text-primary border-s-4 border-primary"
+                      : "hover:bg-muted text-foreground border-s-4 border-transparent"
+                  )}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {t(item.translationKey)}
+                </Link>
+              );
+            })}
             {!user && (
-              <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t">
+              <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-border/50">
                 <Link to="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full justify-center">
+                  <Button variant="outline" className="w-full justify-center h-12 text-base">
                     {t('header.login')}
                   </Button>
                 </Link>
                 <Link to="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full justify-center bg-gradient-to-r from-primary to-blue-600">
+                  <Button className="w-full justify-center h-12 text-base bg-gradient-to-r from-primary to-blue-600">
                     {t('header.register')}
                   </Button>
                 </Link>

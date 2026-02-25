@@ -20,6 +20,7 @@ import { calculateReliability, pairedTTest } from '@/lib/statisticsEngine';
 import { flattenEvaluationData, calculateDescriptiveStats, type ExportConfig, exportToCSV, exportCodebook, generateSPSSSyntax, generateSummaryReport } from '@/lib/surveyExport';
 import { generateAcademicReport } from '@/lib/reportGenerator';
 import { type SurveyQuestion } from '@/lib/surveyEngine';
+import { trackReportExport, trackDownload } from '@/services/activityTracker';
 
 const QUESTION_MAP: Record<string, string> = {
   'knowledge.q1': 'تعريف سوء التغذية',
@@ -368,28 +369,32 @@ export default function SurveyResults() {
     toast({ title: '✅ تم تطبيق الإصلاح', description: 'تم تحديث الإعدادات وإعادة الحساب.' });
   };
 
-  const hCSV = () => { exportToCSV(flatData, 'NutriAware_Research_Data'); toast({ title: '✅ تم التصدير', description: 'ملف CSV المرمز جاهز' }); };
-  const hCodebook = () => { exportCodebook(researchConfig, 'NutriAware_Codebook'); toast({ title: '✅ تم التصدير', description: 'تم تنزيل الدليل' }); };
+  const hCSV = () => { exportToCSV(flatData, 'NutriAware_Research_Data'); trackReportExport('CSV', 'csv'); toast({ title: '✅ تم التصدير', description: 'ملف CSV المرمز جاهز' }); };
+  const hCodebook = () => { exportCodebook(researchConfig, 'NutriAware_Codebook'); trackReportExport('Codebook', 'codebook'); toast({ title: '✅ تم التصدير', description: 'تم تنزيل الدليل' }); };
   const hSPSS = () => {
     const s = generateSPSSSyntax(researchConfig, 'NutriAware_Research_Data.csv');
     const b = new Blob([s], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_SPSS_Import.sps'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('SPSS Syntax', 'sps');
     toast({ title: '✅ تم التصدير', description: 'تم تحميل SPSS Syntax' });
   };
   const hSumm = () => {
     const s = generateSummaryReport(flatData, researchConfig);
     const b = new Blob([s], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_Stats_Summary.txt'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('Stats Summary', 'txt');
     toast({ title: '✅ تم التصدير', description: 'تم تنزيل المخلص المبدئي' });
   };
   const hRep = () => {
     const rep = generateAcademicReport(academicReportData);
     const b = new Blob([rep], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_Academic_Report_APA.txt'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('Academic Report APA', 'txt');
     toast({ title: '🎓 تقرير أكاديمي', description: 'تم استخراج التقرير بصيغة APA بنجاح.' });
   };
   const hExcelStr = () => {
     const ws = XLSX.utils.json_to_sheet(flatData); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "البيانات"); XLSX.writeFile(wb, "NutriAware_Raw_Excel.xlsx");
+    trackDownload('NutriAware_Raw_Excel.xlsx', 'xlsx');
   };
 
   if (loading) return <div className="p-8 text-center text-muted-foreground"><Loader2 className="animate-spin mx-auto mb-4" /> يتم إنشاء منصة التحليل البحثي...</div>;
@@ -518,7 +523,81 @@ export default function SurveyResults() {
                             </DialogTrigger>
                             <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto" dir="rtl">
                               <DialogHeader><DialogTitle>تفاصيل الاستجابة المعالجة</DialogTitle></DialogHeader>
-                              <pre className="text-xs text-left bg-slate-100 p-4 rounded-md" dir="ltr">{JSON.stringify(val, null, 2)}</pre>
+                              <div className="space-y-4 text-sm" dir="rtl">
+                                {/* Demographics */}
+                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg space-y-2">
+                                  <h4 className="font-bold text-primary mb-2">البيانات الديموغرافية</h4>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <div><span className="text-muted-foreground">الاسم:</span> <span className="font-medium">{val.demographics?.parentName || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">صلة القرابة:</span> <span className="font-medium">{val.demographics?.relationship || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عمر الوالد:</span> <span className="font-medium">{val.demographics?.parentAge || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">التعليم:</span> <span className="font-medium">{val.demographics?.education || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عدد الأطفال:</span> <span className="font-medium">{val.demographics?.childrenCount || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عمر الطفل:</span> <span className="font-medium">{val.demographics?.childAge || '-'}</span></div>
+                                  </div>
+                                </div>
+                                {/* Scores */}
+                                {val.knowledge && (
+                                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">المعرفة</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.knowledge).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['knowledge.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {val.practices && (
+                                  <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-green-700 dark:text-green-300 mb-2">الممارسات</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.practices).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['practices.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {val.satisfaction && (
+                                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-purple-700 dark:text-purple-300 mb-2">الرضا</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.satisfaction).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['satisfaction.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {typeof val.nps === 'number' && (
+                                  <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-amber-700 dark:text-amber-300 mb-2">NPS</h4>
+                                    <span className="text-2xl font-bold">{val.nps}/10</span>
+                                  </div>
+                                )}
+                                {/* Open Questions */}
+                                {val.openQuestions && (
+                                  <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+                                    <h4 className="font-bold mb-2">الأسئلة المفتوحة</h4>
+                                    {Object.entries(val.openQuestions).map(([key, value]) => (
+                                      <div key={key} className="mb-2">
+                                        <span className="text-muted-foreground block text-xs">{QUESTION_MAP['openQuestions.' + key] || key}</span>
+                                        <p className="font-medium">{String(value) || '-'}</p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                                {/* Raw JSON fallback */}
+                                <details className="text-xs">
+                                  <summary className="cursor-pointer text-muted-foreground hover:text-foreground">عرض البيانات الخام (JSON)</summary>
+                                  <pre className="text-xs text-left bg-slate-100 dark:bg-slate-900 p-4 rounded-md mt-2 overflow-auto max-h-60" dir="ltr">
+                                    {JSON.stringify(val, (_key, value) => {
+                                      if (value && typeof value === 'object' && value.seconds !== undefined && value.nanoseconds !== undefined) {
+                                        return new Date(value.seconds * 1000).toISOString();
+                                      }
+                                      return value;
+                                    }, 2)}
+                                  </pre>
+                                </details>
+                              </div>
                             </DialogContent>
                           </Dialog>
                           <Button size="sm" variant="destructive" className="h-8" onClick={() => handleDelete(val.id)} disabled={isDeleting === val.id}>

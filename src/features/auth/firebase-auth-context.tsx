@@ -11,7 +11,7 @@ import {
   updateProfile,
   updatePassword
 } from 'firebase/auth';
-import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, getDoc, serverTimestamp, collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 
 // Types
@@ -84,11 +84,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           displayName: displayName || additionalData.displayName || '',
           email,
           photoURL: photoURL || '',
+          phoneNumber: user.phoneNumber || '',
           role,
           createdAt,
           updatedAt: createdAt,
+          lastLogin: serverTimestamp(),
+          loginCount: 1,
+          authProvider: additionalData.authProvider || 'email',
           ...additionalData,
         });
+      } catch (error) {
+        // Silent error
+      }
+    } else {
+      // User exists — update lastLogin and increment login count
+      try {
+        const existingData = userSnap.data();
+        await setDoc(userRef, {
+          lastLogin: serverTimestamp(),
+          loginCount: (existingData?.loginCount || 0) + 1,
+          updatedAt: serverTimestamp(),
+          // Update photo if changed (e.g. Google profile pic)
+          ...(user.photoURL ? { photoURL: user.photoURL } : {}),
+          ...(additionalData || {}),
+        }, { merge: true });
       } catch (error) {
         // Silent error
       }
@@ -149,12 +168,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     // 4 hours in milliseconds
     const TIMEOUT_DURATION = 4 * 60 * 60 * 1000;
-    
+
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const resetTimer = () => {
       if (timeoutId) clearTimeout(timeoutId);
-      
+
       if (user) {
         timeoutId = setTimeout(() => {
           // Auto logout
@@ -189,11 +208,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [user]);
 
+  // Log user activity to Firestore
+  const logActivity = async (userId: string, action: string, details?: string) => {
+    try {
+      await addDoc(collection(db, 'users', userId, 'activity_log'), {
+        action,
+        details: details || '',
+        timestamp: serverTimestamp(),
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      });
+    } catch (error) {
+      // Non-blocking
+    }
+  };
+
   // Sign in with email and password
   const signIn = async (email: string, password: string) => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      await createUserProfile(result.user, { authProvider: 'email' });
+      await logActivity(result.user.uid, 'login', 'تسجيل دخول بالبريد الإلكتروني');
     } catch (error) {
       setLoading(false);
       throw error;
@@ -226,7 +261,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       provider.addScope('profile');
 
       const result = await signInWithPopup(auth, provider);
-      await createUserProfile(result.user);
+      const googleUser = result.user;
+
+      // Extract all available Google profile data
+      const additionalData: any = {
+        authProvider: 'google',
+        photoURL: googleUser.photoURL || '',
+        phoneNumber: googleUser.phoneNumber || '',
+        emailVerified: googleUser.emailVerified,
+      };
+
+      await createUserProfile(googleUser, additionalData);
+      await logActivity(googleUser.uid, 'login', 'تسجيل دخول عبر Google');
     } catch (error) {
       setLoading(false);
       throw error;
@@ -240,7 +286,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const provider = new FacebookAuthProvider();
 
       const result = await signInWithPopup(auth, provider);
-      await createUserProfile(result.user);
+      await createUserProfile(result.user, { authProvider: 'facebook' });
+      await logActivity(result.user.uid, 'login', 'تسجيل دخول عبر Facebook');
     } catch (error) {
       setLoading(false);
       throw error;
@@ -250,6 +297,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Sign out
   const logout = async () => {
     try {
+      if (user) {
+        await logActivity(user.uid, 'logout', 'تسجيل خروج');
+      }
       await signOut(auth);
       setUser(null);
       setUserProfile(null);

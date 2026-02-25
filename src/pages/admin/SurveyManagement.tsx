@@ -39,7 +39,27 @@ const DEFAULT_CONFIG = {
         { id: "KN3", text: "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
         { id: "KN4", text: "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
         { id: "KN5_R", text: "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN", reverseScored: true },
+        { id: "KN6", text: "أعلم أن البروتينات تدعم نمو عضلات الطفل، والدهون الصحية تدعم تطور دماغه", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN7", text: "أعلم أن الوجبة المتوازنة يجب أن تحتوي على كربوهيدرات وبروتين وخضروات في نفس الوقت", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN8", text: "أعلم أن نقص الحديد يسبب الأنيميا وضعف تركيز الطفل في المدرسة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN9", text: "أعلم أن فيتامين (أ) يدعم المناعة والبصر، والكالسيوم يدعم نمو العظام عند الأطفال", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN10", text: "أعلم أن التنوع الغذائي أهم من كمية الطعام وحدها", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
+        { id: "KN11", text: "أعلم أن الطفل يحتاج إلى تناول 5 مجموعات غذائية مختلفة على الأقل يومياً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN" },
         { id: "KN_AC", text: "يرجى اختيار \"أوافق\" لهذا السؤال للتأكد من انتباهك", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "KN", isAttentionCheck: true },
+    ],
+    foodSafetyKnowledge: [
+        { id: "FSK1", text: "أعلم أن غسل اليدين بالصابون والماء قبل تحضير الطعام أمر ضروري لحماية صحة الطفل", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+        { id: "FSK2", text: "أعلم أنه يجب فصل اللحوم النيئة عن الأطعمة الجاهزة للأكل أثناء التحضير والتخزين", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+        { id: "FSK3", text: "أعلم أن الطعام المطبوخ يجب تبريده في غضون ساعتين وتخزينه في درجة أقل من 5 درجات مئوية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+        { id: "FSK4", text: "أعلم أن اللحوم والدواجن يجب طهيها جيداً حتى النضج الكامل للقضاء على البكتيريا الضارة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+        { id: "FSK5", text: "أعلم أن المياه غير المعقمة والأغذية منتهية الصلاحية يمكن أن تسبب أمراضاً خطيرة عند الأطفال", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+    ],
+    attitudes: [
+        { id: "ATT1", text: "أعتقد أن سلامة الغذاء مهمة بنفس قدر أهمية قيمته الغذائية", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+        { id: "ATT2", text: "أشعر بمسؤولية شخصية تجاه تحسين تغذية طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+        { id: "ATT3", text: "أؤمن أن تعليم عادات الأكل الصحي في سن مبكرة يؤثر على الصحة مدى الحياة", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+        { id: "ATT4", text: "أعتقد أن التحقق من تواريخ الصلاحية وجودة الغذاء ضرورة وليست خياراً", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+        { id: "ATT5", text: "أؤمن أن نقص المغذيات الدقيقة يؤثر بشكل كبير على أداء الطفل الدراسي وصحته", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
     ],
     practices: [
         { id: "PR1", text: "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "PR", timeAnchor: "خلال الأسبوعين الماضيين" },
@@ -79,6 +99,28 @@ const DEFAULT_CONFIG = {
             ]
         }
     },
+    foodSafetyPractices: [
+        { id: "FSP1", text: "أغسل يدي بالصابون والماء قبل تحضير طعام طفلي", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "FSP", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "FSP2", text: "أفصل اللحوم النيئة عن الأطعمة الجاهزة للأكل أثناء التحضير والتخزين", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "FSP", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "FSP3", text: "أتحقق من تاريخ الصلاحية قبل شراء المنتجات الغذائية", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "FSP", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "FSP4", text: "أُبرّد بقايا الطعام بشكل صحيح وفي الوقت المناسب", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "FSP", timeAnchor: "خلال الأسبوعين الماضيين" },
+        { id: "FSP5", text: "أغسل الفواكه والخضروات جيداً قبل تقديمها لطفلي", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "FSP", timeAnchor: "خلال الأسبوعين الماضيين" },
+    ],
+    dds: [
+        { id: "DDS1", text: "الحبوب والمنتجات النشوية (أرز، مكرونة، خبز)", type: "likert", scaleType: "custom", scaleLength: 5, customLabels: { "1": "لا", "2": "لا" }, constructId: "DDS" },
+        { id: "DDS2", text: "البقوليات (فول، عدس، حمص)", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS3", text: "الحليب ومنتجات الألبان (لبن، جبن، زبادي)", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS4", text: "اللحوم أو الدواجن أو الأسماك", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS5", text: "البيض", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS6", text: "الخضروات الورقية الخضراء الداكنة (سبانخ، جرجير، ملوخية)", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS7", text: "الفواكه أو الخضروات الغنية بفيتامين (أ) (جزر، مانجو، بطاطا حلوة)", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+        { id: "DDS8", text: "فواكه أو خضروات أخرى", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "DDS" },
+    ],
+    interventionFidelity: [
+        { id: "IF1", text: "كم مرة دخلت إلى منصة NutriAware خلال فترة التدخل الست أسابيع؟", type: "likert", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لم أدخل", "2": "1–2 مرة", "3": "3–5 مرات", "4": "6–10 مرات", "5": "أكثر من 10 مرات" }, constructId: "IF" },
+        { id: "IF2", text: "كم عدد القصص التي قرأتها أو شاركت قراءتها مع طفلك؟", type: "likert", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لا شيء", "2": "قصة واحدة", "3": "2–3 قصص", "4": "4–6 قصص", "5": "جميع القصص" }, constructId: "IF" },
+        { id: "IF3", text: "ما مدى التزامك بمراجعة المنصة والتفاعل مع محتواها بانتظام؟", type: "likert", scaleType: "frequency", scaleLength: 5, constructId: "IF" },
+    ],
     satisfaction: [
         { id: "SAT1", text: "أنا راضٍ بشكل عام عن تجربتي مع مشروع NutriAware", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT" },
         { id: "SAT2", text: "حقق المشروع توقعاتي فيما يخص تحسين معرفتي بتغذية طفلي", type: "likert", scaleType: "agreement", scaleLength: 5, constructId: "SAT" },
@@ -100,9 +142,14 @@ const DEFAULT_CONFIG = {
         { id: "OE4", text: "كيف تعرفت على منصة NutriAware لأول مرة؟" },
     ],
     sectionTitles: {
-        knowledge: "المعرفة الغذائية للوالدين",
-        practices: "الممارسات الغذائية داخل المنزل",
-        intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
+        knowledge: "المعرفة الغذائية للوالدين (KAP-K)",
+        foodSafetyKnowledge: "معرفة سلامة الغذاء (FS-K)",
+        attitudes: "الاتجاهات نحو الغذاء والتغذية (KAP-A)",
+        practices: "الممارسات الغذائية داخل المنزل (KAP-P)",
+        foodSafetyPractices: "ممارسات سلامة الغذاء (FS-P)",
+        dds: "مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)",
+        intervention: "تقييم التدخل (قصص ومنصة NutriAware)",
+        interventionFidelity: "مراقبة الالتزام بالتدخل",
         stories: "1. القصص القصيرة المصورة",
         usability: "2. المنصة - قابلية الاستخدام",
         content: "2. المنصة - جودة المحتوى",
@@ -136,14 +183,19 @@ const DEFAULT_CONFIG = {
         consent: "نموذج الموافقة المستنيرة",
         demographics: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
         health: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
-        knowledge: "القسم الثالث: المعرفة الغذائية للوالدين",
-        practices: "القسم الرابع: الممارسات الغذائية داخل المنزل",
-        intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
-        satisfaction: "القسم السادس: الرضا العام",
-        behavioral: "القسم السابع: الأثر السلوكي",
-        nps: "القسم الثامن: صافي نقاط الترويج",
-        retrospective: "القسم التاسع: تقييم ارتجاعي (قبل/بعد)",
-        open: "القسم العاشر: أسئلة مفتوحة"
+        knowledge: "القسم الثالث: المعرفة الغذائية للوالدين (KAP-K)",
+        foodSafetyKnowledge: "القسم الرابع: معرفة سلامة الغذاء (FS-K)",
+        attitudes: "القسم الخامس: الاتجاهات نحو التغذية وسلامة الغذاء (KAP-A)",
+        practices: "القسم السادس: الممارسات الغذائية (KAP-P)",
+        foodSafetyPractices: "القسم السابع: ممارسات سلامة الغذاء (FS-P)",
+        dds: "القسم الثامن: مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)",
+        intervention: "القسم التاسع: تقييم التدخل (قصص ومنصة NutriAware)",
+        interventionFidelity: "القسم العاشر: مراقبة الالتزام بالتدخل",
+        satisfaction: "القسم الحادي عشر: الرضا العام",
+        behavioral: "القسم الثاني عشر: الأثر السلوكي",
+        nps: "القسم الثالث عشر: صافي نقاط الترويج",
+        retrospective: "القسم الرابع عشر: تقييم ارتجاعي (قبل/بعد)",
+        open: "القسم الخامس عشر: أسئلة مفتوحة"
     },
     researchMode: false,
     customTemplates: [] as Array<{ id: string; name: string; labels: Record<string, string>; scaleLength: number }>,
@@ -154,20 +206,23 @@ const DEFAULT_CONFIG = {
             parentName: { id: "DEM_NAME", text: "اسم ولي الأمر (اختياري)", fieldType: "text" as FieldType, required: false, hidden: false, order: 0, outputType: "text" as OutputType, legacyKey: "parentName", validation: { maxLength: 100 } },
             relationship: { id: "DEM_RELATIONSHIP", text: "1. صلة القرابة بالطفل", fieldType: "radio" as FieldType, required: true, hidden: false, order: 1, outputType: "nominal" as OutputType, options: ["أب", "أم", "أخرى"], codingMap: { "أب": 1, "أم": 2, "أخرى": 3 }, legacyKey: "relationship" },
             parentAge: { id: "DEM_PARENT_AGE", text: "2. عمر ولي الأمر", fieldType: "radio" as FieldType, required: true, hidden: false, order: 2, outputType: "ordinal" as OutputType, options: ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"], codingMap: { "أقل من 25 سنة": 1, "25 – 35 سنة": 2, "36 – 45 سنة": 3, "أكثر من 45 سنة": 4 }, legacyKey: "parentAge" },
-            parentProfession: { id: "DEM_PROFESSION", text: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", fieldType: "text" as FieldType, required: false, hidden: false, order: 3, outputType: "text" as OutputType, legacyKey: "parentProfession", validation: { maxLength: 200 } },
-            education: { id: "DEM_EDUCATION", text: "4. المستوى التعليمي", fieldType: "radio" as FieldType, required: true, hidden: false, order: 4, outputType: "ordinal" as OutputType, options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
-            childrenCount: { id: "DEM_CHILDREN_COUNT", text: "5. عدد الأطفال في الأسرة", fieldType: "radio" as FieldType, required: true, hidden: false, order: 5, outputType: "ordinal" as OutputType, options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
-            childAge: { id: "DEM_CHILD_AGE", text: "6. عمر الطفل المستهدف", fieldType: "radio" as FieldType, required: true, hidden: false, order: 6, outputType: "ordinal" as OutputType, options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" }
+            employmentStatus: { id: "DEM_EMPLOYMENT", text: "3. الحالة الوظيفية لولي الأمر", fieldType: "radio" as FieldType, required: true, hidden: false, order: 3, outputType: "nominal" as OutputType, options: ["موظف/ة بدوام كامل", "موظف/ة بدوام جزئي", "يعمل لحسابه الخاص", "ربة منزل", "عاطل/ة عن العمل"], codingMap: { "موظف/ة بدوام كامل": 1, "موظف/ة بدوام جزئي": 2, "يعمل لحسابه الخاص": 3, "ربة منزل": 4, "عاطل/ة عن العمل": 5 }, legacyKey: "employmentStatus" },
+            monthlyIncome: { id: "DEM_INCOME", text: "4. الدخل الشهري التقريبي للأسرة", fieldType: "radio" as FieldType, required: false, hidden: false, order: 4, outputType: "ordinal" as OutputType, options: ["أقل من 3000 جنيه", "3000 – 6000 جنيه", "6001 – 10000 جنيه", "أكثر من 10000 جنيه", "أفضل عدم الإجابة"], codingMap: { "أقل من 3000 جنيه": 1, "3000 – 6000 جنيه": 2, "6001 – 10000 جنيه": 3, "أكثر من 10000 جنيه": 4, "أفضل عدم الإجابة": 99 }, legacyKey: "monthlyIncome" },
+            education: { id: "DEM_EDUCATION", text: "5. المستوى التعليمي", fieldType: "radio" as FieldType, required: true, hidden: false, order: 5, outputType: "ordinal" as OutputType, options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
+            childrenCount: { id: "DEM_CHILDREN_COUNT", text: "6. عدد الأطفال في الأسرة", fieldType: "radio" as FieldType, required: true, hidden: false, order: 6, outputType: "ordinal" as OutputType, options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
+            childAge: { id: "DEM_CHILD_AGE", text: "7. عمر الطفل المستهدف", fieldType: "radio" as FieldType, required: true, hidden: false, order: 7, outputType: "ordinal" as OutputType, options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" },
+            schoolType: { id: "DEM_SCHOOL_TYPE", text: "8. نوع المدرسة التي يلتحق بها الطفل", fieldType: "radio" as FieldType, required: false, hidden: false, order: 8, outputType: "nominal" as OutputType, options: ["حكومية", "خاصة", "أزهرية", "دولية", "لم يبدأ التعليم بعد"], codingMap: { "حكومية": 1, "خاصة": 2, "أزهرية": 3, "دولية": 4, "لم يبدأ التعليم بعد": 5 }, legacyKey: "schoolType" }
         }
     },
     healthIndicators: {
         title: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
         description: "الهدف: ربط الوعي بالحالة الصحية الواقعية",
         fields: {
-            gender: { id: "HI_GENDER", text: "7. جنس الطفل", fieldType: "radio" as FieldType, required: true, hidden: false, order: 0, outputType: "nominal" as OutputType, options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
-            weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio" as FieldType, required: true, hidden: false, order: 1, outputType: "ordinal" as OutputType, options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
-            healthIssues: { id: "HI_HEALTH_ISSUES", text: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 2, outputType: "nominal" as OutputType, options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
-            infoSources: { id: "HI_INFO_SOURCES", text: "10. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 3, outputType: "nominal" as OutputType, options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
+            gender: { id: "HI_GENDER", text: "9. جنس الطفل", fieldType: "radio" as FieldType, required: true, hidden: false, order: 0, outputType: "nominal" as OutputType, options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
+            weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "10. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio" as FieldType, required: true, hidden: false, order: 1, outputType: "ordinal" as OutputType, options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
+            healthIssues: { id: "HI_HEALTH_ISSUES", text: "11. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 2, outputType: "nominal" as OutputType, options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
+            diarrheaFrequency: { id: "HI_DIARRHEA", text: "12. كم مرة أصيب طفلك بإسهال أو تقيؤ بسبب الطعام في الشهر الماضي؟", fieldType: "radio" as FieldType, required: false, hidden: false, order: 3, outputType: "ordinal" as OutputType, options: ["لم يُصب", "مرة واحدة", "2-3 مرات", "أكثر من 3 مرات"], codingMap: { "لم يُصب": 0, "مرة واحدة": 1, "2-3 مرات": 2, "أكثر من 3 مرات": 3 }, legacyKey: "diarrheaFrequency" },
+            infoSources: { id: "HI_INFO_SOURCES", text: "13. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox" as FieldType, required: true, hidden: false, order: 4, outputType: "nominal" as OutputType, options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
         }
     }
 };
@@ -628,17 +683,17 @@ const SurveyManagement = () => {
                 const mergedConfig = { ...DEFAULT_CONFIG, ...fbData };
 
                 if (fbData.demographics?.fields) {
-                    // Deep merge per field: DEFAULT schema props as fallback, Firestore overrides take priority
-                    const mergedDemoFields: any = { ...DEFAULT_CONFIG.demographics.fields };
+                    // Firestore-first: keys existing in fbData determine presence, preventing deletions from resurrecting
+                    const mergedDemoFields: any = {};
                     for (const [key, fbField] of Object.entries(fbData.demographics.fields)) {
-                        mergedDemoFields[key] = { ...(mergedDemoFields[key] || {}), ...(fbField as any) };
+                        mergedDemoFields[key] = { ...(DEFAULT_CONFIG.demographics.fields[key as keyof typeof DEFAULT_CONFIG.demographics.fields] || {}), ...(fbField as any) };
                     }
                     mergedConfig.demographics.fields = mergedDemoFields;
                 }
                 if (fbData.healthIndicators?.fields) {
-                    const mergedHealthFields: any = { ...DEFAULT_CONFIG.healthIndicators.fields };
+                    const mergedHealthFields: any = {};
                     for (const [key, fbField] of Object.entries(fbData.healthIndicators.fields)) {
-                        mergedHealthFields[key] = { ...(mergedHealthFields[key] || {}), ...(fbField as any) };
+                        mergedHealthFields[key] = { ...(DEFAULT_CONFIG.healthIndicators.fields[key as keyof typeof DEFAULT_CONFIG.healthIndicators.fields] || {}), ...(fbField as any) };
                     }
                     mergedConfig.healthIndicators.fields = mergedHealthFields;
                 }
@@ -984,16 +1039,51 @@ const SurveyManagement = () => {
                             );
                         case 'knowledge':
                             return (
-                                <AccordionSection key="knowledge" title="📖 المعرفة الغذائية">
+                                <AccordionSection key="knowledge" title="📖 المعرفة الغذائية (KAP-K)">
                                     {renderQuestionSection('knowledge', 'knowledge', config.knowledge || [])}
+                                </AccordionSection>
+                            );
+                        case 'foodSafetyKnowledge':
+                            return (
+                                <AccordionSection key="foodSafetyKnowledge" title="🛡️ معرفة سلامة الغذاء (FS-K)">
+                                    {renderQuestionSection('foodSafetyKnowledge', 'foodSafetyKnowledge', config.foodSafetyKnowledge || [])}
+                                </AccordionSection>
+                            );
+                        case 'attitudes':
+                            return (
+                                <AccordionSection key="attitudes" title="🧠 الاتجاهات نحو التغذية وسلامة الغذاء (KAP-A)">
+                                    {renderQuestionSection('attitudes', 'attitudes', config.attitudes || [])}
                                 </AccordionSection>
                             );
                         case 'practices':
                             return (
-                                <AccordionSection key="practices" title="🍽️ الممارسات الغذائية">
+                                <AccordionSection key="practices" title="🍽️ الممارسات الغذائية (KAP-P)">
                                     {renderQuestionSection('practices', 'practices', config.practices || [])}
                                 </AccordionSection>
                             );
+                        case 'foodSafetyPractices':
+                            return (
+                                <AccordionSection key="foodSafetyPractices" title="🧼 ممارسات سلامة الغذاء (FS-P)">
+                                    {renderQuestionSection('foodSafetyPractices', 'foodSafetyPractices', config.foodSafetyPractices || [])}
+                                </AccordionSection>
+                            );
+                        case 'dds':
+                            return (
+                                <AccordionSection key="dds" title="🥗 مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)">
+                                    <p className="text-xs text-muted-foreground mb-3 p-2 bg-blue-50 dark:bg-blue-950/20 rounded border border-blue-200 dark:border-blue-800">
+                                        السؤال: <strong>«هل تناول طفلك أياً من المجموعات الغذائية التالية خلال الـ 24 ساعة الماضية؟»</strong>
+                                        <br />الترميز: نعم = 1 / لا = 0 | DDS = مجموع الإجابات بنعم (0–8) | كافٍ = ≥ 5 مجموعات
+                                    </p>
+                                    {renderQuestionSection('dds', 'dds', config.dds || [])}
+                                </AccordionSection>
+                            );
+                        case 'interventionFidelity':
+                            return (
+                                <AccordionSection key="interventionFidelity" title="📋 مراقبة الالتزام بالتدخل (Post-Intervention)">
+                                    {renderQuestionSection('interventionFidelity', 'interventionFidelity', config.interventionFidelity || [])}
+                                </AccordionSection>
+                            );
+
                         case 'intervention':
                             return (
                                 <AccordionSection key="intervention" title="📚 التدخل (قصص ومنصة)">

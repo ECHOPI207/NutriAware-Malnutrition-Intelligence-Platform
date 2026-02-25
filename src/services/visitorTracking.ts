@@ -22,16 +22,17 @@ function getTodayKey(): string {
 }
 
 /**
- * Fetch visitor location from free IP geolocation API
+ * Fetch visitor location from our own Vercel serverless function (/api/geo).
+ * Uses Vercel's built-in geo headers — no CORS, no rate limits, 100% reliable.
  */
 async function getVisitorLocation(): Promise<{ city: string; country: string; region: string }> {
     try {
-        const response = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+        const response = await fetch('/api/geo', { signal: AbortSignal.timeout(3000) });
         if (!response.ok) throw new Error('Geo API failed');
         const data = await response.json();
         return {
             city: data.city || 'Unknown',
-            country: data.country_name || 'Unknown',
+            country: data.country || 'Unknown',
             region: data.region || '',
         };
     } catch {
@@ -46,7 +47,7 @@ export async function trackPageView(): Promise<void> {
     try {
         const todayKey = getTodayKey();
 
-        // Only track once per session
+        // DEV/TESTING: Re-enabled "already tracked" session cache
         const alreadyTracked = sessionStorage.getItem(SESSION_KEY);
         if (alreadyTracked === todayKey) return;
 

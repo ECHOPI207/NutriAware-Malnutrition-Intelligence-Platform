@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { saveEvaluation } from '@/services/evaluation';
+import { trackSurveyStart, trackSurveySubmit } from '@/services/activityTracker';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -41,7 +42,11 @@ const evaluationSchema = z.object({
     otherInfoSource: z.string().optional(),
   }).catchall(z.any()),
   knowledge: z.record(z.string(), z.string().min(1, "مطلوب")),
+  foodSafetyKnowledge: z.record(z.string(), z.string().min(1, "مطلوب")),
+  attitudes: z.record(z.string(), z.string().min(1, "مطلوب")),
   practices: z.record(z.string(), z.string().min(1, "مطلوب")),
+  foodSafetyPractices: z.record(z.string(), z.string().min(1, "مطلوب")),
+  dds: z.record(z.string(), z.string().min(1, "مطلوب")),
   intervention: z.object({
     stories: z.record(z.string(), z.string().min(1, "مطلوب")),
     platform: z.object({
@@ -53,6 +58,7 @@ const evaluationSchema = z.object({
   }),
   satisfaction: z.record(z.string(), z.string().min(1, "مطلوب")),
   behavioralIntent: z.record(z.string(), z.string().min(1, "مطلوب")),
+  interventionFidelity: z.record(z.string(), z.string().min(1, "مطلوب")),
   nps: z.string().optional(),
   retrospective: z.object({
     knowledge: z.object({ before: z.string().min(1, "مطلوب"), after: z.string().min(1, "مطلوب") }),
@@ -205,7 +211,27 @@ const DEFAULT_CONFIG = {
     { id: "KN3", text: "أعلم أن الإفراط في تناول الوجبات السريعة يؤثر سلباً على صحة الطفل ونموه" },
     { id: "KN4", text: "أعلم أن من علامات سوء التغذية عند الأطفال: الإرهاق المستمر وضعف التركيز الدراسي" },
     { id: "KN5_R", text: "لا أعتقد أن نوعية الغذاء تؤثر بشكل كبير على أداء الطفل الدراسي" },
+    { id: "KN6", text: "أعلم أن البروتينات تدعم نمو عضلات الطفل، والدهون الصحية تدعم تطور دماغه" },
+    { id: "KN7", text: "أعلم أن الوجبة المتوازنة يجب أن تحتوي على كربوهيدرات وبروتين وخضروات في نفس الوقت" },
+    { id: "KN8", text: "أعلم أن نقص الحديد يسبب الأنيميا وضعف تركيز الطفل في المدرسة" },
+    { id: "KN9", text: "أعلم أن فيتامين (أ) يدعم المناعة والبصر، والكالسيوم يدعم نمو العظام عند الأطفال" },
+    { id: "KN10", text: "أعلم أن التنوع الغذائي أهم من كمية الطعام وحدها" },
+    { id: "KN11", text: "أعلم أن الطفل يحتاج إلى تناول 5 مجموعات غذائية مختلفة على الأقل يومياً" },
     { id: "KN_AC", text: "يرجى اختيار \"أوافق\" لهذا السؤال للتأكد من انتباهك" },
+  ],
+  foodSafetyKnowledge: [
+    { id: "FSK1", text: "أعلم أن غسل اليدين بالصابون والماء قبل تحضير الطعام أمر ضروري لحماية صحة الطفل", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+    { id: "FSK2", text: "أعلم أنه يجب فصل اللحوم النيئة عن الأطعمة الجاهزة للأكل أثناء التحضير والتخزين", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+    { id: "FSK3", text: "أعلم أن الطعام المطبوخ يجب تبريده في غضون ساعتين وتخزينه في درجة أقل من 5 درجات مئوية", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+    { id: "FSK4", text: "أعلم أن اللحوم والدواجن يجب طهيها جيداً حتى النضج الكامل للقضاء على البكتيريا الضارة", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+    { id: "FSK5", text: "أعلم أن المياه غير المعقمة والأغذية منتهية الصلاحية يمكن أن تسبب أمراضاً خطيرة عند الأطفال", scaleType: "agreement", scaleLength: 5, constructId: "FSK" },
+  ],
+  attitudes: [
+    { id: "ATT1", text: "أعتقد أن سلامة الغذاء مهمة بنفس قدر أهمية قيمته الغذائية", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+    { id: "ATT2", text: "أشعر بمسؤولية شخصية تجاه تحسين تغذية طفلي", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+    { id: "ATT3", text: "أؤمن أن تعليم عادات الأكل الصحي في سن مبكرة يؤثر على الصحة مدى الحياة", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+    { id: "ATT4", text: "أعتقد أن التحقق من تواريخ الصلاحية وجودة الغذاء ضرورة وليست خياراً", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
+    { id: "ATT5", text: "أؤمن أن نقص المغذيات الدقيقة يؤثر بشكل كبير على أداء الطفل الدراسي وصحته", scaleType: "agreement", scaleLength: 5, constructId: "ATT" },
   ],
   practices: [
     { id: "PR1", text: "خلال الأسبوعين الماضيين، حرصت على توفير الخضروات والفواكه في وجبات طفلي" },
@@ -258,6 +284,28 @@ const DEFAULT_CONFIG = {
     { id: "BI4", text: "أنوي استخدام منصة NutriAware بشكل منتظم لمتابعة تغذية أطفالي" },
     { id: "BI5_R", text: "لا أعتقد أنني سأغير عاداتنا الغذائية الحالية بناءً على هذا المشروع" },
   ],
+  foodSafetyPractices: [
+    { id: "FSP1", text: "أغسل يدي بالصابون والماء قبل تحضير طعام طفلي", scaleType: "frequency", scaleLength: 5, constructId: "FSP" },
+    { id: "FSP2", text: "أفصل اللحوم النيئة عن الأطعمة الجاهزة للأكل أثناء التحضير والتخزين", scaleType: "frequency", scaleLength: 5, constructId: "FSP" },
+    { id: "FSP3", text: "أتحقق من تاريخ الصلاحية قبل شراء المنتجات الغذائية", scaleType: "frequency", scaleLength: 5, constructId: "FSP" },
+    { id: "FSP4", text: "أُبرّد بقايا الطعام بشكل صحيح وفي الوقت المناسب", scaleType: "frequency", scaleLength: 5, constructId: "FSP" },
+    { id: "FSP5", text: "أغسل الفواكه والخضروات جيداً قبل تقديمها لطفلي", scaleType: "frequency", scaleLength: 5, constructId: "FSP" },
+  ],
+  dds: [
+    { id: "DDS1", text: "الحبوب والمنتجات النشوية (أرز، مكرونة، خبز)", constructId: "DDS" },
+    { id: "DDS2", text: "البقوليات (فول، عدس، حمص)", constructId: "DDS" },
+    { id: "DDS3", text: "الحليب ومنتجات الألبان (لبن، جبن، زبادي)", constructId: "DDS" },
+    { id: "DDS4", text: "اللحوم أو الدواجن أو الأسماك", constructId: "DDS" },
+    { id: "DDS5", text: "البيض", constructId: "DDS" },
+    { id: "DDS6", text: "الخضروات الورقية الخضراء الداكنة (سبانخ، جرجير، ملوخية)", constructId: "DDS" },
+    { id: "DDS7", text: "الفواكه أو الخضروات الغنية بفيتامين (أ) (جزر، مانجو، بطاطا حلوة)", constructId: "DDS" },
+    { id: "DDS8", text: "فواكه أو خضروات أخرى", constructId: "DDS" },
+  ],
+  interventionFidelity: [
+    { id: "IF1", text: "كم مرة دخلت إلى منصة NutriAware خلال فترة التدخل الست أسابيع؟", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لم أدخل", "2": "1–2 مرة", "3": "3–5 مرات", "4": "6–10 مرات", "5": "أكثر من 10 مرات" }, constructId: "IF" },
+    { id: "IF2", text: "كم عدد القصص التي قرأتها أو شاركت قراءتها مع طفلك؟", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لا شيء", "2": "قصة واحدة", "3": "2–3 قصص", "4": "4–6 قصص", "5": "جميع القصص" }, constructId: "IF" },
+    { id: "IF3", text: "ما مدى التزامك بمراجعة المنصة والتفاعل مع محتواها بانتظام؟", scaleType: "frequency", scaleLength: 5, constructId: "IF" },
+  ],
   openQuestions: [
     { id: "OE1", text: "ما أكثر ما أعجبك في مشروع NutriAware؟" },
     { id: "OE2", text: "ما التحديات التي تواجهك في تطبيق العادات الغذائية الصحية لأطفالك؟" },
@@ -284,18 +332,37 @@ const DEFAULT_CONFIG = {
     afterLabel: "بعد استخدام NutriAware",
     options: ["منخفض", "متوسط", "عالٍ"]
   },
+  sectionTitles: {
+    knowledge: "أ) المعرفة الغذائية للوالدين (KAP-K)",
+    foodSafetyKnowledge: "معرفة سلامة الغذاء (FS-K)",
+    attitudes: "الاتجاهات نحو الغذاء والتغذية (KAP-A)",
+    practices: "ب) الممارسات الغذائية داخل المنزل (KAP-P)",
+    foodSafetyPractices: "ممارسات سلامة الغذاء (FS-P)",
+    dds: "مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)",
+    intervention: "تقييم التدخل (قصص ومنصة NutriAware)",
+    interventionFidelity: "مراقبة الالتزام بالتدخل",
+    stories: "1. القصص القصيرة المصورة",
+    usability: "أ) قابلية الاستخدام",
+    content: "ب) جودة المحتوى",
+    tools: "ج) أدوات التقييم والذكاء الاصطناعي",
+  },
   formSectionHeaders: {
     consent: "نموذج الموافقة المستنيرة",
     demographics: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
     health: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
-    knowledge: "القسم الثالث: المعرفة الغذائية للوالدين",
-    practices: "القسم الرابع: الممارسات الغذائية داخل المنزل",
-    intervention: "القسم الخامس: التدخل (قصص ومنصة NutriAware)",
-    satisfaction: "القسم السادس: الرضا العام",
-    behavioral: "القسم السابع: الأثر السلوكي",
-    nps: "القسم الثامن: صافي نقاط الترويج",
-    retrospective: "القسم التاسع: تقييم ارتجاعي (قبل/بعد)",
-    open: "القسم العاشر: أسئلة مفتوحة"
+    knowledge: "القسم الثالث: المعرفة الغذائية للوالدين (KAP-K)",
+    foodSafetyKnowledge: "القسم الرابع: معرفة سلامة الغذاء (FS-K)",
+    attitudes: "القسم الخامس: الاتجاهات نحو التغذية وسلامة الغذاء (KAP-A)",
+    practices: "القسم السادس: الممارسات الغذائية (KAP-P)",
+    foodSafetyPractices: "القسم السابع: ممارسات سلامة الغذاء (FS-P)",
+    dds: "القسم الثامن: مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)",
+    intervention: "القسم التاسع: تقييم التدخل (قصص ومنصة NutriAware)",
+    interventionFidelity: "القسم العاشر: مراقبة الالتزام بالتدخل",
+    satisfaction: "القسم الحادي عشر: الرضا العام",
+    behavioral: "القسم الثاني عشر: الأثر السلوكي",
+    nps: "القسم الثالث عشر: صافي نقاط الترويج",
+    retrospective: "القسم الرابع عشر: تقييم ارتجاعي (قبل/بعد)",
+    open: "القسم الخامس عشر: أسئلة مفتوحة"
   },
   demographics: {
     title: "القسم الأول: البيانات الديموغرافية (لولي الأمر)",
@@ -304,20 +371,23 @@ const DEFAULT_CONFIG = {
       parentName: { id: "DEM_NAME", text: "اسم ولي الأمر (اختياري)", label: "اسم ولي الأمر (اختياري)", fieldType: "text", required: false, hidden: false, order: 0, outputType: "text", legacyKey: "parentName", placeholder: "الاسم الثلاثي (اختياري)", validation: { maxLength: 100 } },
       relationship: { id: "DEM_RELATIONSHIP", text: "1. صلة القرابة بالطفل", label: "1. صلة القرابة بالطفل", fieldType: "radio", required: true, hidden: false, order: 1, outputType: "nominal", options: ["أب", "أم", "أخرى"], codingMap: { "أب": 1, "أم": 2, "أخرى": 3 }, legacyKey: "relationship" },
       parentAge: { id: "DEM_PARENT_AGE", text: "2. عمر ولي الأمر", label: "2. عمر ولي الأمر", fieldType: "radio", required: true, hidden: false, order: 2, outputType: "ordinal", options: ["أقل من 25 سنة", "25 – 35 سنة", "36 – 45 سنة", "أكثر من 45 سنة"], codingMap: { "أقل من 25 سنة": 1, "25 – 35 سنة": 2, "36 – 45 سنة": 3, "أكثر من 45 سنة": 4 }, legacyKey: "parentAge" },
-      parentProfession: { id: "DEM_PROFESSION", text: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", label: "3. مهنة ولي الأمر (التي تشكل مصدر الدخل الأساسي)", fieldType: "text", required: false, hidden: false, order: 3, outputType: "text", legacyKey: "parentProfession", placeholder: "أدخل المهنة هنا...", validation: { maxLength: 200 } },
-      education: { id: "DEM_EDUCATION", text: "4. المستوى التعليمي", label: "4. المستوى التعليمي", fieldType: "radio", required: true, hidden: false, order: 4, outputType: "ordinal", options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
-      childrenCount: { id: "DEM_CHILDREN_COUNT", text: "5. عدد الأطفال في الأسرة", label: "5. عدد الأطفال في الأسرة", fieldType: "radio", required: true, hidden: false, order: 5, outputType: "ordinal", options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
-      childAge: { id: "DEM_CHILD_AGE", text: "6. عمر الطفل المستهدف", label: "6. عمر الطفل المستهدف", fieldType: "radio", required: true, hidden: false, order: 6, outputType: "ordinal", options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" }
+      employmentStatus: { id: "DEM_EMPLOYMENT", text: "3. الحالة الوظيفية لولي الأمر", label: "3. الحالة الوظيفية لولي الأمر", fieldType: "radio", required: true, hidden: false, order: 3, outputType: "nominal", options: ["موظف/ة بدوام كامل", "موظف/ة بدوام جزئي", "يعمل لحسابه الخاص", "ربة منزل", "عاطل/ة عن العمل"], codingMap: { "موظف/ة بدوام كامل": 1, "موظف/ة بدوام جزئي": 2, "يعمل لحسابه الخاص": 3, "ربة منزل": 4, "عاطل/ة عن العمل": 5 }, legacyKey: "employmentStatus" },
+      monthlyIncome: { id: "DEM_INCOME", text: "4. الدخل الشهري التقريبي للأسرة", label: "4. الدخل الشهري التقريبي للأسرة", fieldType: "radio", required: false, hidden: false, order: 4, outputType: "ordinal", options: ["أقل من 3000 جنيه", "3000 – 6000 جنيه", "6001 – 10000 جنيه", "أكثر من 10000 جنيه", "أفضل عدم الإجابة"], codingMap: { "أقل من 3000 جنيه": 1, "3000 – 6000 جنيه": 2, "6001 – 10000 جنيه": 3, "أكثر من 10000 جنيه": 4, "أفضل عدم الإجابة": 99 }, legacyKey: "monthlyIncome" },
+      education: { id: "DEM_EDUCATION", text: "5. المستوى التعليمي", label: "5. المستوى التعليمي", fieldType: "radio", required: true, hidden: false, order: 5, outputType: "ordinal", options: ["أقل من ثانوي", "ثانوي", "دبلوم متوسط", "جامعي", "دراسات عليا"], codingMap: { "أقل من ثانوي": 1, "ثانوي": 2, "دبلوم متوسط": 3, "جامعي": 4, "دراسات عليا": 5 }, legacyKey: "education" },
+      childrenCount: { id: "DEM_CHILDREN_COUNT", text: "6. عدد الأطفال في الأسرة", label: "6. عدد الأطفال في الأسرة", fieldType: "radio", required: true, hidden: false, order: 6, outputType: "ordinal", options: ["طفل واحد", "2-3 أطفال", "4 أطفال فأكثر"], codingMap: { "طفل واحد": 1, "2-3 أطفال": 2, "4 أطفال فأكثر": 3 }, legacyKey: "childrenCount" },
+      childAge: { id: "DEM_CHILD_AGE", text: "7. عمر الطفل المستهدف", label: "7. عمر الطفل المستهدف", fieldType: "radio", required: true, hidden: false, order: 7, outputType: "ordinal", options: ["أقل من 3 سنوات", "3 – 6 سنوات", "7 – 10 سنوات", "11 – 14 سنة", "أكبر من 14 سنة"], codingMap: { "أقل من 3 سنوات": 1, "3 – 6 سنوات": 2, "7 – 10 سنوات": 3, "11 – 14 سنة": 4, "أكبر من 14 سنة": 5 }, legacyKey: "childAge" },
+      schoolType: { id: "DEM_SCHOOL_TYPE", text: "8. نوع المدرسة التي يلتحق بها الطفل", label: "8. نوع المدرسة التي يلتحق بها الطفل", fieldType: "radio", required: false, hidden: false, order: 8, outputType: "nominal", options: ["حكومية", "خاصة", "أزهرية", "دولية", "لم يبدأ التعليم بعد"], codingMap: { "حكومية": 1, "خاصة": 2, "أزهرية": 3, "دولية": 4, "لم يبدأ التعليم بعد": 5 }, legacyKey: "schoolType" }
     }
   },
   healthIndicators: {
     title: "القسم الثاني: المؤشرات الصحية (بيانات الطفل)",
     description: "الهدف: ربط الوعي بالحالة الصحية الواقعية",
     fields: {
-      gender: { id: "HI_GENDER", text: "7. جنس الطفل", label: "7. جنس الطفل", fieldType: "radio", required: true, hidden: false, order: 0, outputType: "nominal", options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
-      weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", label: "8. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio", required: true, hidden: false, order: 1, outputType: "ordinal", options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
-      healthIssues: { id: "HI_HEALTH_ISSUES", text: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", label: "9. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox", required: true, hidden: false, order: 2, outputType: "nominal", options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
-      infoSources: { id: "HI_INFO_SOURCES", text: "10. مصادر معلوماتكم حول تغذية الأطفال", label: "10. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox", required: true, hidden: false, order: 3, outputType: "nominal", options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
+      gender: { id: "HI_GENDER", text: "9. جنس الطفل", label: "9. جنس الطفل", fieldType: "radio", required: true, hidden: false, order: 0, outputType: "nominal", options: ["ذكر", "أنثى"], codingMap: { "ذكر": 1, "أنثى": 2 }, legacyKey: "gender" },
+      weightPerception: { id: "HI_WEIGHT_PERCEPTION", text: "10. كيف تقيم وزن طفلك بالنسبة لعمره؟", label: "10. كيف تقيم وزن طفلك بالنسبة لعمره؟", fieldType: "radio", required: true, hidden: false, order: 1, outputType: "ordinal", options: ["نحيف جداً", "طبيعي", "وزن زائد", "سمنة مفرطة", "لا أعلم"], codingMap: { "نحيف جداً": 1, "طبيعي": 2, "وزن زائد": 3, "سمنة مفرطة": 4, "لا أعلم": 5 }, legacyKey: "weightPerception" },
+      healthIssues: { id: "HI_HEALTH_ISSUES", text: "11. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", label: "11. هل يعاني الطفل من أي مشاكل صحية؟ (يمكن اختيار أكثر من إجابة)", fieldType: "checkbox", required: true, hidden: false, order: 2, outputType: "nominal", options: ["لا يعاني من أي مشاكل صحية", "أنيميا (فقر دم)", "نقص فيتامين د أو كالسيوم", "نحافة", "سمنة", "حساسية طعام", "أخرى"], legacyKey: "healthIssues" },
+      diarrheaFrequency: { id: "HI_DIARRHEA", text: "12. كم مرة أصيب طفلك بإسهال أو تقيؤ بسبب الطعام في الشهر الماضي؟", label: "12. كم مرة أصيب طفلك بإسهال أو تقيؤ بسبب الطعام في الشهر الماضي؟", fieldType: "radio", required: false, hidden: false, order: 3, outputType: "ordinal", options: ["لم يُصب", "مرة واحدة", "2-3 مرات", "أكثر من 3 مرات"], codingMap: { "لم يُصب": 0, "مرة واحدة": 1, "2-3 مرات": 2, "أكثر من 3 مرات": 3 }, legacyKey: "diarrheaFrequency" },
+      infoSources: { id: "HI_INFO_SOURCES", text: "13. مصادر معلوماتكم حول تغذية الأطفال", label: "13. مصادر معلوماتكم حول تغذية الأطفال", fieldType: "checkbox", required: true, hidden: false, order: 4, outputType: "nominal", options: ["طبيب أطفال", "أخصائي تغذية", "الإنترنت ومواقع التواصل الاجتماعي", "الأهل والأصدقاء", "الكتب والمجلات العلمية"], legacyKey: "infoSources" }
     }
   }
 };
@@ -342,16 +412,16 @@ const ProjectEvaluation = () => {
 
           // Deep Merge for highly dynamic fields to ensure new defaults survive
           if (fbData.demographics?.fields) {
-            const mergedDemoFields: any = { ...DEFAULT_CONFIG.demographics.fields };
+            const mergedDemoFields: any = {};
             for (const [key, fbField] of Object.entries(fbData.demographics.fields)) {
-              mergedDemoFields[key] = { ...(mergedDemoFields[key] || {}), ...(fbField as any) };
+              mergedDemoFields[key] = { ...(DEFAULT_CONFIG.demographics.fields[key as keyof typeof DEFAULT_CONFIG.demographics.fields] || {}), ...(fbField as any) };
             }
             mergedConfig.demographics.fields = mergedDemoFields;
           }
           if (fbData.healthIndicators?.fields) {
-            const mergedHealthFields: any = { ...DEFAULT_CONFIG.healthIndicators.fields };
+            const mergedHealthFields: any = {};
             for (const [key, fbField] of Object.entries(fbData.healthIndicators.fields)) {
-              mergedHealthFields[key] = { ...(mergedHealthFields[key] || {}), ...(fbField as any) };
+              mergedHealthFields[key] = { ...(DEFAULT_CONFIG.healthIndicators.fields[key as keyof typeof DEFAULT_CONFIG.healthIndicators.fields] || {}), ...(fbField as any) };
             }
             mergedConfig.healthIndicators.fields = mergedHealthFields;
           }
@@ -398,10 +468,15 @@ const ProjectEvaluation = () => {
         otherInfoSource: "",
       },
       knowledge: {},
+      foodSafetyKnowledge: {},
+      attitudes: {},
       practices: {},
+      foodSafetyPractices: {},
+      dds: {},
       intervention: { stories: {}, platform: { usability: {}, content: {}, tools: {}, consultation: {} } },
       satisfaction: {},
       behavioralIntent: {},
+      interventionFidelity: {},
       nps: "",
       retrospective: { knowledge: { before: "", after: "" }, practices: { before: "", after: "" } },
       openQuestions: { likedMost: "", challenges: "", suggestions: "" }
@@ -431,6 +506,7 @@ const ProjectEvaluation = () => {
 
       await saveEvaluation(cleanData);
       setIsSubmitted(true);
+      trackSurveySubmit();
       toast({
         title: "تم الإرسال بنجاح",
         description: "تم إرسال تقييمك بنجاح، شكراً لمشاركتك!",
@@ -1039,35 +1115,131 @@ const ProjectEvaluation = () => {
           </Card>
 
           {/* KAP Section - Redesigned Likert */}
+          {/* Knowledge (KAP-K) */}
           <Card style={{ order: sectionOrder.findIndex(s => s.id === 'knowledge') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b sticky top-0 z-10 opacity-95 backdrop-blur-sm">
-              <SectionHeader title={surveyConfig.formSectionHeaders?.knowledge || "القسم الثالث: المعرفة والممارسات الغذائية (KAP)"} />
+              <SectionHeader title={surveyConfig.formSectionHeaders?.knowledge || "القسم الثالث: المعرفة الغذائية للوالدين (KAP-K)"} />
             </div>
             <CardContent className="p-6 md:p-8">
-              <h3 className="flex items-center gap-2 font-bold text-lg mb-6 text-primary p-2 bg-primary/5 rounded-lg">
-                <span className="w-1.5 h-6 bg-primary rounded-full"></span>
-                {surveyConfig.sectionTitles?.knowledge || "أ) المعرفة الغذائية للوالدين"}
-              </h3>
               {surveyConfig.knowledge.map((q: any) => (
                 <LikertScale key={q.id} name={`knowledge.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
               ))}
+            </CardContent>
+          </Card>
 
-              <div className="my-10 border-t-2 border-dashed" />
+          {/* Food Safety Knowledge (FS-K) */}
+          {surveyConfig.foodSafetyKnowledge?.length > 0 && (
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'foodSafetyKnowledge') }} className="shadow-md overflow-hidden border-l-4 border-l-emerald-500">
+              <div className="bg-gradient-to-r from-emerald-50 to-slate-50 dark:from-emerald-950/30 dark:to-slate-800 p-6 border-b">
+                <SectionHeader title={surveyConfig.formSectionHeaders?.foodSafetyKnowledge || "القسم الرابع: معرفة سلامة الغذاء (FS-K)"} description="قم بتقييم مدى موافقتك على العبارات التالية المتعلقة بسلامة الغذاء" />
+              </div>
+              <CardContent className="p-6 md:p-8">
+                {surveyConfig.foodSafetyKnowledge.map((q: any) => (
+                  <LikertScale key={q.id} name={`foodSafetyKnowledge.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
+                ))}
+              </CardContent>
+            </Card>
+          )}
 
-              <h3 className="flex items-center gap-2 font-bold text-lg mb-6 text-primary p-2 bg-primary/5 rounded-lg">
-                <span className="w-1.5 h-6 bg-primary rounded-full"></span>
-                {surveyConfig.sectionTitles?.practices || "ب) الممارسات الغذائية داخل المنزل"}
-              </h3>
+          {/* Attitudes (KAP-A) */}
+          {surveyConfig.attitudes?.length > 0 && (
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'attitudes') }} className="shadow-md overflow-hidden border-l-4 border-l-violet-500">
+              <div className="bg-gradient-to-r from-violet-50 to-slate-50 dark:from-violet-950/30 dark:to-slate-800 p-6 border-b">
+                <SectionHeader title={surveyConfig.formSectionHeaders?.attitudes || "القسم الخامس: الاتجاهات نحو التغذية وسلامة الغذاء (KAP-A)"} description="قم بتقييم مدى موافقتك على العبارات التالية" />
+              </div>
+              <CardContent className="p-6 md:p-8">
+                {surveyConfig.attitudes.map((q: any) => (
+                  <LikertScale key={q.id} name={`attitudes.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
+                ))}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Practices (KAP-P) */}
+          <Card style={{ order: sectionOrder.findIndex(s => s.id === 'practices') }} className="shadow-md overflow-hidden">
+            <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b sticky top-0 z-10 opacity-95 backdrop-blur-sm">
+              <SectionHeader title={surveyConfig.formSectionHeaders?.practices || "القسم السادس: الممارسات الغذائية (KAP-P)"} />
+            </div>
+            <CardContent className="p-6 md:p-8">
               {surveyConfig.practices.map((q: any) => (
                 <LikertScale key={q.id} name={`practices.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
               ))}
             </CardContent>
           </Card>
 
+          {/* Food Safety Practices (FS-P) */}
+          {surveyConfig.foodSafetyPractices?.length > 0 && (
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'foodSafetyPractices') }} className="shadow-md overflow-hidden border-l-4 border-l-emerald-500">
+              <div className="bg-gradient-to-r from-emerald-50 to-slate-50 dark:from-emerald-950/30 dark:to-slate-800 p-6 border-b">
+                <SectionHeader title={surveyConfig.formSectionHeaders?.foodSafetyPractices || "القسم السابع: ممارسات سلامة الغذاء (FS-P)"} description="كم مرة تقوم بالممارسات التالية؟ (دائماً – غالباً – أحياناً – نادراً – أبداً)" />
+              </div>
+              <CardContent className="p-6 md:p-8">
+                {surveyConfig.foodSafetyPractices.map((q: any) => (
+                  <LikertScale key={q.id} name={`foodSafetyPractices.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
+                ))}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Dietary Diversity Score - DDS (FAO 24-hour recall) */}
+          {surveyConfig.dds?.length > 0 && (
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'dds') }} className="shadow-md overflow-hidden border-l-4 border-l-amber-500">
+              <div className="bg-gradient-to-r from-amber-50 to-slate-50 dark:from-amber-950/30 dark:to-slate-800 p-6 border-b">
+                <SectionHeader
+                  title={surveyConfig.formSectionHeaders?.dds || "القسم الثامن: مقياس التنوع الغذائي — استرجاع 24 ساعة (FAO-DDS)"}
+                  description="خلال الـ 24 ساعة الماضية، هل تناول طفلك أياً من المجموعات الغذائية التالية؟ (نعم / لا)"
+                />
+              </div>
+              <CardContent className="p-6 md:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {surveyConfig.dds.map((item: any) => (
+                    <Controller
+                      key={item.id}
+                      name={`dds.${item.id}` as any}
+                      control={form.control}
+                      render={({ field }) => (
+                        <div className={cn(
+                          "p-4 rounded-xl border-2 transition-all cursor-pointer select-none",
+                          field.value === "1" ? "bg-green-50 border-green-400 dark:bg-green-900/20 dark:border-green-600" :
+                            field.value === "0" ? "bg-red-50 border-red-300 dark:bg-red-900/20 dark:border-red-700" :
+                              "bg-card border-muted hover:border-primary/50"
+                        )}>
+                          <p className="font-semibold text-sm mb-3">{item.text}</p>
+                          <div className="flex gap-3">
+                            <div
+                              onClick={() => field.onChange("1")}
+                              className={cn(
+                                "flex-1 py-2 rounded-lg text-center font-bold text-sm border-2 transition-all",
+                                field.value === "1" ? "bg-green-500 text-white border-green-500 shadow-md scale-105" : "bg-card border-muted hover:border-green-400"
+                              )}
+                            >✅ نعم</div>
+                            <div
+                              onClick={() => field.onChange("0")}
+                              className={cn(
+                                "flex-1 py-2 rounded-lg text-center font-bold text-sm border-2 transition-all",
+                                field.value === "0" ? "bg-red-500 text-white border-red-500 shadow-md scale-105" : "bg-card border-muted hover:border-red-400"
+                              )}
+                            >❌ لا</div>
+                          </div>
+                        </div>
+                      )}
+                    />
+                  ))}
+                </div>
+                <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800 text-sm">
+                  <p className="font-bold text-amber-800 dark:text-amber-300 mb-1">📊 ملاحظة بحثية:</p>
+                  <p className="text-amber-700 dark:text-amber-400">
+                    DDS = مجموع الإجابات بـ "نعم" (0–8). التنوع الغذائي الكافي = ≥ 5 مجموعات غذائية
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Intervention Section */}
           <Card style={{ order: sectionOrder.findIndex(s => s.id === 'intervention') }} className="shadow-md overflow-hidden">
             <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 p-6 border-b">
-              <SectionHeader title={surveyConfig.formSectionHeaders?.intervention || surveyConfig.sectionTitles?.intervention || "القسم الرابع: تقييم التدخل (Intervention Assessment)"} />
+              <SectionHeader title={surveyConfig.formSectionHeaders?.intervention || surveyConfig.sectionTitles?.intervention || "القسم التاسع: تقييم التدخل (Intervention Assessment)"} />
             </div>
             <CardContent className="p-6 md:p-8">
               <h3 className="font-bold text-xl mb-6 text-slate-800 dark:text-slate-100">{surveyConfig.sectionTitles?.stories || "1. القصص القصيرة المصورة"}</h3>
@@ -1110,6 +1282,20 @@ const ProjectEvaluation = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Intervention Fidelity */}
+          {surveyConfig.interventionFidelity?.length > 0 && (
+            <Card style={{ order: sectionOrder.findIndex(s => s.id === 'interventionFidelity') }} className="shadow-md overflow-hidden border-l-4 border-l-sky-500">
+              <div className="bg-gradient-to-r from-sky-50 to-slate-50 dark:from-sky-950/30 dark:to-slate-800 p-6 border-b">
+                <SectionHeader title={surveyConfig.formSectionHeaders?.interventionFidelity || "القسم العاشر: مراقبة الالتزام بالتدخل"} description="تساعدنا هذه الأسئلة في قياس مدى تفاعلك مع المنصة خلال فترة التدخل" />
+              </div>
+              <CardContent className="p-6 md:p-8">
+                {surveyConfig.interventionFidelity.map((q: any) => (
+                  <LikertScale key={q.id} name={`interventionFidelity.${q.id}`} question={q.text} control={form.control} questionConfig={q} globalLabels={surveyConfig.likertLabels} />
+                ))}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Satisfaction */}
           <Card style={{ order: sectionOrder.findIndex(s => s.id === 'satisfaction') }} className="shadow-md overflow-hidden bg-primary/5 border-primary/20">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
-import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp, query, orderBy, limit } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { db, auth } from '@/lib/firebase';
 import { auditService } from '@/services/audit-service';
@@ -29,7 +29,10 @@ import {
   CheckCircle,
   AlertTriangle,
   Download,
-  Upload
+  Upload,
+  LogIn,
+  LogOut,
+  Clock
 } from 'lucide-react';
 import {
   Select,
@@ -59,6 +62,140 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+// Activity Log Tab Component
+const ActivityLogTab: React.FC<{ userId: string; isRTL: boolean }> = ({ userId, isRTL }) => {
+  const [activities, setActivities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const activityRef = collection(db, 'users', userId, 'activity_log');
+        const q = query(activityRef, orderBy('timestamp', 'desc'), limit(50));
+        const snapshot = await getDocs(q);
+        const logs = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setActivities(logs);
+      } catch (error) {
+        console.error('Failed to fetch activity log:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchActivities();
+  }, [userId]);
+
+  const getActionIcon = (action: string) => {
+    switch (action) {
+      case 'login': return <LogIn className="h-4 w-4 text-green-500" />;
+      case 'logout': return <LogOut className="h-4 w-4 text-red-500" />;
+      case 'profile_update': case 'password_change': return <Edit className="h-4 w-4 text-blue-500" />;
+      case 'page_view': return <Eye className="h-4 w-4 text-gray-500" />;
+      case 'ai_tool_use': case 'tool_use': case 'bmi_calculation': case 'meal_plan_generated': return <Activity className="h-4 w-4 text-purple-500" />;
+      case 'assessment_complete': return <Activity className="h-4 w-4 text-orange-500" />;
+      case 'survey_started': case 'survey_submitted': return <Activity className="h-4 w-4 text-indigo-500" />;
+      case 'article_read': case 'knowledge_viewed': return <Eye className="h-4 w-4 text-teal-500" />;
+      case 'file_download': case 'report_export': case 'data_export': return <Download className="h-4 w-4 text-cyan-500" />;
+      case 'contact_form_sent': case 'consultation_requested': case 'message_sent': return <Activity className="h-4 w-4 text-pink-500" />;
+      default: return <Activity className="h-4 w-4 text-muted-foreground" />;
+    }
+  };
+
+  const getActionLabel = (action: string) => {
+    const labels: Record<string, string> = {
+      login: 'تسجيل دخول', logout: 'تسجيل خروج',
+      profile_update: 'تحديث الملف الشخصي', password_change: 'تغيير كلمة المرور',
+      page_view: 'زيارة صفحة',
+      ai_tool_use: 'استخدام أداة ذكاء اصطناعي', tool_use: 'استخدام أداة',
+      bmi_calculation: 'حساب مؤشر كتلة الجسم', meal_plan_generated: 'إنشاء خطة وجبات',
+      assessment_complete: 'إكمال تقييم',
+      survey_started: 'بدء استبيان', survey_submitted: 'إرسال استبيان', survey_result_viewed: 'عرض نتائج استبيان',
+      article_read: 'قراءة مقال', article_shared: 'مشاركة مقال', knowledge_viewed: 'مشاهدة محتوى',
+      file_download: 'تحميل ملف', report_export: 'تصدير تقرير', data_export: 'تصدير بيانات', backup_download: 'تحميل نسخة احتياطية',
+      contact_form_sent: 'إرسال نموذج اتصال', consultation_requested: 'طلب استشارة', consultation_replied: 'رد على استشارة', message_sent: 'إرسال رسالة',
+    };
+    return isRTL ? (labels[action] || action) : action;
+  };
+
+  const getCategoryBadge = (category: string) => {
+    const colors: Record<string, string> = {
+      auth: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+      navigation: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+      tool: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+      survey: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
+      content: 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300',
+      download: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
+      communication: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+      profile: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+    };
+    const labels: Record<string, string> = {
+      auth: 'مصادقة', navigation: 'تصفح', tool: 'أدوات', survey: 'استبيان',
+      content: 'محتوى', download: 'تحميل', communication: 'تواصل', profile: 'ملف شخصي',
+    };
+    return (
+      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${colors[category] || 'bg-muted text-muted-foreground'}`}>
+        {isRTL ? (labels[category] || category) : category}
+      </span>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+        <p className="text-muted-foreground">{isRTL ? 'جاري تحميل سجل النشاط...' : 'Loading activity log...'}</p>
+      </div>
+    );
+  }
+
+  if (activities.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <Activity className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-lg font-semibold mb-2">
+          {isRTL ? 'لا يوجد نشاط بعد' : 'No activity yet'}
+        </h3>
+        <p className="text-muted-foreground">
+          {isRTL ? 'سيتم تسجيل النشاط عند تسجيل الدخول القادم' : 'Activity will be recorded on next login'}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3 max-h-[400px] overflow-y-auto">
+      {activities.map((activity) => (
+        <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+          <div className="mt-1">{getActionIcon(activity.action)}</div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="text-sm font-medium">{getActionLabel(activity.action)}</p>
+              {activity.category && getCategoryBadge(activity.category)}
+            </div>
+            {activity.details && (
+              <p className="text-xs text-muted-foreground mt-0.5">{activity.details}</p>
+            )}
+            <div className="flex items-center gap-1 mt-1">
+              <Clock className="h-3 w-3 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">
+                {activity.timestamp?.toDate?.()?.toLocaleString(isRTL ? 'ar-EG' : 'en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }) || 'وقت غير محدد'}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 interface User {
   uid: string;
@@ -1251,15 +1388,7 @@ const UserManagement: React.FC = () => {
                 </TabsContent>
 
                 <TabsContent value="activity" className="space-y-4">
-                  <div className="text-center py-8">
-                    <Activity className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">
-                      {isRTL ? 'سجل النشاط' : 'Activity Log'}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {isRTL ? 'سيتم إضافة سجل النشاط قريباً' : 'Activity log will be added soon'}
-                    </p>
-                  </div>
+                  <ActivityLogTab userId={selectedUser.uid} isRTL={isRTL} />
                 </TabsContent>
               </Tabs>
             )}

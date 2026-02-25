@@ -19,6 +19,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Profile = lazy(() => import('./pages/Profile'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const FAQ = lazy(() => import('./pages/FAQ'));
 
 // Admin pages
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
@@ -43,6 +44,10 @@ const SimpleSignup = lazy(() => import('./pages/auth/SimpleSignup').then(module 
 const SimpleLogin = lazy(() => import('./pages/auth/SimpleLogin').then(module => ({ default: module.SimpleLogin })));
 const AuthCallback = lazy(() => import('./pages/auth/AuthCallback').then(module => ({ default: module.AuthCallback })));
 const ProjectEvaluation = lazy(() => import('./pages/ProjectEvaluation'));
+const Program = lazy(() => import('./pages/Program'));
+
+const Stories = lazy(() => import('./pages/Stories'));
+const StoryReader = lazy(() => import('./pages/StoryReader'));
 
 export interface RouteConfig {
   name: string;
@@ -75,6 +80,14 @@ const routes: RouteConfig[] = [
     showInNavigation: () => true
   },
   {
+    name: 'FAQ',
+    translationKey: 'nav.faq',
+    path: '/faq',
+    element: <FAQ />,
+    visible: true,
+    showInNavigation: () => true
+  },
+  {
     name: 'Services',
     translationKey: 'nav.services',
     path: '/services',
@@ -103,6 +116,46 @@ const routes: RouteConfig[] = [
     translationKey: 'nav.malnutritionTypes',
     path: '/knowledge/:slug',
     element: <ArticleDetail />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'Program',
+    translationKey: 'nav.program',
+    path: '/program',
+    element: <Program />,
+    visible: true,
+    showInNavigation: () => true
+  },
+  {
+    name: 'Food Safety Check',
+    translationKey: 'nav.foodSafetyCheck',
+    path: '/food-safety-check',
+    element: <Navigate to="/assessment?tab=food-safety" replace />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'Stories Library',
+    translationKey: 'nav.stories',
+    path: '/stories',
+    element: <Stories />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'Story Reader',
+    translationKey: 'nav.stories',
+    path: '/stories/:slug',
+    element: <StoryReader />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'About Research',
+    translationKey: 'nav.aboutResearch',
+    path: '/about-research',
+    element: <Navigate to="/about#research" replace />,
     visible: false,
     showInNavigation: () => false
   },

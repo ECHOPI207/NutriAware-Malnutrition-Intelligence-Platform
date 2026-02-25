@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calculator, Activity, Baby, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Calculator, Activity, Baby, ArrowRight, ArrowLeft, ClipboardList, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,6 +10,8 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ChildAssessment from '@/components/ChildAssessment';
+import { DietaryDiversityTab } from '@/components/assessment/DietaryDiversityTab';
+import { FoodSafetyTab } from '@/components/assessment/FoodSafetyTab';
 import { calculateBMI, calculateDailyCalories, calculateMacros } from '@/lib/bmi-utils';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { createBMICalculation, createCalorieCalculation } from '@/db/api';
@@ -22,7 +25,18 @@ const Assessment: React.FC = () => {
   const { user } = useAuth();
   const { toast } = useToast();
   const { language } = useLanguage();
+  const location = useLocation();
   const isRTL = language === 'ar';
+
+  const [activeTab, setActiveTab] = useState('bmi');
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tabQuery = params.get('tab');
+    if (tabQuery && ['bmi', 'calorie', 'child', 'dds', 'food-safety'].includes(tabQuery)) {
+      setActiveTab(tabQuery);
+    }
+  }, [location.search]);
 
   const [bmiData, setBmiData] = useState({ weight: '', height: '', age: '' });
   const [bmiResult, setBmiResult] = useState<{ bmi: number; category: string; recommendations: string } | null>(null);
@@ -165,32 +179,52 @@ const Assessment: React.FC = () => {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="bmi" className="w-full space-y-8">
-          <div className="flex justify-center w-full">
-            <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto mb-10 gap-2 bg-card/30 backdrop-blur-md border border-white/10 p-1.5 rounded-2xl">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full space-y-8">
+          <div className="flex justify-center w-full px-2 md:px-0">
+            <TabsList className="flex flex-wrap justify-center w-full h-auto mb-10 gap-1.5 sm:gap-2 bg-card/30 backdrop-blur-md border border-white/10 p-2 rounded-2xl">
               <TabsTrigger
                 value="bmi"
-                className="gap-2 h-12 rounded-xl text-base font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
+                className="gap-2 min-h-[44px] sm:min-h-[56px] basis-[47%] md:basis-auto flex-auto md:flex-1 rounded-xl text-xs sm:text-sm md:text-base font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
               >
-                <Calculator className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                <span>{t('assessment.bmi.title')}</span>
+                <Calculator className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-snug">{t('assessment.bmi.title')}</span>
               </TabsTrigger>
               <TabsTrigger
                 value="calorie"
-                className="gap-2 h-12 rounded-xl text-base font-medium data-[state=active]:bg-secondary data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
+                className="gap-2 min-h-[44px] sm:min-h-[56px] basis-[47%] md:basis-auto flex-auto md:flex-1 rounded-xl text-xs sm:text-sm md:text-base font-medium data-[state=active]:bg-secondary data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
               >
-                <Activity className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                <span>{t('assessment.calorie.title')}</span>
+                <Activity className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-snug">{t('assessment.calorie.title')}</span>
               </TabsTrigger>
               <TabsTrigger
                 value="child"
-                className="gap-2 h-12 rounded-xl text-base font-medium data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
+                className="gap-2 min-h-[44px] sm:min-h-[56px] basis-[47%] md:basis-auto flex-auto md:flex-1 rounded-xl text-xs sm:text-sm md:text-base font-medium data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
               >
-                <Baby className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                <span>{language === 'ar' ? 'تقييم الطفل' : 'Child Growth'}</span>
+                <Baby className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-snug">{language === 'ar' ? 'تقييم الطفل' : 'Child Growth'}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="dds"
+                className="gap-2 min-h-[44px] sm:min-h-[56px] basis-[47%] md:basis-auto flex-auto md:flex-1 rounded-xl text-xs sm:text-sm md:text-base font-medium data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
+              >
+                <ClipboardList className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-snug">{t('assessment.dds.title')}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="food-safety"
+                className="gap-2 min-h-[44px] sm:min-h-[56px] basis-[47%] md:basis-auto flex-auto md:flex-1 rounded-xl text-xs sm:text-sm md:text-base font-medium data-[state=active]:bg-rose-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 hover:bg-white/5"
+              >
+                <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-snug">{language === 'ar' ? 'سلامة الغذاء' : 'Food Safety'}</span>
               </TabsTrigger>
             </TabsList>
           </div>
+
+          <TabsContent value="food-safety" className="focus-visible:ring-0">
+            <div className="w-full">
+              <FoodSafetyTab />
+            </div>
+          </TabsContent>
 
           <TabsContent value="bmi" className="focus-visible:ring-0">
             <div className="max-w-3xl mx-auto">
@@ -487,6 +521,12 @@ const Assessment: React.FC = () => {
           <TabsContent value="child" className="focus-visible:ring-0">
             <div className="max-w-4xl mx-auto">
               <ChildAssessment />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="dds" className="focus-visible:ring-0">
+            <div className="w-full">
+              <DietaryDiversityTab />
             </div>
           </TabsContent>
         </Tabs>

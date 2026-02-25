@@ -12,11 +12,16 @@ Usage / طريقة التشغيل:
     -u 50 -r 5 -t 10m \
     --csv=results/nutriaware
 
-  # Windows PowerShell:
+  # Windows PowerShell (Headless - Safe Defaults) / (بدون واجهة - إعدادات آمنة):
+  $env:VERCEL_AUTOMATION_BYPASS_SECRET="<YOUR_SECRET>"; `
   locust -f locustfile.py --headless `
     --host="https://your-staging.web.app" `
-    -u 50 -r 5 -t 10m `
+    -u 10 -r 2 -t 3m `
     --csv="results/nutriaware"
+
+  # Windows PowerShell (Interactive UI) / (مع واجهة تفاعلية):
+  $env:VERCEL_AUTOMATION_BYPASS_SECRET="<YOUR_SECRET>"; `
+  locust -f locustfile.py --host="https://your-staging.web.app"
 
 Parameters / المعاملات:
   -u / --users    : Max concurrent users / أقصى مستخدمين متزامنين
@@ -32,8 +37,24 @@ Parameters / المعاملات:
 import time
 import random
 import logging
+import os
+import sys
 from locust import HttpUser, task, between, events, tag
 from locust.runners import MasterRunner
+
+# ─── Vercel Protection Bypass / تخطي حماية Vercel ───
+# Reads the bypass secret to authenticate against Vercel Deployment Protection
+# يقرأ كلمة المرور لتخطي حماية Vercel
+VERCEL_SECRET = os.getenv("VERCEL_AUTOMATION_BYPASS_SECRET") or os.getenv("VERCEL_BYPASS_SECRET")
+
+if not VERCEL_SECRET:
+    print("\n" + "═" * 60)
+    print("❌ ERROR: Vercel Bypass Secret is missing! / خطأ: كلمة مرور تخطي حماية Vercel مفقودة!")
+    print("Please set the VERCEL_AUTOMATION_BYPASS_SECRET environment variable.")
+    print("يرجى تعيين متغير البيئة VERCEL_AUTOMATION_BYPASS_SECRET قبل تشغيل الاختبار.")
+    print("Example: $env:VERCEL_AUTOMATION_BYPASS_SECRET=\"secret_here\"")
+    print("═" * 60 + "\n")
+    sys.exit(1)
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +81,10 @@ class NutriAwareUser(HttpUser):
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9",
         "Accept-Language": "ar,en;q=0.9",
         "User-Agent": "Locust-NutriAware-QA/1.0",
+        
+        # Vercel Automation Bypass Headers
+        "x-vercel-protection-bypass": VERCEL_SECRET,
+        "x-vercel-set-bypass-cookie": "true",
     }
 
     def on_start(self):

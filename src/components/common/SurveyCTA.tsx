@@ -11,7 +11,7 @@ export const SurveyCTA: React.FC = () => {
     return (
         <section className="py-20 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-900 dark:to-indigo-900" />
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+            <div className="absolute inset-0 opacity-20" />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

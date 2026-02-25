@@ -1,0 +1,1250 @@
+{
+  "version": "1.0",
+  "generated": "2026-02-25T10:43:50.702Z",
+  "total_articles": 18,
+  "axes": [
+    {
+      "id": 1,
+      "title_ar": "سلامة الغذاء",
+      "title_en": "Food Safety",
+      "week_range": "1-2",
+      "article_count": 5
+    },
+    {
+      "id": 2,
+      "title_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "title_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "article_count": 5
+    },
+    {
+      "id": 3,
+      "title_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "title_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "article_count": 8
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "axis": 1,
+      "axis_ar": "سلامة الغذاء",
+      "axis_en": "Food Safety",
+      "week_range": "1-2",
+      "title_ar": "المفاتيح الخمسة لغذاء آمن — دليل منظمة الصحة العالمية لحماية طفلك",
+      "title_en": "The Five Keys to Safer Food — WHO Guide to Protecting Your Child",
+      "slug_ar": "المفاتيح-الخمسة-لغذاء-آمن",
+      "slug_en": "five-keys-to-safer-food",
+      "quick_summary_ar": [
+        "كل عام يُصاب 600 مليون شخص حول العالم بأمراض منقولة بالغذاء",
+        "الأطفال تحت 5 سنوات يتحملون 40% من العبء العالمي لهذه الأمراض",
+        "خمس خطوات بسيطة يمكنها حماية أسرتك بالكامل"
+      ],
+      "quick_summary_en": [
+        "Every year, 600 million people worldwide are affected by foodborne diseases",
+        "Children under 5 bear 40% of the global burden of these diseases",
+        "Five simple steps can protect your entire family"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>تُعد الأمراض المنقولة بالغذاء من أخطر التهديدات الصحية التي تواجه الأطفال. وفقاً لتقديرات منظمة الصحة العالمية (WHO)، يُصاب نحو 600 مليون شخص سنوياً بسبب تناول غذاء ملوّث، ويموت منهم 420,000 شخص، بينهم 125,000 طفل دون الخامسة. والأطفال هم الأكثر عرضة لهذه المخاطر بسبب أجهزتهم المناعية غير المكتملة النمو.[5][6]</p>\n\n<p>لمواجهة هذا التحدي، طوّرت منظمة الصحة العالمية برنامج \"المفاتيح الخمسة لغذاء أكثر أماناً\"، وهو إطار تثقيفي مُوجّه لكل من يتعامل مع الطعام، سواء في المنزل أو خارجه. وقد تُرجم هذا البرنامج إلى أكثر من 88 لغة واستُخدم في أكثر من 130 دولة حول العالم.[7][8]</p>\n\n<h2>المفتاح الأول: الحفاظ على النظافة</h2>\n<p>غسل اليدين بالماء والصابون لمدة 20 ثانية على الأقل قبل لمس الطعام وبعد استخدام المرحاض وبعد لمس الحيوانات. تنظيف جميع الأسطح والأدوات المستخدمة في تحضير الطعام بالماء الساخن والصابون. السبب: الكائنات الدقيقة الخطرة توجد في التربة والمياه والحيوانات والبشر، وتنتقل بسهولة عبر اليدين والأدوات وأسطح التحضير.[9]</p>\n\n<h2>المفتاح الثاني: فصل الأطعمة النيئة عن المطبوخة</h2>\n<p>فصل اللحوم النيئة والدواجن والأسماك عن الأطعمة الأخرى أثناء التسوّق والتخزين والتحضير. استخدام ألواح تقطيع وسكاكين منفصلة للحوم النيئة. حفظ الأطعمة في أوعية مغلقة لمنع التلامس بين النيئ والمطبوخ. السبب: اللحوم النيئة قد تحتوي على بكتيريا مثل السالمونيلا والإيكولاي التي تنتقل عبر التلوث المتبادل (Cross-contamination).[10]</p>\n\n<h2>المفتاح الثالث: الطهي الجيد</h2>\n<p>طهي الطعام جيداً وخاصة اللحوم والدواجن والبيض والمأكولات البحرية. التأكد من وصول درجة الحرارة الداخلية للحوم إلى 70°م على الأقل. إعادة تسخين الطعام المطبوخ جيداً حتى الغليان. السبب: الطهي السليم يقتل جميع الكائنات الدقيقة الخطرة تقريباً.[11][7]</p>\n\n<h2>المفتاح الرابع: حفظ الطعام في درجات حرارة آمنة</h2>\n<p>عدم ترك الطعام المطبوخ في درجة حرارة الغرفة لأكثر من ساعتين. حفظ الأطعمة المطبوخة والقابلة للتلف في الثلاجة (تحت 5°م). عدم تخزين الطعام لفترات طويلة حتى في الثلاجة. \"منطقة الخطر\" هي بين 5°م و60°م — وفيها تتكاثر البكتيريا بسرعة مضاعفة كل 20 دقيقة.[10][11]</p>\n\n<h2>المفتاح الخامس: استخدام مياه ومواد خام آمنة</h2>\n<p>استخدام مياه نظيفة أو معالجتها. اختيار أطعمة طازجة وسليمة. غسل الفواكه والخضروات جيداً. التحقق من تواريخ الصلاحية. عدم استخدام أغذية منتهية الصلاحية مهما بدت سليمة ظاهرياً.[7]</p>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Foodborne diseases are among the most dangerous health threats facing children. According to WHO estimates, approximately 600 million people fall ill annually from consuming contaminated food, with 420,000 deaths, including 125,000 children under five. Children are the most vulnerable to these risks due to their still-developing immune systems.[5][6]</p>\n\n<p>To combat this challenge, the World Health Organization developed the \"Five Keys to Safer Food\" program — an educational framework aimed at anyone who handles food, whether at home or elsewhere. This program has been translated into more than 88 languages and used in over 130 countries worldwide.[7][8]</p>\n\n<h2>Key 1: Keep Clean</h2>\n<p>Wash hands with soap and water for at least 20 seconds before touching food, after using the toilet, and after touching animals. Clean all surfaces and utensils used in food preparation with hot water and soap. Reason: Dangerous microorganisms are found in soil, water, animals, and people, and are easily transferred via hands, utensils, and preparation surfaces.[9]</p>\n\n<h2>Key 2: Separate Raw and Cooked</h2>\n<p>Separate raw meat, poultry, and fish from other foods during shopping, storage, and preparation. Use separate cutting boards and knives for raw meat. Store foods in sealed containers to prevent contact between raw and cooked items. Reason: Raw meat may contain bacteria such as Salmonella and E. coli that spread through cross-contamination.[10]</p>\n\n<h2>Key 3: Cook Thoroughly</h2>\n<p>Cook food thoroughly, especially meat, poultry, eggs, and seafood. Ensure that the internal temperature of meat reaches at least 70°C. Reheat cooked food thoroughly until boiling. Reason: Proper cooking kills virtually all dangerous microorganisms.[11][7]</p>\n\n<h2>Key 4: Keep Food at Safe Temperatures</h2>\n<p>Do not leave cooked food at room temperature for more than two hours. Store cooked and perishable foods in the refrigerator (below 5°C). Do not store food for extended periods even in the refrigerator. The \"danger zone\" is between 5°C and 60°C — bacteria double in number every 20 minutes within this range.[10][11]</p>\n\n<h2>Key 5: Use Safe Water and Raw Materials</h2>\n<p>Use clean water or treat it. Choose fresh and sound foods. Wash fruits and vegetables thoroughly. Check expiry dates. Do not use expired foods no matter how normal they appear on the outside.[7]</p>\n</div>",
+      "sources_ar": [
+        "World Health Organization. (2026). Five keys to safer food. WHO.",
+        "World Health Organization. (2024). Food safety fact sheet. WHO.",
+        "WHO. (2015). Estimates of the global burden of foodborne diseases. WHO."
+      ],
+      "sources_en": [
+        "World Health Organization. (2026). Five keys to safer food. WHO.",
+        "World Health Organization. (2024). Food safety fact sheet. WHO.",
+        "WHO. (2015). Estimates of the global burden of foodborne diseases. WHO."
+      ],
+      "tags_ar": [
+        "سلامة الغذاء",
+        "غسل اليدين",
+        "التلوث الغذائي",
+        "منظمة الصحة العالمية",
+        "المفاتيح الخمسة",
+        "الطهي الآمن",
+        "حفظ الطعام",
+        "الأمراض المنقولة بالغذاء",
+        "حماية الأطفال",
+        "النظافة"
+      ],
+      "tags_en": [
+        "Food Safety",
+        "Handwashing",
+        "Food Contamination",
+        "WHO",
+        "Five Keys",
+        "Safe Cooking",
+        "Food Storage",
+        "Foodborne Diseases",
+        "Child Protection",
+        "Hygiene"
+      ],
+      "meta": {
+        "meta_title_ar": "المفاتيح الخمسة لغذاء آمن — حماية طفلك",
+        "meta_title_en": "Five Keys to Safer Food — Protect Your Child",
+        "meta_description_ar": "دليل منظمة الصحة العالمية لحماية أسرتك من الأمراض المنقولة بالغذاء: النظافة، فصل الأطعمة، الطهي الجيد، الحرارة الآمنة، والمواد الخام السليمة.",
+        "meta_description_en": "WHO guide to protecting your family from foodborne diseases: hygiene, food separation, thorough cooking, safe temperatures, and safe raw materials.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "المفاتيح الخمسة لغذاء آمن — دليل WHO لحماية طفلك",
+        "og_title_en": "Five Keys to Safer Food — WHO Guide to Protecting Your Child",
+        "og_description_ar": "600 مليون شخص يصابون سنوياً بأمراض الغذاء. تعرف على المفاتيح الخمسة لحماية أسرتك.",
+        "og_description_en": "600 million people are affected by foodborne diseases annually. Learn the five keys to protect your family."
+      }
+    },
+    {
+      "id": 2,
+      "axis": 1,
+      "axis_ar": "سلامة الغذاء",
+      "axis_en": "Food Safety",
+      "week_range": "1-2",
+      "title_ar": "مبادئ HACCP في مطبخك — كيف تحمي عائلتك بأسلوب علمي",
+      "title_en": "HACCP Principles in Your Kitchen — Protecting Your Family the Scientific Way",
+      "slug_ar": "مبادئ-HACCP-في-مطبخك",
+      "slug_en": "haccp-principles-in-your-kitchen",
+      "quick_summary_ar": [
+        "HACCP نظام علمي يستخدمه المحترفون — ويمكنك تطبيقه في بيتك",
+        "3 أنواع من المخاطر تهدد غذاء طفلك: بيولوجية وكيميائية وفيزيائية",
+        "كل خطوة من شراء الطعام لتقديمه هي نقطة تحكم يمكنك السيطرة عليها"
+      ],
+      "quick_summary_en": [
+        "HACCP is a scientific system used by professionals — and you can apply it at home",
+        "3 types of hazards threaten your child's food: biological, chemical, and physical",
+        "Every step from buying food to serving it is a control point you can manage"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>نظام HACCP (تحليل المخاطر ونقاط التحكم الحرجة) هو منهج علمي طورته إدارة الغذاء والدواء الأمريكية (FDA) لضمان سلامة الغذاء من خلال تحديد المخاطر المحتملة والسيطرة عليها في كل مرحلة من مراحل إعداد الطعام. ورغم أن هذا النظام يُستخدم أساساً في المصانع والمطاعم، إلا أن مبادئه قابلة للتطبيق في المطبخ المنزلي بشكل مبسّط وفعّال.[12][10]</p>\n\n<h2>أنواع المخاطر التي تهدد غذاء طفلك:</h2>\n<ul>\n<li><strong>المخاطر البيولوجية:</strong> البكتيريا (السالمونيلا، الإيكولاي، الليستيريا)، الفيروسات (نوروفيروس، فيروس الكبد A)، والطفيليات. هذه هي الأكثر شيوعاً وخطورة على الأطفال.</li>\n<li><strong>المخاطر الكيميائية:</strong> بقايا المبيدات الحشرية على الفواكه والخضروات، السموم الفطرية (الأفلاتوكسين) في المكسرات والحبوب المخزنة بشكل سيء، ومواد التنظيف.</li>\n<li><strong>المخاطر الفيزيائية:</strong> شظايا العظام، قطع الزجاج، الحصى، أو أي جسم غريب في الطعام.[12]</li>\n</ul>\n\n<h2>نقاط التحكم الحرجة في مطبخك:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>المرحلة</th><th>المخاطر</th><th>الإجراء الوقائي</th></tr></thead>\n<tbody>\n<tr><td>الشراء</td><td>أغذية منتهية الصلاحية أو مخزنة بشكل خاطئ</td><td>تحقق من تاريخ الصلاحية؛ اشترِ المبرّدات أخيراً</td></tr>\n<tr><td>التخزين</td><td>تكاثر البكتيريا في حرارة غير مناسبة</td><td>ضع الأغذية القابلة للتلف في الثلاجة فوراً (&lt;5°م)</td></tr>\n<tr><td>التحضير</td><td>التلوث المتبادل</td><td>اغسل يديك؛ استخدم أدوات منفصلة للنيئ والمطبوخ</td></tr>\n<tr><td>الطهي</td><td>بقاء بكتيريا حية</td><td>تأكد من الطهي الجيد (≥70°م للحوم)</td></tr>\n<tr><td>التقديم</td><td>التعرض لحرارة الغرفة طويلاً</td><td>لا تترك الطعام خارج الثلاجة أكثر من ساعتين</td></tr>\n<tr><td>بقايا الطعام</td><td>تكاثر البكتيريا</td><td>برّد البقايا سريعاً؛ سخّنها جيداً قبل إعادة التقديم</td></tr>\n</tbody>\n</table>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>HACCP (Hazard Analysis and Critical Control Points) is a scientific approach developed by the U.S. Food and Drug Administration (FDA) to ensure food safety by identifying potential hazards and controlling them at every stage of food preparation. Although this system is primarily used in factories and restaurants, its principles can be applied in the home kitchen in a simplified and effective manner.[12][10]</p>\n\n<h2>Types of Hazards Threatening Your Child's Food:</h2>\n<ul>\n<li><strong>Biological hazards:</strong> Bacteria (Salmonella, E. coli, Listeria), viruses (Norovirus, Hepatitis A virus), and parasites. These are the most common and dangerous for children.</li>\n<li><strong>Chemical hazards:</strong> Pesticide residues on fruits and vegetables, mycotoxins (aflatoxin) in poorly stored nuts and grains, and cleaning products.</li>\n<li><strong>Physical hazards:</strong> Bone fragments, glass pieces, pebbles, or any foreign object in food.[12]</li>\n</ul>\n\n<h2>Critical Control Points in Your Kitchen:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Stage</th><th>Hazards</th><th>Preventive Action</th></tr></thead>\n<tbody>\n<tr><td>Shopping</td><td>Expired or improperly stored foods</td><td>Check expiry dates; buy refrigerated items last</td></tr>\n<tr><td>Storage</td><td>Bacterial growth at improper temperatures</td><td>Place perishables in the fridge immediately (&lt;5°C)</td></tr>\n<tr><td>Preparation</td><td>Cross-contamination</td><td>Wash hands; use separate utensils for raw and cooked</td></tr>\n<tr><td>Cooking</td><td>Surviving bacteria</td><td>Ensure thorough cooking (≥70°C for meat)</td></tr>\n<tr><td>Serving</td><td>Long exposure to room temperature</td><td>Don't leave food outside the fridge for more than 2 hours</td></tr>\n<tr><td>Leftovers</td><td>Bacterial growth</td><td>Refrigerate quickly; reheat thoroughly before re-serving</td></tr>\n</tbody>\n</table>\n</div>",
+      "practical_tips_ar": [
+        "علّقي ورقة صغيرة على الثلاجة بهذه النقاط الست — ستصبح عادة يومية خلال أسابيع."
+      ],
+      "practical_tips_en": [
+        "Pin a small sheet on the fridge with these six points — it will become a daily habit within weeks."
+      ],
+      "sources_ar": [
+        "U.S. Food and Drug Administration. (2022). HACCP principles and application guidelines. FDA.",
+        "eHACCP.org. (2023). Can I use HACCP at home?",
+        "Montana Food System Resources. (2023). Food Safety Tool for Home Producers."
+      ],
+      "sources_en": [
+        "U.S. Food and Drug Administration. (2022). HACCP principles and application guidelines. FDA.",
+        "eHACCP.org. (2023). Can I use HACCP at home?",
+        "Montana Food System Resources. (2023). Food Safety Tool for Home Producers."
+      ],
+      "tags_ar": [
+        "HACCP",
+        "سلامة الغذاء",
+        "المخاطر البيولوجية",
+        "التلوث المتبادل",
+        "مطبخ آمن",
+        "نقاط تحكم",
+        "حفظ الطعام",
+        "الطهي الآمن",
+        "صحة الأطفال",
+        "وقاية"
+      ],
+      "tags_en": [
+        "HACCP",
+        "Food Safety",
+        "Biological Hazards",
+        "Cross-contamination",
+        "Safe Kitchen",
+        "Control Points",
+        "Food Storage",
+        "Safe Cooking",
+        "Child Health",
+        "Prevention"
+      ],
+      "meta": {
+        "meta_title_ar": "مبادئ HACCP في مطبخك — حماية علمية لعائلتك",
+        "meta_title_en": "HACCP Principles in Your Kitchen — Scientific Protection",
+        "meta_description_ar": "تعرف على نظام HACCP وكيفية تطبيقه في مطبخك المنزلي لحماية طفلك من المخاطر البيولوجية والكيميائية والفيزيائية في الغذاء.",
+        "meta_description_en": "Learn the HACCP system and how to apply it in your home kitchen to protect your child from biological, chemical, and physical food hazards.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "مبادئ HACCP في مطبخك — كيف تحمي عائلتك بأسلوب علمي",
+        "og_title_en": "HACCP Principles in Your Kitchen — Scientific Family Protection",
+        "og_description_ar": "نظام HACCP العلمي يمكنك تطبيقه في بيتك. تعرف على نقاط التحكم الحرجة من الشراء للتقديم.",
+        "og_description_en": "The HACCP scientific system can be applied at home. Learn the critical control points from shopping to serving."
+      }
+    },
+    {
+      "id": 3,
+      "axis": 1,
+      "axis_ar": "سلامة الغذاء",
+      "axis_en": "Food Safety",
+      "week_range": "1-2",
+      "title_ar": "التلوث المتبادل وتخزين الطعام — الأخطاء الخفية في المطبخ",
+      "title_en": "Cross-Contamination & Food Storage — Hidden Kitchen Mistakes",
+      "slug_ar": "التلوث-المتبادل-وتخزين-الطعام",
+      "slug_en": "cross-contamination-and-food-storage",
+      "quick_summary_ar": [
+        "التلوث المتبادل هو السبب الأول للتسمم الغذائي المنزلي",
+        "ثلاجتك ليست \"منطقة آمنة\" إذا لم تُنظّم بشكل صحيح",
+        "قواعد بسيطة للتخزين تحمي طفلك من أمراض لا تتوقعها"
+      ],
+      "quick_summary_en": [
+        "Cross-contamination is the leading cause of domestic food poisoning",
+        "Your fridge is not a \"safe zone\" if not properly organized",
+        "Simple storage rules protect your child from unexpected illnesses"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>التلوث المتبادل (Cross-contamination) يحدث عندما تنتقل البكتيريا الضارة من طعام نيء إلى طعام جاهز للأكل عبر اليدين أو الأدوات أو أسطح التحضير. هذه العملية غير مرئية تماماً — لا تُغيّر طعم الأكل ولا لونه ولا رائحته — لكنها قد تسبب إسهالاً وقيئاً وحمى شديدة عند الأطفال.[7]</p>\n\n<h2>أخطاء شائعة في المطبخ المصري:</h2>\n<ul>\n<li>تقطيع الخضروات على نفس لوح تقطيع اللحوم دون غسله</li>\n<li>وضع اللحوم النيئة في الرف العلوي للثلاجة فتتقاطر سوائلها على الأطعمة تحتها</li>\n<li>استخدام نفس الملعقة لتذوق الطعام أثناء الطهي ثم إعادتها للقدر</li>\n<li>غسل الفواكه بالماء فقط دون فركها</li>\n</ul>\n\n<h2>قواعد التخزين الآمن:</h2>\n<ul>\n<li><strong>الثلاجة:</strong> اللحوم النيئة في الرف السفلي (لمنع تقاطر السوائل)، الأطعمة الجاهزة في الأرفف العلوية، الفواكه والخضروات في الدرج المخصص</li>\n<li><strong>درجة الحرارة:</strong> الثلاجة يجب أن تكون أقل من 5°م والفريزر أقل من −18°م</li>\n<li><strong>قاعدة الساعتين:</strong> أي طعام مطبوخ تُرك خارج الثلاجة أكثر من ساعتين يجب التخلص منه</li>\n<li><strong>الأوعية المغلقة:</strong> استخدم دائماً أوعية محكمة الغلق — البكتيريا لا تحتاج سوى الهواء والرطوبة ودرجة حرارة مناسبة للتكاثر[11][10]</li>\n</ul>\n\n<h2>تاريخ الصلاحية — الفرق المهم:</h2>\n<ul>\n<li><strong>\"صالح حتى\" (Use by):</strong> تاريخ أمان — لا تستخدم المنتج بعده مطلقاً (خاصة اللحوم والألبان)</li>\n<li><strong>\"يُفضّل استخدامه قبل\" (Best before):</strong> تاريخ جودة — المنتج قد يفقد بعض جودته لكنه ليس خطراً بالضرورة</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Cross-contamination occurs when harmful bacteria transfer from raw food to ready-to-eat food via hands, utensils, or preparation surfaces. This process is completely invisible — it doesn't change the taste, color, or smell of the food — but it can cause diarrhea, vomiting, and severe fever in children.[7]</p>\n\n<h2>Common Mistakes in the Egyptian Kitchen:</h2>\n<ul>\n<li>Cutting vegetables on the same chopping board used for meat without washing it</li>\n<li>Placing raw meat on the upper fridge shelf, allowing its juices to drip onto foods below</li>\n<li>Using the same spoon to taste food while cooking and then returning it to the pot</li>\n<li>Washing fruits with water only without scrubbing them</li>\n</ul>\n\n<h2>Safe Storage Rules:</h2>\n<ul>\n<li><strong>Fridge organization:</strong> Raw meat on the bottom shelf (to prevent dripping), ready-to-eat foods on upper shelves, fruits and vegetables in the designated drawer</li>\n<li><strong>Temperature:</strong> The fridge should be below 5°C and the freezer below −18°C</li>\n<li><strong>Two-hour rule:</strong> Any cooked food left outside the fridge for more than two hours should be discarded</li>\n<li><strong>Sealed containers:</strong> Always use airtight containers — bacteria only need air, moisture, and a suitable temperature to multiply[11][10]</li>\n</ul>\n\n<h2>Expiry Dates — The Important Difference:</h2>\n<ul>\n<li><strong>\"Use by\":</strong> A safety date — do not use the product after this date (especially meat and dairy)</li>\n<li><strong>\"Best before\":</strong> A quality date — the product may lose some quality but is not necessarily dangerous</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "WHO. (2026). Five keys to safer food. WHO.",
+        "eHACCP.org. (2023). Can I use HACCP at home?"
+      ],
+      "sources_en": [
+        "WHO. (2026). Five keys to safer food. WHO.",
+        "eHACCP.org. (2023). Can I use HACCP at home?"
+      ],
+      "tags_ar": [
+        "التلوث المتبادل",
+        "تخزين الطعام",
+        "الثلاجة",
+        "سلامة الغذاء",
+        "تاريخ الصلاحية",
+        "أخطاء المطبخ",
+        "حفظ اللحوم",
+        "نظافة الأدوات",
+        "صحة الأطفال",
+        "البكتيريا"
+      ],
+      "tags_en": [
+        "Cross-contamination",
+        "Food Storage",
+        "Refrigerator",
+        "Food Safety",
+        "Expiry Dates",
+        "Kitchen Mistakes",
+        "Meat Storage",
+        "Utensil Hygiene",
+        "Child Health",
+        "Bacteria"
+      ],
+      "meta": {
+        "meta_title_ar": "التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية",
+        "meta_title_en": "Cross-Contamination & Food Storage — Hidden Mistakes",
+        "meta_description_ar": "تعرف على أخطاء التلوث المتبادل الشائعة في المطبخ المصري وقواعد التخزين الآمن لحماية طفلك من التسمم الغذائي.",
+        "meta_description_en": "Learn about common cross-contamination mistakes in the kitchen and safe storage rules to protect your child from food poisoning.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "التلوث المتبادل وتخزين الطعام — الأخطاء الخفية في المطبخ",
+        "og_title_en": "Cross-Contamination & Food Storage — Hidden Kitchen Mistakes",
+        "og_description_ar": "التلوث المتبادل السبب الأول للتسمم الغذائي المنزلي. تعرف على قواعد التخزين الآمن.",
+        "og_description_en": "Cross-contamination is the leading cause of domestic food poisoning. Learn safe storage rules."
+      }
+    },
+    {
+      "id": 4,
+      "axis": 1,
+      "axis_ar": "سلامة الغذاء",
+      "axis_en": "Food Safety",
+      "week_range": "1-2",
+      "title_ar": "الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية",
+      "title_en": "Foodborne Diseases in Children — Symptoms & Prevention",
+      "slug_ar": "الأمراض-المنقولة-بالغذاء-عند-الأطفال",
+      "slug_en": "foodborne-diseases-in-children",
+      "quick_summary_ar": [
+        "220 مليون طفل يصابون بأمراض إسهالية ناتجة عن الغذاء الملوث سنوياً",
+        "الأطفال أكثر عرضة بسبب مناعتهم غير المكتملة",
+        "معظم هذه الأمراض يمكن الوقاية منها بتطبيق المفاتيح الخمسة"
+      ],
+      "quick_summary_en": [
+        "220 million children are affected by diarrheal diseases from contaminated food annually",
+        "Children are more vulnerable due to their immature immunity",
+        "Most of these diseases can be prevented by applying the Five Keys"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>الأمراض المنقولة بالغذاء تُعد من أخطر المشكلات الصحية التي تواجه الأطفال حول العالم. تشير منظمة الصحة العالمية إلى أن الأطفال دون الخامسة يتحملون 40% من عبء الأمراض المنقولة بالغذاء رغم أنهم يمثلون 9% فقط من سكان العالم. ويُصاب حوالي 220 مليون طفل بأمراض إسهالية ناتجة عن تلوث الغذاء سنوياً، يموت منهم قرابة 96,000 طفل.[13][6]</p>\n\n<h2>لماذا الأطفال أكثر عرضة؟</h2>\n<ul>\n<li>جهازهم المناعي لا يزال في مراحل النمو ولم يكتمل بعد</li>\n<li>معدلهم الأيضي أعلى نسبياً مقارنة بوزنهم، مما يعني امتصاص المواد الضارة بسرعة أكبر</li>\n<li>يعتمدون بالكامل على الكبار في اختيار وتحضير طعامهم[14]</li>\n</ul>\n\n<h2>أشهر مسببات الأمراض عند الأطفال:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>الكائن الممرض</th><th>مصادره الشائعة</th><th>الأعراض</th></tr></thead>\n<tbody>\n<tr><td>السالمونيلا</td><td>البيض غير المطهو جيداً، الدواجن</td><td>إسهال، حمى، مغص</td></tr>\n<tr><td>الإيكولاي (E. coli)</td><td>اللحوم غير المطهوة جيداً، الحليب غير المبستر</td><td>إسهال دموي شديد</td></tr>\n<tr><td>نوروفيروس</td><td>الأطعمة الملوثة بأيدي محضّريها</td><td>قيء، إسهال مفاجئ</td></tr>\n<tr><td>الليستيريا</td><td>الأجبان الطرية، اللحوم الباردة</td><td>حمى، صداع، قيء</td></tr>\n</tbody>\n</table>\n\n<h2>الحلقة المفرغة: تلوث الغذاء ↔ سوء التغذية</h2>\n<p>عندما يُصاب الطفل بإسهال بسبب غذاء ملوث، يفقد جسمه كميات كبيرة من العناصر الغذائية والسوائل. هذا يُضعف مناعته، مما يجعله أكثر عرضة للإصابة مرة أخرى — في حلقة مفرغة من العدوى وسوء التغذية. هذا الرابط بين سلامة الغذاء والحالة الغذائية للطفل هو صلب هذا المشروع البحثي.</p>\n\n<h2>متى تذهب للطبيب فوراً؟</h2>\n<ul>\n<li>إسهال مستمر لأكثر من 24 ساعة</li>\n<li>دم في البراز</li>\n<li>حمى أعلى من 38.5°م</li>\n<li>علامات الجفاف (جفاف الفم، قلة التبول، بكاء بدون دموع)</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Foodborne diseases are among the most dangerous health problems facing children worldwide. The World Health Organization reports that children under five bear 40% of the burden of foodborne diseases despite representing only 9% of the world's population. Approximately 220 million children are affected by diarrheal diseases caused by food contamination annually, with nearly 96,000 deaths.[13][6]</p>\n\n<h2>Why Are Children More Vulnerable?</h2>\n<ul>\n<li>Their immune systems are still developing and not yet fully mature</li>\n<li>Their metabolic rate is relatively higher compared to their weight, meaning faster absorption of harmful substances</li>\n<li>They depend entirely on adults for food selection and preparation[14]</li>\n</ul>\n\n<h2>Most Common Pathogens in Children:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Pathogen</th><th>Common Sources</th><th>Symptoms</th></tr></thead>\n<tbody>\n<tr><td>Salmonella</td><td>Undercooked eggs, poultry</td><td>Diarrhea, fever, cramps</td></tr>\n<tr><td>E. coli</td><td>Undercooked meat, unpasteurized milk</td><td>Severe bloody diarrhea</td></tr>\n<tr><td>Norovirus</td><td>Food contaminated by handlers' hands</td><td>Vomiting, sudden diarrhea</td></tr>\n<tr><td>Listeria</td><td>Soft cheeses, cold cuts</td><td>Fever, headache, vomiting</td></tr>\n</tbody>\n</table>\n\n<h2>The Vicious Cycle: Food Contamination ↔ Malnutrition</h2>\n<p>When a child develops diarrhea from contaminated food, their body loses significant amounts of nutrients and fluids. This weakens their immunity, making them more susceptible to reinfection — creating a vicious cycle of infection and malnutrition. This link between food safety and the child's nutritional status is the core of this research project.</p>\n\n<h2>When to See a Doctor Immediately?</h2>\n<ul>\n<li>Diarrhea lasting more than 24 hours</li>\n<li>Blood in stool</li>\n<li>Fever above 38.5°C</li>\n<li>Signs of dehydration (dry mouth, reduced urination, crying without tears)</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.",
+        "WHO. (2024). Food safety fact sheet. WHO.",
+        "Infectiousdiseaseadvisor.com. (2024). Children account for large amount of foodborne illness related deaths."
+      ],
+      "sources_en": [
+        "WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.",
+        "WHO. (2024). Food safety fact sheet. WHO.",
+        "Infectiousdiseaseadvisor.com. (2024). Children account for large amount of foodborne illness related deaths."
+      ],
+      "tags_ar": [
+        "أمراض الغذاء",
+        "الإسهال",
+        "السالمونيلا",
+        "التسمم الغذائي",
+        "مناعة الأطفال",
+        "سوء التغذية",
+        "الوقاية",
+        "صحة الأطفال",
+        "البكتيريا",
+        "نوروفيروس"
+      ],
+      "tags_en": [
+        "Foodborne Diseases",
+        "Diarrhea",
+        "Salmonella",
+        "Food Poisoning",
+        "Child Immunity",
+        "Malnutrition",
+        "Prevention",
+        "Child Health",
+        "Bacteria",
+        "Norovirus"
+      ],
+      "meta": {
+        "meta_title_ar": "الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية",
+        "meta_title_en": "Foodborne Diseases in Children — Symptoms & Prevention",
+        "meta_description_ar": "220 مليون طفل يصابون بأمراض إسهالية سنوياً بسبب الغذاء الملوث. تعرف على الأعراض وطرق الوقاية والحلقة المفرغة بين التلوث وسوء التغذية.",
+        "meta_description_en": "220 million children contract diarrheal diseases annually from contaminated food. Learn the symptoms, prevention, and the vicious cycle between contamination and malnutrition.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية",
+        "og_title_en": "Foodborne Diseases in Children — Symptoms & Prevention",
+        "og_description_ar": "الأطفال تحت 5 سنوات يتحملون 40% من عبء الأمراض المنقولة بالغذاء. تعرف على الوقاية.",
+        "og_description_en": "Children under 5 bear 40% of the foodborne disease burden. Learn about prevention."
+      }
+    },
+    {
+      "id": 5,
+      "axis": 1,
+      "axis_ar": "سلامة الغذاء",
+      "axis_en": "Food Safety",
+      "week_range": "1-2",
+      "title_ar": "غسل اليدين وغسل الأطعمة — أبسط حماية وأقواها",
+      "title_en": "Handwashing & Food Washing — The Simplest and Strongest Protection",
+      "slug_ar": "غسل-اليدين-وغسل-الأطعمة",
+      "slug_en": "handwashing-and-food-washing",
+      "quick_summary_ar": [
+        "غسل اليدين بالصابون يمكن أن يقلل حالات الإسهال بنسبة 40%",
+        "غسل الفواكه والخضروات يزيل جزءاً كبيراً من بقايا المبيدات والبكتيريا",
+        "تعليم الأطفال عادة غسل اليدين من الصغر استثمار صحي طويل الأمد"
+      ],
+      "quick_summary_en": [
+        "Handwashing with soap can reduce diarrhea cases by 40%",
+        "Washing fruits and vegetables removes a significant portion of pesticide residues and bacteria",
+        "Teaching children the habit of handwashing from a young age is a long-term health investment"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>غسل اليدين هو الخطوة الأولى والأهم في المفاتيح الخمسة لمنظمة الصحة العالمية، وهو أبسط وأرخص وسيلة للوقاية من الأمراض المنقولة بالغذاء.[7]</p>\n\n<h2>متى يجب غسل اليدين؟</h2>\n<ul>\n<li>قبل تحضير أي طعام وبعده</li>\n<li>بعد التعامل مع اللحوم والدواجن النيئة</li>\n<li>بعد استخدام المرحاض</li>\n<li>بعد تغيير حفاظ الطفل</li>\n<li>بعد لمس الحيوانات الأليفة</li>\n<li>بعد العطس أو السعال</li>\n</ul>\n\n<h2>الطريقة الصحيحة (20 ثانية على الأقل):</h2>\n<ol>\n<li>بلّل يديك بالماء الجاري</li>\n<li>ضع كمية كافية من الصابون</li>\n<li>افرك كلتا يديك معاً — بما في ذلك بين الأصابع وتحت الأظافر وظهر اليدين</li>\n<li>استمر في الفرك لمدة 20 ثانية (علّم طفلك غناء \"هابي بيرثداي\" مرتين كمقياس للوقت)</li>\n<li>اشطف بالماء الجاري</li>\n<li>جفّف بمنشفة نظيفة أو منديل ورقي</li>\n</ol>\n\n<h2>غسل الفواكه والخضروات:</h2>\n<ul>\n<li>اغسلها تحت الماء الجاري وليس في وعاء مليء بالماء (الماء الراكد يعيد توزيع البكتيريا)</li>\n<li>افرك الأسطح الصلبة (مثل التفاح والخيار) بفرشاة خضروات</li>\n<li>انزع الأوراق الخارجية من الخس والملفوف</li>\n<li>حتى لو كنت ستقشر الفاكهة — اغسلها أولاً (البكتيريا على القشرة تنتقل للداخل عند التقطيع)</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Handwashing is the first and most important step in the WHO Five Keys, and it is the simplest and cheapest means of preventing foodborne diseases.[7]</p>\n\n<h2>When Should You Wash Your Hands?</h2>\n<ul>\n<li>Before and after preparing any food</li>\n<li>After handling raw meat and poultry</li>\n<li>After using the toilet</li>\n<li>After changing a child's diaper</li>\n<li>After touching pets</li>\n<li>After sneezing or coughing</li>\n</ul>\n\n<h2>The Correct Method (at least 20 seconds):</h2>\n<ol>\n<li>Wet your hands with running water</li>\n<li>Apply an adequate amount of soap</li>\n<li>Rub both hands together — including between fingers, under nails, and the backs of hands</li>\n<li>Continue rubbing for 20 seconds (teach your child to sing \"Happy Birthday\" twice as a timer)</li>\n<li>Rinse under running water</li>\n<li>Dry with a clean towel or paper tissue</li>\n</ol>\n\n<h2>Washing Fruits and Vegetables:</h2>\n<ul>\n<li>Wash them under running water, not in a bowl of standing water (standing water redistributes bacteria)</li>\n<li>Scrub firm surfaces (like apples and cucumbers) with a vegetable brush</li>\n<li>Remove outer leaves from lettuce and cabbage</li>\n<li>Even if you plan to peel the fruit — wash it first (bacteria on the skin transfers to the inside when cutting)</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "WHO. (2026). Five keys to safer food. WHO.",
+        "FAO/WHO. (2004). The Five Keys for Safe Food: WHO's Community Food Safety Activities."
+      ],
+      "sources_en": [
+        "WHO. (2026). Five keys to safer food. WHO.",
+        "FAO/WHO. (2004). The Five Keys for Safe Food: WHO's Community Food Safety Activities."
+      ],
+      "tags_ar": [
+        "غسل اليدين",
+        "نظافة الأغذية",
+        "سلامة الغذاء",
+        "غسل الفواكه",
+        "الوقاية",
+        "صحة الأطفال",
+        "عادات صحية",
+        "المبيدات",
+        "البكتيريا",
+        "النظافة الشخصية"
+      ],
+      "tags_en": [
+        "Handwashing",
+        "Food Hygiene",
+        "Food Safety",
+        "Fruit Washing",
+        "Prevention",
+        "Child Health",
+        "Healthy Habits",
+        "Pesticides",
+        "Bacteria",
+        "Personal Hygiene"
+      ],
+      "meta": {
+        "meta_title_ar": "غسل اليدين وغسل الأطعمة — أبسط حماية وأقواها",
+        "meta_title_en": "Handwashing & Food Washing — Simplest Protection",
+        "meta_description_ar": "غسل اليدين بالصابون يقلل الإسهال بنسبة 40%. تعلم الطريقة الصحيحة لغسل اليدين وغسل الفواكه والخضروات لحماية طفلك.",
+        "meta_description_en": "Handwashing with soap reduces diarrhea by 40%. Learn the correct method for handwashing and washing fruits and vegetables to protect your child.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "غسل اليدين وغسل الأطعمة — أبسط حماية وأقواها",
+        "og_title_en": "Handwashing & Food Washing — The Simplest and Strongest Protection",
+        "og_description_ar": "غسل اليدين أبسط وأرخص وسيلة للوقاية من أمراض الغذاء. تعلم الخطوات الصحيحة.",
+        "og_description_en": "Handwashing is the simplest and cheapest way to prevent foodborne diseases. Learn the correct steps."
+      }
+    },
+    {
+      "id": 6,
+      "axis": 2,
+      "axis_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "axis_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "title_ar": "طبق الطفل المتوازن — دليلك العملي لكل وجبة",
+      "title_en": "The Balanced Child's Plate — Your Practical Guide for Every Meal",
+      "slug_ar": "طبق-الطفل-المتوازن",
+      "slug_en": "balanced-childs-plate",
+      "quick_summary_ar": [
+        "الطفل يحتاج نشويات وبروتين ودهون صحية وخضروات في كل وجبة رئيسية",
+        "التوزيع المثالي: 45–65% كربوهيدرات، 10–30% بروتين، 25–35% دهون",
+        "تقسيم الطبق بصرياً أسهل وأعملي من حساب السعرات"
+      ],
+      "quick_summary_en": [
+        "A child needs carbohydrates, protein, healthy fats, and vegetables in every main meal",
+        "Ideal distribution: 45–65% carbohydrates, 10–30% protein, 25–35% fats",
+        "Visual plate division is easier and more practical than calorie counting"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>التغذية المتوازنة لا تعني فقط \"أن يأكل الطفل\" — بل تعني أن يحصل على النسب الصحيحة من المغذيات الكبرى الثلاثة في كل وجبة. وفقاً لتوصيات المعهد الأمريكي للطب (IOM)، يحتاج الأطفال من 4–18 سنة إلى توزيع المغذيات الكبرى (AMDR) كالتالي:</p>\n<ul>\n<li><strong>الكربوهيدرات:</strong> 45–65% من إجمالي السعرات (المصدر الرئيسي للطاقة)</li>\n<li><strong>البروتينات:</strong> 10–30% (البناء والنمو)</li>\n<li><strong>الدهون:</strong> 25–35% (نمو المخ والأعصاب)</li>\n</ul>\n\n<h2>طريقة تقسيم الطبق بصرياً (بدون حساب سعرات):</h2>\n<ul>\n<li><strong>نصف الطبق:</strong> خضروات وفواكه (ملوّنة ومتنوعة)</li>\n<li><strong>ربع الطبق:</strong> نشويات (أرز، مكرونة، خبز — ويُفضّل الحبوب الكاملة)</li>\n<li><strong>ربع الطبق:</strong> بروتين (لحوم، دواجن، أسماك، بيض، بقوليات)</li>\n<li><strong>جانب صغير:</strong> حصة ألبان (كوب لبن أو قطعة جبن) + ملعقة زيت زيتون أو مكسرات</li>\n</ul>\n\n<h2>مثال عملي لوجبة غداء متوازنة:</h2>\n<p>أرز بسمتي (كربوهيدرات) + قطعة دجاج مشوية (بروتين) + سلطة خضراء مع زيت زيتون (خضروات + دهون صحية) + كوب عصير برتقال طبيعي (فيتامين C لامتصاص الحديد)[15][16]</p>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Balanced nutrition doesn't just mean \"the child eats\" — it means obtaining the correct proportions of the three macronutrients in every meal. According to the Institute of Medicine (IOM) recommendations, children aged 4–18 years need the following Acceptable Macronutrient Distribution Ranges (AMDR):</p>\n<ul>\n<li><strong>Carbohydrates:</strong> 45–65% of total calories (the primary energy source)</li>\n<li><strong>Proteins:</strong> 10–30% (building and growth)</li>\n<li><strong>Fats:</strong> 25–35% (brain and nerve development)</li>\n</ul>\n\n<h2>Visual Plate Division Method (without calorie counting):</h2>\n<ul>\n<li><strong>Half the plate:</strong> Vegetables and fruits (colorful and varied)</li>\n<li><strong>Quarter of the plate:</strong> Carbohydrates (rice, pasta, bread — whole grains preferred)</li>\n<li><strong>Quarter of the plate:</strong> Protein (meat, poultry, fish, eggs, legumes)</li>\n<li><strong>Small side:</strong> Dairy serving (cup of milk or piece of cheese) + tablespoon of olive oil or nuts</li>\n</ul>\n\n<h2>Practical Example of a Balanced Lunch:</h2>\n<p>Basmati rice (carbohydrates) + grilled chicken piece (protein) + green salad with olive oil (vegetables + healthy fats) + glass of natural orange juice (vitamin C for iron absorption)[15][16]</p>\n</div>",
+      "sources_ar": [
+        "Institute of Medicine. (2005). Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids. National Academies Press.",
+        "WHO. (2026). Healthy diet fact sheet. WHO."
+      ],
+      "sources_en": [
+        "Institute of Medicine. (2005). Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids. National Academies Press.",
+        "WHO. (2026). Healthy diet fact sheet. WHO."
+      ],
+      "tags_ar": [
+        "طبق متوازن",
+        "التغذية المتوازنة",
+        "المغذيات الكبرى",
+        "كربوهيدرات",
+        "بروتين",
+        "دهون",
+        "تقسيم الطبق",
+        "تغذية الأطفال",
+        "AMDR",
+        "وجبات صحية"
+      ],
+      "tags_en": [
+        "Balanced Plate",
+        "Balanced Nutrition",
+        "Macronutrients",
+        "Carbohydrates",
+        "Protein",
+        "Fats",
+        "Plate Division",
+        "Child Nutrition",
+        "AMDR",
+        "Healthy Meals"
+      ],
+      "meta": {
+        "meta_title_ar": "طبق الطفل المتوازن — دليلك العملي لكل وجبة",
+        "meta_title_en": "The Balanced Child's Plate — Practical Meal Guide",
+        "meta_description_ar": "تعلم طريقة تقسيم الطبق بصرياً لضمان حصول طفلك على النسب الصحيحة من الكربوهيدرات والبروتين والدهون في كل وجبة.",
+        "meta_description_en": "Learn the visual plate division method to ensure your child gets the right proportions of carbohydrates, protein, and fats in every meal.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "طبق الطفل المتوازن — دليلك العملي لكل وجبة",
+        "og_title_en": "The Balanced Child's Plate — Your Practical Meal Guide",
+        "og_description_ar": "تقسيم الطبق بصرياً أسهل من حساب السعرات. تعلم الطريقة الصحيحة.",
+        "og_description_en": "Visual plate division is easier than calorie counting. Learn the right method."
+      }
+    },
+    {
+      "id": 7,
+      "axis": 2,
+      "axis_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "axis_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "title_ar": "الكربوهيدرات والبروتين والدهون — الثلاثي الذي يحتاجه كل طفل",
+      "title_en": "Carbohydrates, Protein & Fats — The Trio Every Child Needs",
+      "slug_ar": "الكربوهيدرات-والبروتين-والدهون",
+      "slug_en": "carbohydrates-protein-and-fats",
+      "quick_summary_ar": [
+        "الكربوهيدرات ليست عدوّاً — لكن نوعيتها هي الفرق",
+        "البروتين ضروري لنمو العضلات والمناعة — والبقوليات بديل اقتصادي ممتاز",
+        "الدهون الصحية ضرورية لنمو دماغ الطفل — لكن الدهون المتحولة خطر حقيقي"
+      ],
+      "quick_summary_en": [
+        "Carbohydrates are not the enemy — but their quality makes the difference",
+        "Protein is essential for muscle growth and immunity — legumes are an excellent economical alternative",
+        "Healthy fats are essential for brain development — but trans fats are a real danger"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<h2>الكربوهيدرات — وقود الجسم:</h2>\n<p>الكربوهيدرات هي المصدر الأول للطاقة التي يحتاجها دماغ الطفل وعضلاته. لكن هناك فرقاً جوهرياً بين الكربوهيدرات \"الذكية\" والكربوهيدرات \"الفارغة\":</p>\n\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>كربوهيدرات ذكية (مُعقّدة)</th><th>كربوهيدرات فارغة (بسيطة)</th></tr></thead>\n<tbody>\n<tr><td>خبز أسمر / بلدي</td><td>خبز أبيض مُكرّر</td></tr>\n<tr><td>أرز بسمتي أو بني</td><td>حلويات ومعجنات</td></tr>\n<tr><td>بطاطا حلوة</td><td>مشروبات غازية</td></tr>\n<tr><td>شوفان وحبوب كاملة</td><td>عصائر محلّاة صناعياً</td></tr>\n<tr><td>فول وعدس</td><td>شيبسي وسناكس مُصنّعة</td></tr>\n</tbody>\n</table>\n\n<h2>البروتين — مادة البناء:</h2>\n<p>يحتاج الطفل في سن 4–8 سنوات حوالي 15 جرام بروتين يومياً، ويزداد إلى 27–44 جرام في سن 9–18 سنة. البروتين ضروري لبناء العضلات وإصلاح الأنسجة ودعم جهاز المناعة.[17]</p>\n\n<h3>مصادر اقتصادية للبروتين:</h3>\n<ul>\n<li>بيض (مصدر كامل ورخيص)</li>\n<li>فول وعدس وحمص (بروتين نباتي ممتاز)</li>\n<li>زبادي ولبن</li>\n<li>دجاج وأسماك (أفضل من اللحوم المُصنّعة)</li>\n</ul>\n\n<h2>الدهون — حماية المخ والأعصاب:</h2>\n<p>الدهون الصحية ضرورية لنمو دماغ الطفل — 60% من مخ الإنسان يتكون من دهون. لكن ليست كل الدهون متساوية:</p>\n<ul>\n<li><strong>دهون صحية (أحادية وعديدة غير مشبعة):</strong> زيت زيتون، مكسرات (لوز، جوز)، أسماك دهنية (سلمون، تونة، سردين)، أفوكادو</li>\n<li><strong>دهون ضارة (مشبعة ومتحولة):</strong> زبدة بكميات كبيرة، سمن نباتي (مارجرين)، أطعمة مقلية، وجبات سريعة[16]</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<h2>Carbohydrates — The Body's Fuel:</h2>\n<p>Carbohydrates are the primary energy source needed by a child's brain and muscles. But there is a fundamental difference between \"smart\" and \"empty\" carbohydrates:</p>\n\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Smart Carbohydrates (Complex)</th><th>Empty Carbohydrates (Simple)</th></tr></thead>\n<tbody>\n<tr><td>Whole wheat / Egyptian baladi bread</td><td>Refined white bread</td></tr>\n<tr><td>Basmati or brown rice</td><td>Sweets and pastries</td></tr>\n<tr><td>Sweet potato</td><td>Soft drinks</td></tr>\n<tr><td>Oats and whole grains</td><td>Artificially sweetened juices</td></tr>\n<tr><td>Fava beans and lentils</td><td>Chips and processed snacks</td></tr>\n</tbody>\n</table>\n\n<h2>Protein — The Building Block:</h2>\n<p>Children aged 4–8 years need about 15 grams of protein daily, increasing to 27–44 grams at age 9–18. Protein is essential for building muscles, repairing tissues, and supporting the immune system.[17]</p>\n\n<h3>Economical Protein Sources:</h3>\n<ul>\n<li>Eggs (a complete and affordable source)</li>\n<li>Fava beans, lentils, and chickpeas (excellent plant protein)</li>\n<li>Yogurt and milk</li>\n<li>Chicken and fish (better than processed meats)</li>\n</ul>\n\n<h2>Fats — Brain & Nerve Protection:</h2>\n<p>Healthy fats are essential for a child's brain development — 60% of the human brain is composed of fat. But not all fats are created equal:</p>\n<ul>\n<li><strong>Healthy fats (mono- and polyunsaturated):</strong> Olive oil, nuts (almonds, walnuts), fatty fish (salmon, tuna, sardines), avocado</li>\n<li><strong>Harmful fats (saturated and trans):</strong> Butter in large quantities, margarine, fried foods, fast food[16]</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "IOM. (2005). Dietary Reference Intakes.",
+        "WHO. (2026). Healthy diet fact sheet. WHO."
+      ],
+      "sources_en": [
+        "IOM. (2005). Dietary Reference Intakes.",
+        "WHO. (2026). Healthy diet fact sheet. WHO."
+      ],
+      "tags_ar": [
+        "كربوهيدرات",
+        "بروتين",
+        "دهون",
+        "المغذيات الكبرى",
+        "بقوليات",
+        "حبوب كاملة",
+        "دهون صحية",
+        "دهون متحولة",
+        "تغذية الأطفال",
+        "نمو الدماغ"
+      ],
+      "tags_en": [
+        "Carbohydrates",
+        "Protein",
+        "Fats",
+        "Macronutrients",
+        "Legumes",
+        "Whole Grains",
+        "Healthy Fats",
+        "Trans Fats",
+        "Child Nutrition",
+        "Brain Development"
+      ],
+      "meta": {
+        "meta_title_ar": "الكربوهيدرات والبروتين والدهون — ثلاثي نمو طفلك",
+        "meta_title_en": "Carbs, Protein & Fats — Your Child's Growth Trio",
+        "meta_description_ar": "تعرف على الفرق بين الكربوهيدرات الذكية والفارغة، ومصادر البروتين الاقتصادية، والدهون الصحية الضرورية لنمو دماغ طفلك.",
+        "meta_description_en": "Learn the difference between smart and empty carbs, economical protein sources, and healthy fats essential for your child's brain development.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "الكربوهيدرات والبروتين والدهون — الثلاثي الذي يحتاجه كل طفل",
+        "og_title_en": "Carbohydrates, Protein & Fats — The Trio Every Child Needs",
+        "og_description_ar": "60% من مخ الإنسان دهون. تعرف على المغذيات الكبرى الثلاثة الضرورية لنمو طفلك.",
+        "og_description_en": "60% of the human brain is fat. Learn about the three essential macronutrients for your child's growth."
+      }
+    },
+    {
+      "id": 8,
+      "axis": 2,
+      "axis_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "axis_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "title_ar": "وجبة الإفطار والسناكس الصحية — وقود يوم طفلك المدرسي",
+      "title_en": "Breakfast & Healthy Snacks — Fuel for Your Child's School Day",
+      "slug_ar": "وجبة-الإفطار-والسناكس-الصحية",
+      "slug_en": "breakfast-and-healthy-snacks",
+      "quick_summary_ar": [
+        "الأطفال الذين يتناولون إفطاراً صحياً يتفوقون أكاديمياً بنسبة ملموسة",
+        "السناكس ليست عدوّاً — لكن اختيارها الذكي هو المفتاح",
+        "بدائل عملية ولذيذة للشيبسي والحلويات متاحة وبنفس التكلفة"
+      ],
+      "quick_summary_en": [
+        "Children who eat a healthy breakfast perform noticeably better academically",
+        "Snacks are not the enemy — but smart selection is the key",
+        "Practical and delicious alternatives to chips and sweets are available at the same cost"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<h2>لماذا الإفطار ضروري؟</h2>\n<p>بعد 8–10 ساعات من النوم، يكون مخزون الجلوكوز في جسم الطفل قد نفد. الإفطار يعيد تزويد الدماغ بالوقود اللازم للتركيز والتعلم. الأطفال الذين يُهملون الإفطار يميلون إلى تناول أطعمة غير صحية لاحقاً في اليوم ويكونون أقل قدرة على الانتباه.</p>\n\n<h2>إفطار صحي سريع (5 دقائق):</h2>\n<ul>\n<li>بيضة مسلوقة + قطعة جبن + خبز بلدي + خيار = بروتين + كالسيوم + كربوهيدرات + فيتامينات</li>\n<li>شوفان مع لبن ومكسرات وموز = ألياف + بروتين + بوتاسيوم</li>\n<li>فول مدمس بزيت زيتون + طماطم + ليمون = بروتين نباتي + حديد + فيتامين C</li>\n</ul>\n\n<h2>بدائل السناكس الصحية:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>بدل هذا ❌</th><th>جرّب هذا ✅</th></tr></thead>\n<tbody>\n<tr><td>شيبسي</td><td>فشار منزلي (بدون زبدة زائدة)</td></tr>\n<tr><td>شوكولاتة</td><td>تمر محشي بلوز</td></tr>\n<tr><td>بسكويت مُحلّى</td><td>بسكويت شوفان منزلي</td></tr>\n<tr><td>عصير مُعلّب</td><td>فاكهة طازجة أو عصير طبيعي</td></tr>\n<tr><td>حلوى جيلي</td><td>زبادي طبيعي مع فاكهة وعسل</td></tr>\n<tr><td>كيك</td><td>خبز محمص مع زبدة فول سوداني</td></tr>\n</tbody>\n</table>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<h2>Why Is Breakfast Essential?</h2>\n<p>After 8–10 hours of sleep, the child's glucose reserves are depleted. Breakfast refuels the brain with the energy needed for concentration and learning. Children who skip breakfast tend to eat unhealthy foods later in the day and have reduced attention capacity.</p>\n\n<h2>Quick Healthy Breakfast (5 minutes):</h2>\n<ul>\n<li>Boiled egg + piece of cheese + Egyptian baladi bread + cucumber = protein + calcium + carbohydrates + vitamins</li>\n<li>Oats with milk, nuts, and banana = fiber + protein + potassium</li>\n<li>Fava beans (ful medames) with olive oil + tomato + lemon = plant protein + iron + vitamin C</li>\n</ul>\n\n<h2>Healthy Snack Alternatives:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Instead of This ❌</th><th>Try This ✅</th></tr></thead>\n<tbody>\n<tr><td>Chips</td><td>Homemade popcorn (without excess butter)</td></tr>\n<tr><td>Chocolate</td><td>Dates stuffed with almonds</td></tr>\n<tr><td>Sweetened biscuits</td><td>Homemade oat biscuits</td></tr>\n<tr><td>Packaged juice</td><td>Fresh fruit or natural juice</td></tr>\n<tr><td>Jelly candy</td><td>Natural yogurt with fruit and honey</td></tr>\n<tr><td>Cake</td><td>Toast with peanut butter</td></tr>\n</tbody>\n</table>\n</div>",
+      "sources_ar": [
+        "WHO. (2026). Healthy diet fact sheet. WHO.",
+        "CDC. (2025). Preventing childhood obesity: 6 things families can do."
+      ],
+      "sources_en": [
+        "WHO. (2026). Healthy diet fact sheet. WHO.",
+        "CDC. (2025). Preventing childhood obesity: 6 things families can do."
+      ],
+      "tags_ar": [
+        "إفطار صحي",
+        "سناكس صحية",
+        "تغذية مدرسية",
+        "بدائل صحية",
+        "فول",
+        "شوفان",
+        "تركيز",
+        "أداء مدرسي",
+        "تغذية الأطفال",
+        "وجبات سريعة صحية"
+      ],
+      "tags_en": [
+        "Healthy Breakfast",
+        "Healthy Snacks",
+        "School Nutrition",
+        "Healthy Alternatives",
+        "Fava Beans",
+        "Oats",
+        "Concentration",
+        "School Performance",
+        "Child Nutrition",
+        "Quick Healthy Meals"
+      ],
+      "meta": {
+        "meta_title_ar": "وجبة الإفطار والسناكس الصحية — وقود يوم طفلك",
+        "meta_title_en": "Breakfast & Healthy Snacks — School Day Fuel",
+        "meta_description_ar": "الإفطار الصحي يحسن أداء طفلك الأكاديمي. تعرف على وجبات إفطار سريعة وبدائل صحية للسناكس المضرة بنفس التكلفة.",
+        "meta_description_en": "A healthy breakfast improves your child's academic performance. Learn quick breakfast ideas and healthy snack alternatives at the same cost.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "وجبة الإفطار والسناكس الصحية — وقود يوم طفلك المدرسي",
+        "og_title_en": "Breakfast & Healthy Snacks — Fuel for Your Child's School Day",
+        "og_description_ar": "بدائل عملية للشيبسي والحلويات بنفس التكلفة. إفطار صحي في 5 دقائق.",
+        "og_description_en": "Practical alternatives to chips and sweets at the same cost. Healthy breakfast in 5 minutes."
+      }
+    },
+    {
+      "id": 9,
+      "axis": 2,
+      "axis_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "axis_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "title_ar": "قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك",
+      "title_en": "Reading the Nutrition Label — A Skill That Protects Your Family's Health",
+      "slug_ar": "قراءة-البطاقة-الغذائية",
+      "slug_en": "reading-the-nutrition-label",
+      "quick_summary_ar": [
+        "البطاقة الغذائية تكشف الحقيقة التي لا يخبرك بها الإعلان",
+        "5 أشياء تبحث عنها فوراً: السكر المضاف، الصوديوم، الدهون المتحولة، حجم الحصة، السعرات",
+        "\"منتج صحي\" أو \"طبيعي\" على العبوة لا يعني بالضرورة أنه صحي فعلاً"
+      ],
+      "quick_summary_en": [
+        "The nutrition label reveals the truth that advertising doesn't tell you",
+        "5 things to look for immediately: added sugars, sodium, trans fats, serving size, calories",
+        "\"Healthy product\" or \"natural\" on the package doesn't necessarily mean it is actually healthy"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>كثير من الأهالي يشترون منتجات لأطفالهم بناءً على الشكل أو الإعلان دون قراءة البطاقة الغذائية (Nutrition Facts Label). هذه المهارة البسيطة يمكن أن تُحدث فرقاً كبيراً في صحة طفلك.[18]</p>\n\n<h2>5 أشياء ابحث عنها فوراً:</h2>\n<ol>\n<li><strong>حجم الحصة (Serving Size):</strong> الأرقام المكتوبة تخص حصة واحدة — وقد تحتوي العبوة على 2 أو 3 حصص. إذا أكل طفلك العبوة كاملة، اضرب كل الأرقام في عدد الحصص.</li>\n<li><strong>السكر المضاف (Added Sugars):</strong> توصي منظمة الصحة العالمية بألا يتجاوز السكر المضاف 10% من السعرات اليومية — أي حوالي 25 جرام (6 ملاعق صغيرة) للطفل. بعض علب العصير المُحلّى تحتوي أكثر من ذلك في عبوة واحدة.[16]</li>\n<li><strong>الصوديوم (الملح):</strong> الأطفال من 4–8 سنوات يحتاجون أقل من 1,200 ملغ صوديوم يومياً. المنتجات المُعلّبة والشيبسي والأجبان المُصنّعة تحتوي كميات مرتفعة جداً.</li>\n<li><strong>الدهون المتحولة (Trans Fat):</strong> يجب أن تكون صفراً. ابحث أيضاً عن \"زيت مهدرج جزئياً\" في قائمة المكونات.</li>\n<li><strong>المكونات:</strong> مرتبة من الأكثر إلى الأقل. إذا كان السكر أو الزيت في أول 3 مكونات — المنتج غير صحي غالباً.</li>\n</ol>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Many parents buy products for their children based on appearance or advertising without reading the Nutrition Facts Label. This simple skill can make a significant difference in your child's health.[18]</p>\n\n<h2>5 Things to Look for Immediately:</h2>\n<ol>\n<li><strong>Serving Size:</strong> The numbers listed are for one serving — and the package may contain 2 or 3 servings. If your child eats the entire package, multiply all numbers by the number of servings.</li>\n<li><strong>Added Sugars:</strong> The WHO recommends that added sugars should not exceed 10% of daily calories — approximately 25 grams (6 teaspoons) for a child. Some sweetened juice boxes contain more than that in a single container.[16]</li>\n<li><strong>Sodium (Salt):</strong> Children aged 4–8 years need less than 1,200 mg of sodium daily. Canned products, chips, and processed cheeses contain very high amounts.</li>\n<li><strong>Trans Fat:</strong> This should be zero. Also look for \"partially hydrogenated oil\" in the ingredients list.</li>\n<li><strong>Ingredients:</strong> Listed from most to least. If sugar or oil is among the first 3 ingredients — the product is likely unhealthy.</li>\n</ol>\n</div>",
+      "sources_ar": [
+        "WHO. (2026). Healthy diet fact sheet. WHO.",
+        "Sindhu, S., & Madaiah, M. (2023). Impact of educational intervention in promoting KAP of food label information. Journal of Family Medicine and Primary Care."
+      ],
+      "sources_en": [
+        "WHO. (2026). Healthy diet fact sheet. WHO.",
+        "Sindhu, S., & Madaiah, M. (2023). Impact of educational intervention in promoting KAP of food label information. Journal of Family Medicine and Primary Care."
+      ],
+      "tags_ar": [
+        "البطاقة الغذائية",
+        "سكر مضاف",
+        "صوديوم",
+        "دهون متحولة",
+        "حجم الحصة",
+        "قراءة الملصقات",
+        "تغذية الأطفال",
+        "منتجات صحية",
+        "وعي غذائي",
+        "مكونات الأغذية"
+      ],
+      "tags_en": [
+        "Nutrition Label",
+        "Added Sugars",
+        "Sodium",
+        "Trans Fats",
+        "Serving Size",
+        "Label Reading",
+        "Child Nutrition",
+        "Healthy Products",
+        "Food Awareness",
+        "Food Ingredients"
+      ],
+      "meta": {
+        "meta_title_ar": "قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك",
+        "meta_title_en": "Reading the Nutrition Label — Family Health Skill",
+        "meta_description_ar": "5 أشياء تبحث عنها فوراً في البطاقة الغذائية: السكر المضاف، الصوديوم، الدهون المتحولة، حجم الحصة، والمكونات. مهارة تحمي صحة طفلك.",
+        "meta_description_en": "5 things to look for immediately on the nutrition label: added sugars, sodium, trans fats, serving size, and ingredients. A skill that protects your child's health.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك",
+        "og_title_en": "Reading the Nutrition Label — A Skill That Protects Your Family",
+        "og_description_ar": "البطاقة الغذائية تكشف الحقيقة التي لا يخبرك بها الإعلان. تعلم قراءتها.",
+        "og_description_en": "The nutrition label reveals the truth advertising hides. Learn to read it."
+      }
+    },
+    {
+      "id": 10,
+      "axis": 2,
+      "axis_ar": "التغذية المتوازنة والمغذيات الكبرى",
+      "axis_en": "Balanced Nutrition & Macronutrients",
+      "week_range": "3-4",
+      "title_ar": "سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً",
+      "title_en": "Childhood Obesity & Fast Food — When Weight Becomes a Danger",
+      "slug_ar": "سمنة-الأطفال-والوجبات-السريعة",
+      "slug_en": "childhood-obesity-and-fast-food",
+      "quick_summary_ar": [
+        "15.7% من الأطفال المصريين تحت 5 سنوات يعانون من الوزن الزائد",
+        "السمنة في الطفولة تزيد خطر السكري وأمراض القلب في الكبر",
+        "الحل ليس \"حرمان\" الطفل — بل تغيير البيئة الغذائية حوله"
+      ],
+      "quick_summary_en": [
+        "15.7% of Egyptian children under 5 suffer from overweight",
+        "Childhood obesity increases the risk of diabetes and heart disease in adulthood",
+        "The solution is not \"depriving\" the child — but changing the food environment around them"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>سمنة الأطفال أصبحت مشكلة صحية عالمية تتصاعد بسرعة مقلقة. في مصر، تبلغ نسبة الأطفال تحت 5 سنوات الذين يعانون من الوزن الزائد 15.7% — وهي نسبة تتجاوز المتوسط الأفريقي (6.0%) بأكثر من الضعف. الأطفال الذين يعانون من السمنة في طفولتهم أكثر عرضة للإصابة بالسكري من النوع الثاني وارتفاع ضغط الدم وأمراض القلب والاكتئاب في مراحل لاحقة من حياتهم.[19][20][21]</p>\n\n<h2>كيف تعرف إذا كان وزن طفلك مقلقاً؟</h2>\n<p>الطريقة العلمية هي حساب مؤشر كتلة الجسم حسب العمر (BMI-for-Age) ومقارنته بمعايير منظمة الصحة العالمية:[22][4]</p>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>التصنيف</th><th>Z-score</th></tr></thead>\n<tbody>\n<tr><td>نحيف</td><td>أقل من −2</td></tr>\n<tr><td>طبيعي</td><td>−2 إلى +1</td></tr>\n<tr><td>وزن زائد</td><td>أعلى من +1</td></tr>\n<tr><td>سمنة</td><td>أعلى من +2</td></tr>\n</tbody>\n</table>\n<p>يمكنك استخدام أداة حساب BMI الموجودة على منصة NutriAware لمعرفة تصنيف طفلك.</p>\n\n<h2>ما الذي تفعله الوجبات السريعة فعلاً؟</h2>\n<p>وجبة برجر + بطاطس مقلية + مشروب غازي متوسط = حوالي 900–1,200 سعرة حرارية — وهو ما يمثل 60–75% من احتياج الطفل اليومي الكامل في وجبة واحدة. والمشكلة ليست السعرات فقط، بل أن هذه الوجبة:</p>\n<ul>\n<li>غنية بالدهون المشبعة والمتحولة</li>\n<li>غنية بالصوديوم (1,000–1,500 ملغ في وجبة واحدة)</li>\n<li>فقيرة جداً في الألياف والفيتامينات والمعادن</li>\n</ul>\n\n<h2>التوصيات العملية:</h2>\n<p>منظمة الصحة العالمية توصي بما يلي للوقاية من سمنة الأطفال:[19]</p>\n<ul>\n<li>زيادة استهلاك الفواكه والخضروات والبقوليات والحبوب الكاملة</li>\n<li>تقليل حجم الحصص</li>\n<li>تقليل الدهون المشبعة واستبدالها بدهون غير مشبعة</li>\n<li>تقليل السكريات المضافة</li>\n<li>ممارسة 60 دقيقة نشاط بدني يومياً على الأقل</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Childhood obesity has become a global health problem escalating at an alarming rate. In Egypt, 15.7% of children under 5 suffer from overweight — a rate that exceeds the African average (6.0%) by more than double. Children who suffer from obesity in childhood are more likely to develop type 2 diabetes, hypertension, heart disease, and depression later in life.[19][20][21]</p>\n\n<h2>How Do You Know If Your Child's Weight Is Concerning?</h2>\n<p>The scientific method is to calculate BMI-for-Age and compare it with WHO standards:[22][4]</p>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Classification</th><th>Z-score</th></tr></thead>\n<tbody>\n<tr><td>Underweight</td><td>Below −2</td></tr>\n<tr><td>Normal</td><td>−2 to +1</td></tr>\n<tr><td>Overweight</td><td>Above +1</td></tr>\n<tr><td>Obese</td><td>Above +2</td></tr>\n</tbody>\n</table>\n<p>You can use the BMI calculator tool on the NutriAware platform to determine your child's classification.</p>\n\n<h2>What Does Fast Food Actually Do?</h2>\n<p>A burger + French fries + medium soft drink = approximately 900–1,200 calories — representing 60–75% of a child's entire daily requirement in a single meal. The problem is not just the calories, but that this meal is:</p>\n<ul>\n<li>High in saturated and trans fats</li>\n<li>High in sodium (1,000–1,500 mg in a single meal)</li>\n<li>Very low in fiber, vitamins, and minerals</li>\n</ul>\n\n<h2>Practical Recommendations:</h2>\n<p>WHO recommends the following for preventing childhood obesity:[19]</p>\n<ul>\n<li>Increase consumption of fruits, vegetables, legumes, and whole grains</li>\n<li>Reduce portion sizes</li>\n<li>Reduce saturated fats and replace them with unsaturated fats</li>\n<li>Reduce added sugars</li>\n<li>At least 60 minutes of physical activity daily</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "Global Nutrition Report. (2024). Egypt nutrition profile.",
+        "Bonsu, E. O., & Addo, I. Y. (2022). Prevalence and correlates of overweight and obesity among under-five children in Egypt. Frontiers in Public Health.",
+        "WHO. (2025). Childhood overweight and obesity Q&A."
+      ],
+      "sources_en": [
+        "Global Nutrition Report. (2024). Egypt nutrition profile.",
+        "Bonsu, E. O., & Addo, I. Y. (2022). Prevalence and correlates of overweight and obesity among under-five children in Egypt. Frontiers in Public Health.",
+        "WHO. (2025). Childhood overweight and obesity Q&A."
+      ],
+      "tags_ar": [
+        "سمنة الأطفال",
+        "الوجبات السريعة",
+        "مؤشر كتلة الجسم",
+        "السكري",
+        "نشاط بدني",
+        "وزن زائد",
+        "تغذية الأطفال",
+        "حمية صحية",
+        "مصر",
+        "وقاية"
+      ],
+      "tags_en": [
+        "Childhood Obesity",
+        "Fast Food",
+        "BMI",
+        "Diabetes",
+        "Physical Activity",
+        "Overweight",
+        "Child Nutrition",
+        "Healthy Diet",
+        "Egypt",
+        "Prevention"
+      ],
+      "meta": {
+        "meta_title_ar": "سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً",
+        "meta_title_en": "Childhood Obesity & Fast Food — When Weight Is Risky",
+        "meta_description_ar": "15.7% من أطفال مصر يعانون من زيادة الوزن. تعرف على مخاطر الوجبات السريعة وطرق الوقاية من سمنة الأطفال وفقاً لتوصيات WHO.",
+        "meta_description_en": "15.7% of Egyptian children are overweight. Learn about fast food dangers and WHO recommendations for preventing childhood obesity.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً",
+        "og_title_en": "Childhood Obesity & Fast Food — When Weight Becomes a Danger",
+        "og_description_ar": "وجبة برجر واحدة = 75% من احتياج الطفل اليومي. تعرف على الحل العلمي.",
+        "og_description_en": "One burger meal = 75% of a child's daily needs. Learn the scientific solution."
+      }
+    },
+    {
+      "id": 11,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "أنيميا نقص الحديد عند الأطفال — العدو الصامت",
+      "title_en": "Iron Deficiency Anemia in Children — The Silent Enemy",
+      "slug_ar": "أنيميا-نقص-الحديد-عند-الأطفال",
+      "slug_en": "iron-deficiency-anemia-in-children",
+      "quick_summary_ar": [
+        "40% من الأطفال المصريين (2–5 سنوات) يعانون من أنيميا نقص الحديد",
+        "نقص الحديد يضعف التركيز والذاكرة والمناعة",
+        "فيتامين C يضاعف امتصاص الحديد — والشاي يعيقه"
+      ],
+      "quick_summary_en": [
+        "40% of Egyptian children (2–5 years) suffer from iron deficiency anemia",
+        "Iron deficiency weakens concentration, memory, and immunity",
+        "Vitamin C doubles iron absorption — and tea inhibits it"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>أنيميا نقص الحديد هي أكثر اضطرابات التغذية شيوعاً عند الأطفال عالمياً. في مصر، تصل نسبة أنيميا نقص الحديد بين الأطفال من 2–5 سنوات إلى حوالي 40%، بينما تتراوح بين 37–52% عند الأطفال من 12–36 شهراً. والأخطر أن 8% فقط من الأطفال المصريين (6–59 شهراً) يحصلون على مكملات الحديد.[23][24][20][15]</p>\n\n<h2>علامات نقص الحديد عند طفلك:</h2>\n<ul>\n<li>شحوب الوجه وتحت العينين</li>\n<li>إرهاق وخمول مستمر</li>\n<li>ضعف التركيز والأداء المدرسي</li>\n<li>فقدان الشهية</li>\n<li>تكرار الإصابة بالعدوى</li>\n<li>برودة اليدين والقدمين</li>\n</ul>\n\n<h2>مصادر الحديد الغنية والمتاحة:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>المصدر</th><th>نوع الحديد</th><th>أمثلة</th></tr></thead>\n<tbody>\n<tr><td>حديد هيمي (امتصاص عالي 15–35%)</td><td>حيواني</td><td>كبدة، لحوم حمراء، دجاج، أسماك</td></tr>\n<tr><td>حديد غير هيمي (امتصاص أقل 2–20%)</td><td>نباتي</td><td>فول، عدس، سبانخ، ملوخية، عسل أسود</td></tr>\n</tbody>\n</table>\n\n<h2>الاحتياجات اليومية من الحديد (EAR):</h2>\n<ul>\n<li>أطفال 4–8 سنوات: 4.1 ملغ/يوم</li>\n<li>ذكور 9–13 سنة: 5.9 ملغ/يوم</li>\n<li>إناث 9–13 سنة: 5.7 ملغ/يوم[17]</li>\n</ul>\n\n<h2>كيف تزيد امتصاص الحديد؟</h2>\n<ul>\n<li>قدّم أطعمة غنية بفيتامين C مع وجبات الحديد (ليمون، برتقال، فلفل، طماطم) — فيتامين C يمكن أن يُضاعف امتصاص الحديد غير الهيمي[25][15]</li>\n<li>تجنّب تقديم الشاي أو القهوة مع الوجبات أو بعدها مباشرة — التانين يعيق امتصاص الحديد بنسبة كبيرة[15]</li>\n<li>لا تفرط في تقديم الحليب (أكثر من 700 مل يومياً يعيق امتصاص الحديد)[26]</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Iron deficiency anemia is the most common nutritional disorder in children worldwide. In Egypt, the rate of iron deficiency anemia among children aged 2–5 years reaches approximately 40%, while it ranges between 37–52% in children aged 12–36 months. More critically, only 8% of Egyptian children (6–59 months) receive iron supplements.[23][24][20][15]</p>\n\n<h2>Signs of Iron Deficiency in Your Child:</h2>\n<ul>\n<li>Pale face and under the eyes</li>\n<li>Persistent fatigue and lethargy</li>\n<li>Poor concentration and school performance</li>\n<li>Loss of appetite</li>\n<li>Frequent infections</li>\n<li>Cold hands and feet</li>\n</ul>\n\n<h2>Rich and Available Iron Sources:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Source</th><th>Iron Type</th><th>Examples</th></tr></thead>\n<tbody>\n<tr><td>Heme iron (high absorption 15–35%)</td><td>Animal</td><td>Liver, red meat, chicken, fish</td></tr>\n<tr><td>Non-heme iron (lower absorption 2–20%)</td><td>Plant</td><td>Fava beans, lentils, spinach, molokhia, blackstrap molasses</td></tr>\n</tbody>\n</table>\n\n<h2>Daily Iron Requirements (EAR):</h2>\n<ul>\n<li>Children 4–8 years: 4.1 mg/day</li>\n<li>Males 9–13 years: 5.9 mg/day</li>\n<li>Females 9–13 years: 5.7 mg/day[17]</li>\n</ul>\n\n<h2>How to Increase Iron Absorption?</h2>\n<ul>\n<li>Serve vitamin C-rich foods with iron-rich meals (lemon, orange, bell pepper, tomato) — vitamin C can double non-heme iron absorption[25][15]</li>\n<li>Avoid serving tea or coffee with meals or immediately after — tannins significantly inhibit iron absorption[15]</li>\n<li>Don't overdo milk (more than 700 ml daily inhibits iron absorption)[26]</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "WHO EMRO. (2025). Nutrition – Egypt.",
+        "WHO. (2025). Anaemia fact sheet.",
+        "IOM. (2001). Dietary Reference Intakes for Iron.",
+        "Chokor, F. A. Z., et al. (2024). Food sources of micronutrients of concern among children in Lebanon. BMC Pediatrics."
+      ],
+      "sources_en": [
+        "WHO EMRO. (2025). Nutrition – Egypt.",
+        "WHO. (2025). Anaemia fact sheet.",
+        "IOM. (2001). Dietary Reference Intakes for Iron.",
+        "Chokor, F. A. Z., et al. (2024). Food sources of micronutrients of concern among children in Lebanon. BMC Pediatrics."
+      ],
+      "tags_ar": [
+        "أنيميا",
+        "نقص الحديد",
+        "فيتامين C",
+        "الشاي",
+        "كبدة",
+        "بقوليات",
+        "تغذية الأطفال",
+        "مصر",
+        "المناعة",
+        "التركيز"
+      ],
+      "tags_en": [
+        "Anemia",
+        "Iron Deficiency",
+        "Vitamin C",
+        "Tea",
+        "Liver",
+        "Legumes",
+        "Child Nutrition",
+        "Egypt",
+        "Immunity",
+        "Concentration"
+      ],
+      "meta": {
+        "meta_title_ar": "أنيميا نقص الحديد عند الأطفال — العدو الصامت",
+        "meta_title_en": "Iron Deficiency Anemia in Children — Silent Enemy",
+        "meta_description_ar": "40% من أطفال مصر يعانون من أنيميا نقص الحديد. تعرف على العلامات والمصادر الغنية بالحديد ونصائح لزيادة الامتصاص.",
+        "meta_description_en": "40% of Egyptian children suffer from iron deficiency anemia. Learn the signs, iron-rich sources, and tips to increase absorption.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "أنيميا نقص الحديد عند الأطفال — العدو الصامت",
+        "og_title_en": "Iron Deficiency Anemia in Children — The Silent Enemy",
+        "og_description_ar": "فيتامين C يضاعف امتصاص الحديد والشاي يعيقه. تعرف على التفاصيل.",
+        "og_description_en": "Vitamin C doubles iron absorption and tea inhibits it. Learn the details."
+      }
+    },
+    {
+      "id": 12,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "فيتامين أ والزنك — درع المناعة ومحرك النمو",
+      "title_en": "Vitamin A & Zinc — The Immunity Shield and Growth Engine",
+      "slug_ar": "فيتامين-أ-والزنك",
+      "slug_en": "vitamin-a-and-zinc",
+      "quick_summary_ar": [
+        "نقص فيتامين أ يصيب 190 مليون طفل حول العالم ويسبب العمى الليلي",
+        "الزنك ضروري لجهاز المناعة والنمو والتئام الجروح",
+        "أطعمة بسيطة ومتوفرة في مصر تغطي احتياج طفلك من كليهما"
+      ],
+      "quick_summary_en": [
+        "Vitamin A deficiency affects 190 million children worldwide and causes night blindness",
+        "Zinc is essential for the immune system, growth, and wound healing",
+        "Simple and available foods in Egypt cover your child's needs for both"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<h2>فيتامين أ — حارس المناعة والبصر:</h2>\n<p>يُعد نقص فيتامين أ من أخطر مشكلات التغذية عند الأطفال عالمياً، حيث يصيب حوالي 190 مليون طفل في سن ما قبل المدرسة. وهو السبب الأول للعمى الذي يمكن الوقاية منه عند الأطفال، كما يزيد بشكل كبير من خطر الإصابة بأمراض الإسهال والحصبة ومضاعفاتها المميتة.[27][28][29]</p>\n\n<h3>الاحتياجات اليومية (EAR):</h3>\n<ul>\n<li>أطفال 4–8 سنوات: 275 ميكروغرام RAE/يوم</li>\n<li>أطفال 9–13 سنة: 420–445 ميكروغرام RAE/يوم[17]</li>\n</ul>\n\n<h3>أغنى المصادر:</h3>\n<ul>\n<li><strong>مصادر حيوانية (ريتينول — جاهز للامتصاص):</strong> كبدة (أغنى مصدر على الإطلاق)، زيت كبد السمك، بيض، لبن كامل الدسم</li>\n<li><strong>مصادر نباتية (بيتا كاروتين — يتحول لفيتامين أ):</strong> جزر، بطاطا حلوة، مانجو، سبانخ، ملوخية، قرع عسلي[30][31]</li>\n</ul>\n\n<h2>الزنك — محرك النمو والمناعة:</h2>\n<p>نقص الزنك يُقدّر بأنه يؤثر على 17% من سكان العالم، وهو مرتبط بشكل مباشر بالتقزّم وضعف المناعة وزيادة حالات الإسهال عند الأطفال. الزنك ضروري لأكثر من 300 إنزيم في الجسم.</p>\n\n<h3>الاحتياجات اليومية (EAR):</h3>\n<ul>\n<li>أطفال 4–8 سنوات: 4.0 ملغ/يوم</li>\n<li>أطفال 9–13 سنة: 7.0 ملغ/يوم[17]</li>\n</ul>\n\n<h3>أغنى المصادر:</h3>\n<ul>\n<li>لحوم حمراء (أغنى مصدر)</li>\n<li>دواجن ومأكولات بحرية</li>\n<li>بذور اليقطين (اللب الأبيض)</li>\n<li>حمص وعدس</li>\n<li>مكسرات (كاجو، لوز)</li>\n<li>منتجات الألبان[31][30]</li>\n</ul>\n\n<p><strong>وجبة واحدة تغطي الاثنين:</strong> طبق كبدة بالبصل والفلفل الأخضر + أرز = فيتامين أ + زنك + حديد + فيتامين C في وجبة واحدة اقتصادية.</p>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<h2>Vitamin A — The Immunity and Vision Guardian:</h2>\n<p>Vitamin A deficiency is one of the most dangerous nutritional problems in children worldwide, affecting approximately 190 million preschool-age children. It is the leading cause of preventable blindness in children and significantly increases the risk of diarrheal diseases, measles, and their fatal complications.[27][28][29]</p>\n\n<h3>Daily Requirements (EAR):</h3>\n<ul>\n<li>Children 4–8 years: 275 mcg RAE/day</li>\n<li>Children 9–13 years: 420–445 mcg RAE/day[17]</li>\n</ul>\n\n<h3>Richest Sources:</h3>\n<ul>\n<li><strong>Animal sources (Retinol — ready for absorption):</strong> Liver (richest source of all), cod liver oil, eggs, whole milk</li>\n<li><strong>Plant sources (Beta-carotene — converts to vitamin A):</strong> Carrots, sweet potato, mango, spinach, molokhia, pumpkin[30][31]</li>\n</ul>\n\n<h2>Zinc — The Growth and Immunity Engine:</h2>\n<p>Zinc deficiency is estimated to affect 17% of the world's population and is directly linked to stunting, weakened immunity, and increased diarrhea in children. Zinc is essential for over 300 enzymes in the body.</p>\n\n<h3>Daily Requirements (EAR):</h3>\n<ul>\n<li>Children 4–8 years: 4.0 mg/day</li>\n<li>Children 9–13 years: 7.0 mg/day[17]</li>\n</ul>\n\n<h3>Richest Sources:</h3>\n<ul>\n<li>Red meat (richest source)</li>\n<li>Poultry and seafood</li>\n<li>Pumpkin seeds</li>\n<li>Chickpeas and lentils</li>\n<li>Nuts (cashews, almonds)</li>\n<li>Dairy products[31][30]</li>\n</ul>\n\n<p><strong>One meal that covers both:</strong> A plate of liver with onions and green pepper + rice = vitamin A + zinc + iron + vitamin C in one economical meal.</p>\n</div>",
+      "sources_ar": [
+        "WHO. (2020). Vitamin A deficiency.",
+        "Stevens, G. A., et al. (2022). Global burden of vitamin A deficiency. Nutrients, 14(5), 950.",
+        "IOM. (2001). Dietary Reference Intakes for Vitamin A, Vitamin K, Arsenic, Boron, Chromium, Copper, Iodine, Iron, Manganese, Molybdenum, Nickel, Silicon, Vanadium, and Zinc. National Academies Press."
+      ],
+      "sources_en": [
+        "WHO. (2020). Vitamin A deficiency.",
+        "Stevens, G. A., et al. (2022). Global burden of vitamin A deficiency. Nutrients, 14(5), 950.",
+        "IOM. (2001). Dietary Reference Intakes for Vitamin A, Vitamin K, Arsenic, Boron, Chromium, Copper, Iodine, Iron, Manganese, Molybdenum, Nickel, Silicon, Vanadium, and Zinc. National Academies Press."
+      ],
+      "tags_ar": [
+        "فيتامين أ",
+        "الزنك",
+        "المناعة",
+        "النمو",
+        "العمى الليلي",
+        "كبدة",
+        "جزر",
+        "تغذية الأطفال",
+        "المغذيات الدقيقة",
+        "التقزم"
+      ],
+      "tags_en": [
+        "Vitamin A",
+        "Zinc",
+        "Immunity",
+        "Growth",
+        "Night Blindness",
+        "Liver",
+        "Carrots",
+        "Child Nutrition",
+        "Micronutrients",
+        "Stunting"
+      ],
+      "meta": {
+        "meta_title_ar": "فيتامين أ والزنك — درع المناعة ومحرك النمو",
+        "meta_title_en": "Vitamin A & Zinc — Immunity Shield & Growth Engine",
+        "meta_description_ar": "نقص فيتامين أ يصيب 190 مليون طفل. تعرف على مصادر فيتامين أ والزنك المتوفرة في مصر ووجبة واحدة تغطي الاثنين.",
+        "meta_description_en": "Vitamin A deficiency affects 190 million children. Learn about vitamin A and zinc sources available in Egypt and one meal that covers both.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "فيتامين أ والزنك — درع المناعة ومحرك النمو",
+        "og_title_en": "Vitamin A & Zinc — The Immunity Shield and Growth Engine",
+        "og_description_ar": "وجبة واحدة اقتصادية تغطي فيتامين أ والزنك والحديد وفيتامين C.",
+        "og_description_en": "One economical meal covers vitamin A, zinc, iron, and vitamin C."
+      }
+    },
+    {
+      "id": 13,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "الكالسيوم وفيتامين د — ثنائي بناء عظام طفلك",
+      "title_en": "Calcium & Vitamin D — The Bone-Building Duo for Your Child",
+      "slug_ar": "الكالسيوم-وفيتامين-د",
+      "slug_en": "calcium-and-vitamin-d",
+      "quick_summary_ar": [
+        "90% من كتلة العظام تتكوّن قبل سن 18 سنة",
+        "نقص فيتامين د منتشر بشكل واسع عند الأطفال المصريين",
+        "الكالسيوم بدون فيتامين د لا يُمتص بشكل فعّال"
+      ],
+      "quick_summary_en": [
+        "90% of bone mass is formed before age 18",
+        "Vitamin D deficiency is widespread among Egyptian children",
+        "Calcium without vitamin D is not effectively absorbed"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>سنوات الطفولة والمراهقة هي \"نافذة الفرصة\" لبناء عظام قوية تستمر مدى الحياة. حوالي 90% من الكتلة العظمية القصوى تتكوّن قبل سن 18 سنة. إذا لم يحصل الطفل على كمية كافية من الكالسيوم وفيتامين د خلال هذه الفترة، يصبح أكثر عرضة لهشاشة العظام والكسور في المستقبل.</p>\n\n<h2>الكالسيوم:</h2>\n<h3>الاحتياج اليومي:</h3>\n<ul>\n<li>أطفال 4–8 سنوات: 800 ملغ/يوم</li>\n<li>أطفال 9–12 سنة: 1,100 ملغ/يوم</li>\n</ul>\n\n<h3>مصادر غنية:</h3>\n<ul>\n<li>لبن (كوب 250 مل = ~300 ملغ كالسيوم)</li>\n<li>زبادي (عبوة 200 جم = ~250 ملغ)</li>\n<li>جبن أبيض (50 جم = ~300 ملغ)</li>\n<li>سردين بالعظام</li>\n<li>سبانخ مطبوخة وبروكلي</li>\n<li>تين مجفف[31]</li>\n</ul>\n\n<h2>فيتامين د — المنظّم:</h2>\n<p>فيتامين د ضروري لامتصاص الكالسيوم من الأمعاء. بدونه، حتى لو أكل الطفل ما يكفي من الكالسيوم، فلن يستفيد منه جسمه بالكامل.</p>\n\n<h3>مصادره:</h3>\n<ul>\n<li>أشعة الشمس (15–20 دقيقة يومياً — الذراعين والوجه مكشوفة)</li>\n<li>أسماك دهنية (سلمون، تونة، سردين)</li>\n<li>صفار البيض</li>\n<li>لبن وعصائر مُدعّمة بفيتامين د</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Childhood and adolescent years are the \"window of opportunity\" for building strong bones that last a lifetime. Approximately 90% of peak bone mass is formed before age 18. If a child does not receive adequate calcium and vitamin D during this period, they become more susceptible to osteoporosis and fractures in the future.</p>\n\n<h2>Calcium:</h2>\n<h3>Daily Requirements:</h3>\n<ul>\n<li>Children 4–8 years: 800 mg/day</li>\n<li>Children 9–12 years: 1,100 mg/day</li>\n</ul>\n\n<h3>Rich Sources:</h3>\n<ul>\n<li>Milk (250 ml cup = ~300 mg calcium)</li>\n<li>Yogurt (200g container = ~250 mg)</li>\n<li>White cheese (50g = ~300 mg)</li>\n<li>Sardines with bones</li>\n<li>Cooked spinach and broccoli</li>\n<li>Dried figs[31]</li>\n</ul>\n\n<h2>Vitamin D — The Regulator:</h2>\n<p>Vitamin D is essential for calcium absorption from the intestines. Without it, even if the child eats enough calcium, their body will not fully benefit from it.</p>\n\n<h3>Sources:</h3>\n<ul>\n<li>Sunlight (15–20 minutes daily — arms and face exposed)</li>\n<li>Fatty fish (salmon, tuna, sardines)</li>\n<li>Egg yolk</li>\n<li>Vitamin D-fortified milk and juices</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "IOM. (2011). Dietary Reference Intakes for Calcium and Vitamin D. National Academies Press.",
+        "NHS. (2023). Food sources of vitamins and minerals for children."
+      ],
+      "sources_en": [
+        "IOM. (2011). Dietary Reference Intakes for Calcium and Vitamin D. National Academies Press.",
+        "NHS. (2023). Food sources of vitamins and minerals for children."
+      ],
+      "tags_ar": [
+        "كالسيوم",
+        "فيتامين د",
+        "عظام",
+        "هشاشة العظام",
+        "لبن",
+        "أشعة الشمس",
+        "تغذية الأطفال",
+        "المغذيات الدقيقة",
+        "نمو",
+        "ألبان"
+      ],
+      "tags_en": [
+        "Calcium",
+        "Vitamin D",
+        "Bones",
+        "Osteoporosis",
+        "Milk",
+        "Sunlight",
+        "Child Nutrition",
+        "Micronutrients",
+        "Growth",
+        "Dairy"
+      ],
+      "meta": {
+        "meta_title_ar": "الكالسيوم وفيتامين د — ثنائي بناء عظام طفلك",
+        "meta_title_en": "Calcium & Vitamin D — Bone-Building Duo",
+        "meta_description_ar": "90% من كتلة العظام تتكون قبل 18 سنة. تعرف على مصادر الكالسيوم وفيتامين د ولماذا لا ينفع أحدهما بدون الآخر.",
+        "meta_description_en": "90% of bone mass forms before age 18. Learn about calcium and vitamin D sources and why one doesn't work without the other.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "الكالسيوم وفيتامين د — ثنائي بناء عظام طفلك",
+        "og_title_en": "Calcium & Vitamin D — The Bone-Building Duo for Your Child",
+        "og_description_ar": "كوب لبن = 300 ملغ كالسيوم. لكن بدون فيتامين د لن يستفيد منه الجسم.",
+        "og_description_en": "A cup of milk = 300mg calcium. But without vitamin D, the body won't benefit."
+      }
+    },
+    {
+      "id": 14,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "اليود — العنصر الذي يحمي ذكاء طفلك",
+      "title_en": "Iodine — The Element That Protects Your Child's Intelligence",
+      "slug_ar": "اليود-يحمي-ذكاء-طفلك",
+      "slug_en": "iodine-protects-child-intelligence",
+      "quick_summary_ar": [
+        "نقص اليود يسبب تأخراً في النمو العقلي والجسدي للأطفال",
+        "أكثر من 60% من الأطفال في بعض دول الشرق الأوسط يعانون من نقص اليود",
+        "الحل بسيط: استخدام الملح المعالج باليود في الطبخ اليومي"
+      ],
+      "quick_summary_en": [
+        "Iodine deficiency causes mental and physical developmental delays in children",
+        "Over 60% of children in some Middle Eastern countries suffer from iodine deficiency",
+        "The solution is simple: using iodized salt in daily cooking"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>اليود عنصر ضروري لإنتاج هرمونات الغدة الدرقية التي تتحكم في نمو الدماغ والجهاز العصبي خلال فترة الطفولة. نقص اليود هو أكبر سبب يمكن الوقاية منه للإعاقة الذهنية عند الأطفال حول العالم.</p>\n<p>في منطقة الشرق الأوسط وشمال أفريقيا، تتجاوز نسبة نقص اليود 60% بين الأطفال في عدة دول منها الجزائر والمغرب والسودان.[32]</p>\n\n<h2>الاحتياج اليومي (EAR):</h2>\n<ul>\n<li>أطفال 4–8 سنوات: 65 ميكروغرام/يوم</li>\n<li>أطفال 9–13 سنة: 73 ميكروغرام/يوم[17]</li>\n</ul>\n\n<h2>مصادر اليود:</h2>\n<ul>\n<li>الملح المعالج باليود (أسهل وأرخص مصدر — ملعقة صغيرة تحتوي ~45 ميكروغرام)</li>\n<li>الأسماك والمأكولات البحرية</li>\n<li>منتجات الألبان</li>\n<li>البيض</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Iodine is an essential element for producing thyroid hormones that control brain and nervous system development during childhood. Iodine deficiency is the leading preventable cause of intellectual disability in children worldwide.</p>\n<p>In the Middle East and North Africa region, iodine deficiency exceeds 60% among children in several countries including Algeria, Morocco, and Sudan.[32]</p>\n\n<h2>Daily Requirements (EAR):</h2>\n<ul>\n<li>Children 4–8 years: 65 mcg/day</li>\n<li>Children 9–13 years: 73 mcg/day[17]</li>\n</ul>\n\n<h2>Iodine Sources:</h2>\n<ul>\n<li>Iodized salt (easiest and cheapest source — one teaspoon contains ~45 mcg)</li>\n<li>Fish and seafood</li>\n<li>Dairy products</li>\n<li>Eggs</li>\n</ul>\n</div>",
+      "practical_tips_ar": [
+        "عند شراء الملح، تأكد أن العبوة مكتوب عليها \"ملح معالج باليود\" أو \"Iodized Salt\". استخدمه في الطبخ اليومي لكن لا تفرط — الحد الأقصى للملح للأطفال أقل بكثير من الكبار."
+      ],
+      "practical_tips_en": [
+        "When buying salt, make sure the package reads \"Iodized Salt\". Use it in daily cooking but don't overdo it — the maximum salt limit for children is much lower than for adults."
+      ],
+      "sources_ar": [
+        "IFPRI. (2024). Overcoming the triple burden of malnutrition in the MENA region.",
+        "IOM. (2001). Dietary Reference Intakes for Iodine."
+      ],
+      "sources_en": [
+        "IFPRI. (2024). Overcoming the triple burden of malnutrition in the MENA region.",
+        "IOM. (2001). Dietary Reference Intakes for Iodine."
+      ],
+      "tags_ar": [
+        "اليود",
+        "الغدة الدرقية",
+        "ذكاء الطفل",
+        "الملح المعالج",
+        "النمو العقلي",
+        "المغذيات الدقيقة",
+        "الشرق الأوسط",
+        "تغذية الأطفال",
+        "الإعاقة الذهنية",
+        "أسماك"
+      ],
+      "tags_en": [
+        "Iodine",
+        "Thyroid",
+        "Child Intelligence",
+        "Iodized Salt",
+        "Mental Development",
+        "Micronutrients",
+        "Middle East",
+        "Child Nutrition",
+        "Intellectual Disability",
+        "Fish"
+      ],
+      "meta": {
+        "meta_title_ar": "اليود — العنصر الذي يحمي ذكاء طفلك",
+        "meta_title_en": "Iodine — Protects Your Child's Intelligence",
+        "meta_description_ar": "نقص اليود أكبر سبب للإعاقة الذهنية التي يمكن الوقاية منها عند الأطفال. الحل بسيط: الملح المعالج باليود في الطبخ اليومي.",
+        "meta_description_en": "Iodine deficiency is the leading preventable cause of intellectual disability in children. The solution is simple: iodized salt in daily cooking.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "اليود — العنصر الذي يحمي ذكاء طفلك",
+        "og_title_en": "Iodine — The Element That Protects Your Child's Intelligence",
+        "og_description_ar": "أكثر من 60% من أطفال بعض دول الشرق الأوسط يعانون من نقص اليود.",
+        "og_description_en": "Over 60% of children in some Middle Eastern countries suffer from iodine deficiency."
+      }
+    },
+    {
+      "id": 15,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "التنوع الغذائي — لماذا 5 مجموعات يومياً أهم من كمية الأكل",
+      "title_en": "Dietary Diversity — Why 5 Food Groups Daily Matters More Than Quantity",
+      "slug_ar": "التنوع-الغذائي",
+      "slug_en": "dietary-diversity",
+      "quick_summary_ar": [
+        "التنوع الغذائي مؤشر علمي معتمد من FAO على كفاية المغذيات الدقيقة",
+        "الطفل يحتاج أطعمة من 5 مجموعات مختلفة على الأقل يومياً",
+        "التنوع لا يعني الغلاء — بل الذكاء في اختيار الأطعمة المتاحة"
+      ],
+      "quick_summary_en": [
+        "Dietary diversity is a FAO-approved scientific indicator of micronutrient adequacy",
+        "A child needs foods from at least 5 different food groups daily",
+        "Diversity doesn't mean expense — but smart selection of available foods"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>التنوع الغذائي (Dietary Diversity) هو عدد المجموعات الغذائية المختلفة التي يتناولها الفرد خلال 24 ساعة. منظمة الأغذية والزراعة (FAO) طوّرت مقياس التنوع الغذائي (Dietary Diversity Score — DDS) كمؤشر بسيط وموثوق لتقييم مدى كفاية المغذيات الدقيقة في النظام الغذائي.[3][33]</p>\n\n<h2>المجموعات الغذائية العشر (معيار FAO):</h2>\n<ol>\n<li>حبوب ونشويات — أرز، مكرونة، خبز</li>\n<li>بقوليات — فول، عدس، حمص</li>\n<li>مكسرات وبذور — لوز، جوز، لب</li>\n<li>ألبان — لبن، زبادي، جبن</li>\n<li>لحوم ودواجن وأسماك — أي نوع</li>\n<li>بيض</li>\n<li>خضروات ورقية داكنة — سبانخ، ملوخية، جرجير</li>\n<li>فواكه وخضروات غنية بفيتامين أ — جزر، مانجو، بطاطا حلوة</li>\n<li>خضروات أخرى — طماطم، خيار، كوسة</li>\n<li>فواكه أخرى — موز، تفاح، برتقال</li>\n</ol>\n<p><strong>الحد الأدنى المقبول:</strong> تناول أطعمة من 5 مجموعات أو أكثر يومياً يُعد مؤشراً على كفاية المغذيات الدقيقة.[34][2]</p>\n\n<h2>مثال ليوم متنوع بميزانية محدودة:</h2>\n<ul>\n<li><strong>إفطار:</strong> فول (بقوليات) + خبز (نشويات) + طماطم (خضروات) = 3 مجموعات</li>\n<li><strong>غداء:</strong> أرز (نشويات) + دجاج (لحوم) + ملوخية (ورقية داكنة) + سلطة (خضروات) = 4 مجموعات</li>\n<li><strong>عشاء:</strong> بيض (بيض) + جبن (ألبان) + خيار (خضروات) = 3 مجموعات</li>\n<li><strong>سناك:</strong> موز (فاكهة) + لب (مكسرات) = 2 مجموعات</li>\n</ul>\n<p><strong>المجموع: 8 مجموعات من 10 — تنوع ممتاز!</strong></p>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Dietary Diversity is the number of different food groups consumed by an individual within 24 hours. The Food and Agriculture Organization (FAO) developed the Dietary Diversity Score (DDS) as a simple and reliable indicator to assess micronutrient adequacy in the diet.[3][33]</p>\n\n<h2>The Ten Food Groups (FAO Standard):</h2>\n<ol>\n<li>Cereals and starches — rice, pasta, bread</li>\n<li>Legumes — fava beans, lentils, chickpeas</li>\n<li>Nuts and seeds — almonds, walnuts, seeds</li>\n<li>Dairy — milk, yogurt, cheese</li>\n<li>Meat, poultry, and fish — any type</li>\n<li>Eggs</li>\n<li>Dark green leafy vegetables — spinach, molokhia, arugula</li>\n<li>Vitamin A-rich fruits and vegetables — carrots, mango, sweet potato</li>\n<li>Other vegetables — tomato, cucumber, zucchini</li>\n<li>Other fruits — banana, apple, orange</li>\n</ol>\n<p><strong>Minimum acceptable level:</strong> Consuming foods from 5 or more food groups daily is an indicator of micronutrient adequacy.[34][2]</p>\n\n<h2>Example of a Diverse Day on a Limited Budget:</h2>\n<ul>\n<li><strong>Breakfast:</strong> Fava beans (legumes) + bread (starches) + tomato (vegetables) = 3 groups</li>\n<li><strong>Lunch:</strong> Rice (starches) + chicken (meat) + molokhia (dark leafy greens) + salad (vegetables) = 4 groups</li>\n<li><strong>Dinner:</strong> Eggs (eggs) + cheese (dairy) + cucumber (vegetables) = 3 groups</li>\n<li><strong>Snack:</strong> Banana (fruit) + seeds (nuts) = 2 groups</li>\n</ul>\n<p><strong>Total: 8 groups out of 10 — excellent diversity!</strong></p>\n</div>",
+      "sources_ar": [
+        "FAO. (2011). Guidelines for measuring household and individual dietary diversity.",
+        "Hanley-Cook, G. T., et al. (2024). Minimum dietary diversity for adolescents. American Journal of Clinical Nutrition."
+      ],
+      "sources_en": [
+        "FAO. (2011). Guidelines for measuring household and individual dietary diversity.",
+        "Hanley-Cook, G. T., et al. (2024). Minimum dietary diversity for adolescents. American Journal of Clinical Nutrition."
+      ],
+      "tags_ar": [
+        "التنوع الغذائي",
+        "DDS",
+        "FAO",
+        "مجموعات غذائية",
+        "المغذيات الدقيقة",
+        "ميزانية محدودة",
+        "تغذية الأطفال",
+        "بقوليات",
+        "خضروات",
+        "فواكه"
+      ],
+      "tags_en": [
+        "Dietary Diversity",
+        "DDS",
+        "FAO",
+        "Food Groups",
+        "Micronutrients",
+        "Budget",
+        "Child Nutrition",
+        "Legumes",
+        "Vegetables",
+        "Fruits"
+      ],
+      "meta": {
+        "meta_title_ar": "التنوع الغذائي — 5 مجموعات يومياً أهم من كمية الأكل",
+        "meta_title_en": "Dietary Diversity — 5 Daily Groups Over Quantity",
+        "meta_description_ar": "التنوع الغذائي مؤشر FAO على كفاية المغذيات. تعلم كيف تغطي 8 مجموعات غذائية من 10 بميزانية مصرية محدودة.",
+        "meta_description_en": "Dietary diversity is a FAO indicator of nutrient adequacy. Learn how to cover 8 out of 10 food groups on a limited Egyptian budget.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "التنوع الغذائي — لماذا 5 مجموعات يومياً أهم من كمية الأكل",
+        "og_title_en": "Dietary Diversity — Why 5 Food Groups Daily Matters More Than Quantity",
+        "og_description_ar": "8 مجموعات غذائية من 10 بميزانية محدودة — تنوع ممتاز! تعلم كيف.",
+        "og_description_en": "8 out of 10 food groups on a limited budget — excellent diversity! Learn how."
+      }
+    },
+    {
+      "id": 16,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "تغذية الطفل حسب العمر — ماذا يحتاج في كل مرحلة",
+      "title_en": "Child Nutrition by Age — What They Need at Every Stage",
+      "slug_ar": "تغذية-الطفل-حسب-العمر",
+      "slug_en": "child-nutrition-by-age",
+      "quick_summary_ar": [
+        "احتياجات الطفل الغذائية تتغير بشكل كبير مع كل مرحلة عمرية",
+        "ما يكفي طفلاً في الرابعة لا يكفي مراهقاً في الثانية عشرة",
+        "جدول عملي يوضح الحصص الموصى بها لكل فئة عمرية"
+      ],
+      "quick_summary_en": [
+        "A child's nutritional needs change significantly with each age stage",
+        "What suffices for a 4-year-old doesn't suffice for a 12-year-old",
+        "A practical table showing recommended servings for each age group"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>احتياجات الطفل الغذائية ليست ثابتة — بل تتغير مع كل مرحلة نمو. معرفة هذه الاحتياجات يساعدك على تقديم كميات مناسبة وعناصر غذائية كافية لكل عمر.</p>\n\n<h2>الحصص اليومية الموصى بها حسب العمر:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>المغذي</th><th>4–8 سنوات</th><th>9–13 سنة</th></tr></thead>\n<tbody>\n<tr><td>السعرات الحرارية</td><td>1,200–1,400</td><td>1,600–2,200</td></tr>\n<tr><td>البروتين (جم/يوم)</td><td>19</td><td>34</td></tr>\n<tr><td>الألياف (جم/يوم)</td><td>25</td><td>26–31</td></tr>\n<tr><td>الكالسيوم (ملغ/يوم)</td><td>1,000</td><td>1,300</td></tr>\n<tr><td>الحديد (ملغ/يوم)</td><td>10</td><td>8</td></tr>\n<tr><td>فيتامين د (وحدة/يوم)</td><td>600</td><td>600</td></tr>\n<tr><td>فيتامين أ (ميكروغرام/يوم)</td><td>400</td><td>600</td></tr>\n<tr><td>الزنك (ملغ/يوم)</td><td>5</td><td>8</td></tr>\n</tbody>\n</table>\n\n<h2>نصائح عملية حسب المرحلة:</h2>\n<h3>الفئة العمرية 4–8 سنوات:</h3>\n<ul>\n<li>قدّم حصصاً صغيرة متعددة (3 وجبات + 2 سناك)</li>\n<li>اجعل الطعام ملوّناً وجذاباً بصرياً</li>\n<li>لا تجبر الطفل على إنهاء طبقه — احترم إشارات الشبع</li>\n<li>قدّم أطعمة جديدة مع أطعمة مألوفة</li>\n</ul>\n\n<h3>الفئة العمرية 9–13 سنة:</h3>\n<ul>\n<li>زِد حجم حصص البروتين والكالسيوم لدعم طفرة النمو</li>\n<li>شجّع الأطفال على المشاركة في تحضير الطعام</li>\n<li>علّمهم قراءة البطاقة الغذائية واتخاذ قرارات صحية</li>\n<li>انتبه لزيادة احتياج البنات من الحديد بعد بدء الدورة الشهرية</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>A child's nutritional needs are not static — they change with each growth stage. Knowing these needs helps you provide appropriate quantities and adequate nutrients for each age.</p>\n\n<h2>Recommended Daily Servings by Age:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Nutrient</th><th>4–8 years</th><th>9–13 years</th></tr></thead>\n<tbody>\n<tr><td>Calories</td><td>1,200–1,400</td><td>1,600–2,200</td></tr>\n<tr><td>Protein (g/day)</td><td>19</td><td>34</td></tr>\n<tr><td>Fiber (g/day)</td><td>25</td><td>26–31</td></tr>\n<tr><td>Calcium (mg/day)</td><td>1,000</td><td>1,300</td></tr>\n<tr><td>Iron (mg/day)</td><td>10</td><td>8</td></tr>\n<tr><td>Vitamin D (IU/day)</td><td>600</td><td>600</td></tr>\n<tr><td>Vitamin A (mcg/day)</td><td>400</td><td>600</td></tr>\n<tr><td>Zinc (mg/day)</td><td>5</td><td>8</td></tr>\n</tbody>\n</table>\n\n<h2>Practical Tips by Stage:</h2>\n<h3>Age Group 4–8 years:</h3>\n<ul>\n<li>Offer small, multiple servings (3 meals + 2 snacks)</li>\n<li>Make food colorful and visually appealing</li>\n<li>Don't force the child to finish their plate — respect satiety cues</li>\n<li>Introduce new foods alongside familiar ones</li>\n</ul>\n\n<h3>Age Group 9–13 years:</h3>\n<ul>\n<li>Increase protein and calcium portions to support the growth spurt</li>\n<li>Encourage children to participate in food preparation</li>\n<li>Teach them to read nutrition labels and make healthy decisions</li>\n<li>Pay attention to girls' increased iron needs after the onset of menstruation</li>\n</ul>\n</div>",
+      "sources_ar": [
+        "IOM. (2005). Dietary Reference Intakes. National Academies Press."
+      ],
+      "sources_en": [
+        "IOM. (2005). Dietary Reference Intakes. National Academies Press."
+      ],
+      "tags_ar": [
+        "تغذية حسب العمر",
+        "حصص غذائية",
+        "سعرات حرارية",
+        "نمو الأطفال",
+        "مراهقة",
+        "كالسيوم",
+        "حديد",
+        "بروتين",
+        "تغذية الأطفال",
+        "جدول غذائي"
+      ],
+      "tags_en": [
+        "Age-based Nutrition",
+        "Food Servings",
+        "Calories",
+        "Child Growth",
+        "Adolescence",
+        "Calcium",
+        "Iron",
+        "Protein",
+        "Child Nutrition",
+        "Nutrition Table"
+      ],
+      "meta": {
+        "meta_title_ar": "تغذية الطفل حسب العمر — جدول الحصص لكل مرحلة",
+        "meta_title_en": "Child Nutrition by Age — Servings Table per Stage",
+        "meta_description_ar": "جدول عملي يوضح السعرات والبروتين والكالسيوم والحديد الموصى بها لكل فئة عمرية من 4 إلى 13 سنة.",
+        "meta_description_en": "A practical table showing recommended calories, protein, calcium, and iron for each age group from 4 to 13 years.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "تغذية الطفل حسب العمر — ماذا يحتاج في كل مرحلة",
+        "og_title_en": "Child Nutrition by Age — What They Need at Every Stage",
+        "og_description_ar": "ما يكفي طفلاً في الرابعة لا يكفي مراهقاً في الثانية عشرة. تعرف على التفاصيل.",
+        "og_description_en": "What suffices for a 4-year-old doesn't suffice for a 12-year-old. Learn the details."
+      }
+    },
+    {
+      "id": 17,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "نقص التغذية مقابل فرط التغذية — العبء المزدوج الذي يهدد مصر",
+      "title_en": "Undernutrition vs Overnutrition — The Double Burden Threatening Egypt",
+      "slug_ar": "نقص-التغذية-مقابل-فرط-التغذية",
+      "slug_en": "undernutrition-vs-overnutrition",
+      "quick_summary_ar": [
+        "مصر تعاني من \"العبء المزدوج\": نقص تغذية وسمنة في نفس الوقت",
+        "13% من الأطفال يعانون من التقزم و15.7% من الوزن الزائد — أحياناً في نفس الأسرة",
+        "فهم الفرق بين الأنواع المختلفة لسوء التغذية هو الخطوة الأولى للحل"
+      ],
+      "quick_summary_en": [
+        "Egypt suffers from a \"double burden\": undernutrition and obesity simultaneously",
+        "13% of children suffer from stunting and 15.7% from overweight — sometimes in the same family",
+        "Understanding the difference between types of malnutrition is the first step to a solution"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>سوء التغذية ليس فقط \"نقص الوزن\" — بل يشمل طيفاً واسعاً من المشكلات الغذائية. مصر تواجه ما يُعرف بالعبء المزدوج للتغذية (Double Burden of Malnutrition)، حيث يتعايش نقص التغذية والسمنة جنباً إلى جنب، أحياناً في نفس الأسرة أو حتى نفس الطفل.[20][35][36]</p>\n\n<h2>أشكال سوء التغذية في مصر:</h2>\n\n<h3>1. نقص التغذية (Undernutrition):</h3>\n<ul>\n<li><strong>التقزم (Stunting):</strong> قصر القامة مقارنة بالعمر — يعكس سوء تغذية مزمن. 13% من أطفال مصر تحت 5 سنوات</li>\n<li><strong>الهزال (Wasting):</strong> نحافة شديدة مقارنة بالطول — يعكس سوء تغذية حاد. 8% من أطفال مصر تحت 5 سنوات</li>\n<li><strong>نقص الوزن (Underweight):</strong> وزن أقل من المتوسط مقارنة بالعمر. 7% من أطفال مصر تحت 5 سنوات</li>\n<li><strong>نقص المغذيات الدقيقة (Hidden Hunger):</strong> نقص في الحديد أو فيتامين أ أو الزنك أو اليود — قد يكون موجوداً حتى عند الأطفال ذوي الوزن الطبيعي</li>\n</ul>\n\n<h3>2. فرط التغذية (Overnutrition):</h3>\n<ul>\n<li><strong>الوزن الزائد (Overweight):</strong> 15.7% من أطفال مصر تحت 5 سنوات</li>\n<li><strong>السمنة (Obesity):</strong> نسبة متزايدة مع التقدم في العمر</li>\n</ul>\n\n<h3>3. العبء المزدوج:</h3>\n<p>في مصر، يمكن أن تجد في نفس الأسرة أماً تعاني من السمنة وطفلاً يعاني من التقزم — وهذا ما يُسمى بالعبء المزدوج. السبب غالباً هو نظام غذائي غني بالسعرات الفارغة (نشويات مكررة وسكر) لكنه فقير بالمغذيات الأساسية.[20][36]</p>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>Malnutrition is not just \"underweight\" — it encompasses a wide spectrum of nutritional problems. Egypt faces what is known as the Double Burden of Malnutrition, where undernutrition and obesity coexist side by side, sometimes in the same family or even the same child.[20][35][36]</p>\n\n<h2>Forms of Malnutrition in Egypt:</h2>\n\n<h3>1. Undernutrition:</h3>\n<ul>\n<li><strong>Stunting:</strong> Short stature compared to age — reflects chronic malnutrition. 13% of Egyptian children under 5</li>\n<li><strong>Wasting:</strong> Severe thinness compared to height — reflects acute malnutrition. 8% of Egyptian children under 5</li>\n<li><strong>Underweight:</strong> Weight below average for age. 7% of Egyptian children under 5</li>\n<li><strong>Micronutrient deficiencies (Hidden Hunger):</strong> Deficiency in iron, vitamin A, zinc, or iodine — may be present even in children with normal weight</li>\n</ul>\n\n<h3>2. Overnutrition:</h3>\n<ul>\n<li><strong>Overweight:</strong> 15.7% of Egyptian children under 5</li>\n<li><strong>Obesity:</strong> Increasing rate with age</li>\n</ul>\n\n<h3>3. The Double Burden:</h3>\n<p>In Egypt, you can find in the same family a mother suffering from obesity and a child suffering from stunting — this is what is called the double burden. The cause is often a diet rich in empty calories (refined starches and sugar) but poor in essential nutrients.[20][36]</p>\n</div>",
+      "sources_ar": [
+        "Global Nutrition Report. (2024). Egypt nutrition profile.",
+        "UNICEF/WHO/World Bank. (2023). Joint malnutrition estimates for Egypt.",
+        "WHO. (2024). Double burden of malnutrition. WHO policy brief."
+      ],
+      "sources_en": [
+        "Global Nutrition Report. (2024). Egypt nutrition profile.",
+        "UNICEF/WHO/World Bank. (2023). Joint malnutrition estimates for Egypt.",
+        "WHO. (2024). Double burden of malnutrition. WHO policy brief."
+      ],
+      "tags_ar": [
+        "العبء المزدوج",
+        "نقص التغذية",
+        "سمنة",
+        "تقزم",
+        "هزال",
+        "مصر",
+        "الجوع الخفي",
+        "مغذيات دقيقة",
+        "سوء التغذية",
+        "UNICEF"
+      ],
+      "tags_en": [
+        "Double Burden",
+        "Undernutrition",
+        "Obesity",
+        "Stunting",
+        "Wasting",
+        "Egypt",
+        "Hidden Hunger",
+        "Micronutrients",
+        "Malnutrition",
+        "UNICEF"
+      ],
+      "meta": {
+        "meta_title_ar": "نقص التغذية مقابل فرط التغذية — العبء المزدوج في مصر",
+        "meta_title_en": "Undernutrition vs Overnutrition — Egypt's Double Burden",
+        "meta_description_ar": "13% تقزم و15.7% وزن زائد بين أطفال مصر. تعرف على العبء المزدوج لسوء التغذية وأنواعه المختلفة.",
+        "meta_description_en": "13% stunting and 15.7% overweight among Egyptian children. Learn about the double burden of malnutrition and its types.",
+        "reading_time_minutes": 4,
+        "og_title_ar": "نقص التغذية مقابل فرط التغذية — العبء المزدوج",
+        "og_title_en": "Undernutrition vs Overnutrition — The Double Burden",
+        "og_description_ar": "أم تعاني من السمنة وطفل يعاني من التقزم في نفس الأسرة. هذا هو العبء المزدوج.",
+        "og_description_en": "A mother with obesity and a child with stunting in the same family. This is the double burden."
+      }
+    },
+    {
+      "id": 18,
+      "axis": 3,
+      "axis_ar": "المغذيات الدقيقة والتنوع الغذائي",
+      "axis_en": "Micronutrients & Dietary Diversity",
+      "week_range": "5-6",
+      "title_ar": "ملخص المغذيات الدقيقة — جدولك المرجعي الشامل",
+      "title_en": "Micronutrient Summary — Your Comprehensive Reference Table",
+      "slug_ar": "ملخص-المغذيات-الدقيقة",
+      "slug_en": "micronutrient-summary-reference",
+      "quick_summary_ar": [
+        "جدول مرجعي شامل يجمع كل ما تعلمناه عن المغذيات الدقيقة",
+        "الاحتياج اليومي والمصادر المصرية المتاحة ونصائح الامتصاص في مكان واحد",
+        "اطبعه وعلّقه في المطبخ كمرجع يومي سريع"
+      ],
+      "quick_summary_en": [
+        "A comprehensive reference table summarizing everything we learned about micronutrients",
+        "Daily requirements, available Egyptian sources, and absorption tips in one place",
+        "Print it and hang it in the kitchen as a quick daily reference"
+      ],
+      "content_ar": "<div dir=\"rtl\">\n<p>هذا الجدول يجمع كل ما تعلمناه في المحور الثالث حول المغذيات الدقيقة الأساسية لنمو طفلك. استخدمه كمرجع سريع عند التسوق أو تحضير الوجبات.</p>\n\n<h2>الجدول المرجعي الشامل:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>المغذي</th><th>الاحتياج اليومي (4–8 س)</th><th>الاحتياج اليومي (9–13 س)</th><th>أهم المصادر</th><th>نصيحة الامتصاص</th></tr></thead>\n<tbody>\n<tr><td>الحديد</td><td>10 ملغ</td><td>8 ملغ</td><td>كبدة، لحوم، فول، عدس، سبانخ</td><td>قدّمه مع فيتامين C؛ تجنب الشاي بعد الأكل</td></tr>\n<tr><td>فيتامين أ</td><td>400 ميكروغرام</td><td>600 ميكروغرام</td><td>كبدة، جزر، بطاطا حلوة، مانجو، سبانخ</td><td>الدهون تساعد على الامتصاص (زيت زيتون)</td></tr>\n<tr><td>الزنك</td><td>5 ملغ</td><td>8 ملغ</td><td>لحوم حمراء، بذور يقطين، حمص</td><td>المصادر الحيوانية أفضل امتصاصاً</td></tr>\n<tr><td>الكالسيوم</td><td>1,000 ملغ</td><td>1,300 ملغ</td><td>لبن، زبادي، جبن، سردين بالعظم</td><td>يحتاج فيتامين د للامتصاص</td></tr>\n<tr><td>فيتامين د</td><td>600 وحدة</td><td>600 وحدة</td><td>أشعة الشمس، أسماك دهنية، بيض</td><td>15–20 دقيقة شمس يومياً</td></tr>\n<tr><td>اليود</td><td>90 ميكروغرام</td><td>120 ميكروغرام</td><td>ملح معالج باليود، أسماك، ألبان</td><td>تأكد أن الملح \"معالج باليود\"</td></tr>\n<tr><td>فيتامين C</td><td>25 ملغ</td><td>45 ملغ</td><td>برتقال، ليمون، فلفل، جوافة، فراولة</td><td>يتلف بالحرارة — قدّم الفواكه طازجة</td></tr>\n</tbody>\n</table>\n\n<h2>ملخص التوصيات:</h2>\n<ul>\n<li>نوّع في المجموعات الغذائية — 5 على الأقل يومياً</li>\n<li>استخدم الملح المعالج باليود</li>\n<li>قدّم فيتامين C مع مصادر الحديد</li>\n<li>تأكد من حصول طفلك على 15–20 دقيقة شمس يومياً</li>\n<li>الكبدة مرة أسبوعياً تغطي فيتامين أ والحديد والزنك معاً</li>\n</ul>\n</div>",
+      "content_en": "<div dir=\"ltr\">\n<p>This table consolidates everything we learned in Axis Three about the essential micronutrients for your child's growth. Use it as a quick reference when shopping or preparing meals.</p>\n\n<h2>Comprehensive Reference Table:</h2>\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"width:100%; border-collapse:collapse;\">\n<thead><tr><th>Nutrient</th><th>Daily Need (4–8 y)</th><th>Daily Need (9–13 y)</th><th>Top Sources</th><th>Absorption Tip</th></tr></thead>\n<tbody>\n<tr><td>Iron</td><td>10 mg</td><td>8 mg</td><td>Liver, red meat, fava beans, lentils, spinach</td><td>Serve with vitamin C; avoid tea after meals</td></tr>\n<tr><td>Vitamin A</td><td>400 mcg</td><td>600 mcg</td><td>Liver, carrots, sweet potato, mango, spinach</td><td>Fat helps absorption (olive oil)</td></tr>\n<tr><td>Zinc</td><td>5 mg</td><td>8 mg</td><td>Red meat, pumpkin seeds, chickpeas</td><td>Animal sources have better absorption</td></tr>\n<tr><td>Calcium</td><td>1,000 mg</td><td>1,300 mg</td><td>Milk, yogurt, cheese, sardines with bones</td><td>Needs vitamin D for absorption</td></tr>\n<tr><td>Vitamin D</td><td>600 IU</td><td>600 IU</td><td>Sunlight, fatty fish, eggs</td><td>15–20 minutes of sun daily</td></tr>\n<tr><td>Iodine</td><td>90 mcg</td><td>120 mcg</td><td>Iodized salt, fish, dairy</td><td>Ensure salt is \"iodized\"</td></tr>\n<tr><td>Vitamin C</td><td>25 mg</td><td>45 mg</td><td>Orange, lemon, bell pepper, guava, strawberry</td><td>Destroyed by heat — serve fruits fresh</td></tr>\n</tbody>\n</table>\n\n<h2>Key Recommendations Summary:</h2>\n<ul>\n<li>Diversify across food groups — at least 5 daily</li>\n<li>Use iodized salt</li>\n<li>Serve vitamin C with iron sources</li>\n<li>Ensure your child gets 15–20 minutes of sunshine daily</li>\n<li>Liver once weekly covers vitamin A, iron, and zinc together</li>\n</ul>\n</div>",
+      "practical_tips_ar": [
+        "اطبع هذا الجدول وعلّقه على الثلاجة — سيصبح مرجعك اليومي السريع عند تحضير الوجبات والتسوق."
+      ],
+      "practical_tips_en": [
+        "Print this table and hang it on the fridge — it will become your quick daily reference when preparing meals and shopping."
+      ],
+      "sources_ar": [
+        "IOM. (2001, 2005, 2011). Dietary Reference Intakes series. National Academies Press.",
+        "NHS. (2023). Food sources of vitamins and minerals for children."
+      ],
+      "sources_en": [
+        "IOM. (2001, 2005, 2011). Dietary Reference Intakes series. National Academies Press.",
+        "NHS. (2023). Food sources of vitamins and minerals for children."
+      ],
+      "tags_ar": [
+        "مغذيات دقيقة",
+        "جدول مرجعي",
+        "حديد",
+        "كالسيوم",
+        "فيتامين أ",
+        "فيتامين د",
+        "زنك",
+        "يود",
+        "فيتامين C",
+        "ملخص غذائي"
+      ],
+      "tags_en": [
+        "Micronutrients",
+        "Reference Table",
+        "Iron",
+        "Calcium",
+        "Vitamin A",
+        "Vitamin D",
+        "Zinc",
+        "Iodine",
+        "Vitamin C",
+        "Nutrition Summary"
+      ],
+      "meta": {
+        "meta_title_ar": "ملخص المغذيات الدقيقة — جدول مرجعي شامل",
+        "meta_title_en": "Micronutrient Summary — Comprehensive Reference",
+        "meta_description_ar": "جدول مرجعي شامل يجمع الاحتياج اليومي والمصادر المصرية ونصائح الامتصاص لكل المغذيات الدقيقة الأساسية لطفلك.",
+        "meta_description_en": "A comprehensive reference table with daily needs, Egyptian sources, and absorption tips for all essential micronutrients for your child.",
+        "reading_time_minutes": 3,
+        "og_title_ar": "ملخص المغذيات الدقيقة — جدولك المرجعي الشامل",
+        "og_title_en": "Micronutrient Summary — Your Comprehensive Reference Table",
+        "og_description_ar": "اطبعه وعلّقه في المطبخ. كل ما يحتاجه طفلك من مغذيات في جدول واحد.",
+        "og_description_en": "Print it and hang it in the kitchen. All your child's nutrient needs in one table."
+      }
+    }
+  ]
+}

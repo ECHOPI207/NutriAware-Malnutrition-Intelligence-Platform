@@ -7,13 +7,16 @@
   },
   "nav": {
     "home": "Home",
+    "faq": "FAQ",
     "malnutritionTypes": "Nutrition Guide",
     "articles": "Articles",
     "aiTools": "AI Tools",
     "surveyManagement": "Survey Management",
     "surveyResults": "Survey Results",
     "assessment": "Checkup",
-    "knowledge": "Knowledge Hub",
+    "foodSafetyCheck": "Food Safety Check",
+    "knowledgeCenter": "Knowledge Center",
+    "program": "6-Week Program",
     "about": "About NutriAware",
     "contact": "Contact",
     "dashboard": "Dashboard",
@@ -103,7 +106,11 @@
     "subtitle": "Empowering Communities Through Nutrition Intelligence",
     "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to address global malnutrition challenges.",
     "cta": "Explore Now",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "startProgram": "Start the 6-Week Program",
+    "assessChild": "Assess Your Child",
+    "knowledgeCenter": "Knowledge Center",
+    "stories": "Stories"
   },
   "stats": {
     "title": "Global Malnutrition Crisis",
@@ -188,6 +195,8 @@
     "undernutrition": "Undernutrition",
     "overnutrition": "Overnutrition",
     "foodSafety": "Food Safety",
+    "balancedNutrition": "Balanced Nutrition",
+    "micronutrients": "Micronutrients",
     "children": "Children",
     "adults": "Adults",
     "filterByCategory": "Filter by Category",
@@ -251,6 +260,31 @@
     },
     "child": {
       "title": "Child Assessment"
+    },
+    "dds": {
+      "title": "Dietary Diversity Assessment (FAO DDS)",
+      "subtitle": "Based on FAO Dietary Diversity Score (DDS)",
+      "description": "DDS is a proxy indicator of micronutrient adequacy according to FAO. Please select the food groups consumed in the past 24 hours.",
+      "calculate": "Calculate Score",
+      "resultTitle": "Your Diversity Score",
+      "categories": {
+        "low": "Low Diversity",
+        "adequate": "Adequate Diversity"
+      },
+      "tips": {
+        "low": "Try to include more food groups in your daily meals to ensure you get all necessary nutrients.",
+        "adequate": "Great job! Maintaining a diverse diet helps ensure adequate micronutrient intake and overall health."
+      },
+      "groups": {
+        "grains": "Grains, roots, and tubers",
+        "legumes": "Legumes and nuts",
+        "dairy": "Dairy",
+        "meat": "Flesh foods (meat, fish, poultry)",
+        "eggs": "Eggs",
+        "vitaminA": "Vitamin A-rich fruits and vegetables",
+        "otherVeg": "Other vegetables",
+        "otherFruit": "Other fruits"
+      }
     }
   },
   "aiTools": {

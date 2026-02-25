@@ -25,6 +25,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MedicalConsultation from './MedicalConsultation';
+import { trackContactForm } from '@/services/activityTracker';
 
 
 
@@ -68,6 +69,8 @@ const Contact: React.FC = () => {
       };
 
       await addDoc(collection(db, 'feedback'), feedbackData);
+
+      trackContactForm(formData.message.substring(0, 50));
 
       toast({
         title: t('contact.success') || 'تم الإرسال بنجاح!',

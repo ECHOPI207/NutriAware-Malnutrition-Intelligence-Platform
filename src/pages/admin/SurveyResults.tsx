@@ -10,8 +10,8 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow
 } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import * as XLSX from 'xlsx';
-
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 // --- Research Imports ---
 import { performDataRefill } from '@/lib/refillScript';
 import { migrateEvaluationGender, validateGenderLogic } from '@/lib/genderMigration';
@@ -392,9 +392,28 @@ export default function SurveyResults() {
     trackReportExport('Academic Report APA', 'txt');
     toast({ title: '🎓 تقرير أكاديمي', description: 'تم استخراج التقرير بصيغة APA بنجاح.' });
   };
-  const hExcelStr = () => {
-    const ws = XLSX.utils.json_to_sheet(flatData); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "البيانات"); XLSX.writeFile(wb, "NutriAware_Raw_Excel.xlsx");
-    trackDownload('NutriAware_Raw_Excel.xlsx', 'xlsx');
+  const hExcelStr = async () => {
+    try {
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("البيانات");
+
+      if (flatData.length > 0) {
+        const headers = Object.keys(flatData[0]);
+        sheet.addRow(headers);
+
+        flatData.forEach(row => {
+          sheet.addRow(headers.map(h => row[h]));
+        });
+      }
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, "NutriAware_Raw_Excel.xlsx");
+      trackDownload('NutriAware_Raw_Excel.xlsx', 'xlsx');
+    } catch (error) {
+      console.error("Error generating Excel file:", error);
+      toast({ title: 'خطأ', description: 'حدث خطأ أثناء تحميل ملف الإكسيل', variant: 'destructive' });
+    }
   };
 
   if (loading) return <div className="p-8 text-center text-muted-foreground"><Loader2 className="animate-spin mx-auto mb-4" /> يتم إنشاء منصة التحليل البحثي...</div>;

@@ -12,6 +12,7 @@ export interface StoryItem {
     week: number;
     axis: number;
     cover_color: string;
+    cover_image?: string;
 }
 
 export const stories: StoryItem[] = [
@@ -25,10 +26,11 @@ export const stories: StoryItem[] = [
         description_en: 'An illustrated story about the importance of hygiene and handwashing before eating',
         age_range: '4-8',
         reading_time_minutes: 5,
-        pdf_filename: 'في صباح يومٍ جميل 1.PDF',
+        pdf_filename: 'story-1-beautiful-morning.pdf',
         week: 1,
         axis: 1,
         cover_color: '#10B981',
+        cover_image: '/stories/cover-1.png',
     },
     {
         id: 'story-2',
@@ -40,10 +42,11 @@ export const stories: StoryItem[] = [
         description_en: 'An illustrated story about balanced nutrition and choosing healthy food for children',
         age_range: '4-8',
         reading_time_minutes: 5,
-        pdf_filename: 'مي و الانش بوكس السحرى1.PDF',
+        pdf_filename: 'story-2-mai-magic-lunchbox.pdf',
         week: 2,
         axis: 1,
         cover_color: '#F59E0B',
+        cover_image: '/stories/cover-2.png',
     },
 ];
 

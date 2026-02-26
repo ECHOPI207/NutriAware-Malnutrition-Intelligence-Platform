@@ -4,6 +4,7 @@ import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
 // https://vite.dev/config/
+// Force Vite restart timestamp: Date().toISOString()
 export default defineConfig({
   plugins: [react(), svgr({
     svgrOptions: {

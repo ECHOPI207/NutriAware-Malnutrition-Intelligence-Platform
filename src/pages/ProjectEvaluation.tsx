@@ -28,7 +28,7 @@ const evaluationSchema = z.object({
     relationship: z.string().min(1, "مطلوب"),
     otherRelationship: z.string().optional(),
     parentAge: z.string().min(1, "مطلوب"),
-    parentProfession: z.string().min(1, "مطلوب"),
+    parentProfession: z.string().optional(),
     education: z.string().min(1, "مطلوب"),
     childrenCount: z.string().min(1, "مطلوب"),
     childAge: z.string().min(1, "مطلوب"),
@@ -41,30 +41,30 @@ const evaluationSchema = z.object({
     infoSources: z.array(z.string()).default([]),
     otherInfoSource: z.string().optional(),
   }).catchall(z.any()),
-  knowledge: z.record(z.string(), z.string().min(1, "مطلوب")),
-  foodSafetyKnowledge: z.record(z.string(), z.string().min(1, "مطلوب")),
-  attitudes: z.record(z.string(), z.string().min(1, "مطلوب")),
-  practices: z.record(z.string(), z.string().min(1, "مطلوب")),
-  foodSafetyPractices: z.record(z.string(), z.string().min(1, "مطلوب")),
-  dds: z.record(z.string(), z.string().min(1, "مطلوب")),
+  knowledge: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  foodSafetyKnowledge: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  attitudes: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  practices: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  foodSafetyPractices: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  dds: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
   intervention: z.object({
-    stories: z.record(z.string(), z.string().min(1, "مطلوب")),
+    stories: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
     platform: z.object({
-      usability: z.record(z.string(), z.string().min(1, "مطلوب")),
-      content: z.record(z.string(), z.string().min(1, "مطلوب")),
-      tools: z.record(z.string(), z.string().min(1, "مطلوب")),
-      consultation: z.record(z.string(), z.string().min(1, "مطلوب")),
+      usability: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+      content: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+      tools: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+      consultation: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
     }),
   }),
-  satisfaction: z.record(z.string(), z.string().min(1, "مطلوب")),
-  behavioralIntent: z.record(z.string(), z.string().min(1, "مطلوب")),
-  interventionFidelity: z.record(z.string(), z.string().min(1, "مطلوب")),
+  satisfaction: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  behavioralIntent: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
+  interventionFidelity: z.record(z.string(), z.string().min(1, "مطلوب")).default({}),
   nps: z.string().optional(),
   retrospective: z.object({
     knowledge: z.object({ before: z.string().min(1, "مطلوب"), after: z.string().min(1, "مطلوب") }),
     practices: z.object({ before: z.string().min(1, "مطلوب"), after: z.string().min(1, "مطلوب") }),
   }),
-  openQuestions: z.record(z.string(), z.string().optional()),
+  openQuestions: z.record(z.string(), z.string().optional()).default({}),
 });
 
 type EvaluationFormValues = z.infer<typeof evaluationSchema>;
@@ -303,7 +303,7 @@ const DEFAULT_CONFIG = {
   ],
   interventionFidelity: [
     { id: "IF1", text: "كم مرة دخلت إلى منصة NutriAware خلال فترة التدخل الست أسابيع؟", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لم أدخل", "2": "1–2 مرة", "3": "3–5 مرات", "4": "6–10 مرات", "5": "أكثر من 10 مرات" }, constructId: "IF" },
-    { id: "IF2", text: "كم عدد القصص التي قرأتها أو شاركت قراءتها مع طفلك؟", scaleType: "frequency", scaleLength: 5, customLabels: { "1": "لا شيء", "2": "قصة واحدة", "3": "2–3 قصص", "4": "4–6 قصص", "5": "جميع القصص" }, constructId: "IF" },
+    { id: "IF2", text: "كم عدد القصص التي قرأتها أو شاركت قراءتها مع طفلك؟", scaleType: "frequency", scaleLength: 3, customLabels: { "1": "لا شيء", "2": "قصة واحدة", "3": "قصتان (جميع القصص)" }, constructId: "IF" },
     { id: "IF3", text: "ما مدى التزامك بمراجعة المنصة والتفاعل مع محتواها بانتظام؟", scaleType: "frequency", scaleLength: 5, constructId: "IF" },
   ],
   openQuestions: [
@@ -483,6 +483,42 @@ const ProjectEvaluation = () => {
     }
   });
 
+  // --- Draft Persistence ---
+  const DRAFT_KEY = 'nutriaware_survey_draft';
+
+  // Load draft on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem(DRAFT_KEY);
+    if (savedDraft) {
+      try {
+        const parsed = JSON.parse(savedDraft);
+        // We only restore if the form is currently empty (to prevent overwriting fresh sub-configs)
+        form.reset(parsed);
+        toast({
+          title: "تم استعادة المسودة",
+          description: "تم استعادة إجاباتك السابقة تلقائياً.",
+          variant: "default",
+        });
+      } catch (e) {
+        console.error("Failed to parse draft:", e);
+      }
+    }
+  }, [form, toast]);
+
+  // Save draft on change (debounced via useEffect)
+  const formValues = form.watch();
+  useEffect(() => {
+    if (Object.keys(formValues).length > 0) {
+      const timer = setTimeout(() => {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(formValues));
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [formValues]);
+
+  // Clear draft on submit
+  const clearDraft = () => localStorage.removeItem(DRAFT_KEY);
+
   const onSubmit = async (data: EvaluationFormValues) => {
     setIsSubmitting(true);
     try {
@@ -505,6 +541,7 @@ const ProjectEvaluation = () => {
       console.log("Submitting data:", cleanData);
 
       await saveEvaluation(cleanData);
+      clearDraft();
       setIsSubmitted(true);
       trackSurveySubmit();
       toast({
@@ -533,10 +570,18 @@ const ProjectEvaluation = () => {
 
   const onError = (errors: any) => {
     console.log("Validation Errors:", errors);
+
+    // Collect unique section names with errors
+    const errorSections = new Set<string>();
+    Object.keys(errors).forEach(key => {
+      const sectionTitle = surveyConfig.formSectionHeaders?.[key] || key;
+      errorSections.add(sectionTitle);
+    });
+
     toast({
       variant: "destructive",
-      title: "بيانات ناقصة",
-      description: "يرجى التأكد من ملء جميع الحقول المطلوبة والمميزة باللون الأحمر."
+      title: "بيانات ناقصة في الأقسام التالية:",
+      description: Array.from(errorSections).join(" ، ")
     });
 
     // Find the first error and scroll to it recursively
@@ -638,9 +683,82 @@ const ProjectEvaluation = () => {
 
           <div className="max-w-2xl mx-auto p-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed shadow-sm">
             <p className="font-medium text-slate-900 dark:text-slate-200">{surveyConfig.meta?.institution || "كلية تكنولوجيا العلوم الصحية التطبيقية - برنامج تكنولوجيا التغذية وسلامة الغذاء"}</p>
-            <p>{surveyConfig.meta?.subtitle || "مشروع تخرج: سوء التغذية للأطفال"}</p>
+            <p>{surveyConfig.meta?.subtitle || "مشروع تخرج: سلامة الغذاء والتغذية المتوازنة لصحة الأطفال"}</p>
           </div>
         </div>
+
+        {process.env.NODE_ENV === 'development' && (
+          <div className="flex justify-end">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                const mockData: any = {
+                  consent: true,
+                  demographics: {
+                    relationship: "أب",
+                    parentAge: "25 – 35 سنة",
+                    education: "جامعي",
+                    childrenCount: "طفل واحد",
+                    childAge: "3 – 6 سنوات",
+                  },
+                  healthIndicators: {
+                    gender: "ذكر",
+                    weightPerception: "طبيعي",
+                    healthIssues: ["لا يعاني من أي مشاكل صحية"],
+                  },
+                  knowledge: {},
+                  foodSafetyKnowledge: {},
+                  attitudes: {},
+                  practices: {},
+                  foodSafetyPractices: {},
+                  dds: {},
+                  intervention: { stories: {}, platform: { usability: {}, content: {}, tools: {}, consultation: {} } },
+                  satisfaction: {},
+                  behavioralIntent: {},
+                  interventionFidelity: {},
+                  nps: "10",
+                  retrospective: { knowledge: { before: "5", after: "10" }, practices: { before: "5", after: "10" } },
+                  openQuestions: {}
+                };
+
+                // Fill Likert items
+                const fillLikert = (items: any[], path: string) => {
+                  items.forEach(q => {
+                    const keys = path.split('.');
+                    let current = mockData;
+                    for (let i = 0; i < keys.length - 1; i++) {
+                      current = current[keys[i]];
+                    }
+                    current[keys[keys.length - 1]][q.id] = "4";
+                  });
+                };
+
+                fillLikert(surveyConfig.knowledge, 'knowledge');
+                fillLikert(surveyConfig.foodSafetyKnowledge, 'foodSafetyKnowledge');
+                fillLikert(surveyConfig.attitudes, 'attitudes');
+                fillLikert(surveyConfig.practices, 'practices');
+                fillLikert(surveyConfig.foodSafetyPractices, 'foodSafetyPractices');
+                fillLikert(surveyConfig.intervention.stories, 'intervention.stories');
+                fillLikert(surveyConfig.intervention.platform.usability, 'intervention.platform.usability');
+                fillLikert(surveyConfig.intervention.platform.content, 'intervention.platform.content');
+                fillLikert(surveyConfig.intervention.platform.tools, 'intervention.platform.tools');
+                fillLikert(surveyConfig.intervention.platform.consultation, 'intervention.platform.consultation');
+                fillLikert(surveyConfig.satisfaction, 'satisfaction');
+                fillLikert(surveyConfig.behavioralIntent, 'behavioralIntent');
+                fillLikert(surveyConfig.interventionFidelity, 'interventionFidelity');
+
+                // DDS
+                surveyConfig.dds.forEach((item: any) => mockData.dds[item.id] = "1");
+
+                form.reset(mockData);
+                toast({ title: "تم التعبئة تلقائياً", description: "يمكنك الآن الضغط على إرسال للتجربة." });
+              }}
+            >
+              تعبئة تجريبية (Mock Fill)
+            </Button>
+          </div>
+        )}
 
         <form onSubmit={form.handleSubmit(onSubmit, onError)} className="flex flex-col gap-10">
 
@@ -672,7 +790,7 @@ const ProjectEvaluation = () => {
                           id="consent"
                           checked={field.value}
                           onCheckedChange={(checked) => field.onChange(checked)}
-                          className="w-6 h-6 border-2 data-[state=checked]:bg-primary data-[state=checked]:border-primary shrink-0"
+                          className="w-6 h-6 border-2 border-slate-400 dark:border-slate-500 data-[state=checked]:bg-primary data-[state=checked]:border-primary shrink-0"
                         />
                         <Label htmlFor="consent" className="font-bold text-lg cursor-pointer select-none flex-1">
                           {surveyConfig.consent?.agreeLabel || "أوافق على المشاركة في هذا البحث"}

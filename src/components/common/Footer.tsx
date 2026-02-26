@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Heart, Mail, Phone, MapPin, Users, Stethoscope, Brain, Activity } from "lucide-react";
+import { Heart, Mail, Phone, MapPin, Users, Stethoscope, Brain } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -15,6 +15,7 @@ const Footer: React.FC = () => {
   const smartServices = [
     { to: "/assessment", label: t('footer.nutritionAssessment') },
     { to: "/ai-tools", label: t('footer.aiTools') },
+    { to: "/stories", label: t('nav.stories') },
     { to: "/medical-consultation", label: t('footer.medicalConsultation') },
     { to: "/knowledge", label: t('footer.knowledgeCenter') }
   ];

@@ -143,7 +143,7 @@ const Home: React.FC = () => {
                   </div>
                   <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm md:text-base">{t('hero.knowledgeCenter')}</span>
                 </Link>
-                <Link to="/knowledge?category=stories" className="group p-4 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex items-center gap-3">
+                <Link to="/stories" className="group p-4 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex items-center gap-3">
                   <div className="p-2.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-xl group-hover:scale-110 transition-transform">
                     <BookOpen className="h-5 w-5" />
                   </div>

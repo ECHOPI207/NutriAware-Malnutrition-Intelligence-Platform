@@ -231,7 +231,7 @@ const Program: React.FC = () => {
                                                                     id={`item-${week.week}-${item.id}`}
                                                                     checked={checked}
                                                                     onCheckedChange={(c) => handleToggleItem(week.week, item.id, c as boolean)}
-                                                                    className="h-5 w-5 rounded-md"
+                                                                    className="h-5 w-5 rounded-md border-slate-400 dark:border-slate-500"
                                                                 />
                                                             </div>
                                                             <div className="flex-1 min-w-0">
@@ -239,6 +239,11 @@ const Program: React.FC = () => {
                                                                     <label
                                                                         htmlFor={`item-${week.week}-${item.id}`}
                                                                         className={`text-base font-semibold cursor-pointer truncate block ${checked ? 'line-through text-muted-foreground' : 'text-foreground hover:text-primary transition-colors'}`}
+                                                                        onClick={() => {
+                                                                            if (!checked) {
+                                                                                handleToggleItem(week.week, item.id, true);
+                                                                            }
+                                                                        }}
                                                                     >
                                                                         <Link to={item.link} onClick={(e) => e.stopPropagation()} className="hover:underline">
                                                                             {isRTL ? item.title_ar : item.title_en}

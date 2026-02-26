@@ -36,6 +36,8 @@ export interface InterventionArticle {
     tags_ar: string[];
     tags_en: string[];
     meta: ArticleMeta;
+    imageUrl?: string;
+    category?: string;
 }
 
 export interface AxisDefinition {

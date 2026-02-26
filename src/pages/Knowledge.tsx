@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import {
   ArrowRight, ArrowLeft, Search, BookOpen, Sparkles, ChevronRight,
   Wheat, ShieldCheck, Microscope, TrendingDown, TrendingUp, LayoutGrid
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { SurveyCTA } from '@/components/common/SurveyCTA';
 import { interventionArticles } from '@/data/interventionArticles';
+import { articles as awarenessArticles } from '@/data/articles';
 
 // Unified Article Interface handling both Firestore and Static data
 export interface UnifiedArticle {
@@ -114,12 +114,30 @@ const Knowledge: React.FC = () => {
   };
 
   const mappedStaticArticles: UnifiedArticle[] = useMemo(() => {
-    return interventionArticles.map(article => {
+    // 1. Awareness Articles
+    const awareness = awarenessArticles.map(article => {
+      const safeSlug = article.id;
+      return {
+        id: safeSlug,
+        title: article.title,
+        excerpt: article.excerpt,
+        category: article.category,
+        imageUrl: article.imageUrl || `https://picsum.photos/seed/nutri-aware-${safeSlug}/800/600`,
+        slug: safeSlug,
+        isStatic: true,
+      };
+    });
+
+    // 2. Intervention Articles
+    const interventions = interventionArticles.map(article => {
       const safeSlug = article.slug_en || '';
       const mockImageId = (article.axis * 10) + parseInt(safeSlug.replace(/\D/g, '') || '0');
-      let standardCategory = 'foodSafety';
-      if (article.axis === 2) standardCategory = 'balancedNutrition';
-      if (article.axis === 3) standardCategory = 'micronutrients';
+      // Use explicit category if defined, otherwise fallback to axis-based
+      let standardCategory = article.category || 'foodSafety';
+      if (!article.category) {
+        if (article.axis === 2) standardCategory = 'balancedNutrition';
+        if (article.axis === 3) standardCategory = 'micronutrients';
+      }
       const excerptEn = article.quick_summary_en?.length > 0 ? article.quick_summary_en[0] : article.content_en.substring(0, 100) + '...';
       const excerptAr = article.quick_summary_ar?.length > 0 ? article.quick_summary_ar[0] : article.content_ar.substring(0, 100) + '...';
       return {
@@ -127,15 +145,29 @@ const Knowledge: React.FC = () => {
         title: { en: article.title_en, ar: article.title_ar },
         excerpt: { en: excerptEn, ar: excerptAr },
         category: standardCategory,
-        imageUrl: `https://picsum.photos/seed/nutri${mockImageId}/800/600`,
+        imageUrl: article.imageUrl || `https://picsum.photos/seed/nutri${mockImageId}/800/600`,
         slug: safeSlug,
         isStatic: true,
         week: article.axis === 1 ? Math.ceil(parseInt(safeSlug.replace(/\D/g, '') || '0') / 3) : undefined,
       };
     });
+
+    return [...awareness, ...interventions];
   }, []);
 
-  const allArticles = useMemo(() => [...firestoreArticles, ...mappedStaticArticles], [firestoreArticles, mappedStaticArticles]);
+  const allArticles = useMemo(() => {
+    const combined = [...firestoreArticles, ...mappedStaticArticles];
+    // De-duplicate by title, prioritizing static articles
+    const uniqueMap = new Map<string, UnifiedArticle>();
+    combined.forEach(article => {
+      const titleKey = article.title.ar.trim().toLowerCase();
+      const existing = uniqueMap.get(titleKey);
+      if (!existing || (article.isStatic && !existing.isStatic)) {
+        uniqueMap.set(titleKey, article);
+      }
+    });
+    return Array.from(uniqueMap.values());
+  }, [firestoreArticles, mappedStaticArticles]);
 
   const filteredArticles = useMemo(() => {
     return allArticles.filter(article => {
@@ -156,11 +188,14 @@ const Knowledge: React.FC = () => {
     return content[lang] || content[lang === 'en' ? 'ar' : 'en'] || '';
   };
 
-  const catConfig = CATEGORY_CONFIG[selectedCategory] || CATEGORY_CONFIG.all;
-
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 24, scale: 0.97 },
-    visible: (i: number) => ({ opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, delay: i * 0.04, ease: [0.25, 0.46, 0.45, 0.94] } }),
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.45, delay: i * 0.04, ease: "easeOut" }
+    }),
   };
 
   return (

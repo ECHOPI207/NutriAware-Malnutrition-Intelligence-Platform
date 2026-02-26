@@ -23,15 +23,15 @@ export const faqData: FAQItem[] = [
         id: 'p1', category: 'platform',
         question_en: 'What is NutriAware?',
         question_ar: 'ما هي منصة نيوتري أوير؟',
-        answer_en: 'NutriAware is an intelligent, evidence-based digital health platform designed to combat malnutrition in Egypt through AI-driven assessment tools, personalized 6-week nutritional programming, and a comprehensive knowledge center.',
-        answer_ar: 'نيوتري أوير هي منصة صحية رقمية ذكية قائمة على الأدلة، مصممة لمكافحة سوء التغذية في مصر من خلال أدوات التقييم المدعومة بالذكاء الاصطناعي، والبرامج الغذائية المخصصة لمدة 6 أسابيع، ومركز معرفة شامل.'
+        answer_en: 'NutriAware is an intelligent, evidence-based digital health platform designed to promote food safety and balanced nutrition in Egypt through AI-driven assessment tools, personalized 6-week nutritional programming, and a comprehensive knowledge center.',
+        answer_ar: 'نيوتري أوير هي منصة صحية رقمية ذكية قائمة على الأدلة، مصممة لتعزيز سلامة الغذاء والتغذية المتوازنة في مصر من خلال أدوات التقييم المدعومة بالذكاء الاصطناعي، والبرامج الغذائية المخصصة لمدة 6 أسابيع، ومركز معرفة شامل.'
     },
     {
         id: 'p2', category: 'platform',
         question_en: 'Is the platform entirely free?',
         question_ar: 'هل المنصة مجانية بالكامل؟',
-        answer_en: 'Yes. NutriAware is a university graduation project for the Nutrition Technology & Food Safety program at October 6 University. All features, tools, and assessments are completely free for public use.',
-        answer_ar: 'نعم. نيوتري أوير هو مشروع تخرج جامعي لبرنامج تكنولوجيا التغذية وسلامة الغذاء بجامعة 6 أكتوبر. جميع الميزات والأدوات والتقييمات مجانية تماماً للاستخدام العام.'
+        answer_en: 'Yes. NutriAware is a university graduation project for the "Food Safety and Balanced Macronutrient and Micronutrient Intake in Children\'s Health" initiative at October 6 University. All features, tools, and assessments are completely free for public use.',
+        answer_ar: 'نعم. نيوتري أوير هو مشروع تخرج جامعي لمبادرة "سلامة الغذاء والتغذية المتوازنة لصحة الأطفال" بجامعة 6 أكتوبر. جميع الميزات والأدوات والتقييمات مجانية تماماً للاستخدام العام.'
     },
     {
         id: 'p3', category: 'platform',

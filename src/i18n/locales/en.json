@@ -16,6 +16,7 @@
     "assessment": "Checkup",
     "foodSafetyCheck": "Food Safety Check",
     "knowledgeCenter": "Knowledge Center",
+    "stories": "Stories Library",
     "program": "6-Week Program",
     "about": "About NutriAware",
     "contact": "Contact",
@@ -102,9 +103,9 @@
     "terms": "I agree to the Terms of Service and Privacy Policy"
   },
   "hero": {
-    "title": "Understanding Malnutrition",
+    "title": "Food Safety & Balanced Nutrition",
     "subtitle": "Empowering Communities Through Nutrition Intelligence",
-    "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to address global malnutrition challenges.",
+    "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to ensure Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health.",
     "cta": "Explore Now",
     "learnMore": "Learn More",
     "startProgram": "Start the 6-Week Program",
@@ -182,11 +183,11 @@
   "mission": {
     "title": "Our Mission",
     "subtitle": "Bridging Technology and Nutrition Science",
-    "description": "NutriAware is a university graduation project for the Nutrition Technology & Food Safety program, designed to raise awareness about malnutrition and provide accessible diagnostic support tools.",
+    "description": "NutriAware is a university graduation project for the Nutrition Technology & Food Safety program, designed to raise awareness about Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health and provide accessible diagnostic support tools.",
     "academic": "Academic Excellence",
     "academicDesc": "Research-backed content aligned with nutrition science standards",
     "social": "Social Impact",
-    "socialDesc": "Addressing real-world malnutrition challenges through technology",
+    "socialDesc": "Promoting Food Safety & Balanced Nutrition through technology",
     "accessible": "Accessible Tools",
     "accessibleDesc": "Free AI-powered assessment and guidance for everyone"
   },
@@ -485,7 +486,7 @@
   },
   "about": {
     "title": "About the Project",
-    "commitment": "This project represents our commitment to addressing global malnutrition challenges through innovative technology and evidence-based nutrition science.",
+    "commitment": "This project represents our commitment to addressing nutritional health through Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health using innovative technology and evidence-based nutrition science.",
     "university": {
       "name": "October 6 University",
       "faculty": "Applied Health Sciences Technology",
@@ -493,7 +494,7 @@
     },
     "team": {
       "title": "Project Team",
-      "subtitle": "Dedicated students working on malnutrition awareness"
+      "subtitle": "Dedicated students working on Food Safety & Balanced Nutrition awareness"
     },
     "supervisors": {
       "title": "Under Supervision",
@@ -526,7 +527,7 @@
         "title": "Check Your Health",
         "description": "Simple tools to evaluate your status:",
         "calculators": "Accurate calculators for Body Mass Index (BMI) and your daily Calorie & Nutrient needs.",
-        "child": "Child Assessment: Monitor your child's growth and detect early signs of malnutrition."
+        "child": "Child Assessment: Monitor your child's growth and ensure optimal health through balanced nutrient intake."
       },
       "expert": {
         "title": "Talk to Experts",

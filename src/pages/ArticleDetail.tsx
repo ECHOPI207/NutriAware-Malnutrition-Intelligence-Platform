@@ -13,6 +13,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { doc, getDoc, getDocs, collection, query, where, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { interventionArticles } from '@/data/interventionArticles';
+import { articles as awarenessArticles } from '@/data/articles';
 
 interface Article {
   id: string;
@@ -54,32 +55,32 @@ const ArticleDetail: React.FC = () => {
     try {
       setLoading(true);
 
-      // 1. Check static articles first
-      const staticArticle = interventionArticles.find(a => a.slug_en === slugOrId || a.slug_ar === slugOrId);
+      // 1. Check static articles first (intervention articles)
+      const staticIntervention = interventionArticles.find(a => a.slug_en === slugOrId || a.slug_ar === slugOrId);
 
-      if (staticArticle) {
+      if (staticIntervention) {
         let standardCategory = 'foodSafety';
-        if (staticArticle.axis === 2) standardCategory = 'balancedNutrition';
-        if (staticArticle.axis === 3) standardCategory = 'micronutrients';
+        if (staticIntervention.axis === 2) standardCategory = 'balancedNutrition';
+        if (staticIntervention.axis === 3) standardCategory = 'micronutrients';
 
-        const safeSlug = staticArticle.slug_en || '';
-        const mockImageId = (staticArticle.axis * 10) + parseInt(safeSlug.replace(/\D/g, '') || '0');
-        const excerptEn = staticArticle.quick_summary_en?.length > 0 ? staticArticle.quick_summary_en[0] : '';
-        const excerptAr = staticArticle.quick_summary_ar?.length > 0 ? staticArticle.quick_summary_ar[0] : '';
+        const safeSlug = staticIntervention.slug_en || '';
+        const mockImageId = (staticIntervention.axis * 10) + parseInt(safeSlug.replace(/\D/g, '') || '0');
+        const excerptEn = staticIntervention.quick_summary_en?.length > 0 ? staticIntervention.quick_summary_en[0] : '';
+        const excerptAr = staticIntervention.quick_summary_ar?.length > 0 ? staticIntervention.quick_summary_ar[0] : '';
 
-        const practicalTipsEn = staticArticle.practical_tips_en || [];
-        const practicalTipsAr = staticArticle.practical_tips_ar || [];
+        const practicalTipsEn = staticIntervention.practical_tips_en || [];
+        const practicalTipsAr = staticIntervention.practical_tips_ar || [];
 
         const mappedStatic: Article = {
           id: safeSlug,
-          title: { en: staticArticle.title_en, ar: staticArticle.title_ar },
+          title: { en: staticIntervention.title_en, ar: staticIntervention.title_ar },
           excerpt: { en: excerptEn, ar: excerptAr },
-          content: { en: staticArticle.content_en, ar: staticArticle.content_ar },
+          content: { en: staticIntervention.content_en, ar: staticIntervention.content_ar },
           category: standardCategory,
-          imageUrl: `https://picsum.photos/seed/nutri${mockImageId}/800/600`, // Matching placeholder
+          imageUrl: staticIntervention.imageUrl || `https://picsum.photos/seed/nutri${mockImageId}/800/600`,
           slug: safeSlug,
           isStatic: true,
-          tags: { en: staticArticle.tags_en || [], ar: staticArticle.tags_ar || [] },
+          tags: { en: staticIntervention.tags_en || [], ar: staticIntervention.tags_ar || [] },
           practicalTips: practicalTipsEn.length > 0 ? {
             en: 'Practical Tips',
             ar: 'نصائح عملية',
@@ -88,7 +89,7 @@ const ArticleDetail: React.FC = () => {
               ar: practicalTipsAr[i] || tip
             }))
           } : undefined,
-          sources: (staticArticle.sources_en || []).map((sourceUrl, i) => ({
+          sources: (staticIntervention.sources_en || []).map((sourceUrl) => ({
             title_en: 'Source',
             title_ar: 'المصدر',
             url: sourceUrl
@@ -97,6 +98,27 @@ const ArticleDetail: React.FC = () => {
 
         setArticle(mappedStatic);
         fetchRelated(standardCategory, mappedStatic.id);
+        setLoading(false);
+        return;
+      }
+
+      // 1b. Check awareness articles
+      const staticAwareness = awarenessArticles.find(a => a.id === slugOrId || a.title.en === slugOrId || a.title.ar === slugOrId);
+      if (staticAwareness) {
+        const mappedAwareness: Article = {
+          id: staticAwareness.id,
+          title: staticAwareness.title,
+          excerpt: staticAwareness.excerpt,
+          content: staticAwareness.content,
+          category: staticAwareness.category,
+          imageUrl: staticAwareness.imageUrl || `https://picsum.photos/seed/nutri-aware-${staticAwareness.id}/800/600`,
+          slug: staticAwareness.id,
+          isStatic: true,
+          tags: { en: [], ar: [] } // awareness articles in articles.ts don't have tags in the seen snippet
+        };
+
+        setArticle(mappedAwareness);
+        fetchRelated(staticAwareness.category, mappedAwareness.id);
         setLoading(false);
         return;
       }
@@ -147,8 +169,8 @@ const ArticleDetail: React.FC = () => {
       const firestoreRelated = snapshot.docs
         .map(d => ({ id: d.id, ...d.data() } as Article));
 
-      // Get static related
-      const staticRelated = interventionArticles
+      // Get static related (interventions)
+      const staticInterventionRelated = interventionArticles
         .filter(a => {
           let cat = 'foodSafety';
           if (a.axis === 2) cat = 'balancedNutrition';
@@ -167,12 +189,25 @@ const ArticleDetail: React.FC = () => {
             title: { en: a.title_en, ar: a.title_ar },
             excerpt: { en: excerptEn, ar: excerptAr },
             category: category,
-            imageUrl: `https://picsum.photos/seed/nutri${mockImageId}/800/600`,
+            imageUrl: a.imageUrl || `https://picsum.photos/seed/nutri${mockImageId}/800/600`,
             content: { en: '', ar: '' }
           } as Article;
         });
 
-      const allRelated = [...firestoreRelated, ...staticRelated]
+      // Get static related (awareness)
+      const staticAwarenessRelated = awarenessArticles
+        .filter(a => a.category === category)
+        .map(a => ({
+          id: a.id,
+          slug: a.id,
+          title: a.title,
+          excerpt: a.excerpt,
+          category: a.category,
+          imageUrl: a.imageUrl || `https://picsum.photos/seed/nutri-aware-${a.id}/800/600`,
+          content: a.content
+        }) as Article);
+
+      const allRelated = [...firestoreRelated, ...staticInterventionRelated, ...staticAwarenessRelated]
         .filter(a => a.id !== currentId && a.slug !== currentId)
         .slice(0, 3);
 

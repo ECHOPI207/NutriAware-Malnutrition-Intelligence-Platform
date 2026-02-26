@@ -10,83 +10,114 @@ export const axis1Articles: InterventionArticle[] = [
     {
         id: 1,
         axis: 1, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '1-2',
-        title_ar: 'المفاتيح الخمسة لغذاء آمن — دليل منظمة الصحة العالمية لحماية طفلك',
-        title_en: 'The Five Keys to Safer Food — WHO Guide to Protecting Your Child',
-        slug_ar: 'المفاتيح-الخمسة-لغذاء-آمن',
+        title_ar: 'المفاتيح الخمسة لضمان سلامة الغذاء',
+        title_en: 'The Five Keys to Safer Food',
+        slug_ar: 'المفاتيح-الخمسة-لضمان-سلامة-الغذاء',
         slug_en: 'five-keys-to-safer-food',
         quick_summary_ar: [
-            'كل عام يُصاب 600 مليون شخص حول العالم بأمراض منقولة بالغذاء',
-            'الأطفال تحت 5 سنوات يتحملون 40% من العبء العالمي لهذه الأمراض',
-            'خمس خطوات بسيطة يمكنها حماية أسرتك بالكامل',
+            'خمس خطوات بسيطة يمكن أن تنقذ صحة عائلتك بالكامل',
+            'تعرفي على الممارسات العلمية الأساسية الخمس لضمان سلامة طعام الأطفال',
+            'دليل عملي لوقاية طفلك من الأمراض المنقولة بالغذاء',
         ],
         quick_summary_en: [
-            'Every year, 600 million people worldwide are affected by foodborne diseases',
-            'Children under 5 bear 40% of the global burden of these diseases',
             'Five simple steps can protect your entire family',
+            'Learn the five essential scientific practices to ensure child food safety',
+            'A practical guide to protecting your child from foodborne illnesses',
         ],
         content_ar: `<div dir="rtl">
-<p>تُعد الأمراض المنقولة بالغذاء من أخطر التهديدات الصحية التي تواجه الأطفال. وفقاً لتقديرات منظمة الصحة العالمية (WHO)، يُصاب نحو 600 مليون شخص سنوياً بسبب تناول غذاء ملوّث، ويموت منهم 420,000 شخص، بينهم 125,000 طفل دون الخامسة. والأطفال هم الأكثر عرضة لهذه المخاطر بسبب أجهزتهم المناعية غير المكتملة النمو.[5][6]</p>
+<p>يُصاب نحو <strong>600 مليون شخص</strong> سنوياً — أي 1 من كل 10 أشخاص على كوكب الأرض — بسبب تناول غذاء ملوّث، ويموت منهم <strong>420,000 شخص</strong> سنوياً. الأرقام الأكثر إيلاماً تخص الأطفال: رغم أن الأطفال دون الخامسة لا يُمثّلون سوى 9% من سكان العالم، فإنهم يتحمّلون 40% من العبء الكلي للأمراض الغذائية ويموت منهم <strong>125,000 طفل سنوياً</strong>. المفارقة المؤلمة أن جميع هذه الوفيات تقريباً يمكن الوقاية منها باتباع ممارسات بسيطة وموثّقة علمياً.</p>
 
-<p>لمواجهة هذا التحدي، طوّرت منظمة الصحة العالمية برنامج "المفاتيح الخمسة لغذاء أكثر أماناً"، وهو إطار تثقيفي مُوجّه لكل من يتعامل مع الطعام، سواء في المنزل أو خارجه. وقد تُرجم هذا البرنامج إلى أكثر من 88 لغة واستُخدم في أكثر من 130 دولة حول العالم.[7][8]</p>
+<hr>
 
 <h2>المفتاح الأول: الحفاظ على النظافة</h2>
-<p>غسل اليدين بالماء والصابون لمدة 20 ثانية على الأقل قبل لمس الطعام وبعد استخدام المرحاض وبعد لمس الحيوانات. تنظيف جميع الأسطح والأدوات المستخدمة في تحضير الطعام بالماء الساخن والصابون. السبب: الكائنات الدقيقة الخطرة توجد في التربة والمياه والحيوانات والبشر، وتنتقل بسهولة عبر اليدين والأدوات وأسطح التحضير.[9]</p>
+<ul>
+<li>اغسلي يديكِ قبل لمس الطعام وأثناء تحضيره وبعد الخروج من الحمام.</li>
+<li>اغسلي ونظفي كل الأسطح والأدوات المستخدمة في تحضير الطعام.</li>
+<li>احمي المطبخ والطعام من الحشرات والحيوانات.</li>
+</ul>
+<p><strong>التفسير العلمي:</strong> الكائنات الدقيقة غالباً ما توجد في التربة والمياه والحيوانات والإنسان. وتنتقل هذه الكائنات عن طريق الأيدي، وفوط المسح، وأدوات المطبخ — خاصة ألواح التقطيع — ويمكن لأقل لمسة أن تنقلها إلى الطعام وتسبب الأمراض.</p>
 
-<h2>المفتاح الثاني: فصل الأطعمة النيئة عن المطبوخة</h2>
-<p>فصل اللحوم النيئة والدواجن والأسماك عن الأطعمة الأخرى أثناء التسوّق والتخزين والتحضير. استخدام ألواح تقطيع وسكاكين منفصلة للحوم النيئة. حفظ الأطعمة في أوعية مغلقة لمنع التلامس بين النيئ والمطبوخ. السبب: اللحوم النيئة قد تحتوي على بكتيريا مثل السالمونيلا والإيكولاي التي تنتقل عبر التلوث المتبادل (Cross-contamination).[10]</p>
+<hr>
 
-<h2>المفتاح الثالث: الطهي الجيد</h2>
-<p>طهي الطعام جيداً وخاصة اللحوم والدواجن والبيض والمأكولات البحرية. التأكد من وصول درجة الحرارة الداخلية للحوم إلى 70°م على الأقل. إعادة تسخين الطعام المطبوخ جيداً حتى الغليان. السبب: الطهي السليم يقتل جميع الكائنات الدقيقة الخطرة تقريباً.[11][7]</p>
+<h2>المفتاح الثاني: الفصل بين الأطعمة النيئة والمطبوخة</h2>
+<ul>
+<li>افصلي اللحوم والدواجن والأسماك النيئة عن الأطعمة الأخرى.</li>
+<li>استخدمي أدوات مستقلة (مثل السكاكين وألواح التقطيع) للتعامل مع الأطعمة النيئة.</li>
+<li>خزّني الطعام في أوعية محكمة لتجنب التلامس بين الأطعمة النيئة والمطبوخة.</li>
+</ul>
+<p><strong>التفسير العلمي:</strong> الأطعمة النيئة — خاصة اللحوم — قد تحتوي على ميكروبات خطيرة يمكن أن تنتقل إلى أطباق أخرى (مثل السلطات أو الأكل المطبوخ) أثناء التحضير أو التخزين، وهذا ما يسمى "التلوث المتبادل".</p>
 
-<h2>المفتاح الرابع: حفظ الطعام في درجات حرارة آمنة</h2>
-<p>عدم ترك الطعام المطبوخ في درجة حرارة الغرفة لأكثر من ساعتين. حفظ الأطعمة المطبوخة والقابلة للتلف في الثلاجة (تحت 5°م). عدم تخزين الطعام لفترات طويلة حتى في الثلاجة. "منطقة الخطر" هي بين 5°م و60°م — وفيها تتكاثر البكتيريا بسرعة مضاعفة كل 20 دقيقة.[10][11]</p>
+<hr>
 
-<h2>المفتاح الخامس: استخدام مياه ومواد خام آمنة</h2>
-<p>استخدام مياه نظيفة أو معالجتها. اختيار أطعمة طازجة وسليمة. غسل الفواكه والخضروات جيداً. التحقق من تواريخ الصلاحية. عدم استخدام أغذية منتهية الصلاحية مهما بدت سليمة ظاهرياً.[7]</p>
+<h2>المفتاح الثالث: اطهي الطعام جيداً</h2>
+<ul>
+<li>اطهي الطعام تماماً، خاصة اللحوم والدواجن والبيض والأسماك.</li>
+<li>يجب أن تصل حرارة الطعام إلى 70 درجة مئوية على الأقل لضمان سلامته.</li>
+<li>عند إعادة تسخين الطعام المطبوخ، يجب تسخينه جيداً حتى الغليان.</li>
+</ul>
+<p><strong>التفسير العلمي:</strong> الطهي الجيد يقتل تقريباً كل الكائنات الدقيقة الخطيرة. أثبتت الدراسات أن طهي الطعام حتى تصل حرارته إلى 70 درجة مئوية يساعد في ضمان استهلاكه بأمان. الأطعمة التي تتطلب اهتماماً خاصاً تشمل اللحم المفروم، والدواجن الكاملة، وقطع اللحم الكبيرة. </p>
+
+<hr>
+
+<h2>المفتاح الرابع: حافظي على الغذاء في درجات حرارة آمنة</h2>
+<ul>
+<li>لا تتركي الطعام المطبوخ في درجة حرارة الغرفة لأكثر من ساعتين.</li>
+<li>برّدي كل الأطعمة المطبوخة والقابلة للتلف فوراً (يفضل أقل من 5 درجات مئوية).</li>
+<li>لا تخزني الطعام لفترة طويلة حتى في الثلاجة.</li>
+</ul>
+<p><strong>التفسير العلمي:</strong> الكائنات الدقيقة يمكن أن تتكاثر بسرعة كبيرة إذا ترك الطعام في درجة حرارة الغرفة. ومن خلال الحفاظ على الحرارة أقل من 5 درجات أو فوق 60 درجة، يتم إبطاء أو وقف نمو هذه الميكروبات. (ملاحظة: بعض البكتيريا الخطيرة، مثل الليستيريا، يمكن أن تنمو في الثلاجة).</p>
+
+<hr>
+
+<h2>المفتاح الخامس: استخدمي المياه والمواد الخام الآمنة</h2>
+<ul>
+<li>استخدمي المياه الآمنة أو عالجيها لتصبح آمنة.</li>
+<li>اختاري الأطعمة الطازجة والسليمة.</li>
+<li>اختاري الأطعمة التي خضعت لعمليات معالجة تزيد من سلامتها (مثل الحليب المبستر).</li>
+<li>اغسلي الفواكه والخضروات جيداً، خاصة إذا كانت ستؤكل نيئة.</li>
+<li>لا تستخدمي الغذاء بعد انتهاء تاريخ صلاحيته.</li>
+</ul>
+<p><strong>التفسير العلمي:</strong> المواد الخام، بما في ذلك المياه والثلج، قد تكون ملوثة بالكائنات الدقيقة والكيميائيات الخطيرة. العفن الذي يظهر على الفواكه التالفة قد ينتج سموماً ضارة. الاختيار بعناية والغسل والتقشير يقلل من هذه المخاطر.
+
+<hr>
+
+<h2>جدول تطبيقي شامل: المفاتيح الخمسة في المطبخ المنزلي</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المفتاح</th><th>الممارسة الصحيحة</th></tr></thead>
+<tbody>
+<tr><td>النظافة</td><td>20 ثانية غسل يدين بالصابون؛ تعقيم ألواح التقطيع</td></tr>
+<tr><td>الفصل</td><td>لوح أحمر للحوم؛ لوح أخضر للخضار؛ رف سفلي للحوم في الثلاجة</td></tr>
+<tr><td>الطةي</td><td>الوصول لـ 70-74 درجة مئوية؛ الغليان عند إعادة التسخين</td></tr>
+<tr><td>التخزين</td><td>تبريد البقايا خلال ساعتين؛ الثلاجة &le; 4 درجات مئوية</td></tr>
+<tr><td>المواد الخام</td><td>مياه مفلترة؛ خضروات طازجة؛ لبن مبستر؛ فحص تاريخ الصلاحية</td></tr>
+</tbody>
+</table>
 </div>`,
         content_en: `<div dir="ltr">
-<p>Foodborne diseases are among the most dangerous health threats facing children. According to WHO estimates, approximately 600 million people fall ill annually from consuming contaminated food, with 420,000 deaths, including 125,000 children under five. Children are the most vulnerable to these risks due to their still-developing immune systems.[5][6]</p>
-
-<p>To combat this challenge, the World Health Organization developed the "Five Keys to Safer Food" program — an educational framework aimed at anyone who handles food, whether at home or elsewhere. This program has been translated into more than 88 languages and used in over 130 countries worldwide.[7][8]</p>
-
-<h2>Key 1: Keep Clean</h2>
-<p>Wash hands with soap and water for at least 20 seconds before touching food, after using the toilet, and after touching animals. Clean all surfaces and utensils used in food preparation with hot water and soap. Reason: Dangerous microorganisms are found in soil, water, animals, and people, and are easily transferred via hands, utensils, and preparation surfaces.[9]</p>
-
-<h2>Key 2: Separate Raw and Cooked</h2>
-<p>Separate raw meat, poultry, and fish from other foods during shopping, storage, and preparation. Use separate cutting boards and knives for raw meat. Store foods in sealed containers to prevent contact between raw and cooked items. Reason: Raw meat may contain bacteria such as Salmonella and E. coli that spread through cross-contamination.[10]</p>
-
-<h2>Key 3: Cook Thoroughly</h2>
-<p>Cook food thoroughly, especially meat, poultry, eggs, and seafood. Ensure that the internal temperature of meat reaches at least 70°C. Reheat cooked food thoroughly until boiling. Reason: Proper cooking kills virtually all dangerous microorganisms.[11][7]</p>
-
-<h2>Key 4: Keep Food at Safe Temperatures</h2>
-<p>Do not leave cooked food at room temperature for more than two hours. Store cooked and perishable foods in the refrigerator (below 5°C). Do not store food for extended periods even in the refrigerator. The "danger zone" is between 5°C and 60°C — bacteria double in number every 20 minutes within this range.[10][11]</p>
-
-<h2>Key 5: Use Safe Water and Raw Materials</h2>
-<p>Use clean water or treat it. Choose fresh and sound foods. Wash fruits and vegetables thoroughly. Check expiry dates. Do not use expired foods no matter how normal they appear on the outside.[7]</p>
+<h2>The Five Keys to Safer Food</h2>
+<p>WHO's essential guide to food safety in the domestic kitchen.</p>
 </div>`,
         sources_ar: [
-            'World Health Organization. (2026). Five keys to safer food. WHO.',
-            'World Health Organization. (2024). Food safety fact sheet. WHO.',
-            'WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.',
+            'WHO. (2026). Five keys to safer food manual. WHO.',
         ],
         sources_en: [
-            'World Health Organization. (2026). Five keys to safer food. WHO.',
-            'World Health Organization. (2024). Food safety fact sheet. WHO.',
-            'WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.',
+            'WHO. (2026). Five keys to safer food manual. WHO.',
         ],
-        tags_ar: ['سلامة الغذاء', 'غسل اليدين', 'التلوث الغذائي', 'منظمة الصحة العالمية', 'المفاتيح الخمسة', 'الطهي الآمن', 'حفظ الطعام', 'الأمراض المنقولة بالغذاء', 'حماية الأطفال', 'النظافة'],
-        tags_en: ['Food Safety', 'Handwashing', 'Food Contamination', 'WHO', 'Five Keys', 'Safe Cooking', 'Food Storage', 'Foodborne Diseases', 'Child Protection', 'Hygiene'],
+        tags_ar: ['سلامة الغذاء', 'المفاتيح الخمسة', 'نظافة الغذاء', 'وقاية الأطفال'],
+        tags_en: ['Food Safety', 'Five Keys', 'Food Hygiene', 'Child Protection'],
         meta: {
-            meta_title_ar: 'المفاتيح الخمسة لغذاء آمن — حماية طفلك',
-            meta_title_en: 'Five Keys to Safer Food — Protect Your Child',
-            meta_description_ar: 'دليل منظمة الصحة العالمية لحماية أسرتك من الأمراض المنقولة بالغذاء: النظافة، فصل الأطعمة، الطهي الجيد، الحرارة الآمنة، والمواد الخام السليمة.',
-            meta_description_en: 'WHO guide to protecting your family from foodborne diseases: hygiene, food separation, thorough cooking, safe temperatures, and safe raw materials.',
-            reading_time_minutes: 4,
-            og_title_ar: 'المفاتيح الخمسة لغذاء آمن — دليل WHO لحماية طفلك',
-            og_title_en: 'Five Keys to Safer Food — WHO Guide to Protecting Your Child',
-            og_description_ar: '600 مليون شخص يصابون سنوياً بأمراض الغذاء. تعرف على المفاتيح الخمسة لحماية أسرتك.',
-            og_description_en: '600 million people are affected by foodborne diseases annually. Learn the five keys to protect your family.',
+            meta_title_ar: 'المفاتيح الخمسة لضمان سلامة الغذاء',
+            meta_title_en: 'The Five Keys to Safer Food',
+            meta_description_ar: 'تعرفي على الممارسات الخمس الأساسية لضمان سلامة غذاء طفلك وحماية أسرتك.',
+            meta_description_en: 'Learn the five essential practices to ensure your child\'s food safety and protect your family.',
+            reading_time_minutes: 5,
+            og_title_ar: 'المفاتيح الخمسة لضمان سلامة الغذاء',
+            og_title_en: 'The Five Keys to Safer Food',
+            og_description_ar: 'تعرفي على الممارسات الخمس الأساسية لضمان سلامة غذاء طفلك.',
+            og_description_en: 'Learn the five essential practices to ensure your child\'s food safety.',
         },
+        imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80',
+        category: 'foodSafety',
     },
 
     // ─────────────────────────────────────────────
@@ -110,76 +141,171 @@ export const axis1Articles: InterventionArticle[] = [
             'Every step from buying food to serving it is a control point you can manage',
         ],
         content_ar: `<div dir="rtl">
-<p>نظام HACCP (تحليل المخاطر ونقاط التحكم الحرجة) هو منهج علمي طورته إدارة الغذاء والدواء الأمريكية (FDA) لضمان سلامة الغذاء من خلال تحديد المخاطر المحتملة والسيطرة عليها في كل مرحلة من مراحل إعداد الطعام. ورغم أن هذا النظام يُستخدم أساساً في المصانع والمطاعم، إلا أن مبادئه قابلة للتطبيق في المطبخ المنزلي بشكل مبسّط وفعّال.[12][10]</p>
+<p>نظام HACCP (Hazard Analysis and Critical Control Points — تحليل المخاطر ونقاط التحكم الحرجة) ليس مجرد بروتوكول بيروقراطي للمصانع — بل هو منهج علمي وقائي جوهره فكرة بسيطة وعميقة في آنٍ معاً: الوقاية أولى من العلاج، وتحديد المشكلة قبل حدوثها أفضل بكثير من معالجتها بعد وقوعها. مبادئه قابلة للتكيّف مع المطبخ المنزلي بفاعلية مُثبتة علمياً.</p>
 
-<h2>أنواع المخاطر التي تهدد غذاء طفلك:</h2>
-<ul>
-<li><strong>المخاطر البيولوجية:</strong> البكتيريا (السالمونيلا، الإيكولاي، الليستيريا)، الفيروسات (نوروفيروس، فيروس الكبد A)، والطفيليات. هذه هي الأكثر شيوعاً وخطورة على الأطفال.</li>
-<li><strong>المخاطر الكيميائية:</strong> بقايا المبيدات الحشرية على الفواكه والخضروات، السموم الفطرية (الأفلاتوكسين) في المكسرات والحبوب المخزنة بشكل سيء، ومواد التنظيف.</li>
-<li><strong>المخاطر الفيزيائية:</strong> شظايا العظام، قطع الزجاج، الحصى، أو أي جسم غريب في الطعام.[12]</li>
-</ul>
+<hr>
 
-<h2>نقاط التحكم الحرجة في مطبخك:</h2>
+<h2>السياق التاريخي — من الفضاء إلى مطبخك</h2>
+<p>ظهر نظام HACCP في الستينيات على يد علماء NASA وشركة Pillsbury لضمان سلامة الغذاء المُرسَل للفضاء — إذ كان تلوّث الطعام في رحلة فضائية كارثةً غير قابلة للمعالجة. اعتمدته لاحقاً الـ FDA رسمياً في التسعينيات، ثم أصبح المعيار الدولي الإلزامي لصناعة الغذاء في معظم دول العالم. وما يجعله صالحاً للمنزل هو أن المبادئ السبعة التي يقوم عليها ليست مُقيَّدة بالحجم أو الطاقة الإنتاجية — بل هي عملية تفكير منهجية في المخاطر يمكن لأي شخص تطبيقها.</p>
+
+<hr>
+
+<h2>المبادئ السبعة لنظام HACCP — الإطار العلمي الكامل</h2>
+<p>يقوم النظام على سبعة مبادئ متتالية يبني كلٌّ منها على سابقه:</p>
+
 <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
-<thead><tr><th>المرحلة</th><th>المخاطر</th><th>الإجراء الوقائي</th></tr></thead>
+<thead><tr><th>المبدأ</th><th>المحتوى</th></tr></thead>
 <tbody>
-<tr><td>الشراء</td><td>أغذية منتهية الصلاحية أو مخزنة بشكل خاطئ</td><td>تحقق من تاريخ الصلاحية؛ اشترِ المبرّدات أخيراً</td></tr>
-<tr><td>التخزين</td><td>تكاثر البكتيريا في حرارة غير مناسبة</td><td>ضع الأغذية القابلة للتلف في الثلاجة فوراً (&lt;5°م)</td></tr>
-<tr><td>التحضير</td><td>التلوث المتبادل</td><td>اغسل يديك؛ استخدم أدوات منفصلة للنيئ والمطبوخ</td></tr>
-<tr><td>الطهي</td><td>بقاء بكتيريا حية</td><td>تأكد من الطهي الجيد (≥70°م للحوم)</td></tr>
-<tr><td>التقديم</td><td>التعرض لحرارة الغرفة طويلاً</td><td>لا تترك الطعام خارج الثلاجة أكثر من ساعتين</td></tr>
-<tr><td>بقايا الطعام</td><td>تكاثر البكتيريا</td><td>برّد البقايا سريعاً؛ سخّنها جيداً قبل إعادة التقديم</td></tr>
+<tr><td>١. تحليل المخاطر</td><td>تحديد جميع المخاطر البيولوجية والكيميائية والفيزيائية المحتملة في كل مرحلة</td></tr>
+<tr><td>٢. تحديد نقاط التحكم الحرجة (CCPs)</td><td>تحديد المراحل التي يمكن فيها السيطرة الفعّالة على المخاطر أو القضاء عليها</td></tr>
+<tr><td>٣. وضع الحدود الحرجة</td><td>تحديد القيم القابلة للقياس (درجة حرارة، وقت، pH) التي يجب الوصول إليها عند كل نقطة تحكم</td></tr>
+<tr><td>٤. إجراءات المراقبة</td><td>كيف وبأي تكرار يُراقَب الالتزام بالحدود الحرجة</td></tr>
+<tr><td>٥. الإجراءات التصحيحية</td><td>ماذا يُفعل إذا لم تُستوفَ الحدود الحرجة في نقطة ما</td></tr>
+<tr><td>٦. التحقق والمراجعة</td><td>التأكد الدوري من أن النظام يعمل بشكل صحيح وفعّال</td></tr>
+<tr><td>٧. التوثيق والسجلات</td><td>الاحتفاظ بسجلات موثَّقة لكل مرحلة للمراجعة والتحسين المستمر</td></tr>
 </tbody>
 </table>
+
+<p>في المطبخ المنزلي، لا نحتاج إلى تطبيق المبادئ السبعة بصيغتها الرسمية البيروقراطية — لكن المبادئ الأولى الخمسة قابلة للتطبيق الفوري بمنطقها العملي دون توثيق رسمي.</p>
+
+<hr>
+
+<h2>أنواع المخاطر الثلاثة — فهم العدو قبل مواجهته</h2>
+
+<h3>أولاً: المخاطر البيولوجية — الأخطر والأكثر شيوعاً</h3>
+<p>المخاطر البيولوجية هي مسببات الأمراض الحيّة (بكتيريا، فيروسات، طفيليات) التي تتكاثر في ظروف معينة وتُفرز سموماً تُصيب الجهاز الهضمي والجهاز العصبي وأعضاء أخرى. أبرز مسبّبات الأمراض الغذائية للأطفال:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الكائن الدقيق</th><th>المصدر الرئيسي</th><th>الأعراض الرئيسية</th><th>درجة الحرارة القاتلة له</th></tr></thead>
+<tbody>
+<tr><td>Salmonella</td><td>الدجاج النيء، البيض، منتجات الألبان غير المبسترة</td><td>إسهال، حمى، قيء (6–72 ساعة)</td><td>74°م</td></tr>
+<tr><td>E. coli (O157:H7)</td><td>اللحم المفروم النيء، العصائر غير المبسترة</td><td>إسهال دموي، فشل كلوي (2–8 أيام)</td><td>71°م</td></tr>
+<tr><td>Listeria monocytogenes</td><td>الجبن الطري، اللحوم المُصنَّعة، الأسماك المدخّنة</td><td>تسمم دم، التهاب سحايا، خطر على الحوامل والأطفال</td><td>74°م (ويتكاثر في الثلاجة)</td></tr>
+<tr><td>Staphylococcus aureus</td><td>ينتقل من يدي مُعدِّ الطعام (الجروح المُصابة)</td><td>قيء شديد خلال 1–6 ساعات</td><td>السم يتحمّل الحرارة — الوقاية بالنظافة الشخصية فقط</td></tr>
+<tr><td>Norovirus</td><td>مياه ملوّثة، مأكولات بحرية نيئة</td><td>قيء وإسهال مفاجئ وشديد</td><td>63°م مع غسل اليدين الجيد</td></tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><strong>تحذير خاص بـ Listeria:</strong> هي الوحيدة التي تتكاثر بشكل فعّال في درجات حرارة الثلاجة (حتى 4°م)، مما يعني أن مجرد التبريد لا يكفي لمنعها. الحل: احترام مُدد صلاحية المنتجات داخل الثلاجة بدقة.</p>
+</blockquote>
+
+<hr>
+
+<h3>ثانياً: المخاطر الكيميائية — الخطر الصامت</h3>
+
+<h4>أ. الأفلاتوكسين (Aflatoxin) — السم الفطري الأشد خطورة على الأطفال</h4>
+<p>الأفلاتوكسين هو مجموعة سموم تُفرزها فطريات جنس Aspergillus التي تنمو على الحبوب والمكسرات وبذور الزيت المخزنة في رطوبة عالية أو حرارة مرتفعة. النوع الأخطر هو AFB1 الذي يُمثّل 75% من حالات التلوث الغذائي بالأفلاتوكسين. ما يجعله خاصاً بالأطفال:</p>
+<ul>
+<li><strong>تأثير على النمو:</strong> تتبّطئ تخليق البروتين مما يُسبّب قِصَر القامة وتأخر النمو لدى الأطفال دون الخامسة.</li>
+<li><strong>تأثير على الدماغ:</strong> ربطت دراسة طولية في مالاوي بين التعرض للأفلاتوكسين في الرضاعة وصغر محيط الرأس بشكل مستمر حتى ما بعد عمر السنتين — مما يعني تأثيراً مباشراً على حجم الدماغ.</li>
+<li><strong>تأثير مناعي:</strong> يُضعف مقاومة الطفل للأمراض المعدية بشكل موثَّق.</li>
+<li><strong>خطر سرطاني طويل المدى:</strong> AFB1 مُصنَّف كمادة مُسرطنة من الفئة الأولى من قِبَل IARC مع ارتباطه بسرطان الكبد.</li>
+</ul>
+
+<p><strong>أين يتواجد في المطبخ؟</strong></p>
+<ul>
+<li>الفول السوداني وزبدته المخزنة في بيئة رطبة أو حارة.</li>
+<li>الذرة والقمح المُخزَّن بشكل خاطئ.</li>
+<li>البهارات القديمة (فلفل أحمر، كمون، كركم) التي تجاوزت مدة صلاحيتها.</li>
+</ul>
+
+<p><strong>كيف تحمي طفلك؟</strong></p>
+<ul>
+<li>تخزين المكسرات والحبوب في أوعية محكمة الإغلاق في مكان بارد وجاف.</li>
+<li>عدم استخدام ما يظهر عليه عفن أو تغيّر لون — حتى بعد إزالة الجزء المُتعفّن، قد تكون السموم قد انتشرت في المنتج كاملاً.</li>
+<li>شراء كميات صغيرة متجددة بدلاً من التخزين طويل الأمد.</li>
+</ul>
+
+<h4>ب. بقايا المبيدات الحشرية</h4>
+<p>الفواكه والخضروات قد تحمل بقايا مبيدات على قشرتها. الغسيل بالماء الجاري يُزيل جزءاً كبيراً منها، أما الأنواع ذات القشرة الخشنة (الفراولة، العنب، التفاح) فتحتاج فرشاة تنظيف أو نقع لمدة دقيقة في ماء مع ملعقة صغيرة من بيكربونات الصوديوم.</p>
+
+<h4>ج. مواد التنظيف</h4>
+<p>بقايا سائل الجلي أو المطهّرات على الأدوات قد تنتقل للطعام. الشطف الجيد بالماء النظيف بعد التنظيف ضروري، مع الحرص على عدم استخدام نفس القماشة لتنظيف أسطح التحضير والأسطح الأخرى.</p>
+
+<hr>
+
+<h3>ثالثاً: المخاطر الفيزيائية — الأقل شيوعاً والأكثر ووضوحاً</h3>
+<ul>
+<li>شظايا العظام في اللحوم المطحونة أو المفرومة.</li>
+<li>بذور وعظمات الفاكهة (الزيتون، المشمش، البرقوق) — خطرة على الأطفال الصغار.</li>
+<li>شظايا أدوات الطبخ المكسورة (قشور أدوات الألومنيوم، شظايا شوّاية).</li>
+<li>حصى صغيرة في الأرز والعدس والبقوليات قبل الغسيل.</li>
+</ul>
+
+<hr>
+
+<h2>نقاط التحكم الحرجة في المطبخ المنزلي — التطبيق الفعلي</h2>
+
+<pre style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; direction: ltr; text-align: left;">
+الشراء → التخزين → التحضير → الطهي → التقديم → البقايا
+   ↓          ↓          ↓          ↓          ↓          ↓
+[CCP 1]    [CCP 2]    [CCP 3]    [CCP 4]    [CCP 5]    [CCP 6]
+</pre>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المخطر</th><th>الحدّ الحرج</th><th>إجراء التحكم</th></tr></thead>
+<tbody>
+<tr><td>CCP 1 — الشراء</td><td>تاريخ الصلاحية</td><td>لا يُشترى ما أوشك أو تجاوز تاريخه</td></tr>
+<tr><td>CCP 1 — الشراء</td><td>سلسلة التبريد</td><td>شراء المبرّدات آخراً في جولة التسوق</td></tr>
+<tr><td>CCP 1 — الشراء</td><td>السلامة المرئية</td><td>رفض أي عبوة تالفة أو منتفخة</td></tr>
+<tr><td>CCP 2 — التخزين</td><td>درجة الحرارة هي الحد الحرج</td><td>الثلاجة &le; 4°م؛ التوزيع الصحيح يمنع التلوث المتبادل</td></tr>
+<tr><td>CCP 3 — التحضير</td><td>التلوث المتبادل</td><td>تأكيد غياب التلامس بين النيء والجاهز</td></tr>
+<tr><td>CCP 4 — الطهي</td><td>درجة الحرارة الداخلية</td><td>الوصول للحد الحرج (74°م للدواجن) باستخدام مقياس حرارة</td></tr>
+<tr><td>CCP 5 — التقديم</td><td>نافذة الأمان ساعتان</td><td>لا يترك في درجة حرارة الغرفة أكثر من ساعتين</td></tr>
+<tr><td>CCP 6 — البقايا</td><td>التبريد السريع</td><td>تبريد البقايا فوراً &le; ساعتين وإعادة تسخينها لـ 74°م</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>HACCP المنزلي — نموذج تطبيقي لوجبة دجاج</h2>
+<ul>
+<li><strong>الشراء:</strong> تحقق من التاريخ + برودة الدجاج + سلامة التغليف.</li>
+<li><strong>التخزين:</strong> رف الثلاجة الأسفل في كيس مغلق &lt; 4°م.</li>
+<li><strong>التحضير:</strong> لوح أصفر + سكين مخصص + غسل يدين قبل وبعد.</li>
+<li><strong>الطهي:</strong> قياس درجة الحرارة الداخلية &ge; 74°م.</li>
+<li><strong>التقديم:</strong> لا يبقى خارج الثلاجة أكثر من ساعتين.</li>
+<li><strong>البقايا:</strong> في الثلاجة فوراً + إعادة تسخين &ge; 74°م.</li>
+</ul>
 </div>`,
         content_en: `<div dir="ltr">
-<p>HACCP (Hazard Analysis and Critical Control Points) is a scientific approach developed by the U.S. Food and Drug Administration (FDA) to ensure food safety by identifying potential hazards and controlling them at every stage of food preparation. Although this system is primarily used in factories and restaurants, its principles can be applied in the home kitchen in a simplified and effective manner.[12][10]</p>
-
-<h2>Types of Hazards Threatening Your Child's Food:</h2>
-<ul>
-<li><strong>Biological hazards:</strong> Bacteria (Salmonella, E. coli, Listeria), viruses (Norovirus, Hepatitis A virus), and parasites. These are the most common and dangerous for children.</li>
-<li><strong>Chemical hazards:</strong> Pesticide residues on fruits and vegetables, mycotoxins (aflatoxin) in poorly stored nuts and grains, and cleaning products.</li>
-<li><strong>Physical hazards:</strong> Bone fragments, glass pieces, pebbles, or any foreign object in food.[12]</li>
-</ul>
-
-<h2>Critical Control Points in Your Kitchen:</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
-<thead><tr><th>Stage</th><th>Hazards</th><th>Preventive Action</th></tr></thead>
-<tbody>
-<tr><td>Shopping</td><td>Expired or improperly stored foods</td><td>Check expiry dates; buy refrigerated items last</td></tr>
-<tr><td>Storage</td><td>Bacterial growth at improper temperatures</td><td>Place perishables in the fridge immediately (&lt;5°C)</td></tr>
-<tr><td>Preparation</td><td>Cross-contamination</td><td>Wash hands; use separate utensils for raw and cooked</td></tr>
-<tr><td>Cooking</td><td>Surviving bacteria</td><td>Ensure thorough cooking (≥70°C for meat)</td></tr>
-<tr><td>Serving</td><td>Long exposure to room temperature</td><td>Don't leave food outside the fridge for more than 2 hours</td></tr>
-<tr><td>Leftovers</td><td>Bacterial growth</td><td>Refrigerate quickly; reheat thoroughly before re-serving</td></tr>
-</tbody>
-</table>
+<h2>Applying HACCP in Your Kitchen</h2>
+<p>Learn how to apply industrial-grade safety standards at home. Identify and control biological, chemical, and physical food hazards through the 7 HACCP principles adapted for your domestic kitchen.</p>
 </div>`,
-        practical_tips_ar: ['علّقي ورقة صغيرة على الثلاجة بهذه النقاط الست — ستصبح عادة يومية خلال أسابيع.'],
-        practical_tips_en: ['Pin a small sheet on the fridge with these six points — it will become a daily habit within weeks.'],
+        practical_tips_ar: [
+            'استخدمي نظام الألوان لألواح التقطيع (أحمر للحم، أخضر للخضار) كإجراء تحكم حرجي (CCP) بسيط وفعال.',
+            'تخلصي من أي مكسرات أو حبوب تظهر عليها علامات عفن فوراً، لا تكتفي بإزالة الجزء التالف.',
+            'احتفظي بمقياس حرارة طعام صغير للتأكد من وصول اللحوم لدرجات الحرارة القاتلة للجراثيم.'
+        ],
+        practical_tips_en: [
+            'Use a color-coded chopping board system (Red for meat, Green for veg) as a simple CCP.',
+            'Discard any nuts or grains with visible mold immediately; toxins spread through the whole product.',
+            'Keep a food thermometer to ensure meats reach critical target temperatures.'
+        ],
         sources_ar: [
-            'U.S. Food and Drug Administration. (2022). HACCP principles and application guidelines. FDA.',
-            'eHACCP.org. (2023). Can I use HACCP at home?',
-            'Montana Food System Resources. (2023). Food Safety Tool for Home Producers.',
+            'U.S. FDA. (2024). HACCP Principles & Application Guidelines.',
+            'WHO. (2024). Mycotoxins Fact Sheet.',
         ],
         sources_en: [
-            'U.S. Food and Drug Administration. (2022). HACCP principles and application guidelines. FDA.',
-            'eHACCP.org. (2023). Can I use HACCP at home?',
-            'Montana Food System Resources. (2023). Food Safety Tool for Home Producers.',
+            'U.S. FDA. (2024). HACCP Principles & Application Guidelines.',
+            'WHO. (2024). Mycotoxins Fact Sheet.',
         ],
-        tags_ar: ['HACCP', 'سلامة الغذاء', 'المخاطر البيولوجية', 'التلوث المتبادل', 'مطبخ آمن', 'نقاط تحكم', 'حفظ الطعام', 'الطهي الآمن', 'صحة الأطفال', 'وقاية'],
-        tags_en: ['HACCP', 'Food Safety', 'Biological Hazards', 'Cross-contamination', 'Safe Kitchen', 'Control Points', 'Food Storage', 'Safe Cooking', 'Child Health', 'Prevention'],
+        tags_ar: ['HACCP', 'سلامة الغذاء', 'المخاطر البيولوجية', 'التلوث المتبادل'],
+        tags_en: ['HACCP', 'Food Safety', 'Biological Hazards', 'Cross-contamination'],
         meta: {
             meta_title_ar: 'مبادئ HACCP في مطبخك — حماية علمية لعائلتك',
-            meta_title_en: 'HACCP Principles in Your Kitchen — Scientific Protection',
-            meta_description_ar: 'تعرف على نظام HACCP وكيفية تطبيقه في مطبخك المنزلي لحماية طفلك من المخاطر البيولوجية والكيميائية والفيزيائية في الغذاء.',
-            meta_description_en: 'Learn the HACCP system and how to apply it in your home kitchen to protect your child from biological, chemical, and physical food hazards.',
-            reading_time_minutes: 4,
-            og_title_ar: 'مبادئ HACCP في مطبخك — كيف تحمي عائلتك بأسلوب علمي',
-            og_title_en: 'HACCP Principles in Your Kitchen — Scientific Family Protection',
-            og_description_ar: 'نظام HACCP العلمي يمكنك تطبيقه في بيتك. تعرف على نقاط التحكم الحرجة من الشراء للتقديم.',
-            og_description_en: 'The HACCP scientific system can be applied at home. Learn the critical control points from shopping to serving.',
+            meta_title_en: 'HACCP Principles in Your Kitchen',
+            meta_description_ar: 'تعرفي على نظام HACCP لحماية أسرتك من مخاطر الغذاء.',
+            meta_description_en: 'Learn HACCP system to protect your family from food hazards.',
+            reading_time_minutes: 6,
+            og_title_ar: 'مبادئ HACCP في مطبخك — حماية علمية لعائلتك',
+            og_title_en: 'HACCP Principles in Your Kitchen',
+            og_description_ar: 'تعرفي على نظام HACCP لحماية أسرتك من مخاطر الغذاء.',
+            og_description_en: 'Learn HACCP system to protect your family from food hazards.',
         },
+        imageUrl: '/images/articles/haccp-principles.jpg',
+        category: 'foodSafety',
     },
 
     // ─────────────────────────────────────────────
@@ -188,8 +314,8 @@ export const axis1Articles: InterventionArticle[] = [
     {
         id: 3,
         axis: 1, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '1-2',
-        title_ar: 'التلوث المتبادل وتخزين الطعام — الأخطاء الخفية في المطبخ',
-        title_en: 'Cross-Contamination & Food Storage — Hidden Kitchen Mistakes',
+        title_ar: 'التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية',
+        title_en: 'Cross-Contamination & Food Storage — Hidden Mistakes',
         slug_ar: 'التلوث-المتبادل-وتخزين-الطعام',
         slug_en: 'cross-contamination-and-food-storage',
         quick_summary_ar: [
@@ -203,76 +329,150 @@ export const axis1Articles: InterventionArticle[] = [
             'Simple storage rules protect your child from unexpected illnesses',
         ],
         content_ar: `<div dir="rtl">
-<p>التلوث المتبادل (Cross-contamination) يحدث عندما تنتقل البكتيريا الضارة من طعام نيء إلى طعام جاهز للأكل عبر اليدين أو الأدوات أو أسطح التحضير. هذه العملية غير مرئية تماماً — لا تُغيّر طعم الأكل ولا لونه ولا رائحته — لكنها قد تسبب إسهالاً وقيئاً وحمى شديدة عند الأطفال.[7]</p>
+<p>منع انتقال الجراثيم من مكان لآخر في المطبخ هو المفتاح الأساسي للسلامة. التلوث المتبادل يحدث عندما تنقل الكائنات الدقيقة من سطح ملوث (مثل اللحم النيء) إلى سطح غير ملوث أو طعام جاهز للأكل.</p>
 
-<h2>أخطاء شائعة في المطبخ المصري:</h2>
+<hr>
+
+<h2>التلوث المتبادل — الفسيولوجيا والميكانيكا</h2>
+<p>ما الذي يحدث فعلاً على المستوى الميكروبي؟<br>
+حين تُقطّع قطعة دجاج نيئة على لوح، تترك خلفها ملايين الكائنات الدقيقة على السطح لا تراها العين. هذه الجراثيم — من <em>Salmonella</em> و <em>Campylobacter</em> وغيرها — لا تموت بالتجفيف فوراً، بل يمكنها البقاء حيّة على الأسطح الجافة لساعات وعلى الأسطح الرطبة لأيام. حين تضع الخيارة أو قطعة الجبن على نفس اللوح دون غسله، تلتقط تلك الأسطح الجراثيم الحية وتنقلها مباشرةً إلى الطعام الذي سيدخل فم طفلك دون أي طهي يقتلها.</p>
+
+<hr>
+
+<h2>مسارات التلوث المتبادل — أربعة مسارات لا يُدرَك بعضها</h2>
+<p>يُميّز العلم بين أربعة مسارات رئيسية للتلوث المتبادل في المطبخ المنزلي:</p>
 <ul>
-<li>تقطيع الخضروات على نفس لوح تقطيع اللحوم دون غسله</li>
-<li>وضع اللحوم النيئة في الرف العلوي للثلاجة فتتقاطر سوائلها على الأطعمة تحتها</li>
-<li>استخدام نفس الملعقة لتذوق الطعام أثناء الطهي ثم إعادتها للقدر</li>
-<li>غسل الفواكه بالماء فقط دون فركها</li>
+<li><strong>مسار الأيدي:</strong> يدٌ لمست الدجاج النيء ثم مسّت الطماطم دون غسل.</li>
+<li><strong>مسار الأدوات:</strong> سكين أو لوح تقطيع استُخدم للحوم ثم للخضار.</li>
+<li><strong>مسار السطح:</strong> طاولة التحضير الملوّثة تلتقط الغذاء الجاهز الموضوع عليها.</li>
+<li><strong>مسار السوائل:</strong> سوائل اللحم النيء تتقاطر على أطعمة آخرى في الثلاجة.</li>
 </ul>
 
-<h2>قواعد التخزين الآمن:</h2>
+<blockquote>
+<p><strong>دراسة صادمة: كم بكتيريا تنتقل في لمسة واحدة؟</strong><br>
+تُوثّق دراسة أُجريت في جامعة روتجرز ونُشرت في مجلة <em>Applied and Environmental Microbiology</em> أن انتقال البكتيريا من الأسطح إلى الغذاء يبدأ فورياً — حتى خلال أقل من ثانية واحدة من التلامس. والأهم أن نسبة النقل تتراوح بين 0.2% و 93% تبعاً لنوع السطح ورطوبة الغذاء ومدة التلامس — وهو ما يُدحض نهائياً "قاعدة الخمس ثوانٍ" الشهيرة التي يظنّ كثيرون أنها حقيقة علمية.</p>
+</blockquote>
+
+<hr>
+
+<h2>أخطاء التلوث المتبادل الأكثر شيوعاً</h2>
+
+<p><strong>الخطأ الأول: لوح تقطيع واحد للجميع</strong><br>
+هذا الخطأ يُشكّل نقطة تحكم حرجة بامتياز في أي تقييم HACCP. دراسة نشرتها <em>Journal of Food Protection</em> رصدت توزّع البكتيريا على 14 سطحاً مختلفاً في مطابخ المستهلكين، وتبيّن أن ألواح التقطيع ومغاسل المطبخ وقماشات التنظيف هي أكثر الأسطح تلوثاً على الإطلاق. الحل العلمي ليس مجرد الغسيل بالماء والصابون — بل نظام ألوان الألواح الذي يفصل فيزيائياً بين أنواع الأغذية.</p>
+
+<p><strong>الخطأ الثاني: اللحوم في الرف العلوي للثلاجة</strong><br>
+عندما توضع اللحوم النيئة في الرف العلوي، تتقاطر سوائلها الحاملة للجراثيم على كل ما يقع تحتها. هذه الظاهرة تسمى <strong>drip contamination</strong> وهي مسؤولة عن نسبة معتبرة من حالات التسمم الغذائي المنزلي. القاعدة الحديدية: اللحوم النيئة دائماً في الرف الأسفل، في أوعية أو أكياس مغلقة، بعيداً عن الأطعمة الجاهزة.</p>
+
+<p><strong>الخطأ الثالث: التذوق بالملعقة ذاتها وإعادتها للقدر</strong><br>
+هذا المسار ينقل الكائنات الدقيقة من الفم مباشرةً إلى الطعام. الفم يحتوي على مئات الأنواع البكتيرية، بعضها غير ضار في حالته الطبيعية، لكنه قد يُشكّل خطراً إذا وجد بيئة دافئة ومغذية كقدر الطبخ للتكاثر فيه. الحل: ملعقة تذوق مستقلة لكل مرة.</p>
+
+<p><strong>الخطأ الرابع: غسل الفاكهة بالشطف فقط</strong><br>
+دراسة نشرتها <em>Journal of Food Science</em> أثبتت أن نقع التفاح لمدة 12 دقيقة في ماء مضاف إليه صودا الخبز (بيكربونات الصوديوم) يُزيل بقايا المبيدات الموجودة داخل القشرة بفاعلية أعلى بكثير من الغسيل بالماء العادي. الشطف السريع يُزيل فقط الأوساخ الظاهرية، لكن لا يقضي على الجراثيم الملتصقة بالقشرة.</p>
+
+<p><strong>الخطأ الخامس: قمائش المطبخ — الناقل الأكثر إغفالاً</strong><br>
+قمائش التنظيف (الفوطة المطبخية) هي من أكثر الأسطح تلوثاً في المطبخ. حين تُمسح بها طاولة ملوّثة ثم تُجفَّف بها الأطباق أو اليدان، تُعيد توزيع الجراثيم على كل سطح تلمسه. التوصية العلمية: تغيير قمائش المطبخ يومياً وغسلها بالماء الساخن (60°م على الأقل)، أو استخدام مناشف ورقية لمسح أسطح التحضير.</p>
+
+<hr>
+
+<h2>قواعد التخزين الآمن — العلم الكامل</h2>
+
+<h3>الثلاجة: درجة الحرارة الدقيقة تصنع الفرق</h3>
+<p>المعيار العلمي الدقيق هو بين <strong>1°م و 4°م</strong> للثلاجة — لا مجرد "بارد". هذا النطاق يُبطّئ تكاثر معظم الجراثيم الخطيرة إلى ما دون عتبة الخطر. درجة 5°م أو 6°م قد تبدو قريبة، لكنها تُضاعف معدل تكاثر <em>Salmonella</em> وغيرها بشكل ملحوظ. معظم الثلاجات المنزلية لا تُعطي قراءة دقيقة من لوحة التحكم — لذا مقياس الحرارة المستقل (Fridge Thermometer) هو الأداة الأدق لضمان الالتزام بهذا النطاق.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المستوى</th><th>نوع الطعام</th><th>السبب</th></tr></thead>
+<tbody>
+<tr><td>الرف العلوي</td><td>أطعمة جاهزة للأكل، بقايا مطبوخة</td><td>لا حاجة طهي إضافي</td></tr>
+<tr><td>الرف الأوسط</td><td>ألبان، بيض، أجبان</td><td>منتجات متوسطة المخاطر</td></tr>
+<tr><td>الرف السفلي</td><td>لحوم نيئة ودواجن وأسماك (مغلقة)</td><td>أعلى خطر + أبرد منطقة</td></tr>
+<tr><td>درج الخضار</td><td>فواكه وخضروات كاملة</td><td>مُصمَّم لرطوبة مناسبة</td></tr>
+</tbody>
+</table>
+
+<br>
+
+<h3>الفريزر: التجميد يُوقف لا يقتل</h3>
+<p>درجة <strong>−18°م</strong> هي المعيار الدولي للفريزر المنزلي — عندها تدخل الكائنات الدقيقة في حالة سكون تام ويتوقف تكاثرها. لكن الخطأ الجسيم هو الاعتقاد بأن التجميد يقتل الجراثيم — هو لا يفعل ذلك. عند إذابة الطعام، تعود الكائنات الدقيقة للنشاط الكامل، لذا:</p>
 <ul>
-<li><strong>الثلاجة:</strong> اللحوم النيئة في الرف السفلي (لمنع تقاطر السوائل)، الأطعمة الجاهزة في الأرفف العلوية، الفواكه والخضروات في الدرج المخصص</li>
-<li><strong>درجة الحرارة:</strong> الثلاجة يجب أن تكون أقل من 5°م والفريزر أقل من −18°م</li>
-<li><strong>قاعدة الساعتين:</strong> أي طعام مطبوخ تُرك خارج الثلاجة أكثر من ساعتين يجب التخلص منه</li>
-<li><strong>الأوعية المغلقة:</strong> استخدم دائماً أوعية محكمة الغلق — البكتيريا لا تحتاج سوى الهواء والرطوبة ودرجة حرارة مناسبة للتكاثر[11][10]</li>
+<li>إذابة الطعام يجب أن تتم داخل الثلاجة لا على طاولة المطبخ.</li>
+<li>الطعام المُذاب لا يُعاد تجميده نيئاً — يجب طهيه أولاً ثم يمكن تجميده مطبوخاً.</li>
+<li>سوائل الذوبان (drip liquid) تحتوي على تركيز عالٍ من الجراثيم وتُعامَل كخطر بيولوجي.</li>
 </ul>
 
-<h2>تاريخ الصلاحية — الفرق المهم:</h2>
-<ul>
-<li><strong>"صالح حتى" (Use by):</strong> تاريخ أمان — لا تستخدم المنتج بعده مطلقاً (خاصة اللحوم والألبان)</li>
-<li><strong>"يُفضّل استخدامه قبل" (Best before):</strong> تاريخ جودة — المنتج قد يفقد بعض جودته لكنه ليس خطراً بالضرورة</li>
-</ul>
+<hr>
+
+<h2>مُدد التخزين الآمنة — ما لا تخبرك به العبوة</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الطعام</th><th>في الثلاجة (1–4°م)</th><th>في الفريزر (−18°م)</th></tr></thead>
+<tbody>
+<tr><td>دجاج نيء كامل</td><td>1–2 يوم</td><td>9–12 شهراً</td></tr>
+<tr><td>لحم مفروم نيء</td><td>1–2 يوم</td><td>3–4 أشهر</td></tr>
+<tr><td>بقايا مطبوخة</td><td>3–4 أيام</td><td>2–3 أشهر</td></tr>
+<tr><td>بيض</td><td>3–5 أسابيع</td><td>لا يُنصح بتجميده بقشره</td></tr>
+<tr><td>حليب مفتوح</td><td>5–7 أيام</td><td>شهر واحد</td></tr>
+<tr><td>جبن طري مفتوح</td><td>1–2 أسبوع</td><td>1–2 شهر</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>تواريخ الصلاحية — الفرق العلمي والقانوني</h2>
+
+<p><strong>"صالح حتى" (Use by) — حدّ الأمان الذي لا يُتجاوز</strong><br>
+تاريخ "صالح حتى" هو حدّ أمان بيولوجي وليس حدّ جودة. تستخدمه الشركة المصنّعة بعد إجراء اختبارات ميكروبيولوجية محددة — تحديداً اختبارات تتبّع معدل نمو مسببات الأمراض في المنتج في ظروف التخزين الموصى بها. بعد هذا التاريخ، لا يمكن ضمان أن تكاثر الجراثيم بقي ضمن الحدود الآمنة، حتى لو بدا المنتج طبيعياً تماماً في الشكل والرائحة والطعم.</p>
+<p><em>مثال توضيحي: <strong>الليستيريا</strong> في الجبن الطري تتكاثر ببطء شديد في الثلاجة — لا رائحة ولا تغيّر مرئي — لكنها قد تصل إلى مستويات تسبب تسمماً دموياً خطيراً بعد تاريخ الصلاحية لدى الأطفال والحوامل.</em></p>
+
+<p><strong>"يُفضّل استخدامه قبل" (Best before) — حدّ الجودة القابل للمرونة</strong><br>
+هذا التاريخ يتعلق بالجودة الحسية لا بالأمان. بعده قد يفقد المنتج بعض نكهته أو قوامه أو لونه، لكنه لا يُمثّل خطراً صحياً بالضرورة إذا بدا سليماً ظاهرياً.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المعيار</th><th>صالح حتى (Use by)</th><th>يُفضّل قبل (Best before)</th></tr></thead>
+<tbody>
+<tr><td>الهدف</td><td>سلامة ميكروبيولوجية</td><td>جودة حسية</td></tr>
+<tr><td>المنتجات</td><td>لحوم، ألبان، عصائر طازجة</td><td>معلّبات، أطعمة جافة، مجمّدة</td></tr>
+<tr><td>بعد التاريخ</td><td>تخلص منه فوراً</td><td>قيّمه بالشم والنظر — غالباً آمن</td></tr>
+<tr><td>الأساس العلمي</td><td>اختبارات نمو مسببات الأمراض</td><td>اختبارات الجودة الحسية</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>الخطوات الخمس العملية للحماية اليومية</h2>
+<ol>
+<li>نظام ألوان الألواح: لوح أحمر للحوم، أخضر للخضار، أبيض للجبن والأطعمة الجاهزة — والفصل الصارم بينها.</li>
+<li>اللحوم دائماً أسفل الثلاجة: في أوعية مغلقة تماماً لمنع التقاطر.</li>
+<li>تغيير قمائش المطبخ يومياً: أو استخدام مناشف ورقية لأسطح التحضير.</li>
+<li>قياس درجة الثلاجة بمقياس مستقل: التأكد من الحفاظ على 1–4°م.</li>
+<li>قراءة نوع التاريخ قبل القراءة ذاتها: "صالح حتى" هو خط أمان لا يُتجاوز، أما "يُفضّل قبل" فهو مرشد للجودة.</li>
+</ol>
 </div>`,
         content_en: `<div dir="ltr">
-<p>Cross-contamination occurs when harmful bacteria transfer from raw food to ready-to-eat food via hands, utensils, or preparation surfaces. This process is completely invisible — it doesn't change the taste, color, or smell of the food — but it can cause diarrhea, vomiting, and severe fever in children.[7]</p>
-
-<h2>Common Mistakes in the Egyptian Kitchen:</h2>
-<ul>
-<li>Cutting vegetables on the same chopping board used for meat without washing it</li>
-<li>Placing raw meat on the upper fridge shelf, allowing its juices to drip onto foods below</li>
-<li>Using the same spoon to taste food while cooking and then returning it to the pot</li>
-<li>Washing fruits with water only without scrubbing them</li>
-</ul>
-
-<h2>Safe Storage Rules:</h2>
-<ul>
-<li><strong>Fridge organization:</strong> Raw meat on the bottom shelf (to prevent dripping), ready-to-eat foods on upper shelves, fruits and vegetables in the designated drawer</li>
-<li><strong>Temperature:</strong> The fridge should be below 5°C and the freezer below −18°C</li>
-<li><strong>Two-hour rule:</strong> Any cooked food left outside the fridge for more than two hours should be discarded</li>
-<li><strong>Sealed containers:</strong> Always use airtight containers — bacteria only need air, moisture, and a suitable temperature to multiply[11][10]</li>
-</ul>
-
-<h2>Expiry Dates — The Important Difference:</h2>
-<ul>
-<li><strong>"Use by":</strong> A safety date — do not use the product after this date (especially meat and dairy)</li>
-<li><strong>"Best before":</strong> A quality date — the product may lose some quality but is not necessarily dangerous</li>
-</ul>
+<h2>Cross-Contamination & Food Storage</h2>
+<p>Learn how to prevent the transfer of germs in your kitchen and the scientific rules for safe refrigeration and freezing. Understand the critical difference between "Use By" and "Best Before" dates to protect your family.</p>
 </div>`,
         sources_ar: [
-            'WHO. (2026). Five keys to safer food. WHO.',
-            'eHACCP.org. (2023). Can I use HACCP at home?',
+            'WHO. (2024). Food safety fact sheet. WHO.',
+            'USDA. (2024). Safe Food Handling and Storage Basics.',
         ],
         sources_en: [
-            'WHO. (2026). Five keys to safer food. WHO.',
-            'eHACCP.org. (2023). Can I use HACCP at home?',
+            'WHO. (2024). Food safety fact sheet. WHO.',
+            'USDA. (2024). Safe Food Handling and Storage Basics.',
         ],
-        tags_ar: ['التلوث المتبادل', 'تخزين الطعام', 'الثلاجة', 'سلامة الغذاء', 'تاريخ الصلاحية', 'أخطاء المطبخ', 'حفظ اللحوم', 'نظافة الأدوات', 'صحة الأطفال', 'البكتيريا'],
-        tags_en: ['Cross-contamination', 'Food Storage', 'Refrigerator', 'Food Safety', 'Expiry Dates', 'Kitchen Mistakes', 'Meat Storage', 'Utensil Hygiene', 'Child Health', 'Bacteria'],
+        tags_ar: ['التلوث المتبادل', 'تخزين الطعام', 'سلامة الغذاء'],
+        tags_en: ['Cross-Contamination', 'Food Storage', 'Food Safety'],
         meta: {
             meta_title_ar: 'التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية',
-            meta_title_en: 'Cross-Contamination & Food Storage — Hidden Mistakes',
-            meta_description_ar: 'تعرف على أخطاء التلوث المتبادل الشائعة في المطبخ المصري وقواعد التخزين الآمن لحماية طفلك من التسمم الغذائي.',
-            meta_description_en: 'Learn about common cross-contamination mistakes in the kitchen and safe storage rules to protect your child from food poisoning.',
-            reading_time_minutes: 3,
-            og_title_ar: 'التلوث المتبادل وتخزين الطعام — الأخطاء الخفية في المطبخ',
-            og_title_en: 'Cross-Contamination & Food Storage — Hidden Kitchen Mistakes',
-            og_description_ar: 'التلوث المتبادل السبب الأول للتسمم الغذائي المنزلي. تعرف على قواعد التخزين الآمن.',
-            og_description_en: 'Cross-contamination is the leading cause of domestic food poisoning. Learn safe storage rules.',
+            meta_title_en: 'Cross-Contamination & Food Storage',
+            meta_description_ar: 'تعرفي على كيفية تجنب التلوث المتبادل وقواعد التخزين الصحيحة في الثلاجة.',
+            meta_description_en: 'Learn how to prevent cross-contamination and safe storage rules.',
+            reading_time_minutes: 6,
+            og_title_ar: 'التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية',
+            og_title_en: 'Cross-Contamination & Food Storage',
+            og_description_ar: 'تعرفي على كيفية تجنب التلوث المتبادل وقواعد التخزين الصحيحة في الثلاجة.',
+            og_description_en: 'Learn how to prevent cross-contamination and safe storage rules.',
         },
+        imageUrl: '/images/articles/cross-contamination.jpg',
+        category: 'foodSafety',
     },
 
     // ─────────────────────────────────────────────
@@ -281,107 +481,285 @@ export const axis1Articles: InterventionArticle[] = [
     {
         id: 4,
         axis: 1, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '1-2',
-        title_ar: 'الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية',
-        title_en: 'Foodborne Diseases in Children — Symptoms & Prevention',
-        slug_ar: 'الأمراض-المنقولة-بالغذاء-عند-الأطفال',
-        slug_en: 'foodborne-diseases-in-children',
+        title_ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال',
+        title_en: 'Growth Assessment Guide and Interpretation of Growth Charts for Children',
+        slug_ar: 'دليل-تقييم-النمو-وتفسير-مخططات-النمو',
+        slug_en: 'growth-assessment-guide-and-interpretation',
         quick_summary_ar: [
-            '220 مليون طفل يصابون بأمراض إسهالية ناتجة عن الغذاء الملوث سنوياً',
-            'الأطفال أكثر عرضة بسبب مناعتهم غير المكتملة',
-            'معظم هذه الأمراض يمكن الوقاية منها بتطبيق المفاتيح الخمسة',
+            'مراقبة النمو هي أداة التشخيص المبكر الأقوى في طب الأطفال',
+            'فهم الفرق بين التقزم والهزال وتأثير سوء التغذية على الدماغ',
+            'دليل شامل للقياسات الأنثروبومترية وفهم المئينات وZ-Scores',
         ],
         quick_summary_en: [
-            '220 million children are affected by diarrheal diseases from contaminated food annually',
-            'Children are more vulnerable due to their immature immunity',
-            'Most of these diseases can be prevented by applying the Five Keys',
+            'Growth monitoring is the most powerful early diagnostic tool in pediatrics',
+            'Understanding the difference between stunting and wasting and the impact of malnutrition on the brain',
+            'A comprehensive guide to anthropometric measurements and understanding percentiles and Z-Scores',
         ],
         content_ar: `<div dir="rtl">
-<p>الأمراض المنقولة بالغذاء تُعد من أخطر المشكلات الصحية التي تواجه الأطفال حول العالم. تشير منظمة الصحة العالمية إلى أن الأطفال دون الخامسة يتحملون 40% من عبء الأمراض المنقولة بالغذاء رغم أنهم يمثلون 9% فقط من سكان العالم. ويُصاب حوالي 220 مليون طفل بأمراض إسهالية ناتجة عن تلوث الغذاء سنوياً، يموت منهم قرابة 96,000 طفل.[13][6]</p>
+<p>مراقبة النمو هي أداة التشخيص المبكر الأقوى في طب الأطفال — تستطيع أن تكشف عن سوء التغذية، الأمراض المزمنة، واضطرابات الغدد الصماء قبل ظهور الأعراض السريرية الواضحة. والرقم على المخطط ليس هدفاً بذاته، بل هو نافذة على تاريخ صحي كامل.</p>
 
-<h2>لماذا الأطفال أكثر عرضة؟</h2>
+<h2>كيف يؤثر سوء التغذية على نمو الأطفال؟ — الآثار الموثَّقة علمياً</h2>
+<h3>التأثير على النمو البدني: التقزم والهزال</h3>
+<p>يُميّز الباحثون بين نمطين متمايزين لسوء التغذية البدني:</p>
 <ul>
-<li>جهازهم المناعي لا يزال في مراحل النمو ولم يكتمل بعد</li>
-<li>معدلهم الأيضي أعلى نسبياً مقارنة بوزنهم، مما يعني امتصاص المواد الضارة بسرعة أكبر</li>
-<li>يعتمدون بالكامل على الكبار في اختيار وتحضير طعامهم[14]</li>
+<li><strong>التقزم (Stunting):</strong> انخفاض الطول مقارنةً بالعمر بأكثر من انحرافين معياريين عن المتوسط. يعكس سوء تغذية مزمناً ومتراكماً على مدى أشهر أو سنوات، وينجم بالأساس عن نقص مستمر في البروتينات والسعرات الحرارية والمعادن الأساسية (الزنك، الكالسيوم، فيتامين D).</li>
+<li><strong>الهزال (Wasting):</strong> انخفاض الوزن مقارنةً بالطول. يعكس سوء تغذية حاداً وآنياً وغالباً ما يكون مرتبطاً بمرض حاد أو إسهال شديد أو انقطاع غذائي مفاجئ، وهو مؤشر الطوارئ في تقييم التغذية.</li>
 </ul>
 
-<h2>أشهر مسببات الأمراض عند الأطفال:</h2>
+<h3>التأثير على الدماغ — الأعمق والأطول أمداً</h3>
+<p>تُثبت الأدلة العلمية المتراكمة أن تأثير سوء التغذية على الدماغ هو الأشد خطورةً والأصعب عكساً. على المستوى العصبي التشريحي، يُحدث سوء التغذية المزمن:</p>
+<ul>
+<li><strong>تأخر المايلين (Myelination):</strong> المايلين هو الغشاء الدهني الذي يُغلّف الألياف العصبية ويُسرّع نقل الإشارات — وهو يتطلب الدهون الصحية والحديد لتصنيعه.</li>
+<li><strong>تقليص التشعّبات العصبية (Dendritic Arborization):</strong> أي تقليل تفرعات التواصل بين الخلايا العصبية مما يُضعف دوائر التعلم والذاكرة.</li>
+<li><strong>نقص الناقلات العصبية:</strong> انخفاض في تركيز السيروتونين والدوبامين المرتبطَين بالانتباه والتعلم والمزاج.</li>
+<li><strong>تغيير في التسلسل الزمني لنضج المخ:</strong> مما يُعطّل بناء الدوائر العصبية في الأوقات الحساسة التي لا تتكرر.</li>
+</ul>
+<p>والنتيجة العملية الموثَّقة في دراسة طولية على أطفال مصابين بتقزم: ضعف في الانتباه، الذاكرة العاملة، الاستيعاب البصري المكاني، وصعوبات في التعلم — وهذه الاضطرابات الإدراكية تستمر حتى مرحلة البلوغ حتى بعد تصحيح النمو البدني. والسبب أن الجفاف الغذائي المبكر يُحدث تغيرات إبيجينية (DNA Methylation) دائمة تؤثر على تعبير الجينات المرتبطة بالوظيفة الإدراكية لعقود.</p>
+
+<h2>العواقب بعيدة المدى — ما لا يظهر في الطفولة</h2>
+<p>تُوثّق الدراسات الطولية أن الطفل الذي عانى من تقزم في السنوات الأولى يواجه في البلوغ:</p>
+<ul>
+<li>انخفاض الطاقة الإنتاجية وقدرة العمل البدني.</li>
+<li>مقاومة الأنسولين وخطر متزايد للسكري وارتفاع ضغط الدم.</li>
+<li>الأطفال المتقزمون الذين شهدوا زيادة سريعة في الوزن بعد سنتين معرّضون بشكل أعلى للسمنة لاحقاً.</li>
+<li>نتائج توليدية سلبية في النساء اللواتي عانين من تقزم في طفولتهن.</li>
+</ul>
+
+<h2>القياسات الأنثروبومترية — الأدوات العلمية الأربع</h2>
+<p>القياسات الأنثروبومترية هي المعطى الخام الذي تُبنى عليه مخططات النمو. كل قياس يُجيب على سؤال مختلف:</p>
 <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
-<thead><tr><th>الكائن الممرض</th><th>مصادره الشائعة</th><th>الأعراض</th></tr></thead>
+<thead><tr><th>القياس</th><th>ما يُقيسه</th><th>الفئة المستهدفة</th><th>ما يكشفه</th></tr></thead>
 <tbody>
-<tr><td>السالمونيلا</td><td>البيض غير المطهو جيداً، الدواجن</td><td>إسهال، حمى، مغص</td></tr>
-<tr><td>الإيكولاي (E. coli)</td><td>اللحوم غير المطهوة جيداً، الحليب غير المبستر</td><td>إسهال دموي شديد</td></tr>
-<tr><td>نوروفيروس</td><td>الأطعمة الملوثة بأيدي محضّريها</td><td>قيء، إسهال مفاجئ</td></tr>
-<tr><td>الليستيريا</td><td>الأجبان الطرية، اللحوم الباردة</td><td>حمى، صداع، قيء</td></tr>
+<tr><td>الوزن مقابل العمر</td><td>التغيرات الحادة والآنية</td><td>0–10 سنوات</td><td>سوء التغذية الحاد والمزمن معاً</td></tr>
+<tr><td>الطول مقابل العمر</td><td>التاريخ الغذائي طويل الأمد</td><td>0–19 سنة</td><td>التقزم — المؤشر الذهبي للتغذية المزمنة</td></tr>
+<tr><td>الوزن مقابل الطول</td><td>توازن الوزن مع الطول</td><td>0–5 سنوات</td><td>الهزال الحاد — أهم مؤشر للتغذية الطارئة</td></tr>
+<tr><td>محيط الرأس</td><td>نمو الدماغ والجمجمة</td><td>0–24 شهراً</td><td>شذوذات نمو المخ (صغر أو كبر غير طبيعي)</td></tr>
+<tr><td>BMI مقابل العمر</td><td>النسبة بين الوزن والطول</td><td>من سنتين فصاعداً</td><td>النحافة أو الوزن الزائد أو السمنة</td></tr>
+</tbody>
+</table>
+<p>ملاحظة تقنية: يُقاس الطول لدى الأطفال دون سنتين في وضع الاستلقاء (Length) لا الوقوف (Height)، وهو ما يُفرّق بينهما المعيار الدولي — الفارق يصل إلى 0.7 سم بين القياسَين.</p>
+
+<h2>فهم المئينات (Percentiles) وZ-Scores — الأدوات الإحصائية</h2>
+<h3>المئين (Percentile) — اللغة المستخدمة في العيادة</h3>
+<p>المئين هو ترتيب الطفل بين 100 طفل من أقرانه بنفس العمر والجنس. طفل في المئين الـ40 في الطول يعني أنه أطول من 40% وأقصر من 60% من أقرانه. النقاط الجوهرية في التفسير:</p>
+<ul>
+<li><strong>النطاق الطبيعي:</strong> من المئين الـ3 حتى الـ97 — هذا النطاق يشمل معظم الأطفال الأصحاء.</li>
+<li><strong>نقص الوزن:</strong> أقل من المئين الـ3 (أو الـ5 في بعض المراجع).</li>
+<li><strong>وزن زائد:</strong> BMI فوق المئين الـ85.</li>
+<li><strong>سمنة:</strong> BMI فوق المئين الـ95.</li>
+</ul>
+
+<h3>Z-Score — اللغة الأكثر دقة في البحث والتشخيص الحاد</h3>
+<p>في أبحاث التغذية والتقييمات الطارئة، يُفضَّل استخدام Z-Score (الانحراف المعياري) بدلاً من المئين لأنه أكثر دقة عند الأطراف القصوى من المنحنى. التعريفات الموحَّدة دولياً:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الحالة</th><th>Z-Score</th><th>تعريف منظمة الصحة العالمية</th></tr></thead>
+<tbody>
+<tr><td>تقزم حاد</td><td>أقل من −3 SD</td><td>طول/عمر تحت −3 انحرافات معيارية</td></tr>
+<tr><td>تقزم معتدل</td><td>بين −3 و−2 SD</td><td>طول/عمر بين −3 و−2</td></tr>
+<tr><td>هزال حاد</td><td>أقل من −3 SD</td><td>وزن/طول تحت −3 انحرافات معيارية</td></tr>
+<tr><td>بدانة</td><td>فوق +2 SD</td><td>BMI/عمر فوق +2 انحرافات معيارية</td></tr>
 </tbody>
 </table>
 
-<h2>الحلقة المفرغة: تلوث الغذاء ↔ سوء التغذية</h2>
-<p>عندما يُصاب الطفل بإسهال بسبب غذاء ملوث، يفقد جسمه كميات كبيرة من العناصر الغذائية والسوائل. هذا يُضعف مناعته، مما يجعله أكثر عرضة للإصابة مرة أخرى — في حلقة مفرغة من العدوى وسوء التغذية. هذا الرابط بين سلامة الغذاء والحالة الغذائية للطفل هو صلب هذا المشروع البحثي.</p>
+<h2>WHO vs CDC — الفرق الجوهري بين المخططَين</h2>
+<p>يستخدم أطباء الأطفال مخططَين رئيسيَّين، والاختيار بينهما ليس عشوائياً:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المعيار</th><th>مخططات WHO (2006)</th><th>مخططات CDC (2000)</th></tr></thead>
+<tbody>
+<tr><td>الفلسفة</td><td>معيار (Standard) — يصف كيف ينبغي أن ينمو الطفل في ظروف مثالية</td><td>مرجع (Reference) — يصف كيف نما الأطفال الأمريكيون فعلياً</td></tr>
+<tr><td>العينة</td><td>8,000 طفل من 6 دول في ظروف صحية وتغذوية مثالية</td><td>عينات مسح أمريكية تشمل ظروفاً متفاوتة</td></tr>
+<tr><td>الرضاعة الطبيعية</td><td>المرجع الذهبي هو الرضاعة الطبيعية الكاملة</td><td>تشمل عينة مختلطة الرضاعة</td></tr>
+<tr><td>الاستخدام الموصى به</td><td>0–24 شهراً (التوصية الدولية)</td><td>من سنتين فصاعداً في الولايات المتحدة</td></tr>
+<tr><td>الأثر العملي</td><td>تُظهر معدل تقزم أعلى بـ3.5% في الأطفال الأصحاء مقارنةً بـCDC</td><td>تُقلّل من اكتشاف حالات التقزم خاصةً في السنة الثانية</td></tr>
+</tbody>
+</table>
+<p>النتيجة العملية: طفل تصنّفه مخططات WHO على أنه ضمن النطاق الطبيعي قد تصنّفه مخططات CDC بأنه ناقص الوزن — وهو ما يجعل اختيار المخطط الصحيح حاسماً في التشخيص.</p>
 
-<h2>متى تذهب للطبيب فوراً؟</h2>
+<h2>قاعدة "النمط" — قراءة المخطط كفيلم لا صورة</h2>
+<p>الخطأ الأكثر شيوعاً في تفسير مخططات النمو هو النظر إلى نقطة واحدة معزولة. المخطط يُقرأ كـمسار متواصل لا كلقطة منفردة. المبادئ الأساسية في القراءة الصحيحة:</p>
+<h3>مبدأ الاتساق أهم من الترتيب المطلق</h3>
+<p>طفل يسير بثبات على المئين الـ10 في الطول ليس في خطر إذا كان والداه قصيري القامة — أما طفل يسير على المئين الـ60 ثم ينزل فجأة للمئين الـ20 فهذا إنذار يستوجب التحقيق بصرف النظر عن قيمته المطلقة.</p>
+
+<h3>عامل الطول الوراثي المُتوقَّع (Mid-Parental Height)</h3>
+<p>لحساب "السقف الوراثي" للطفل يُستخدم المعادلات التالية:</p>
+<p><strong>للذكور:</strong> (طول الأب (سم) + طول الأم (سم) + 13) / 2</p>
+<p><strong>للإناث:</strong> (طول الأب (سم) + طول الأم (سم) - 13) / 2</p>
+<p>الناتج ± 10 سم يُمثّل النطاق الطبيعي المتوقع لطول الطفل بالغاً. إذا كان الطفل يسير في مسار طولي يتوافق مع هذا النطاق، فتقزمه الظاهر قد يكون وراثياً لا غذائياً.</p>
+
+<h2>العلامات التحذيرية — متى يتدخّل الطبيب؟</h2>
+<h3>تحذير الدرجة الأولى: عبور خطين رئيسيين</h3>
+<p>انخفاض مفاجئ يتخطى خطَّين رئيسيَّين على المخطط (مثلاً: من المئين الـ75 إلى الـ25 خلال 3–6 أشهر) يستدعي التقييم الطبي الفوري، إذ قد يُشير إلى:</p>
 <ul>
-<li>إسهال مستمر لأكثر من 24 ساعة</li>
-<li>دم في البراز</li>
-<li>حمى أعلى من 38.5°م</li>
-<li>علامات الجفاف (جفاف الفم، قلة التبول، بكاء بدون دموع)</li>
+<li>مرض مزمن كامن (أمراض الجهاز الهضمي، الغدة الدرقية، أمراض القلب)</li>
+<li>سوء تغذية مُشخَّص أو مُهمَل</li>
+<li>اضطراب نفسي-اجتماعي يؤثر على الشهية والنمو</li>
 </ul>
+
+<h3>تحذير الدرجة الثانية: ثبات النمو (Failure to Thrive)</h3>
+<p>توقف زيادة الوزن لأكثر من شهرين عند الرضيع، أو الطول لأكثر من 3–6 أشهر عند الطفل الأكبر، دون سبب مرضي واضح هو ما يُصطلح عليه طبياً بـ"إخفاق النمو" (Failure to Thrive) — وهو مؤشر حاسم على اضطراب غذائي أو مرضي يحتاج تقييماً شاملاً.</p>
+
+<h3>تحذير الدرجة الثالثة: النمو غير المتناسب</h3>
+<p>زيادة مفرطة في الوزن لا يواكبها نمو طولي سليم — أي ارتفاع سريع في BMI مع ثبات في الطول — قد يُشير إلى قصور الغدة الدرقية أو متلازمات وراثية بعينها، بجانب كونه علامة مبكرة للسمنة التي تستدعي تدخلاً غذائياً فورياً قبل ترسّخها.</p>
+
+<h2>جدول التواتر الموصى به للقياسات</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الفئة العمرية</th><th>تواتر القياس الموصى به</th></tr></thead>
+<tbody>
+<tr><td>0–6 أشهر</td><td>شهرياً (كل زيارة لطبيب الأطفال)</td></tr>
+<tr><td>6–12 شهراً</td><td>كل شهرين</td></tr>
+<tr><td>1–2 سنة</td><td>كل 3 أشهر</td></tr>
+<tr><td>2–6 سنوات</td><td>كل 6 أشهر</td></tr>
+<tr><td>6–18 سنة</td><td>مرة سنوياً على الأقل</td></tr>
+</tbody>
+</table>
+<p>تنويه هام: هذا القسم — وجميع قسم المقال — مُقدَّم لأغراض التوعية الصحية العامة ولا يُغني بأي حال عن استشارة طبيب الأطفال المتابع للحالة، الذي يُقيّم الطفل في سياقه الكامل لا بناءً على الأرقام وحدها.</p>
 </div>`,
         content_en: `<div dir="ltr">
-<p>Foodborne diseases are among the most dangerous health problems facing children worldwide. The World Health Organization reports that children under five bear 40% of the burden of foodborne diseases despite representing only 9% of the world's population. Approximately 220 million children are affected by diarrheal diseases caused by food contamination annually, with nearly 96,000 deaths.[13][6]</p>
+<p>Growth monitoring is the most powerful early diagnostic tool in pediatrics — it can detect malnutrition, chronic diseases, and endocrine disorders before clear clinical symptoms appear. The number on the chart is not a goal in itself, but a window into a complete health history.</p>
 
-<h2>Why Are Children More Vulnerable?</h2>
+<h2>How Malnutrition Affects Children's Growth — Scientifically Documented Effects</h2>
+<h3>Impact on Physical Growth: Stunting and Wasting</h3>
+<p>Researchers distinguish between two distinct patterns of physical malnutrition:</p>
 <ul>
-<li>Their immune systems are still developing and not yet fully mature</li>
-<li>Their metabolic rate is relatively higher compared to their weight, meaning faster absorption of harmful substances</li>
-<li>They depend entirely on adults for food selection and preparation[14]</li>
+<li><strong>Stunting:</strong> Low height-for-age by more than two standard deviations below the mean. It reflects chronic, accumulated malnutrition over months or years, primarily resulting from persistent deficits in proteins, calories, and essential minerals (Zinc, Calcium, Vitamin D).</li>
+<li><strong>Wasting:</strong> Low weight-for-height. It reflects acute, instantaneous malnutrition and is often associated with acute illness, severe diarrhea, or a sudden nutritional interruption. It is the emergency indicator in nutritional assessments.</li>
 </ul>
 
-<h2>Most Common Pathogens in Children:</h2>
+<h3>Impact on the Brain — Deepest and Longest Term</h3>
+<p>Accumulated scientific evidence proves that the impact of malnutrition on the brain is the most severe and difficult to reverse. At the neuro-anatomical level, chronic malnutrition causes:</p>
+<ul>
+<li><strong>Delayed Myelination:</strong> Myelin is the fatty sheath that covers nerve fibers and speeds up signal transmission — it requires healthy fats and iron for synthesis.</li>
+<li><strong>Reduced Dendritic Arborization:</strong> Meaning a reduction in the branches of communication between neurons, weakening learning and memory circuits.</li>
+<li><strong>Neurotransmitter Deficiency:</strong> Decrease in the concentration of serotonin and dopamine associated with attention, learning, and mood.</li>
+<li><strong>Alteration in Brain Maturation Chronology:</strong> Disrupting the building of neural circuits during sensitive, non-repeatable periods.</li>
+</ul>
+<p>The practical result documented in a longitudinal study of children with stunting: weaknesses in attention, working memory, visual-spatial comprehension, and learning difficulties — these cognitive disorders persist into adulthood even after physical growth correction. The reason is that early nutritional drought causes permanent epigenetic changes (DNA Methylation) that affect the expression of genes associated with cognitive function for decades.</p>
+
+<h2>Long-term Consequences — What Does Not Appear in Childhood</h2>
+<p>Longitudinal studies document that a child who suffered from stunting in the early years faces in adulthood:</p>
+<ul>
+<li>Reduced productive energy and physical work capacity.</li>
+<li>Insulin resistance and increased risk of diabetes and hypertension.</li>
+<li>Stunted children who experience rapid weight gain after two years are at higher risk for later obesity.</li>
+<li>Negative reproductive outcomes in women who suffered from stunting in their childhood.</li>
+</ul>
+
+<h2>Anthropometric Measurements — The Four Scientific Tools</h2>
+<p>Anthropometric measurements are the raw data on which growth charts are built. Each measurement answers a different question:</p>
 <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
-<thead><tr><th>Pathogen</th><th>Common Sources</th><th>Symptoms</th></tr></thead>
+<thead><tr><th>Measurement</th><th>What It Measures</th><th>Target Group</th><th>What It Reveals</th></tr></thead>
 <tbody>
-<tr><td>Salmonella</td><td>Undercooked eggs, poultry</td><td>Diarrhea, fever, cramps</td></tr>
-<tr><td>E. coli</td><td>Undercooked meat, unpasteurized milk</td><td>Severe bloody diarrhea</td></tr>
-<tr><td>Norovirus</td><td>Food contaminated by handlers' hands</td><td>Vomiting, sudden diarrhea</td></tr>
-<tr><td>Listeria</td><td>Soft cheeses, cold cuts</td><td>Fever, headache, vomiting</td></tr>
+<tr><td>Weight-for-age</td><td>Acute and instantaneous changes</td><td>0–10 years</td><td>Both acute and chronic malnutrition</td></tr>
+<tr><td>Height-for-age</td><td>Long-term nutritional history</td><td>0–19 years</td><td>Stunting — the golden indicator of chronic nutrition</td></tr>
+<tr><td>Weight-for-height</td><td>Weight balance with height</td><td>0–5 years</td><td>Acute wasting — the most important indicator of emergency nutrition</td></tr>
+<tr><td>Head circumference</td><td>Brain and skull growth</td><td>0–24 months</td><td>Brain growth abnormalities (abnormally small or large)</td></tr>
+<tr><td>BMI-for-age</td><td>Ratio between weight and height</td><td>From 2 years onwards</td><td>Thinness, overweight, or obesity</td></tr>
+</tbody>
+</table>
+<p>Technical Note: Height in children under two is measured in a recumbent position (Length), not standing (Height), which is how the international standard differentiates them — the difference reaches up to 0.7 cm between the two measurements.</p>
+
+<h2>Understanding Percentiles and Z-Scores — Statistical Tools</h2>
+<h3>Percentile — The Language Used in the Clinic</h3>
+<p>A percentile is the child's rank among 100 peers of the same age and sex. A child at the 40th percentile in height means they are taller than 40% and shorter than 60% of their peers. Key points in interpretation:</p>
+<ul>
+<li><strong>Normal Range:</strong> From the 3rd to the 97th percentile — this range includes most healthy children.</li>
+<li><strong>Underweight:</strong> Below the 3rd percentile (or 5th in some references).</li>
+<li><strong>Overweight:</strong> BMI above the 85th percentile.</li>
+<li><strong>Obesity:</strong> BMI above the 95th percentile.</li>
+</ul>
+
+<h3>Z-Score — The Most Accurate Language in Research and Acute Diagnosis</h3>
+<p>In nutritional research and emergency assessments, Z-Score (Standard Deviation) is preferred over percentiles because it is more accurate at the extreme ends of the curve. Internationally standardized definitions:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Status</th><th>Z-Score</th><th>WHO Definition</th></tr></thead>
+<tbody>
+<tr><td>Severe Stunting</td><td>Less than −3 SD</td><td>Height/age below −3 standard deviations</td></tr>
+<tr><td>Moderate Stunting</td><td>Between −3 and −2 SD</td><td>Height/age between −3 and −2</td></tr>
+<tr><td>Severe Wasting</td><td>Less than −3 SD</td><td>Weight/height below −3 standard deviations</td></tr>
+<tr><td>Obesity</td><td>Above +2 SD</td><td>BMI/age above +2 standard deviations</td></tr>
 </tbody>
 </table>
 
-<h2>The Vicious Cycle: Food Contamination ↔ Malnutrition</h2>
-<p>When a child develops diarrhea from contaminated food, their body loses significant amounts of nutrients and fluids. This weakens their immunity, making them more susceptible to reinfection — creating a vicious cycle of infection and malnutrition. This link between food safety and the child's nutritional status is the core of this research project.</p>
+<h2>WHO vs CDC — The Fundamental Difference Between the Two Charts</h2>
+<p>Pediatricians use two main charts, and the choice between them is not random:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Criterion</th><th>WHO Charts (2006)</th><th>CDC Charts (2000)</th></tr></thead>
+<tbody>
+<tr><td>Philosophy</td><td>Standard — describes how a child should grow under ideal conditions</td><td>Reference — describes how American children actually grew</td></tr>
+<tr><td>Sample</td><td>8,000 children from 6 countries in ideal health and nutritional conditions</td><td>US survey samples covering varying conditions</td></tr>
+<tr><td>Breastfeeding</td><td>The gold standard is exclusive breastfeeding</td><td>Includes a mixed breastfeeding sample</td></tr>
+<tr><td>Recommended Use</td><td>0–24 months (international recommendation)</td><td>From 2 years onwards in the United States</td></tr>
+<tr><td>Practical Impact</td><td>Shows a 3.5% higher stunting rate in healthy children compared to CDC</td><td>Reduces detection of stunting cases, especially in the second year</td></tr>
+</tbody>
+</table>
+<p>Practical Result: A child classified by WHO charts as being within the normal range might be classified by CDC charts as underweight — which makes choosing the correct chart crucial in diagnosis.</p>
 
-<h2>When to See a Doctor Immediately?</h2>
+<h2>The "Pattern" Rule — Reading the Chart as a Movie, Not a Picture</h2>
+<p>The most common error in interpreting growth charts is looking at a single isolated point. The chart is read as a continuous path, not a snapshot. Basic principles in correct reading:</p>
+<h3>The Principle of Consistency is More Important Than Absolute Rank</h3>
+<p>A child moving steadily on the 10th percentile in height is not at risk if their parents are short — however, a child moving on the 60th percentile and then suddenly dropping to the 20th percentile is a warning that warrants investigation regardless of the absolute value.</p>
+
+<h3>Mid-Parental Height Factor</h3>
+<p>To calculate the "genetic ceiling" for the child, the following formulas are used:</p>
+<p><strong>For Males:</strong> (Father's Height (cm) + Mother's Height (cm) + 13) / 2</p>
+<p><strong>For Females:</strong> (Father's Height (cm) + Mother's Height (cm) - 13) / 2</p>
+<p>The result ± 10 cm represents the natural expected range for the child's adult height. If the child is on a height path consistent with this range, their apparent stunting might be genetic, not nutritional.</p>
+
+<h2>Warning Signs — When Does a Doctor Intervene?</h2>
+<h3>First-Degree Warning: Crossing Two Major Lines</h3>
+<p>A sudden drop that crosses two major lines on the chart (e.g., from the 75th percentile to the 25th in 3–6 months) requires immediate medical evaluation, as it may indicate:</p>
 <ul>
-<li>Diarrhea lasting more than 24 hours</li>
-<li>Blood in stool</li>
-<li>Fever above 38.5°C</li>
-<li>Signs of dehydration (dry mouth, reduced urination, crying without tears)</li>
+<li>An underlying chronic disease (gastrointestinal, thyroid, heart diseases)</li>
+<li>Diagnosed or neglected malnutrition</li>
+<li>A psychosocial disorder affecting appetite and growth</li>
 </ul>
+
+<h3>Second-Degree Warning: Failure to Thrive</h3>
+<p>A stop in weight gain for more than two months in an infant, or in height for more than 3–6 months in an older child, without a clear pathological reason, is medically termed "Failure to Thrive" — it is a crucial indicator of a nutritional or pathological disorder needing comprehensive evaluation.</p>
+
+<h3>Third-Degree Warning: Disproportionate Growth</h3>
+<p>Excessive weight gain not accompanied by proper linear growth — i.e., a rapid rise in BMI with stagnant height — may indicate hypothyroidism or certain genetic syndromes, besides being an early sign of obesity requiring immediate nutritional intervention before it sets in.</p>
+
+<h2>Recommended Measurement Frequency Table</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Age Group</th><th>Recommended Measurement Frequency</th></tr></thead>
+<tbody>
+<tr><td>0–6 months</td><td>Monthly (every pediatrician visit)</td></tr>
+<tr><td>6–12 months</td><td>Every two months</td></tr>
+<tr><td>1–2 years</td><td>Every 3 months</td></tr>
+<tr><td>2–6 years</td><td>Every 6 months</td></tr>
+<tr><td>6–18 years</td><td>At least once a year</td></tr>
+</tbody>
+</table>
+<p>Important Notice: This section — and all article sections — is provided for general health awareness purposes and is in no way a substitute for consulting the attending pediatrician, who evaluates the child in their full context, not based on numbers alone.</p>
 </div>`,
         sources_ar: [
-            'WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.',
-            'WHO. (2024). Food safety fact sheet. WHO.',
-            'Infectiousdiseaseadvisor.com. (2024). Children account for large amount of foodborne illness related deaths.',
+            'WHO. (2006). WHO Child Growth Standards.',
+            'CDC. (2000). CDC Growth Charts.',
+            'Victora, C. G., et al. (2008). Maternal and child undernutrition: consequences for adult health and human capital. The Lancet.',
+            'Grantham-McGregor, S., et al. (2007). Developmental potential in the first 5 years for children in developing countries. The Lancet.',
         ],
         sources_en: [
-            'WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.',
-            'WHO. (2024). Food safety fact sheet. WHO.',
-            'Infectiousdiseaseadvisor.com. (2024). Children account for large amount of foodborne illness related deaths.',
+            'WHO. (2006). WHO Child Growth Standards.',
+            'CDC. (2000). CDC Growth Charts.',
+            'Victora, C. G., et al. (2008). Maternal and child undernutrition: consequences for adult health and human capital. The Lancet.',
+            'Grantham-McGregor, S., et al. (2007). Developmental potential in the first 5 years for children in developing countries. The Lancet.',
         ],
-        tags_ar: ['أمراض الغذاء', 'الإسهال', 'السالمونيلا', 'التسمم الغذائي', 'مناعة الأطفال', 'سوء التغذية', 'الوقاية', 'صحة الأطفال', 'البكتيريا', 'نوروفيروس'],
-        tags_en: ['Foodborne Diseases', 'Diarrhea', 'Salmonella', 'Food Poisoning', 'Child Immunity', 'Malnutrition', 'Prevention', 'Child Health', 'Bacteria', 'Norovirus'],
+        tags_ar: ['تقييم النمو', 'مخططات النمو', 'المئينات', 'التقزم', 'الهزال', 'Z-Score', 'WHO', 'CDC', 'صحة الأطفال', 'نمو الدماغ'],
+        tags_en: ['Growth Assessment', 'Growth Charts', 'Percentiles', 'Stunting', 'Wasting', 'Z-Score', 'WHO', 'CDC', 'Child Health', 'Brain Development'],
         meta: {
-            meta_title_ar: 'الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية',
-            meta_title_en: 'Foodborne Diseases in Children — Symptoms & Prevention',
-            meta_description_ar: '220 مليون طفل يصابون بأمراض إسهالية سنوياً بسبب الغذاء الملوث. تعرف على الأعراض وطرق الوقاية والحلقة المفرغة بين التلوث وسوء التغذية.',
-            meta_description_en: '220 million children contract diarrheal diseases annually from contaminated food. Learn the symptoms, prevention, and the vicious cycle between contamination and malnutrition.',
-            reading_time_minutes: 4,
-            og_title_ar: 'الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية',
-            og_title_en: 'Foodborne Diseases in Children — Symptoms & Prevention',
-            og_description_ar: 'الأطفال تحت 5 سنوات يتحملون 40% من عبء الأمراض المنقولة بالغذاء. تعرف على الوقاية.',
-            og_description_en: 'Children under 5 bear 40% of the foodborne disease burden. Learn about prevention.',
+            meta_title_ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال',
+            meta_title_en: 'Growth Assessment Guide and Chart Interpretation',
+            meta_description_ar: 'دليل شامل لفهم كيفية تقييم نمو طفلك علمياً، الفرق بين التقزم والهزال، وكيفية قراءة المئينات وZ-Scores.',
+            meta_description_en: 'A comprehensive guide to understanding how to scientifically assess your child\'s growth, the difference between stunting and wasting, and how to read percentiles and Z-Scores.',
+            reading_time_minutes: 8,
+            og_title_ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال',
+            og_title_en: 'Growth Assessment Guide and Chart Interpretation',
+            og_description_ar: 'مراقبة النمو هي أداة التشخيص الأقوى. تعلم كيف تقرأ مخطط نمو طفلك.',
+            og_description_en: 'Growth monitoring is the strongest diagnostic tool. Learn how to read your child\'s growth chart.',
         },
+        imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80',
+        category: 'foodSafety',
     },
 
     // ─────────────────────────────────────────────
@@ -487,5 +865,7 @@ export const axis1Articles: InterventionArticle[] = [
             og_description_ar: 'غسل اليدين أبسط وأرخص وسيلة للوقاية من أمراض الغذاء. تعلم الخطوات الصحيحة.',
             og_description_en: 'Handwashing is the simplest and cheapest way to prevent foodborne diseases. Learn the correct steps.',
         },
+        imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80',
+        category: 'foodSafety',
     },
 ];

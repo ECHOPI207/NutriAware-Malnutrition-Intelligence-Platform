@@ -27,120 +27,256 @@ export const articles: Article[] = [
   {
     id: '1',
     title: {
-      en: 'A Guide to Growth Assessment and Interpretation of Pediatric Growth Charts',
+      en: 'Growth Assessment Guide and Chart Interpretation',
       ar: 'دليل تقييم النمو وتفسير مخططات النمو للأطفال'
     },
     excerpt: {
-      en: 'Growth monitoring constitutes a veritable first line of defense for the early detection of any health or nutritional issues. Learn how to interpret growth charts and their implications for your child.',
-      ar: 'تُعد مراقبة النمو تمثيلاً حقيقياً لخط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية في وقت مبكر. تعرف على كيفية تفسير مخططات النمو وما تعنيه لطفلك.'
+      en: 'Growth monitoring is the most powerful early diagnostic tool in pediatrics. Learn how to interpret growth charts and their implications for your child.',
+      ar: 'مراقبة النمو هي أداة التشخيص المبكر الأقوى في طب الأطفال. تعرف على كيفية تفسير مخططات النمو وما تعنيه لطفلك.'
     },
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**A Guide to Growth Assessment and Interpretation of Pediatric Growth Charts**
+      en: `
+<div dir="ltr">
+<p>Growth monitoring is the most powerful early diagnostic tool in pediatrics — it can detect malnutrition, chronic diseases, and endocrine disorders before clear clinical symptoms appear. The number on the chart is not a goal in itself, but a window into a complete health history.</p>
 
-Growth monitoring constitutes a veritable first line of defense for the early detection of any health or nutritional issues. Learn how to interpret growth charts and their implications for your child.
+<h2>How Malnutrition Affects Children's Growth — Scientifically Documented Effects</h2>
+<h3>Impact on Physical Growth: Stunting and Wasting</h3>
+<p>Researchers distinguish between two distinct patterns of physical malnutrition:</p>
+<ul>
+<li><strong>Stunting:</strong> Low height-for-age by more than two standard deviations below the mean. It reflects chronic, accumulated malnutrition over months or years, primarily resulting from persistent deficits in proteins, calories, and essential minerals (Zinc, Calcium, Vitamin D).</li>
+<li><strong>Wasting:</strong> Low weight-for-height. It reflects acute, instantaneous malnutrition and is often associated with acute illness, severe diarrhea, or a sudden nutritional interruption. It is the emergency indicator in nutritional assessments.</li>
+</ul>
 
-Growth monitoring represents the true first line of defense for detecting health or nutritional problems at an early stage. Growth charts are validated scientific tools utilized by physicians to track a child's growth and compare it against global healthy growth standards.
+<h3>Impact on the Brain — Deepest and Longest Term</h3>
+<p>Accumulated scientific evidence proves that the impact of malnutrition on the brain is the most severe and difficult to reverse. At the neuro-anatomical level, chronic malnutrition causes:</p>
+<ul>
+<li><strong>Delayed Myelination:</strong> Myelin is the fatty sheath that covers nerve fibers and speeds up signal transmission — it requires healthy fats and iron for synthesis.</li>
+<li><strong>Reduced Dendritic Arborization:</strong> Meaning a reduction in the branches of communication between neurons, weakening learning and memory circuits.</li>
+<li><strong>Neurotransmitter Deficiency:</strong> Decrease in the concentration of serotonin and dopamine associated with attention, learning, and mood.</li>
+<li><strong>Alteration in Brain Maturation Chronology:</strong> Disrupting the building of neural circuits during sensitive, non-repeatable periods.</li>
+</ul>
+<p>The practical result documented in a longitudinal study of children with stunting: weaknesses in attention, working memory, visual-spatial comprehension, and learning difficulties — these cognitive disorders persist into adulthood even after physical growth correction. The reason is that early nutritional drought causes permanent epigenetic changes (DNA Methylation) that affect the expression of genes associated with cognitive function for decades.</p>
 
-**First: How Does Malnutrition Affect Child Growth?**
-Malnutrition is not merely "hunger"; rather, it is a nutrient imbalance leading to effects that may be permanent:
+<h2>Long-term Consequences — What Does Not Appear in Childhood</h2>
+<p>Longitudinal studies document that a child who suffered from stunting in the early years faces in adulthood:</p>
+<ul>
+<li>Reduced productive energy and physical work capacity.</li>
+<li>Insulin resistance and increased risk of diabetes and hypertension.</li>
+<li>Stunted children who experience rapid weight gain after two years are at higher risk for later obesity.</li>
+<li>Negative reproductive outcomes in women who suffered from stunting in their childhood.</li>
+</ul>
 
-*   **Physical Growth (Stunting and Wasting):** Deficiencies in proteins and calories lead to halted linear growth (stunting) or severe weight loss (wasting), rendering the child’s physique weaker than that of their peers.
-*   **Mental and Cognitive Development:** The brain requires fats and minerals (such as iron and zinc) to develop. Malnutrition in the early years may lead to delayed academic achievement and deficits in cognitive abilities.
-*   **Weakened Immune System:** A malnourished child is more susceptible to recurrent infections, and each health episode leads, in turn, to a further regression in growth (a vicious cycle).
-*   **Delayed Motor Skills:** The child may be delayed in sitting, walking, or running due to poor muscle mass and energy deficiency.
+<h2>Anthropometric Measurements — The Four Scientific Tools</h2>
+<p>Anthropometric measurements are the raw data on which growth charts are built. Each measurement answers a different question:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Measurement</th><th>What It Measures</th><th>Target Group</th><th>What It Reveals</th></tr></thead>
+<tbody>
+<tr><td>Weight-for-age</td><td>Acute and instantaneous changes</td><td>0–10 years</td><td>Both acute and chronic malnutrition</td></tr>
+<tr><td>Height-for-age</td><td>Long-term nutritional history</td><td>0–19 years</td><td>Stunting — the golden indicator of chronic nutrition</td></tr>
+<tr><td>Weight-for-height</td><td>Weight balance with height</td><td>0–5 years</td><td>Acute wasting — the most important indicator of emergency nutrition</td></tr>
+<tr><td>Head circumference</td><td>Brain and skull growth</td><td>0–24 months</td><td>Brain growth abnormalities (abnormally small or large)</td></tr>
+<tr><td>BMI-for-age</td><td>Ratio between weight and height</td><td>From 2 years onwards</td><td>Thinness, overweight, or obesity</td></tr>
+</tbody>
+</table>
+<p>Technical Note: Height in children under two is measured in a recumbent position (Length), not standing (Height), which is how the international standard differentiates them — the difference reaches up to 0.7 cm between the two measurements.</p>
 
-**Second: Key Anthropometric Measurements**
-Growth charts rely on measurements compared against children of the same age and gender:
+<h2>Understanding Percentiles and Z-Scores — Statistical Tools</h2>
+<h3>Percentile — The Language Used in the Clinic</h3>
+<p>A percentile is the child's rank among 100 peers of the same age and sex. A child at the 40th percentile in height means they are taller than 40% and shorter than 60% of their peers. Key points in interpretation:</p>
+<ul>
+<li><strong>Normal Range:</strong> From the 3rd to the 97th percentile — this range includes most healthy children.</li>
+<li><strong>Underweight:</strong> Below the 3rd percentile (or 5th in some references).</li>
+<li><strong>Overweight:</strong> BMI above the 85th percentile.</li>
+<li><strong>Obesity:</strong> BMI above the 95th percentile.</li>
+</ul>
 
-*   **Weight-for-Age:** Monitors acute and immediate changes in nutritional status.
-*   **Height-for-Age:** Reflects long-term nutritional history (the primary indicator of stunting).
-*   **Head Circumference:** Reflects brain development and growth during the first two years.
-*   **Body Mass Index (BMI):** Utilized from age two onwards to assess underweight or obesity.
+<h3>Z-Score — The Most Accurate Language in Research and Acute Diagnosis</h3>
+<p>In nutritional research and emergency assessments, Z-Score (Standard Deviation) is preferred over percentiles because it is more accurate at the extreme ends of the curve. Internationally standardized definitions:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Status</th><th>Z-Score</th><th>WHO Definition</th></tr></thead>
+<tbody>
+<tr><td>Severe Stunting</td><td>Less than −3 SD</td><td>Height/age below −3 standard deviations</td></tr>
+<tr><td>Moderate Stunting</td><td>Between −3 and −2 SD</td><td>Height/age between −3 and −2</td></tr>
+<tr><td>Severe Wasting</td><td>Less than −3 SD</td><td>Weight/height below −3 standard deviations</td></tr>
+<tr><td>Obesity</td><td>Above +2 SD</td><td>BMI/age above +2 standard deviations</td></tr>
+</tbody>
+</table>
 
-**Third: Understanding and Interpreting Percentiles**
-A percentile represents the child's rank among 100 peers:
+<h2>WHO vs CDC — The Fundamental Difference Between the Two Charts</h2>
+<p>Pediatricians use two main charts, and the choice between them is not random:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Criterion</th><th>WHO Charts (2006)</th><th>CDC Charts (2000)</th></tr></thead>
+<tbody>
+<tr><td>Philosophy</td><td>Standard — describes how a child should grow under ideal conditions</td><td>Reference — describes how American children actually grew</td></tr>
+<tr><td>Sample</td><td>8,000 children from 6 countries in ideal health and nutritional conditions</td><td>US survey samples covering varying conditions</td></tr>
+<tr><td>Breastfeeding</td><td>The gold standard is exclusive breastfeeding</td><td>Includes a mixed breastfeeding sample</td></tr>
+<tr><td>Recommended Use</td><td>0–24 months (international recommendation)</td><td>From 2 years onwards in the United States</td></tr>
+<tr><td>Practical Impact</td><td>Shows a 3.5% higher stunting rate in healthy children compared to CDC</td><td>Reduces detection of stunting cases, especially in the second year</td></tr>
+</tbody>
+</table>
+<p>Practical Result: A child classified by WHO charts as being within the normal range might be classified by CDC charts as underweight — which makes choosing the correct chart crucial in diagnosis.</p>
 
-*   **The Normal Range:** Maintaining a consistent trajectory between the 5th and 85th percentiles.
-*   **Underweight:** When the measurement falls below the 5th percentile.
-*   **Overweight/Obesity:** If the BMI exceeds the 85th or 95th percentile.
-*   **Note:** Physicians tend to use WHO charts for children under two years of age, and CDC charts for those older.
+<h2>The "Pattern" Rule — Reading the Chart as a Movie, Not a Picture</h2>
+<p>The most common error in interpreting growth charts is looking at a single isolated point. The chart is read as a continuous path, not a snapshot. Basic principles in correct reading:</p>
+<h3>The Principle of Consistency is More Important Than Absolute Rank</h3>
+<p>A child moving steadily on the 10th percentile in height is not at risk if their parents are short — however, a child moving on the 60th percentile and then suddenly dropping to the 20th percentile is a warning that warrants investigation regardless of the absolute value.</p>
 
-**Fourth: The "Pattern" Rule and Genetic Factors**
-Do not look at the single number; rather, observe:
+<h3>Mid-Parental Height Factor</h3>
+<p>To calculate the "genetic ceiling" for the child, the following formulas are used:</p>
+<p><strong>For Males:</strong> (Father's Height (cm) + Mother's Height (cm) + 13) / 2</p>
+<p><strong>For Females:</strong> (Father's Height (cm) + Mother's Height (cm) - 13) / 2</p>
+<p>The result ± 10 cm represents the natural expected range for the child's adult height. If the child is on a height path consistent with this range, their apparent stunting might be genetic, not nutritional.</p>
 
-*   **The Trend:** Is the child growing consistently along their own curve?
-*   **Genetics:** Parental height determines the genetic "ceiling" for the child's growth, which is a fundamental factor in the assessment.
+<h2>Warning Signs — When Does a Doctor Intervene?</h2>
+<h3>First-Degree Warning: Crossing Two Major Lines</h3>
+<p>A sudden drop that crosses two major lines on the chart (e.g., from the 75th percentile to the 25th in 3–6 months) requires immediate medical evaluation, as it may indicate:</p>
+<ul>
+<li>An underlying chronic disease (gastrointestinal, thyroid, heart diseases)</li>
+<li>Diagnosed or neglected malnutrition</li>
+<li>A psychosocial disorder affecting appetite and growth</li>
+</ul>
 
-**Fifth: Warning Signs Requiring Intervention**
+<h3>Second-Degree Warning: Failure to Thrive</h3>
+<p>A stop in weight gain for more than two months in an infant, or in height for more than 3–6 months in an older child, without a clear pathological reason, is medically termed "Failure to Thrive" — it is a crucial indicator of a nutritional or pathological disorder needing comprehensive evaluation.</p>
 
-*   **Crossing Percentile Lines:** A sudden drop crossing two major lines on the chart.
-*   **Growth Stagnation:** Unjustified cessation of weight gain or height increase.
-*   **Disproportionate Growth:** Excessive weight gain not accompanied by proper linear growth.
+<h3>Third-Degree Warning: Disproportionate Growth</h3>
+<p>Excessive weight gain not accompanied by proper linear growth — i.e., a rapid rise in BMI with stagnant height — may indicate hypothyroidism or certain genetic syndromes, besides being an early sign of obesity requiring immediate nutritional intervention before it sets in.</p>
 
-**Conclusion**
+<h2>Recommended Measurement Frequency Table</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Age Group</th><th>Recommended Measurement Frequency</th></tr></thead>
+<tbody>
+<tr><td>0–6 months</td><td>Monthly (every pediatrician visit)</td></tr>
+<tr><td>6–12 months</td><td>Every two months</td></tr>
+<tr><td>1–2 years</td><td>Every 3 months</td></tr>
+<tr><td>2–6 years</td><td>Every 6 months</td></tr>
+<tr><td>6–18 years</td><td>At least once a year</td></tr>
+</tbody>
+</table>
+<p>Important Notice: This section — and all article sections — is provided for general health awareness purposes and is in no way a substitute for consulting the attending pediatrician, who evaluates the child in their full context, not based on numbers alone.</p>
+</div>`,
+      ar: `
+<div dir="rtl">
+<p>مراقبة النمو هي أداة التشخيص المبكر الأقوى في طب الأطفال — تستطيع أن تكشف عن سوء التغذية، الأمراض المزمنة، واضطرابات الغدد الصماء قبل ظهور الأعراض السريرية الواضحة. والرقم على المخطط ليس هدفاً بذاته، بل هو نافذة على تاريخ صحي كامل.</p>
 
-The objective of growth monitoring is not to achieve a fixed ideal weight, but to ensure that the child is progressing along their natural trajectory, free from the risks of malnutrition that could impact their physical and mental future.
+<h2>كيف يؤثر سوء التغذية على نمو الأطفال؟ — الآثار الموثَّقة علمياً</h2>
+<h3>التأثير على النمو البدني: التقزم والهزال</h3>
+<p>يُميّز الباحثون بين نمطين متمايزين لسوء التغذية البدني:</p>
+<ul>
+<li><strong>التقزم (Stunting):</strong> انخفاض الطول مقارنةً بالعمر بأكثر من انحرافين معياريين عن المتوسط. يعكس سوء تغذية مزمناً ومتراكماً على مدى أشهر أو سنوات، وينجم بالأساس عن نقص مستمر في البروتينات والسعرات الحرارية والمعادن الأساسية (الزنك، الكالسيوم، فيتامين D).</li>
+<li><strong>الهزال (Wasting):</strong> انخفاض الوزن مقارنةً بالطول. يعكس سوء تغذية حاداً وآنياً وغالباً ما يكون مرتبطاً بمرض حاد أو إسهال شديد أو انقطاع غذائي مفاجئ، وهو مؤشر الطوارئ في تقييم التغذية.</li>
+</ul>
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
+<h3>التأثير على الدماغ — الأعمق والأطول أمداً</h3>
+<p>تُثبت الأدلة العلمية المتراكمة أن تأثير سوء التغذية على الدماغ هو الأشد خطورةً والأصعب عكساً. على المستوى العصبي التشريحي، يُحدث سوء التغذية المزمن:</p>
+<ul>
+<li><strong>تأخر المايلين (Myelination):</strong> المايلين هو الغشاء الدهني الذي يُغلّف الألياف العصبية ويُسرّع نقل الإشارات — وهو يتطلب الدهون الصحية والحديد لتصنيعه.</li>
+<li><strong>تقليص التشعّبات العصبية (Dendritic Arborization):</strong> أي تقليل تفرعات التواصل بين الخلايا العصبية مما يُضعف دوائر التعلم والذاكرة.</li>
+<li><strong>نقص الناقلات العصبية:</strong> انخفاض في تركيز السيروتونين والدوبامين المرتبطَين بالانتباه والتعلم والمزاج.</li>
+<li><strong>تغيير في التسلسل الزمني لنضج المخ:</strong> مما يُعطّل بناء الدوائر العصبية في الأوقات الحساسة التي لا تتكرر.</li>
+</ul>
+<p>والنتيجة العملية الموثَّقة في دراسة طولية على أطفال مصابين بتقزم: ضعف في الانتباه، الذاكرة العاملة، الاستيعاب البصري المكاني، وصعوبات في التعلم — وهذه الاضطرابات الإدراكية تستمر حتى مرحلة البلوغ حتى بعد تصحيح النمو البدني. والسبب أن الجفاف الغذائي المبكر يُحدث تغيرات إبيجينية (DNA Methylation) دائمة تؤثر على تعبير الجينات المرتبطة بالوظيفة الإدراكية لعقود.</p>
 
-**Resources:**
-*   [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
-*   [Centers for Disease Control and Prevention (CDC) - Growth Charts](https://www.cdc.gov/growthcharts/index.htm)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `تُعد مراقبة النمو تمثيلاً حقيقياً لخط الدفاع الأول لاكتشاف أي مشكلة صحية أو غذائية في وقت مبكر. مخططات النمو هي الأدوات العلمية المعتمدة التي يستخدمها الأطباء لتتبع نمو الطفل ومقارنته بمعايير النمو الصحي العالمية.
+<h2>العواقب بعيدة المدى — ما لا يظهر في الطفولة</h2>
+<p>تُوثّق الدراسات الطولية أن الطفل الذي عانى من تقزم في السنوات الأولى يواجه في البلوغ:</p>
+<ul>
+<li>انخفاض الطاقة الإنتاجية وقدرة العمل البدني.</li>
+<li>مقاومة الأنسولين وخطر متزايد للسكري وارتفاع ضغط الدم.</li>
+<li>الأطفال المتقزمون الذين شهدوا زيادة سريعة في الوزن بعد سنتين معرّضون بشكل أعلى للسمنة لاحقاً.</li>
+<li>نتائج توليدية سلبية في النساء اللواتي عانين من تقزم في طفولتهن.</li>
+</ul>
 
-**أولاً: كيف يؤثر سوء التغذية على نمو الأطفال؟**
+<h2>القياسات الأنثروبومترية — الأدوات العلمية الأربع</h2>
+<p>القياسات الأنثروبومترية هي المعطى الخام الذي تُبنى عليه مخططات النمو. كل قياس يُجيب على سؤال مختلف:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>القياس</th><th>ما يُقيسه</th><th>الفئة المستهدفة</th><th>ما يكشفه</th></tr></thead>
+<tbody>
+<tr><td>الوزن مقابل العمر</td><td>التغيرات الحادة والآنية</td><td>0–10 سنوات</td><td>سوء التغذية الحاد والمزمن معاً</td></tr>
+<tr><td>الطول مقابل العمر</td><td>التاريخ الغذائي طويل الأمد</td><td>0–19 سنة</td><td>التقزم — المؤشر الذهبي للتغذية المزمنة</td></tr>
+<tr><td>الوزن مقابل الطول</td><td>توازن الوزن مع الطول</td><td>0–5 سنوات</td><td>الهزال الحاد — أهم مؤشر للتغذية الطارئة</td></tr>
+<tr><td>محيط الرأس</td><td>نمو الدماغ والجمجمة</td><td>0–24 شهراً</td><td>شذوذات نمو المخ (صغر أو كبر غير طبيعي)</td></tr>
+<tr><td>BMI مقابل العمر</td><td>النسبة بين الوزن والطول</td><td>من سنتين فصاعداً</td><td>النحافة أو الوزن الزائد أو السمنة</td></tr>
+</tbody>
+</table>
+<p>ملاحظة تقنية: يُقاس الطول لدى الأطفال دون سنتين في وضع الاستلقاء (Length) لا الوقوف (Height)، وهو ما يُفرّق بينهما المعيار الدولي — الفارق يصل إلى 0.7 سم بين القياسَين.</p>
 
-سوء التغذية ليس مجرد "جوع"، بل هو اختلال في توازن العناصر الغذائية يؤدي إلى آثار قد تكون دائمة:
+<h2>فهم المئينات (Percentiles) وZ-Scores — الأدوات الإحصائية</h2>
+<h3>المئين (Percentile) — اللغة المستخدمة في العيادة</h3>
+<p>المئين هو ترتيب الطفل بين 100 طفل من أقرانه بنفس العمر والجنس. طفل في المئين الـ40 في الطول يعني أنه أطول من 40% وأقصر من 60% من أقرانه. النقاط الجوهرية في التفسير:</p>
+<ul>
+<li><strong>النطاق الطبيعي:</strong> من المئين الـ3 حتى الـ97 — هذا النطاق يشمل معظم الأطفال الأصحاء.</li>
+<li><strong>نقص الوزن:</strong> أقل من المئين الـ3 (أو الـ5 في بعض المراجع).</li>
+<li><strong>وزن زائد:</strong> BMI فوق المئين الـ85.</li>
+<li><strong>سمنة:</strong> BMI فوق المئين الـ95.</li>
+</ul>
 
-* **النمو البدني (التقزم والهزال):** يؤدي نقص البروتينات والسعرات إلى توقف الطول (التقزم) أو فقدان الوزن الحاد (الهزال)، مما يجعل بنية الطفل أضعف من أقرانه.
-* **التطور الذهني والإدراكي:** الدماغ يحتاج إلى دهون ومعادن (مثل الحديد والزنك) لينمو. سوء التغذية في السنوات الأولى قد يؤدي إلى تأخر في التحصيل الدراسي ونقص في القدرات الذهنية.
-* **ضعف الجهاز المناعي:** الطفل المصاب بسوء التغذية يكون أكثر عرضة للإصابة بالعدوى المتكررة، وكل وعكة صحية تؤدي بدورها إلى تراجع أكبر في النمو (حلقة مفرغة).
-* **تأخر المهارات الحركية:** قد يتأخر الطفل في الجلوس، المشي، أو الركض بسبب ضعف الكتلة العضلية ونقص الطاقة.
+<h3>Z-Score — اللغة الأكثر دقة في البحث والتشخيص الحاد</h3>
+<p>في أبحاث التغذية والتقييمات الطارئة، يُفضَّل استخدام Z-Score (الانحراف المعياري) بدلاً من المئين لأنه أكثر دقة عند الأطراف القصوى من المنحنى. التعريفات الموحَّدة دولياً:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الحالة</th><th>Z-Score</th><th>تعريف منظمة الصحة العالمية</th></tr></thead>
+<tbody>
+<tr><td>تقزم حاد</td><td>أقل من −3 SD</td><td>طول/عمر تحت −3 انحرافات معيارية</td></tr>
+<tr><td>تقزم معتدل</td><td>بين −3 و−2 SD</td><td>طول/عمر بين −3 و−2</td></tr>
+<tr><td>هزال حاد</td><td>أقل من −3 SD</td><td>وزن/طول تحت −3 انحرافات معيارية</td></tr>
+<tr><td>بدانة</td><td>فوق +2 SD</td><td>BMI/عمر فوق +2 انحرافات معيارية</td></tr>
+</tbody>
+</table>
 
-**ثانياً: القياسات الأنثروبومترية الرئيسية**
+<h2>WHO vs CDC — الفرق الجوهري بين المخططَين</h2>
+<p>يستخدم أطباء الأطفال مخططَين رئيسيَّين، والاختيار بينهما ليس عشوائياً:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المعيار</th><th>مخططات WHO (2006)</th><th>مخططات CDC (2000)</th></tr></thead>
+<tbody>
+<tr><td>الفلسفة</td><td>معيار (Standard) — يصف كيف ينبغي أن ينمو الطفل في ظروف مثالية</td><td>مرجع (Reference) — يصف كيف نما الأطفال الأمريكيون فعلياً</td></tr>
+<tr><td>العينة</td><td>8,000 طفل من 6 دول في ظروف صحية وتغذوية مثالية</td><td>عينات مسح أمريكية تشمل ظروفاً متفاوتة</td></tr>
+<tr><td>الرضاعة الطبيعية</td><td>المرجع الذهبي هو الرضاعة الطبيعية الكاملة</td><td>تشمل عينة مختلطة الرضاعة</td></tr>
+<tr><td>الاستخدام الموصى به</td><td>0–24 شهراً (التوصية الدولية)</td><td>من سنتين فصاعداً في الولايات المتحدة</td></tr>
+<tr><td>الأثر العملي</td><td>تُظهر معدل تقزم أعلى بـ3.5% في الأطفال الأصحاء مقارنةً بـCDC</td><td>تُقلّل من اكتشاف حالات التقزم خاصةً في السنة الثانية</td></tr>
+</tbody>
+</table>
+<p>النتيجة العملية: طفل تصنّفه مخططات WHO على أنه ضمن النطاق الطبيعي قد تصنّفه مخططات CDC بأنه ناقص الوزن — وهو ما يجعل اختيار المخطط الصحيح حاسماً في التشخيص.</p>
 
-تعتمد المخططات على قياسات تُقارن بالأطفال من نفس العمر والجنس:
+<h2>قاعدة "النمط" — قراءة المخطط كفيلم لا صورة</h2>
+<p>الخطأ الأكثر شيوعاً في تفسير مخططات النمو هو النظر إلى نقطة واحدة معزولة. المخطط يُقرأ كـمسار متواصل لا كلقطة منفردة. المبادئ الأساسية في القراءة الصحيحة:</p>
+<h3>مبدأ الاتساق أهم من الترتيب المطلق</h3>
+<p>طفل يسير بثبات على المئين الـ10 في الطول ليس في خطر إذا كان والداه قصيري القامة — أما طفل يسير على المئين الـ60 ثم ينزل فجأة للمئين الـ20 فهذا إنذار يستوجب التحقيق بصرف النظر عن قيمته المطلقة.</p>
 
-* **الوزن مقابل العمر:** يراقب التغيرات الحادة والآنية في الحالة الغذائية.
-* **الطول مقابل العمر:** يعكس التاريخ الغذائي طويل الأمد (المؤشر الأساسي للتقزم).
-* **محيط الرأس:** يعكس تطور ونمو الدماغ خلال أول سنتين.
-* **مؤشر كتلة الجسم (BMI):** يُستخدم من عمر سنتين لتقييم النحافة أو السمنة.
+<h3>عامل الطول الوراثي المُتوقَّع (Mid-Parental Height)</h3>
+<p>لحساب "السقف الوراثي" للطفل يُستخدم المعادلات التالية:</p>
+<p><strong>للذكور:</strong> (طول الأب (سم) + طول الأم (سم) + 13) / 2</p>
+<p><strong>للإناث:</strong> (طول الأب (سم) + طول الأم (سم) - 13) / 2</p>
+<p>الناتج ± 10 سم يُمثّل النطاق الطبيعي المتوقع لطول الطفل بالغاً. إذا كان الطفل يسير في مسار طولي يتوافق مع هذا النطاق، فتقزمه الظاهر قد يكون وراثياً لا غذائياً.</p>
 
-**ثالثاً: فهم "المئينات" (Percentiles) وتفسيرها**
+<h2>العلامات التحذيرية — متى يتدخّل الطبيب؟</h2>
+<h3>تحذير الدرجة الأولى: عبور خطين رئيسيين</h3>
+<p>انخفاض مفاجئ يتخطى خطَّين رئيسيَّين على المخطط (مثلاً: من المئين الـ75 إلى الـ25 خلال 3–6 أشهر) يستدعي التقييم الطبي الفوري، إذ قد يُشير إلى:</p>
+<ul>
+<li>مرض مزمن كامن (أمراض الجهاز الهضمي، الغدة الدرقية، أمراض القلب)</li>
+<li>سوء تغذية مُشخَّص أو مُهمَل</li>
+<li>اضطراب نفسي-اجتماعي يؤثر على الشهية والنمو</li>
+</ul>
 
-المئين هو ترتيب الطفل بين 100 طفل من أقرانه:
+<h3>تحذير الدرجة الثانية: ثبات النمو (Failure to Thrive)</h3>
+<p>توقف زيادة الوزن لأكثر من شهرين عند الرضيع، أو الطول لأكثر من 3–6 أشهر عند الطفل الأكبر، دون سبب مرضي واضح هو ما يُصطلح عليه طبياً بـ"إخفاق النمو" (Failure to Thrive) — وهو مؤشر حاسم على اضطراب غذائي أو مرضي يحتاج تقييماً شاملاً.</p>
 
-* **النطاق الطبيعي:** الحفاظ على مسار ثابت بين المئين الـ 5 والـ 85.
-* **نقص الوزن:** عندما يقع القياس أقل من المئين الـ 5.
-* **زيادة الوزن/السمنة:** إذا تجاوز مؤشر كتلة الجسم المئين الـ 85 أو الـ 95.
-* **تنبيه:** يميل الأطباء لاستخدام مخططات WHO للأطفال تحت سنتين، ومخططات CDC لما فوق ذلك.
+<h3>تحذير الدرجة الثالثة: النمو غير المتناسب</h3>
+<p>زيادة مفرطة في الوزن لا يواكبها نمو طولي سليم — أي ارتفاع سريع في BMI مع ثبات في الطول — قد يُشير إلى قصور الغدة الدرقية أو متلازمات وراثية بعينها، بجانب كونه علامة مبكرة للسمنة التي تستدعي تدخلاً غذائياً فورياً قبل ترسّخها.</p>
 
-**رابعاً: قاعدة "النمط" والعوامل الوراثية**
-
-لا تنظر إلى الرقم المنفرد، بل انظر إلى:
-
-* **المسار (Trend):** هل ينمو الطفل بشكل متسق على منحنى خاص به؟
-* **الوراثة:** طول الوالدين يحدد "السقف" الوراثي لنمو الطفل، وهو عامل أساسي في التقييم.
-
-**خامساً: علامات تحذيرية تستدعي التدخل**
-
-* **عبور خطوط المئين:** انخفاض مفاجئ يتخطى خطين رئيسيين على المخطط.
-* **ثبات النمو:** توقف زيادة الوزن أو الطول لفترة غير مبررة.
-* **النمو غير المتناسب:** زيادة مفرطة في الوزن لا يواكبها نمو طولي سليم.
-
-**الخلاصة**
-
-إن الهدف من مراقبة النمو ليس الوصول لوزن مثالي ثابت، بل التأكد من أن الطفل يسير في مساره الطبيعي بعيداً عن مخاطر سوء التغذية التي قد تؤثر على مستقبله البدني والذهني.
-
-**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
-
-**المصادر:**
-* [World Health Organization (WHO) - Child Growth Standards](https://www.who.int/tools/child-growth-standards)
-* [Centers for Disease Control and Prevention (CDC) - Growth Charts](https://www.cdc.gov/growthcharts/index.htm)
-* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+<h2>جدول التواتر الموصى به للقياسات</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الفئة العمرية</th><th>تواتر القياس الموصى به</th></tr></thead>
+<tbody>
+<tr><td>0–6 أشهر</td><td>شهرياً (كل زيارة لطبيب الأطفال)</td></tr>
+<tr><td>6–12 أشهر</td><td>كل شهرين</td></tr>
+<tr><td>1–2 سنة</td><td>كل 3 أشهر</td></tr>
+<tr><td>2–6 سنوات</td><td>كل 6 أشهر</td></tr>
+<tr><td>6–18 سنة</td><td>مرة سنوياً على الأقل</td></tr>
+</tbody>
+</table>
+<p>تنويه هام: هذا القسم — وجميع قسم المقال — مُقدَّم لأغراض التوعية الصحية العامة ولا يُغني بأي حال عن استشارة طبيب الأطفال المتابع للحالة، الذي يُقيّم الطفل في سياقه الكامل لا بناءً على الأرقام وحدها.</p>
+</div>`
     },
     keyTakeaways: {
       en: [
@@ -156,114 +292,7 @@ The objective of growth monitoring is not to achieve a fixed ideal weight, but t
         'انتبه لعبور خطوط المئين أو توقف النمو'
       ]
     },
-    imageUrl: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&q=80',
-  },
-  {
-    id: '2',
-    title: {
-      en: 'Infant Nutrition and Complementary Feeding',
-      ar: 'التغذية في مرحلة الرضاعة و التغذية التكميلية'
-    },
-    excerpt: {
-      en: 'The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child\'s physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.',
-      ar: 'تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي.'
-    },
-    category: 'undernutrition',
-    ageGroup: 'children',
-    content: {
-      en: `**Infant Nutrition and Complementary Feeding**
-
-The infancy phase and subsequent complementary feeding constitute the most critical period for establishing the child's physical and cognitive foundation. Presented herein are details regarding nutrition, growth stages, and the essential immunization schedule.
-
-**1. Child Growth and Body Composition**
-The first year is characterized by explosive growth; birth weight doubles between 4 and 6 months and triples by one year of age, while length increases by approximately 25 cm. After one year, the growth rate decelerates slightly but becomes more stable until the age of five.
-
-**2. Appetite and Feeding Pattern (From Day One to 5 Years)**
-
-*   **0–6 Months (Exclusive Breastfeeding):** The child relies entirely on milk.
-    *   **Frequency:** 8 to 12 feedings daily (approximately every 2–3 hours).
-    *   **Quantity:** Starts at 30–60 ml in the first days, reaching 120–180 ml per feeding by the fourth month.
-    *   **Note:** Giving water is strictly prohibited, as milk provides adequate hydration.
-
-*   **6 Months to 2 Years (Complementary Feeding and Integration):**
-    *   **Integration Method:** Milk remains the primary source, and solid food is offered "between" feedings.
-    *   **6–8 Months:** (Two meals daily) + Breastfeeding. Quantity: Two tablespoons per meal, increasing gradually.
-    *   **9–11 Months:** (3 meals daily) + Breastfeeding. Quantity: Approximately half a cup (125 ml) per meal.
-    *   **12–24 Months:** (3 main meals + 2 snacks) with continued breastfeeding.
-
-*   **2–5 Years:** "Physiological anorexia" appears, which is normal due to growth deceleration. Hunger and satiety cues must be respected.
-
-**3. Essential Immunizations (Post-Neonatal)**
-*   **Ages 2, 4, 6 Months:** Pentavalent vaccines and Polio.
-*   **Age 1 Year and 18 Months:** MMR vaccine (Measles, Mumps, Rubella) and booster doses.
-*   **Important Additional Vaccinations:** Rotavirus vaccine (for prevention of gastroenteritis) and Pneumococcal vaccine.
-
-**4. Warnings and Critical Nutrients**
-*   **Vitamin D:** Administered at a dose of 400 IU from the first day of birth to ensure bone health.
-*   **Prohibitions Before Age One:** Honey (risk of botulism), cow's milk as a primary drink, and salt and sugar entirely.
-*   **Safety Alert:** Cut food longitudinally and safely, and avoid nuts and whole grapes to prevent choking.
-
-**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
-
-**Resources:**
-*   [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/health-topics/infant-nutrition)
-*   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `تعد مرحلة الرضاعة وما يتبعها من تغذية تكميلية هي الفترة الأهم لبناء الأساس البدني والمعرفي للطفل. إليكم تفاصيل التغذية، مراحل النمو، وجدول التحصين الأساسي:
-
-**1. نمو الطفل وتكوين الجسم:**
-
-تتميز السنة الأولى بنمو انفجاري؛ حيث يتضاعف وزن الولادة بين 4-6 أشهر، ويتضاعف ثلاث مرات بحلول عمر سنة، ويزداد الطول بحوالي 25 سم. بعد عمر السنة، يتباطأ معدل النمو قليلاً لكنه يصبح أكثر استقراراً حتى عمر 5 سنوات.
-
-**2. الشهية ونمط التغذية (من يوم إلى 5 سنوات):**
-
-* **من 0-6 أشهر (الرضاعة الحصرية):** يعتمد الطفل كلياً على الحليب.
-    * **عدد المرات:** من 8 إلى 12 رضعة يومياً (كل 2-3 ساعات تقريباً).
-    * **الكمية:** تبدأ من 30-60 مل في الأيام الأولى، وتصل إلى 120-180 مل لكل رضعة بحلول الشهر الرابع.
-    * **ملاحظة:** يُمنع تماماً إعطاء الماء لأن الحليب يوفر الترطيب الكافي.
-
-* **من 6 أشهر إلى سنتين (التغذية التكميلية والدمج):**
-    * **كيفية الدمج:** يظل الحليب هو المصدر الأساسي، ونقدم الطعام الصلب "بين" الرضعات.
-    * **6-8 أشهر:** (وجبتان يومياً) + الرضاعة. الكمية: ملعقتان كبيرتان لكل وجبة وتزيد تدريجياً.
-    * **9-11 شهر:** (3 وجبات يومياً) + الرضاعة. الكمية: حوالي نصف كوب (125 مل) لكل وجبة.
-    * **12-24 شهر:** (3 وجبات أساسية + 2 خفيفة) مع استمرار الرضاعة.
-
-* **من 2-5 سنوات:** يظهر "ضعف الشهية الفسيولوجي"، وهو أمر طبيعي نتيجة تباطؤ النمو. يجب احترام إشارات الجوع والشبع.
-
-**3. التطعيمات الأساسية (ما بعد حديثي الولادة):**
-
-* **عمر 2، 4، 6 أشهر:** التطعيمات الخماسية وشلل الأطفال.
-* **عمر سنة و18 شهراً:** تطعيم MMR (الحصبة، النكاف، الحصبة الألمانية) والجرعات التنشيطية.
-* **تطعيمات إضافية هامة:** تطعيم الروتا (للوقاية من النزلات المعوية) وتطعيم المكورات الرئوية.
-
-**4. تحذيرات ومغذيات حرجة:**
-
-* **فيتامين (د):** يُعطى بجرعة 400 وحدة دولية منذ اليوم الأول للولادة لضمان صحة العظام.
-* **ممنوعات قبل عمر السنة:** العسل (خطر التسمم السجقي)، حليب البقر كشراب أساسي، والملح والسكر تماماً.
-* **تنبيه الأمان:** تقطيع الطعام بشكل طولي وآمن وتجنب المكسرات والعنب الكامل لتجنب الاختناق.
-
-**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
-
-**المصادر:**
-* [World Health Organization (WHO) - Infant and Young Child Feeding](https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding)
-* [UNICEF - Nutrition](https://www.unicef.org/nutrition)
-* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-    },
-    keyTakeaways: {
-      en: [
-        'Exclusive breastfeeding for the first 6 months is crucial',
-        'Complementary feeding starts at 6 months with gradual texture increase',
-        'Vitamin D (400 IU) is required from day one',
-        'Avoid honey, cow\'s milk, salt, and sugar before age one'
-      ],
-      ar: [
-        'الرضاعة الطبيعية الحصرية لأول 6 أشهر ضرورية',
-        'تبدأ التغذية التكميلية من 6 أشهر مع التدرج في القوام',
-        'فيتامين د (400 وحدة) ضروري من اليوم الأول',
-        'يُمنع العسل وحليب البقر والملح والسكر قبل عمر السنة'
-      ]
-    },
-    imageUrl: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80',
+    imageUrl: '/images/articles/growth-assessment.jpg',
   },
   {
     id: '3',
@@ -435,377 +464,7 @@ Transition from hospital to home requires careful planning to ensure continued o
         'الأطفال الخدج يحتاجون حليباً مدعماً أو تركيبات خاصة'
       ]
     },
-    imageUrl: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80',
-  },
-  {
-    id: '11',
-    title: {
-      en: 'Childhood Obesity Starting from Pregnancy',
-      ar: 'السمنة في مرحلة الطفولة بدءًا من الحمل'
-    },
-    excerpt: {
-      en: 'What occurs during pregnancy impacts the child\'s future. Discover how fetal programming shapes the child\'s metabolic health and increases obesity risks.',
-      ar: 'ما يحدث أثناء الحمل يؤثر على مستقبل الطفل. اكتشف كيف تشكل البرمجة الجنينية الصحة الأيضية للطفل وتزيد مخاطر السمنة.'
-    },
-    category: 'overnutrition',
-    ageGroup: 'children',
-    content: {
-      en: `**Childhood Obesity Starting from Pregnancy: How Does It Begin?**
-
-There exists a scientific concept known as **Fetal Programming**, which indicates that everything the mother is exposed to during pregnancy is biologically "recorded" in the fetus's body, influencing their health and metabolic functions after birth.
-
-**1) Maternal Obesity or Excessive Weight Gain During Pregnancy**
-
-If the mother suffers from overweight prior to pregnancy or gains excessive weight during gestation, the child is more susceptible to:
-
-*   **High birth weight (Macrosomia)**
-*   **Possessing a higher number of adipocytes (fat cells)**
-*   **Elevated risk of developing obesity in childhood**
-
-**Scientific Explanation:** Elevated levels of insulin and leptin in the mother transfer to the fetus, stimulating fat storage.
-
-**2) Unhealthy Maternal Diet**
-
-When the mother relies on:
-
-*   Excessive amounts of sugar
-*   Fast food
-*   Saturated fats
-*   Sweetened beverages
-*   Caloric surplus
-
-The probability increases that the child will become more prone to:
-
-*   Storing fat easily
-*   Developing insulin resistance
-*   Experiencing frequent hunger postpartum
-
-**3) Gestational Diabetes**
-
-Considered one of the strongest predictors of subsequent obesity.
-
-High blood sugar levels in the mother transfer to the fetus -> the fetal pancreas responds by secreting large quantities of insulin -> leading to increased fat storage.
-
-👉 **Note:** These children are three times more likely to develop obesity after the age of two.
-
-**4) Smoking During Pregnancy**
-
-Leads to the inhibition of fetal growth within the womb (Intrauterine Growth Restriction). Postpartum, the child tends to consume larger quantities of food to compensate, increasing the risk of obesity.
-
-**5) Lack of Physical Activity During Pregnancy**
-
-Regular physical activity helps regulate insulin and hormones. Conversely, a sedentary lifestyle leads to increased fat storage in the fetus.
-
-**Postnatal Factors Increasing Obesity Risk**
-
-*   Early introduction of heavy solid foods
-*   Reliance on formula feeding without medical necessity
-*   Provision of sugary drinks and unhealthy meals
-*   Irregular feeding schedules
-*   Using food as a means of reward or soothing
-*   Lack of physical activity
-
-**Prevention and Treatment**
-
-**First: During Pregnancy**
-
-A healthy maternal diet includes:
-
-*   Vegetables and fruits
-*   Lean proteins
-*   Healthy fats (fish, olive oil, nuts)
-*   Reduction of sugar intake
-*   Drinking adequate amounts of water
-*   Regular and balanced meals
-
-*   **Monthly Weight Monitoring:** Normal gain depends on the pre-pregnancy Body Mass Index (BMI).
-*   **Early Treatment of Gestational Diabetes:** Considered one of the most important steps in preventing childhood obesity.
-*   **Moderate Physical Activity:** Such as walking for 20–30 minutes daily.
-
-**Second: After Birth**
-
-*   **Breastfeeding:** The preferred option.
-*   **Avoiding the addition of sugar to the child's food.**
-*   **Delaying juices and sweetened foods.**
-*   **Reliance on natural foods (vegetables, fruits, protein).**
-*   **Avoiding the use of food as a reward.**
-*   **Encouraging the child to engage in daily movement.**
-
-**In case of childhood obesity (after age two):**
-
-*   Reducing sugars and sweetened beverages
-*   Increasing vegetables and protein
-*   Eliminating fast food
-*   Regulating sleep schedules (sleep disruption increases appetite hormones)
-*   Daily physical activity
-*   Follow-up with a pediatric nutritionist if weight is elevated
-
-**Causes of Low Birth Weight at Delivery**
-
-*   Preterm birth before the 37th week
-*   Intrauterine Growth Restriction (IUGR) due to malnutrition or placental issues
-*   Maternal malnutrition during pregnancy
-*   Maternal smoking or exposure to passive smoking
-*   Maternal chronic diseases such as hypertension and diabetes
-*   Infections during pregnancy
-*   Multiple pregnancies (twins or more)
-*   Alcohol or drug abuse
-*   Extremes of maternal age (very young or advanced maternal age)
-
-**Nutritional Causes of Low Birth Weight**
-
-These are linked to deficiencies in nutrients essential for fetal growth, including:
-
-**1) Caloric Deficiency**
-The mother's failure to obtain sufficient energy leads to compromised fetal growth.
-
-**2) Protein Deficiency**
-Protein is fundamental for building fetal tissues and the growth of muscles and bones; its deficiency slows growth.
-
-**3) Essential Vitamin and Mineral Deficiencies**
-*   **Iron:** Deficiency causes anemia and reduces oxygen delivery to the fetus
-*   **Folic Acid:** Deficiency increases the risk of malformations and growth retardation
-*   **Calcium and Vitamin D:** Important for bone formation
-*   **Iodine and Zinc:** Deficiencies affect brain and body growth
-
-**4) General Malnutrition or Restrictive Diets**
-Severe dietary restrictions or unbalanced regimens may lead to low birth weight.
-
-**Genetic Causes of Low Birth Weight**
-
-*   **Parental Genetic Size:** If parents are naturally thin or of short stature, the child may be born with a naturally lower weight.
-*   **Genetic or Chromosomal Disorders:** Certain genetic syndromes (such as Down syndrome) may affect fetal growth.
-*   **Family History:** A family history of low birth weight increases the likelihood of recurrence.
-
-**Care and Treatment After the Birth of a Low Birth Weight Infant**
-
-Management depends on the severity of the low weight and the general condition of the child, including:
-
-**1) Immediate Medical Care**
-*   Assessment of weight, length, and head circumference
-*   Examination of vital functions (respiration, blood sugar, temperature)
-*   Admission to an incubator if the weight is less than 1.5 kg
-
-**2) Nutrition**
-*   Early and frequent breastfeeding
-*   Use of fortified milk or formula if medically necessary
-*   Nutritional supplements under medical supervision when necessary
-
-**3) Maintaining Body Temperature**
-*   Continuous warming
-*   Use of "Kangaroo Care" (skin-to-skin contact)
-
-**4) Infection Prevention**
-*   Hand washing before touching the child
-*   Avoiding crowded places
-*   Adherence to the vaccination schedule
-
-**5) Periodic Follow-up**
-*   Weekly weight monitoring or as recommended by the physician
-*   Monitoring of growth as well as motor and mental development
-*   Screening for potential issues such as anemia
-
-**6) Psychosocial Support for the Family**
-*   Educating parents on care and feeding methods
-*   Encouraging physical and emotional interaction with the child
-
-**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
-
-**Resources:**
-*   [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
-*   [UNICEF - Early Childhood Development](https://www.unicef.org/early-childhood-development)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `**السمنة في مرحلة الطفولة بدءًا من الحمل: كيف تبدأ؟**
-
-يوجد مفهوم علمي يُعرف باسم البرمجة الجنينية (Fetal Programming)، ويشير إلى أن كل ما تتعرض له الأم أثناء الحمل يتم "تسجيله" بيولوجيًا في جسم الجنين، ويؤثر على صحته ووظائفه الأيضية بعد الولادة.
-
-**1) سمنة الأم أو الزيادة المفرطة في الوزن أثناء الحمل**
-
-إذا كانت الأم تعاني من زيادة الوزن قبل الحمل أو اكتسبت وزنًا زائدًا بشكل مفرط أثناء الحمل، فإن الطفل يكون أكثر عرضة لـ:
-
-* **الولادة بوزن مرتفع (العملقة الجنينية – Macrosomia)**
-* **امتلاك عدد أكبر من الخلايا الدهنية**
-* **ارتفاع خطر الإصابة بالسمنة في مرحلة الطفولة**
-
-**التفسير العلمي:** ارتفاع مستويات الإنسولين واللبتين لدى الأم وانتقالها إلى الجنين يؤدي إلى تحفيز تخزين الدهون.
-
-**2) النظام الغذائي غير الصحي للأم**
-
-عند اعتماد الأم على:
-
-* **كميات مفرطة من السكر**
-* **الوجبات السريعة**
-* **الدهون المشبعة**
-* **المشروبات المحلاة**
-* **فائض السعرات الحرارية**
-
-يزداد احتمال أن يصبح الطفل أكثر قابلية لـ:
-
-* **تخزين الدهون بسهولة**
-* **تطور مقاومة الإنسولين**
-* **الشعور بالجوع بشكل متكرر بعد الولادة**
-
-**3) سكري الحمل**
-
-يُعد من أقوى الأسباب المؤدية للسمنة لاحقًا.
-
-ارتفاع مستوى السكر في دم الأم ينتقل إلى الجنين ← فيستجيب البنكرياس الجنيني بإفراز كميات كبيرة من الإنسولين ← مما يؤدي إلى زيادة تخزين الدهون.
-
-👉 هؤلاء الأطفال أكثر عرضة للإصابة بالسمنة بثلاثة أضعاف بعد عمر السنتين.
-
-**4) التدخين أثناء الحمل**
-
-يؤدي إلى تثبيط نمو الجنين داخل الرحم، وبعد الولادة يميل الطفل إلى تناول كميات أكبر من الطعام للتعويض، مما يزيد خطر السمنة.
-
-**5) قلة النشاط البدني أثناء الحمل**
-
-يساعد النشاط البدني المنتظم على تنظيم الإنسولين والهرمونات. أما قلة الحركة فتؤدي إلى زيادة تخزين الدهون لدى الجنين.
-
-**عوامل ما بعد الولادة التي تزيد خطر السمنة**
-
-* **إدخال الأغذية الثقيلة في وقت مبكر**
-* **الاعتماد على الحليب الصناعي دون داعٍ طبي**
-* **تقديم المشروبات السكرية والوجبات غير الصحية**
-* **عدم انتظام مواعيد التغذية**
-* **استخدام الطعام كوسيلة للمكافأة أو التهدئة**
-* **قلة النشاط البدني**
-
-**الوقاية والعلاج**
-
-**أولًا: أثناء الحمل**
-
-النظام الغذائي الصحي للأم يشمل:
-
-* **الخضروات والفواكه**
-* **البروتينات قليلة الدهون**
-* **الدهون الصحية (الأسماك، زيت الزيتون، المكسرات)**
-* **تقليل السكر**
-* **شرب كميات كافية من الماء**
-* **وجبات منتظمة ومتوازنة**
-
-* **المتابعة الشهرية لزيادة الوزن** (تعتمد الزيادة الطبيعية على مؤشر كتلة الجسم قبل الحمل)
-* **العلاج المبكر لسكري الحمل** ويُعد من أهم خطوات الوقاية من سمنة الطفل.
-* **ممارسة نشاط بدني خفيف** مثل المشي من 20–30 دقيقة يوميًا.
-
-**ثانيًا: بعد الولادة**
-
-* **الرضاعة الطبيعية** هي الخيار المفضل
-* **عدم إضافة السكر لطعام الطفل**
-* **تأخير العصائر والأطعمة المحلاة**
-* **الاعتماد على الأغذية الطبيعية (خضروات، فواكه، بروتين)**
-* **عدم استخدام الطعام كمكافأة**
-* **تشجيع الطفل على الحركة اليومية**
-
-**في حال إصابة الطفل بالسمنة (بعد عمر سنتين):**
-
-* **تقليل السكريات والمشروبات المحلاة**
-* **زيادة الخضروات والبروتين**
-* **إيقاف الوجبات السريعة**
-* **تنظيم مواعيد النوم (اضطراب النوم يزيد هرمونات الشهية)**
-* **نشاط بدني يومي**
-* **المتابعة مع أخصائي تغذية أطفال عند ارتفاع الوزن**
-
-**أسباب انخفاض وزن المولود عند الولادة**
-
-* **الولادة المبكرة قبل الأسبوع 37**
-* **ضعف النمو داخل الرحم نتيجة سوء التغذية أو مشكلات المشيمة**
-* **سوء تغذية الأم أثناء الحمل**
-* **تدخين الأم أو التعرض للتدخين السلبي**
-* **الأمراض المزمنة لدى الأم مثل ارتفاع الضغط والسكري**
-* **العدوى أثناء الحمل**
-* **الحمل المتعدد (توائم أو أكثر)**
-* **تعاطي الكحول أو المخدرات**
-* **صغر أو كبر سن الأم بشكل مفرط**
-
-**الأسباب التغذوية لانخفاض وزن المولود**
-
-ترتبط بنقص العناصر الغذائية الضرورية لنمو الجنين، وتشمل:
-
-**1) نقص السعرات الحرارية**
-
-عدم حصول الأم على طاقة كافية يؤدي إلى تأثر نمو الجنين.
-
-**2) نقص البروتين**
-
-البروتين أساسي لبناء أنسجة الجنين ونمو العضلات والعظام، ونقصه يبطئ النمو.
-
-**3) نقص الفيتامينات والمعادن الأساسية**
-
-* **الحديد:** نقصه يسبب فقر الدم ويقلل وصول الأكسجين للجنين
-* **حمض الفوليك:** نقصه يزيد خطر التشوهات وتأخر النمو
-* **الكالسيوم وفيتامين د:** مهمان لتكوين العظام
-* **اليود والزنك:** نقصهما يؤثر على نمو الدماغ والجسم
-
-**4) سوء التغذية العام أو الحميات القاسية**
-
-القيود الغذائية الشديدة أو الأنظمة غير المتوازنة قد تؤدي لانخفاض وزن الولادة.
-
-**الأسباب الوراثية لانخفاض وزن المولود**
-
-* **الحجم الوراثي للوالدين:** إذا كان الوالدان نحيفين أو قصيري القامة، قد يولد الطفل بوزن أقل طبيعيًا.
-* **الاضطرابات الجينية أو الصبغية:** بعض المتلازمات الوراثية (مثل متلازمة داون) قد تؤثر على نمو الجنين.
-* **التاريخ العائلي:** وجود تاريخ عائلي لانخفاض وزن المواليد يزيد من احتمالية تكراره.
-
-**الرعاية والعلاج بعد ولادة طفل منخفض الوزن**
-
-تعتمد على شدة انخفاض الوزن والحالة العامة للطفل، وتشمل:
-
-**1) الرعاية الطبية الفورية**
-
-* **تقييم الوزن والطول ومحيط الرأس**
-* **فحص الوظائف الحيوية (التنفس، السكر، الحرارة)**
-* **إدخال الحاضنة إذا كان الوزن أقل من 1.5 كغ**
-
-**2) التغذية**
-
-* **الرضاعة الطبيعية المبكرة والمتكررة**
-* **استخدام حليب مدعّم أو حليب صناعي عند الحاجة الطبية**
-* **مكملات غذائية بإشراف طبي عند الضرورة**
-
-**3) الحفاظ على حرارة الجسم**
-
-* **التدفئة المستمرة**
-* **استخدام رعاية “الكنغر” (ملامسة الجلد للجلد)**
-
-**4) الوقاية من العدوى**
-
-* **غسل اليدين قبل لمس الطفل**
-* **تجنب الزحام**
-* **الالتزام بجدول التطعيمات**
-
-**5) المتابعة الدورية**
-
-* **متابعة الوزن أسبوعيًا أو حسب توصية الطبيب**
-* **مراقبة النمو والتطور الحركي والعقلي**
-* **الكشف عن مشكلات محتملة مثل فقر الدم**
-
-**6) الدعم النفسي للأسرة**
-
-* **تعليم الوالدين طرق الرعاية والرضاعة**
-* **تشجيع التفاعل الجسدي والعاطفي مع الطفل**
-
-**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
-
-**المصادر:**
-* [World Health Organization (WHO) - Early Child Development](https://www.who.int/health-topics/early-child-development)
-* [UNICEF - Early Childhood Development](https://www.unicef.org/early-child-development)
-* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-    },
-    keyTakeaways: {
-      en: [
-        'Maternal obesity and diet directly program the child\'s metabolic future',
-        'Gestational diabetes triples the risk of childhood obesity',
-        'Breastfeeding protects against both obesity and malnutrition',
-        'Low birth weight management requires temperature control and specialized feeding'
-      ],
-      ar: [
-        'سمنة الأم ونظامها الغذائي يبرمجان مستقبل الطفل الأيضي',
-        'سكري الحمل يضاعف خطر سمنة الأطفال ثلاث مرات',
-        'الرضاعة الطبيعية تحمي من السمنة وسوء التغذية',
-        'علاج انخفاض وزن المولود يتطلب ضبط الحرارة وتغذية متخصصة'
-      ]
-    },
-    imageUrl: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80'
+    imageUrl: '/images/articles/critical-care.jpg',
   },
   {
     id: '12',
@@ -937,7 +596,7 @@ Protein-Energy Malnutrition is a serious, preventable condition resulting from i
         'يركز العلاج على استعادة التوازن الأيضي وإعادة التغذية التدريجية'
       ]
     },
-    imageUrl: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80'
   },
   {
     id: '13',
@@ -1065,301 +724,6 @@ Parents must seek immediate medical attention if the newborn exhibits signs such
         'راقب عدد الحفاضات للتأكد من كفاية التغذية'
       ]
     },
-    imageUrl: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&q=80'
   },
-  {
-    id: '14',
-    title: {
-      en: 'Vitamin and Mineral Deficiency in Children: Diagnosis, Treatment, and Prevention',
-      ar: 'نقص الفيتامينات والمعادن عند الأطفال: التشخيص، العلاج، والوقاية'
-    },
-    excerpt: {
-      en: 'From Vitamin D to Iron, learn about the most common deficiencies, their silent signs, and how to treat them effectively.',
-      ar: 'من فيتامين د إلى الحديد، تعرف على أكثر أوجه النقص شيوعاً، وعلاماتها الصامتة، وكيفية علاجها بفعالية.'
-    },
-    category: 'undernutrition',
-    ageGroup: 'children',
-    content: {
-      en: `**Vitamin Deficiency in Children: Causes, Comprehensive Therapeutic Interventions, and Prevention**
-
-**Most Common Vitamin Deficiencies in Children (Ranked from Highest to Lowest Prevalence)**
-
-1.  **Vitamin D (Prevalence: 30–50%):** Most Vulnerable Age Group: Infants and children in regions with low sun exposure.
-2.  **Iron "Anemia" (Prevalence: 25–40%):** Most Vulnerable Age Group: From 6 months to 3 years, and adolescents.
-3.  **Vitamin B12 (Prevalence: 10–15%):** Most Vulnerable Age Group: Vegetarian children and those with digestive disorders.
-4.  **Vitamin A (Prevalence: 10–20%):** Most Vulnerable Age Group: Developing nations and low-income regions.
-5.  **Vitamin C (Prevalence: 5–10%):** Most Vulnerable Age Group: Children who refuse fruits and vegetables.
-
-**Detailed Causes of Vitamin Deficiency in Children**
-
-**First: Dietary Causes (Account for approximately 70% of cases)**
-*   **Feeding and Nutrition in Early Stages:** Exclusive breastfeeding without Vitamin D supplementation, use of unfortified milk, or weaning that is too early or delayed.
-*   **Unhealthy Eating Habits:** Picky eating, excessive consumption of processed foods, or lack of dietary diversity.
-*   **Imbalanced Diet:** Excessive milk consumption at the expense of other food groups, or strict vegetarian diets without compensation.
-
-**Second: Medical Causes (Account for approximately 20% of cases)**
-*   **Gastrointestinal Diseases:** Celiac Disease, Crohn's disease, Cystic Fibrosis, or parasites.
-*   **Chronic Diseases:** Renal or hepatic failure, congenital heart disease, or malignancies.
-*   **Medications:** Long-term antibiotics, epilepsy medications, or antacids.
-
-**Third: Environmental and Social Causes (Account for approximately 10% of cases)**
-*   Poverty, poor food storage, lack of sunlight, or misconceptions regarding nutrition.
-
-**Clinical Manifestations of Vitamin Deficiency**
-
-1.  **Vitamin D Deficiency:** Delayed walking, bowed legs (Rickets), bone pain, excessive sweating, impaired growth.
-2.  **Iron Deficiency (Anemia):** Pallor, fatigue, poor concentration, pica (craving non-food items), weakened immunity.
-3.  **Vitamin B12 Deficiency:** Numbness, balance disorders, glossitis, memory deficits, mood swings.
-4.  **Vitamin A Deficiency:** Dry eyes/night vision issues, dry skin, "gooseflesh", frequent infections.
-5.  **Vitamin C Deficiency:** Gingival bleeding, slow wound healing, joint pain, dry/brittle hair.
-
-**Diagnosis and Therapeutic Intervention**
-
-**Phase I: Medical Assessment and Diagnosis**
-*   **Examination:** Weight/height, assessment of bones/teeth/skin.
-*   **Labs:** CBC, Vitamin D, B12, Ferritin, Zinc, Calcium.
-
-**Phase II: Dietary Therapy**
-*   **Vitamin D:** Sunlight, eggs, fatty fish, fortified milk.
-*   **Iron:** Liver, red meat, poultry, legumes, spinach.
-*   **Vitamin B12:** Meat, fish, eggs, dairy.
-*   **Vitamin A:** Carrots, sweet potatoes, apricots, liver.
-*   **Vitamin C:** Citrus fruits, strawberries, peppers, broccoli.
-
-**Phase III: Pharmacological Supplements (By Prescription Only)**
-*   **Vitamin D:** 1000–2000 IU daily or 50,000 IU weekly for 3–6 months.
-*   **Iron:** 3–6 mg/kg/day for 3–6 months.
-*   **Vitamin B12:** 1000 micrograms weekly depending on deficiency.
-*   **Multivitamins:** Daily syrup as needed.
-
-**Prevention of Vitamin Deficiency**
-
-**Preventive Program by Age Group:**
-*   **Birth to 6 Months:** Exclusive breastfeeding + 400 IU Vitamin D.
-*   **6 Months to 1 Year:** Iron-rich foods, continue Vitamin D, fruits/veggies.
-*   **1 to 5 Years:** 3 meals + snacks, include all food groups, limit processed foods.
-*   **6 Years+:** Nutritional education, annual checkups.
-
-**Red Flags Requiring Immediate Medical Attention:**
-*   Growth arrest or weight loss.
-*   Severe pallor with lethargy.
-*   Delay in motor or linguistic development.
-*   Behavioral changes or recurrent infections.
-
-**Actionable Family Plan:**
-*   **Week 1:** Visit pediatrician, basic analyses, evaluate diet.
-*   **Month 1:** Start treatment, modify diet, first follow-up.
-*   **Month 3:** Follow-up analyses, assess improvement.
-
-**Concluding Recommendations**
-Proper nutrition in childhood represents the cornerstone of an individual's future health. Early detection of vitamin deficiencies and appropriate nutritional and therapeutic intervention constitute a long-term health investment.
-
-**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
-
-**Resources:**
-*   [World Health Organization (WHO) - Nutrition](https://www.who.int/health-topics/nutrition)
-*   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `**نقص الفيتامينات لدى الأطفال: الأسباب والتدخلات العلاجية والوقائية الشاملة**
-
-**أكثر الفيتامينات شيوعًا من حيث النقص لدى الأطفال (مرتبة من الأعلى إلى الأقل انتشارًا)**
-
-**1. فيتامين د (نسبة الانتشار: 30–50%)**
-*   **الفئة العمرية الأكثر عرضة:** الرضع والأطفال في المناطق منخفضة التعرض للشمس.
-
-**2. الحديد "فقر الدم" (نسبة الانتشار: 25–40%)**
-*   **الفئة العمرية الأكثر عرضة:** من 6 أشهر إلى 3 سنوات، والمراهقون.
-
-**3. فيتامين ب12 (نسبة الانتشار: 10–15%)**
-*   **الفئة العمرية الأكثر عرضة:** الأطفال النباتيون، وذوو الاضطرابات الهضمية.
-
-**4. فيتامين أ (نسبة الانتشار: 10–20%)**
-*   **الفئة العمرية الأكثر عرضة:** الدول النامية والمناطق منخفضة الدخل.
-
-**5. فيتامين ج (نسبة الانتشار: 5–10%)**
-*   **الفئة العمرية الأكثر عرضة:** الأطفال الرافضون للفواكه والخضروات.
-
-**الأسباب التفصيلية لنقص الفيتامينات لدى الأطفال**
-
-**أولًا: الأسباب الغذائية (تمثل نحو 70% من الحالات)**
-
-**1. الرضاعة والتغذية في المراحل المبكرة**
-*   الرضاعة الطبيعية الحصرية دون تعويض فيتامين د.
-*   استخدام حليب غير مدعّم بالفيتامينات.
-*   الفطام المبكر أو المتأخر عن التوقيت المناسب.
-
-**2. العادات الغذائية غير الصحية**
-*   انتقائية الطعام (Picky Eating).
-*   الإفراط في تناول الأغذية المصنعة (الوجبات الخفيفة، الشوكولاتة، العصائر الصناعية).
-*   نقص التنوع الغذائي.
-
-**3. النظام الغذائي غير المتوازن**
-*   الإفراط في استهلاك الحليب على حساب باقي المجموعات الغذائية.
-*   اتباع أنظمة نباتية صارمة دون تعويض غذائي مناسب.
-*   الاعتماد المفرط على الكربوهيدرات كمصدر رئيسي للطاقة.
-
-**ثانيًا: الأسباب الطبية (تمثل نحو 20% من الحالات)**
-
-**1. أمراض الجهاز الهضمي**
-*   الداء البطني (حساسية القمح – السيلياك).
-*   داء كرون والتهاب القولون التقرحي.
-*   التليف الكيسي.
-*   الطفيليات المعوية.
-
-**2. الأمراض المزمنة**
-*   الفشل الكلوي أو الكبدي.
-*   أمراض القلب الخلقية.
-*   الأورام الخبيثة والعلاجات المرتبطة بها.
-
-**3. الأدوية المسببة لنقص الفيتامينات**
-*   بعض المضادات الحيوية طويلة الأمد.
-*   أدوية الصرع.
-*   مضادات الحموضة.
-
-**ثالثًا: الأسباب البيئية والاجتماعية (تمثل نحو 10% من الحالات)**
-*   الفقر وانعدام الأمن الغذائي.
-*   سوء تخزين أو تحضير الأغذية.
-*   قلة التعرض لأشعة الشمس.
-*   المعتقدات الغذائية الخاطئة داخل الأسرة.
-
-**المظاهر السريرية لنقص الفيتامينات**
-
-**1. نقص فيتامين د**
-*   تأخر المشي وبزوغ الأسنان.
-*   تقوس الساقين (الكساح).
-*   آلام العظام والعضلات.
-*   التعرق الزائد، خاصة في منطقة الرأس.
-*   ضعف النمو الطولي.
-
-**2. نقص الحديد (فقر الدم)**
-*   شحوب الجلد والأغشية المخاطية.
-*   الإرهاق والخمول المستمر.
-*   ضعف التركيز وتراجع التحصيل الدراسي.
-*   اشتهاء مواد غير غذائية (Pica) مثل التراب أو الثلج.
-*   ضعف المناعة.
-
-**3. نقص فيتامين ب12**
-*   تنميل الأطراف.
-*   اضطرابات التوازن والمشي.
-*   التهاب اللسان واحمراره.
-*   ضعف الذاكرة والتركيز.
-*   الاكتئاب وتقلبات المزاج.
-
-**4. نقص فيتامين أ**
-*   جفاف العين وضعف الرؤية الليلية.
-*   جفاف وتقشر الجلد.
-*   فرط التقرن الجريبي (جلد الأوزة).
-*   زيادة القابلية للإصابة بالعدوى.
-
-**5. نقص فيتامين ج**
-*   نزيف اللثة وتخلخل الأسنان.
-*   بطء التئام الجروح.
-*   آلام المفاصل.
-*   جفاف وتقصف الشعر.
-
-**التشخيص والتدخل العلاجي**
-
-**المرحلة الأولى: التقييم والتشخيص الطبي**
-
-**1. الفحص السريري الشامل**
-*   قياس الوزن والطول ومحيط الرأس.
-*   تقييم العظام، الأسنان، اللثة، والجلد.
-
-**2. الفحوصات المخبرية الأساسية**
-*   صورة دم كاملة (CBC).
-*   فيتامين د (25-Hydroxy Vitamin D).
-*   فيتامين ب12.
-*   مخزون الحديد (Ferritin).
-*   الزنك والكالسيوم.
-*   فيتامين أ وفيتامين هـ (عند الحاجة).
-
-**المرحلة الثانية: العلاج الغذائي**
-
-**المصادر الغذائية الأساسية للفيتامينات**
-
-*   **فيتامين د:** أشعة الشمس، البيض، الأسماك الدهنية، الحليب المدعم.
-*   **الحديد:** الكبدة، اللحوم الحمراء، الدواجن، البقول، السبانخ.
-*   **فيتامين ب12:** اللحوم، الأسماك، البيض، منتجات الألبان.
-*   **فيتامين أ:** الجزر، البطاطا الحلوة، المشمش، الكبدة.
-*   **فيتامين ج:** الحمضيات، الفراولة، الفلفل، البروكلي.
-
-**المرحلة الثالثة: المكملات الدوائية (بوصفة طبية فقط)**
-
-*   **فيتامين د:** 1000–2000 وحدة دولية يوميًا أو 50,000 وحدة أسبوعيًا لمدة 3–6 أشهر.
-*   **الحديد:** 3–6 مجم/كجم/يوم لمدة 3–6 أشهر.
-*   **فيتامين ب12:** 1000 ميكروغرام أسبوعيًا حسب درجة النقص.
-*   **الفيتامينات المتعددة:** شراب يومي يحتوي على فيتامينات أ، ب، ج، د، هـ، الزنك حسب الحاجة.
-
-**الوقاية من نقص الفيتامينات**
-
-**برنامج وقائي حسب المرحلة العمرية**
-
-**من الولادة حتى 6 أشهر:**
-*   رضاعة طبيعية حصرية.
-*   400 وحدة دولية من فيتامين د يوميًا.
-*   تعرّض مناسب لأشعة الشمس.
-
-**من 6 أشهر إلى سنة:**
-*   إدخال أغذية غنية بالحديد.
-*   الاستمرار في فيتامين د.
-*   تنويع الخضروات والفواكه.
-
-**من سنة إلى 5 سنوات:**
-*   ثلاث وجبات رئيسية و2–3 وجبات خفيفة.
-*   تضمين جميع المجموعات الغذائية يوميًا.
-*   الحد من الأغذية المصنعة.
-
-**من 6 سنوات فما فوق:**
-*   التثقيف الغذائي.
-*   متابعة النمو بشكل دوري.
-*   فحوصات دم سنوية.
-
-**علامات الخطر التي تستوجب مراجعة الطبيب فورًا**
-*   توقف النمو أو فقدان الوزن.
-*   شحوب شديد مصحوب بخمول.
-*   تأخر واضح في التطور الحركي أو اللغوي.
-*   تغيرات سلوكية ملحوظة.
-*   تكرار العدوى والأمراض.
-
-**خطة عمل إجرائية للأسرة**
-
-**خلال أسبوع:**
-*   زيارة طبيب الأطفال.
-*   إجراء التحاليل الأساسية.
-*   تقييم النظام الغذائي الحالي.
-
-**خلال شهر:**
-*   بدء العلاج الموصوف.
-*   تعديل النظام الغذائي.
-*   أول متابعة طبية.
-
-**خلال ثلاثة أشهر:**
-*   تحاليل متابعة.
-*   تقييم التحسن في النمو والأعراض.
-*   تعديل الخطة العلاجية حسب النتائج.
-
-**توصيات ختامية**
-تمثل التغذية السليمة في مرحلة الطفولة حجر الأساس لصحة الفرد مستقبلًا. ويُعد الاكتشاف المبكر لنقص الفيتامينات والتدخل الغذائي والعلاجي المناسبين استثمارًا صحيًا طويل الأمد، حيث إن الوقاية أكثر فاعلية وأقل كلفة من العلاج.
-
-**المصادر:**
-*   [World Health Organization (WHO) - Nutrition](https://www.who.int/health-topics/nutrition)
-*   [UNICEF - Nutrition](https://www.unicef.org/nutrition)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-    },
-    keyTakeaways: {
-      en: [
-        'Vitamin D and Iron are the most common deficiencies',
-        'Symptoms like delayed walking or pica require immediate testing',
-        'Dietary diversity is the best prevention strategy',
-        'Supplements should be dose-adjusted by a physician'
-      ],
-      ar: [
-        'نقص فيتامين د والحديد هو الأكثر شيوعاً',
-        'أعراض مثل تأخر المشي أو أكل التراب تستدعي الفحص فوراً',
-        'التنوع الغذائي هو أفضل وسيلة للوقاية',
-        'يجب ضبط جرعات المكملات من قبل الطبيب'
-      ]
-    },
-    imageUrl: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80'
-  }
 ];

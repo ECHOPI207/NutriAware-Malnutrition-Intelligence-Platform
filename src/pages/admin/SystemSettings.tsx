@@ -9,12 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
-import { 
-  Settings, 
-  Shield, 
+import {
+  Settings,
+  Shield,
   Database,
-  Mail,
-  Bell,
   Globe,
   Save,
   RefreshCw
@@ -33,10 +31,10 @@ interface SystemSettings {
 
 const SystemSettingsPage: React.FC = () => {
   const { i18n } = useTranslation();
-  const { user, userProfile } = useAuth();
+  const { userProfile } = useAuth();
   const [settings, setSettings] = useState<SystemSettings>({
     siteName: 'NutriAware',
-    siteDescription: 'منصة ذكية لمكافحة سوء التغذية',
+    siteDescription: 'منصة ذكية لسلامة الغذاء والتغذية المتوازنة',
     adminEmail: 'admin@nutriaware.com',
     enableRegistration: true,
     enableNotifications: true,
@@ -52,7 +50,7 @@ const SystemSettingsPage: React.FC = () => {
     totalConsultations: 0,
     storageUsed: 0
   });
-  
+
   const isRTL = i18n.language === 'ar';
 
   useEffect(() => {
@@ -66,7 +64,7 @@ const SystemSettingsPage: React.FC = () => {
     try {
       const settingsRef = doc(db, 'system', 'settings');
       const settingsSnap = await getDoc(settingsRef);
-      
+
       if (settingsSnap.exists()) {
         setSettings(prev => ({ ...prev, ...settingsSnap.data() }));
       }
@@ -82,13 +80,13 @@ const SystemSettingsPage: React.FC = () => {
       // Load system statistics
       const usersQuery = collection(db, 'users');
       const usersSnapshot = await getDocs(usersQuery);
-      
+
       const assessmentsQuery = collection(db, 'bmi_calculations');
       const assessmentsSnapshot = await getDocs(assessmentsQuery);
-      
+
       const consultationsQuery = collection(db, 'medicalConsultations');
       const consultationsSnapshot = await getDocs(consultationsQuery);
-      
+
       setStats({
         totalUsers: usersSnapshot.size,
         totalAssessments: assessmentsSnapshot.size,
@@ -105,7 +103,7 @@ const SystemSettingsPage: React.FC = () => {
       setSaving(true);
       const settingsRef = doc(db, 'system', 'settings');
       await setDoc(settingsRef, settings, { merge: true });
-      
+
       alert(isRTL ? 'تم حفظ الإعدادات بنجاح' : 'Settings saved successfully');
     } catch (error) {
       console.error('Error saving settings:', error);
@@ -119,7 +117,7 @@ const SystemSettingsPage: React.FC = () => {
     if (!confirm(isRTL ? 'هل أنت متأكد من مسح الذاكرة المؤقتة؟' : 'Are you sure you want to clear cache?')) {
       return;
     }
-    
+
     // Mock cache clearing
     alert(isRTL ? 'تم مسح الذاكرة المؤقتة بنجاح' : 'Cache cleared successfully');
   };
@@ -183,7 +181,7 @@ const SystemSettingsPage: React.FC = () => {
                   <span className="text-muted-foreground">{isRTL ? 'التخزين المستخدم' : 'Storage Used'}</span>
                   <span className="font-semibold">{stats.storageUsed} MB</span>
                 </div>
-                
+
                 <Button onClick={clearCache} variant="outline" className="w-full">
                   <RefreshCw className="h-4 w-4 mr-2" />
                   {isRTL ? 'مسح الذاكرة المؤقتة' : 'Clear Cache'}
@@ -220,7 +218,7 @@ const SystemSettingsPage: React.FC = () => {
                         <Globe className="h-5 w-5" />
                         {isRTL ? 'معلومات الموقع' : 'Site Information'}
                       </h3>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="siteName">{isRTL ? 'اسم الموقع' : 'Site Name'}</Label>
@@ -240,7 +238,7 @@ const SystemSettingsPage: React.FC = () => {
                           />
                         </div>
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="siteDescription">{isRTL ? 'وصف الموقع' : 'Site Description'}</Label>
                         <Textarea
@@ -258,7 +256,7 @@ const SystemSettingsPage: React.FC = () => {
                         <Shield className="h-5 w-5" />
                         {isRTL ? 'التحكم في النظام' : 'System Controls'}
                       </h3>
-                      
+
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div>
@@ -272,7 +270,7 @@ const SystemSettingsPage: React.FC = () => {
                             onCheckedChange={(checked) => setSettings(prev => ({ ...prev, enableRegistration: checked }))}
                           />
                         </div>
-                        
+
                         <div className="flex items-center justify-between">
                           <div>
                             <Label>{isRTL ? 'تفعيل الإشعارات' : 'Enable Notifications'}</Label>
@@ -285,7 +283,7 @@ const SystemSettingsPage: React.FC = () => {
                             onCheckedChange={(checked) => setSettings(prev => ({ ...prev, enableNotifications: checked }))}
                           />
                         </div>
-                        
+
                         <div className="flex items-center justify-between">
                           <div>
                             <Label>{isRTL ? 'وضع الصيانة' : 'Maintenance Mode'}</Label>
@@ -299,7 +297,7 @@ const SystemSettingsPage: React.FC = () => {
                           />
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="maxUsers">{isRTL ? 'الحد الأقصى للمستخدمين يومياً' : 'Max Users Per Day'}</Label>

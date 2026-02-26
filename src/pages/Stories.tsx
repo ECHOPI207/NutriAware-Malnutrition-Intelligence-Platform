@@ -46,60 +46,73 @@ const Stories: React.FC = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.15 }}
                         >
-                            <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group border-0 shadow-md">
-                                {/* Cover */}
-                                <div
-                                    className="h-48 flex items-center justify-center relative"
-                                    style={{ background: `linear-gradient(135deg, ${story.cover_color}22, ${story.cover_color}44)` }}
-                                >
-                                    <BookOpen className="h-20 w-20 opacity-20" style={{ color: story.cover_color }} />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <span className="text-5xl font-bold opacity-10" style={{ color: story.cover_color }}>
-                                            {story.id === 'story-1' ? '📖' : '🍱'}
-                                        </span>
+                            <Link to={`/stories/${isRTL ? story.slug_ar : story.slug_en}`} className="block h-full">
+                                <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group border-0 shadow-md cursor-pointer">
+                                    {/* Cover */}
+                                    <div
+                                        className="h-48 flex items-center justify-center relative overflow-hidden"
+                                        style={{ background: `linear-gradient(135deg, ${story.cover_color}22, ${story.cover_color}44)` }}
+                                    >
+                                        {story.cover_image ? (
+                                            <img
+                                                src={story.cover_image}
+                                                alt=""
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        ) : (
+                                            <>
+                                                <BookOpen className="h-20 w-20 opacity-20" style={{ color: story.cover_color }} />
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <span className="text-5xl font-bold opacity-10" style={{ color: story.cover_color }}>
+                                                        {story.id === 'story-1' ? '📖' : '🍱'}
+                                                    </span>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
-                                </div>
 
-                                <CardHeader className="pb-2">
-                                    <div className="flex items-center gap-2 flex-wrap mb-2">
-                                        <Badge variant="secondary" className="text-xs">
-                                            <UsersIcon className="h-3 w-3 mr-1 rtl:ml-1 rtl:mr-0" />
-                                            {isRTL ? `مناسب للأعمار ${story.age_range}` : `Ages ${story.age_range}`}
-                                        </Badge>
-                                        <Badge variant="outline" className="text-xs">
-                                            <Clock className="h-3 w-3 mr-1 rtl:ml-1 rtl:mr-0" />
-                                            {isRTL ? `${story.reading_time_minutes} دقائق` : `${story.reading_time_minutes} min`}
-                                        </Badge>
-                                    </div>
-                                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                                        {isRTL ? story.title_ar : story.title_en}
-                                    </CardTitle>
-                                </CardHeader>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-center gap-2 flex-wrap mb-2">
+                                            <Badge variant="secondary" className="text-xs">
+                                                <UsersIcon className="h-3 w-3 mr-1 rtl:ml-1 rtl:mr-0" />
+                                                {isRTL ? `مناسب للأعمار ${story.age_range}` : `Ages ${story.age_range}`}
+                                            </Badge>
+                                            <Badge variant="outline" className="text-xs">
+                                                <Clock className="h-3 w-3 mr-1 rtl:ml-1 rtl:mr-0" />
+                                                {isRTL ? `${story.reading_time_minutes} دقائق` : `${story.reading_time_minutes} min`}
+                                            </Badge>
+                                        </div>
+                                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                            {isRTL ? story.title_ar : story.title_en}
+                                        </CardTitle>
+                                    </CardHeader>
 
-                                <CardContent className="pt-0">
-                                    <p className="text-muted-foreground mb-6">
-                                        {isRTL ? story.description_ar : story.description_en}
-                                    </p>
+                                    <CardContent className="pt-0">
+                                        <p className="text-muted-foreground mb-6 line-clamp-2">
+                                            {isRTL ? story.description_ar : story.description_en}
+                                        </p>
 
-                                    <div className="flex gap-3">
-                                        <Link to={`/stories/${isRTL ? story.slug_ar : story.slug_en}`} className="flex-1">
-                                            <Button className="w-full btn-gradient gap-2">
-                                                <BookOpen className="h-4 w-4" />
-                                                {isRTL ? 'اقرأ القصة' : 'Read Story'}
-                                            </Button>
-                                        </Link>
-                                        <a
-                                            href={`/stories/${encodeURIComponent(story.pdf_filename)}`}
-                                            download
-                                            className="flex-shrink-0"
-                                        >
-                                            <Button variant="outline" size="icon" title={isRTL ? 'تحميل PDF' : 'Download PDF'}>
-                                                <Download className="h-4 w-4" />
-                                            </Button>
-                                        </a>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                                        <div className="flex gap-3">
+                                            <div className="flex-1">
+                                                <Button className="w-full btn-gradient gap-2">
+                                                    <BookOpen className="h-4 w-4" />
+                                                    {isRTL ? 'اقرأ القصة' : 'Read Story'}
+                                                </Button>
+                                            </div>
+                                            <a
+                                                href={`/stories/${encodeURIComponent(story.pdf_filename)}`}
+                                                download
+                                                className="flex-shrink-0"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <Button variant="outline" size="icon" title={isRTL ? 'تحميل PDF' : 'Download PDF'}>
+                                                    <Download className="h-4 w-4" />
+                                                </Button>
+                                            </a>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

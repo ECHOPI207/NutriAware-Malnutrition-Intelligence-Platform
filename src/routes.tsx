@@ -206,8 +206,8 @@ const routes: RouteConfig[] = [
     path: '/messages',
     element: <MessagesAndConsultations />,
     visible: false,
-    requiredRole: ['user', 'doctor', 'nutritionist', 'admin'],
-    showInNavigation: (role) => ['user', 'doctor', 'nutritionist', 'admin'].includes(role)
+    requiredRole: ['user', 'nutritionist', 'admin'],
+    showInNavigation: (role) => ['user', 'nutritionist', 'admin'].includes(role)
   },
   {
     name: 'Privacy Policy',
@@ -308,10 +308,10 @@ const routes: RouteConfig[] = [
     path: '/admin/survey-results',
     element: <SurveyResults />,
     visible: false,
-    requiredRole: ['admin', 'doctor', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/doctor
+    requiredRole: ['admin', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/nutritionist
     requiredPermission: 'canAccessAdminDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['admin', 'nutritionist'].includes(role)
   },
   {
     name: 'Survey Management',
@@ -319,21 +319,21 @@ const routes: RouteConfig[] = [
     path: '/admin/survey-management',
     element: <SurveyManagement />,
     visible: false,
-    requiredRole: ['admin', 'doctor', 'nutritionist'],
+    requiredRole: ['admin', 'nutritionist'],
     requiredPermission: 'canAccessAdminDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['admin', 'nutritionist'].includes(role)
   },
   {
-    name: 'Doctor Dashboard',
-    translationKey: 'nav.doctorDashboard',
+    name: 'Nutritionist Dashboard',
+    translationKey: 'nav.nutritionDashboard',
     path: '/doctor/dashboard',
     element: <DoctorDashboard />,
     visible: false,
-    requiredRole: ['doctor', 'nutritionist'],
+    requiredRole: ['nutritionist'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['nutritionist'].includes(role)
   },
   {
     name: 'Consultation Management',
@@ -341,10 +341,10 @@ const routes: RouteConfig[] = [
     path: '/doctor/consultations',
     element: <ConsultationManagement />,
     visible: false,
-    requiredRole: ['doctor', 'nutritionist'],
+    requiredRole: ['nutritionist'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['nutritionist'].includes(role)
   },
   {
     name: 'Dashboard',
@@ -352,10 +352,10 @@ const routes: RouteConfig[] = [
     path: '/dashboard',
     element: <Dashboard />,
     visible: false,
-    requiredRole: ['user', 'doctor', 'nutritionist', 'admin'],
+    requiredRole: ['user', 'nutritionist', 'admin'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/',
-    showInNavigation: (role) => ['user', 'doctor', 'nutritionist', 'admin'].includes(role)
+    showInNavigation: (role) => ['user', 'nutritionist', 'admin'].includes(role)
   },
   {
     name: 'Profile',
@@ -363,7 +363,7 @@ const routes: RouteConfig[] = [
     path: '/profile',
     element: <Profile />,
     visible: false,
-    requiredRole: ['user', 'admin', 'doctor', 'nutritionist'],
+    requiredRole: ['user', 'admin', 'nutritionist'],
     showInNavigation: () => false
   },
   {

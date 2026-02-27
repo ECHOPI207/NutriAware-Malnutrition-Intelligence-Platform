@@ -45,7 +45,6 @@ interface UserProfile {
 interface SystemStats {
   totalUsers: number;
   adminUsers: number;
-  doctorUsers: number;
   nutritionistUsers: number;
   regularUsers: number;
   newUsersToday: number;
@@ -69,7 +68,6 @@ const AdminDashboard: React.FC = () => {
   const [systemStats, setSystemStats] = useState<SystemStats>({
     totalUsers: 0,
     adminUsers: 0,
-    doctorUsers: 0,
     nutritionistUsers: 0,
     regularUsers: 0,
     newUsersToday: 0,
@@ -123,13 +121,11 @@ const AdminDashboard: React.FC = () => {
       const [
         totalUsersSnap,
         adminUsersSnap,
-        doctorUsersSnap,
         nutritionistUsersSnap,
         regularUsersSnap
       ] = await Promise.all([
         getCountFromServer(usersColl),
         getCountFromServer(query(usersColl, where('role', '==', 'admin'))),
-        getCountFromServer(query(usersColl, where('role', '==', 'doctor'))),
         getCountFromServer(query(usersColl, where('role', '==', 'nutritionist'))),
         getCountFromServer(query(usersColl, where('role', '==', 'user')))
       ]);
@@ -196,7 +192,6 @@ const AdminDashboard: React.FC = () => {
       setSystemStats({
         totalUsers,
         adminUsers: adminUsersSnap.data().count,
-        doctorUsers: doctorUsersSnap.data().count,
         nutritionistUsers: nutritionistUsersSnap.data().count,
         regularUsers: regularUsersSnap.data().count,
         newUsersToday: newUsersTodaySnap.data().count,
@@ -234,7 +229,6 @@ const AdminDashboard: React.FC = () => {
   const getRoleIcon = (role: string) => {
     switch (role) {
       case 'admin': return <Crown className="h-4 w-4 text-yellow-600" />;
-      case 'doctor': return <Stethoscope className="h-4 w-4 text-blue-600" />;
       case 'nutritionist': return <Stethoscope className="h-4 w-4 text-green-600" />;
       default: return <User className="h-4 w-4 text-gray-600" />;
     }
@@ -243,7 +237,6 @@ const AdminDashboard: React.FC = () => {
   const getRoleLabel = (role: string) => {
     switch (role) {
       case 'admin': return isRTL ? 'مدير النظام' : 'Administrator';
-      case 'doctor': return isRTL ? 'طبيب' : 'Doctor';
       case 'nutritionist': return isRTL ? 'أخصائي تغذية' : 'Nutritionist';
       default: return isRTL ? 'مستخدم عادي' : 'Regular User';
     }
@@ -252,7 +245,6 @@ const AdminDashboard: React.FC = () => {
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case 'admin': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'doctor': return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'nutritionist': return 'bg-green-100 text-green-800 border-green-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -294,7 +286,7 @@ const AdminDashboard: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8">
             <Card className="border-none shadow-md hover:shadow-lg transition-all bg-gradient-to-br from-yellow-500 to-yellow-600 text-white col-span-2 md:col-span-1">
               <CardHeader className="p-4 pb-2">
                 <CardTitle className="text-sm font-medium text-yellow-100 flex items-center gap-2">
@@ -307,21 +299,6 @@ const AdminDashboard: React.FC = () => {
                 <div className="flex items-center text-xs text-yellow-100 mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   {isRTL ? 'مستخدم مسجل' : 'Registered users'}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-all bg-white dark:bg-card">
-              <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Stethoscope className="h-4 w-4 text-blue-500" />
-                  {isRTL ? 'الأطباء' : 'Doctors'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="text-2xl font-bold">{systemStats.doctorUsers}</div>
-                <div className="flex items-center text-xs text-muted-foreground mt-1">
-                  {isRTL ? 'طبيب مسجل' : 'Medical pros'}
                 </div>
               </CardContent>
             </Card>

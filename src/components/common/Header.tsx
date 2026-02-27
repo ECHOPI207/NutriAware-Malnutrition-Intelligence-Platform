@@ -77,8 +77,8 @@ const Header = () => {
     { name: 'nav.messages', path: '/messages', icon: MessageSquare },
   ];
 
-  const doctorLinks = [
-    { name: 'nav.doctorDashboard', path: '/doctor/dashboard', icon: LayoutDashboard },
+  const nutritionistLinks = [
+    { name: 'nav.nutritionDashboard', path: '/doctor/dashboard', icon: LayoutDashboard },
     { name: 'nav.surveyResults', path: '/admin/survey-results', icon: BarChart2 },
     { name: 'nav.surveyManagement', path: '/admin/survey-management', icon: Settings },
     { name: 'nav.messages', path: '/messages', icon: MessageSquare },
@@ -236,13 +236,13 @@ const Header = () => {
                       </>
                     )}
 
-                    {/* Doctor Links */}
-                    {(userProfile?.role === 'doctor' || userProfile?.role === 'nutritionist') && (
+                    {/* Nutritionist Links */}
+                    {userProfile?.role === 'nutritionist' && (
                       <>
                         <DropdownMenuLabel className="text-xs text-muted-foreground font-normal px-2 py-1">
-                          {t('nav.doctorControls')}
+                          {t('nav.nutritionControls')}
                         </DropdownMenuLabel>
-                        {doctorLinks.map((link) => (
+                        {nutritionistLinks.map((link) => (
                           <DropdownMenuItem key={link.path} asChild className="cursor-pointer rounded-md p-2.5">
                             <Link to={link.path}>
                               <link.icon className="me-3 h-4 w-4" />

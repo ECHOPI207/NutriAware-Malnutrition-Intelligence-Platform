@@ -48,7 +48,6 @@ interface UserStats {
   activeUsers: number;
   newUsers: number;
   adminUsers: number;
-  doctorUsers: number;
   regularUsers: number;
 }
 
@@ -61,7 +60,6 @@ const ActivityMonitoring: React.FC = () => {
     activeUsers: 0,
     newUsers: 0,
     adminUsers: 0,
-    doctorUsers: 0,
     regularUsers: 0
   });
 
@@ -79,9 +77,9 @@ const ActivityMonitoring: React.FC = () => {
   const fetchActivityData = async () => {
     try {
       const q = query(
-        collection(db, 'audit_logs'),
+        collection(db, 'activity_logs'),
         orderBy('timestamp', 'desc'),
-        limit(50)
+        limit(100)
       );
 
       const querySnapshot = await getDocs(q);
@@ -91,13 +89,13 @@ const ActivityMonitoring: React.FC = () => {
         const data = doc.data();
         logs.push({
           id: doc.id,
-          userId: data.actorId,
-          userName: data.actorEmail || 'Unknown', // Fallback to email as name might not be in log
-          userRole: 'system', // We might need to fetch this or store it in log
-          action: data.action,
+          userId: data.user_id || data.actorId || 'Unknown',
+          userName: data.user_email || data.actorEmail || 'Unknown',
+          userRole: 'user',
+          action: data.action_type || data.action || 'Unknown',
           details: data.details || '',
           timestamp: data.timestamp?.toDate() || new Date(),
-          ipAddress: data.ipAddress
+          ipAddress: data.user_agent || data.ipAddress
         });
       });
 
@@ -117,7 +115,6 @@ const ActivityMonitoring: React.FC = () => {
 
       let totalUsers = 0;
       let adminUsers = 0;
-      let doctorUsers = 0;
       let regularUsers = 0;
       let newUsers = 0;
 
@@ -129,7 +126,6 @@ const ActivityMonitoring: React.FC = () => {
 
         // Count by role
         if (userData.role === 'admin') adminUsers++;
-        else if (userData.role === 'doctor') doctorUsers++;
         else regularUsers++;
 
         // Count new users (created in last week)
@@ -143,7 +139,6 @@ const ActivityMonitoring: React.FC = () => {
         activeUsers: Math.floor(totalUsers * 0.7), // Mock active users
         newUsers,
         adminUsers,
-        doctorUsers,
         regularUsers
       });
     } catch (error) {
@@ -164,12 +159,27 @@ const ActivityMonitoring: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const roleMap = {
       admin: { label: isRTL ? 'مدير' : 'Admin', variant: 'destructive' as const },
-      doctor: { label: isRTL ? 'طبيب' : 'Doctor', variant: 'default' as const },
       user: { label: isRTL ? 'مستخدم' : 'User', variant: 'secondary' as const }
     };
 
     const roleInfo = roleMap[role as keyof typeof roleMap] || roleMap.user;
     return <Badge variant={roleInfo.variant}>{roleInfo.label}</Badge>;
+  };
+
+  const handleExportLog = () => {
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF"
+      + "Date,User ID,User Email,Action,Details,IP/UserAgent\n"
+      + activities.map(a =>
+        `"${a.timestamp.toLocaleString()}","${a.userId}","${a.userName}","${a.action}","${a.details.replace(/"/g, '""')}","${a.ipAddress || ''}"`
+      ).join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `activity_logs_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Mock chart data
@@ -185,7 +195,6 @@ const ActivityMonitoring: React.FC = () => {
 
   const userRoleData = [
     { name: isRTL ? 'مستخدمين عاديين' : 'Regular Users', value: userStats.regularUsers, color: '#8884d8' },
-    { name: isRTL ? 'أطباء' : 'Doctors', value: userStats.doctorUsers, color: '#82ca9d' },
     { name: isRTL ? 'مديرين' : 'Admins', value: userStats.adminUsers, color: '#ffc658' }
   ];
 
@@ -373,7 +382,7 @@ const ActivityMonitoring: React.FC = () => {
             <TabsContent value="activities" className="space-y-6">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold">{isRTL ? 'سجل الأنشطة' : 'Activity Log'}</h2>
-                <Button variant="outline">
+                <Button variant="outline" onClick={handleExportLog}>
                   <FileText className="h-4 w-4 mr-2" />
                   {isRTL ? 'تصدير السجل' : 'Export Log'}
                 </Button>

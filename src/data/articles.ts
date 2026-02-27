@@ -307,161 +307,159 @@ export const articles: Article[] = [
     category: 'undernutrition',
     ageGroup: 'children',
     content: {
-      en: `**Nutrition in Critical Illness and Preterm Infants**
+      en: `
+<div dir="ltr">
+<p>Nutrition in the Pediatric Intensive Care Unit (PICU) and Neonatal Intensive Care Unit (NICU) is not a secondary supportive measure — it is an integral part of treatment with precise timings, dosages, and indicators that directly affect survival rates, recovery, and neurodevelopmental outcomes.</p>
 
-Critically ill children and premature infants have unique nutritional needs requiring specialized therapeutic approaches.
+<p><strong>Important Disclaimer:</strong> This section is intended for general medical awareness and education only and is in no way a substitute for specialized medical decisions by a critical care pediatrician or clinical nutritionist.</p>
 
-**Nutritional Care in the Pediatric Intensive Care Unit (PICU)**
-Critically ill children suffer from profound metabolic disturbances that significantly impact their nutritional status and requirements.
+<hr>
 
-**The Metabolic Response to Injury**
-The body's response to critical illness occurs in two phases:
-*   **The Catabolic Phase (Ebb Phase):** An immediate response characterized by hypometabolism, decreased cardiac output, and shock. This phase typically lasts 24–48 hours.
-*   **The Flow Phase:** Characterized by hypermetabolism, increased energy expenditure, protein catabolism, and insulin resistance. This phase can last from weeks to months depending on the severity of the illness.
+<h2>Section One: Nutrition for the Critically Ill Child — PICU</h2>
+<h3>The Metabolic Response to Critical Illness — Two Biological Phases</h3>
+<p>The child's body responds to critical stress (surgery, severe infection, trauma) in two distinct metabolic phases:</p>
+<ul>
+<li><strong>1. The Ebb Phase (24–48 hours):</strong> A period of "metabolic shock" characterized by decreased energy expenditure, reduced cardiac output, and hyperglycemia. The goal here is hemodynamic stabilization, not intensive feeding.</li>
+<li><strong>2. The Flow Phase (Days to Weeks):</strong> A period of "metabolic storm" characterized by hypermetabolism and severe protein breakdown (catabolism). The body consumes its muscles to provide energy for survival.</li>
+</ul>
 
-**Nutritional Goals in the ICU**
-*   Preventing further nutritional deterioration.
-*   Supporting immune function.
-*   Promoting wound healing and recovery.
-*   Reducing complications.
+<h3>The PICU Nutritional Goals</h3>
+<ul>
+<li>Mitigate the loss of Lean Body Mass (LBM).</li>
+<li>Support immune function to prevent hospital-acquired infections.</li>
+<li>Promote wound healing and organ function recovery.</li>
+<li>Reduce the duration of mechanical ventilation and ICU stay.</li>
+</ul>
 
-**The Double Burden of Nutrition Challenge**
-*   **Underfeeding:** Impairs immunity, delays wound healing, prolongs mechanical ventilation, and increases the risk of infection.
-*   **Overfeeding:** May hinder mechanical ventilation (due to increased carbon dioxide production), cause hepatic dysfunction (fatty liver), hyperglycemia, and electrolyte imbalances.
-*   **Refeeding Syndrome:** Serious metabolic disturbances that occur upon the rapid initiation of feeding following a period of starvation or severe malnutrition, leading to sudden electrolyte imbalances (such as phosphorus, potassium, and magnesium) and posing a risk to cardiac and pulmonary functions.
+<h3>Critical Risks: The "Nutrition Paradox"</h3>
+<ul>
+<li><strong>Underfeeding:</strong> Causes immune failure, muscle wasting (including respiratory muscles), and delayed recovery.</li>
+<li><strong>Overfeeding:</strong> More dangerous in the acute phase; it causes "Metabolic Stress," liver dysfunction, and increased CO2 production, making it difficult to wean the child off the ventilator.</li>
+<li><strong>Refeeding Syndrome:</strong> A life-threatening condition occurring when rapid feeding is started after prolonged starvation, leading to a sudden drop in phosphorus, potassium, and magnesium, potentially causing heart failure.</li>
+</ul>
 
-**Therapeutic Protocols**
-*   **Enteral Nutrition is Preferred:** Should be initiated early (within 24–48 hours) when the patient is hemodynamically stable. Enteral nutrition maintains gut integrity, reduces the risk of infection, and is more physiological than parenteral nutrition.
-*   **High Protein Requirements:** These children require high doses of protein, starting at a minimum of 1.5 g/kg/day, and may need 2–3 g/kg/day depending on illness severity and degree of catabolism.
-*   **Energy Requirements:** Typically 1.2–1.5 times the resting energy expenditure, but should be individualized based on indirect calorimetry when available.
+<h3>The Specialized Treatment Protocol</h3>
+<ul>
+<li><strong>Early Enteral Nutrition (EN):</strong> Initiating feeding via a gastric tube within 24–48 hours is the global gold standard, as it maintains "Gut Integrity" and prevents bacterial translocation.</li>
+<li><strong>Protein-Sparing Strategy:</strong> Protein is the most critical nutrient. Targets range from 1.5g/kg in older children to 3g/kg in infants to counteract catabolism.</li>
+<li><strong>Parenteral Nutrition (PN):</strong> Reserved for cases of absolute gut failure, requiring strict monitoring of blood lipids and sugars.</li>
+</ul>
 
-**Nutrition in Preterm Infants**
-The preterm infant (born before 37 weeks of gestation) has not completed the accumulation of essential nutrient stores that typically occurs during the third trimester of pregnancy.
+<hr>
 
-**Unique Challenges**
-*   Immature gastrointestinal tract.
-*   Limited nutrient stores (especially calcium, phosphorus, and iron).
-*   Increased metabolic requirements.
-*   Immature organ systems.
+<h2>Section Two: Nutrition for Preterm Infants — NICU</h2>
+<p>For a preterm infant (born before 37 weeks), nutrition is a race against time to compensate for the "Nutritional Debt" resulting from missing the third trimester of pregnancy — the period of peak nutrient transfer.</p>
 
-**The Importance of Trophic Feeding**
-The administration of very small amounts of milk (10–20 ml/kg/day) aimed at "priming" the gastrointestinal tract rather than providing calories. Its importance lies in promoting gut maturation, reducing the duration of dependence on parenteral nutrition, and lowering the risk of Necrotizing Enterocolitis (NEC).
+<h3>The Biological Challenge</h3>
+<ul>
+<li><strong>Minimal Stores:</strong> Preterm infants are born with almost zero stores of Iron, Calcium, and Fat.</li>
+<li><strong>Immature Gut:</strong> Poor motility and low enzyme levels increase the risk of "Feeding Intolerance."</li>
+<li><strong>The NEC Ghost:</strong> Necrotizing Enterocolitis (NEC) is the primary fear, where part of the intestine tissue dies.</li>
+</ul>
 
-**Nutritional Goal**
-Mimicking the rapid intrauterine growth that would have occurred prenatally, aiming for growth rates of 15–20 g/kg/day.
+<h3>NICU Nutritional Pillars</h3>
+<ul>
+<li><strong>1. Trophic Feeding (The "Priming" Dose):</strong> Starting extremely small amounts (10–20 ml/kg/day) of breast milk. The goal is not calories, but "training" the gut and stimulating hormone secretion to prevent atrophy.</li>
+<li><strong>2. Human Milk Fortification (HMF):</strong> Mother's milk alone is insufficient for a preterm infant's rapid growth needs. Fortifiers (Protein, Calcium, Phosphorus) are added to breast milk to match intrauterine growth rates.</li>
+<li><strong>3. Aggressive Early Amino Acids:</strong> Starting intravenous proteins (PN) within the first hours of life is essential to prevent the "Catabolic State" that begins immediately after birth.</li>
+</ul>
 
-**Fortification of Human Milk**
-Breast milk for preterm infants requires fortifiers to increase its protein, calcium, phosphorus, and caloric content. Standard fortification typically provides:
-*   Additional protein: 0.8–1.0 g/100 ml.
-*   Increased calcium and phosphorus: For bone mineralization.
-*   Improved caloric density: 24–26 kcal/oz (versus 20 kcal/oz in unfortified milk).
+<h3>Developmental Outcomes</h3>
+<p>Scientific evidence confirms that "Aggressive" yet balanced nutrition in the first weeks for preterm infants is strongly correlated with higher IQ scores, better motor coordination, and reduced metabolic diseases in adulthood.</p>
 
-**Specialized Preterm Formulas**
-When breast milk is unavailable, specialized preterm formulas provide:
-*   Higher protein content (2.4–3.0 g/100 kcal).
-*   Increased minerals for bone growth.
-*   Improved caloric density.
-*   Easily digestible fats and proteins.
+<hr>
 
-**Monitoring and Complications**
-Careful monitoring is essential for:
-*   Growth parameters (weight, length, head circumference).
-*   Feeding tolerance.
-*   Metabolic bone disease.
-*   Risk of Necrotizing Enterocolitis (NEC).
-*   Nutritional deficiency.
+<h2>Practical Tips for Parents after ICU/NICU Discharge</h2>
+<ol>
+<li><strong>Follow the Growth Curve Religiously:</strong> Use specialized "Preterm Growth Charts" (like Fenton or Intergrowth-21st) as the standard curves do not apply.</li>
+<li><strong>Catch-up Growth:</strong> Be patient; the child needs months or even years to close the gap with their peers.</li>
+<li><strong>Specialized Formulas:</strong> If breastfeeding is not possible, use "Post-Discharge Formulas" (PDF) which are richer in minerals than standard formulas.</li>
+<li><strong>Developmental Monitoring:</strong> Nutrition is the fuel for the brain; ensure regular visits to a developmental pediatrician.</li>
+</ol>
+</div>`,
+      ar: `
+<div dir="rtl">
+<p>التغذية في وحدة العناية المركزة للأطفال (PICU) ووحدة العناية بالمواليد (NICU) ليست إجراءً داعماً ثانوياً — بل هي جزء لا يتجزأ من العلاج له توقيتات وجرعات ومؤشرات دقيقة تؤثر مباشرةً في معدلات البقاء والتعافي ومآلات التطور العصبي.</p>
 
-Transition from hospital to home requires careful planning to ensure continued optimal nutrition and growth.
+<p><strong>تنويه هام:</strong> هذا القسم موجَّه للتوعية والتثقيف الطبي العام فقط، ولا يُغني بأي حال عن القرار الطبي المتخصص من قِبل طبيب الأطفال الحرجين أو أخصائي التغذية الإكلينيكية.</p>
 
-**Important Disclaimer:** This article is provided for general awareness purposes only and in no way substitutes for consultation with a specialist physician or regular follow-up with the pediatrician managing your child's health condition.
+<hr>
 
-**Resources:**
-*   [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
-*   [American Academy of Pediatrics (AAP)](https://www.aap.org/)
-*   [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
-      ar: `الأطفال المرضى بشكل حرج والأطفال الخدج لديهم احتياجات غذائية فريدة تتطلب أساليب علاجية متخصصة.
+<h2>القسم الأول: تغذية الطفل المريض بشكل حرج — وحدة العناية المركزة (PICU)</h2>
+<h3>الاستجابة الأيضية للمرض الحرج — المرحلتان البيولوجيتان</h3>
+<p>يستجيب جسم الطفل للإجهاد الشديد (جراحة، عدوى حادة، صدمة) عبر مرحلتين استقلابيتين متمايزتين:</p>
+<ul>
+<li><strong>1. مرحلة الجزر (Ebb Phase):</strong> تستمر 24–48 ساعة، وهي فترة "صدمة أيضية" تتميز بانخفاض استهلاك الطاقة، ونقص النتاج القلبي، وارتفاع سكر الدم. الهدف هنا هو الاستقرار الدينياميكي وليس التغذية المكثفة.</li>
+<li><strong>2. مرحلة التدفق (Flow Phase):</strong> تستمر لأيام أو أسابيع، وهي فترة "عاصفة أيضية" تتميز بفرط الأيض وتكسير شديد للبروتينات (Catabolism). الجسم "يأكل" عضلاته ليوفر طاقة للبقاء.</li>
+</ul>
 
-**الرعاية الغذائية للأطفال في وحدة العناية المركزة للأطفال:**
-يعاني الأطفال المرضى بشكل حرج من اضطرابات استقلابية عميقة تؤثر بشكل كبير على حالتهم الغذائية ومتطلباتهم.
+<h3>أهداف التغذية في العناية المركزة</h3>
+<ul>
+<li>الحد من فقدان الكتلة العضلية (Lean Body Mass).</li>
+<li>دعم الجهاز المناعي لمنع العدوى المكتسبة في المستشفى.</li>
+<li>تعزيز التئام الجروح واستعادة وظائف الأعضاء.</li>
+<li>تقليل مدة البقاء على جهاز التنفس الصناعي وفي العناية.</li>
+</ul>
 
-**الاستجابة الأيضية للإصابة:**
-استجابة الجسم للمرض الحرج تحدث في مرحلتين:
-* **المرحلة الهدمية (مرحلة الجزر):** استجابة فورية تتميز بانخفاض معدل الأيض، وانخفاض النتاج القلبي، والصدمة. تستمر هذه المرحلة عادة 24-48 ساعة.
-* **مرحلة التدفق:** تتميز بفرط الأيض، وزيادة إنفاق الطاقة، وتقويض البروتين، ومقاومة الأنسولين. يمكن أن تستمر هذه المرحلة من أسابيع إلى أشهر اعتماداً على شدة المرض.
+<h3>المخاطر الحرجة: "مفارقة التغذية"</h3>
+<ul>
+<li><strong>نقص التغذية (Underfeeding):</strong> يسبب فشلاً مناعياً، وضمور عضلات التنفس، وتأخر التعافي.</li>
+<li><strong>الإفراط في التغذية (Overfeeding):</strong> أخطر في المرحلة الحادة؛ يسبب "إجهاداً أيضياً"، وخللاً في وظائف الكبد، وزيادة إنتاج ثاني أكسيد الكربون مما يصعّب فصل الطفل عن جهاز التنفس.</li>
+<li><strong>متلازمة إعادة التغذية (Refeeding Syndrome):</strong> حالة مهددة للحياة تحدث عند البدء السريع بالتغذية بعد جوع طويل، تؤدي لهبوط حاد في الفسفور والبوتاسيوم والمغنيسيوم، وقد تسبب فشل القلب.</li>
+</ul>
 
-**الأهداف الغذائية في وحدة العناية المركزة:**
-* منع المزيد من التدهور الغذائي
-* دعم وظيفة المناعة
-* تعزيز التئام الجروح والتعافي
-* تقليل المضاعفات
+<h3>البروتوكول العلاجي المتخصص</h3>
+<ul>
+<li><strong>التغذية المعوية المبكرة (Early EN):</strong> البدء عبر أنبوب المعدة خلال 24–48 ساعة هو "المعيار الذهبي" عالمياً، لأنه يحافظ على سلامة الأمعاء (Gut Integrity) ويمنع انتقال البكتيريا للدم.</li>
+<li><strong>استراتيجية الحفاظ على البروتين:</strong> البروتين هو العنصر الأهم. نهدف لجرعات تصل لـ 1.5 جم/كجم في الأطفال الكبار و3 جم/كجم في الرضع لمواجهة الهدم العضلي.</li>
+<li><strong>التغذية الوريدية (PN):</strong> نلجأ إليها فقط في حالات فشل الأمعاء المطلق، مع رقابة صارمة لدهون وسكريات الدم.</li>
+</ul>
 
-**تحدي التغذية المزدوج:**
-* **نقص التغذية:** يضعف المناعة، ويؤخر التئام الجروح، ويطيل التهوية الميكانيكية، ويزيد من خطر العدوى.
-* **الإفراط في التغذية:** قد يعيق التهوية الميكانيكية (زيادة إنتاج ثاني أكسيد الكربون)، ويسبب خلل وظيفي كبدي (الكبد الدهني)، وارتفاع السكر في الدم، واختلال التوازن الكهربائي.
-* **متلازمة إعادة التغذية (Refeeding Syndrome):** هي اضطرابات أيضية خطيرة تحدث عند البدء السريع بالتغذية بعد فترة من الجوع أو نقص التغذية الحاد، مما يؤدي إلى خلل مفاجئ في الأملاح (مثل الفسفور والبوتاسيوم والمغنيسيوم) ويشكل خطراً على وظائف القلب والرئة.
+<hr>
 
-**البروتوكولات العلاجية:**
-* **التغذية المعوية مفضلة:** يجب أن تبدأ مبكراً (خلال 24-48 ساعة) عندما يكون المريض مستقراً ديناميكياً. التغذية المعوية تحافظ على سلامة الأمعاء، وتقلل من خطر العدوى، وهي أكثر فسيولوجية من التغذية الوريدية.
-* **متطلبات البروتين العالية:** يحتاج هؤلاء الأطفال إلى جرعات عالية من البروتين، تبدأ من 1.5 جم/كجم/يوم كحد أدنى، وقد يحتاجون إلى 2-3 جم/كجم/يوم اعتماداً على شدة المرض ودرجة التقويض.
-* **متطلبات الطاقة:** عادة 1.2-1.5 مرة من إنفاق الطاقة أثناء الراحة، ولكن يجب تخصيصها بناءً على قياس السعرات الحرارية غير المباشر عند توفره.
+<h2>القسم الثاني: تغذية الأطفال الخدج (المبتسرين) — وحدة المبتسرين (NICU)</h2>
+<p>تغذية الطفل الخديج (المولود قبل 37 أسبوعاً) هي سباق مع الزمن لتعويض "الدين الغذائي" الناتج عن فقدان الثلث الأخير من الحمل — وهي فترة ذروة انتقال المغذيات.</p>
 
-**التغذية في الأطفال الخدج:**
-الطفل الخديج (المولود قبل 37 أسبوعاً من الحمل) لم يكمل تراكم مخزونات العناصر الغذائية الأساسية التي تحدث عادة خلال الثلث الثالث من الحمل.
+<h3>التحدي البيولوجي</h3>
+<ul>
+<li><strong>مخازن منعدمة:</strong> يولد الخديج بمخازن صفرية تقريباً من الحديد والكالسيوم والدهون.</li>
+<li><strong>أمعاء غير ناضجة:</strong> خطر "عدم تحمل التغذية" بسبب ضعف الحركة ونقص الإنزيمات.</li>
+<li><strong>شبح الـ NEC:</strong> التهاب الأمعاء والقولون الناخر (Necrotizing Enterocolitis) هو الخوف الأكبر، حيث تموت أجزاء من أنسجة الأمعاء.</li>
+</ul>
 
-**التحديات الفريدة:**
-* الجهاز الهضمي غير الناضج
-* مخزونات محدودة من العناصر الغذائية (خاصة الكالسيوم والفوسفور والحديد)
-* زيادة المتطلبات الأيضية
-* أنظمة الأعضاء غير الناضجة
+<h3>ركائز التغذية في الـ NICU</h3>
+<ul>
+<li><strong>1. التغذية الضئيلة (Trophic Feeding):</strong> البدء بكميات متناهية الصغر (10–20 مل/كجم/يوم) من لبن الأم. الهدف ليس السعرات، بل "تدريب" الأمعاء وتحفيز إفراز الهرمونات لمنع ضمورها.</li>
+<li><strong>2. تدعيم حليب الأم (Human Milk Fortification):</strong> لبن الأم وحده لا يكفي نمو الخديج السريع. نستخدم "المدعمات" (بروتين، كالسيوم، فسفور) لتصل لمعدلات النمو داخل الرحم.</li>
+<li><strong>3. البدء المبكر بالأحماض الأمينية:</strong> البدء بالبروتينات الوريدية فور الولادة ضروري لمنع "الحالة الهدمية" التي تبدأ لحظة خروج الجنين.</li>
+</ul>
 
-**أهمية التغذية الضئيلة (Trophic Feeding):**
-هي إعطاء كميات صغيرة جداً من الحليب (10-20 مل/كجم/يوم) بهدف "تحفيز" الجهاز الهضمي وليس لتوفير السعرات. تكمن أهميتها في تعزيز نضج الأمعاء، تقليل فترة الاعتماد على التغذية الوريدية، وتقليل خطر الإصابة بالتهاب الأمعاء والقولون الناخر (NEC).
+<h3>مآلات التطور والذكاء</h3>
+<p>تؤكد الأدلة العلمية أن التغذية "الهجومية" والمتوازنة في الأسابيع الأولى للخديج ترتبط ارتباطاً وثيقاً بارفاع معدلات ذكاء الطفل (IQ) وتناسقه الحركي، وتقليل الأمراض الاستقلابية في الكبر.</p>
 
-**الهدف الغذائي:**
-محاكاة النمو السريع داخل الرحم الذي كان سيحدث قبل الولادة، بهدف معدلات نمو 15-20 جم/كجم/يوم.
+<hr>
 
-**تدعيم حليب الأم:**
-حليب الأم للأطفال الخدج يتطلب مدعمات لزيادة محتواه من البروتين والكالسيوم والفوسفور والسعرات الحرارية. التدعيم القياسي عادة يوفر:
-* بروتين إضافي: 0.8-1.0 جم/100 مل
-* زيادة الكالسيوم والفوسفور لتمعدن العظام
-* كثافة حرارية محسنة: 24-26 سعرة حرارية/أونصة (مقابل 20 سعرة حرارية/أونصة في الحليب غير المدعم)
-
-**تركيبات الخدج المتخصصة:**
-عندما يكون حليب الأم غير متاح، توفر تركيبات الخدج المتخصصة:
-* محتوى بروتين أعلى (2.4-3.0 جم/100 سعرة حرارية)
-* زيادة المعادن لنمو العظام
-* كثافة حرارية محسنة
-* دهون وبروتينات سهلة الهضم
-
-**المراقبة والمضاعفات:**
-المراقبة الدقيقة ضرورية لـ:
-* معايير النمو (الوزن، الطول، محيط الرأس)
-* تحمل التغذية
-* مرض العظام الأيضي
-* خطر التهاب الأمعاء والقولون الناخر
-* نقص التغذية
-
-الانتقال من المستشفى إلى المنزل يتطلب تخطيطاً دقيقاً لضمان استمرار التغذية والنمو الأمثل.
-
-**تنويه هام:** هذه المقالة مقدمة لأغراض التوعية العامة فقط، ولا تغني بأي حال من الأحوال عن استشارة الطبيب المختص أو المتابعة الدورية مع طبيب الأطفال المتابع للحالة الصحية لطفلك.
-
-**المصادر:**
-* [European Society for Paediatric Gastroenterology Hepatology and Nutrition (ESPGHAN)](https://www.espghan.org/)
-* [American Academy of Pediatrics (AAP)](https://www.aap.org/)
-* [Egyptian Ministry of Health and Population](https://www.mohp.gov.eg/)`,
+<h2>نصائح عملية للآباء بعد الخروج من العناية</h2>
+<ol>
+<li><strong>اتبع منحنى النمو بدقة:</strong> استخدم منحنيات "الخدج" الخاصة (مثل Fenton أو Intergrowth-21st) لأن المنحنيات العادية لا تنطبق عليهم.</li>
+<li><strong>نمو التعويض (Catch-up Growth):</strong> كن صبوراً؛ يحتاج الطفل لأشهر أو سنوات لسد الفجوة مع أقرانه.</li>
+<li><strong>الألبان المتخصصة:</strong> في حال عدم توفر لبن الأم، استخدم ألبان "ما بعد الخروج" (Post-Discharge Formulas) فهي أغنى بالمعادن من الألبان العادية.</li>
+<li><strong>المتابعة التطورية:</strong> التغذية هي وقود الدماغ؛ تأكد من زيارات دورية لطبيب تطور الأطفال.</li>
+</ol>
+</div>`,
     },
     keyTakeaways: {
       en: [
-        'High protein intake is essential for critically ill children',
-        'Enteral nutrition should start early if possible',
-        'Refeeding syndrome is a critical risk to monitor',
-        'Preterm infants need fortified milk or special formulas'
+        'Nutrition in the ICU/NICU is a vital biological therapy, not just support',
+        'Protein is the critical defense against muscle wasting in severe illness',
+        'Human milk fortification is essential for a preterm infant\'s brain and bone growth',
+        'Careful monitoring of growth curves is mandatory after hospital discharge'
       ],
       ar: [
-        'تناول البروتين العالي أساسي للأطفال المرضى بشدة',
-        'يجب بدء التغذية المعوية مبكراً إن أمكن',
-        'متلازمة إعادة التغذية خطر يجب مراقبته',
-        'الأطفال الخدج يحتاجون حليباً مدعماً أو تركيبات خاصة'
+        'التغذية في العناية هي علاج بيولوجي وليست مجرد دعم',
+        'البروتين هو خط الدفاع الأول ضد الهدم العضلي في المرض الشديد',
+        'تدعيم حليب الأم ضروري لنمو دماغ وعظام الطفل الخديج',
+        'المراقبة الدقيقة لمنحنيات النمو إلزامية بعد الخروج من المستشفى'
       ]
     },
     imageUrl: '/images/articles/critical-care.jpg',

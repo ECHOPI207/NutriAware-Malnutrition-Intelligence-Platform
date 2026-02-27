@@ -15,87 +15,674 @@ export const axis1Articles: InterventionArticle[] = [
         slug_ar: 'المفاتيح-الخمسة-لضمان-سلامة-الغذاء',
         slug_en: 'five-keys-to-safer-food',
         quick_summary_ar: [
-            'خمس خطوات بسيطة يمكن أن تنقذ صحة عائلتك بالكامل',
-            'تعرفي على الممارسات العلمية الأساسية الخمس لضمان سلامة طعام الأطفال',
-            'دليل عملي لوقاية طفلك من الأمراض المنقولة بالغذاء',
+            '600 مليون مريض سنوياً — تعلمي كيف تحمين عائلتك بالمفاتيح الخمسة العلمية',
+            'دليل منظمة الصحة العالمية لتقليل حوادث التسمم الغذائي المنزلي بنسبة 80%',
+            'بروتوكولات النظافة والطهي الآمن لضمان سلامة غذاء طفلك',
         ],
         quick_summary_en: [
-            'Five simple steps can protect your entire family',
-            'Learn the five essential scientific practices to ensure child food safety',
-            'A practical guide to protecting your child from foodborne illnesses',
+            '600 million illnesses annually — learn how to protect your family with the five scientific keys',
+            'WHO guide to reducing domestic food poisoning incidents by 80%',
+            'Hygiene and safe cooking protocols to ensure your child\'s food safety',
         ],
         content_ar: `<div dir="rtl">
-<p>يُصاب نحو <strong>600 مليون شخص</strong> سنوياً — أي 1 من كل 10 أشخاص على كوكب الأرض — بسبب تناول غذاء ملوّث، ويموت منهم <strong>420,000 شخص</strong> سنوياً. الأرقام الأكثر إيلاماً تخص الأطفال: رغم أن الأطفال دون الخامسة لا يُمثّلون سوى 9% من سكان العالم، فإنهم يتحمّلون 40% من العبء الكلي للأمراض الغذائية ويموت منهم <strong>125,000 طفل سنوياً</strong>. المفارقة المؤلمة أن جميع هذه الوفيات تقريباً يمكن الوقاية منها باتباع ممارسات بسيطة وموثّقة علمياً.</p>
+<p>600 مليون مريض و420,000 وفاة سنوياً — هذا الثمن الذي يدفعه العالم جرّاء الغذاء غير الآمن. والأكثر إيلاماً أن الأطفال دون الخامسة يُمثّلون 9% من سكان العالم فقط لكنهم يحملون 40% من العبء الكلي لأمراض الغذاء ويموت منهم 125,000 طفل سنوياً — وجميع هذه الوفيات قابلة للوقاية بخمس ممارسات بسيطة موثَّقة علمياً.</p>
 
 <hr>
 
-<h2>المفتاح الأول: الحفاظ على النظافة</h2>
+<h2>الإطار العلمي — لماذا هذه المفاتيح تحديداً؟</h2>
+<p>برنامج "المفاتيح الخمسة للغذاء الأكثر أماناً" طوّرته منظمة الصحة العالمية بالتعاون مع منظمة الأغذية والزراعة (FAO) استناداً لتحليل مسارات نقل العدوى في أكثر من 200 نوع من الأمراض الغذائية الناجمة عن بكتيريا وفيروسات وطفيليات وسموم وكيميائيات. الدراسات أثبتت أن تطبيق هذه المبادئ بانتظام يُقلّل حوادث التسمم الغذائي المنزلي بنسبة تُجاوز 80%. تبنّت البرنامج أكثر من 130 دولة كأساس لتدريب مناولي الغذاء والتوعية الصحية الأسرية.</p>
+
+<hr>
+
+<h2>المفتاح الأول — الحفاظ على النظافة</h2>
+<h3>العلم الكامن وراء المفتاح</h3>
+<p>الكائنات الدقيقة المُسبِّبة للمرض موجودة في كل مكان — التربة، الماء، الهواء، الحيوانات، الإنسان، وجميع الأسطح التي تلامسها اليدان. المشكلة ليست وجودها — بل انتقالها من هذه البيئات إلى الطعام الذي يُؤكَل. اليدان هي الجسر الرئيسي لهذا الانتقال.</p>
+
+<p><strong>أبرز مسارات التلوث عبر النظافة المنزلية:</strong></p>
 <ul>
-<li>اغسلي يديكِ قبل لمس الطعام وأثناء تحضيره وبعد الخروج من الحمام.</li>
-<li>اغسلي ونظفي كل الأسطح والأدوات المستخدمة في تحضير الطعام.</li>
-<li>احمي المطبخ والطعام من الحشرات والحيوانات.</li>
+    <li><strong>اليدان:</strong> تنقل بكتيريا E. coli والسالمونيلا وفيروسات نورو فيروس من السطح للغذاء عبر لمسة واحدة.</li>
+    <li><strong>فوط المسح والإسفنج:</strong> من أكثر الأسطح تلوثاً في المطبخ — الإسفنج الرطب بيئة مثالية لتضاعف البكتيريا كل 20 دقيقة.</li>
+    <li><strong>ألواح التقطيع:</strong> تراكم الشقوق الخفية بعد الاستخدام تختبئ فيها البكتيريا وتنجو من الغسيل العادي.</li>
 </ul>
-<p><strong>التفسير العلمي:</strong> الكائنات الدقيقة غالباً ما توجد في التربة والمياه والحيوانات والإنسان. وتنتقل هذه الكائنات عن طريق الأيدي، وفوط المسح، وأدوات المطبخ — خاصة ألواح التقطيع — ويمكن لأقل لمسة أن تنقلها إلى الطعام وتسبب الأمراض.</p>
 
-<hr>
-
-<h2>المفتاح الثاني: الفصل بين الأطعمة النيئة والمطبوخة</h2>
-<ul>
-<li>افصلي اللحوم والدواجن والأسماك النيئة عن الأطعمة الأخرى.</li>
-<li>استخدمي أدوات مستقلة (مثل السكاكين وألواح التقطيع) للتعامل مع الأطعمة النيئة.</li>
-<li>خزّني الطعام في أوعية محكمة لتجنب التلامس بين الأطعمة النيئة والمطبوخة.</li>
-</ul>
-<p><strong>التفسير العلمي:</strong> الأطعمة النيئة — خاصة اللحوم — قد تحتوي على ميكروبات خطيرة يمكن أن تنتقل إلى أطباق أخرى (مثل السلطات أو الأكل المطبوخ) أثناء التحضير أو التخزين، وهذا ما يسمى "التلوث المتبادل".</p>
-
-<hr>
-
-<h2>المفتاح الثالث: اطهي الطعام جيداً</h2>
-<ul>
-<li>اطهي الطعام تماماً، خاصة اللحوم والدواجن والبيض والأسماك.</li>
-<li>يجب أن تصل حرارة الطعام إلى 70 درجة مئوية على الأقل لضمان سلامته.</li>
-<li>عند إعادة تسخين الطعام المطبوخ، يجب تسخينه جيداً حتى الغليان.</li>
-</ul>
-<p><strong>التفسير العلمي:</strong> الطهي الجيد يقتل تقريباً كل الكائنات الدقيقة الخطيرة. أثبتت الدراسات أن طهي الطعام حتى تصل حرارته إلى 70 درجة مئوية يساعد في ضمان استهلاكه بأمان. الأطعمة التي تتطلب اهتماماً خاصاً تشمل اللحم المفروم، والدواجن الكاملة، وقطع اللحم الكبيرة. </p>
-
-<hr>
-
-<h2>المفتاح الرابع: حافظي على الغذاء في درجات حرارة آمنة</h2>
-<ul>
-<li>لا تتركي الطعام المطبوخ في درجة حرارة الغرفة لأكثر من ساعتين.</li>
-<li>برّدي كل الأطعمة المطبوخة والقابلة للتلف فوراً (يفضل أقل من 5 درجات مئوية).</li>
-<li>لا تخزني الطعام لفترة طويلة حتى في الثلاجة.</li>
-</ul>
-<p><strong>التفسير العلمي:</strong> الكائنات الدقيقة يمكن أن تتكاثر بسرعة كبيرة إذا ترك الطعام في درجة حرارة الغرفة. ومن خلال الحفاظ على الحرارة أقل من 5 درجات أو فوق 60 درجة، يتم إبطاء أو وقف نمو هذه الميكروبات. (ملاحظة: بعض البكتيريا الخطيرة، مثل الليستيريا، يمكن أن تنمو في الثلاجة).</p>
-
-<hr>
-
-<h2>المفتاح الخامس: استخدمي المياه والمواد الخام الآمنة</h2>
-<ul>
-<li>استخدمي المياه الآمنة أو عالجيها لتصبح آمنة.</li>
-<li>اختاري الأطعمة الطازجة والسليمة.</li>
-<li>اختاري الأطعمة التي خضعت لعمليات معالجة تزيد من سلامتها (مثل الحليب المبستر).</li>
-<li>اغسلي الفواكه والخضروات جيداً، خاصة إذا كانت ستؤكل نيئة.</li>
-<li>لا تستخدمي الغذاء بعد انتهاء تاريخ صلاحيته.</li>
-</ul>
-<p><strong>التفسير العلمي:</strong> المواد الخام، بما في ذلك المياه والثلج، قد تكون ملوثة بالكائنات الدقيقة والكيميائيات الخطيرة. العفن الذي يظهر على الفواكه التالفة قد ينتج سموماً ضارة. الاختيار بعناية والغسل والتقشير يقلل من هذه المخاطر.
-
-<hr>
-
-<h2>جدول تطبيقي شامل: المفاتيح الخمسة في المطبخ المنزلي</h2>
+<h3>بروتوكول النظافة المنزلية</h3>
 <table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
-<thead><tr><th>المفتاح</th><th>الممارسة الصحيحة</th></tr></thead>
+<thead>
+    <tr>
+        <th>السطح/الأداة</th>
+        <th>طريقة التعقيم</th>
+        <th>التكرار</th>
+    </tr>
+</thead>
 <tbody>
-<tr><td>النظافة</td><td>20 ثانية غسل يدين بالصابون؛ تعقيم ألواح التقطيع</td></tr>
-<tr><td>الفصل</td><td>لوح أحمر للحوم؛ لوح أخضر للخضار؛ رف سفلي للحوم في الثلاجة</td></tr>
-<tr><td>الطةي</td><td>الوصول لـ 70-74 درجة مئوية؛ الغليان عند إعادة التسخين</td></tr>
-<tr><td>التخزين</td><td>تبريد البقايا خلال ساعتين؛ الثلاجة &le; 4 درجات مئوية</td></tr>
-<tr><td>المواد الخام</td><td>مياه مفلترة؛ خضروات طازجة؛ لبن مبستر؛ فحص تاريخ الصلاحية</td></tr>
+    <tr>
+        <td>اليدان</td>
+        <td>صابون + ماء جارٍ 20 ثانية</td>
+        <td>قبل وأثناء وبعد التحضير</td>
+    </tr>
+    <tr>
+        <td>لوح التقطيع (الخشب)</td>
+        <td>ماء ساخن + ملعقة صودا + شطف — ثم التعريض للشمس</td>
+        <td>بعد كل وجبة</td>
+    </tr>
+    <tr>
+        <td>لوح التقطيع (البلاستيك)</td>
+        <td>غسيل عميق + محلول كلور 1:50 مع الماء</td>
+        <td>أسبوعياً أو عند التلوث المحسوس</td>
+    </tr>
+    <tr>
+        <td>إسفنجة المطبخ</td>
+        <td>تبليل وتدوير في الميكروويف 2 دقيقة أو استبدال أسبوعياً</td>
+        <td>يومياً (تنشيف جيد بعد الاستخدام)</td>
+    </tr>
+    <tr>
+        <td>السطح الجرانيتي/الرخامي</td>
+        <td>مسح بمحلول خل أبيض مخفّف أو منظّف مطبخ</td>
+        <td>بعد كل جلسة طهي</td>
+    </tr>
 </tbody>
 </table>
+
+<hr>
+
+<h2>المفتاح الثاني — الفصل بين الأطعمة النيئة والمطبوخة</h2>
+<h3>التلوث المتقاطع (Cross-Contamination) — أخطر مسار في المطبخ المنزلي</h3>
+<p>التلوث المتقاطع هو انتقال الكائنات الدقيقة من طعام نيء إلى طعام جاهز للأكل أو سطح سيُلامس طعاماً جاهزاً — دون أن يمر الأخير بمرحلة طهي تقتله. إنه السبب الأكثر شيوعاً لحوادث التسمم المنزلي في المطابخ الحديثة.</p>
+
+<p><em>المثال الكلاسيكي:</em> دجاج نيء في طبق الثلاجة يقطر عصارته على صحن السلطة في الرف السفلي. السالمونيلا تنتقل من الدجاج للسلطة، والسلطة لن تُطهى — وهذا طريق مباشر للمرض.</p>
+
+<p><strong>مسارات التلوث المتقاطع الثلاثة:</strong></p>
+<ul>
+    <li><strong>المباشر:</strong> طعام نيء يلمس طعاماً جاهزاً للأكل (عصارة اللحم تقطر على الخضروات).</li>
+    <li><strong>عبر الأدوات:</strong> سكين قطعت بها لحماً نيئاً تُستخدَم مباشرةً لتقطيع الخبز أو الفاكهة.</li>
+    <li><strong>عبر اليدين:</strong> تقطيع دجاج نيء ثم التقاط خضروات السلطة بنفس اليدين غير المغسولتين.</li>
+</ul>
+
+<h3>نظام الألوان — الحل العملي الأكثر فاعلية</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>اللون</th>
+        <th>الاستخدام</th>
+        <th>لماذا؟</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td style="background-color: #ff0000; color: white;">أحمر</td>
+        <td>اللحوم والدواجن النيئة</td>
+        <td>أعلى خطر — فصل كامل</td>
+    </tr>
+    <tr>
+        <td style="background-color: #ffff00; color: black;">أصفر</td>
+        <td>الدواجن الطازجة</td>
+        <td>بعض الدول تُميّزها لخطر السالمونيلا</td>
+    </tr>
+    <tr>
+        <td style="background-color: #0000ff; color: white;">أزرق</td>
+        <td>الأسماك والمأكولات البحرية</td>
+        <td>حماية من التلوث البكتيري البحري</td>
+    </tr>
+    <tr>
+        <td style="background-color: #008000; color: white;">أخضر</td>
+        <td>الخضروات والفواكه</td>
+        <td>ستُؤكَل نيئة في أغلب الأحيان</td>
+    </tr>
+    <tr>
+        <td style="background-color: #ffffff; border: 1px solid #ccc;">أبيض / بيج</td>
+        <td>المنتجات الألبانية والخبز</td>
+        <td>أطعمة جاهزة — فصل كامل عن النيء</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>في الثلاجة:</strong> اللحوم النيئة دائماً في الرف السفلي — الجاذبية تُضمن ألّا تقطر عصارتها على ما تحتها من أطعمة جاهزة.</p>
+
+<hr>
+
+<h2>المفتاح الثالث — اطهِ الطعام جيداً</h2>
+<h3>الفيزياء والكيمياء الحرارية لقتل الجراثيم</h3>
+<p>درجة 70°C (158°F) هي العتبة الحرارية العالمية الموصى بها من WHO — وعندها تُدمَّر البروتينات الهيكلية لمعظم الكائنات الدقيقة المُسبِّبة للأمراض بشكل لا رجعة فيه.</p>
+
+<p><strong>العلاقة بين الحرارة والزمن (Time-Temperature Relationship):</strong></p>
+<p>البكتيريا لا تموت فورياً — بل بشكل تراكمي. 74°C لمدة 10 ثوانٍ تُكافئ من حيث الأثر البكتيري درجات أقل لفترة أطول. هذا هو أساس "منحنى موت بكتيري" الذي يُحدده علماء سلامة الغذاء لكل كائن دقيق.</p>
+
+<h3>جدول درجات حرارة الطهي الداخلية</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>الطعام</th>
+        <th>الحرارة الداخلية المطلوبة</th>
+        <th>الخطر عند الطهي الناقص</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>الدواجن كاملة</td>
+        <td>82–85°C</td>
+        <td>السالمونيلا، كامبيلوباكتر</td>
+    </tr>
+    <tr>
+        <td>اللحم المفروم</td>
+        <td>74°C</td>
+        <td>E. coli O157:H7 (الأخطر)</td>
+    </tr>
+    <tr>
+        <td>قطع اللحم الكبيرة</td>
+        <td>63°C (+ 3 دقائق راحة)</td>
+        <td>السالمونيلا، ليستيريا</td>
+    </tr>
+    <tr>
+        <td>الأسماك</td>
+        <td>63°C</td>
+        <td>فيروسات وطفيليات</td>
+    </tr>
+    <tr>
+        <td>البيض</td>
+        <td>حتى يتماسك الصفار تماماً</td>
+        <td>سالمونيلا</td>
+    </tr>
+    <tr>
+        <td>إعادة تسخين الطعام</td>
+        <td>74°C في المركز (حتى الغليان)</td>
+        <td>بكتيريا نمت أثناء التخزين</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>التحقق العملي:</strong> الميزان الحراري للطعام (Probe Thermometer) هو الأداة الأمينة الوحيدة للتحقق — اللون والملمس الظاهري لا يكفيان. الدجاج قد يبدو مطهياً من الخارج ولا يزال نيئاً عند العظم.</p>
+
+<hr>
+
+<h2>المفتاح الرابع — حافظ على الغذاء في درجات حرارة آمنة</h2>
+<h3>منطقة الخطر الحراري (Temperature Danger Zone) — الفهم الكامل</h3>
+<p>المنطقة الحمراء: بين 5°C و60°C — هي النطاق الذي تتضاعف فيه البكتيريا بشكل متسارع:</p>
+<ul>
+    <li><strong>5°C – 10°C:</strong> نمو بطيء جداً — التبريد يُثبّط لكن لا يقتل.</li>
+    <li><strong>10°C – 21°C:</strong> نمو معتدل.</li>
+    <li><strong>21°C – 47°C:</strong> نمو متسارع جداً — البكتيريا تتضاعف كل 20 دقيقة!</li>
+    <li><strong>37°C:</strong> الذروة — درجة حرارة جسم الإنسان = مزرعة مثالية.</li>
+    <li><strong>60°C+:</strong> معظم البكتيريا تتوقف عن التكاثر (قتل تدريجي).</li>
+</ul>
+
+<p><strong>الرقم الصادم:</strong> في الظروف المثالية، بكتيريا واحدة يمكن أن تصبح بليوناً في 10 ساعات عند 37°C. وجبة تُتركُ على الطاولة في يوم صيفي مصري (35–38°C) تُصبح خطرة في أقل من ساعتين.</p>
+
+<h3>قواعد التخزين والتبريد</h3>
+<p><strong>قاعدة الساعتين:</strong></p>
+<ul>
+    <li>أقل من ساعتين → آمن للتخزين في الثلاجة</li>
+    <li>ساعتان إلى أربع → منطقة خطر — ضعه في الثلاجة فوراً</li>
+    <li>أكثر من أربع ساعات → تخلص منه</li>
+</ul>
+<p><strong>قاعدة الساعة الواحدة للصيف المصري:</strong> في أجواء تتجاوز 32°C (كما هو شائع في القاهرة والصعيد)، تُقلَّص قاعدة الساعتين إلى ساعة واحدة فقط.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>الطعام</th>
+        <th>مدة الحفظ الآمنة في الثلاجة (≤ 4°C)</th>
+        <th>مدة الحفظ في الفريزر (≤ -18°C)</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>لحم مطبوخ</td>
+        <td>3–4 أيام</td>
+        <td>2–3 أشهر</td>
+    </tr>
+    <tr>
+        <td>دواجن مطبوخة</td>
+        <td>3–4 أيام</td>
+        <td>4 أشهر</td>
+    </tr>
+    <tr>
+        <td>بيض مطبوخ</td>
+        <td>3–5 أيام</td>
+        <td>لا يُجمَّد</td>
+    </tr>
+    <tr>
+        <td>شوربات ومرق</td>
+        <td>3–4 أيام</td>
+        <td>2–3 أشهر</td>
+    </tr>
+    <tr>
+        <td>أرز وعدس مطبوخ</td>
+        <td>3–5 أيام</td>
+        <td>شهر واحد</td>
+    </tr>
+    <tr>
+        <td>فواكه مقطّعة</td>
+        <td>يوم واحد–3 أيام</td>
+        <td>8–12 شهراً (بعد التبييض)</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>تنبيه الليستيريا:</strong> على عكس معظم البكتيريا، ليستيريا مونوسيتوجينس تنمو ببطء حتى في درجات الثلاجة بين 0 و4°C — مما يجعل المأكولات الجاهزة طويلة التخزين في الثلاجة كالجبن الطري والسلامي خطرةً عند الأطفال والحوامل حتى مع التبريد.</p>
+
+<hr>
+
+<h2>المفتاح الخامس — استخدم المياه والمواد الخام الآمنة</h2>
+<h3>مسارات التلوث في المواد الخام</h3>
+<p>المواد الخام قد تكون ملوّثة عند المصدر قبل وصولها للمطبخ:</p>
+<ul>
+    <li><strong>المياه:</strong> الكوليرا، التيفويد، الكريبتوسبوريديوم، Hepatitis A — تنتقل جميعها عبر مياه ملوّثة.</li>
+    <li><strong>الخضروات والفواكه:</strong> سماد عضوي ملوّث، مياه ري من مصادر ملوّثة، إضافة كيميائيات مبيدات.</li>
+    <li><strong>الحليب غير المبستر:</strong> بروسيلا، ليستيريا، سالمونيلا، Campylobacter.</li>
+    <li><strong>البيض:</strong> السالمونيلا داخل القشرة وعلى سطحها.</li>
+    <li><strong>الفواكه التالفة:</strong> العفن يُنتج السموم الفطرية (Mycotoxins) — أفلاتوكسين، أوكراتوكسين — وهي سموم مُسرطِنة لا تُقتل بالطهي.</li>
+</ul>
+
+<h3>دليل اختيار المواد الخام الآمنة</h3>
+<p><strong>المياه — الاحتياطات الأساسية في مصر:</strong></p>
+<ul>
+    <li>استخدام مياه مفلترة أو مغليّة للشرب وتحضير الطعام للأطفال.</li>
+    <li>الثلج الذي يُضاف للمشروبات يجب أن يصنَّع من مياه آمنة (ثلج الشارع مجهول المصدر خطر).</li>
+</ul>
+
+<p><strong>الخضروات والفواكه:</strong></p>
+<ul>
+    <li>الغسيل تحت ماء جارٍ + فرك للأسطح الصلبة.</li>
+    <li>نزع الأجزاء التالفة أو العفنة كاملةً — العفن يمتد في الأنسجة أعمق مما يبدو بصرياً.</li>
+    <li>الفاكهة المُقشَّرة تُغسل قبل التقشير.</li>
+</ul>
+
+<p><strong>تاريخ الصلاحية — الفرق بين نوعين:</strong></p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>الكود</th>
+        <th>المعنى الدقيق</th>
+        <th>هل يُؤكل بعده؟</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Best Before (يُفضَّل قبل)</td>
+        <td>الجودة الحسية (طعم/قوام) تبدأ بالتراجع</td>
+        <td>يمكن تناوله مع تقييم حسي</td>
+    </tr>
+    <tr>
+        <td>Use By (يُستهلَك قبل)</td>
+        <td>سلامة الغذاء مضمونة حتى هذا التاريخ</td>
+        <td>No — خطر الأمراض بعده</td>
+    </tr>
+    <tr>
+        <td>Expiry Date (تاريخ الانتهاء)</td>
+        <td>نفس "Use By" في معظم التشريعات</td>
+        <td>No — تخلص منه فوراً</td>
+    </tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>الجدول المرجعي الشامل — المفاتيح الخمسة في المطبخ المصري</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>المفتاح</th>
+        <th>الممارسة الصحيحة اليومية</th>
+        <th>الخطر المحدد الذي تمنعه</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>النظافة</td>
+        <td>20 ثانية صابون + فوطة مطبخ يومية + تعقيم ألواح التقطيع أسبوعياً</td>
+        <td>E. coli، السالمونيلا، نوروفيروس</td>
+    </tr>
+    <tr>
+        <td>الفصل</td>
+        <td>لوح أحمر للحوم، أخضر للخضار؛ لحوم نيئة في الرف السفلي</td>
+        <td>السالمونيلا، ليستيريا، كامبيلوباكتر</td>
+    </tr>
+    <tr>
+        <td>الطهي الجيد</td>
+        <td>ميزان حراري؛ 74–85°C للدواجن؛ غليان عند إعادة التسخين</td>
+        <td>جميع البكتيريا الحرارية الحساسة</td>
+    </tr>
+    <tr>
+        <td>التخزين الآمن</td>
+        <td>ساعتان خارج الثلاجة حداً أقصى؛ ثلاجة ≤ 4°C؛ فريزر ≤ -18°C</td>
+        <td>منع تضاعف البكتيريا في منطقة الخطر الحراري</td>
+    </tr>
+    <tr>
+        <td>مواد خام آمنة</td>
+        <td>مياه مفلترة للأطفال؛ حليب مبستر؛ فحص الصلاحية؛ غسيل الخضروات</td>
+        <td>الكوليرا، التيفويد، الأفلاتوكسين، بروسيلا</td>
+    </tr>
+</tbody>
+</table>
+
+<p><strong>الخلاصة العملية:</strong> الأمراض الغذائية ليست حظاً سيئاً — بل هي في معظمها نتيجة خطأ يمكن تفاديه. يموت 33 مليون سنة من الأعمار الصحية سنوياً بسبب تناول غذاء غير آمن — وكل منزل يُطبّق هذه المفاتيح يُنقذ أفراده من نسبة ضخمة من هذا العبء.</p>
 </div>`,
         content_en: `<div dir="ltr">
-<h2>The Five Keys to Safer Food</h2>
-<p>WHO's essential guide to food safety in the domestic kitchen.</p>
+<p>600 million illnesses and 420,000 deaths annually — this is the price the world pays for unsafe food. Most distressing is that children under five represent only 9% of the world's population but carry 40% of the total foodborne disease burden, with 125,000 children dying every year — all of these deaths are preventable through five simple, scientifically documented practices.</p>
+
+<hr>
+
+<h2>Scientific Framework — Why These Specific Keys?</h2>
+<p>The "Five Keys to Safer Food" program was developed by the World Health Organization (WHO) in collaboration with the Food and Agriculture Organization (FAO) based on an analysis of transmission routes for over 200 types of foodborne diseases caused by bacteria, viruses, parasites, toxins, and chemicals. Studies have shown that consistent application of these principles reduces domestic food poisoning incidents by over 80%. More than 130 countries have adopted the program as the basis for training food handlers and family health awareness.</p>
+
+<hr>
+
+<h2>Key 1 — Keep Clean</h2>
+<h3>The Science Behind the Key</h3>
+<p>Pathogenic microorganisms are everywhere — in soil, water, air, animals, humans, and all surfaces touched by hands. The problem is not their existence, but their transfer from these environments to the food we eat. Hands are the primary bridge for this transfer.</p>
+
+<p><strong>Major Contamination Routes in Home Hygiene:</strong></p>
+<ul>
+    <li><strong>Hands:</strong> Transfer E. coli, Salmonella, and Norovirus from surfaces to food in a single touch.</li>
+    <li><strong>Dishcloths and Sponges:</strong> Among the most contaminated surfaces in the kitchen — damp sponges are an ideal environment for bacteria to double every 20 minutes.</li>
+    <li><strong>Cutting Boards:</strong> Micro-cracks that accumulate after use hide bacteria and protect them from normal washing.</li>
+</ul>
+
+<h3>Domestic Hygiene Protocol</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Surface/Tool</th>
+        <th>Disinfection Method</th>
+        <th>Frequency</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Hands</td>
+        <td>Soap + Running water for 20 seconds</td>
+        <td>Before, during, and after preparation</td>
+    </tr>
+    <tr>
+        <td>Cutting Board (Wood)</td>
+        <td>Hot water + baking soda + rinse — then sun exposure</td>
+        <td>After every meal</td>
+    </tr>
+    <tr>
+        <td>Cutting Board (Plastic)</td>
+        <td>Deep wash + 1:50 chlorine solution with water</td>
+        <td>Weekly or when perceptibly soiled</td>
+    </tr>
+    <tr>
+        <td>Kitchen Sponge</td>
+        <td>Wetting and rotating in microwave for 2 mins or weekly replacement</td>
+        <td>Daily (dry well after use)</td>
+    </tr>
+    <tr>
+        <td>Granite/Marble Surface</td>
+        <td>Wipe with diluted white vinegar solution or kitchen cleaner</td>
+        <td>After every cooking session</td>
+    </tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Key 2 — Separate Raw and Cooked</h2>
+<h3>Cross-Contamination — The Most Dangerous Route in the Home Kitchen</h3>
+<p>Cross-contamination is the transfer of microorganisms from raw food to ready-to-eat food or a surface that will touch ready-to-eat food — without the latter undergoing a killing cook stage. It is the most common cause of domestic poisoning incidents in modern kitchens.</p>
+
+<p><em>Classic Example:</em> Raw chicken in a refrigerator dish dripping juice onto a salad bowl on the lower shelf. Salmonella transfers from the chicken to the salad, which will not be cooked — this is a direct path to illness.</p>
+
+<p><strong>Three Cross-Contamination Routes:</strong></p>
+<ul>
+    <li><strong>Direct:</strong> Raw food touches ready-to-eat food (meat juice dripping on vegetables).</li>
+    <li><strong>Via Tools:</strong> A knife used to cut raw meat is used directly to cut bread or fruit.</li>
+    <li><strong>Via Hands:</strong> Cutting raw chicken then picking up salad vegetables with the same unwashed hands.</li>
+</ul>
+
+<h3>Color-Coding System — The Most Effective Practical Solution</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Color</th>
+        <th>Usage</th>
+        <th>Why?</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td style="background-color: #ff0000; color: white;">Red</td>
+        <td>Raw Meat and Poultry</td>
+        <td>Highest risk — full separation</td>
+    </tr>
+    <tr>
+        <td style="background-color: #ffff00; color: black;">Yellow</td>
+        <td>Fresh Poultry</td>
+        <td>Distinguished by some countries due to Salmonella risk</td>
+    </tr>
+    <tr>
+        <td style="background-color: #0000ff; color: white;">Blue</td>
+        <td>Fish and Seafood</td>
+        <td>Protection from marine bacterial contamination</td>
+    </tr>
+    <tr>
+        <td style="background-color: #008000; color: white;">Green</td>
+        <td>Vegetables and Fruits</td>
+        <td>Most often eaten raw</td>
+    </tr>
+    <tr>
+        <td style="background-color: #ffffff; border: 1px solid #ccc;">White / Beige</td>
+        <td>Dairy Products and Bread</td>
+        <td>Ready-to-eat foods — full separation from raw</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>In the Refrigerator:</strong> Raw meats always on the bottom shelf — gravity ensures juices don't drip on ready-to-eat foods below.</p>
+
+<hr>
+
+<h2>Key 3 — Cook Thoroughly</h2>
+<h3>The Thermal Physics and Chemistry of Killing Germs</h3>
+<p>70°C (158°F) is the global thermal threshold recommended by the WHO — at which structural proteins of most pathogenic microorganisms are irreversibly destroyed.</p>
+
+<p><strong>Time-Temperature Relationship:</strong></p>
+<p>Bacteria do not die instantly — they die cumulatively. 74°C for 10 seconds is equivalent in bacterial impact to lower temperatures for longer periods. This is the basis of the "Bacterial Death Curve" defined by food safety scientists for each microorganism.</p>
+
+<h3>Internal Cooking Temperature Table</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Food</th>
+        <th>Required Internal Temp</th>
+        <th>Risk if Undercooked</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Whole Poultry</td>
+        <td>82–85°C</td>
+        <td>Salmonella, Campylobacter</td>
+    </tr>
+    <tr>
+        <td>Ground Meat</td>
+        <td>74°C</td>
+        <td>E. coli O157:H7 (Most dangerous)</td>
+    </tr>
+    <tr>
+        <td>Large Meat Cuts</td>
+        <td>63°C (+ 3 min rest)</td>
+        <td>Salmonella, Listeria</td>
+    </tr>
+    <tr>
+        <td>Fish</td>
+        <td>63°C</td>
+        <td>Viruses and Parasites</td>
+    </tr>
+    <tr>
+        <td>Eggs</td>
+        <td>Until yolk is completely firm</td>
+        <td>Salmonella</td>
+    </tr>
+    <tr>
+        <td>Reheating Food</td>
+        <td>74°C at center (until boiling)</td>
+        <td>Bacteria grown during storage</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>Practical Verification:</strong> A probe thermometer is the only reliable tool for verification — color and texture are not enough. Chicken may look cooked on the outside while still raw at the bone.</p>
+
+<hr>
+
+<h2>Key 4 — Keep Food at Safe Temperatures</h2>
+<h3>Temperature Danger Zone — Full Understanding</h3>
+<p>The Red Zone: Between 5°C and 60°C — the range where bacteria multiply rapidly:</p>
+<ul>
+    <li><strong>5°C – 10°C:</strong> Very slow growth — refrigeration inhibits but does not kill.</li>
+    <li><strong>10°C – 21°C:</strong> Moderate growth.</li>
+    <li><strong>21°C – 47°C:</strong> Very rapid growth — bacteria double every 20 minutes!</li>
+    <li><strong>37°C:</strong> Peak — human body temperature = ideal culture medium.</li>
+    <li><strong>60°C+:</strong> Most bacteria stop multiplying (gradual death).</li>
+</ul>
+
+<p><strong>Shocking Figure:</strong> Under ideal conditions, a single bacterium can become a billion in 10 hours at 37°C. A meal left on the table on a summer day in Egypt (35–38°C) becomes dangerous in less than two hours.</p>
+
+<h3>Storage and Cooling Rules</h3>
+<p><strong>The Two-Hour Rule:</strong></p>
+<ul>
+    <li>Less than 2 hours → Safe for refrigerator storage</li>
+    <li>2 to 4 hours → Danger zone — place in refrigerator immediately</li>
+    <li>More than 4 hours → Discard</li>
+</ul>
+<p><strong>One-Hour Rule for Egyptian Summer:</strong> In temperatures exceeding 32°C (common in Cairo and Upper Egypt), the two-hour rule is reduced to just one hour.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Food</th>
+        <th>Safe Fridge Life (≤ 4°C)</th>
+        <th>Safe Freezer Life (≤ -18°C)</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Cooked Meat</td>
+        <td>3–4 days</td>
+        <td>2–3 months</td>
+    </tr>
+    <tr>
+        <td>Cooked Poultry</td>
+        <td>3–4 days</td>
+        <td>4 months</td>
+    </tr>
+    <tr>
+        <td>Cooked Eggs</td>
+        <td>3–5 days</td>
+        <td>Do not freeze</td>
+    </tr>
+    <tr>
+        <td>Soups and Broths</td>
+        <td>3–4 days</td>
+        <td>2–3 months</td>
+    </tr>
+    <tr>
+        <td>Cooked Rice/Lentils</td>
+        <td>3–5 days</td>
+        <td>1 month</td>
+    </tr>
+    <tr>
+        <td>Cut Fruits</td>
+        <td>1–3 days</td>
+        <td>8–12 months (after blanching)</td>
+    </tr>
+</tbody>
+</table>
+<p><strong>Listeria Alert:</strong> Unlike most bacteria, Listeria monocytogenes grows slowly even at refrigerator temperatures between 0 and 4°C — making long-stored ready-to-eat foods like soft cheese and salami dangerous for children and pregnant women even with cooling.</p>
+
+<hr>
+
+<h2>Key 5 — Use Safe Water and Raw Materials</h2>
+<h3>Contamination Routes in Raw Materials</h3>
+<p>Raw materials may be contaminated at the source before reaching the kitchen:</p>
+<ul>
+    <li><strong>Water:</strong> Cholera, Typhoid, Cryptosporidium, Hepatitis A — all transmitted through contaminated water.</li>
+    <li><strong>Vegetables and Fruits:</strong> Contaminated organic fertilizer, irrigation from polluted sources, chemical pesticide residues.</li>
+    <li><strong>Unpasteurized Milk:</strong> Brucella, Listeria, Salmonella, Campylobacter.</li>
+    <li><strong>Eggs:</strong> Salmonella inside and on the surface of the shell.</li>
+    <li><strong>Damaged Fruits:</strong> Molds produce Mycotoxins — Aflatoxin, Ochratoxin — which are carcinogenic toxins not killed by cooking.</li>
+</ul>
+
+<h3>Guide to Selecting Safe Raw Materials</h3>
+<p><strong>Water — Essential Precautions in Egypt:</strong></p>
+<ul>
+    <li>Use filtered or boiled water for drinking and preparing child food.</li>
+    <li>Ice added to drinks must be made from safe water (street ice of unknown source is dangerous).</li>
+</ul>
+
+<p><strong>Vegetables and Fruits:</strong></p>
+<ul>
+    <li>Wash under running water + scrub firm surfaces.</li>
+    <li>Remove damaged or moldy parts completely — mold extends deeper into tissues than visible.</li>
+    <li>Wash peeled fruit before peeling.</li>
+</ul>
+
+<p><strong>Shelf Life — Difference between two types:</strong></p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Code</th>
+        <th>Precise Meaning</th>
+        <th>Eat After?</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Best Before</td>
+        <td>Sensory quality (taste/texture) begins to decline</td>
+        <td>Can be consumed after sensory evaluation</td>
+    </tr>
+    <tr>
+        <td>Use By</td>
+        <td>Food safety guaranteed until this date</td>
+        <td>No — risk of illness after</td>
+    </tr>
+    <tr>
+        <td>Expiry Date</td>
+        <td>Same as "Use By" in most legislations</td>
+        <td>No — discard immediately</td>
+    </tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Comprehensive Reference Table — Five Keys in the Egyptian Kitchen</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead>
+    <tr>
+        <th>Key</th>
+        <th>Correct Daily Practice</th>
+        <th>Specific Risk Prevented</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Hygiene</td>
+        <td>20 seconds soap + daily dishcloth + weekly board disinfection</td>
+        <td>E. coli, Salmonella, Norovirus</td>
+    </tr>
+    <tr>
+        <td>Separation</td>
+        <td>Red board for meat, green for veg; raw meat on bottom shelf</td>
+        <td>Salmonella, Listeria, Campylobacter</td>
+    </tr>
+    <tr>
+        <td>Thorough Cooking</td>
+        <td>Probe thermometer; 74–85°C for poultry; boiling for reheating</td>
+        <td>All heat-sensitive pathogens</td>
+    </tr>
+    <tr>
+        <td>Safe Storage</td>
+        <td>Max 2 hours outside; Fridge ≤ 4°C; Freezer ≤ -18°C</td>
+        <td>Prevents bacterial multiplication in the Danger Zone</td>
+    </tr>
+    <tr>
+        <td>Safe Raw Materials</td>
+        <td>Filtered water for children; Pasteurized milk; Expiry check; Veg washing</td>
+        <td>Cholera, Typhoid, Aflatoxin, Brucella</td>
+    </tr>
+</tbody>
+</table>
+
+<p><strong>Practical Conclusion:</strong> Foodborne diseases are not bad luck — they are mostly the result of avoidable errors. 33 million years of healthy life are lost annually due to unsafe food — every home applying these keys saves its members from a huge proportion of this burden.</p>
 </div>`,
         sources_ar: [
             'WHO. (2026). Five keys to safer food manual. WHO.',
@@ -783,35 +1370,165 @@ export const axis1Articles: InterventionArticle[] = [
             'Teaching children the habit of handwashing from a young age is a long-term health investment',
         ],
         content_ar: `<div dir="rtl">
-<p>غسل اليدين هو الخطوة الأولى والأهم في المفاتيح الخمسة لمنظمة الصحة العالمية، وهو أبسط وأرخص وسيلة للوقاية من الأمراض المنقولة بالغذاء.[7]</p>
+<p>غسل اليدين هو "اللقاح من أجل الجميع" كما وصفته منظمة الصحة العالمية — تدخّل وقائي يعمل ضد أكثر من 200 مرض معروف تنقله الغذاء واليدين والأسطح، لا يتطلب تقنيةً أو دواءً، ويُنقذ حياةً بصابون وماء جارٍ لا يزيد ثمنهما على أي شيء.</p>
 
-<h2>متى يجب غسل اليدين؟</h2>
+<hr>
+
+<h2>الإطار العلمي — المفاتيح الخمسة لمنظمة الصحة العالمية</h2>
+<h3>برنامج المفاتيح الخمسة</h3>
+<p>منظمة الصحة العالمية طوّرت برنامجاً عالمياً يُسمّى "المفاتيح الخمسة للغذاء الأكثر أمانًا" — وهو المرجع الرسمي لتدريب مناولي الغذاء حول العالم. البرنامج يختصر المبادئ التي تمنع الأمراض المنقولة بالغذاء في خمس ممارسات:</p>
 <ul>
-<li>قبل تحضير أي طعام وبعده</li>
-<li>بعد التعامل مع اللحوم والدواجن النيئة</li>
-<li>بعد استخدام المرحاض</li>
-<li>بعد تغيير حفاظ الطفل</li>
-<li>بعد لمس الحيوانات الأليفة</li>
-<li>بعد العطس أو السعال</li>
+<li><strong>كُن نظيفاً</strong> — غسل اليدين والأسطح وأدوات المطبخ</li>
+<li><strong>افصل النيء عن المطبوخ</strong> — منع التلوث المتقاطع</li>
+<li><strong>اطبخ جيداً</strong> — درجات حرارة كافية لقتل الأحياء الدقيقة</li>
+<li><strong>احفظ الطعام في درجات حرارة آمنة</strong> — منع تكاثر الجراثيم</li>
+<li><strong>استخدم مياهاً ومواد خاماً آمنة</strong> — الانطلاق من مصدر نظيف</li>
+</ul>
+<p>وقد تبنّى هذا البرنامج أكثر من 130 دولة حول العالم، ويُعدّ الركيزة الأولى في تعليم السلامة الغذائية المنزلية والمؤسسية.</p>
+
+<hr>
+
+<h2>الدليل العلمي — ما تُغيّره 20 ثانية من الصابون</h2>
+<h3>الأرقام التي تُقنع</h3>
+<p>نحو ثلث الأمراض المعدية يمكن منعها بغسل اليدين الصحيح. ويستهلك الأمريكيون وحدهم أكثر من 48 مليون حالة مرض معدي منقول بالغذاء سنوياً — من بينها 128,000 حالة دخول مستشفى. الأطفال تحت الخامسة هم الأكثر عرضةً، إذ يُشكّل نصف الحالات الـ77 مليون سنوية في الأمريكيتين أطفالاً دون الخامسة.</p>
+<p>دراسات تدخّل في البيئات المدرسية وجدت أن برامج غسل اليدين الموجَّهة للأطفال تُقلّل غياباتهم المرضية وحوادث التهابات الجهاز التنفسي، مع تحسّن ملحوظ في المعرفة بنقل الجراثيم استمرّ لأكثر من شهر بعد التدخل.</p>
+
+<h3>ماذا يحدث فعلاً حين تغسل يديك؟</h3>
+<p>الصابون لا يقتل الجراثيم مباشرةً — بل يعمل كـعامل طرد (Surfactant): يُكسر التوتر السطحي بين زيوت الجلد (التي تتمسك بها الجراثيم) والماء، مما يُمكّن الماءَ الجاري من اقتلاع الجراثيم من سطح الجلد وجرفها ميكانيكياً. الحرارة وحدها ليست العامل المقرر — الماء البارد مع الصابون يؤدي وظيفته بكفاءة مماثلة للماء الدافئ.</p>
+
+<hr>
+
+<h2>الطريقة الصحيحة — الخطوات السبع التي يُفوّتها معظم الناس</h2>
+<p>الدراسات تُظهر أن معظم الناس يغسلون اليدين بشكل ناقص حتى حين يعتقدون أنهم يتبعون الطريقة الصحيحة — أكثر المناطق المُهمَلة هي بين الأصابع، تحت الأظافر، وظهر اليدين:</p>
+
+<pre style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; direction: rtl; text-align: right; line-height: 1.8;">
+١. بلّل اليدين بماءٍ جارٍ نظيف
+          ↓
+٢. أغلق الصنبور ثم ضع الصابون
+   (إغلاق الصنبور يوفر الماء ويمنع إعادة تلوّث اليدين النظيفتين)
+          ↓
+٣. افرك راحتَي اليدين معاً
+          ↓
+٤. افرك ظهر كل يد بباطن اليد الأخرى مع ثني الأصابع
+          ↓
+٥. افرك بين الأصابع من الداخل مع تشابك الأصابع
+          ↓
+٦. افرك تحت الأظافر بأطراف الأصابع على الراحة
+          ↓
+٧. افرك إبهام كل يد بحركة دورانية
+          ↓
+٨. الفرك الكامل: 20 ثانية على الأقل
+          ↓
+٩. اشطف بالماء الجاري من المعصم للأطراف
+          ↓
+١٠. جفّف بمنشفة نظيفة أو منديل ورقي
+    (استخدم المنديل لإغلاق الصنبور حتى لا تُلوّث يديك من جديد)
+</pre>
+
+<blockquote>
+<p><strong>خدعة الـ20 ثانية للأطفال:</strong> علّق طفلك غناء "عيد ميلاد سعيد" مرتين كاملتين — هذا يُعادل تقريباً 20 ثانية الفرك الكافية.</p>
+</blockquote>
+
+<hr>
+
+<h2>مواقيت غسل اليدين — التوقيت لا يقلّ أهمية عن الطريقة</h2>
+<p>جميع منظمات الصحة العالمية وCDC والـFAO تتفق على المواقيت الحرجة التالية:</p>
+
+<h3>قبل الطعام</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الموقف</th><th>مستوى الخطر</th><th>لماذا؟</th></tr></thead>
+<tbody>
+<tr><td>قبل تحضير أي طعام</td><td>⚠ حرج جداً</td><td>اليدان تنقلان ملايين الجراثيم للأسطح الغذائية</td></tr>
+<tr><td>أثناء التحضير (بين أنواع الطعام)</td><td>⚠ حرج</td><td>منع التلوث المتقاطع</td></tr>
+<tr><td>بعد التعامل مع لحوم/دواجن/أسماك نيئة</td><td>⚠ حرج جداً</td><td>السالمونيلا، الليستيريا، الكامبيلوباكتر</td></tr>
+<tr><td>قبل الأكل مباشرة</td><td>⚠ حرج</td><td>اليدان يمسّان الفم مئات المرات يومياً</td></tr>
+</tbody>
+</table>
+
+<br>
+
+<h3>بعد الملوّثات</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الموقف</th><th>مستوى الخطر</th><th>لماذا؟</th></tr></thead>
+<tbody>
+<tr><td>بعد استخدام المرحاض</td><td>⚠ حرج جداً</td><td>براز — بكتيريا معوية تُسبّب إسهال وتسمم</td></tr>
+<tr><td>بعد تغيير حفاضة الطفل</td><td>⚠ حرج جداً</td><td>نفس خطر البراز</td></tr>
+<tr><td>بعد لمس الحيوانات</td><td>⚠ مرتفع</td><td>السالمونيلا، التوكسوبلازما، الريشمانيا</td></tr>
+<tr><td>بعد العطس/السعال/لمس الفم</td><td>⚠ مرتفع</td><td>إنفلونزا، كوفيد، فيروسات الجهاز التنفسي</td></tr>
+<tr><td>بعد لمس القمامة/أسطح عامة</td><td>⚠ متوسط-مرتفع</td><td>تنوع ميكروبي واسع</td></tr>
+<tr><td>بعد العودة من الخارج</td><td>⚠ متوسط</td><td>تراكم ملوثات المواصلات والأسطح</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>غسل الفواكه والخضروات — العلم وراء الماء الجاري</h2>
+<h3>لماذا الماء الجاري أفضل من وعاء الغسيل؟</h3>
+<p>غسل الأغذية في وعاء ثابت يُعيد توزيع الأوساخ والجراثيم من جزء من المنتج إلى آخر — الماء يتلوّث من القطعة الأولى ثم يُغلّف بقية القطع. الماء الجاري من ناحية أخرى يجرف الأوساخ والجراثيم بشكل ميكانيكي مباشر خارج السطح:</p>
+
+<pre style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; direction: rtl; text-align: right; line-height: 1.8;">
+وعاء ماء راكد:
+ملوّثات من قطعة أ → تنتقل لقطعة ب → تنتقل لقطعة ج
+[توزيع الملوثات]
+
+ماء جارٍ:
+ملوّثات من قطعة أ → تجرفها حركة الماء للصرف
+[إزالة الملوثات]
+</pre>
+
+<h3>البروتوكول الصحيح لكل نوع</h3>
+<p><strong>الفواكه والخضروات ذات القشرة الصلبة (تفاح، خيار، جزر، بطاطا):</strong></p>
+<ul>
+<li>الغسل بالماء الجاري + الفرك بالأصابع أو فرشاة خضروات على كامل السطح — الفرك يُزيل الأوساخ المُتعلقة بالمسامات والتشقّقات</li>
+<li>المنظمة الأمريكية FDA ومركز CDC لا يُوصيان باستخدام الصابون أو الخل أو بيكربونات الصوديوم — هذه المواد إذا نُقعت المنتجات فيها قد تُسبّب تلوثاً كيميائياً وتمتصّها الأسطح المسامية</li>
 </ul>
 
-<h2>الطريقة الصحيحة (20 ثانية على الأقل):</h2>
-<ol>
-<li>بلّل يديك بالماء الجاري</li>
-<li>ضع كمية كافية من الصابون</li>
-<li>افرك كلتا يديك معاً — بما في ذلك بين الأصابع وتحت الأظافر وظهر اليدين</li>
-<li>استمر في الفرك لمدة 20 ثانية (علّم طفلك غناء "هابي بيرثداي" مرتين كمقياس للوقت)</li>
-<li>اشطف بالماء الجاري</li>
-<li>جفّف بمنشفة نظيفة أو منديل ورقي</li>
-</ol>
-
-<h2>غسل الفواكه والخضروات:</h2>
+<p><strong>الفواكه الطرية والتوت (فراولة، عنب، تين):</strong></p>
 <ul>
-<li>اغسلها تحت الماء الجاري وليس في وعاء مليء بالماء (الماء الراكد يعيد توزيع البكتيريا)</li>
-<li>افرك الأسطح الصلبة (مثل التفاح والخيار) بفرشاة خضروات</li>
-<li>انزع الأوراق الخارجية من الخس والملفوف</li>
-<li>حتى لو كنت ستقشر الفاكهة — اغسلها أولاً (البكتيريا على القشرة تنتقل للداخل عند التقطيع)</li>
+<li>غسل بماء بارد جارٍ بلطف قبيل الأكل مباشرةً — ليس قبل التخزين، لأن الرطوبة تُسرّع التعفّن</li>
+<li>إزالة الأوراق والأجزاء الطرية المُتلفة أولاً (البكتيريا تتمركز في الكدمات والجروح)</li>
 </ul>
+
+<p><strong>الخضروات الورقية (خس، سبانخ، ملوخية):</strong></p>
+<ul>
+<li>انزع الأوراق الخارجية أولاً — هي الأكثر ملامسةً للتربة والحشرات والأيدي</li>
+<li>اغسل الأوراق الداخلية ورقةً ورقةً تحت الماء الجاري — لا كتلةً واحدة</li>
+</ul>
+
+<h3>القطعة التي تحتاج تشديداً: الفاكهة المُقشَّرة</h3>
+<p>كثير من الناس لا يغسلون الفاكهة قبل التقشير لأن القشرة "لن تُؤكَل" — وهذا خطأ موثَّق علمياً:</p>
+<p>عند دخول السكين في الفاكهة للتقشير، تنتقل الجراثيم الموجودة على سطح القشرة إلى داخل اللحم الصالح للأكل عبر حركة الشفرة ذاتها.</p>
+<p>دراسات FDA أكدت هذه الآلية تحديداً في حالات تسمم بالليستيريا المرتبطة بالشمّام والبطيخ غير المغسولَين قبل التقطيع.</p>
+
+<hr>
+
+<h2>المقارنة: مستوى إزالة الجراثيم بطرق مختلفة</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الطريقة</th><th>نسبة إزالة الجراثيم والمبيدات</th><th>مخاطر</th></tr></thead>
+<tbody>
+<tr><td>لا غسيل</td><td>0%</td><td>الأعلى خطراً</td></tr>
+<tr><td>نقع في ماء راكد</td><td>20–40%</td><td>يُعيد توزيع ما أزاله</td></tr>
+<tr><td>شطف بماء جارٍ (بدون فرك)</td><td>50–70% من الأوساخ السطحية</td><td>كافٍ للخضروات الطرية</td></tr>
+<tr><td>شطف + فرك بالأصابع</td><td>75–85%</td><td>✓ الموصى به للمنزل</td></tr>
+<tr><td>شطف + فرشاة خضروات</td><td>85–95%</td><td>✓ الأفضل للقشور الصلبة</td></tr>
+<tr><td>خل أو ليمون مخفّف + شطف</td><td>لا يُثبت تفوّقاً على الماء الجاري</td><td>قد يُترك طعم كيميائي</td></tr>
+<tr><td>صابون + شطف</td><td>FDA لا تُوصي به</td><td>احتمال امتصاص كيميائي</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>تعليم الأطفال — الأساليب التي تُثبت الفارق</h2>
+<p>الأبحاث تُثبت أن الفهم يُحدث سلوكاً أكثر ثباتاً من الأوامر المجردة. الطفل الذي يفهم آلية نقل الجراثيم يُطبّق الغسيل طوعاً لأنه يُدرك السبب:</p>
+
+<ul>
+<li><strong>الأسلوب العلمي البسيط:</strong> ضع قليلاً من لاصق البراق (Glitter) على يدي الطفل كـ"جراثيم وهمية"، ثم اطلب منه مصافحة أشياء في المنزل — سيرى كيف "تنتقل الجراثيم" لكل سطح. بعدها عرّفه على غسل اليدين كآلية إزالة. هذا النموذج الحسي يزيد السلوك الصحيح بنسبة تصل لـ40% في الدراسات.</li>
+<li><strong>قاعدة عملية للمطبخ:</strong> علّق قائمة صغيرة بجانب الحوض بمواقيت الغسيل الأساسية — مرئية وبسيطة. الأطفال الذين يشاركون في تحضير الطعام يتعلّمون الطقوس الصحية تلقائياً حين تُمارَس أمامهم كجزء من إيقاع المطبخ الطبيعي.</li>
+</ul>
+
+<blockquote>
+<p><strong>خلاصة قابلة للتطبيق فوراً:</strong> علّق منديلاً ورقياً بجانب صنبور المطبخ واجعل قاعدة الأسرة — قبل أي طعام، يداك أولاً. 20 ثانية صابون + ماء جارٍ + تجفيف = 80% تخفيض في خطر الأمراض الغذائية المنزلية.</p>
+</blockquote>
 </div>`,
         content_en: `<div dir="ltr">
 <p>Handwashing is the first and most important step in the WHO Five Keys, and it is the simplest and cheapest means of preventing foodborne diseases.[7]</p>

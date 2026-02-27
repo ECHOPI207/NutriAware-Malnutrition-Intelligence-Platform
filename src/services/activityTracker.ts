@@ -66,14 +66,16 @@ export async function logUserActivity(entry: ActivityEntry): Promise<void> {
         const user = auth.currentUser;
         if (!user) return; // Only log for authenticated users
 
-        await addDoc(collection(db, 'users', user.uid, 'activity_log'), {
-            action: entry.action,
+        await addDoc(collection(db, 'activity_logs'), {
+            user_id: user.uid,
+            user_email: user.email || '',
+            action_type: entry.action,
             category: entry.category,
             details: entry.details,
             metadata: entry.metadata || {},
             timestamp: serverTimestamp(),
             path: typeof window !== 'undefined' ? window.location.pathname : '',
-            userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+            user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
         });
     } catch (error) {
         // Non-blocking — never interfere with user experience

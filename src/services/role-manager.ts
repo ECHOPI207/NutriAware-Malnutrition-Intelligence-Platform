@@ -1,7 +1,7 @@
 // Enhanced role manager for comprehensive RBAC system
 // Supports multiple roles, permissions, and route access control
 
-export type UserRole = 'user' | 'admin' | 'doctor' | 'nutritionist';
+export type UserRole = 'user' | 'admin' | 'nutritionist';
 
 interface NavigationItem {
   key: string;
@@ -18,27 +18,21 @@ export const roleManager = {
     switch (role) {
       case 'admin':
         return true; // Admin has all permissions
-      case 'doctor':
+      case 'nutritionist':
         return [
-          'canViewPatients', 
-          'canViewDashboard', 
+          'canViewPatients',
+          'canViewDashboard',
+          'canCreateMealPlans',
+          'canViewNutritionalData',
           'canManagePatients',
           'canCreateReports',
           'canViewMedicalData',
           'canManageTreatmentPlans',
           'canViewMessages'
         ].includes(permission);
-      case 'nutritionist':
-        return [
-          'canViewDashboard', 
-          'canCreateMealPlans',
-          'canViewNutritionalData',
-          'canManagePatients',
-          'canViewMessages'
-        ].includes(permission);
       case 'user':
         return [
-          'canViewDashboard', 
+          'canViewDashboard',
           'canViewOwnData',
           'canSendMessages',
           'canViewContent',
@@ -75,29 +69,24 @@ export const roleManager = {
           'canViewOwnData',
           'canSendMessages',
           'canViewContent',
-          'canUseAssessmentTools'
+          'canUseAssessmentTools',
+          'edit_user_profile_media'
         ];
-      case 'doctor':
+      case 'nutritionist':
         return [
-          'canViewPatients', 
-          'canViewDashboard', 
+          'canViewPatients',
+          'canViewDashboard',
           'canManagePatients',
           'canCreateReports',
           'canViewMedicalData',
           'canManageTreatmentPlans',
-          'canViewMessages'
-        ];
-      case 'nutritionist':
-        return [
-          'canViewDashboard', 
+          'canViewMessages',
           'canCreateMealPlans',
-          'canViewNutritionalData',
-          'canManagePatients',
-          'canViewMessages'
+          'canViewNutritionalData'
         ];
       case 'user':
         return [
-          'canViewDashboard', 
+          'canViewDashboard',
           'canViewOwnData',
           'canSendMessages',
           'canViewContent',
@@ -111,25 +100,25 @@ export const roleManager = {
   canAccessRoute(role: UserRole, routePath: string, allowedRoles?: UserRole[]): boolean {
     // Admin can access everything
     if (role === 'admin') return true;
-    
+
     // If no specific roles required, allow access
     if (!allowedRoles || allowedRoles.length === 0) return true;
-    
+
     // Check if user's role is in allowed roles
     const hasRoleAccess = allowedRoles.includes(role);
-    
+
     // Additional route-specific logic can be added here based on routePath
     // Currently using role-based access control only
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const _routePath = routePath; // Reserved for future route-specific logic
-    
+
     return hasRoleAccess;
   },
 
   hasAnyRole(userRole: UserRole, requiredRoles: UserRole[]): boolean {
     // Admin can access everything
     if (userRole === 'admin') return true;
-    
+
     // Check if user has any of the required roles
     return requiredRoles.includes(userRole);
   },
@@ -138,10 +127,8 @@ export const roleManager = {
     switch (role) {
       case 'admin':
         return '/admin/dashboard';
-      case 'doctor':
-        return '/doctor/dashboard';
       case 'nutritionist':
-        return '/doctor/dashboard'; // Nutritionists use doctor dashboard for now
+        return '/doctor/dashboard'; // Nutritionists use the professional dashboard
       case 'user':
         return '/dashboard';
       default:
@@ -153,15 +140,13 @@ export const roleManager = {
     if (isRTL) {
       switch (role) {
         case 'admin': return 'مدير النظام';
-        case 'doctor': return 'طبيب';
-        case 'nutritionist': return 'أخصائي تغذية';
+        case 'nutritionist': return 'أخصائي تغذية / خبير تغذية';
         case 'user': return 'مستخدم عادي';
         default: return 'غير محدد';
       }
     } else {
       switch (role) {
         case 'admin': return 'System Admin';
-        case 'doctor': return 'Doctor';
         case 'nutritionist': return 'Nutritionist';
         case 'user': return 'Regular User';
         default: return 'Unknown';
@@ -173,7 +158,6 @@ export const roleManager = {
     return {
       'user': 1,
       'nutritionist': 2,
-      'doctor': 3,
       'admin': 4
     };
   },
@@ -189,37 +173,37 @@ export const roleManager = {
         key: 'home',
         label: isRTL ? 'الرئيسية' : 'Home',
         path: '/',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'dashboard',
         label: isRTL ? 'لوحة التحكم' : 'Dashboard',
         path: this.getDefaultRedirectPath(role),
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'knowledge',
         label: isRTL ? 'أنواع سوء التغذية' : 'Knowledge',
         path: '/knowledge',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'assessment',
         label: isRTL ? 'التقييم' : 'Assessment',
         path: '/assessment',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'ai-tools',
         label: isRTL ? 'أدوات الذكاء الاصطناعي' : 'AI Tools',
         path: '/ai-tools',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'messages',
         label: isRTL ? 'الرسائل والاستشارات' : 'Messages',
         path: '/messages',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       }
     ];
 
@@ -260,7 +244,7 @@ export const roleManager = {
     }
 
     // Filter items based on user role
-    return baseItems.filter(item => 
+    return baseItems.filter(item =>
       this.canAccessRoute(role, item.path, item.roles)
     );
   }

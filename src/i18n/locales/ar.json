@@ -1,7 +1,6 @@
 {
   "roles": {
     "admin": "مدير النظام",
-    "doctor": "طبيب",
     "user": "مستخدم",
     "nutritionist": "أخصائي تغذية"
   },
@@ -27,10 +26,13 @@
     "adminControls": "تحكم المسؤول",
     "messages": "الرسائل والاستشارات",
     "medicalConsultation": "التوجيهات الغذائية",
-    "doctorControls": "لوحة الطبيب",
-    "doctorDashboard": "لوحة الطبيب",
+    "nutritionControls": "لوحة التغذية",
+    "nutritionDashboard": "لوحة أخصائي التغذية",
     "consultationManagement": "إدارة الاستشارات",
     "adminDashboard": "لوحة تحكم المدير"
+  },
+  "survey": {
+    "new": "جديد"
   },
   "faq": {
     "title": "الأسئلة الشائعة",
@@ -300,6 +302,22 @@
         "otherVeg": "الخضروات الأخرى",
         "otherFruit": "الفواكه الأخرى"
       }
+    },
+    "nutrients": {
+      "iron": "الحديد",
+      "calcium": "الكالسيوم",
+      "zinc": "الزنك",
+      "vitD": "فيتامين د",
+      "folate": "حمض الفوليك",
+      "energy": "الطاقة",
+      "protein": "البروتين",
+      "carbs": "الكربوهيدرات",
+      "fat": "الدهون",
+      "vitA": "فيتامين أ",
+      "vitC": "فيتامين ج",
+      "vitB12": "فيتامين ب12",
+      "iodine": "اليود",
+      "fiber": "الألياف"
     }
   },
   "aiTools": {
@@ -332,6 +350,10 @@
       "lunch": "الغداء",
       "dinner": "العشاء",
       "snacks": "الوجبات الخفيفة"
+    },
+    "mealAnalyzer": {
+      "title": "محلل الوجبات الذكي",
+      "description": "تحليل علمي لكفاية المغذيات وسلامة الغذاء للوجبات."
     },
     "bmiMealGenerator": {
       "title": "مخطط الوجبات حسب مؤشر كتلة الجسم",
@@ -551,7 +573,7 @@
     },
     "roles": {
       "professor": "أستاذ دكتور",
-      "doctor": "دكتور",
+      "supervisor": "دكتور مشرف",
       "student": "طالب"
     },
     "survey": {

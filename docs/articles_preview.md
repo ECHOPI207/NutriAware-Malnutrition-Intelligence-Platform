@@ -1,6 +1,6 @@
 # NutriAware Learning Path — Articles Preview
 
-> Generated: 2026-02-25T10:43:50.718Z
+> Generated: 2026-02-26T12:50:03.229Z
 > Total Articles: 18 | Axes: 3 | Weeks: 6
 
 ---
@@ -8,36 +8,34 @@
 ## المحور 1: سلامة الغذاء / Food Safety
 > الأسبوع 1-2 — 5 مقالات
 
-### 1. المفاتيح الخمسة لغذاء آمن — دليل منظمة الصحة العالمية لحماية طفلك
-**The Five Keys to Safer Food — WHO Guide to Protecting Your Child**
+### 1. المفاتيح الخمسة لضمان سلامة الغذاء
+**The Five Keys to Safer Food**
 
-- **Slug (AR):** `المفاتيح-الخمسة-لغذاء-آمن`
+- **Slug (AR):** `المفاتيح-الخمسة-لضمان-سلامة-الغذاء`
 - **Slug (EN):** `five-keys-to-safer-food`
-- **Reading Time:** 4 min
+- **Reading Time:** 5 min
 - **Week:** 1-2
 
 **ملخص سريع / Quick Summary:**
-1. كل عام يُصاب 600 مليون شخص حول العالم بأمراض منقولة بالغذاء
-2. الأطفال تحت 5 سنوات يتحملون 40% من العبء العالمي لهذه الأمراض
-3. خمس خطوات بسيطة يمكنها حماية أسرتك بالكامل
+1. 600 مليون مريض سنوياً — تعلمي كيف تحمين عائلتك بالمفاتيح الخمسة العلمية
+2. دليل منظمة الصحة العالمية لتقليل حوادث التسمم الغذائي المنزلي بنسبة 80%
+3. بروتوكولات النظافة والطهي الآمن لضمان سلامة غذاء طفلك
 
-1. Every year, 600 million people worldwide are affected by foodborne diseases
-2. Children under 5 bear 40% of the global burden of these diseases
-3. Five simple steps can protect your entire family
+1. 600 million illnesses annually — learn how to protect your family with the five scientific keys
+2. WHO guide to reducing domestic food poisoning incidents by 80%
+3. Hygiene and safe cooking protocols to ensure your child's food safety
 
-**Tags (AR):** سلامة الغذاء, غسل اليدين, التلوث الغذائي, منظمة الصحة العالمية, المفاتيح الخمسة, الطهي الآمن, حفظ الطعام, الأمراض المنقولة بالغذاء, حماية الأطفال, النظافة
-**Tags (EN):** Food Safety, Handwashing, Food Contamination, WHO, Five Keys, Safe Cooking, Food Storage, Foodborne Diseases, Child Protection, Hygiene
+**Tags (AR):** سلامة الغذاء, المفاتيح الخمسة, نظافة الغذاء, وقاية الأطفال
+**Tags (EN):** Food Safety, Five Keys, Food Hygiene, Child Protection
 
 **SEO:**
-- Meta Title (AR): المفاتيح الخمسة لغذاء آمن — حماية طفلك
-- Meta Title (EN): Five Keys to Safer Food — Protect Your Child
-- Meta Desc (AR): دليل منظمة الصحة العالمية لحماية أسرتك من الأمراض المنقولة بالغذاء: النظافة، فصل الأطعمة، الطهي الجيد، الحرارة الآمنة، والمواد الخام السليمة.
-- Meta Desc (EN): WHO guide to protecting your family from foodborne diseases: hygiene, food separation, thorough cooking, safe temperatures, and safe raw materials.
+- Meta Title (AR): المفاتيح الخمسة لضمان سلامة الغذاء
+- Meta Title (EN): The Five Keys to Safer Food
+- Meta Desc (AR): تعرفي على الممارسات الخمس الأساسية لضمان سلامة غذاء طفلك وحماية أسرتك.
+- Meta Desc (EN): Learn the five essential practices to ensure your child's food safety and protect your family.
 
 **المصادر / Sources:**
-- World Health Organization. (2026). Five keys to safer food. WHO.
-- World Health Organization. (2024). Food safety fact sheet. WHO.
-- WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.
+- WHO. (2026). Five keys to safer food manual. WHO.
 
 ---
 
@@ -46,7 +44,7 @@
 
 - **Slug (AR):** `مبادئ-HACCP-في-مطبخك`
 - **Slug (EN):** `haccp-principles-in-your-kitchen`
-- **Reading Time:** 4 min
+- **Reading Time:** 6 min
 - **Week:** 1-2
 
 **ملخص سريع / Quick Summary:**
@@ -58,28 +56,27 @@
 2. 3 types of hazards threaten your child's food: biological, chemical, and physical
 3. Every step from buying food to serving it is a control point you can manage
 
-**Tags (AR):** HACCP, سلامة الغذاء, المخاطر البيولوجية, التلوث المتبادل, مطبخ آمن, نقاط تحكم, حفظ الطعام, الطهي الآمن, صحة الأطفال, وقاية
-**Tags (EN):** HACCP, Food Safety, Biological Hazards, Cross-contamination, Safe Kitchen, Control Points, Food Storage, Safe Cooking, Child Health, Prevention
+**Tags (AR):** HACCP, سلامة الغذاء, المخاطر البيولوجية, التلوث المتبادل
+**Tags (EN):** HACCP, Food Safety, Biological Hazards, Cross-contamination
 
 **SEO:**
 - Meta Title (AR): مبادئ HACCP في مطبخك — حماية علمية لعائلتك
-- Meta Title (EN): HACCP Principles in Your Kitchen — Scientific Protection
-- Meta Desc (AR): تعرف على نظام HACCP وكيفية تطبيقه في مطبخك المنزلي لحماية طفلك من المخاطر البيولوجية والكيميائية والفيزيائية في الغذاء.
-- Meta Desc (EN): Learn the HACCP system and how to apply it in your home kitchen to protect your child from biological, chemical, and physical food hazards.
+- Meta Title (EN): HACCP Principles in Your Kitchen
+- Meta Desc (AR): تعرفي على نظام HACCP لحماية أسرتك من مخاطر الغذاء.
+- Meta Desc (EN): Learn HACCP system to protect your family from food hazards.
 
 **المصادر / Sources:**
-- U.S. Food and Drug Administration. (2022). HACCP principles and application guidelines. FDA.
-- eHACCP.org. (2023). Can I use HACCP at home?
-- Montana Food System Resources. (2023). Food Safety Tool for Home Producers.
+- U.S. FDA. (2024). HACCP Principles & Application Guidelines.
+- WHO. (2024). Mycotoxins Fact Sheet.
 
 ---
 
-### 3. التلوث المتبادل وتخزين الطعام — الأخطاء الخفية في المطبخ
-**Cross-Contamination & Food Storage — Hidden Kitchen Mistakes**
+### 3. التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية
+**Cross-Contamination & Food Storage — Hidden Mistakes**
 
 - **Slug (AR):** `التلوث-المتبادل-وتخزين-الطعام`
 - **Slug (EN):** `cross-contamination-and-food-storage`
-- **Reading Time:** 3 min
+- **Reading Time:** 6 min
 - **Week:** 1-2
 
 **ملخص سريع / Quick Summary:**
@@ -91,51 +88,52 @@
 2. Your fridge is not a "safe zone" if not properly organized
 3. Simple storage rules protect your child from unexpected illnesses
 
-**Tags (AR):** التلوث المتبادل, تخزين الطعام, الثلاجة, سلامة الغذاء, تاريخ الصلاحية, أخطاء المطبخ, حفظ اللحوم, نظافة الأدوات, صحة الأطفال, البكتيريا
-**Tags (EN):** Cross-contamination, Food Storage, Refrigerator, Food Safety, Expiry Dates, Kitchen Mistakes, Meat Storage, Utensil Hygiene, Child Health, Bacteria
+**Tags (AR):** التلوث المتبادل, تخزين الطعام, سلامة الغذاء
+**Tags (EN):** Cross-Contamination, Food Storage, Food Safety
 
 **SEO:**
 - Meta Title (AR): التلوث المتبادل وتخزين الطعام — أخطاء المطبخ الخفية
-- Meta Title (EN): Cross-Contamination & Food Storage — Hidden Mistakes
-- Meta Desc (AR): تعرف على أخطاء التلوث المتبادل الشائعة في المطبخ المصري وقواعد التخزين الآمن لحماية طفلك من التسمم الغذائي.
-- Meta Desc (EN): Learn about common cross-contamination mistakes in the kitchen and safe storage rules to protect your child from food poisoning.
+- Meta Title (EN): Cross-Contamination & Food Storage
+- Meta Desc (AR): تعرفي على كيفية تجنب التلوث المتبادل وقواعد التخزين الصحيحة في الثلاجة.
+- Meta Desc (EN): Learn how to prevent cross-contamination and safe storage rules.
 
 **المصادر / Sources:**
-- WHO. (2026). Five keys to safer food. WHO.
-- eHACCP.org. (2023). Can I use HACCP at home?
+- WHO. (2024). Food safety fact sheet. WHO.
+- USDA. (2024). Safe Food Handling and Storage Basics.
 
 ---
 
-### 4. الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية
-**Foodborne Diseases in Children — Symptoms & Prevention**
+### 4. دليل تقييم النمو وتفسير مخططات النمو للأطفال
+**Growth Assessment Guide and Interpretation of Growth Charts for Children**
 
-- **Slug (AR):** `الأمراض-المنقولة-بالغذاء-عند-الأطفال`
-- **Slug (EN):** `foodborne-diseases-in-children`
-- **Reading Time:** 4 min
+- **Slug (AR):** `دليل-تقييم-النمو-وتفسير-مخططات-النمو`
+- **Slug (EN):** `growth-assessment-guide-and-interpretation`
+- **Reading Time:** 8 min
 - **Week:** 1-2
 
 **ملخص سريع / Quick Summary:**
-1. 220 مليون طفل يصابون بأمراض إسهالية ناتجة عن الغذاء الملوث سنوياً
-2. الأطفال أكثر عرضة بسبب مناعتهم غير المكتملة
-3. معظم هذه الأمراض يمكن الوقاية منها بتطبيق المفاتيح الخمسة
+1. مراقبة النمو هي أداة التشخيص المبكر الأقوى في طب الأطفال
+2. فهم الفرق بين التقزم والهزال وتأثير سوء التغذية على الدماغ
+3. دليل شامل للقياسات الأنثروبومترية وفهم المئينات وZ-Scores
 
-1. 220 million children are affected by diarrheal diseases from contaminated food annually
-2. Children are more vulnerable due to their immature immunity
-3. Most of these diseases can be prevented by applying the Five Keys
+1. Growth monitoring is the most powerful early diagnostic tool in pediatrics
+2. Understanding the difference between stunting and wasting and the impact of malnutrition on the brain
+3. A comprehensive guide to anthropometric measurements and understanding percentiles and Z-Scores
 
-**Tags (AR):** أمراض الغذاء, الإسهال, السالمونيلا, التسمم الغذائي, مناعة الأطفال, سوء التغذية, الوقاية, صحة الأطفال, البكتيريا, نوروفيروس
-**Tags (EN):** Foodborne Diseases, Diarrhea, Salmonella, Food Poisoning, Child Immunity, Malnutrition, Prevention, Child Health, Bacteria, Norovirus
+**Tags (AR):** تقييم النمو, مخططات النمو, المئينات, التقزم, الهزال, Z-Score, WHO, CDC, صحة الأطفال, نمو الدماغ
+**Tags (EN):** Growth Assessment, Growth Charts, Percentiles, Stunting, Wasting, Z-Score, WHO, CDC, Child Health, Brain Development
 
 **SEO:**
-- Meta Title (AR): الأمراض المنقولة بالغذاء عند الأطفال — الأعراض والوقاية
-- Meta Title (EN): Foodborne Diseases in Children — Symptoms & Prevention
-- Meta Desc (AR): 220 مليون طفل يصابون بأمراض إسهالية سنوياً بسبب الغذاء الملوث. تعرف على الأعراض وطرق الوقاية والحلقة المفرغة بين التلوث وسوء التغذية.
-- Meta Desc (EN): 220 million children contract diarrheal diseases annually from contaminated food. Learn the symptoms, prevention, and the vicious cycle between contamination and malnutrition.
+- Meta Title (AR): دليل تقييم النمو وتفسير مخططات النمو للأطفال
+- Meta Title (EN): Growth Assessment Guide and Chart Interpretation
+- Meta Desc (AR): دليل شامل لفهم كيفية تقييم نمو طفلك علمياً، الفرق بين التقزم والهزال، وكيفية قراءة المئينات وZ-Scores.
+- Meta Desc (EN): A comprehensive guide to understanding how to scientifically assess your child's growth, the difference between stunting and wasting, and how to read percentiles and Z-Scores.
 
 **المصادر / Sources:**
-- WHO. (2015). Estimates of the global burden of foodborne diseases. WHO.
-- WHO. (2024). Food safety fact sheet. WHO.
-- Infectiousdiseaseadvisor.com. (2024). Children account for large amount of foodborne illness related deaths.
+- WHO. (2006). WHO Child Growth Standards.
+- CDC. (2000). CDC Growth Charts.
+- Victora, C. G., et al. (2008). Maternal and child undernutrition: consequences for adult health and human capital. The Lancet.
+- Grantham-McGregor, S., et al. (2007). Developmental potential in the first 5 years for children in developing countries. The Lancet.
 
 ---
 
@@ -201,8 +199,12 @@
 - Meta Desc (EN): Learn the visual plate division method to ensure your child gets the right proportions of carbohydrates, protein, and fats in every meal.
 
 **المصادر / Sources:**
-- Institute of Medicine. (2005). Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids. National Academies Press.
-- WHO. (2026). Healthy diet fact sheet. WHO.
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC8147948/
+- https://www.metagenics.co.uk/news/top-10-reasons-to-give-your-kids-omega-3/
+- https://www.chop.edu/news/nutrition-corner-simplifying-complex-topic-carbohydrates
+- https://raisingchildren.net.au/toddlers/nutrition-fitness/nutrients/fats
+- https://health.choc.org/how-much-protein-does-my-child-need/
+- https://www.verywellhealth.com/simple-and-complex-carbohydrates-1087570
 
 ---
 
@@ -343,32 +345,32 @@
 
 - **Slug (AR):** `أنيميا-نقص-الحديد-عند-الأطفال`
 - **Slug (EN):** `iron-deficiency-anemia-in-children`
-- **Reading Time:** 4 min
+- **Reading Time:** 6 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. 40% من الأطفال المصريين (2–5 سنوات) يعانون من أنيميا نقص الحديد
-2. نقص الحديد يضعف التركيز والذاكرة والمناعة
-3. فيتامين C يضاعف امتصاص الحديد — والشاي يعيقه
+1. أكثر من 50% من الأطفال المصريين يعانون من قصور في الحديد بصورة أو بأخرى
+2. نقص الحديد يسبب خسارة إدراكية لا تُعوَّض بالكامل حتى بعد العلاج إذا حدث في نوافذ النمو الحساسة
+3. فيتامين C مع الوجبة يُضاعف الامتصاص — والشاي بعد الأكل مباشرة يُلغيه تقريباً
 
-1. 40% of Egyptian children (2–5 years) suffer from iron deficiency anemia
-2. Iron deficiency weakens concentration, memory, and immunity
-3. Vitamin C doubles iron absorption — and tea inhibits it
+1. Over 50% of Egyptian children suffer from iron deficiency in some form
+2. Iron deficiency causes cognitive losses that may not be fully reversible if it occurs during critical growth windows
+3. Vitamin C with meals doubles absorption — while tea immediately after almost cancels it
 
-**Tags (AR):** أنيميا, نقص الحديد, فيتامين C, الشاي, كبدة, بقوليات, تغذية الأطفال, مصر, المناعة, التركيز
-**Tags (EN):** Anemia, Iron Deficiency, Vitamin C, Tea, Liver, Legumes, Child Nutrition, Egypt, Immunity, Concentration
+**Tags (AR):** أنيميا, نقص الحديد, تطور الدماغ, مصر, الامتصاص, كبدة, فيتامين C, المغذيات الدقيقة, نمو الطفل
+**Tags (EN):** Anemia, Iron Deficiency, Brain Development, Egypt, Absorption, Liver, Vitamin C, Micronutrients, Child Growth
 
 **SEO:**
 - Meta Title (AR): أنيميا نقص الحديد عند الأطفال — العدو الصامت
 - Meta Title (EN): Iron Deficiency Anemia in Children — Silent Enemy
-- Meta Desc (AR): 40% من أطفال مصر يعانون من أنيميا نقص الحديد. تعرف على العلامات والمصادر الغنية بالحديد ونصائح لزيادة الامتصاص.
-- Meta Desc (EN): 40% of Egyptian children suffer from iron deficiency anemia. Learn the signs, iron-rich sources, and tips to increase absorption.
+- Meta Desc (AR): واحداً من كل اثنين من أطفال مصر يعاني من نقص الحديد. تعرف على التأثيرات العصبية وكيفية تعظيم الامتصاص في المطبخ المصري.
+- Meta Desc (EN): One in two Egyptian children suffers from iron deficiency. Learn about the neurological impacts and how to maximize absorption in the Egyptian kitchen.
 
 **المصادر / Sources:**
-- WHO EMRO. (2025). Nutrition – Egypt.
-- WHO. (2025). Anaemia fact sheet.
-- IOM. (2001). Dietary Reference Intakes for Iron.
-- Chokor, F. A. Z., et al. (2024). Food sources of micronutrients of concern among children in Lebanon. BMC Pediatrics.
+- دراسة المسح الصحي والسكاني في مصر (2021)
+- منظمة الصحة العالمية (WHO) - ملف التغذية في مصر
+- الأكاديميات الوطنية للعلوم والهندسة والطب (Dietary Reference Intakes)
+- دراسات محلية مصرية حول أنيميا نقص الحديد (جامعة المنوفية وجامعات إقليمية)
 
 ---
 
@@ -377,31 +379,32 @@
 
 - **Slug (AR):** `فيتامين-أ-والزنك`
 - **Slug (EN):** `vitamin-a-and-zinc`
-- **Reading Time:** 4 min
+- **Reading Time:** 7 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. نقص فيتامين أ يصيب 190 مليون طفل حول العالم ويسبب العمى الليلي
-2. الزنك ضروري لجهاز المناعة والنمو والتئام الجروح
-3. أطعمة بسيطة ومتوفرة في مصر تغطي احتياج طفلك من كليهما
+1. فيتامين أ هو "الفيتامين المناعي" الذي يحمي الأغشية المخاطية من غزو الجراثيم
+2. الزنك محرك لـ 300 إنزيم وضروري جداً لتجنب التقزم وتحفيز انقسام الخلايا
+3. كفاءة تحويل النوع النباتي (Beta-Carotene) تختلف بين الأطفال حسب الجينات والدهون
 
-1. Vitamin A deficiency affects 190 million children worldwide and causes night blindness
-2. Zinc is essential for the immune system, growth, and wound healing
-3. Simple and available foods in Egypt cover your child's needs for both
+1. Vitamin A is the "Immune Vitamin" that protects mucous membranes from germ invasion
+2. Zinc powers 300 enzymes and is crucial for avoiding stunting and stimulating cell division
+3. Conversion efficiency of the plant-based type (Beta-Carotene) varies between children based on genetics and fats
 
-**Tags (AR):** فيتامين أ, الزنك, المناعة, النمو, العمى الليلي, كبدة, جزر, تغذية الأطفال, المغذيات الدقيقة, التقزم
-**Tags (EN):** Vitamin A, Zinc, Immunity, Growth, Night Blindness, Liver, Carrots, Child Nutrition, Micronutrients, Stunting
+**Tags (AR):** فيتامين أ, الزنك, المناعة, التقزم, نمو الطفل, كبدة, بيتا كاروتين, جين BCMO1, الأغشية المخاطية, تآزر غذائي
+**Tags (EN):** Vitamin A, Zinc, Immunity, Stunting, Child Growth, Liver, Beta-Carotene, BCMO1 Gene, Mucous Membranes, Nutritional Synergy
 
 **SEO:**
 - Meta Title (AR): فيتامين أ والزنك — درع المناعة ومحرك النمو
 - Meta Title (EN): Vitamin A & Zinc — Immunity Shield & Growth Engine
-- Meta Desc (AR): نقص فيتامين أ يصيب 190 مليون طفل. تعرف على مصادر فيتامين أ والزنك المتوفرة في مصر ووجبة واحدة تغطي الاثنين.
-- Meta Desc (EN): Vitamin A deficiency affects 190 million children. Learn about vitamin A and zinc sources available in Egypt and one meal that covers both.
+- Meta Desc (AR): تعرف على الدور الموسّع لفيتامين أ كفيتامين مناعي والزنك كمحرك لـ 300 إنزيم. جيناتك تحدد كفاءة امتصاصك، والحل في وجبة الكبدة.
+- Meta Desc (EN): Learn about the expanded role of Vitamin A as an immune vitamin and Zinc as a 300-enzyme engine. Your genes determine absorption efficiency; the solution is in the liver meal.
 
 **المصادر / Sources:**
-- WHO. (2020). Vitamin A deficiency.
-- Stevens, G. A., et al. (2022). Global burden of vitamin A deficiency. Nutrients, 14(5), 950.
-- IOM. (2001). Dietary Reference Intakes for Vitamin A, Vitamin K, Arsenic, Boron, Chromium, Copper, Iodine, Iron, Manganese, Molybdenum, Nickel, Silicon, Vanadium, and Zinc. National Academies Press.
+- منظمة الصحة العالمية (WHO) - نقص فيتامين أ والتقزم
+- دراسات جين BCMO1 وكفاءة تحويل الكاروتينات (American Journal of Clinical Nutrition)
+- الأكاديميات الوطنية للعلوم والهندسة والطب (Dietary Reference Intakes for Zinc and Vitamin A)
+- تجارب سريرية حول تكميل الزنك والنمو الطولي للأطفال المتقزمين
 
 ---
 
@@ -410,30 +413,31 @@
 
 - **Slug (AR):** `الكالسيوم-وفيتامين-د`
 - **Slug (EN):** `calcium-and-vitamin-d`
-- **Reading Time:** 3 min
+- **Reading Time:** 8 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. 90% من كتلة العظام تتكوّن قبل سن 18 سنة
-2. نقص فيتامين د منتشر بشكل واسع عند الأطفال المصريين
-3. الكالسيوم بدون فيتامين د لا يُمتص بشكل فعّال
+1. الكالسيوم هو المادة الخام، وفيتامين د هو المهندس المتحكّم في استخدامها
+2. 80–90% من الكتلة العظمية تتراكم قبل سن 18 — الطفولة هي "نافذة الفرصة"
+3. قرابة 75% من الأطفال المصريين يعانون من نقص أو قصور في مستويات فيتامين د
 
-1. 90% of bone mass is formed before age 18
-2. Vitamin D deficiency is widespread among Egyptian children
-3. Calcium without vitamin D is not effectively absorbed
+1. Calcium is the raw material, and Vitamin D is the engineer controlling its use
+2. 80–90% of bone mass accumulates before age 18 — childhood is the "window of opportunity"
+3. Nearly 75% of Egyptian children suffer from deficiency or insufficiency in Vitamin D levels
 
-**Tags (AR):** كالسيوم, فيتامين د, عظام, هشاشة العظام, لبن, أشعة الشمس, تغذية الأطفال, المغذيات الدقيقة, نمو, ألبان
-**Tags (EN):** Calcium, Vitamin D, Bones, Osteoporosis, Milk, Sunlight, Child Nutrition, Micronutrients, Growth, Dairy
+**Tags (AR):** كالسيوم, فيتامين د, عظام, هشاشة العظام, الكساح, لبن, سردين, أشعة الشمس, جين VDR, تآزر غذائي
+**Tags (EN):** Calcium, Vitamin D, Bones, Osteoporosis, Rickets, Milk, Sardines, Sunlight, VDR Gene, Nutritional Synergy
 
 **SEO:**
 - Meta Title (AR): الكالسيوم وفيتامين د — ثنائي بناء عظام طفلك
-- Meta Title (EN): Calcium & Vitamin D — Bone-Building Duo
-- Meta Desc (AR): 90% من كتلة العظام تتكون قبل 18 سنة. تعرف على مصادر الكالسيوم وفيتامين د ولماذا لا ينفع أحدهما بدون الآخر.
-- Meta Desc (EN): 90% of bone mass forms before age 18. Learn about calcium and vitamin D sources and why one doesn't work without the other.
+- Meta Title (EN): Calcium & Vitamin D — The Bone-Building Duo for Your Child
+- Meta Desc (AR): تعرف على الكيمياء الحيوية لنظام الكالسيوم وفيتامين د. لماذا يحتاج طفلك للمهندس والمادة الخام معاً؟ وكيف تقرأ نتائج تحليل فيتامين د؟
+- Meta Desc (EN): Learn the biochemistry of the Calcium & Vitamin D system. Why does your child need both the engineer and the raw material? And how to read Vitamin D test results?
 
 **المصادر / Sources:**
-- IOM. (2011). Dietary Reference Intakes for Calcium and Vitamin D. National Academies Press.
-- NHS. (2023). Food sources of vitamins and minerals for children.
+- الأكاديميات الوطنية للعلوم والهندسة والطب (Dietary Reference Intakes for Calcium and Vitamin D)
+- دراسات محلية حول مستويات فيتامين د عند الأطفال والمراهقين المصريين (جامعة عين شمس والقاهرة)
+- منظمة الصحة العالمية (WHO) - الوقاية من الكساح ونقص فيتامين د
 
 ---
 
@@ -442,30 +446,32 @@
 
 - **Slug (AR):** `اليود-يحمي-ذكاء-طفلك`
 - **Slug (EN):** `iodine-protects-child-intelligence`
-- **Reading Time:** 3 min
+- **Reading Time:** 9 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. نقص اليود يسبب تأخراً في النمو العقلي والجسدي للأطفال
-2. أكثر من 60% من الأطفال في بعض دول الشرق الأوسط يعانون من نقص اليود
-3. الحل بسيط: استخدام الملح المعالج باليود في الطبخ اليومي
+1. اليود هو الوقود الأول لبناء الدماغ البشري وليس مجرد معدن للغدة الدرقية
+2. نقصه يسبب خسارة إدراكية جماعية (10-15 نقطة ذكاء) لا تُعوَّض بالكامل بعد فوات الأوان
+3. في مصر، كشفت بعض الدراسات أن 91.9% من الأطفال في سن المدرسة لديهم مستوى يود بولي غير طبيعي
 
-1. Iodine deficiency causes mental and physical developmental delays in children
-2. Over 60% of children in some Middle Eastern countries suffer from iodine deficiency
-3. The solution is simple: using iodized salt in daily cooking
+1. Iodine is the primary fuel for building the human brain, not just a thyroid mineral
+2. Its deficiency causes collective cognitive loss (10-15 IQ points) that cannot be fully regained later
+3. In Egypt, some studies revealed that 91.9% of school-age children have abnormal urinary iodine levels
 
-**Tags (AR):** اليود, الغدة الدرقية, ذكاء الطفل, الملح المعالج, النمو العقلي, المغذيات الدقيقة, الشرق الأوسط, تغذية الأطفال, الإعاقة الذهنية, أسماك
-**Tags (EN):** Iodine, Thyroid, Child Intelligence, Iodized Salt, Mental Development, Micronutrients, Middle East, Child Nutrition, Intellectual Disability, Fish
+**Tags (AR):** اليود, الغدة الدرقية, ذكاء الطفل, الملح المعالج, النمو العقلي, المغذيات الدقيقة, مصر, تضخم الغدة الدرقية, خسارة إدراكية, نوافذ التطور
+**Tags (EN):** Iodine, Thyroid, Child Intelligence, Iodized Salt, Mental Development, Micronutrients, Egypt, Goiter, Cognitive Loss, Developmental Windows
 
 **SEO:**
 - Meta Title (AR): اليود — العنصر الذي يحمي ذكاء طفلك
-- Meta Title (EN): Iodine — Protects Your Child's Intelligence
-- Meta Desc (AR): نقص اليود أكبر سبب للإعاقة الذهنية التي يمكن الوقاية منها عند الأطفال. الحل بسيط: الملح المعالج باليود في الطبخ اليومي.
-- Meta Desc (EN): Iodine deficiency is the leading preventable cause of intellectual disability in children. The solution is simple: iodized salt in daily cooking.
+- Meta Title (EN): Iodine — The Element That Protects Your Child's Intelligence
+- Meta Desc (AR): تعمق في الكيمياء العصبية لليود. لماذا يُفقد 15 نقطة ذكاء عند النقص؟ وكيف تحافظ على يود الملح في مطبخك المصري؟
+- Meta Desc (EN): Dive into the neurochemistry of iodine. Why are 15 IQ points lost in deficiency? And how to preserve salt iodine in your Egyptian kitchen?
 
 **المصادر / Sources:**
-- IFPRI. (2024). Overcoming the triple burden of malnutrition in the MENA region.
-- IOM. (2001). Dietary Reference Intakes for Iodine.
+- دراسات منظمة الصحة العالمية واليونسيف حول نقص اليود وتطور الدماغ
+- دراسات ميدانية مصرية حول تضخم الغدة الدرقية في محافظات كفر الشيخ والقاهرة (المجلة المصرية لطب الأطفال)
+- مراجعات Cochrane حول تأثير تكميل اليود على الوظيفة الإدراكية للأطفال
+- بروتوكولات وزارة الصحة المصرية حول إيودة الملح (1996–2024)
 
 ---
 
@@ -474,30 +480,33 @@
 
 - **Slug (AR):** `التنوع-الغذائي`
 - **Slug (EN):** `dietary-diversity`
-- **Reading Time:** 4 min
+- **Reading Time:** 12 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. التنوع الغذائي مؤشر علمي معتمد من FAO على كفاية المغذيات الدقيقة
-2. الطفل يحتاج أطعمة من 5 مجموعات مختلفة على الأقل يومياً
-3. التنوع لا يعني الغلاء — بل الذكاء في اختيار الأطعمة المتاحة
+1. الطفل الذي يأكل كميات وفيرة بلا تنوع قد يعاني من "الجوع الخفي"
+2. تحقيق 5 مجموعات من 10 يومياً هو العتبة العلمية للكفاية الغذائية
+3. التنوع الغذائي مرتبط إحصائياً بتحسن نتائج الاختبارات الإدراكية للأطفال
 
-1. Dietary diversity is a FAO-approved scientific indicator of micronutrient adequacy
-2. A child needs foods from at least 5 different food groups daily
-3. Diversity doesn't mean expense — but smart selection of available foods
+1. A child consuming high quantities without diversity may suffer from "Hidden Hunger"
+2. Consuming 5 out of 10 groups daily is the scientific threshold for nutrient adequacy
+3. Dietary diversity is statistically linked to improved cognitive test scores in children
 
-**Tags (AR):** التنوع الغذائي, DDS, FAO, مجموعات غذائية, المغذيات الدقيقة, ميزانية محدودة, تغذية الأطفال, بقوليات, خضروات, فواكه
-**Tags (EN):** Dietary Diversity, DDS, FAO, Food Groups, Micronutrients, Budget, Child Nutrition, Legumes, Vegetables, Fruits
+**Tags (AR):** التنوع الغذائي, DDS, الجوع الخفي, كفاية المغذيات, تطوير الدماغ, ميزانية محدودة, FAO, تغذية الأطفال, الأداء الإدراكي, مصر 2026
+**Tags (EN):** Dietary Diversity, DDS, Hidden Hunger, Nutrient Adequacy, Brain Development, Limited Budget, FAO, Child Nutrition, Cognitive Performance, Egypt 2026
 
 **SEO:**
-- Meta Title (AR): التنوع الغذائي — 5 مجموعات يومياً أهم من كمية الأكل
-- Meta Title (EN): Dietary Diversity — 5 Daily Groups Over Quantity
-- Meta Desc (AR): التنوع الغذائي مؤشر FAO على كفاية المغذيات. تعلم كيف تغطي 8 مجموعات غذائية من 10 بميزانية مصرية محدودة.
-- Meta Desc (EN): Dietary diversity is a FAO indicator of nutrient adequacy. Learn how to cover 8 out of 10 food groups on a limited Egyptian budget.
+- Meta Title (AR): التنوع الغذائي — الدليل العلمي للكفاية والذكاء
+- Meta Title (EN): Dietary Diversity — The Scientific Guide to Adequacy and Intelligence
+- Meta Desc (AR): اكتشف لماذا يُنبّئ التنوع الغذائي بالذكاء. تعلم كيفية تجنب فخاخ "الجوع الخفي" وتحقيق 8 مجموعات غذائية بميزانية اقتصادية.
+- Meta Desc (EN): Discover why dietary diversity predicts intelligence. Learn how to avoid "Hidden Hunger" traps and achieve 8 food groups on an economic budget.
 
 **المصادر / Sources:**
-- FAO. (2011). Guidelines for measuring household and individual dietary diversity.
 - Hanley-Cook, G. T., et al. (2024). Minimum dietary diversity for adolescents. American Journal of Clinical Nutrition.
+- WHO/UNICEF. (2021). Indicators for assessing infant and young child feeding practices.
+- FAO. (2011). Guidelines for measuring household and individual dietary diversity.
+- Arimond, M., & Ruel, M. T. (2004). Dietary diversity is associated with child nutritional status.
+- Li, M., et al. (2023). Dietary diversity and cognitive performance in preschool children.
 
 ---
 
@@ -570,30 +579,31 @@
 
 - **Slug (AR):** `ملخص-المغذيات-الدقيقة`
 - **Slug (EN):** `micronutrient-summary-reference`
-- **Reading Time:** 3 min
+- **Reading Time:** 10 min
 - **Week:** 5-6
 
 **ملخص سريع / Quick Summary:**
-1. جدول مرجعي شامل يجمع كل ما تعلمناه عن المغذيات الدقيقة
-2. الاحتياج اليومي والمصادر المصرية المتاحة ونصائح الامتصاص في مكان واحد
-3. اطبعه وعلّقه في المطبخ كمرجع يومي سريع
+1. مرجع شامل يجمع الأرقام الدقيقة للاحتياجات الغذائية المرجعية (DRI)
+2. خريطة تفاعلات المغذيات: كيف يُضاعف فيتامين C امتصاص الحديد وكيف يثبطه الشاي
+3. دليل التوقيت والمصادر الاستراتيجية (الكبدة، السردين، الفول بالليمون)
 
-1. A comprehensive reference table summarizing everything we learned about micronutrients
-2. Daily requirements, available Egyptian sources, and absorption tips in one place
-3. Print it and hang it in the kitchen as a quick daily reference
+1. Comprehensive reference for Dietary Reference Intakes (DRI) accurate figures
+2. Nutrient interaction map: How Vitamin C triples iron absorption and how tea inhibits it
+3. Timing guide and strategic sources (Liver, Sardines, Fava beans with lemon)
 
-**Tags (AR):** مغذيات دقيقة, جدول مرجعي, حديد, كالسيوم, فيتامين أ, فيتامين د, زنك, يود, فيتامين C, ملخص غذائي
-**Tags (EN):** Micronutrients, Reference Table, Iron, Calcium, Vitamin A, Vitamin D, Zinc, Iodine, Vitamin C, Nutrition Summary
+**Tags (AR):** محور 3, مغذيات دقيقة, جدول مرجعي, حديد, كالسيوم, فيتامين أ, فيتامين د, زنك, يود, تفاعلات المغذيات, DRI
+**Tags (EN):** Axis 3, Micronutrients, Reference Table, Iron, Calcium, Vitamin A, Vitamin D, Zinc, Iodine, Nutrient Interactions, DRI
 
 **SEO:**
-- Meta Title (AR): ملخص المغذيات الدقيقة — جدول مرجعي شامل
-- Meta Title (EN): Micronutrient Summary — Comprehensive Reference
-- Meta Desc (AR): جدول مرجعي شامل يجمع الاحتياج اليومي والمصادر المصرية ونصائح الامتصاص لكل المغذيات الدقيقة الأساسية لطفلك.
-- Meta Desc (EN): A comprehensive reference table with daily needs, Egyptian sources, and absorption tips for all essential micronutrients for your child.
+- Meta Title (AR): ملخص المغذيات الدقيقة — جدولك المرجعي الشامل للـ DRI
+- Meta Title (EN): Micronutrient Summary — Your Comprehensive DRI Reference Table
+- Meta Desc (AR): المرجع الشامل للأرقام الدقيقة للاحتياجات الغذائية وخريطة التفاعلات بين المغذيات لضمان أقصى امتصاص لطفلك.
+- Meta Desc (EN): Comprehensive reference for precise nutritional requirements and nutrient interaction map to ensure maximum absorption for your child.
 
 **المصادر / Sources:**
-- IOM. (2001, 2005, 2011). Dietary Reference Intakes series. National Academies Press.
-- NHS. (2023). Food sources of vitamins and minerals for children.
+- المعهد الأمريكي للطب (IOM) - الاحتياجات الغذائية المرجعية (DRI)
+- منظمة الصحة العالمية (WHO) - التفاعلات بين المغذيات الدقيقة
+- الأكاديميات الوطنية للعلوم والهندسة والطب (2021)
 
 ---
 

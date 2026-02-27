@@ -2,8 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Bot, Utensils, Send, Loader2, Scale, Info } from 'lucide-react';
+import { Bot, Utensils, Send, Loader2, Scale, Info, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -17,6 +18,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import BmiMealPlanner from '@/components/BmiMealPlanner';
 import { SurveyCTA } from '@/components/common/SurveyCTA';
+import { MealAnalyzer } from '@/components/MealAnalyzer/MealAnalyzer';
 import { trackToolUse, trackMealPlan } from '@/services/activityTracker';
 
 interface Message {
@@ -42,6 +44,12 @@ const AITools: React.FC = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get('tab') || 'chatbot';
+
+  const handleTabChange = (value: string) => {
+    setSearchParams({ tab: value });
+  };
 
   const getInitialMessage = () => {
     return language === 'ar'
@@ -153,8 +161,8 @@ const AITools: React.FC = () => {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="chatbot" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 h-auto mb-10 gap-2 bg-card/30 backdrop-blur-md border border-white/10 p-1.5 rounded-2xl">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+          <TabsList className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-auto mb-10 gap-2 bg-card/30 backdrop-blur-md border border-white/10 p-1.5 rounded-2xl">
             <TabsTrigger
               value="chatbot"
               className="gap-2 h-12 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -175,6 +183,13 @@ const AITools: React.FC = () => {
             >
               <Scale className="h-5 w-5" />
               {t('aiTools.bmiMealGenerator.title')}
+            </TabsTrigger>
+            <TabsTrigger
+              value="meal-analyzer"
+              className="gap-2 h-12 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all duration-300 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10"
+            >
+              <Calculator className="h-5 w-5" />
+              {t('aiTools.mealAnalyzer.title')}
             </TabsTrigger>
           </TabsList>
 
@@ -576,6 +591,18 @@ const AITools: React.FC = () => {
                     </ScrollArea>
                   )}
                 </CardContent>
+              </Card>
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="meal-analyzer">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Card className="p-6 border-0 shadow-2xl bg-card/95 backdrop-blur-xl ring-1 ring-border/20">
+                <MealAnalyzer />
               </Card>
             </motion.div>
           </TabsContent>

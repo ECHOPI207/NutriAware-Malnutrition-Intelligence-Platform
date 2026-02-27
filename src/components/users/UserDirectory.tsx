@@ -28,7 +28,7 @@ interface User {
   uid: string;
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin';
   photoURL?: string;
   phoneNumber?: string;
   address?: string;
@@ -67,7 +67,6 @@ export const UserDirectory: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const roleMap = {
       admin: { label: isRTL ? 'مدير النظام' : 'Admin', variant: 'destructive' as const, icon: Shield },
-      doctor: { label: isRTL ? 'أخصائي تغذية علاجية' : 'Clinical Nutritionist', variant: 'default' as const, icon: Stethoscope },
       nutritionist: { label: isRTL ? 'أخصائي تغذية' : 'Nutritionist', variant: 'secondary' as const, icon: Stethoscope },
       user: { label: isRTL ? 'مستخدم' : 'User', variant: 'outline' as const, icon: Users }
     };
@@ -113,7 +112,6 @@ export const UserDirectory: React.FC = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{isRTL ? 'الكل' : 'All Users'}</SelectItem>
-                <SelectItem value="doctor">{isRTL ? 'الأطباء' : 'Doctors'}</SelectItem>
                 <SelectItem value="admin">{isRTL ? 'المشرفين' : 'Admins'}</SelectItem>
                 <SelectItem value="user">{isRTL ? 'المستخدمين' : 'Users'}</SelectItem>
               </SelectContent>
@@ -160,7 +158,7 @@ export const UserDirectory: React.FC = () => {
                       <span>{user.phoneNumber}</span>
                     </div>
                   )}
-                  {user.specialization && (user.role === 'doctor' || user.role === 'nutritionist') && (
+                  {user.specialization && user.role === 'nutritionist' && (
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300">
                       <Stethoscope className="h-4 w-4" />
                       <span>{user.specialization}</span>

@@ -1,7 +1,6 @@
 {
   "roles": {
     "admin": "Administrator",
-    "doctor": "Doctor",
     "user": "User",
     "nutritionist": "Nutritionist"
   },
@@ -27,8 +26,11 @@
     "adminControls": "Admin Controls",
     "messages": "Messages & Consultations",
     "medicalConsultation": "Nutritional Guidance",
-    "doctorControls": "Doctor Controls",
-    "doctorDashboard": "Doctor Dashboard"
+    "nutritionControls": "Nutrition Controls",
+    "nutritionDashboard": "Nutritionist Dashboard"
+  },
+  "survey": {
+    "new": "New"
   },
   "header": {
     "login": "Login",
@@ -286,6 +288,22 @@
         "otherVeg": "Other vegetables",
         "otherFruit": "Other fruits"
       }
+    },
+    "nutrients": {
+      "iron": "Iron",
+      "calcium": "Calcium",
+      "zinc": "Zinc",
+      "vitD": "Vitamin D",
+      "folate": "Folate",
+      "energy": "Energy",
+      "protein": "Protein",
+      "carbs": "Carbohydrates",
+      "fat": "Fats",
+      "vitA": "Vitamin A",
+      "vitC": "Vitamin C",
+      "vitB12": "Vitamin B12",
+      "iodine": "Iodine",
+      "fiber": "Fiber"
     }
   },
   "aiTools": {
@@ -318,6 +336,10 @@
       "lunch": "Lunch",
       "dinner": "Dinner",
       "snacks": "Snacks"
+    },
+    "mealAnalyzer": {
+      "title": "Smart Meal Analyzer",
+      "description": "Scientific analysis of nutrient adequacy and food safety."
     },
     "bmiMealGenerator": {
       "title": "BMI Meal Planner",
@@ -539,7 +561,7 @@
     },
     "roles": {
       "professor": "Professor",
-      "doctor": "Nutrition Specialist",
+      "supervisor": "Supervising Doctor",
       "student": "Student"
     }
   },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
-import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp, query, orderBy, limit } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp, query, orderBy, limit, where } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { db, auth } from '@/lib/firebase';
 import { auditService } from '@/services/audit-service';
@@ -71,8 +71,8 @@ const ActivityLogTab: React.FC<{ userId: string; isRTL: boolean }> = ({ userId, 
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const activityRef = collection(db, 'users', userId, 'activity_log');
-        const q = query(activityRef, orderBy('timestamp', 'desc'), limit(50));
+        const activityRef = collection(db, 'activity_logs');
+        const q = query(activityRef, where('user_id', '==', userId), orderBy('timestamp', 'desc'), limit(50));
         const snapshot = await getDocs(q);
         const logs = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -169,10 +169,10 @@ const ActivityLogTab: React.FC<{ userId: string; isRTL: boolean }> = ({ userId, 
     <div className="space-y-3 max-h-[400px] overflow-y-auto">
       {activities.map((activity) => (
         <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
-          <div className="mt-1">{getActionIcon(activity.action)}</div>
+          <div className="mt-1">{getActionIcon(activity.action_type || activity.action)}</div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <p className="text-sm font-medium">{getActionLabel(activity.action)}</p>
+              <p className="text-sm font-medium">{getActionLabel(activity.action_type || activity.action)}</p>
               {activity.category && getCategoryBadge(activity.category)}
             </div>
             {activity.details && (
@@ -201,7 +201,7 @@ interface User {
   uid: string;
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin';
   createdAt: any;
   photoURL?: string;
   phoneNumber?: string;
@@ -223,7 +223,7 @@ interface User {
 interface NewUserData {
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin';
   phoneNumber: string;
   address: string;
   dateOfBirth: string;
@@ -247,6 +247,7 @@ const UserManagement: React.FC = () => {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
+  const [isUpdatingAvatar, setIsUpdatingAvatar] = useState(false);
 
   const [newUserData, setNewUserData] = useState<NewUserData>({
     email: '',
@@ -318,7 +319,68 @@ const UserManagement: React.FC = () => {
     }
   };
 
-  const updateUserRole = async (userId: string, newRole: 'user' | 'doctor' | 'nutritionist' | 'admin') => {
+  const handleUploadAvatar = async (userId: string, file: File | undefined) => {
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert(isRTL ? 'حجم الصورة يجب أن لا يتجاوز 2 ميجابايت' : 'Image size must not exceed 2MB');
+      return;
+    }
+
+    try {
+      setIsUpdatingAvatar(true);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const base64Data = reader.result as string;
+
+        try {
+          const token = await auth.currentUser?.getIdToken();
+          const apiUrl = import.meta.env.DEV
+            ? `http://localhost:3000/api/admin/users/${userId}/avatar`
+            : `/api/admin/users/${userId}/avatar`;
+
+          const response = await fetch(apiUrl, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ photoURL: base64Data })
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to update avatar');
+          }
+
+          const { photoURL } = await response.json();
+
+          // Update local state
+          setUsers(prev => prev.map(u => u.uid === userId ? { ...u, photoURL } : u));
+          if (selectedUser && selectedUser.uid === userId) {
+            setSelectedUser(prev => prev ? { ...prev, photoURL } : null);
+          }
+
+          alert(isRTL ? 'تم تغيير الصورة بنجاح' : 'Avatar updated successfully');
+        } catch (error) {
+          console.error(error);
+          alert(isRTL ? 'حدث خطأ أثناء تحديث الصورة' : 'Error updating avatar');
+        } finally {
+          setIsUpdatingAvatar(false);
+        }
+      };
+      reader.onerror = () => {
+        setIsUpdatingAvatar(false);
+        alert(isRTL ? 'فشل في قراءة ملف الصورة' : 'Failed to read image file');
+      };
+    } catch (error) {
+      console.error(error);
+      setIsUpdatingAvatar(false);
+    }
+  };
+
+  const updateUserRole = async (userId: string, newRole: 'user' | 'nutritionist' | 'admin') => {
     try {
       const userRef = doc(db, 'users', userId);
       await updateDoc(userRef, {
@@ -561,12 +623,11 @@ const UserManagement: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const roleMap = {
       admin: { label: isRTL ? 'مدير النظام' : 'Admin', variant: 'destructive' as const, icon: Shield },
-      doctor: { label: isRTL ? 'طبيب' : 'Doctor', variant: 'default' as const, icon: Stethoscope },
       nutritionist: { label: isRTL ? 'أخصائي تغذية' : 'Nutritionist', variant: 'secondary' as const, icon: Stethoscope },
       user: { label: isRTL ? 'مستخدم عادي' : 'User', variant: 'outline' as const, icon: Users }
     };
 
-    const roleInfo = roleMap[role as keyof typeof roleMap];
+    const roleInfo = roleMap[role as keyof typeof roleMap] || roleMap.user;
     const Icon = roleInfo.icon;
 
     return (
@@ -686,7 +747,6 @@ const UserManagement: React.FC = () => {
                 <SelectContent>
                   <SelectItem value="all">{isRTL ? 'جميع الأدوار' : 'All Roles'}</SelectItem>
                   <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
-                  <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
                   <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                   <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
                 </SelectContent>
@@ -743,13 +803,12 @@ const UserManagement: React.FC = () => {
                     </div>
                     <div>
                       <Label htmlFor="role">{isRTL ? 'الدور' : 'Role'}</Label>
-                      <Select value={newUserData.role} onValueChange={(value: 'user' | 'doctor' | 'nutritionist' | 'admin') => setNewUserData(prev => ({ ...prev, role: value }))}>
+                      <Select value={newUserData.role} onValueChange={(value: 'user' | 'nutritionist' | 'admin') => setNewUserData(prev => ({ ...prev, role: value }))}>
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
-                          <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
                           <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                           <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
                         </SelectContent>
@@ -786,7 +845,7 @@ const UserManagement: React.FC = () => {
                       </Select>
                     </div>
 
-                    {(newUserData.role === 'doctor' || newUserData.role === 'nutritionist') && (
+                    {newUserData.role === 'nutritionist' && (
                       <>
                         <div>
                           <Label htmlFor="specialization">{isRTL ? 'التخصص' : 'Specialization'}</Label>
@@ -961,7 +1020,6 @@ const UserManagement: React.FC = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="user">{isRTL ? 'مستخدم' : 'User'}</SelectItem>
-                          <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
                           <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                           <SelectItem value="admin">{isRTL ? 'مدير' : 'Admin'}</SelectItem>
                         </SelectContent>
@@ -1044,171 +1102,191 @@ const UserManagement: React.FC = () => {
             </DialogHeader>
 
             {selectedUser && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="edit-email">{isRTL ? 'البريد الإلكتروني' : 'Email'}</Label>
-                  <Input
-                    id="edit-email"
-                    type="email"
-                    value={selectedUser.email}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, email: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل البريد الإلكتروني' : 'Enter email'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-displayName">{isRTL ? 'الاسم الكامل' : 'Full Name'}</Label>
-                  <Input
-                    id="edit-displayName"
-                    value={selectedUser.displayName || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, displayName: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل الاسم الكامل' : 'Enter full name'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-role">{isRTL ? 'الدور' : 'Role'}</Label>
-                  <Select
-                    value={selectedUser.role}
-                    onValueChange={(value: 'user' | 'doctor' | 'nutritionist' | 'admin') =>
-                      setSelectedUser(prev => prev ? { ...prev, role: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
-                      <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
-                      <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
-                      <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="edit-phoneNumber">{isRTL ? 'رقم الهاتف' : 'Phone Number'}</Label>
-                  <Input
-                    id="edit-phoneNumber"
-                    value={selectedUser.phoneNumber || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, phoneNumber: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل رقم الهاتف' : 'Enter phone number'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-dateOfBirth">{isRTL ? 'تاريخ الميلاد' : 'Date of Birth'}</Label>
-                  <Input
-                    id="edit-dateOfBirth"
-                    type="date"
-                    value={selectedUser.dateOfBirth || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, dateOfBirth: e.target.value } : null)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-gender">{isRTL ? 'الجنس' : 'Gender'}</Label>
-                  <Select
-                    value={selectedUser.gender || 'male'}
-                    onValueChange={(value: 'male' | 'female') =>
-                      setSelectedUser(prev => prev ? { ...prev, gender: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="male">{isRTL ? 'ذكر' : 'Male'}</SelectItem>
-                      <SelectItem value="female">{isRTL ? 'أنثى' : 'Female'}</SelectItem>
-                    </SelectContent>
-                  </Select>
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="relative group w-24 h-24">
+                    <div className="w-full h-full bg-primary/10 rounded-full flex items-center justify-center overflow-hidden">
+                      {selectedUser.photoURL ? (
+                        <img src={selectedUser.photoURL} alt={selectedUser.displayName} className="w-full h-full object-cover" />
+                      ) : (
+                        <Users className="h-10 w-10 text-primary" />
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <Label className={`cursor-pointer text-primary text-sm font-semibold flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-full transition-colors ${isUpdatingAvatar ? 'opacity-50 pointer-events-none' : ''}`}>
+                      <Upload className="h-4 w-4" />
+                      {isUpdatingAvatar ? (isRTL ? 'جاري التحميل...' : 'Uploading...') : (isRTL ? 'تغيير الصورة' : 'Change Avatar')}
+                      <input type="file" className="hidden" accept="image/*" onChange={(e) => handleUploadAvatar(selectedUser.uid, e.target.files?.[0])} disabled={isUpdatingAvatar} />
+                    </Label>
+                  </div>
                 </div>
 
-                {(selectedUser.role === 'doctor' || selectedUser.role === 'nutritionist') && (
-                  <>
-                    <div>
-                      <Label htmlFor="edit-specialization">{isRTL ? 'التخصص' : 'Specialization'}</Label>
-                      <Input
-                        id="edit-specialization"
-                        value={selectedUser.specialization || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, specialization: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل التخصص' : 'Enter specialization'}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="edit-licenseNumber">{isRTL ? 'رقم الترخيص' : 'License Number'}</Label>
-                      <Input
-                        id="edit-licenseNumber"
-                        value={selectedUser.licenseNumber || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, licenseNumber: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل رقم الترخيص' : 'Enter license number'}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="edit-department">{isRTL ? 'القسم' : 'Department'}</Label>
-                      <Input
-                        id="edit-department"
-                        value={selectedUser.department || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, department: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل القسم' : 'Enter department'}
-                      />
-                    </div>
-                  </>
-                )}
-
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-address">{isRTL ? 'العنوان' : 'Address'}</Label>
-                  <Input
-                    id="edit-address"
-                    value={selectedUser.address || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, address: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل العنوان' : 'Enter address'}
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-notes">{isRTL ? 'ملاحظات إدارية' : 'Admin Notes'}</Label>
-                  <Textarea
-                    id="edit-notes"
-                    value={selectedUser.notes || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, notes: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل ملاحظات إدارية' : 'Enter admin notes'}
-                    rows={3}
-                  />
-                </div>
-                <div className="md:col-span-2 flex items-center space-x-2">
-                  <Switch
-                    id="edit-isActive"
-                    checked={selectedUser.isActive}
-                    onCheckedChange={(checked) => setSelectedUser(prev => prev ? { ...prev, isActive: checked } : null)}
-                  />
-                  <Label htmlFor="edit-isActive">{isRTL ? 'المستخدم نشط' : 'User Active'}</Label>
-                </div>
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-status">{isRTL ? 'حالة المستخدم' : 'User Status'}</Label>
-                  <Select
-                    value={selectedUser.status}
-                    onValueChange={(value: 'active' | 'inactive' | 'pending' | 'suspended') =>
-                      setSelectedUser(prev => prev ? { ...prev, status: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
-                      <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
-                      <SelectItem value="pending">{isRTL ? 'في الانتظار' : 'Pending'}</SelectItem>
-                      <SelectItem value="suspended">{isRTL ? 'موقوف' : 'Suspended'}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                {selectedUser.status === 'suspended' && (
-                  <div className="md:col-span-2">
-                    <Label htmlFor="edit-suspensionReason">{isRTL ? 'سبب الإيقاف' : 'Suspension Reason'}</Label>
-                    <Textarea
-                      id="edit-suspensionReason"
-                      value={selectedUser.suspensionReason || ''}
-                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, suspensionReason: e.target.value } : null)}
-                      placeholder={isRTL ? 'أدخل سبب الإيقاف' : 'Enter suspension reason'}
-                      rows={2}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="edit-email">{isRTL ? 'البريد الإلكتروني' : 'Email'}</Label>
+                    <Input
+                      id="edit-email"
+                      type="email"
+                      value={selectedUser.email}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, email: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل البريد الإلكتروني' : 'Enter email'}
                     />
                   </div>
-                )}
+                  <div>
+                    <Label htmlFor="edit-displayName">{isRTL ? 'الاسم الكامل' : 'Full Name'}</Label>
+                    <Input
+                      id="edit-displayName"
+                      value={selectedUser.displayName || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, displayName: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل الاسم الكامل' : 'Enter full name'}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-role">{isRTL ? 'الدور' : 'Role'}</Label>
+                    <Select
+                      value={selectedUser.role}
+                      onValueChange={(value: 'user' | 'nutritionist' | 'admin') =>
+                        setSelectedUser(prev => prev ? { ...prev, role: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
+                        <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
+                        <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-phoneNumber">{isRTL ? 'رقم الهاتف' : 'Phone Number'}</Label>
+                    <Input
+                      id="edit-phoneNumber"
+                      value={selectedUser.phoneNumber || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, phoneNumber: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل رقم الهاتف' : 'Enter phone number'}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-dateOfBirth">{isRTL ? 'تاريخ الميلاد' : 'Date of Birth'}</Label>
+                    <Input
+                      id="edit-dateOfBirth"
+                      type="date"
+                      value={selectedUser.dateOfBirth || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, dateOfBirth: e.target.value } : null)}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-gender">{isRTL ? 'الجنس' : 'Gender'}</Label>
+                    <Select
+                      value={selectedUser.gender || 'male'}
+                      onValueChange={(value: 'male' | 'female') =>
+                        setSelectedUser(prev => prev ? { ...prev, gender: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="male">{isRTL ? 'ذكر' : 'Male'}</SelectItem>
+                        <SelectItem value="female">{isRTL ? 'أنثى' : 'Female'}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {selectedUser.role === 'nutritionist' && (
+                    <>
+                      <div>
+                        <Label htmlFor="edit-specialization">{isRTL ? 'التخصص' : 'Specialization'}</Label>
+                        <Input
+                          id="edit-specialization"
+                          value={selectedUser.specialization || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, specialization: e.target.value } : null)}
+                          placeholder={isRTL ? 'أدخل التخصص' : 'Enter specialization'}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-licenseNumber">{isRTL ? 'رقم الترخيص' : 'License Number'}</Label>
+                        <Input
+                          id="edit-licenseNumber"
+                          value={selectedUser.licenseNumber || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, licenseNumber: e.target.value } : null)}
+                          placeholder={isRTL ? 'أدخل رقم الترخيص' : 'Enter license number'}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-department">{isRTL ? 'القسم' : 'Department'}</Label>
+                        <Input
+                          id="edit-department"
+                          value={selectedUser.department || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, department: e.target.value } : null)}
+                          placeholder={isRTL ? 'أدخل القسم' : 'Enter department'}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-address">{isRTL ? 'العنوان' : 'Address'}</Label>
+                    <Input
+                      id="edit-address"
+                      value={selectedUser.address || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, address: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل العنوان' : 'Enter address'}
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-notes">{isRTL ? 'ملاحظات إدارية' : 'Admin Notes'}</Label>
+                    <Textarea
+                      id="edit-notes"
+                      value={selectedUser.notes || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, notes: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل ملاحظات إدارية' : 'Enter admin notes'}
+                      rows={3}
+                    />
+                  </div>
+                  <div className="md:col-span-2 flex items-center space-x-2">
+                    <Switch
+                      id="edit-isActive"
+                      checked={selectedUser.isActive}
+                      onCheckedChange={(checked) => setSelectedUser(prev => prev ? { ...prev, isActive: checked } : null)}
+                    />
+                    <Label htmlFor="edit-isActive">{isRTL ? 'المستخدم نشط' : 'User Active'}</Label>
+                  </div>
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-status">{isRTL ? 'حالة المستخدم' : 'User Status'}</Label>
+                    <Select
+                      value={selectedUser.status}
+                      onValueChange={(value: 'active' | 'inactive' | 'pending' | 'suspended') =>
+                        setSelectedUser(prev => prev ? { ...prev, status: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
+                        <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
+                        <SelectItem value="pending">{isRTL ? 'في الانتظار' : 'Pending'}</SelectItem>
+                        <SelectItem value="suspended">{isRTL ? 'موقوف' : 'Suspended'}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {selectedUser.status === 'suspended' && (
+                    <div className="md:col-span-2">
+                      <Label htmlFor="edit-suspensionReason">{isRTL ? 'سبب الإيقاف' : 'Suspension Reason'}</Label>
+                      <Textarea
+                        id="edit-suspensionReason"
+                        value={selectedUser.suspensionReason || ''}
+                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, suspensionReason: e.target.value } : null)}
+                        placeholder={isRTL ? 'أدخل سبب الإيقاف' : 'Enter suspension reason'}
+                        rows={2}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 

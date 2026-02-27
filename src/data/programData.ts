@@ -1,4 +1,19 @@
-import { ProgramWeek } from './programData';
+export interface ProgramItem {
+    type: 'article' | 'story' | 'tool';
+    id: string | number;
+    title_ar: string;
+    title_en: string;
+    link: string;
+    reading_time?: number;
+}
+
+export interface ProgramWeek {
+    week: number;
+    goal_ar: string;
+    goal_en: string;
+    items: ProgramItem[];
+    estimated_minutes: number;
+}
 
 export const programWeeks: ProgramWeek[] = [
     {
@@ -72,6 +87,7 @@ export const programWeeks: ProgramWeek[] = [
             { type: 'article', id: 17, title_ar: 'نقص التغذية مقابل فرط التغذية', title_en: 'Undernutrition vs Overnutrition', link: '/knowledge/undernutrition-vs-overnutrition', reading_time: 4 },
             { type: 'article', id: 18, title_ar: 'ملخص المغذيات الدقيقة', title_en: 'Micronutrient Summary', link: '/knowledge/micronutrient-summary-reference', reading_time: 3 },
             { type: 'tool', id: 'dds-assess', title_ar: 'مقياس التنوع الغذائي (DDS) لطفلك', title_en: 'Dietary Diversity Score Assessment', link: '/assessment?tab=dds' },
+            { type: 'tool', id: 'meal-analyzer', title_ar: 'محلل الوجبات الذكي (أداة بحثية)', title_en: 'Smart Meal Analyzer (Research Tool)', link: '/ai-tools?tab=meal-analyzer' },
             { type: 'tool', id: 'final-survey', title_ar: 'استبيان تقييم البرنامج النهائي', title_en: 'Final Program Evaluation Survey', link: '/project-evaluation' },
         ],
         estimated_minutes: 25,

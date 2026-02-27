@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
-  
+
   const { loading, healthData, userActivity } = usePatientStats();
 
   const isRTL = i18n.language === 'ar';
@@ -55,8 +55,8 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (userProfile?.role === 'admin') {
       navigate('/admin/dashboard', { replace: true });
-    } else if (userProfile?.role === 'doctor') {
-      navigate('/doctor/dashboard', { replace: true });
+    } else if (userProfile?.role === 'nutritionist') {
+      navigate('/nutritionist/dashboard', { replace: true });
     }
   }, [userProfile?.role, navigate]);
 
@@ -344,10 +344,10 @@ const Dashboard: React.FC = () => {
                   <MessageSquare className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{isRTL ? 'محادثاتك' : 'Your Conversations'}</h3>
-                <p className="text-muted-foreground mb-6 max-w-sm mx-auto">{isRTL ? 'تواصل مع المساعد الذكي أو الأطباء مباشرة' : 'Connect with AI Assistant or Doctors directly'}</p>
+                <p className="text-muted-foreground mb-6 max-w-sm mx-auto">{isRTL ? 'تواصل مع المساعد الذكي أو أخصائيي التغذية مباشرة' : 'Connect with AI Assistant or Nutritionists directly'}</p>
                 <div className="flex justify-center gap-4">
                   <Button onClick={() => navigate('/ai-tools')}>{isRTL ? 'مساعد AI' : 'AI Assistant'}</Button>
-                  <Button variant="outline" onClick={() => navigate('/medical-consultation')}>{isRTL ? 'طبيب بشري' : 'Human Doctor'}</Button>
+                  <Button variant="outline" onClick={() => navigate('/medical-consultation')}>{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</Button>
                 </div>
               </Card>
             </TabsContent>

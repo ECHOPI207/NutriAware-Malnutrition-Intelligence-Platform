@@ -134,6 +134,13 @@ service cloud.firestore {
       allow update, delete: if false; // Audit logs should be immutable
     }
 
+    // Activity Logs
+    match /activity_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAuthenticated(); // Application logs user actions
+      allow update, delete: if false; // Activity logs should be immutable
+    }
+
     // Visitor Tracking
     match /daily_visits/{day} {
       allow read: if isStaff();

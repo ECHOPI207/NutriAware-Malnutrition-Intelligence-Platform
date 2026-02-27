@@ -49,11 +49,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Basic CSRF Protection: Check Origin or Referer
     const origin = req.headers.origin;
     const referer = req.headers.referer;
-    const isLocal = origin?.includes('localhost') || referer?.includes('localhost');
-    const isProd = origin?.includes('nutriaware') || referer?.includes('nutriaware');
 
-    // In strict production, you'd only allow isProd. Allowing both for dev ease.
-    if (!isLocal && !isProd && (origin || referer)) {
+    // Allow vercel preview domains, localhost, and custom domain
+    const allowedDomains = ['localhost', 'nutriaware', 'vercel.app', 'nutri-aware'];
+    const isAllowedOrigin = allowedDomains.some(domain =>
+        (origin && origin.includes(domain)) || (referer && referer.includes(domain))
+    );
+
+    if (!isAllowedOrigin && (origin || referer)) {
         console.warn(`[Avatar API] Possible CSRF attempt from origin: ${origin}, referer: ${referer}`);
         return res.status(403).json({ error: 'Forbidden: Invalid Origin' });
     }

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { trackSettingsChange } from '@/services/activityTracker';
 
 type Theme = 'light' | 'dark';
 
@@ -45,11 +46,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [theme]);
 
   const toggleTheme = () => {
-    setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setThemeState((prev) => {
+      const newTheme = prev === 'light' ? 'dark' : 'light';
+      
+      // Track settings change
+      trackSettingsChange([{
+        setting: 'theme',
+        oldValue: prev,
+        newValue: newTheme
+      }]);
+      
+      return newTheme;
+    });
   };
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
+    setThemeState((prev) => {
+      if (prev !== newTheme) {
+        // Track settings change
+        trackSettingsChange([{
+          setting: 'theme',
+          oldValue: prev,
+          newValue: newTheme
+        }]);
+      }
+      return newTheme;
+    });
   };
 
   return (

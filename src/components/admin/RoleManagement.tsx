@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { roleManager, UserRole } from '@/services/role-manager';
@@ -30,7 +29,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Shield, UserCheck, UserX, Crown, Stethoscope, User } from 'lucide-react';
+import { Shield, Crown, Stethoscope, User, UserCheck, UserX } from 'lucide-react';
 
 interface UserWithRole {
   id: string;
@@ -54,14 +53,14 @@ export const RoleManagement = () => {
 
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [user]);
 
   const loadUsers = async () => {
-    if (!user?.id) return;
+    if (!user?.uid) return;
     
     try {
       setLoading(true);
-      const data = await roleManager.getAllUsersWithRoles(user.id);
+      const data = await roleManager.getAllUsersWithRoles(user.uid);
       setUsers(data || []);
     } catch (error: any) {
       toast({
@@ -75,10 +74,10 @@ export const RoleManagement = () => {
   };
 
   const handleRoleChange = async () => {
-    if (!selectedUser || !user?.id) return;
+    if (!selectedUser || !user?.uid) return;
 
     try {
-      await roleManager.assignRole(selectedUser.id, newRole, user.id);
+      await roleManager.assignRole(selectedUser.id, newRole, user.uid);
       
       toast({
         title: t('auth.success'),
@@ -100,10 +99,10 @@ export const RoleManagement = () => {
   };
 
   const handleRemoveRole = async (userId: string, userName: string) => {
-    if (!user?.id) return;
+    if (!user?.uid) return;
 
     try {
-      await roleManager.removeRole(userId, user.id);
+      await roleManager.removeRole(userId, user.uid);
       
       toast({
         title: t('auth.success'),
@@ -127,6 +126,7 @@ export const RoleManagement = () => {
       case 'admin':
         return <Crown className="h-4 w-4 text-yellow-600" />;
       case 'doctor':
+      case 'nutritionist':
         return <Stethoscope className="h-4 w-4 text-blue-600" />;
       default:
         return <User className="h-4 w-4 text-gray-600" />;
@@ -136,9 +136,11 @@ export const RoleManagement = () => {
   const getRoleLabel = (role: UserRole) => {
     switch (role) {
       case 'admin':
-        return isRTL ? 'مدير النظام' : 'Administrator';
+        return isRTL ? 'مدير النظام' : 'Admin';
       case 'doctor':
-        return isRTL ? 'طبيب' : 'Doctor';
+        return isRTL ? 'دكتور جامعي' : 'Academic Expert';
+      case 'nutritionist':
+        return isRTL ? 'أخصائي تغذية' : 'Nutritionist';
       default:
         return isRTL ? 'مستخدم عادي' : 'Regular User';
     }
@@ -150,6 +152,8 @@ export const RoleManagement = () => {
         return 'bg-yellow-100 text-yellow-800 border-yellow-200';
       case 'doctor':
         return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'nutritionist':
+        return 'bg-green-100 text-green-800 border-green-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }

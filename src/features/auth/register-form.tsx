@@ -36,7 +36,7 @@ export const RegisterForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (formData.password !== formData.confirmPassword) {
             toast({
                 title: t('auth.error'),
@@ -57,7 +57,7 @@ export const RegisterForm = () => {
 
         setLoading(true);
         try {
-            await signUp(formData);
+            await signUp(formData.email, formData.password, formData.fullName);
             toast({
                 title: t('auth.accountCreated'),
                 description: t('auth.checkEmailVerification'),

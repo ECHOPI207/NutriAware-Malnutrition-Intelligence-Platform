@@ -1,7 +1,10 @@
 // Enhanced role manager for comprehensive RBAC system
 // Supports multiple roles, permissions, and route access control
 
-export type UserRole = 'user' | 'admin' | 'doctor' | 'nutritionist';
+import { db } from '@/lib/firebase';
+import { collection, getDocs, doc, updateDoc, query, orderBy } from 'firebase/firestore';
+
+export type UserRole = 'user' | 'admin' | 'doctor' | 'nutritionist' | 'super_admin';
 
 interface NavigationItem {
   key: string;
@@ -13,36 +16,84 @@ interface NavigationItem {
 }
 
 export const roleManager = {
-  hasPermission(role: UserRole, permission: string): boolean {
-    // Enhanced permission system
+  /**
+   * Get all users and their assigned roles from Firestore
+   * Only accessible by admins
+   */
+  async getAllUsersWithRoles(_adminId: string) {
+    // Check if requester is actually an admin
+    const adminSnap = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc')));
+    
+    return adminSnap.docs.map(doc => ({
+      id: doc.id,
+      email: doc.data().email,
+      full_name: doc.data().displayName || doc.data().full_name || 'N/A',
+      role: doc.data().role || 'user',
+      created_at: doc.data().createdAt?.toDate?.()?.toISOString() || new Date().toISOString()
+    }));
+  },
+
+  /**
+   * Assign a role to a user
+   */
+  async assignRole(userId: string, role: UserRole, _adminId: string) {
+    const userRef = doc(db, 'users', userId);
+    await updateDoc(userRef, {
+      role: role,
+      updatedAt: new Date()
+    });
+    return true;
+  },
+
+  /**
+   * Remove a special role from a user (reverts to 'user')
+   */
+  async removeRole(userId: string, _adminId: string) {
+    const userRef = doc(db, 'users', userId);
+    await updateDoc(userRef, {
+      role: 'user',
+      updatedAt: new Date()
+    });
+    return true;
+  },
+
+  hasPermission(role: UserRole, permission: string, userPermissions?: string[]): boolean {
+    // Super Admin has all permissions
+    if (role === 'super_admin') return true;
+
+    // If user has specific granular permissions assigned, use them
+    // This overrides the default role-based permissions
+    if (userPermissions && userPermissions.length > 0) {
+      return userPermissions.includes(permission);
+    }
+
+    // Fallback to role-based defaults if no granular permissions exist
     switch (role) {
       case 'admin':
-        return true; // Admin has all permissions
+        return true; // Admin has all permissions by default
       case 'doctor':
-        return [
-          'canViewPatients', 
-          'canViewDashboard', 
-          'canManagePatients',
-          'canCreateReports',
-          'canViewMedicalData',
-          'canManageTreatmentPlans',
-          'canViewMessages'
-        ].includes(permission);
       case 'nutritionist':
         return [
-          'canViewDashboard', 
-          'canCreateMealPlans',
-          'canViewNutritionalData',
-          'canManagePatients',
-          'canViewMessages'
+          'view_patients',
+          'view_dashboard',
+          'create_meal_plans',
+          'view_nutritional_data',
+          'manage_patients',
+          'create_reports',
+          'view_medical_data',
+          'manage_treatment_plans',
+          'view_messages',
+          'reply_consultations',
+          'manage_surveys', // Added default
+          'manage_ai_tools' // Added default
         ].includes(permission);
       case 'user':
         return [
-          'canViewDashboard', 
-          'canViewOwnData',
-          'canSendMessages',
-          'canViewContent',
-          'canUseAssessmentTools'
+          'view_dashboard',
+          'view_own_data',
+          'send_messages',
+          'view_content',
+          'use_assessment_tools'
         ].includes(permission);
       default:
         return false;
@@ -53,6 +104,8 @@ export const roleManager = {
    * Get all available permissions for a role
    */
   getAvailablePermissions(role: UserRole): string[] {
+    if (role === 'super_admin') return ['*']; // All permissions
+
     switch (role) {
       case 'admin':
         return [
@@ -75,29 +128,26 @@ export const roleManager = {
           'canViewOwnData',
           'canSendMessages',
           'canViewContent',
-          'canUseAssessmentTools'
+          'canUseAssessmentTools',
+          'edit_user_profile_media',
+          'users.edit_avatar'
         ];
       case 'doctor':
+      case 'nutritionist':
         return [
-          'canViewPatients', 
-          'canViewDashboard', 
+          'canViewPatients',
+          'canViewDashboard',
           'canManagePatients',
           'canCreateReports',
           'canViewMedicalData',
           'canManageTreatmentPlans',
-          'canViewMessages'
-        ];
-      case 'nutritionist':
-        return [
-          'canViewDashboard', 
+          'canViewMessages',
           'canCreateMealPlans',
-          'canViewNutritionalData',
-          'canManagePatients',
-          'canViewMessages'
+          'canViewNutritionalData'
         ];
       case 'user':
         return [
-          'canViewDashboard', 
+          'canViewDashboard',
           'canViewOwnData',
           'canSendMessages',
           'canViewContent',
@@ -108,28 +158,25 @@ export const roleManager = {
     }
   },
 
-  canAccessRoute(role: UserRole, routePath: string, allowedRoles?: UserRole[]): boolean {
-    // Admin can access everything
-    if (role === 'admin') return true;
-    
+  canAccessRoute(role: UserRole, _routePath: string, allowedRoles?: UserRole[]): boolean {
+    // Admin and Super Admin can access everything
+    if (role === 'admin' || role === 'super_admin') return true;
+
     // If no specific roles required, allow access
     if (!allowedRoles || allowedRoles.length === 0) return true;
-    
+
     // Check if user's role is in allowed roles
     const hasRoleAccess = allowedRoles.includes(role);
-    
+
     // Additional route-specific logic can be added here based on routePath
     // Currently using role-based access control only
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _routePath = routePath; // Reserved for future route-specific logic
-    
     return hasRoleAccess;
   },
 
   hasAnyRole(userRole: UserRole, requiredRoles: UserRole[]): boolean {
-    // Admin can access everything
-    if (userRole === 'admin') return true;
-    
+    // Admin and Super Admin can access everything
+    if (userRole === 'admin' || userRole === 'super_admin') return true;
+
     // Check if user has any of the required roles
     return requiredRoles.includes(userRole);
   },
@@ -138,10 +185,11 @@ export const roleManager = {
     switch (role) {
       case 'admin':
         return '/admin/dashboard';
+      case 'super_admin':
+        return '/admin/dashboard';
       case 'doctor':
-        return '/doctor/dashboard';
       case 'nutritionist':
-        return '/doctor/dashboard'; // Nutritionists use doctor dashboard for now
+        return '/doctor/dashboard'; // Nutritionists and Doctors use the professional dashboard
       case 'user':
         return '/dashboard';
       default:
@@ -152,16 +200,18 @@ export const roleManager = {
   getRoleDisplayName(role: UserRole, isRTL: boolean = false): string {
     if (isRTL) {
       switch (role) {
+        case 'super_admin': return 'مدير النظام (متميز)';
         case 'admin': return 'مدير النظام';
-        case 'doctor': return 'طبيب';
-        case 'nutritionist': return 'أخصائي تغذية';
+        case 'doctor': return 'دكتور جامعي';
+        case 'nutritionist': return 'أخصائي تغذية / خبير تغذية';
         case 'user': return 'مستخدم عادي';
         default: return 'غير محدد';
       }
     } else {
       switch (role) {
+        case 'super_admin': return 'Super Admin';
         case 'admin': return 'System Admin';
-        case 'doctor': return 'Doctor';
+        case 'doctor': return 'Academic Expert';
         case 'nutritionist': return 'Nutritionist';
         case 'user': return 'Regular User';
         default: return 'Unknown';
@@ -172,9 +222,10 @@ export const roleManager = {
   getRoleHierarchy(): Record<UserRole, number> {
     return {
       'user': 1,
+      'doctor': 2,
       'nutritionist': 2,
-      'doctor': 3,
-      'admin': 4
+      'admin': 4,
+      'super_admin': 5
     };
   },
 
@@ -189,42 +240,42 @@ export const roleManager = {
         key: 'home',
         label: isRTL ? 'الرئيسية' : 'Home',
         path: '/',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'dashboard',
         label: isRTL ? 'لوحة التحكم' : 'Dashboard',
         path: this.getDefaultRedirectPath(role),
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'knowledge',
         label: isRTL ? 'أنواع سوء التغذية' : 'Knowledge',
         path: '/knowledge',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'assessment',
         label: isRTL ? 'التقييم' : 'Assessment',
         path: '/assessment',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'ai-tools',
         label: isRTL ? 'أدوات الذكاء الاصطناعي' : 'AI Tools',
         path: '/ai-tools',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       },
       {
         key: 'messages',
         label: isRTL ? 'الرسائل والاستشارات' : 'Messages',
         path: '/messages',
-        roles: ['user', 'doctor', 'nutritionist', 'admin']
+        roles: ['user', 'nutritionist', 'admin']
       }
     ];
 
     // Add admin-specific items
-    if (role === 'admin') {
+    if (role === 'admin' || role === 'super_admin') {
       baseItems.push({
         key: 'admin',
         label: isRTL ? 'إدارة النظام' : 'Administration',
@@ -260,7 +311,7 @@ export const roleManager = {
     }
 
     // Filter items based on user role
-    return baseItems.filter(item => 
+    return baseItems.filter(item =>
       this.canAccessRoute(role, item.path, item.roles)
     );
   }

@@ -19,6 +19,8 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Profile = lazy(() => import('./pages/Profile'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const ActivityLog = lazy(() => import('./pages/ActivityLog'));
 
 // Admin pages
 const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
@@ -43,6 +45,10 @@ const SimpleSignup = lazy(() => import('./pages/auth/SimpleSignup').then(module 
 const SimpleLogin = lazy(() => import('./pages/auth/SimpleLogin').then(module => ({ default: module.SimpleLogin })));
 const AuthCallback = lazy(() => import('./pages/auth/AuthCallback').then(module => ({ default: module.AuthCallback })));
 const ProjectEvaluation = lazy(() => import('./pages/ProjectEvaluation'));
+const Program = lazy(() => import('./pages/Program'));
+
+const Stories = lazy(() => import('./pages/Stories'));
+const StoryReader = lazy(() => import('./pages/StoryReader'));
 
 export interface RouteConfig {
   name: string;
@@ -71,6 +77,14 @@ const routes: RouteConfig[] = [
     translationKey: 'Project Evaluation', // Using direct string as fallback
     path: '/project-evaluation',
     element: <ProjectEvaluation />,
+    visible: true,
+    showInNavigation: () => true
+  },
+  {
+    name: 'FAQ',
+    translationKey: 'nav.faq',
+    path: '/faq',
+    element: <FAQ />,
     visible: true,
     showInNavigation: () => true
   },
@@ -107,6 +121,46 @@ const routes: RouteConfig[] = [
     showInNavigation: () => false
   },
   {
+    name: 'Program',
+    translationKey: 'nav.program',
+    path: '/program',
+    element: <Program />,
+    visible: true,
+    showInNavigation: () => true
+  },
+  {
+    name: 'Food Safety Check',
+    translationKey: 'nav.foodSafetyCheck',
+    path: '/food-safety-check',
+    element: <Navigate to="/assessment?tab=food-safety" replace />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'Stories Library',
+    translationKey: 'nav.stories',
+    path: '/stories',
+    element: <Stories />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'Story Reader',
+    translationKey: 'nav.stories',
+    path: '/stories/:slug',
+    element: <StoryReader />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
+    name: 'About Research',
+    translationKey: 'nav.aboutResearch',
+    path: '/about-research',
+    element: <Navigate to="/about#research" replace />,
+    visible: false,
+    showInNavigation: () => false
+  },
+  {
     name: 'AI Tools',
     translationKey: 'nav.aiTools',
     path: '/ai-tools',
@@ -139,7 +193,7 @@ const routes: RouteConfig[] = [
     showInNavigation: () => true
   },
   {
-    name: 'Medical Consultation',
+    name: 'Nutritional Guidance',
     translationKey: 'nav.medicalConsultation',
     path: '/medical-consultation',
     element: <NewMedicalConsultation />,
@@ -153,8 +207,8 @@ const routes: RouteConfig[] = [
     path: '/messages',
     element: <MessagesAndConsultations />,
     visible: false,
-    requiredRole: ['user', 'doctor', 'nutritionist', 'admin'],
-    showInNavigation: (role) => ['user', 'doctor', 'nutritionist', 'admin'].includes(role)
+    requiredRole: ['user', 'nutritionist', 'admin'],
+    showInNavigation: (role) => ['user', 'nutritionist', 'admin'].includes(role)
   },
   {
     name: 'Privacy Policy',
@@ -255,10 +309,10 @@ const routes: RouteConfig[] = [
     path: '/admin/survey-results',
     element: <SurveyResults />,
     visible: false,
-    requiredRole: ['admin', 'doctor', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/doctor
-    requiredPermission: 'canAccessAdminDashboard', 
+    requiredRole: ['admin', 'nutritionist', 'user'], // Temporary open access for user to test, normally admin/nutritionist
+    requiredPermission: 'canAccessAdminDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['admin', 'nutritionist'].includes(role)
   },
   {
     name: 'Survey Management',
@@ -266,21 +320,21 @@ const routes: RouteConfig[] = [
     path: '/admin/survey-management',
     element: <SurveyManagement />,
     visible: false,
-    requiredRole: ['admin', 'doctor', 'nutritionist'],
+    requiredRole: ['admin', 'nutritionist'],
     requiredPermission: 'canAccessAdminDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['admin', 'doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['admin', 'nutritionist'].includes(role)
   },
   {
-    name: 'Doctor Dashboard',
-    translationKey: 'nav.doctorDashboard',
+    name: 'Nutritionist Dashboard',
+    translationKey: 'nav.nutritionDashboard',
     path: '/doctor/dashboard',
     element: <DoctorDashboard />,
     visible: false,
-    requiredRole: ['doctor', 'nutritionist'],
+    requiredRole: ['nutritionist'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['nutritionist'].includes(role)
   },
   {
     name: 'Consultation Management',
@@ -288,10 +342,10 @@ const routes: RouteConfig[] = [
     path: '/doctor/consultations',
     element: <ConsultationManagement />,
     visible: false,
-    requiredRole: ['doctor', 'nutritionist'],
+    requiredRole: ['nutritionist'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/dashboard',
-    showInNavigation: (role) => ['doctor', 'nutritionist'].includes(role)
+    showInNavigation: (role) => ['nutritionist'].includes(role)
   },
   {
     name: 'Dashboard',
@@ -299,10 +353,10 @@ const routes: RouteConfig[] = [
     path: '/dashboard',
     element: <Dashboard />,
     visible: false,
-    requiredRole: ['user', 'doctor', 'nutritionist', 'admin'],
+    requiredRole: ['user', 'nutritionist', 'admin'],
     requiredPermission: 'canViewDashboard',
     fallbackPath: '/',
-    showInNavigation: (role) => ['user', 'doctor', 'nutritionist', 'admin'].includes(role)
+    showInNavigation: (role) => ['user', 'nutritionist', 'admin'].includes(role)
   },
   {
     name: 'Profile',
@@ -310,7 +364,16 @@ const routes: RouteConfig[] = [
     path: '/profile',
     element: <Profile />,
     visible: false,
-    requiredRole: ['user', 'admin', 'doctor', 'nutritionist'],
+    requiredRole: ['user', 'admin', 'nutritionist'],
+    showInNavigation: () => false
+  },
+  {
+    name: 'Activity Log',
+    translationKey: 'nav.activityLog',
+    path: '/activity-log',
+    element: <ActivityLog />,
+    visible: false,
+    requiredRole: ['user', 'admin', 'nutritionist'],
     showInNavigation: () => false
   },
   {

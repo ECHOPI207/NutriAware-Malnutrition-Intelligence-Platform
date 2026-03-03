@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { collection, query, getDocs, where, doc, updateDoc, serverTimestamp, deleteDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { trackDataDeletion } from '@/services/activityTracker';
 import { CombinedItem, Message, MedicalConsultation, FilterType } from './types';
 
 export interface UseMessagesOptions {
@@ -149,19 +150,30 @@ export const useMessages = (options: UseMessagesOptions = {}) => {
   };
 
   const deleteItem = async (itemId: string, itemType: 'feedback' | 'consultation') => {
-    if (!confirm(isRTL ? 'هل أنت متأكد من الحذف؟' : 'Are you sure you want to delete?')) {
+    // Permission check
+    if (userProfile?.role !== 'admin') {
+      alert(isRTL ? 'عذراً، هذا الإجراء متاح للمدير فقط' : 'Sorry, this action is for admins only');
       return;
     }
 
     try {
       const collection_name = itemType === 'feedback' ? 'feedback' : 'medicalConsultations';
       const itemRef = doc(db, collection_name, itemId);
+      
       await deleteDoc(itemRef);
+
+      // Track data deletion
+      try {
+        trackDataDeletion(itemType, itemId);
+      } catch (trackError) {
+        console.error('Error tracking deletion:', trackError);
+      }
 
       setAllItems(prev => prev.filter(item => item.id !== itemId));
       alert(isRTL ? "تم الحذف" : "Deleted");
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting:', error);
+      alert((isRTL ? "فشل الحذف: " : "Delete failed: ") + (error.message || "Unknown error"));
     }
   };
 

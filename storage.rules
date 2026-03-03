@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && (
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'super_admin'
+      );
+    }
+
+    // Avatar rules
+    match /avatars/{userId}/{fileName} {
+      // Allow read for everyone (so profile pics can be seen)
+      allow read: if true;
+      
+      // Allow upload if user owns the path OR is an admin
+      allow write: if isAuthenticated() && (isOwner(userId) || isAdmin());
+    }
+    
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

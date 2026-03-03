@@ -25,6 +25,7 @@ interface Article {
   updatedAt: any;
   views: number;
   featuredImage?: string;
+  imageUrl?: string;
   gallery?: string[];
   videoUrl?: string;
   tags: {
@@ -68,10 +69,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       <Card className="hover:shadow-lg transition-shadow duration-300">
         <CardContent className="p-4">
           <div className="flex gap-4">
-            {article.featuredImage && (
+            {(article.featuredImage || article.imageUrl) && (
               <div className="flex-shrink-0">
                 <img
-                  src={article.featuredImage}
+                  src={article.featuredImage || article.imageUrl}
                   alt={article.title[currentLang]}
                   className="w-20 h-20 object-cover rounded-lg"
                 />
@@ -104,10 +105,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   if (variant === 'featured') {
     return (
       <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        {article.featuredImage && (
+        {(article.featuredImage || article.imageUrl) && (
           <div className="relative h-64">
             <img
-              src={article.featuredImage}
+              src={article.featuredImage || article.imageUrl}
               alt={article.title[currentLang]}
               className="w-full h-full object-cover"
             />
@@ -173,10 +174,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   // Default variant
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {article.featuredImage && (
+      {(article.featuredImage || article.imageUrl) && (
         <div className="relative h-48">
           <img
-            src={article.featuredImage}
+            src={article.featuredImage || article.imageUrl}
             alt={article.title[currentLang]}
             className="w-full h-full object-cover"
           />
@@ -244,16 +245,16 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             </span>
           </div>
 
-            {onReadMore && (
-              <Button
-                size="sm"
-                className="btn-gradient shadow-md"
-                onClick={() => onReadMore(article)}
-              >
-                {isRTL ? 'اقرأ المزيد' : 'Read More'}
-                {isRTL ? <ArrowLeft className="h-4 w-4 mr-2" /> : <ArrowRight className="h-4 w-4 ml-2" />}
-              </Button>
-            )}
+          {onReadMore && (
+            <Button
+              size="sm"
+              className="btn-gradient shadow-md"
+              onClick={() => onReadMore(article)}
+            >
+              {isRTL ? 'اقرأ المزيد' : 'Read More'}
+              {isRTL ? <ArrowLeft className="h-4 w-4 mr-2" /> : <ArrowRight className="h-4 w-4 ml-2" />}
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>

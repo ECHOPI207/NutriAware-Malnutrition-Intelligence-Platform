@@ -3,6 +3,7 @@
 
 import { collection, addDoc, getDocs, query, where, orderBy, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { trackDataDeletion } from '@/services/activityTracker';
 import type {
   ChildAssessment,
   ChildAssessmentInput,
@@ -62,6 +63,10 @@ export async function getChildAssessments(userId: string): Promise<ChildAssessme
 export async function deleteChildAssessment(id: string): Promise<boolean> {
   try {
     await deleteDoc(doc(db, 'child_assessments', id));
+    
+    // Track data deletion
+    trackDataDeletion('child_assessment', id);
+    
     return true;
   } catch (error) {
     console.error('Error deleting child assessment:', error);
@@ -114,6 +119,10 @@ export async function getBMICalculations(userId: string): Promise<BMICalculation
 export async function deleteBMICalculation(id: string): Promise<boolean> {
   try {
     await deleteDoc(doc(db, 'bmi_calculations', id));
+    
+    // Track data deletion
+    trackDataDeletion('bmi_calculation', id);
+    
     return true;
   } catch (error) {
     console.error('Error deleting BMI calculation:', error);
@@ -254,6 +263,10 @@ export async function getChatConversations(userId: string): Promise<ChatConversa
 export async function deleteCalorieCalculation(id: string): Promise<boolean> {
   try {
     await deleteDoc(doc(db, 'calorie_calculations', id));
+    
+    // Track data deletion
+    trackDataDeletion('calorie_calculation', id);
+    
     return true;
   } catch (error) {
     console.error('Error deleting calorie calculation:', error);
@@ -264,6 +277,10 @@ export async function deleteCalorieCalculation(id: string): Promise<boolean> {
 export async function deleteMealPlan(id: string): Promise<boolean> {
   try {
     await deleteDoc(doc(db, 'meal_plans', id));
+    
+    // Track data deletion
+    trackDataDeletion('meal_plan', id);
+    
     return true;
   } catch (error) {
     console.error('Error deleting meal plan:', error);
@@ -274,6 +291,10 @@ export async function deleteMealPlan(id: string): Promise<boolean> {
 export async function deleteChatConversation(id: string): Promise<boolean> {
   try {
     await deleteDoc(doc(db, 'chat_conversations', id));
+    
+    // Track data deletion
+    trackDataDeletion('chat_conversation', id);
+    
     return true;
   } catch (error) {
     console.error('Error deleting chat conversation:', error);

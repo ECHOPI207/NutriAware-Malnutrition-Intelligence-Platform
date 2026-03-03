@@ -2,6 +2,7 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage, FirebaseStorage } from 'firebase/storage';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -25,6 +26,7 @@ if (!isConfigValid) {
 let app: FirebaseApp;
 let auth: Auth;
 let db: Firestore;
+let storage: FirebaseStorage;
 
 try {
   if (!isConfigValid) {
@@ -32,20 +34,28 @@ try {
   }
   app = initializeApp(firebaseConfig);
   auth = getAuth(app);
+
+  // Use local persistence so the user stays logged in after page refresh
+  import('firebase/auth').then(({ setPersistence, browserLocalPersistence }) => {
+    setPersistence(auth, browserLocalPersistence).catch(console.error);
+  });
+
   db = getFirestore(app);
+  storage = getStorage(app);
 } catch (error) {
   console.error("Firebase initialization failed:", error);
   // Prevent app crash with mock objects
   app = null as unknown as FirebaseApp;
-  auth = { 
-    currentUser: null, 
-    onAuthStateChanged: (cb: any) => { cb(null); return () => {}; },
+  auth = {
+    currentUser: null,
+    onAuthStateChanged: (cb: any) => { cb(null); return () => { }; },
     signInWithEmailAndPassword: async () => { throw new Error("Firebase not configured"); }
   } as unknown as Auth;
   db = {} as unknown as Firestore;
+  storage = {} as unknown as FirebaseStorage;
 }
 
-export { auth, db };
+export { auth, db, storage };
 
 // Development emulator setup (optional)
 if (import.meta.env.DEV && auth && !auth.emulatorConfig) {

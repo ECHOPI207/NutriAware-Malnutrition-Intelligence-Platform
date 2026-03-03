@@ -429,8 +429,8 @@ const BmiMealPlanner: React.FC = () => {
                                                     key={opt.value}
                                                     onClick={() => toggleAllergy(opt.value)}
                                                     className={`px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all ${allergies.includes(opt.value)
-                                                            ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-300 dark:border-red-700'
-                                                            : 'bg-muted/30 text-muted-foreground border-border/40 hover:bg-muted/50'
+                                                        ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-red-300 dark:border-red-700'
+                                                        : 'bg-muted/30 text-muted-foreground border-border/40 hover:bg-muted/50'
                                                         }`}
                                                 >
                                                     {allergies.includes(opt.value) ? '✕ ' : ''}{isRTL ? opt.ar : opt.en}
@@ -574,8 +574,8 @@ const BmiMealPlanner: React.FC = () => {
                                         key={tab.key}
                                         onClick={() => setResultTab(tab.key)}
                                         className={`shrink-0 px-3 py-2 rounded-xl text-xs font-bold transition-all border ${resultTab === tab.key
-                                                ? 'bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20'
-                                                : 'bg-card border-border/50 text-muted-foreground hover:bg-muted/50 hover:border-border'
+                                            ? 'bg-primary text-primary-foreground border-primary shadow-md shadow-primary/20'
+                                            : 'bg-card border-border/50 text-muted-foreground hover:bg-muted/50 hover:border-border'
                                             }`}
                                     >
                                         <span className="me-1">{tab.icon}</span>
@@ -752,8 +752,8 @@ const BmiMealPlanner: React.FC = () => {
                             <div className="p-3 rounded-xl bg-muted/30 border border-border/40">
                                 <p className="text-[11px] text-muted-foreground leading-relaxed">
                                     {isRTL
-                                        ? '⚕️ هذه الخطة لأغراض تعليمية فقط ولا تحل محل الاستشارة الطبية المتخصصة. مؤشر كتلة الجسم أداة فحص ولا يقيس دهون الجسم مباشرة. لا نقدم ادعاءات تشخيصية. بياناتك محفوظة بشكل آمن.'
-                                        : '⚕️ This plan is for educational purposes only and does not replace professional medical consultation. BMI is a screening tool and does not measure body fat directly. We make no diagnostic claims. Your data is kept secure.'}
+                                        ? '⚕️ هذه الخطة لأغراض تعليمية فقط ولا تحل محل التوجيه الغذائي المتخصص. مؤشر كتلة الجسم أداة فحص ولا يقيس دهون الجسم مباشرة. لا نقدم ادعاءات تشخيصية. بياناتك محفوظة بشكل آمن.'
+                                        : '⚕️ This plan is for educational purposes only and does not replace professional nutritional guidance. BMI is a screening tool and does not measure body fat directly. We make no diagnostic claims. Your data is kept secure.'}
                                 </p>
                             </div>
 

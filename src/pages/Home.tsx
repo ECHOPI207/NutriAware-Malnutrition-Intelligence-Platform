@@ -11,10 +11,13 @@ import {
   Stethoscope,
   Brain,
   Zap,
-  Activity
+  Activity,
+  Baby,
+  BookOpen
 } from 'lucide-react';
 import Logo from '@/components/common/Logo';
 import { Button } from '@/components/ui/button';
+import { SurveyCTA } from '@/components/common/SurveyCTA';
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -113,16 +116,38 @@ const Home: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <Link to="/assessment">
+                <Link to="/program">
                   <Button size="lg" className="w-full sm:w-auto h-14 px-8 rounded-2xl text-lg btn-gradient shadow-xl shadow-blue-500/20">
-                    <Brain className="h-5 w-5 mx-2" />
-                    {isRTL ? 'ابدأ التشخيص وعلاج' : 'Start Diagnosis'}
+                    <Brain className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                    {t('hero.startProgram')}
                   </Button>
                 </Link>
                 <Link to="/about">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 rounded-2xl text-lg border-2 hover:bg-muted/50 transition-all">
-                    {isRTL ? 'تعرف علينا' : 'Learn More'}
+                    {t('hero.learnMore')}
                   </Button>
+                </Link>
+              </div>
+
+              {/* Quick Access Cards */}
+              <div className="pt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:justify-start lg:max-w-2xl">
+                <Link to="/assessment?tab=child" className="group p-4 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex items-center gap-3">
+                  <div className="p-2.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-xl group-hover:scale-110 transition-transform">
+                    <Baby className="h-5 w-5" />
+                  </div>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm md:text-base">{t('hero.assessChild')}</span>
+                </Link>
+                <Link to="/knowledge" className="group p-4 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex items-center gap-3">
+                  <div className="p-2.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-xl group-hover:scale-110 transition-transform">
+                    <GraduationCap className="h-5 w-5" />
+                  </div>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm md:text-base">{t('hero.knowledgeCenter')}</span>
+                </Link>
+                <Link to="/stories" className="group p-4 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all flex items-center gap-3">
+                  <div className="p-2.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-xl group-hover:scale-110 transition-transform">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200 text-sm md:text-base">{t('hero.stories')}</span>
                 </Link>
               </div>
 
@@ -184,7 +209,7 @@ const Home: React.FC = () => {
                 key={stat.key}
                 className="h-full"
               >
-                <div 
+                <div
                   className="card-premium p-6 text-center h-full hover:-translate-y-1 transition-transform cursor-default group border-border bg-white dark:bg-slate-800 shadow-sm hover:shadow-md"
                 >
                   <div className={`w-12 h-12 mx-auto rounded-xl ${stat.bg} ${stat.color} flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform duration-300`}>
@@ -244,6 +269,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <SurveyCTA />
     </div>
   );
 };

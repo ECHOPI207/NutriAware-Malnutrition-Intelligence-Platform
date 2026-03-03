@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
-import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp, query, orderBy, limit, where } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { db, auth } from '@/lib/firebase';
+import { db, auth, storage } from '@/lib/firebase';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { auditService } from '@/services/audit-service';
+import { roleManager } from '@/services/role-manager';
+import { trackDataDeletion } from '@/services/activityTracker';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -29,7 +32,10 @@ import {
   CheckCircle,
   AlertTriangle,
   Download,
-  Upload
+  Upload,
+  LogIn,
+  LogOut,
+  Clock
 } from 'lucide-react';
 import {
   Select,
@@ -60,11 +66,145 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+// Activity Log Tab Component
+const ActivityLogTab: React.FC<{ userId: string; isRTL: boolean }> = ({ userId, isRTL }) => {
+  const [activities, setActivities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const activityRef = collection(db, 'activity_logs');
+        const q = query(activityRef, where('user_id', '==', userId), orderBy('timestamp', 'desc'), limit(50));
+        const snapshot = await getDocs(q);
+        const logs = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setActivities(logs);
+      } catch (error) {
+        console.error('Failed to fetch activity log:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchActivities();
+  }, [userId]);
+
+  const getActionIcon = (action: string) => {
+    switch (action) {
+      case 'login': return <LogIn className="h-4 w-4 text-green-500" />;
+      case 'logout': return <LogOut className="h-4 w-4 text-red-500" />;
+      case 'profile_update': case 'password_change': return <Edit className="h-4 w-4 text-blue-500" />;
+      case 'page_view': return <Eye className="h-4 w-4 text-gray-500" />;
+      case 'ai_tool_use': case 'tool_use': case 'bmi_calculation': case 'meal_plan_generated': return <Activity className="h-4 w-4 text-purple-500" />;
+      case 'assessment_complete': return <Activity className="h-4 w-4 text-orange-500" />;
+      case 'survey_started': case 'survey_submitted': return <Activity className="h-4 w-4 text-indigo-500" />;
+      case 'article_read': case 'knowledge_viewed': return <Eye className="h-4 w-4 text-teal-500" />;
+      case 'file_download': case 'report_export': case 'data_export': return <Download className="h-4 w-4 text-cyan-500" />;
+      case 'contact_form_sent': case 'consultation_requested': case 'message_sent': return <Activity className="h-4 w-4 text-pink-500" />;
+      default: return <Activity className="h-4 w-4 text-muted-foreground" />;
+    }
+  };
+
+  const getActionLabel = (action: string) => {
+    const labels: Record<string, string> = {
+      login: 'تسجيل دخول', logout: 'تسجيل خروج',
+      profile_update: 'تحديث الملف الشخصي', password_change: 'تغيير كلمة المرور',
+      page_view: 'زيارة صفحة',
+      ai_tool_use: 'استخدام أداة ذكاء اصطناعي', tool_use: 'استخدام أداة',
+      bmi_calculation: 'حساب مؤشر كتلة الجسم', meal_plan_generated: 'إنشاء خطة وجبات',
+      assessment_complete: 'إكمال تقييم',
+      survey_started: 'بدء استبيان', survey_submitted: 'إرسال استبيان', survey_result_viewed: 'عرض نتائج استبيان',
+      article_read: 'قراءة مقال', article_shared: 'مشاركة مقال', knowledge_viewed: 'مشاهدة محتوى',
+      file_download: 'تحميل ملف', report_export: 'تصدير تقرير', data_export: 'تصدير بيانات', backup_download: 'تحميل نسخة احتياطية',
+      contact_form_sent: 'إرسال نموذج اتصال', consultation_requested: 'طلب استشارة', consultation_replied: 'رد على استشارة', message_sent: 'إرسال رسالة',
+    };
+    return isRTL ? (labels[action] || action) : action;
+  };
+
+  const getCategoryBadge = (category: string) => {
+    const colors: Record<string, string> = {
+      auth: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+      navigation: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+      tool: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+      survey: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
+      content: 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300',
+      download: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
+      communication: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+      profile: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+    };
+    const labels: Record<string, string> = {
+      auth: 'مصادقة', navigation: 'تصفح', tool: 'أدوات', survey: 'استبيان',
+      content: 'محتوى', download: 'تحميل', communication: 'تواصل', profile: 'ملف شخصي',
+    };
+    return (
+      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${colors[category] || 'bg-muted text-muted-foreground'}`}>
+        {isRTL ? (labels[category] || category) : category}
+      </span>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+        <p className="text-muted-foreground">{isRTL ? 'جاري تحميل سجل النشاط...' : 'Loading activity log...'}</p>
+      </div>
+    );
+  }
+
+  if (activities.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <Activity className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-lg font-semibold mb-2">
+          {isRTL ? 'لا يوجد نشاط بعد' : 'No activity yet'}
+        </h3>
+        <p className="text-muted-foreground">
+          {isRTL ? 'سيتم تسجيل النشاط عند تسجيل الدخول القادم' : 'Activity will be recorded on next login'}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3 max-h-[400px] overflow-y-auto">
+      {activities.map((activity) => (
+        <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+          <div className="mt-1">{getActionIcon(activity.action_type || activity.action)}</div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="text-sm font-medium">{getActionLabel(activity.action_type || activity.action)}</p>
+              {activity.category && getCategoryBadge(activity.category)}
+            </div>
+            {activity.details && (
+              <p className="text-xs text-muted-foreground mt-0.5">{activity.details}</p>
+            )}
+            <div className="flex items-center gap-1 mt-1">
+              <Clock className="h-3 w-3 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">
+                {activity.timestamp?.toDate?.()?.toLocaleString(isRTL ? 'ar-EG' : 'en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }) || 'وقت غير محدد'}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 interface User {
   uid: string;
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin' | 'doctor' | 'super_admin';
   createdAt: any;
   photoURL?: string;
   phoneNumber?: string;
@@ -81,12 +221,13 @@ interface User {
   notes?: string; // Admin notes
   suspendedUntil?: any; // For suspended users
   suspensionReason?: string; // Reason for suspension
+  permissions?: string[]; // Granular permissions
 }
 
 interface NewUserData {
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin' | 'doctor' | 'super_admin';
   phoneNumber: string;
   address: string;
   dateOfBirth: string;
@@ -110,6 +251,39 @@ const UserManagement: React.FC = () => {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
+  const [isUpdatingAvatar, setIsUpdatingAvatar] = useState(false);
+  
+  const isRTL = i18n.language === 'ar';
+  
+  // State for granular permissions
+  const [permissionsDialogOpen, setPermissionsDialogOpen] = useState(false);
+  const [selectedPermissions, setSelectedPermissions] = useState<string[]>([]);
+  
+  const availablePermissions = [
+    { id: 'manage_users', label: isRTL ? 'إدارة المستخدمين' : 'Manage Users' },
+    { id: 'manage_content', label: isRTL ? 'إدارة المحتوى (المقالات)' : 'Manage Content' },
+    { id: 'view_reports', label: isRTL ? 'عرض التقارير' : 'View Reports' },
+    { id: 'reply_consultations', label: isRTL ? 'الرد على الاستشارات' : 'Reply to Consultations' },
+    { id: 'manage_system', label: isRTL ? 'إعدادات النظام' : 'System Settings' },
+    { id: 'users.edit_avatar', label: isRTL ? 'تغيير صور المستخدمين' : 'Change User Avatars' },
+    { id: 'view_dashboard', label: isRTL ? 'عرض لوحة التحكم' : 'View Dashboard' },
+    { id: 'view_patients', label: isRTL ? 'عرض المرضى' : 'View Patients' },
+    { id: 'manage_patients', label: isRTL ? 'إدارة المرضى' : 'Manage Patients' },
+    { id: 'create_reports', label: isRTL ? 'إنشاء تقارير' : 'Create Reports' },
+    { id: 'view_medical_data', label: isRTL ? 'عرض البيانات الطبية' : 'View Medical Data' },
+    { id: 'manage_treatment_plans', label: isRTL ? 'إدارة خطط العلاج' : 'Manage Treatment Plans' },
+    { id: 'view_messages', label: isRTL ? 'عرض الرسائل' : 'View Messages' },
+    { id: 'create_meal_plans', label: isRTL ? 'إنشاء خطط وجبات' : 'Create Meal Plans' },
+    { id: 'view_nutritional_data', label: isRTL ? 'عرض البيانات الغذائية' : 'View Nutritional Data' },
+    { id: 'access_admin_dashboard', label: isRTL ? 'الدخول للوحة المدير' : 'Access Admin Dashboard' },
+    { id: 'monitor_activity', label: isRTL ? 'مراقبة النشاط' : 'Monitor Activity' },
+    { id: 'manage_backups', label: isRTL ? 'إدارة النسخ الاحتياطي' : 'Manage Backups' },
+    { id: 'manage_security', label: isRTL ? 'إدارة الأمان' : 'Manage Security' },
+    { id: 'manage_surveys', label: isRTL ? 'إدارة وتعديل الاستبيانات' : 'Manage & Edit Surveys' },
+    { id: 'view_survey_results', label: isRTL ? 'عرض نتائج الاستبيانات' : 'View Survey Results' },
+    { id: 'manage_ai_tools', label: isRTL ? 'إعدادات أدوات الذكاء الاصطناعي' : 'Manage AI Tools' },
+    { id: 'export_data', label: isRTL ? 'تصدير البيانات' : 'Export Data' },
+  ];
 
   const [newUserData, setNewUserData] = useState<NewUserData>({
     email: '',
@@ -125,10 +299,8 @@ const UserManagement: React.FC = () => {
     notes: ''
   });
 
-  const isRTL = i18n.language === 'ar';
-
   useEffect(() => {
-    if (userProfile?.role === 'admin') {
+    if (userProfile?.role === 'admin' || userProfile?.role === 'super_admin') {
       loadUsers();
     }
   }, [userProfile]);
@@ -162,7 +334,8 @@ const UserManagement: React.FC = () => {
           department: userData.department,
           notes: userData.notes,
           suspendedUntil: userData.suspendedUntil,
-          suspensionReason: userData.suspensionReason
+          suspensionReason: userData.suspensionReason,
+          permissions: userData.permissions || []
         });
       });
 
@@ -181,16 +354,154 @@ const UserManagement: React.FC = () => {
     }
   };
 
-  const updateUserRole = async (userId: string, newRole: 'user' | 'doctor' | 'nutritionist' | 'admin') => {
+  const handleUploadAvatar = async (userId: string, file: File | undefined) => {
+    if (!file) return;
+
+    // Check permission using roleManager
+    const canEditAvatar = userProfile?.role && roleManager.hasPermission(userProfile.role, 'users.edit_avatar');
+    if (!canEditAvatar) {
+      alert(isRTL ? 'ليس لديك صلاحية لتعديل صورة المستخدم' : 'You do not have permission to edit user avatar');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert(isRTL ? 'حجم الصورة يجب أن لا يتجاوز 2 ميجابايت' : 'Image size must not exceed 2MB');
+      return;
+    }
+
+    // MIME type check
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      alert(isRTL ? 'نوع الملف غير مدعوم. يرجى اختيار JPEG أو PNG أو WebP' : 'Unsupported file type. Please choose JPEG, PNG, or WebP');
+      return;
+    }
+
+    // Confirmation dialog
+    if (!confirm(isRTL ? 'هل أنت متأكد من استبدال صورة المستخدم؟' : 'Are you sure you want to replace the user avatar?')) {
+      return;
+    }
+
+    setIsUpdatingAvatar(true);
+
     try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const base64Data = reader.result as string;
+
+        try {
+          // Upload directly to Firebase Storage
+          const timestamp = Date.now();
+          // Create a safe filename
+          const safeName = file.name.replace(/[^a-zA-Z0-9.]/g, '_');
+          const storagePath = `avatars/${userId}/${timestamp}_${safeName}`;
+          const storageRef = ref(storage, storagePath);
+          
+          console.log(`[Avatar Update] Uploading to ${storagePath}...`);
+          
+          // Upload the file as a data URL string
+          await uploadString(storageRef, base64Data, 'data_url');
+          
+          // Get the download URL
+          const photoURL = await getDownloadURL(storageRef);
+          console.log(`[Avatar Update] Upload successful. URL: ${photoURL}`);
+
+          // Update user document in Firestore with the new photoURL
+          const userRef = doc(db, 'users', userId);
+          await updateDoc(userRef, {
+            photoURL: photoURL,
+            updatedAt: serverTimestamp()
+          });
+
+          // Update local state immediately for better UX
+          setUsers(prev => prev.map(u => u.uid === userId ? { ...u, photoURL } : u));
+          
+          if (selectedUser && selectedUser.uid === userId) {
+            setSelectedUser(prev => prev ? { ...prev, photoURL } : null);
+          }
+
+          // Audit log
+          auditService.log({
+            action: 'UPDATE_USER_AVATAR',
+            actorId: user?.uid || 'unknown',
+            actorEmail: user?.email || 'unknown',
+            targetId: userId,
+            targetType: 'user',
+            details: 'Avatar updated via admin panel'
+          });
+
+          alert(isRTL ? 'تم تغيير الصورة بنجاح' : 'Avatar updated successfully');
+        } catch (error: any) {
+          console.error('[Avatar Update] Error:', error);
+          alert(isRTL ? `حدث خطأ: ${error.message}` : `Error: ${error.message}`);
+        } finally {
+          setIsUpdatingAvatar(false);
+        }
+      };
+      reader.onerror = () => {
+        setIsUpdatingAvatar(false);
+        alert(isRTL ? 'فشل في قراءة ملف الصورة' : 'Failed to read image file');
+      };
+    } catch (error) {
+      console.error(error);
+      setIsUpdatingAvatar(false);
+    }
+  };
+
+  const updateUserRole = async (userId: string, newRole: 'user' | 'nutritionist' | 'admin' | 'doctor' | 'super_admin') => {
+    try {
+      // Security check: Only super_admin can assign super_admin role
+      if (newRole === 'super_admin' && userProfile?.role !== 'super_admin') {
+        alert(isRTL ? 'فقط السوبر أدمن يمكنه تعيين سوبر أدمن آخر' : 'Only Super Admin can assign another Super Admin');
+        return;
+      }
+
+      // Security check: Admin cannot change their own role to super_admin
+      if (userId === user?.uid && newRole === 'super_admin') {
+         alert(isRTL ? 'لا يمكنك ترقية نفسك إلى سوبر أدمن' : 'You cannot promote yourself to Super Admin');
+         return;
+      }
+
       const userRef = doc(db, 'users', userId);
+      
+      // Define default permissions based on role
+      let defaultPermissions: string[] = [];
+      switch (newRole) {
+        case 'super_admin':
+          defaultPermissions = availablePermissions.map(p => p.id);
+          break;
+        case 'admin':
+          defaultPermissions = [
+            'manage_users', 'manage_content', 'view_reports', 'reply_consultations',
+            'view_dashboard', 'access_admin_dashboard', 'monitor_activity'
+          ];
+          break;
+        case 'doctor':
+          defaultPermissions = [
+            'view_patients', 'manage_patients', 'view_medical_data', 'manage_treatment_plans',
+            'view_reports', 'reply_consultations', 'view_dashboard'
+          ];
+          break;
+        case 'nutritionist':
+          defaultPermissions = [
+            'view_patients', 'create_meal_plans', 'view_nutritional_data', 'view_reports',
+            'reply_consultations', 'view_dashboard', 'manage_treatment_plans'
+          ];
+          break;
+        case 'user':
+        default:
+          defaultPermissions = [];
+          break;
+      }
+
       await updateDoc(userRef, {
         role: newRole,
+        permissions: defaultPermissions, // Auto-assign default permissions
         updatedAt: serverTimestamp()
       });
 
       setUsers(prev => prev.map(u =>
-        u.uid === userId ? { ...u, role: newRole } : u
+        u.uid === userId ? { ...u, role: newRole, permissions: defaultPermissions } : u
       ));
 
       // Audit log
@@ -364,6 +675,26 @@ const UserManagement: React.FC = () => {
     }
   };
 
+  const updateUserPermissions = async (userId: string, permissions: string[]) => {
+    try {
+      const userRef = doc(db, 'users', userId);
+      await updateDoc(userRef, {
+        permissions,
+        updatedAt: serverTimestamp()
+      });
+
+      setUsers(prev => prev.map(u =>
+        u.uid === userId ? { ...u, permissions } : u
+      ));
+
+      setPermissionsDialogOpen(false);
+      alert(isRTL ? 'تم تحديث الصلاحيات بنجاح' : 'Permissions updated successfully');
+    } catch (error) {
+      console.error('Error updating permissions:', error);
+      alert(isRTL ? 'حدث خطأ أثناء تحديث الصلاحيات' : 'Error updating permissions');
+    }
+  };
+
   const handleSendPasswordReset = async (userEmail: string) => {
     try {
       await sendPasswordResetEmail(auth, userEmail);
@@ -404,6 +735,9 @@ const UserManagement: React.FC = () => {
 
       setUsers(prev => prev.filter(u => u.uid !== userId));
 
+      // Track data deletion
+      trackDataDeletion('user', userId, user?.uid);
+
       // Audit log
       auditService.log({
         action: 'DELETE_USER',
@@ -423,13 +757,14 @@ const UserManagement: React.FC = () => {
 
   const getRoleBadge = (role: string) => {
     const roleMap = {
+      super_admin: { label: isRTL ? 'سوبر أدمن' : 'Super Admin', variant: 'destructive' as const, icon: Shield },
       admin: { label: isRTL ? 'مدير النظام' : 'Admin', variant: 'destructive' as const, icon: Shield },
-      doctor: { label: isRTL ? 'طبيب' : 'Doctor', variant: 'default' as const, icon: Stethoscope },
+      doctor: { label: isRTL ? 'دكتور جامعي' : 'Academic Expert', variant: 'secondary' as const, icon: Stethoscope },
       nutritionist: { label: isRTL ? 'أخصائي تغذية' : 'Nutritionist', variant: 'secondary' as const, icon: Stethoscope },
       user: { label: isRTL ? 'مستخدم عادي' : 'User', variant: 'outline' as const, icon: Users }
     };
 
-    const roleInfo = roleMap[role as keyof typeof roleMap];
+    const roleInfo = roleMap[role as keyof typeof roleMap] || roleMap.user;
     const Icon = roleInfo.icon;
 
     return (
@@ -495,7 +830,7 @@ const UserManagement: React.FC = () => {
     return isRTL ? 'غير محدد' : 'Not specified';
   };
 
-  if (userProfile?.role !== 'admin') {
+  if (userProfile?.role !== 'admin' && userProfile?.role !== 'super_admin') {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Card className="w-full max-w-md">
@@ -549,7 +884,8 @@ const UserManagement: React.FC = () => {
                 <SelectContent>
                   <SelectItem value="all">{isRTL ? 'جميع الأدوار' : 'All Roles'}</SelectItem>
                   <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
-                  <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
+                  <SelectItem value="super_admin">{isRTL ? 'سوبر أدمن' : 'Super Admin'}</SelectItem>
+                  <SelectItem value="doctor">{isRTL ? 'دكتور جامعي' : 'Academic Expert'}</SelectItem>
                   <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                   <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
                 </SelectContent>
@@ -606,15 +942,21 @@ const UserManagement: React.FC = () => {
                     </div>
                     <div>
                       <Label htmlFor="role">{isRTL ? 'الدور' : 'Role'}</Label>
-                      <Select value={newUserData.role} onValueChange={(value: 'user' | 'doctor' | 'nutritionist' | 'admin') => setNewUserData(prev => ({ ...prev, role: value }))}>
+                      <Select
+                        value={newUserData.role}
+                        onValueChange={(value: 'user' | 'nutritionist' | 'admin' | 'doctor' | 'super_admin') => setNewUserData(prev => ({ ...prev, role: value }))}
+                      >
                         <SelectTrigger>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
-                          <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
+                          <SelectItem value="doctor">{isRTL ? 'دكتور جامعي' : 'Academic Expert'}</SelectItem>
                           <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                           <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
+                          {userProfile?.role === 'super_admin' && (
+                            <SelectItem value="super_admin">{isRTL ? 'سوبر أدمن' : 'Super Admin'}</SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
                     </div>
@@ -649,33 +991,33 @@ const UserManagement: React.FC = () => {
                       </Select>
                     </div>
 
-                    {(newUserData.role === 'doctor' || newUserData.role === 'nutritionist') && (
+                    {(newUserData.role === 'nutritionist' || newUserData.role === 'doctor') && (
                       <>
                         <div>
-                          <Label htmlFor="specialization">{isRTL ? 'التخصص' : 'Specialization'}</Label>
+                          <Label htmlFor="specialization">{isRTL ? 'التخصص الدرجة العلمية' : 'Specialization / Academic Degree'}</Label>
                           <Input
                             id="specialization"
                             value={newUserData.specialization}
                             onChange={(e) => setNewUserData(prev => ({ ...prev, specialization: e.target.value }))}
-                            placeholder={isRTL ? 'أدخل التخصص' : 'Enter specialization'}
+                            placeholder={isRTL ? 'مثال: أستاذ تغذية إكلينيكية' : 'e.g. Professor of Clinical Nutrition'}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="licenseNumber">{isRTL ? 'رقم الترخيص' : 'License Number'}</Label>
+                          <Label htmlFor="licenseNumber">{isRTL ? 'رقم القيد / الترخيص' : 'License / ID Number'}</Label>
                           <Input
                             id="licenseNumber"
                             value={newUserData.licenseNumber}
                             onChange={(e) => setNewUserData(prev => ({ ...prev, licenseNumber: e.target.value }))}
-                            placeholder={isRTL ? 'أدخل رقم الترخيص' : 'Enter license number'}
+                            placeholder={isRTL ? 'أدخل الرقم' : 'Enter number'}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="department">{isRTL ? 'القسم' : 'Department'}</Label>
+                          <Label htmlFor="department">{isRTL ? 'الكلية / القسم' : 'Faculty / Department'}</Label>
                           <Input
                             id="department"
                             value={newUserData.department}
                             onChange={(e) => setNewUserData(prev => ({ ...prev, department: e.target.value }))}
-                            placeholder={isRTL ? 'أدخل القسم' : 'Enter department'}
+                            placeholder={isRTL ? 'مثال: كلية الطب' : 'e.g. Faculty of Medicine'}
                           />
                         </div>
                       </>
@@ -814,19 +1156,38 @@ const UserManagement: React.FC = () => {
                         <Edit className="h-4 w-4" />
                       </Button>
 
+                      {/* Permissions (Super Admin Only) */}
+                      {userProfile?.role === 'super_admin' && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setSelectedUser(userData);
+                            setSelectedPermissions(userData.permissions || []);
+                            setPermissionsDialogOpen(true);
+                          }}
+                          title={isRTL ? 'إدارة الصلاحيات' : 'Manage Permissions'}
+                        >
+                          <Shield className="h-4 w-4 text-purple-600" />
+                        </Button>
+                      )}
+
                       {/* Role Selector */}
                       <Select
                         value={userData.role}
-                        onValueChange={(newRole: 'user' | 'doctor' | 'nutritionist' | 'admin') => updateUserRole(userData.uid, newRole)}
+                        onValueChange={(newRole: 'user' | 'doctor' | 'nutritionist' | 'admin' | 'super_admin') => updateUserRole(userData.uid, newRole)}
                       >
                         <SelectTrigger className="w-32">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="user">{isRTL ? 'مستخدم' : 'User'}</SelectItem>
-                          <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
+                          <SelectItem value="doctor">{isRTL ? 'دكتور جامعي' : 'Academic Expert'}</SelectItem>
                           <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
                           <SelectItem value="admin">{isRTL ? 'مدير' : 'Admin'}</SelectItem>
+                          {userProfile?.role === 'super_admin' && (
+                            <SelectItem value="super_admin">{isRTL ? 'سوبر أدمن' : 'Super Admin'}</SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
 
@@ -907,171 +1268,197 @@ const UserManagement: React.FC = () => {
             </DialogHeader>
 
             {selectedUser && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="edit-email">{isRTL ? 'البريد الإلكتروني' : 'Email'}</Label>
-                  <Input
-                    id="edit-email"
-                    type="email"
-                    value={selectedUser.email}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, email: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل البريد الإلكتروني' : 'Enter email'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-displayName">{isRTL ? 'الاسم الكامل' : 'Full Name'}</Label>
-                  <Input
-                    id="edit-displayName"
-                    value={selectedUser.displayName || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, displayName: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل الاسم الكامل' : 'Enter full name'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-role">{isRTL ? 'الدور' : 'Role'}</Label>
-                  <Select
-                    value={selectedUser.role}
-                    onValueChange={(value: 'user' | 'doctor' | 'nutritionist' | 'admin') =>
-                      setSelectedUser(prev => prev ? { ...prev, role: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
-                      <SelectItem value="doctor">{isRTL ? 'طبيب' : 'Doctor'}</SelectItem>
-                      <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
-                      <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="edit-phoneNumber">{isRTL ? 'رقم الهاتف' : 'Phone Number'}</Label>
-                  <Input
-                    id="edit-phoneNumber"
-                    value={selectedUser.phoneNumber || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, phoneNumber: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل رقم الهاتف' : 'Enter phone number'}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-dateOfBirth">{isRTL ? 'تاريخ الميلاد' : 'Date of Birth'}</Label>
-                  <Input
-                    id="edit-dateOfBirth"
-                    type="date"
-                    value={selectedUser.dateOfBirth || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, dateOfBirth: e.target.value } : null)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-gender">{isRTL ? 'الجنس' : 'Gender'}</Label>
-                  <Select
-                    value={selectedUser.gender || 'male'}
-                    onValueChange={(value: 'male' | 'female') =>
-                      setSelectedUser(prev => prev ? { ...prev, gender: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="male">{isRTL ? 'ذكر' : 'Male'}</SelectItem>
-                      <SelectItem value="female">{isRTL ? 'أنثى' : 'Female'}</SelectItem>
-                    </SelectContent>
-                  </Select>
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="relative group w-24 h-24">
+                    <div className="w-full h-full bg-primary/10 rounded-full flex items-center justify-center overflow-hidden">
+                      {selectedUser.photoURL ? (
+                        <img src={selectedUser.photoURL} alt={selectedUser.displayName} className="w-full h-full object-cover" />
+                      ) : (
+                        <Users className="h-10 w-10 text-primary" />
+                      )}
+                    </div>
+                  </div>
+                  {userProfile?.role && roleManager.hasPermission(userProfile.role, 'users.edit_avatar') && (
+                    <div>
+                      <Label className={`cursor-pointer text-primary text-sm font-semibold flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-full transition-colors ${isUpdatingAvatar ? 'opacity-50 pointer-events-none' : ''}`}>
+                        <Upload className="h-4 w-4" />
+                        {isUpdatingAvatar ? (isRTL ? 'جاري التحميل...' : 'Uploading...') : (isRTL ? 'تغيير الصورة' : 'Change Avatar')}
+                        <input type="file" className="hidden" accept="image/*" onChange={(e) => handleUploadAvatar(selectedUser.uid, e.target.files?.[0])} disabled={isUpdatingAvatar} />
+                      </Label>
+                    </div>
+                  )}
                 </div>
 
-                {(selectedUser.role === 'doctor' || selectedUser.role === 'nutritionist') && (
-                  <>
-                    <div>
-                      <Label htmlFor="edit-specialization">{isRTL ? 'التخصص' : 'Specialization'}</Label>
-                      <Input
-                        id="edit-specialization"
-                        value={selectedUser.specialization || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, specialization: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل التخصص' : 'Enter specialization'}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="edit-licenseNumber">{isRTL ? 'رقم الترخيص' : 'License Number'}</Label>
-                      <Input
-                        id="edit-licenseNumber"
-                        value={selectedUser.licenseNumber || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, licenseNumber: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل رقم الترخيص' : 'Enter license number'}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="edit-department">{isRTL ? 'القسم' : 'Department'}</Label>
-                      <Input
-                        id="edit-department"
-                        value={selectedUser.department || ''}
-                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, department: e.target.value } : null)}
-                        placeholder={isRTL ? 'أدخل القسم' : 'Enter department'}
-                      />
-                    </div>
-                  </>
-                )}
-
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-address">{isRTL ? 'العنوان' : 'Address'}</Label>
-                  <Input
-                    id="edit-address"
-                    value={selectedUser.address || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, address: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل العنوان' : 'Enter address'}
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-notes">{isRTL ? 'ملاحظات إدارية' : 'Admin Notes'}</Label>
-                  <Textarea
-                    id="edit-notes"
-                    value={selectedUser.notes || ''}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, notes: e.target.value } : null)}
-                    placeholder={isRTL ? 'أدخل ملاحظات إدارية' : 'Enter admin notes'}
-                    rows={3}
-                  />
-                </div>
-                <div className="md:col-span-2 flex items-center space-x-2">
-                  <Switch
-                    id="edit-isActive"
-                    checked={selectedUser.isActive}
-                    onCheckedChange={(checked) => setSelectedUser(prev => prev ? { ...prev, isActive: checked } : null)}
-                  />
-                  <Label htmlFor="edit-isActive">{isRTL ? 'المستخدم نشط' : 'User Active'}</Label>
-                </div>
-                <div className="md:col-span-2">
-                  <Label htmlFor="edit-status">{isRTL ? 'حالة المستخدم' : 'User Status'}</Label>
-                  <Select
-                    value={selectedUser.status}
-                    onValueChange={(value: 'active' | 'inactive' | 'pending' | 'suspended') =>
-                      setSelectedUser(prev => prev ? { ...prev, status: value } : null)
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
-                      <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
-                      <SelectItem value="pending">{isRTL ? 'في الانتظار' : 'Pending'}</SelectItem>
-                      <SelectItem value="suspended">{isRTL ? 'موقوف' : 'Suspended'}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                {selectedUser.status === 'suspended' && (
-                  <div className="md:col-span-2">
-                    <Label htmlFor="edit-suspensionReason">{isRTL ? 'سبب الإيقاف' : 'Suspension Reason'}</Label>
-                    <Textarea
-                      id="edit-suspensionReason"
-                      value={selectedUser.suspensionReason || ''}
-                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, suspensionReason: e.target.value } : null)}
-                      placeholder={isRTL ? 'أدخل سبب الإيقاف' : 'Enter suspension reason'}
-                      rows={2}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="edit-email">{isRTL ? 'البريد الإلكتروني' : 'Email'}</Label>
+                    <Input
+                      id="edit-email"
+                      type="email"
+                      value={selectedUser.email}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, email: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل البريد الإلكتروني' : 'Enter email'}
                     />
                   </div>
-                )}
+                  <div>
+                    <Label htmlFor="edit-displayName">{isRTL ? 'الاسم الكامل' : 'Full Name'}</Label>
+                    <Input
+                      id="edit-displayName"
+                      value={selectedUser.displayName || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, displayName: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل الاسم الكامل' : 'Enter full name'}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-role">{isRTL ? 'الدور' : 'Role'}</Label>
+                    <Select
+                      value={selectedUser.role}
+                      onValueChange={(value: 'user' | 'nutritionist' | 'admin' | 'super_admin') =>
+                        setSelectedUser(prev => prev ? { ...prev, role: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">{isRTL ? 'مستخدم عادي' : 'User'}</SelectItem>
+                        <SelectItem value="doctor">{isRTL ? 'دكتور جامعي' : 'Academic Expert'}</SelectItem>
+                        <SelectItem value="nutritionist">{isRTL ? 'أخصائي تغذية' : 'Nutritionist'}</SelectItem>
+                        <SelectItem value="admin">{isRTL ? 'مدير النظام' : 'Admin'}</SelectItem>
+                        {userProfile?.role === 'super_admin' && (
+                          <SelectItem value="super_admin">{isRTL ? 'سوبر أدمن' : 'Super Admin'}</SelectItem>
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-phoneNumber">{isRTL ? 'رقم الهاتف' : 'Phone Number'}</Label>
+                    <Input
+                      id="edit-phoneNumber"
+                      value={selectedUser.phoneNumber || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, phoneNumber: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل رقم الهاتف' : 'Enter phone number'}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-dateOfBirth">{isRTL ? 'تاريخ الميلاد' : 'Date of Birth'}</Label>
+                    <Input
+                      id="edit-dateOfBirth"
+                      type="date"
+                      value={selectedUser.dateOfBirth || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, dateOfBirth: e.target.value } : null)}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="edit-gender">{isRTL ? 'الجنس' : 'Gender'}</Label>
+                    <Select
+                      value={selectedUser.gender || 'male'}
+                      onValueChange={(value: 'male' | 'female') =>
+                        setSelectedUser(prev => prev ? { ...prev, gender: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="male">{isRTL ? 'ذكر' : 'Male'}</SelectItem>
+                        <SelectItem value="female">{isRTL ? 'أنثى' : 'Female'}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {(selectedUser.role === 'nutritionist' || selectedUser.role === 'doctor') && (
+                    <>
+                      <div>
+                        <Label htmlFor="edit-specialization">{isRTL ? 'التخصص الدرجة العلمية' : 'Specialization / Academic Degree'}</Label>
+                        <Input
+                          id="edit-specialization"
+                          value={selectedUser.specialization || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, specialization: e.target.value } : null)}
+                          placeholder={isRTL ? 'مثال: أستاذ تغذية إكلينيكية' : 'e.g. Professor of Clinical Nutrition'}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-licenseNumber">{isRTL ? 'رقم القيد / الترخيص' : 'License / ID Number'}</Label>
+                        <Input
+                          id="edit-licenseNumber"
+                          value={selectedUser.licenseNumber || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, licenseNumber: e.target.value } : null)}
+                          placeholder={isRTL ? 'أدخل الرقم' : 'Enter number'}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="edit-department">{isRTL ? 'الكلية / القسم' : 'Faculty / Department'}</Label>
+                        <Input
+                          id="edit-department"
+                          value={selectedUser.department || ''}
+                          onChange={(e) => setSelectedUser(prev => prev ? { ...prev, department: e.target.value } : null)}
+                          placeholder={isRTL ? 'مثال: كلية الطب' : 'e.g. Faculty of Medicine'}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-address">{isRTL ? 'العنوان' : 'Address'}</Label>
+                    <Input
+                      id="edit-address"
+                      value={selectedUser.address || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, address: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل العنوان' : 'Enter address'}
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-notes">{isRTL ? 'ملاحظات إدارية' : 'Admin Notes'}</Label>
+                    <Textarea
+                      id="edit-notes"
+                      value={selectedUser.notes || ''}
+                      onChange={(e) => setSelectedUser(prev => prev ? { ...prev, notes: e.target.value } : null)}
+                      placeholder={isRTL ? 'أدخل ملاحظات إدارية' : 'Enter admin notes'}
+                      rows={3}
+                    />
+                  </div>
+                  <div className="md:col-span-2 flex items-center space-x-2">
+                    <Switch
+                      id="edit-isActive"
+                      checked={selectedUser.isActive}
+                      onCheckedChange={(checked) => setSelectedUser(prev => prev ? { ...prev, isActive: checked } : null)}
+                    />
+                    <Label htmlFor="edit-isActive">{isRTL ? 'المستخدم نشط' : 'User Active'}</Label>
+                  </div>
+                  <div className="md:col-span-2">
+                    <Label htmlFor="edit-status">{isRTL ? 'حالة المستخدم' : 'User Status'}</Label>
+                    <Select
+                      value={selectedUser.status}
+                      onValueChange={(value: 'active' | 'inactive' | 'pending' | 'suspended') =>
+                        setSelectedUser(prev => prev ? { ...prev, status: value } : null)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="active">{isRTL ? 'نشط' : 'Active'}</SelectItem>
+                        <SelectItem value="inactive">{isRTL ? 'غير نشط' : 'Inactive'}</SelectItem>
+                        <SelectItem value="pending">{isRTL ? 'في الانتظار' : 'Pending'}</SelectItem>
+                        <SelectItem value="suspended">{isRTL ? 'موقوف' : 'Suspended'}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {selectedUser.status === 'suspended' && (
+                    <div className="md:col-span-2">
+                      <Label htmlFor="edit-suspensionReason">{isRTL ? 'سبب الإيقاف' : 'Suspension Reason'}</Label>
+                      <Textarea
+                        id="edit-suspensionReason"
+                        value={selectedUser.suspensionReason || ''}
+                        onChange={(e) => setSelectedUser(prev => prev ? { ...prev, suspensionReason: e.target.value } : null)}
+                        placeholder={isRTL ? 'أدخل سبب الإيقاف' : 'Enter suspension reason'}
+                        rows={2}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
@@ -1104,6 +1491,62 @@ const UserManagement: React.FC = () => {
               }}>
                 <Edit className="h-4 w-4 mr-2" />
                 {isRTL ? 'حفظ التغييرات' : 'Save Changes'}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Permissions Dialog */}
+        <Dialog open={permissionsDialogOpen} onOpenChange={setPermissionsDialogOpen}>
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{isRTL ? 'إدارة الصلاحيات' : 'Manage Permissions'}</DialogTitle>
+              <DialogDescription>
+                {isRTL 
+                  ? `تحديد الصلاحيات الدقيقة للمستخدم: ${selectedUser?.displayName}`
+                  : `Set granular permissions for user: ${selectedUser?.displayName}`
+                }
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="py-4 space-y-4">
+              <div className="flex justify-between items-center mb-4">
+                <Button variant="outline" size="sm" onClick={() => setSelectedPermissions(availablePermissions.map(p => p.id))}>
+                  {isRTL ? 'تحديد الكل' : 'Select All'}
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => setSelectedPermissions([])}>
+                  {isRTL ? 'إلغاء الكل' : 'Deselect All'}
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-1 gap-3">
+                {availablePermissions.map((permission) => (
+                  <div key={permission.id} className="flex items-center space-x-2 p-2 hover:bg-muted/50 rounded-md">
+                    <Switch
+                      id={`perm-${permission.id}`}
+                      checked={selectedPermissions.includes(permission.id)}
+                      onCheckedChange={(checked) => {
+                        setSelectedPermissions(prev => 
+                          checked 
+                            ? [...prev, permission.id]
+                            : prev.filter(p => p !== permission.id)
+                        );
+                      }}
+                    />
+                    <Label htmlFor={`perm-${permission.id}`} className="cursor-pointer flex-1">
+                      {permission.label}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setPermissionsDialogOpen(false)}>
+                {isRTL ? 'إلغاء' : 'Cancel'}
+              </Button>
+              <Button onClick={() => selectedUser && updateUserPermissions(selectedUser.uid, selectedPermissions)}>
+                {isRTL ? 'حفظ الصلاحيات' : 'Save Permissions'}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -1251,15 +1694,7 @@ const UserManagement: React.FC = () => {
                 </TabsContent>
 
                 <TabsContent value="activity" className="space-y-4">
-                  <div className="text-center py-8">
-                    <Activity className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">
-                      {isRTL ? 'سجل النشاط' : 'Activity Log'}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {isRTL ? 'سيتم إضافة سجل النشاط قريباً' : 'Activity log will be added soon'}
-                    </p>
-                  </div>
+                  <ActivityLogTab userId={selectedUser.uid} isRTL={isRTL} />
                 </TabsContent>
               </Tabs>
             )}

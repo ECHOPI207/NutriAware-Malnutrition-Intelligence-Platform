@@ -22,16 +22,17 @@ function getTodayKey(): string {
 }
 
 /**
- * Fetch visitor location from free IP geolocation API
+ * Fetch visitor location from our own Vercel serverless function (/api/geo).
+ * Uses Vercel's built-in geo headers — no CORS, no rate limits, 100% reliable.
  */
 async function getVisitorLocation(): Promise<{ city: string; country: string; region: string }> {
     try {
-        const response = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) });
+        const response = await fetch('/api/geo', { signal: AbortSignal.timeout(3000) });
         if (!response.ok) throw new Error('Geo API failed');
         const data = await response.json();
         return {
             city: data.city || 'Unknown',
-            country: data.country_name || 'Unknown',
+            country: data.country || 'Unknown',
             region: data.region || '',
         };
     } catch {
@@ -46,7 +47,7 @@ export async function trackPageView(): Promise<void> {
     try {
         const todayKey = getTodayKey();
 
-        // Only track once per session
+        // DEV/TESTING: Re-enabled "already tracked" session cache
         const alreadyTracked = sessionStorage.getItem(SESSION_KEY);
         if (alreadyTracked === todayKey) return;
 
@@ -110,36 +111,60 @@ export interface VisitorLocation {
 /**
  * Get daily visit counts for the past N days.
  * Returns data sorted oldest → newest.
+ * Replaces missing days with 0 counts.
  */
-export async function getDailyVisits(days: number = 30): Promise<DailyVisitData[]> {
+export async function getDailyVisits(days: number = 14): Promise<DailyVisitData[]> {
+    const arabicMonths = [
+        'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+        'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+    ];
+
+    const resultsMap = new Map<string, DailyVisitData>();
+    const now = new Date();
+
+    // Initialize all past N days with 0 counts
+    for (let i = 0; i < days; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        resultsMap.set(key, {
+            date: key,
+            count: 0,
+            label: `${d.getDate()} ${arabicMonths[d.getMonth()]}`,
+            locations: {},
+        });
+    }
+
     try {
         const visitsRef = collection(db, 'daily_visits');
         const q = query(visitsRef, orderBy('date', 'desc'), limit(days));
         const snapshot = await getDocs(q);
 
-        const arabicMonths = [
-            'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-            'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
-        ];
-
-        const results: DailyVisitData[] = snapshot.docs.map(doc => {
-            const data = doc.data();
-            const dateStr = data.date || doc.id;
-            const [, month, day] = dateStr.split('-');
-            const monthIndex = parseInt(month, 10) - 1;
-            return {
-                date: dateStr,
-                count: data.count || 0,
-                label: `${parseInt(day, 10)} ${arabicMonths[monthIndex]}`,
-                locations: data.locations || {},
-            };
+        snapshot.docs.forEach(d => {
+            const data = d.data();
+            const dateStr = data.date || d.id;
+            if (resultsMap.has(dateStr)) {
+                const existing = resultsMap.get(dateStr)!;
+                existing.count = data.count || 0;
+                existing.locations = data.locations || {};
+            } else {
+                // If it's an older date that somehow slipped in, or just to be safe
+                const [, month, day] = dateStr.split('-');
+                const monthIndex = parseInt(month, 10) - 1;
+                resultsMap.set(dateStr, {
+                    date: dateStr,
+                    count: data.count || 0,
+                    label: `${parseInt(day, 10)} ${arabicMonths[monthIndex]}`,
+                    locations: data.locations || {},
+                });
+            }
         });
-
-        return results.reverse();
     } catch (error) {
-        console.error('Failed to get daily visits:', error);
-        return [];
+        console.error('Failed to get daily visits from Firestore:', error);
     }
+
+    // Sort by date ascending (oldest to newest)
+    return Array.from(resultsMap.values()).sort((a, b) => a.date.localeCompare(b.date)).slice(-days);
 }
 
 /**

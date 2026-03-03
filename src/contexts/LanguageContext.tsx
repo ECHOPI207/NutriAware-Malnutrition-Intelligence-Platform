@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { trackSettingsChange } from '@/services/activityTracker';
 
 interface LanguageContextType {
   language: string;
@@ -20,8 +21,16 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [i18n.language]);
 
   const toggleLanguage = () => {
+    const oldLang = language;
     const newLang = language === 'ar' ? 'en' : 'ar';
     i18n.changeLanguage(newLang);
+    
+    // Track settings change
+    trackSettingsChange([{
+      setting: 'language',
+      oldValue: oldLang,
+      newValue: newLang
+    }]);
     // State will handle update via useEffect
   };
 

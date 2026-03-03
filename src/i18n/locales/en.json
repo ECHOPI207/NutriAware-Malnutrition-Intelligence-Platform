@@ -1,19 +1,24 @@
 {
   "roles": {
     "admin": "Administrator",
-    "doctor": "Doctor",
+    "super_admin": "Super Admin",
     "user": "User",
+    "doctor": "Academic Expert",
     "nutritionist": "Nutritionist"
   },
   "nav": {
     "home": "Home",
+    "faq": "FAQ",
     "malnutritionTypes": "Nutrition Guide",
     "articles": "Articles",
     "aiTools": "AI Tools",
     "surveyManagement": "Survey Management",
     "surveyResults": "Survey Results",
     "assessment": "Checkup",
-    "knowledge": "Knowledge Hub",
+    "foodSafetyCheck": "Food Safety Check",
+    "knowledgeCenter": "Knowledge Center",
+    "stories": "Stories Library",
+    "program": "6-Week Program",
     "about": "About NutriAware",
     "contact": "Contact",
     "dashboard": "Dashboard",
@@ -22,9 +27,12 @@
     "activityMonitoring": "Activity Monitoring",
     "adminControls": "Admin Controls",
     "messages": "Messages & Consultations",
-    "medicalConsultation": "Medical Consultations",
-    "doctorControls": "Doctor Controls",
-    "doctorDashboard": "Doctor Dashboard"
+    "medicalConsultation": "Nutritional Guidance",
+    "nutritionControls": "Nutrition Controls",
+    "nutritionDashboard": "Nutritionist Dashboard"
+  },
+  "survey": {
+    "new": "New"
   },
   "header": {
     "login": "Login",
@@ -99,11 +107,15 @@
     "terms": "I agree to the Terms of Service and Privacy Policy"
   },
   "hero": {
-    "title": "Understanding Malnutrition",
+    "title": "Food Safety & Balanced Nutrition",
     "subtitle": "Empowering Communities Through Nutrition Intelligence",
-    "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to address global malnutrition challenges.",
+    "description": "A comprehensive platform combining AI technology with evidence-based nutrition science to ensure Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health.",
     "cta": "Explore Now",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "startProgram": "Start the 6-Week Program",
+    "assessChild": "Assess Your Child",
+    "knowledgeCenter": "Knowledge Center",
+    "stories": "Stories"
   },
   "stats": {
     "title": "Global Malnutrition Crisis",
@@ -175,11 +187,11 @@
   "mission": {
     "title": "Our Mission",
     "subtitle": "Bridging Technology and Nutrition Science",
-    "description": "NutriAware is a university graduation project for the Nutrition Technology & Food Safety program, designed to raise awareness about malnutrition and provide accessible diagnostic support tools.",
+    "description": "NutriAware is a university graduation project for the Nutrition Technology & Food Safety program, designed to raise awareness about Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health and provide accessible diagnostic support tools.",
     "academic": "Academic Excellence",
     "academicDesc": "Research-backed content aligned with nutrition science standards",
     "social": "Social Impact",
-    "socialDesc": "Addressing real-world malnutrition challenges through technology",
+    "socialDesc": "Promoting Food Safety & Balanced Nutrition through technology",
     "accessible": "Accessible Tools",
     "accessibleDesc": "Free AI-powered assessment and guidance for everyone"
   },
@@ -188,6 +200,8 @@
     "undernutrition": "Undernutrition",
     "overnutrition": "Overnutrition",
     "foodSafety": "Food Safety",
+    "balancedNutrition": "Balanced Nutrition",
+    "micronutrients": "Micronutrients",
     "children": "Children",
     "adults": "Adults",
     "filterByCategory": "Filter by Category",
@@ -251,6 +265,47 @@
     },
     "child": {
       "title": "Child Assessment"
+    },
+    "dds": {
+      "title": "Dietary Diversity Assessment (FAO DDS)",
+      "subtitle": "Based on FAO Dietary Diversity Score (DDS)",
+      "description": "DDS is a proxy indicator of micronutrient adequacy according to FAO. Please select the food groups consumed in the past 24 hours.",
+      "calculate": "Calculate Score",
+      "resultTitle": "Your Diversity Score",
+      "categories": {
+        "low": "Low Diversity",
+        "adequate": "Adequate Diversity"
+      },
+      "tips": {
+        "low": "Try to include more food groups in your daily meals to ensure you get all necessary nutrients.",
+        "adequate": "Great job! Maintaining a diverse diet helps ensure adequate micronutrient intake and overall health."
+      },
+      "groups": {
+        "grains": "Grains, roots, and tubers",
+        "legumes": "Legumes and nuts",
+        "dairy": "Dairy",
+        "meat": "Flesh foods (meat, fish, poultry)",
+        "eggs": "Eggs",
+        "vitaminA": "Vitamin A-rich fruits and vegetables",
+        "otherVeg": "Other vegetables",
+        "otherFruit": "Other fruits"
+      }
+    },
+    "nutrients": {
+      "iron": "Iron",
+      "calcium": "Calcium",
+      "zinc": "Zinc",
+      "vitD": "Vitamin D",
+      "folate": "Folate",
+      "energy": "Energy",
+      "protein": "Protein",
+      "carbs": "Carbohydrates",
+      "fat": "Fats",
+      "vitA": "Vitamin A",
+      "vitC": "Vitamin C",
+      "vitB12": "Vitamin B12",
+      "iodine": "Iodine",
+      "fiber": "Fiber"
     }
   },
   "aiTools": {
@@ -283,6 +338,10 @@
       "lunch": "Lunch",
       "dinner": "Dinner",
       "snacks": "Snacks"
+    },
+    "mealAnalyzer": {
+      "title": "Smart Meal Analyzer",
+      "description": "Scientific analysis of nutrient adequacy and food safety."
     },
     "bmiMealGenerator": {
       "title": "BMI Meal Planner",
@@ -372,7 +431,7 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "Get in Touch",
-    "pageDescription": "We're here to help you. Contact us for any questions, suggestions, or to get specialized medical consultation",
+    "pageDescription": "We're here to help you. Contact us for any questions, suggestions, or to get specialized nutritional guidance",
     "name": "Name",
     "email": "Email",
     "message": "Message",
@@ -381,7 +440,7 @@
     "success": "Message sent successfully!",
     "error": "Failed to send message. Please try again.",
     "generalFeedback": "General Feedback",
-    "medicalConsultation": "Medical Consultation",
+    "medicalConsultation": "Nutritional Guidance",
     "sendMessage": "Send us a Message",
     "feedbackDescription": "Have suggestions or found a bug? Let us know via email",
     "emailUs": "Email Us",
@@ -409,7 +468,7 @@
     "getInTouch": "Get in Touch",
     "nutritionAssessment": "Nutrition Assessment",
     "aiTools": "AI Tools",
-    "medicalConsultation": "Medical Consultation",
+    "medicalConsultation": "Nutritional Guidance",
     "knowledgeCenter": "Knowledge Center",
     "aboutPlatform": "About Platform",
     "contactUs": "Contact Us",
@@ -451,7 +510,7 @@
   },
   "about": {
     "title": "About the Project",
-    "commitment": "This project represents our commitment to addressing global malnutrition challenges through innovative technology and evidence-based nutrition science.",
+    "commitment": "This project represents our commitment to addressing nutritional health through Food Safety and Balanced Macronutrient and Micronutrient Intake in Children's Health using innovative technology and evidence-based nutrition science.",
     "university": {
       "name": "October 6 University",
       "faculty": "Applied Health Sciences Technology",
@@ -459,7 +518,7 @@
     },
     "team": {
       "title": "Project Team",
-      "subtitle": "Dedicated students working on malnutrition awareness"
+      "subtitle": "Dedicated students working on Food Safety & Balanced Nutrition awareness"
     },
     "supervisors": {
       "title": "Under Supervision",
@@ -492,7 +551,7 @@
         "title": "Check Your Health",
         "description": "Simple tools to evaluate your status:",
         "calculators": "Accurate calculators for Body Mass Index (BMI) and your daily Calorie & Nutrient needs.",
-        "child": "Child Assessment: Monitor your child's growth and detect early signs of malnutrition."
+        "child": "Child Assessment: Monitor your child's growth and ensure optimal health through balanced nutrient intake."
       },
       "expert": {
         "title": "Talk to Experts",
@@ -504,7 +563,7 @@
     },
     "roles": {
       "professor": "Professor",
-      "doctor": "Doctor",
+      "supervisor": "Supervising Doctor",
       "student": "Student"
     }
   },
@@ -514,12 +573,12 @@
       "description": "Comprehensive analysis of your nutritional status using advanced AI technology."
     },
     "medical_consultation": {
-      "title": "Specialized Consultation",
-      "description": "Direct connection with top doctors and nutritionists for personalized care."
+      "title": "Specialized Nutritional Guidance",
+      "description": "Direct connection with top nutrition specialists for personalized care."
     },
     "knowledge_center": {
       "title": "Knowledge Library",
-      "description": "Your trusted source for medical and ending nutrition info, backed by scientific research."
+      "description": "Your trusted source for nutritional info, backed by scientific research."
     },
     "ai_tools": {
       "title": "Smart Planning Tools",

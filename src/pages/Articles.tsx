@@ -6,10 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Search, 
-  Filter, 
-  BookOpen, 
+import {
+  Search,
+  Filter,
+  BookOpen,
   TrendingUp,
   Calendar
 } from 'lucide-react';
@@ -54,7 +54,7 @@ const Articles: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [lastDoc, setLastDoc] = useState<DocumentSnapshot | null>(null);
   const [hasMore, setHasMore] = useState(true);
-  
+
   const isRTL = i18n.language === 'ar';
   const currentLang = isRTL ? 'ar' : 'en';
 
@@ -66,7 +66,7 @@ const Articles: React.FC = () => {
   const fetchArticles = async (loadMore = false) => {
     try {
       setLoading(!loadMore);
-      
+
       let articlesQuery = query(
         collection(db, 'articles'),
         where('status', '==', 'published'),
@@ -95,7 +95,7 @@ const Articles: React.FC = () => {
           id: doc.id
         };
         fetchedArticles.push(articleData);
-        
+
         // Collect categories
         if (data.category) {
           uniqueCategories.add(data.category[currentLang]);
@@ -154,7 +154,7 @@ const Articles: React.FC = () => {
 
     try {
       setLoading(true);
-      
+
       // Simple search implementation - in production, you'd use a search service
       const searchQuery = query(
         collection(db, 'articles'),
@@ -171,13 +171,13 @@ const Articles: React.FC = () => {
           ...data,
           id: doc.id
         };
-        
+
         // Simple text search in title and content
         const searchLower = searchTerm.toLowerCase();
         const titleMatch = articleData.title[currentLang].toLowerCase().includes(searchLower);
         const contentMatch = articleData.content[currentLang].toLowerCase().includes(searchLower);
         const categoryMatch = articleData.category[currentLang].toLowerCase().includes(searchLower);
-        const tagsMatch = articleData.tags[currentLang].some(tag => 
+        const tagsMatch = articleData.tags[currentLang].some(tag =>
           tag.toLowerCase().includes(searchLower)
         );
 
@@ -197,7 +197,7 @@ const Articles: React.FC = () => {
 
   const filterByCategory = async (category: string) => {
     setSelectedCategory(category);
-    
+
     if (!category) {
       fetchArticles();
       return;
@@ -205,7 +205,7 @@ const Articles: React.FC = () => {
 
     try {
       setLoading(true);
-      
+
       const categoryQuery = query(
         collection(db, 'articles'),
         where('status', '==', 'published'),
@@ -221,7 +221,7 @@ const Articles: React.FC = () => {
           ...data,
           id: doc.id
         };
-        
+
         if (articleData.category[currentLang] === category) {
           filteredArticles.push(articleData);
         }
@@ -395,7 +395,7 @@ const Articles: React.FC = () => {
             {/* Load More Button */}
             {hasMore && articles.length > 0 && (
               <div className="text-center mt-8">
-                <Button 
+                <Button
                   onClick={() => fetchArticles(true)}
                   disabled={loading}
                   variant="outline"

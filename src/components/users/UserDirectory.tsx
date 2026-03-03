@@ -28,7 +28,7 @@ interface User {
   uid: string;
   email: string;
   displayName: string;
-  role: 'user' | 'doctor' | 'nutritionist' | 'admin';
+  role: 'user' | 'nutritionist' | 'admin' | 'doctor';
   photoURL?: string;
   phoneNumber?: string;
   address?: string;
@@ -38,7 +38,7 @@ interface User {
 export const UserDirectory: React.FC = () => {
   const { i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
-  
+
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -67,9 +67,9 @@ export const UserDirectory: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const roleMap = {
       admin: { label: isRTL ? 'مدير النظام' : 'Admin', variant: 'destructive' as const, icon: Shield },
-      doctor: { label: isRTL ? 'طبيب' : 'Doctor', variant: 'default' as const, icon: Stethoscope },
+      doctor: { label: isRTL ? 'دكتور جامعي' : 'Academic Expert', variant: 'secondary' as const, icon: Stethoscope },
       nutritionist: { label: isRTL ? 'أخصائي تغذية' : 'Nutritionist', variant: 'secondary' as const, icon: Stethoscope },
-      user: { label: isRTL ? 'مستخدم' : 'User', variant: 'outline' as const, icon: Users }
+      user: { label: isRTL ? 'مستخدم عادي' : 'User', variant: 'outline' as const, icon: Users }
     };
 
     const roleInfo = roleMap[role as keyof typeof roleMap] || roleMap.user;
@@ -84,11 +84,11 @@ export const UserDirectory: React.FC = () => {
   };
 
   const filteredUsers = users.filter(user => {
-    const matchesSearch = 
+    const matchesSearch =
       user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.displayName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = roleFilter === 'all' || user.role === roleFilter;
-    
+
     return matchesSearch && matchesRole;
   });
 
@@ -113,7 +113,6 @@ export const UserDirectory: React.FC = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{isRTL ? 'الكل' : 'All Users'}</SelectItem>
-                <SelectItem value="doctor">{isRTL ? 'الأطباء' : 'Doctors'}</SelectItem>
                 <SelectItem value="admin">{isRTL ? 'المشرفين' : 'Admins'}</SelectItem>
                 <SelectItem value="user">{isRTL ? 'المستخدمين' : 'Users'}</SelectItem>
               </SelectContent>
@@ -160,7 +159,7 @@ export const UserDirectory: React.FC = () => {
                       <span>{user.phoneNumber}</span>
                     </div>
                   )}
-                  {user.specialization && (user.role === 'doctor' || user.role === 'nutritionist') && (
+                  {user.specialization && user.role === 'nutritionist' && (
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300">
                       <Stethoscope className="h-4 w-4" />
                       <span>{user.specialization}</span>

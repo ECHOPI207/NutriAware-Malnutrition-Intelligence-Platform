@@ -1,0 +1,1011 @@
+import type { InterventionArticle } from '../interventionArticles';
+
+const AXIS_AR = 'التغذية المتوازنة والمغذيات الكبرى';
+const AXIS_EN = 'Balanced Nutrition & Macronutrients';
+
+export const axis2Articles: InterventionArticle[] = [
+    // ─────────────────────────────────────────────
+    // Article 6
+    // ─────────────────────────────────────────────
+    {
+        id: 6,
+        axis: 2, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '3-4',
+        title_ar: 'طبق الطفل المتوازن — دليلك العملي لكل وجبة',
+        title_en: 'The Balanced Child\'s Plate — Your Practical Guide for Every Meal',
+        slug_ar: 'طبق-الطفل-المتوازن',
+        slug_en: 'balanced-childs-plate',
+        quick_summary_ar: [
+            'الطفل يحتاج نشويات وبروتين ودهون صحية وخضروات في كل وجبة رئيسية',
+            'التوزيع المثالي: 45–65% كربوهيدرات، 10–30% بروتين، 25–35% دهون',
+            'تقسيم الطبق بصرياً أسهل وأعملي من حساب السعرات',
+        ],
+        quick_summary_en: [
+            'A child needs carbohydrates, protein, healthy fats, and vegetables in every main meal',
+            'Ideal distribution: 45–65% carbohydrates, 10–30% protein, 25–35% fats',
+            'Visual plate division is easier and more practical than calorie counting',
+        ],
+        content_ar: `<div dir="rtl">
+<p>التغذية المتوازنة لا تعني فقط "أن يأكل الطفل" — بل تعني أن يحصل على النسب الصحيحة من المغذيات الكبرى الثلاثة في كل وجبة. هذا التوازن لا يُقاس بالشعور أو العادة، بل تحكمه معادلات علمية دقيقة وُضعتها هيئات طبية متخصصة بعد عقود من الأبحاث.</p>
+
+<h2>النسب العلمية: من أين جاءت؟</h2>
+<p>وضع المعهد الأمريكي للطب (IOM) ما يُعرف بـ <strong>نطاقات التوزيع المقبول للمغذيات الكبرى</strong> (Acceptable Macronutrient Distribution Ranges — AMDR)، وهي مبنية على تحليل واسع للبيانات لتحديد النسب التي تُحقق أفضل مخرجات صحية. وتختلف الاحتياجات حسب العمر:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المغذّي الكبير</th><th>الأطفال (1–3 سنوات)</th><th>الأطفال والمراهقون (4–18 سنة)</th></tr></thead>
+<tbody>
+<tr><td>الكربوهيدرات</td><td>45–65% من إجمالي السعرات</td><td>45–65%</td></tr>
+<tr><td>البروتينات</td><td>5–20%</td><td>10–30%</td></tr>
+<tr><td>الدهون</td><td>30–40% (دعم نمو المخ)</td><td>25–35%</td></tr>
+</tbody>
+</table>
+
+<p>لماذا نسبة الدهون أعلى عند الرضّع؟ لأن المخ يمر بأعلى معدلات نموه خلال السنوات الثلاث الأولى، ويعتمد أساساً على الدهون لبناء الغشاء العصبي. مع تقدم العمر، تنخفض الحاجة النسبية للدهون لصالح الكربوهيدرات التي تُغذي النشاط العضلي المتصاعد.</p>
+
+<h2>لماذا هذه النسب تحديداً؟</h2>
+<ul>
+<li><strong>الكربوهيدرات (45–65%):</strong> الوقود الأساسي لخلايا الدماغ. النسبة الأعلى للأطفال الرياضيين، والأدنى للأقل نشاطاً.</li>
+<li><strong>البروتينات (10–30%):</strong> ضرورية للنمو. الكيف محوري هنا؛ فالتنوع بين البروتين الحيواني والنباتي يضمن الحصول على جميع الأحماض الأمينية.</li>
+<li><strong>الدهون (25–35%):</strong> ضرورية لامتصاص الفيتامينات (A, D, E, K) وبناء مواد المخ حتى نهاية المراهقة.</li>
+</ul>
+
+<h2>طريقة الطبق البصري — العلم بلا حسابات</h2>
+<p>طوّرت وزارة الزراعة الأمريكية (USDA) نموذج <strong>MyPlate</strong> كتبسيط بصري دقيق:</p>
+
+<div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; text-align: center; border-radius: 16px; margin: 30px 0; backdrop-filter: blur(8px); box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
+<strong style="color: #60a5fa; font-size: 1.2em; display: block; margin-bottom: 15px;">تخطيط الطبق المثالي:</strong>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: right;">
+<div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.2);">
+<span style="font-size: 1.5em;">🥦</span><br>
+<strong>نصف الطبق (1/2):</strong><br>خضروات وفواكه
+</div>
+<div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
+<span style="font-size: 1.5em;">🌾</span><br>
+<strong>ربع الطبق (1/4):</strong><br>نشويات كاملة
+</div>
+<div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.2); grid-column: span 2;">
+<span style="font-size: 1.5em;">🍗</span><br>
+<strong>ربع الطبق (1/4):</strong><br>بروتين عالي الجودة
+</div>
+</div>
+<div style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+🥛 ألبان + 🫒 دهون صحية (جانب الوجبة)
+</div>
+</div>
+
+<h3>1. نصف الطبق: خضروات وفواكه</h3>
+<p>تُوفّر الألياف التي تُبطّئ امتصاص السكريات وتُغذّي بكتيريا الأمعاء. التنوّع اللوني مهم: كل لون يعكس مجموعة مختلفة من مضادات الأكسدة (الليكوبين، الأنثوسيانين، البيتاكاروتين).</p>
+
+<h3>2. ربع الطبق: النشويات الكاملة</h3>
+<p>الأولوية للحبوب الكاملة (أرز بني، خبز أسمر، شوفان) لأنها تحتفظ بالنخالة والجنين اللذين يحويان الألياف ومعادن فيتامينات B.</p>
+
+<h3>3. ربع الطبق: البروتين</h3>
+<p>يُفضَّل التنويع بين الأسماك (مرتين أسبوعياً لأوميغا-3) والدواجن والبقوليات والبيض، مع الحدّ من اللحوم المُصنَّعة.</p>
+
+<h3>4. الجانب: ألبان + دهون صحية</h3>
+<p>حصة ألبان للكالسيوم وفيتامين D، مع دهون صحية (زيت زيتون أو مكسرات) لدعم القلب والدماغ.</p>
+
+<h2>أمثلة عملية لوجبات متوازنة</h2>
+<ul>
+<li><strong>الغداء:</strong> أرز بسمتي + دجاج مشوي + سلطة بزيت زيتون + عصير برتقال طبيعي (لتحسين امتصاص الحديد).</li>
+<li><strong>الفطور:</strong> شوفان بالحليب + حفنة مكسرات + قطعة فاكهة (طاقة مستدامة طوال اليوم).</li>
+<li><strong>وجبة خفيفة (Snack):</strong> تفاحة مع زبدة لوز، أو زبادي طبيعي مع تمر.</li>
+</ul>
+
+<p><strong>تذكير هام:</strong> التوازن الغذائي لا يجب أن يتحقق في كل وجبة منفردة، بل عبر مجموع وجبات اليوم. هذا المنظور يجعل التطبيق العملي أكثر مرونة واستدامة.</p>
+
+<hr>
+<h3>أدوات مساعدة لك:</h3>
+<ul>
+<li><a href="/assessment" style="color:#2563eb; text-decoration:underline;">أداة تقييم نمو الطفل</a>: لتقييم حالة طفلك الصحية والنمو.</li>
+<li><a href="/program" style="color:#2563eb; text-decoration:underline;">برنامج التوعية</a>: خطة تعليمية شاملة لتطوير عادات طفلك الغذائية.</li>
+</ul>
+</div>`,
+        content_en: `<div dir="ltr">
+<h2>The Balanced Plate Method:</h2>
+<p>Science-backed ratios for protein, fats, and carbohydrates based on age groups (AMDR guidelines).</p>
+</div>`,
+        sources_ar: [
+            'https://pmc.ncbi.nlm.nih.gov/articles/PMC8147948/',
+            'https://www.metagenics.co.uk/news/top-10-reasons-to-give-your-kids-omega-3/',
+            'https://www.chop.edu/news/nutrition-corner-simplifying-complex-topic-carbohydrates',
+            'https://raisingchildren.net.au/toddlers/nutrition-fitness/nutrients/fats',
+            'https://health.choc.org/how-much-protein-does-my-child-need/',
+            'https://www.verywellhealth.com/simple-and-complex-carbohydrates-1087570'
+        ],
+        sources_en: [
+            'PMC8147948 - Macronutrient Distribution Ranges',
+            'Metagenics - Omega-3 for Kids',
+            'CHOP - Nutrition Corner: Carbohydrates',
+            'Raising Children Network - Fats in Childhood',
+            'CHOC - Protein Requirements for Children',
+            'Verywell Health - Simple and Complex Carbohydrates'
+        ],
+        tags_ar: ['طبق متوازن', 'التغذية المتوازنة', 'المغذيات الكبرى', 'كربوهيدرات', 'بروتين', 'دهون', 'تقسيم الطبق', 'تغذية الأطفال', 'AMDR', 'وجبات صحية'],
+        tags_en: ['Balanced Plate', 'Balanced Nutrition', 'Macronutrients', 'Carbohydrates', 'Protein', 'Fats', 'Plate Division', 'Child Nutrition', 'AMDR', 'Healthy Meals'],
+        meta: {
+            meta_title_ar: 'طبق الطفل المتوازن — دليلك العملي لكل وجبة',
+            meta_title_en: 'The Balanced Child\'s Plate — Practical Meal Guide',
+            meta_description_ar: 'تعلم طريقة تقسيم الطبق بصرياً لضمان حصول طفلك على النسب الصحيحة من الكربوهيدرات والبروتين والدهون في كل وجبة.',
+            meta_description_en: 'Learn the visual plate division method to ensure your child gets the right proportions of carbohydrates, protein, and fats in every meal.',
+            reading_time_minutes: 3,
+            og_title_ar: 'طبق الطفل المتوازن — دليلك العملي لكل وجبة',
+            og_title_en: 'The Balanced Child\'s Plate — Your Practical Meal Guide',
+            og_description_ar: 'تقسيم الطبق بصرياً أسهل من حساب السعرات. تعلم الطريقة الصحيحة.',
+            og_description_en: 'Visual plate division is easier than calorie counting. Learn the right method.',
+        },
+        imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+        category: 'balancedNutrition',
+    },
+
+    // ─────────────────────────────────────────────
+    // Article 7
+    // ─────────────────────────────────────────────
+    {
+        id: 7,
+        axis: 2, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '3-4',
+        title_ar: 'الكربوهيدرات والبروتين والدهون — الثلاثي الذي يحتاجه كل طفل',
+        title_en: 'Carbohydrates, Protein & Fats — The Trio Every Child Needs',
+        slug_ar: 'الكربوهيدرات-والبروتين-والدهون',
+        slug_en: 'carbohydrates-protein-and-fats',
+        quick_summary_ar: [
+            'الكربوهيدرات ليست عدوّاً — لكن نوعيتها هي الفرق',
+            'البروتين ضروري لنمو العضلات والمناعة — والبقوليات بديل اقتصادي ممتاز',
+            'الدهون الصحية ضرورية لنمو دماغ الطفل — لكن الدهون المتحولة خطر حقيقي',
+        ],
+        quick_summary_en: [
+            'Carbohydrates are not the enemy — but their quality makes the difference',
+            'Protein is essential for muscle growth and immunity — legumes are an excellent economical alternative',
+            'Healthy fats are essential for brain development — but trans fats are a real danger',
+        ],
+        content_ar: `<div dir="rtl">
+<p>تُشكّل العناصر الغذائية الكبرى الثلاثة — الكربوهيدرات والبروتين والدهون — ركيزة النمو الجسدي والعقلي للطفل. لكن ليست كل أنواعها متساوية في تأثيرها على صحة الجهاز العصبي والعضلي والمناعي، وفهم الفرق بينها هو أول خطوة نحو تغذية صحيحة ومستدامة.</p>
+
+<h2>أولاً: الكربوهيدرات — وقود الجسم والدماغ</h2>
+<h3>البنية الكيميائية: من أين يأتي الفارق؟</h3>
+<p>الكربوهيدرات بالأساس سلاسل من جزيئات السكر. الفارق الجوهري بين نوعيها يكمن في طول هذه السلسلة وتعقيدها. الكربوهيدرات البسيطة تتكوّن من سلاسل قصيرة يسهل على الجسم كسرها بسرعة، بينما الكربوهيدرات المعقدة تتكوّن من سلاسل طويلة ومتشعّبة تستغرق وقتاً أطول في الهضم والامتصاص. هذا الاختلاف في البنية ينعكس مباشرةً على مستوى السكر في الدم بعد الوجبة.</p>
+
+<h3>الكربوهيدرات البسيطة (الفارغة) — سرعة وارتداد</h3>
+<p>الكربوهيدرات البسيطة تُهضم بسرعة كبيرة، فترتفع مستويات الجلوكوز في الدم بشكل مفاجئ وحاد — وهو ما يُعرف بـ "ارتفاع السكر المفاجئ" — ثم يحدث انهيار طاقوي سريع يجعل الطفل يشعر بالخمول والجوع من جديد في وقت قصير. كذلك تفتقر هذه الكربوهيدرات إلى الألياف والمعادن والفيتامينات، فهي تُمدّ الجسم بطاقة عابرة دون قيمة غذائية حقيقية، ومن ثَمّ جاء وصفها بـ "الفارغة".</p>
+
+<h3>الكربوهيدرات المعقدة (الذكية) — استقرار وتغذية</h3>
+<p>في المقابل، الكربوهيدرات المعقدة تُطلق الجلوكوز تدريجياً في مجرى الدم، مما يُوفّر طاقة مستدامة ومستقرة لساعات دون أن تُحدث ارتفاعاً مفاجئاً في الأنسولين. والعنصر الأساسي المسؤول عن هذا التباطؤ هو الألياف الغذائية؛ فالألياف تُبطّئ عملية الامتصاص في الأمعاء وتُطيل الشعور بالشبع، وهي ما يُفرّق فعلياً بين الكربوهيدرات البسيطة والمعقدة. إضافةً إلى ذلك، تحتوي الكربوهيدرات المعقدة على فيتامينات ومعادن أساسية غائبة عن نظيرتها المُكرَّرة.</p>
+
+<h3>المؤشر الجلايسيمي (GI) — الأداة العلمية للتمييز</h3>
+<p>يعتمد الباحثون على مفهوم المؤشر الجلايسيمي (Glycemic Index) لقياس مدى سرعة رفع كل غذاء لمستوى السكر في الدم على مقياس من 0 إلى 100. الأطعمة ذات المؤشر الجلايسيمي المرتفع (مثل الخبز الأبيض والمشروبات الغازية) تُحدث ارتفاعاً حاداً في السكر، بينما الأطعمة ذات المؤشر المنخفض (كالشوفان والبقوليات والخضروات) تُحافظ على استقرار مستويات الطاقة. وقد أثبتت الدراسات أن الأنظمة الغذائية ذات المؤشر الجلايسيمي المرتفع ترتبط بزيادة خطر السمنة لدى الأطفال.</p>
+
+<h3>جدول مقارنة: الكربوهيدرات الذكية مقابل الفارغة</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المعيار</th><th>كربوهيدرات مُعقّدة (ذكية)</th><th>كربوهيدرات بسيطة (فارغة)</th></tr></thead>
+<tbody>
+<tr><td>البنية الكيميائية</td><td>سلاسل طويلة ومتشعبة من السكر</td><td>سلاسل قصيرة من السكر</td></tr>
+<tr><td>سرعة الهضم</td><td>بطيئة ومتدرجة</td><td>سريعة جداً</td></tr>
+<tr><td>المؤشر الجلايسيمي</td><td>منخفض إلى متوسط</td><td>مرتفع</td></tr>
+<tr><td>محتوى الألياف</td><td>غني بالألياف</td><td>شبه خالٍ من الألياف</td></tr>
+<tr><td>القيمة الغذائية</td><td>فيتامينات ومعادن وفيتوكيماويات</td><td>سعرات حرارية فارغة غالباً</td></tr>
+<tr><td>التأثير على الطاقة</td><td>طاقة مستدامة وثابتة</td><td>طاقة سريعة تعقبها نوبة خمول</td></tr>
+<tr><td>أمثلة</td><td>شوفان، أرز بني، فول، عدس، خضروات</td><td>خبز أبيض، حلويات، مشروبات غازية، شيبسي</td></tr>
+</tbody>
+</table>
+
+<h2>ثانياً: البروتين — لبنات البناء الأساسية</h2>
+<h3>لماذا البروتين ضروري للطفل؟</h3>
+<p>البروتين يتألف من أحماض أمينية هي الوحدات الأساسية لبناء العضلات وإصلاح الأنسجة وتصنيع الإنزيمات والهرمونات وخلايا جهاز المناعة. الجسم لا يستطيع تخزين البروتين كما يفعل مع الدهون، مما يجعل الاستهلاك اليومي المنتظم أمراً ضرورياً لضمان النمو المستمر.</p>
+
+<h3>الاحتياجات اليومية حسب العمر (DRI المُحدَّثة)</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>الفئة العمرية</th><th>الاحتياج اليومي الموصى به</th></tr></thead>
+<tbody>
+<tr><td>1–3 سنوات</td><td>13 جرام/يوم (أو 0.5 جرام لكل رطل من وزن الجسم)</td></tr>
+<tr><td>4–8 سنوات</td><td>19 جرام/يوم</td></tr>
+<tr><td>9–13 سنة</td><td>34 جرام/يوم</td></tr>
+<tr><td>14–18 سنة (ذكور)</td><td>52 جرام/يوم</td></tr>
+<tr><td>14–18 سنة (إناث)</td><td>46 جرام/يوم</td></tr>
+</tbody>
+</table>
+<p><strong>ملاحظة علمية:</strong> الأرقام أعلاه مبنية على تقنية توازن النيتروجين التقليدية. غير أن دراسات حديثة باستخدام تقنية IAAO (أكسدة الأحماض الأمينية المُشعَّة) تُشير إلى أن الاحتياج الفعلي للأطفال في سن 6–10 سنوات قد يصل إلى 1.55 جرام/كجم يومياً — أي ما يزيد بنسبة 63% عن التوصيات الرسمية الحالية. هذا مجال بحثي لا يزال نشطاً.</p>
+
+<h3>المصادر الغذائية: كاملة واقتصادية</h3>
+<ul>
+<li><strong>البيض:</strong> مصدر بروتين كامل يحتوي على كل الأحماض الأمينية الأساسية</li>
+<li><strong>البقوليات (فول، عدس، حمص، فاصوليا):</strong> بروتين نباتي ممتاز ورخيص ومنخفض الدهون</li>
+<li><strong>الألبان والزبادي:</strong> بروتين عالي الجودة مع كالسيوم ضروري للعظام</li>
+<li><strong>الدجاج والأسماك:</strong> بروتين حيواني أقل في الدهون المشبعة مقارنةً باللحوم الحمراء المُصنَّعة</li>
+</ul>
+
+<h2>ثالثاً: الدهون — حارس الدماغ والجهاز العصبي</h2>
+<h3>الدماغ والدهون: علاقة بنيوية</h3>
+<p>الدهون ليست عدواً للطفل — بل هي عنصر بنيوي لا غنى عنه. 60% من مخ الإنسان يتكوّن من دهون، وحمض الدوكوساهيكسانويك (DHA) — وهو نوع من أوميغا-3 — يُشكّل وحده 10–15% من هذا الدهن الدماغي. يضطلع DHA بدور محوري في تطوير الأجهزة الحسية والإدراكية والحركية للدماغ خلال مرحلة النمو. وقد ربطت دراسات عدة بين ارتفاع مستويات أوميغا-3 لدى الأطفال وتحسّن القدرة على التعلم والذاكرة والانتباه.</p>
+
+<h3>الدهون الصحية — غير المشبعة (أحادية وعديدة)</h3>
+<p>هذه الدهون توفر الحماية القلبية وتدعم الوظائف العصبية. تتضمّن:</p>
+<ul>
+<li><strong>أوميغا-3 (DHA + EPA):</strong> السمك الدهني (سلمون، سردين، تونة) والجوز وبذور الكتان — لتطوير الدماغ</li>
+<li><strong>أوميغا-6 والدهون الأحادية غير المشبعة:</strong> زيت الزيتون، اللوز، الأفوكادو — لصحة القلب والأوعية</li>
+</ul>
+
+<h3>الدهون الضارة — المشبعة والمتحوّلة (Trans)</h3>
+<p>خلصت مراجعة منهجية وتحليل شامل نُشرا في مجلة PLOS ONE إلى أن تقليل الدهون المشبعة في غذاء الأطفال يُقلّل بشكل ملحوظ من مستويات الكوليسترول الكلي وكوليسترول LDL وضغط الدم الانبساطي، دون أي تأثير سلبي على النمو. وتشمل الدهون التي ينبغي الحدّ منها:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>النوع</th><th>المصادر الشائعة</th><th>التأثير الصحي</th></tr></thead>
+<tbody>
+<tr><td>دهون مشبعة (SFA)</td><td>زبدة بكميات زائدة، لحوم دسمة، منتجات الألبان كاملة الدسم</td><td>ترفع LDL (الكوليسترول الضار)</td></tr>
+<tr><td>دهون متحوّلة (Trans Fat)</td><td>مارجرين، أطعمة مقلية صناعية، وجبات سريعة مُصنَّعة</td><td>الأكثر ضرراً — ترفع LDL وتخفض HDL معاً</td></tr>
+<tr><td>دهون غير مشبعة (MUFA/PUFA)</td><td>زيت زيتون، مكسرات، أسماك دهنية، أفوكادو</td><td>تحمي القلب وتدعم الدماغ</td></tr>
+</tbody>
+</table>
+
+<h2>توصية عملية: دمج الثلاثي في كل وجبة</h2>
+<p>الدراسات الغذائية توصي بأن تحتوي كل وجبة أو وجبة خفيفة على عنصرين على الأقل من الثلاثي — كربوهيدرات مع بروتين أو دهون — لأن البروتين والدهون يُبطّئان هضم الكربوهيدرات، مما يمنع الارتفاع المفاجئ في السكر ويُطيل الشعور بالشبع والتركيز لدى الطفل. أمثلة عملية: تفاحة مع زبدة اللوز، زبادي مع مكسرات وتوت، بيض مع خبز بلدي وأفوكادو.</p>
+</div>`,
+        content_en: `<div dir="ltr">
+<h2>Carbohydrates — The Body's Fuel:</h2>
+<p>Carbohydrates are the primary energy source needed by a child's brain and muscles. But there is a fundamental difference between "smart" and "empty" carbohydrates:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Smart Carbohydrates (Complex)</th><th>Empty Carbohydrates (Simple)</th></tr></thead>
+<tbody>
+<tr><td>Whole wheat / Egyptian baladi bread</td><td>Refined white bread</td></tr>
+<tr><td>Basmati or brown rice</td><td>Sweets and pastries</td></tr>
+<tr><td>Sweet potato</td><td>Soft drinks</td></tr>
+<tr><td>Oats and whole grains</td><td>Artificially sweetened juices</td></tr>
+<tr><td>Fava beans and lentils</td><td>Chips and processed snacks</td></tr>
+</tbody>
+</table>
+
+<h2>Protein — The Building Block:</h2>
+<p>Children aged 4–8 years need about 15 grams of protein daily, increasing to 27–44 grams at age 9–18. Protein is essential for building muscles, repairing tissues, and supporting the immune system.[17]</p>
+
+<h3>Economical Protein Sources:</h3>
+<ul>
+<li>Eggs (a complete and affordable source)</li>
+<li>Fava beans, lentils, and chickpeas (excellent plant protein)</li>
+<li>Yogurt and milk</li>
+<li>Chicken and fish (better than processed meats)</li>
+</ul>
+
+<h2>Fats — Brain & Nerve Protection:</h2>
+<p>Healthy fats are essential for a child's brain development — 60% of the human brain is composed of fat. But not all fats are created equal:</p>
+<ul>
+<li><strong>Healthy fats (mono- and polyunsaturated):</strong> Olive oil, nuts (almonds, walnuts), fatty fish (salmon, tuna, sardines), avocado</li>
+<li><strong>Harmful fats (saturated and trans):</strong> Butter in large quantities, margarine, fried foods, fast food[16]</li>
+</ul>
+</div>`,
+        sources_ar: [
+            'IOM. (2005). Dietary Reference Intakes.',
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+        ],
+        sources_en: [
+            'IOM. (2005). Dietary Reference Intakes.',
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+        ],
+        tags_ar: ['كربوهيدرات', 'بروتين', 'دهون', 'المغذيات الكبرى', 'بقوليات', 'حبوب كاملة', 'دهون صحية', 'دهون متحولة', 'تغذية الأطفال', 'نمو الدماغ'],
+        tags_en: ['Carbohydrates', 'Protein', 'Fats', 'Macronutrients', 'Legumes', 'Whole Grains', 'Healthy Fats', 'Trans Fats', 'Child Nutrition', 'Brain Development'],
+        meta: {
+            meta_title_ar: 'الكربوهيدرات والبروتين والدهون — ثلاثي نمو طفلك',
+            meta_title_en: 'Carbs, Protein & Fats — Your Child\'s Growth Trio',
+            meta_description_ar: 'تعرف على الفرق بين الكربوهيدرات الذكية والفارغة، ومصادر البروتين الاقتصادية، والدهون الصحية الضرورية لنمو دماغ طفلك.',
+            meta_description_en: 'Learn the difference between smart and empty carbs, economical protein sources, and healthy fats essential for your child\'s brain development.',
+            reading_time_minutes: 4,
+            og_title_ar: 'الكربوهيدرات والبروتين والدهون — الثلاثي الذي يحتاجه كل طفل',
+            og_title_en: 'Carbohydrates, Protein & Fats — The Trio Every Child Needs',
+            og_description_ar: '60% من مخ الإنسان دهون. تعرف على المغذيات الكبرى الثلاثة الضرورية لنمو طفلك.',
+            og_description_en: '60% of the human brain is fat. Learn about the three essential macronutrients for your child\'s growth.',
+        },
+        imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
+        category: 'balancedNutrition',
+    },
+
+    // ─────────────────────────────────────────────
+    // Article 8
+    // ─────────────────────────────────────────────
+    {
+        id: 8,
+        axis: 2, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '3-4',
+        title_ar: 'وجبة الإفطار والسناكس الصحية — وقود يوم طفلك المدرسي',
+        title_en: 'Breakfast & Healthy Snacks — Fuel for Your Child\'s School Day',
+        slug_ar: 'وجبة-الإفطار-والسناكس-الصحية',
+        slug_en: 'breakfast-and-healthy-snacks',
+        quick_summary_ar: [
+            'الأطفال الذين يتناولون إفطاراً صحياً يتفوقون أكاديمياً بنسبة ملموسة',
+            'السناكس ليست عدوّاً — لكن اختيارها الذكي هو المفتاح',
+            'بدائل عملية ولذيذة للشيبسي والحلويات متاحة وبنفس التكلفة',
+        ],
+        quick_summary_en: [
+            'Children who eat a healthy breakfast perform noticeably better academically',
+            'Snacks are not the enemy — but smart selection is the key',
+            'Practical and delicious alternatives to chips and sweets are available at the same cost',
+        ],
+        content_ar: `<div dir="rtl">
+<p>وجبة الإفطار ليست توصية غذائية تقليدية — بل هي تدخّل عصبي حيوي موثَّق يُعيد تشغيل الدماغ بعد صيام الليل. والفارق ليس فقط في "هل أكل الطفل إفطاره" — بل في ماذا أكل وكيف أثّر ذلك في منحنى الجلوكوز والأداء المعرفي لساعات.</p>
+
+<h2>الفسيولوجيا أولاً — ماذا يحدث لدماغ الطفل صباحاً؟</h2>
+
+<h3>الدماغ والجلوكوز — علاقة حصرية شبه كاملة</h3>
+<p>الدماغ البشري يستهلك ما يقارب 20% من طاقة الجسم كله رغم أنه يُمثّل 2% من وزنه فقط. والجلوكوز هو الوقود الرئيسي شبه الحصري للخلايا العصبية في ظروف الحياة الطبيعية — لا يمكنها الاعتماد على الدهون بالطريقة ذاتها التي تعتمد عليها العضلات. وبعد 8–10 ساعات من النوم، تكون مخازن الجليكوجين الكبدية (مخزن الجلوكوز الاحتياطي) شبه مُستنفَدة بالكامل، ويكون مستوى الجلوكوز في الدم عند حدوده الدنيا الآمنة. في هذه الحالة، يدخل الدماغ في حالة "شُح وقود" حقيقية — تُترجَم إلى ضعف انتباه، بطء في المعالجة، وتراجع في الذاكرة قصيرة المدى قبل أن يعي الطفل أصلاً أنه جائع.</p>
+
+<h3>الكورتيزول الصباحي — شريك إفطار لا يُحتمل تغيبه</h3>
+<p>قيم الكورتيزول (هرمون التنبّه) تبلغ ذروتها الصباحية خلال 30–45 دقيقة من الاستيقاظ — في ما يُعرف بـ"استجابة الصحوة للكورتيزول" (CAR). هذه الذروة تُهيّئ الدماغ لأعلى استعداد إدراكي في اليوم كله، وتستمر تأثيراتها ساعتين تقريباً. الإفطار المُقدَّم خلال هذه النافذة يُصادف الإطار الزمني الأمثل تزامناً: ارتفاع الكورتيزول + رفع الجلوكوز = أعلى جاهزية ذهنية ممكنة في الصباح.</p>
+
+<h2>الأدلة العلمية — ما يقوله البحث</h2>
+
+<h3>تأثير تخطّي الإفطار على الأداء المعرفي</h3>
+<p>مراجعة منهجية شاملة لأبحاث التدخل الغذائي (Intervention Studies) على الأطفال وجدت أن تناول الإفطار مقارنةً بالصيام يُحدث تحسّناً دالاً إحصائياً في ثلاثة مجالات إدراكية محددة: الانتباه المستمر، والذاكرة، والوظائف التنفيذية (Executive Functions) في الجلسة الصباحية ذاتها — وكانت الفوارق أكثر وضوحاً عند الأطفال المعرّضين لسوء التغذية. ودراسة على 56,238 طالباً صينياً وجدت أن تناول الإفطار يومياً ارتبط بتأثير دال إحصائياً على التحصيل الأكاديمي.</p>
+
+<p>تحديداً، الأطفال الذين يتخطّون إفطارهم بانتظام يُبدون:</p>
+<ul>
+<li>ضعفاً في الذاكرة الحلقية (Episodic Memory) — القدرة على تذكر المعلومات الجديدة</li>
+<li>ضعفاً في الانتباه المستدام — بدء التشتت بعد وقت أقصر من التركيز</li>
+<li>ضعفاً في حل المشكلات — خاصةً المهام التي تتطلب تفكيراً متعدد الخطوات</li>
+</ul>
+
+<h2>المؤشر الجلايسيمي للإفطار — الفارق الذي يُغير الحصة كلها</h2>
+
+<h3>الآلية العصبية للمؤشر الجلايسيمي</h3>
+<p>ليس هناك فقط "تناول الإفطار / عدم تناوله" — بل توجد جودة متفاوتة للإفطارات التي تُنتج منحنيات جلوكوز مختلفة تماماً:</p>
+
+<div style="display: flex; flex-direction: column; gap: 15px; margin: 20px 0;">
+<div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); padding: 15px; border-radius: 12px;">
+<h4 style="color: #ef4444; margin-top: 0; margin-bottom: 12px; font-size: 1.1em;">إفطار عالي المؤشر الجلايسيمي (كعك، عصير صناعي، حبوب محلاة)</h4>
+<div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 8px; font-weight: bold; color: #f87171; font-size: 0.95em;">
+<span style="background: rgba(239,68,68,0.15); padding: 6px 10px; border-radius: 6px;">[جلوكوز] &uarr;&uarr;&uarr; سريع</span>
+<span style="font-size: 1.2em;">&larr;</span>
+<span style="background: rgba(239,68,68,0.15); padding: 6px 10px; border-radius: 6px;">أنسولين &uarr;&uarr;&uarr; سريع</span>
+<span style="font-size: 1.2em;">&larr;</span>
+<span style="background: rgba(239,68,68,0.15); padding: 6px 10px; border-radius: 6px;">جلوكوز &darr;&darr; حاد</span>
+</div>
+<p style="margin-top: 15px; margin-bottom: 0; font-size: 0.95em; border-top: 1px dashed rgba(239,68,68,0.3); padding-top: 10px;">
+<strong>النتيجة:</strong> انهيار السكر = نعاس حصص 10 صباحاً
+</p>
+</div>
+
+<div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding: 15px; border-radius: 12px;">
+<h4 style="color: #10b981; margin-top: 0; margin-bottom: 12px; font-size: 1.1em;">إفطار منخفض المؤشر الجلايسيمي (شوفان، فول، بيض، خبز بلدي)</h4>
+<div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 8px; font-weight: bold; color: #34d399; font-size: 0.95em;">
+<span style="background: rgba(16,185,129,0.15); padding: 6px 10px; border-radius: 6px;">[جلوكوز] &uarr; تدريجي</span>
+<span style="font-size: 1.2em;">&larr;</span>
+<span style="background: rgba(16,185,129,0.15); padding: 6px 10px; border-radius: 6px;">أنسولين &uarr; معتدل</span>
+<span style="font-size: 1.2em;">&larr;</span>
+<span style="background: rgba(16,185,129,0.15); padding: 6px 10px; border-radius: 6px;">جلوكوز مستقر لـ 2–3 ساعات</span>
+</div>
+<p style="margin-top: 15px; margin-bottom: 0; font-size: 0.95em; border-top: 1px dashed rgba(16,185,129,0.3); padding-top: 10px;">
+<strong>النتيجة:</strong> انتباه مستدام + ذاكرة + مزاج إيجابي
+</p>
+</div>
+</div>
+
+<h3>ما يقوله العلم عن المؤشر الجلايسيمي والإدراك</h3>
+<p>مراجعة منهجية وتحليل شامل لدراسات مقارنة الإفطار المنخفض بالعالي المؤشر الجلايسيمي عند الأطفال توصّل إلى أن منحنى الجلوكوز المستقر (بدون ذروات وانهيارات حادة) يرتبط بأداء إدراكي أفضل عبر ساعات الصباح كلها. وفي تجربة مُضبَّطة، أظهر الأطفال الذين تناولوا إفطاراً منخفض المؤشر الجلايسيمي ذاكرة أفضل في القياسات التي أُجريت بعد 103–136 دقيقة من الإفطار، مع الإبلاغ عن شعور أعلى بالتنبّه والراحة النفسية.</p>
+
+<p>ودراسة على مراهقين قارنت ثلاثة شروط (إفطار منخفض GI، إفطار عالٍ GI، بدون إفطار) وجدت أن الإفطار المنخفض GI كان الأفضل في الوظيفة الإدراكية مقارنةً بالحالتين الأخريين.</p>
+
+<h2>مكوّنات الإفطار المدرسي المثالي — بالعلم لا بالتقليد</h2>
+<h3>ثلاثة متطلبات بيوكيميائية لإفطار فعّال</h3>
+<ol>
+<li><strong>استقرار الجلوكوز (Anti-Spike):</strong><br>يتحقق بالأغذية المنخفضة المؤشر الجلايسيمي: شوفان، خبز بلدي بكامل حبوبه، فول، بيض. هذه الأغذية تُفرز الجلوكوز تدريجياً وتمنع الذبذبات الحادة التي تُضعف الانتباه.</li>
+<li><strong>البروتين والدهون — المُثبّطان الجلايسيميان:</strong><br>إضافة بروتين أو دهون لوجبة كربوهيدراتية يُبطّئ إفراغ المعدة ويُعدّل الاستجابة الجلايسيمية بالكامل. خبز وحده &rarr; ارتفاع سريع للجلوكوز؛ خبز + بيضة + جبن &rarr; ارتفاع تدريجي ومستدام. البروتين أيضاً يُوفّر الأحماض الأمينية اللازمة لتصنيع الناقلات العصبية — خاصةً التيروزين (لإنتاج الدوبامين والنورأدرينالين المرتبطَين بالتركيز).</li>
+<li><strong>الألياف الغذائية — المُبطّئة الأمينة:</strong><br>الألياف القابلة للذوبان (خاصةً بيتا-جلوكان في الشوفان) تُشكّل هلاماً في الجهاز الهضمي يُبطّئ امتصاص السكريات ويُطيل الشبع. دراسات تُظهر أن شوفان الإفطار يُفقد التحكّم في الجوع بشكل أفضل بكثير من الحبوب المُكرَّرة أو الأطعمة الحلوة.</li>
+</ol>
+
+<h3>جدول مقارنة الإفطارات — الأثر الجلايسيمي والإدراكي</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:center;">
+<thead><tr><th>الإفطار</th><th>المؤشر الجلايسيمي</th><th>مستوى الجلوكوز</th><th>الأداء المعرفي</th><th>التقييم</th></tr></thead>
+<tbody>
+<tr><td>شوفان + حليب + مكسرات</td><td>منخفض جداً (35–45)</td><td>مستقر 3 ساعات</td><td>&check;&check;&check; ممتاز</td><td>الأفضل للإدراك المستمر</td></tr>
+<tr><td>فول + خبز بلدي + ليمون</td><td>منخفض (40–50)</td><td>مستقر 2–3 ساعات</td><td>&check;&check;&check; ممتاز</td><td>+ حديد + ألياف عالية</td></tr>
+<tr><td>بيض + جبن + خبز بلدي</td><td>منخفض-متوسط</td><td>مستقر 2–2.5 ساعة</td><td>&check;&check;&check; ممتاز</td><td>كامل المغذيات + كولين للدماغ</td></tr>
+<tr><td>خبز بالعسل فقط</td><td>عالٍ (70–80)</td><td>ارتفاع ثم انهيار</td><td>&check; ضعيف</td><td>نعاس في الحصة الثالثة</td></tr>
+<tr><td>كعك صناعي + عصير معلّب</td><td>مرتفع جداً (75–90)</td><td>ارتفاع حاد + انهيار</td><td>&cross; سيء</td><td>تشتّت وضعف تركيز</td></tr>
+<tr><td>تخطّي الإفطار</td><td>—</td><td>منخفض طوال الصباح</td><td>&cross;&cross; الأسوأ</td><td>أدنى أداء في الانتباه والذاكرة</td></tr>
+</tbody>
+</table>
+
+<h2>تشريح خيارات الإفطار المصرية الثلاثة</h2>
+
+<h3>خيار ١ — شوفان بالحليب والمكسرات: وجبة الدماغ</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المكوّن</th><th>العنصر الفعّال</th><th>الدور</th></tr></thead>
+<tbody>
+<tr><td>الشوفان</td><td>بيتا-جلوكان (ألياف قابلة للذوبان)</td><td>استقرار الجلوكوز، امتصاص بطيء</td></tr>
+<tr><td>الحليب</td><td>الكالسيوم + فيتامين د + بروتين</td><td>بناء عظام + انتقال عصبي</td></tr>
+<tr><td>مكسرات (جوز، لوز)</td><td>أحماض أوميجا-3، فيتامين E</td><td>صحة أغشية الخلايا العصبية</td></tr>
+<tr><td>موز (اختياري)</td><td>البوتاسيوم + B6 + تريبتوفان</td><td>تصنيع السيروتونين — المزاج</td></tr>
+</tbody>
+</table>
+<p><strong>المؤشر الجلايسيمي الكلي:</strong> 35–45 &rarr; من أفضل الإفطارات لاستقرار الطاقة.</p>
+
+<h3>خيار ٢ — فول مدمس بالليمون والزيت: الإفطار الاستراتيجي</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المكوّن</th><th>العنصر الفعّال</th><th>الدور</th></tr></thead>
+<tbody>
+<tr><td>الفول</td><td>بروتين + ألياف + حديد + فولات</td><td>طاقة مستدامة + دم + دماغ</td></tr>
+<tr><td>الليمون</td><td>فيتامين C</td><td>يُضاعف امتصاص حديد الفول &times;3–6</td></tr>
+<tr><td>زيت زيتون</td><td>أوميجا-9 (حمض أوليك)</td><td>دهون أحادية مضادة للالتهاب</td></tr>
+<tr><td>خبز بلدي</td><td>ألياف + B-complex + معادن</td><td>طاقة تدريجية + الجهاز العصبي</td></tr>
+</tbody>
+</table>
+<p><strong>ميزة خاصة:</strong> وجبة الفول بالليمون هي الأعلى في محتوى الفولات بين خيارات الإفطار المصرية — وهو أمر حاسم لتصنيع الحمض النووي والانقسام الخلوي عند الأطفال في مرحلة النمو.</p>
+
+<h3>خيار ٣ — بيض وجبن وخبز: الإفطار الكامل</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المكوّن</th><th>العنصر الفعّال</th><th>الدور</th></tr></thead>
+<tbody>
+<tr><td>البيضة</td><td>كولين (Choline)</td><td>ناقل عصبي Acetylcholine — الذاكرة والتعلم</td></tr>
+<tr><td>البيضة (بمكوناتها الكاملة)</td><td>بروتين كامل (الأحماض الأمينية الـ9)</td><td>بناء خلوي + ناقلات عصبية</td></tr>
+<tr><td>الجبن الأبيض</td><td>الكالسيوم + الفوسفور</td><td>انتقال عصبي سليم</td></tr>
+<tr><td>الخيار أو الطماطم</td><td>فيتامين C + ماء + فيتامين K</td><td>ترطيب صباحي + مناعة</td></tr>
+</tbody>
+</table>
+<p><strong>ملاحظة الكولين:</strong> صفار البيضة يحتوي على 147 ملغ كولين — وهو الناقل الأولي لجزيء الأستيل كولين المسؤول عن الذاكرة والتعلم في الدماغ. الأطفال دون 9 سنوات يحتاجون 250 ملغ يومياً من الكولين — بيضتان تُغطيان الاحتياج كاملاً.</p>
+
+<h2>علم السناكس المدرسية — أكثر من وجبة فاصلة</h2>
+<h3>لماذا السناك ضروري فسيولوجياً؟</h3>
+<p>دوام مدرسي من 8 صباحاً حتى 2 ظهراً يعني 6 ساعات من المتطلبات الإدراكية المستمرة. حتى مع إفطار ممتاز، يبدأ الجلوكوز في التراجع بعد 3–4 ساعات. السناك المدرسي (في فسحة الـ10 أو الـ11) هو جسر الطاقة الذي يمنع انهيار الجلوكوز في الحصص المتأخرة.</p>
+
+<h3>الفارق البيوكيميائي بين السناك الضار والمفيد</h3>
+<p><strong>السناكس العالية السكر (شيبسي، حلوى، كيك صناعي) تُنتج:</strong></p>
+<ul>
+<li>ارتفاع حاد في الجلوكوز (Glucose Spike) &rarr; إفراز أنسولين مرتفع</li>
+<li>انهيار حاد للجلوكوز تحت خط الأساس (Reactive Hypoglycemia)</li>
+<li>هذا الانهيار يُفعّل الشعور بالجوع من جديد رغم السعرات الكافية</li>
+<li>ويُسبّب التعب والتشتت والتهيّج في الحصة التالية مباشرةً</li>
+</ul>
+
+<p><strong>السناكس المتوازنة (بروتين + ألياف + دهون) تُنتج:</strong></p>
+<ul>
+<li>ارتفاع تدريجي ومعتدل في الجلوكوز</li>
+<li>إفراز أنسولين معتدل وتدريجي</li>
+<li>استقرار مستوى الجلوكوز لساعتين إضافيتين</li>
+<li>استمرار التركيز والطاقة حتى نهاية الدوام</li>
+</ul>
+
+<h3>الجدول المرجعي الكامل للسناكس — البديل والسبب</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>السناك الضار ❌</th><th>البديل الصحي ✅</th><th>السبب الفسيولوجي</th></tr></thead>
+<tbody>
+<tr><td>شيبسي</td><td>فشار منزلي بزيت زيتون</td><td>ألياف حقيقية + أقل صوديوم بـ70% + دهون أحادية بدل متحوّلة</td></tr>
+<tr><td>شوكولاتة أو حلوى</td><td>تمر + لوزة أو جوزة</td><td>السكر الطبيعي مع ألياف تُبطّئ امتصاصه + بروتين + دهون صحية</td></tr>
+<tr><td>بسكويت مُحلّى</td><td>شوفان محلى بالعسل منزلياً</td><td>بيتا-جلوكان للاستقرار الجلايسيمي بدلاً من الطحين المُكرَّر</td></tr>
+<tr><td>عصير معلّب محلّى</td><td>فاكهة كاملة طازجة</td><td>الألياف الغائبة كلياً في العصير المعلّب تعني ارتفاعاً جلايسيمياً أسرع بـ3 مرات</td></tr>
+<tr><td>حلوى جيلي</td><td>زبادي طبيعي + فاكهة</td><td>بروتين + كالسيوم + بروبيوتيك للمناعة والأمعاء بدل سكر خالص</td></tr>
+<tr><td>كيك صناعي</td><td>خبز محمص + زبدة فول سوداني</td><td>مؤشر جلايسيمي أخفض بـ30 نقطة + بروتين يُثبّت الجلوكوز</td></tr>
+<tr><td>مشروب غازي</td><td>ماء + شريحة ليمون</td><td>ترطيب حقيقي — حتى الجفاف الخفيف (−2% من وزن الجسم) يُقلّل الأداء الإدراكي بشكل موثَّق</td></tr>
+</tbody>
+</table>
+
+<h3>قاعدة الثنائي — صيغة السناك الذكي</h3>
+<p>أبسط قاعدة عملية لبناء سناك فعّال: <strong>كربوهيدرات + مُثبِّت</strong>. المُثبِّت هو البروتين أو الدهون الصحية أو الألياف — وأي واحد منهم يكفي لتحويل السناك من "طاقة لحظية تنهار" إلى "وقود مستدام ساعتين":</p>
+
+<div style="display: flex; flex-direction: column; gap: 15px; margin: 20px 0;">
+<div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+<div style="display: flex; flex-wrap: wrap; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; background: rgba(239, 68, 68, 0.05); color: #f87171; border-left: 1px solid rgba(255, 255, 255, 0.05);">تفاحة وحدها <span style="font-size: 0.85em; opacity: 0.8;">(GI مرتفع نسبياً)</span></div>
+<div style="flex: 2; padding: 12px 15px; opacity: 0.8; font-size: 0.95em;">&larr; ارتفاع معتدل + هبوط خلال 90 دقيقة</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; background: rgba(16, 185, 129, 0.05);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; color: #34d399; border-left: 1px solid rgba(255, 255, 255, 0.05);"><strong>تفاحة + ملعقة لوز</strong> <span style="font-size: 0.85em; opacity: 0.8;">(GI منخفض)</span></div>
+<div style="flex: 2; padding: 12px 15px; color: #34d399;"><strong>&larr; طاقة مستدامة 2–2.5 ساعة</strong></div>
+</div>
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+<div style="display: flex; flex-wrap: wrap; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; background: rgba(239, 68, 68, 0.05); color: #f87171; border-left: 1px solid rgba(255, 255, 255, 0.05);">موز وحده <span style="font-size: 0.85em; opacity: 0.8;">(GI مرتفع)</span></div>
+<div style="flex: 2; padding: 12px 15px; opacity: 0.8; font-size: 0.95em;">&larr; انهيار بعد ساعة</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; background: rgba(16, 185, 129, 0.05);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; color: #34d399; border-left: 1px solid rgba(255, 255, 255, 0.05);"><strong>موز + مكسرات</strong> <span style="font-size: 0.85em; opacity: 0.8;">(GI معتدل)</span></div>
+<div style="flex: 2; padding: 12px 15px; color: #34d399;"><strong>&larr; طاقة مستمرة وثابتة</strong></div>
+</div>
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+<div style="display: flex; flex-wrap: wrap; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; background: rgba(239, 68, 68, 0.05); color: #f87171; border-left: 1px solid rgba(255, 255, 255, 0.05);">خبز وحده <span style="font-size: 0.85em; opacity: 0.8;">(GI عالٍ)</span></div>
+<div style="flex: 2; padding: 12px 15px; opacity: 0.8; font-size: 0.95em;">&larr; انهيار خلال ساعة واحدة</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; background: rgba(16, 185, 129, 0.05);">
+<div style="flex: 1; min-width: 200px; padding: 12px 15px; color: #34d399; border-left: 1px solid rgba(255, 255, 255, 0.05);"><strong>خبز + حمص</strong> <span style="font-size: 0.85em; opacity: 0.8;">(GI منخفض)</span></div>
+<div style="flex: 2; padding: 12px 15px; color: #34d399;"><strong>&larr; إطالة الطاقة الفعلية</strong></div>
+</div>
+</div>
+</div>
+
+<h3>نصائح عملية للأسرة المصرية</h3>
+<p>إعداد سناك يومي صحي لا يحتاج وقتاً ولا ميزانية كبيرة:</p>
+<ul>
+<li><strong>تمر + مكسرات (5 دقائق):</strong> 3–4 تمرات + قبضة لوز أو جوز أو كاجو — تكلفة متدنية، قيمة غذائية عالية، لا تحتاج تبريداً</li>
+<li><strong>زبادي في علبة صغيرة + موزة:</strong> كالسيوم + بروتين + بوتاسيوم — جاهز في 30 ثانية</li>
+<li><strong>فشار منزلي محضَّر يومياً:</strong> الذرة تُحمّص في الفرن بملعقة زيت زيتون وقليل ملح — أرخص وأصح من أي بديل معبّأ</li>
+<li><strong>قطع جزر + حمص (باعه) في علبة صغيرة:</strong> بيتا كاروتين + بروتين + ألياف — يُعدّ مساءً ويُحفظ في الثلاجة</li>
+<li><strong>بيضة مسلوقة مسبقاً + طماطم:</strong> يُعدّ في 10 دقائق عند الطهي لليوم التالي</li>
+</ul>
+
+</div>`,
+        content_en: `<div dir="ltr">
+<h2>Why Is Breakfast Essential?</h2>
+<p>After 8–10 hours of sleep, the child's glucose reserves are depleted. Breakfast refuels the brain with the energy needed for concentration and learning. Children who skip breakfast tend to eat unhealthy foods later in the day and have reduced attention capacity.</p>
+
+<h2>Quick Healthy Breakfast (5 minutes):</h2>
+<ul>
+<li>Boiled egg + piece of cheese + Egyptian baladi bread + cucumber = protein + calcium + carbohydrates + vitamins</li>
+<li>Oats with milk, nuts, and banana = fiber + protein + potassium</li>
+<li>Fava beans (ful medames) with olive oil + tomato + lemon = plant protein + iron + vitamin C</li>
+</ul>
+
+<h2>Healthy Snack Alternatives:</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Instead of This ❌</th><th>Try This ✅</th></tr></thead>
+<tbody>
+<tr><td>Chips</td><td>Homemade popcorn (without excess butter)</td></tr>
+<tr><td>Chocolate</td><td>Dates stuffed with almonds</td></tr>
+<tr><td>Sweetened biscuits</td><td>Homemade oat biscuits</td></tr>
+<tr><td>Packaged juice</td><td>Fresh fruit or natural juice</td></tr>
+<tr><td>Jelly candy</td><td>Natural yogurt with fruit and honey</td></tr>
+<tr><td>Cake</td><td>Toast with peanut butter</td></tr>
+</tbody>
+</table>
+</div>`,
+        sources_ar: [
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+            'CDC. (2025). Preventing childhood obesity: 6 things families can do.',
+        ],
+        sources_en: [
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+            'CDC. (2025). Preventing childhood obesity: 6 things families can do.',
+        ],
+        tags_ar: ['إفطار صحي', 'سناكس صحية', 'تغذية مدرسية', 'بدائل صحية', 'فول', 'شوفان', 'تركيز', 'أداء مدرسي', 'تغذية الأطفال', 'وجبات سريعة صحية'],
+        tags_en: ['Healthy Breakfast', 'Healthy Snacks', 'School Nutrition', 'Healthy Alternatives', 'Fava Beans', 'Oats', 'Concentration', 'School Performance', 'Child Nutrition', 'Quick Healthy Meals'],
+        meta: {
+            meta_title_ar: 'وجبة الإفطار والسناكس الصحية — وقود يوم طفلك',
+            meta_title_en: 'Breakfast & Healthy Snacks — School Day Fuel',
+            meta_description_ar: 'الإفطار الصحي يحسن أداء طفلك الأكاديمي. تعرف على وجبات إفطار سريعة وبدائل صحية للسناكس المضرة بنفس التكلفة.',
+            meta_description_en: 'A healthy breakfast improves your child\'s academic performance. Learn quick breakfast ideas and healthy snack alternatives at the same cost.',
+            reading_time_minutes: 3,
+            og_title_ar: 'وجبة الإفطار والسناكس الصحية — وقود يوم طفلك المدرسي',
+            og_title_en: 'Breakfast & Healthy Snacks — Fuel for Your Child\'s School Day',
+            og_description_ar: 'بدائل عملية للشيبسي والحلويات بنفس التكلفة. إفطار صحي في 5 دقائق.',
+            og_description_en: 'Practical alternatives to chips and sweets at the same cost. Healthy breakfast in 5 minutes.',
+        },
+        imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80',
+        category: 'balancedNutrition',
+    },
+
+    // ─────────────────────────────────────────────
+    // Article 9
+    // ─────────────────────────────────────────────
+    {
+        id: 9,
+        axis: 2, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '3-4',
+        title_ar: 'قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك',
+        title_en: 'Reading the Nutrition Label — A Skill That Protects Your Family\'s Health',
+        slug_ar: 'قراءة-البطاقة-الغذائية',
+        slug_en: 'reading-the-nutrition-label',
+        quick_summary_ar: [
+            'البطاقة الغذائية تكشف الحقيقة التي لا يخبرك بها الإعلان',
+            '5 أشياء تبحث عنها فوراً: السكر المضاف، الصوديوم، الدهون المتحولة، حجم الحصة، السعرات',
+            '"منتج صحي" أو "طبيعي" على العبوة لا يعني بالضرورة أنه صحي فعلاً',
+        ],
+        quick_summary_en: [
+            'The nutrition label reveals the truth that advertising doesn\'t tell you',
+            '5 things to look for immediately: added sugars, sodium, trans fats, serving size, calories',
+            '"Healthy product" or "natural" on the package doesn\'t necessarily mean it is actually healthy',
+        ],
+        content_ar: `<div dir="rtl">
+<p>البطاقة الغذائية ليست مجرد قائمة أرقام مملة — بل هي وثيقة شفافية يُلزَم المصنّع بكشفها، وهي الأداة الوحيدة التي تمنحك معلومات موضوعية في مواجهة حملات التسويق المُصمَّمة لإخفاء الحقيقة أو تجميلها. إتقان قراءتها في دقيقتين قبل وضع المنتج في عربة التسوق يُجنّب طفلك كميات يومية من السكر والملح والدهون المتحوّلة التي تراكمت تدريجياً لتُسبّب ضرراً لا يُرى فورياً.</p>
+
+<hr>
+
+<h2>العناصر الخمسة الأساسية — بالترتيب الصحيح</h2>
+
+<h3>١. حجم الحصة — نقطة البداية التي يُتجاهلها معظم الناس</h3>
+<p>كل الأرقام في البطاقة مرتبطة بـ"حصة واحدة" — ليس بالعبوة كاملة. والخدعة الشائعة في تسويق المنتجات هي تصغير حجم الحصة المرجعية لجعل أرقام السكر والملح والسعرات تبدو منخفضة:</p>
+
+<div style="background: rgba(243, 244, 246, 0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; border: 1px solid #e5e7eb;">
+<h4 style="margin-top: 0; margin-bottom: 10px; color: #374151;">مثال عملي:</h4>
+<ul style="margin-bottom: 0px; line-height: 1.6;">
+<li>علبة شيبسي صغيرة مكتوب عليها: الحصة = 25 جرام</li>
+<li>السعرات = 130، الصوديوم = 180 ملغ</li>
+<li>لكن العبوة تحتوي على حصتين وربع!</li>
+<li><strong>الأرقام الفعلية عند أكل العبوة كاملة:</strong></li>
+<li>السعرات = 292، الصوديوم = 405 ملغ</li>
+<li><strong style="color: #ef4444;">القاعدة العملية:</strong> انظر أولاً لعدد الحصص في العبوة (Servings per container)، اضرب فيها كل الأرقام للحصول على ما يُستهلَك فعلياً.</li>
+</ul>
+</div>
+
+<h3>٢. السكر المُضاف — الخصم الخفي</h3>
+<p><strong>الفرق بين السكر الكلي والسكر المُضاف:</strong><br>البطاقة الحديثة تُميّز بين نوعين:</p>
+<ul>
+<li><strong>السكر الكلي (Total Sugars):</strong> يشمل السكر الطبيعي في الفاكهة والحليب + السكر المُضاف صناعياً</li>
+<li><strong>السكر المُضاف (Added Sugars):</strong> السكر الذي أضافه المصنّع — وهو المشكلة الحقيقية</li>
+</ul>
+<p>التفاحة تحتوي على 10 جرام سكر كلي لكن صفر سكر مُضاف. علبة عصير تفاح تحتوي على 26 جرام سكر كلي منها 18 جرام مُضافة — والفارق في الصحة كبير جداً لأن الألياف الغائبة في العصير لا تُبطّئ امتصاصه.</p>
+
+<h4 style="margin-bottom: 5px;">الحدود الموصى بها للأطفال:</h4>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:right;">
+<thead><tr><th>المصدر</th><th>التوصية للأطفال</th></tr></thead>
+<tbody>
+<tr><td><strong>منظمة الصحة العالمية</strong></td><td>أقل من 10% من السعرات اليومية = ~25 جرام (6 ملاعق صغيرة)</td></tr>
+<tr><td><strong>رابطة القلب الأمريكية (AHA)</strong></td><td>أقل من 25 جرام/يوم (2–18 سنة)، مشروبات محلاة أقل من 240 مل/أسبوع</td></tr>
+<tr><td><strong>NHS البريطانية</strong></td><td>أطفال 4–6 سنوات: أقل من 19 جرام، 7–10 سنوات: أقل من 24 جرام</td></tr>
+</tbody>
+</table>
+
+<p style="margin-top: 15px;"><strong>الصدمة العددية:</strong> علبة عصير مُحلّى (250 مل) تحتوي على 18–25 جرام سكر مُضاف — قد تُستنفد الحصة اليومية الكاملة للطفل في مشروب واحد. ومشروب غازي (330 مل) يحتوي على 35–40 جرام أي تتجاوز الحد اليومي كاملاً بـ40–60%.</p>
+
+<h4 style="margin-bottom: 5px;">أسماء السكر المُضاف المُقنَّعة في قوائم المكوّنات:</h4>
+<p>المصنّعون يستخدمون أكثر من 50 اسماً مختلفاً للسكر المُضاف في قوائم المكوّنات لتشتيت الانتباه عن تكرار ظهوره:</p>
+<ul>
+<li><strong>الكلاسيكية:</strong> سكر، سكروز، فركتوز، جلوكوز، لاكتوز</li>
+<li><strong>الشراب:</strong> شراب ذرة عالي الفركتوز (HFCS)، شراب الجلوكوز، شراب القيقب، شراب الذرة</li>
+<li><strong>المستعارة:</strong> عسل، دبس سكر، عصير قصب، سكر قصب، ملاسة</li>
+<li><strong>التقنية:</strong> مالتوديكسترين، ديكستروز، مالتوز، سكر العنب</li>
+</ul>
+<p><strong>القاعدة العملية:</strong> إذا وجدت أكثر من نوع واحد من هذه الأسماء في المكوّنات الأولى الخمسة — المنتج مُحلّى بشكل مكثّف.</p>
+
+<h3>٣. الصوديوم — الملح المُختبئ في كل مكان</h3>
+<h4 style="margin-bottom: 5px;">الحدود اليومية الآمنة للأطفال:</h4>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:center;">
+<thead><tr><th>الفئة العمرية</th><th>الحد الأقصى الآمن من الصوديوم</th></tr></thead>
+<tbody>
+<tr><td>1–3 سنوات</td><td>1,000 ملغ/يوم</td></tr>
+<tr><td>4–8 سنوات</td><td>1,200 ملغ/يوم</td></tr>
+<tr><td>9–13 سنة</td><td>1,500 ملغ/يوم</td></tr>
+<tr><td>14–18 سنة</td><td>2,300 ملغ/يوم</td></tr>
+</tbody>
+</table>
+
+<h4 style="margin-top: 15px; margin-bottom: 5px;">المنتجات "الصادمة" في محتوى الصوديوم:</h4>
+<p>كثير من المنتجات التي تبدو صحية تخفي صوديوماً مرتفعاً:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:right;">
+<thead><tr><th>المنتج</th><th>الصوديوم في الحصة</th></tr></thead>
+<tbody>
+<tr><td><strong>وجبة ماكدونالدز كاملة (برجر + بطاطس)</strong></td><td>1,400–1,800 ملغ</td></tr>
+<tr><td><strong>علبة شوربة معلبة</strong></td><td>800–1,100 ملغ</td></tr>
+<tr><td><strong>شيبسي (علبة صغيرة 25 جرام)</strong></td><td>160–200 ملغ</td></tr>
+<tr><td><strong>جبن مطبوخ (قطعتان)</strong></td><td>500–700 ملغ</td></tr>
+<tr><td><strong>كاتشب (ملعقتان كبيرتان)</strong></td><td>300–400 ملغ</td></tr>
+<tr><td><strong>خبز صناعي (شريحتان)</strong></td><td>200–300 ملغ</td></tr>
+</tbody>
+</table>
+<p style="margin-top: 15px;"><strong>القاعدة على البطاقة:</strong> أي منتج يحتوي على أكثر من 15% من القيمة اليومية (DV) للصوديوم في حصة واحدة يُعدّ "عالي الصوديوم" ويجب تقليل الكميات المُقدَّمة للأطفال.</p>
+
+<h3>٤. الدهون المتحوّلة (Trans Fat) — الخط الأحمر</h3>
+<p><strong>لماذا الدهون المتحوّلة مختلفة عن سائر الدهون؟</strong><br>الدهون المتحوّلة (Trans Fatty Acids) تُصنَّع صناعياً بإضافة الهيدروجين للزيوت النباتية السائلة لتصبح صلبة في درجة حرارة الغرفة (عملية الهدرجة الجزئية). هذا التغيير الهيكلي يجعلها ترفع LDL الضار (الكوليسترول السيئ) وتُخفض HDL النافع (الكوليسترول الجيد) في آنٍ واحد — وهو تأثير مزدوج لا تُحدثه أي دهون أخرى:</p>
+<ul>
+<li><strong>الدهون المشبعة:</strong> ترفع LDL فقط</li>
+<li><strong>الدهون المتحوّلة:</strong> ترفع LDL + تُخفض HDL (الأسوأ من حيث صحة القلب)</li>
+</ul>
+<p>وعند الأطفال تحديداً، أثبتت الدراسات أن الدهون المتحوّلة تُثبّط تحويل أحماض أوميجا-3 وأوميجا-6 إلى أشكالها النشطة (DHA وARA) اللازمة لبناء الدماغ والشبكية — مما يُحدث تأثيراً سلبياً مباشراً على تطور الجهاز العصبي.</p>
+
+<div style="background: rgba(220, 38, 38, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-right: 4px solid #ef4444;">
+<p style="margin: 0; font-weight: bold; color: #dc2626;">القاعدة المطلقة:</p>
+<p style="margin-top: 5px; margin-bottom: 0;">الأكاديمية الأمريكية لطب الأطفال (AAP) توصي بأن تكون الدهون المتحوّلة في غذاء الطفل أقل من 1% من إجمالي السعرات — وأن يسعى الآباء للوصول للصفر.</p>
+</div>
+
+<p><strong>كيف تكتشفها حين تُكتب "صفر"؟</strong><br>المصنّعون في كثير من الدول مُسموح لهم بكتابة "0 جرام دهون متحوّلة" إذا كان المحتوى أقل من 0.5 جرام في الحصة الواحدة. لكن عند تناول عدة حصص، يتراكم المحتوى. لذا ابحث في قائمة المكوّنات عن العبارات:</p>
+<ul>
+<li>"زيت نباتي مُهدرَج جزئياً" (Partially Hydrogenated Vegetable Oil)</li>
+<li>أو "Shortening"</li>
+<li>أو "Hydrogenated fat"</li>
+</ul>
+<p>إذا وجدت أي من هذه — المنتج يحتوي على دهون متحوّلة بصرف النظر عما يكتبه الرقم.</p>
+
+<h3>٥. قائمة المكوّنات — قراءة التسلسل قبل الأرقام</h3>
+<p><strong>قاعدة الترتيب — قانون الإفصاح الغذائي:</strong><br>المكوّنات مُرتّبة تنازلياً حسب الوزن: الأول في القائمة هو الأكثر كمية في المنتج. هذا التسلسل أحياناً يكشف ما تُخفيه الأرقام:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:right;">
+<thead><tr><th>ما يظهر في القائمة</th><th>ماذا يعني؟</th></tr></thead>
+<tbody>
+<tr><td>الأول: سكر، الثاني: دقيق أبيض</td><td>الطاقة الفارغة هي الأساس</td></tr>
+<tr><td>الأول: ماء، الثاني: سكر، الثالث: عصير تفاح 5%</td><td>"عصير" بنسبة 5% فاكهة حقيقية فقط</td></tr>
+<tr><td>الأول: دقيق قمح كامل، الثاني: شوفان</td><td>حبوب كاملة هي الأساس — منتج جيد</td></tr>
+<tr><td>5 مكوّنات أو أقل، كلها معروفة</td><td>معالجة أدنى = خيار أفضل عادةً</td></tr>
+</tbody>
+</table>
+
+<h4 style="margin-top: 15px; margin-bottom: 5px;">الأسماء التقنية المُقنَّعة التي يجب تعلّمها:</h4>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:right;">
+<thead><tr><th>الاسم التقني</th><th>ما هو فعلاً</th></tr></thead>
+<tbody>
+<tr><td><strong>E330 أو حمض الستريك</strong></td><td>حافظ حامضي — مقبول عموماً</td></tr>
+<tr><td><strong>E621 (غلوتاميت أحادي الصوديوم - MSG)</strong></td><td>مُعزّز للنكهة — يُثير قلقاً عند بعض الأطفال</td></tr>
+<tr><td><strong>E102 (تارترازين)</strong></td><td>صبغة صفراء اصطناعية — مرتبط بفرط الحركة في بعض الأطفال</td></tr>
+<tr><td><strong>BHA / BHT</strong></td><td>مضادات أكسدة صناعية — تُثير تساؤلات علمية</td></tr>
+<tr><td><strong>Carrageenan</strong></td><td>مُثخّن — أثار تساؤلات حول الالتهاب عند الاستخدام المفرط</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>دليل تقييم المنتج في 30 ثانية — الطريقة العملية</h2>
+<p>بدلاً من قراءة كل سطر، اتبع هذا التسلسل السريع:</p>
+<div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-right: 4px solid #3b82f6;">
+<ul style="margin-bottom: 0px; list-style-type: none; padding-right: 0;">
+<li style="margin-bottom: 10px;"><strong>خطوة 1: حجم الحصة وعدد الحصص في العبوة</strong>
+<br>→ اضرب الأرقام في عدد الحصص إذا سيأكل العبوة كاملة</li>
+<li style="margin-bottom: 10px;"><strong>خطوة 2: السعرات لكل حصة</strong>
+<br>→ هل تتناسب مع عمر الطفل ونشاطه؟</li>
+<li style="margin-bottom: 10px;"><strong>خطوة 3: السكر المُضاف</strong>
+<br>→ أقل من 5 جرام في الحصة = 🟢 قبول
+<br>→ 5–10 جرام = 🟡 تحذير
+<br>→ أكثر من 10 جرام = 🔴 رفض في معظم الأحوال</li>
+<li style="margin-bottom: 10px;"><strong>خطوة 4: الصوديوم</strong>
+<br>→ أقل من 120 ملغ في الحصة = 🟢 ممتاز
+<br>→ 120–400 ملغ = 🟡 مقبول باعتدال
+<br>→ أكثر من 400 ملغ = 🔴 مرتفع</li>
+<li style="margin-bottom: 10px;"><strong>خطوة 5: الدهون المتحوّلة</strong>
+<br>→ صفر مكتوب + غياب "مُهدرَج جزئياً" في المكوّنات = 🟢 مقبول</li>
+<li><strong>خطوة 6: أول 3 مكوّنات</strong>
+<br>→ إذا كان السكر أو الزيت أو الدقيق الأبيض بينها = 🔴 منتج سعرات فارغة</li>
+</ul>
+</div>
+
+<h2>جدول تقييم المنتجات الشائعة — أمثلة واقعية</h2>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:center;">
+<thead><tr><th>المنتج</th><th>تقييم السكر المُضاف</th><th>تقييم الصوديوم</th><th>دهون متحوّلة</th><th>التوصية</th></tr></thead>
+<tbody>
+<tr><td><strong>زبادي طبيعي</strong></td><td>✓ صفر</td><td>✓ منخفض</td><td>✓ صفر</td><td>🟢 مثالي</td></tr>
+<tr><td><strong>زبادي بالفاكهة مُحلّى</strong></td><td>⚠ 12–18 جرام</td><td>✓ منخفض</td><td>✓ صفر</td><td>🟡 باعتدال</td></tr>
+<tr><td><strong>شيبسي عادية (25 جرام)</strong></td><td>✓ صفر</td><td>⚠ 180 ملغ</td><td>تحقق من المكوّنات</td><td>🟡 باعتدال جداً</td></tr>
+<tr><td><strong>عصير برتقال معلّب مُحلّى</strong></td><td>❌ 20–28 جرام</td><td>✓ منخفض</td><td>✓ صفر</td><td>🔴 تجنّب</td></tr>
+<tr><td><strong>كاتشب (ملعقتان)</strong></td><td>⚠ 7–8 جرام</td><td>⚠ 350 ملغ</td><td>✓ صفر</td><td>🟡 قلّل الكمية</td></tr>
+<tr><td><strong>حبوب إفطار ملوّنة</strong></td><td>❌ 11–15 جرام/وجبة</td><td>⚠ 150 ملغ</td><td>تحقق</td><td>🔴 بديل بالشوفان</td></tr>
+<tr><td><strong>خبز صناعي أبيض (شريحتان)</strong></td><td>⚠ 3–5 جرام</td><td>⚠ 250 ملغ</td><td>تحقق</td><td>🟡 بديل الخبز البلدي</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>مهارة إضافية: قراءة ادعاءات التسويق الخادعة</h2>
+<p>البطاقة الأمامية مصمَّمة للبيع، والبطاقة الخلفية مصمَّمة للإفصاح. لا تدع الأولى تمنعك من قراءة الثانية:</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse; text-align:right;">
+<thead><tr><th>ما يُكتب على الواجهة</th><th>الحقيقة على البطاقة الخلفية</th></tr></thead>
+<tbody>
+<tr><td><strong>"طبيعي 100%"</strong></td><td>لا يعني خلوّه من السكر المُضاف أو الصوديوم العالي</td></tr>
+<tr><td><strong>"قليل الدهون" (Low Fat)</strong></td><td>غالباً يُعوَّض الطعم بسكر أكثر</td></tr>
+<tr><td><strong>"بدون سكر مُضاف"</strong></td><td>قد يحتوي على محلّيات مُكثَّفة أو يكون محلّياً بالفركتوز الطبيعي بشكل مفرط</td></tr>
+<tr><td><strong>"مُدعَّم بالفيتامينات"</strong></td><td>يُضاف الفيتامين لتحسين صورة منتج أصلاً سيئ التركيب</td></tr>
+<tr><td><strong>"مناسب للأطفال"</strong></td><td>لا ينضبط بمعايير غذائية صارمة في معظم الدول</td></tr>
+</tbody>
+</table>
+
+<div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding: 15px; border-radius: 12px; margin-top: 20px;">
+<p style="margin: 0; color: #10b981; font-weight: bold;">الخلاصة العملية:</p>
+<p style="margin: 10px 0 0 0; color: #d1d5db; line-height: 1.6;">قراءة البطاقة الغذائية مهارة تُتقَن بالتمرين — اصطحب طفلك أثناء التسوق وعلّمه التساؤل عما يراه مكتوباً. الطفل الذي يعرف في عمر 10 سنوات الفرق بين "عصير طبيعي" مكتوب على الواجهة و"عصير 10% فاكهة مع 28 جرام سكر مُضاف" مكتوب على البطاقة — يحمل أداةً وقائية تستمر معه طوال حياته.</p>
+</div>
+</div>
+`,
+        content_en: `<div dir="ltr">
+<p>Many parents buy products for their children based on appearance or advertising without reading the Nutrition Facts Label. This simple skill can make a significant difference in your child's health.</p>
+
+<h2>5 Things to Look for Immediately:</h2>
+<ol>
+<li><strong>Serving Size:</strong> The numbers listed are for one serving — and the package may contain 2 or 3 servings. If your child eats the entire package, multiply all numbers by the number of servings.</li>
+<li><strong>Added Sugars:</strong> The WHO recommends that added sugars should not exceed 10% of daily calories — approximately 25 grams (6 teaspoons) for a child. Some sweetened juice boxes contain more than that in a single container.</li>
+<li><strong>Sodium (Salt):</strong> Children aged 4–8 years need less than 1,200 mg of sodium daily. Canned products, chips, and processed cheeses contain very high amounts.</li>
+<li><strong>Trans Fat:</strong> This should be zero. Also look for "partially hydrogenated oil" in the ingredients list.</li>
+<li><strong>Ingredients:</strong> Listed from most to least. If sugar or oil is among the first 3 ingredients — the product is likely unhealthy.</li>
+</ol>
+</div>`,
+        sources_ar: [
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+            'Sindhu, S., & Madaiah, M. (2023). Impact of educational intervention in promoting KAP of food label information. Journal of Family Medicine and Primary Care.',
+        ],
+        sources_en: [
+            'WHO. (2026). Healthy diet fact sheet. WHO.',
+            'Sindhu, S., & Madaiah, M. (2023). Impact of educational intervention in promoting KAP of food label information. Journal of Family Medicine and Primary Care.',
+        ],
+        tags_ar: ['البطاقة الغذائية', 'سكر مضاف', 'صوديوم', 'دهون متحولة', 'حجم الحصة', 'قراءة الملصقات', 'تغذية الأطفال', 'منتجات صحية', 'وعي غذائي', 'مكونات الأغذية'],
+        tags_en: ['Nutrition Label', 'Added Sugars', 'Sodium', 'Trans Fats', 'Serving Size', 'Label Reading', 'Child Nutrition', 'Healthy Products', 'Food Awareness', 'Food Ingredients'],
+        meta: {
+            meta_title_ar: 'قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك',
+            meta_title_en: 'Reading the Nutrition Label — Family Health Skill',
+            meta_description_ar: '5 أشياء تبحث عنها فوراً في البطاقة الغذائية: السكر المضاف، الصوديوم، الدهون المتحولة، حجم الحصة، والمكونات. مهارة تحمي صحة طفلك.',
+            meta_description_en: '5 things to look for immediately on the nutrition label: added sugars, sodium, trans fats, serving size, and ingredients. A skill that protects your child\'s health.',
+            reading_time_minutes: 3,
+            og_title_ar: 'قراءة البطاقة الغذائية — مهارة تحمي صحة أسرتك',
+            og_title_en: 'Reading the Nutrition Label — A Skill That Protects Your Family',
+            og_description_ar: 'البطاقة الغذائية تكشف الحقيقة التي لا يخبرك بها الإعلان. تعلم قراءتها.',
+            og_description_en: 'The nutrition label reveals the truth advertising hides. Learn to read it.',
+        },
+        imageUrl: '/images/articles/nutrition-label.png',
+        category: 'balancedNutrition',
+    },
+
+    // ─────────────────────────────────────────────
+    // Article 10
+    // ─────────────────────────────────────────────
+    {
+        id: 10,
+        axis: 2, axis_ar: AXIS_AR, axis_en: AXIS_EN, week_range: '3-4',
+        title_ar: 'سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً',
+        title_en: 'Childhood Obesity & Fast Food — When Weight Becomes a Danger',
+        slug_ar: 'سمنة-الأطفال-والوجبات-السريعة',
+        slug_en: 'childhood-obesity-and-fast-food',
+        quick_summary_ar: [
+            '15.7% من الأطفال المصريين تحت 5 سنوات يعانون من الوزن الزائد',
+            'السمنة في الطفولة تزيد خطر السكري وأمراض القلب في الكبر',
+            'الحل ليس "حرمان" الطفل — بل تغيير البيئة الغذائية حوله',
+        ],
+        quick_summary_en: [
+            '15.7% of Egyptian children under 5 suffer from overweight',
+            'Childhood obesity increases the risk of diabetes and heart disease in adulthood',
+            'The solution is not "depriving" the child — but changing the food environment around them',
+        ],
+        content_ar: `<div dir="rtl">
+<p>سمنة الأطفال ليست مجرد قضية جمالية أو مسألة "الطفل يأكل كثيراً" — بل هي حالة مرضية تُؤهّب لأكثر من 50 مرضاً مزمناً تبدأ بذورها في الطفولة وتحصد ثمارها في البلوغ. وفي مصر تحديداً، الأرقام تكشف عن أزمة صحية عامة تتشابك فيها السمنة وسوء التغذية في آنٍ معاً.</p>
+
+<h2>الوضع في مصر — المفارقة المزدوجة</h2>
+<p>تُعاني مصر مما يُسميه الباحثون "العبء الغذائي المزدوج" (Double Burden of Malnutrition): تقزّم يصيب الأطفال في أحياء الفقر، وسمنة تنتشر في الطبقة الوسطى والميسورة — في البلد ذاته وأحياناً في الأسرة ذاتها. دراسة نشرتها Frontiers in Public Health (2022) على بيانات مسح DHS المصري وجدت أن 17% من الأطفال دون الخامسة يعانون من وزن زائد أو سمنة — أي نحو ضعف المتوسط العالمي البالغ 8.6%. والعوامل المرتبطة إحصائياً بهذه النسبة المرتفعة تشمل: عمر الطفل (19–37 شهراً)، الوزن عند الولادة (فوق 4 كجم)، مستوى استهلاك البروتين، والمستوى الاجتماعي-الاقتصادي للأم.</p>
+
+<p>وعلى مستوى أطفال المرحلة الابتدائية (6–12 سنة)، تتراوح نسب الوزن الزائد والسمنة في دراسات مناطق مصرية مختلفة بين 13% و20% تبعاً للمنطقة الجغرافية والمجموعة السكانية. هذه النسب تجعل سمنة الأطفال في مصر أزمة صحية عامة لا مجرد مشكلة فردية.</p>
+
+<h2>ما يحدث في جسم الطفل الذي يعاني من السمنة — الآليات الفسيولوجية</h2>
+<h3>مقاومة الأنسولين — البوابة الأولى للخطر</h3>
+<p>السمنة في الطفولة تُحفّز تراكم الدهون الحشوية (Visceral Fat) حول الأعضاء الداخلية — وهي أشد خطورةً من الدهون تحت الجلد. هذه الدهون تُفرز سيتوكينات التهابية (Adipokines) تُتداخل مع مستقبلات الأنسولين وتُعيق قدرة الخلايا على استخدام الجلوكوز — وهو ما يُعرف بمقاومة الأنسولين. ودراسة بوغالوسا للقلب الشهيرة — إحدى أطول الدراسات الطولية في علم القلب والأوبئة — وجدت أن الأطفال الذين جمعوا بين السمنة ومقاومة الأنسولين في طفولتهم كانوا أكثر عرضة بشكل دراماتيكي للإصابة بالمتلازمة الاستقلابية في البلوغ.</p>
+
+<h3>تأثيرات على الأعضاء الرئيسية في مرحلة الطفولة</h3>
+<p>لا تنتظر المضاعفات حتى البلوغ — كثير منها يبدأ أثناء الطفولة:</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>العضو</th><th>التأثير الموثَّق</th></tr></thead>
+<tbody>
+<tr><td>الكبد</td><td>الكبد الدهني غير الكحولي (NAFLD) — يُكشف بالموجات الصوتية في أطفال من عمر 8 سنوات</td></tr>
+<tr><td>القلب</td><td>سماكة جدار البطين الأيسر، ارتفاع الكوليسترول LDL وثلاثيات الدهون، ارتفاع ضغط الدم</td></tr>
+<tr><td>البنكرياس</td><td>استنزاف خلايا بيتا، بداية مقاومة الأنسولين، ارتفاع HbA1c</td></tr>
+<tr><td>الكليتان</td><td>ارتفاع ضغط الدم الكلوي، زلال البول (بروتين في البول)</td></tr>
+<tr><td>الجهاز التنفسي</td><td>انقطاع التنفس أثناء النوم (Sleep Apnea)، الربو المُفاقَم</td></tr>
+<tr><td>الجهاز الحركي</td><td>زيادة الضغط على مفاصل الركبة والورك، تقوّس قدم</td></tr>
+<tr><td>الدماغ/النفس</td><td>تراجع الثقة بالنفس، اكتئاب، إشكاليات الأقران</td></tr>
+</tbody>
+</table>
+
+<h3>الاستمرارية من الطفولة للبلوغ — "الطفل البدين = البالغ البدين"</h3>
+<p>دراسات تتبّعية طولية متعددة تُثبت أن السمنة في الطفولة تنتقل للبلوغ بنسبة مرتفعة — تصل إلى 80% في الحالات الشديدة. فضلاً عن ذلك، المراهق ذو الوزن الزائد الذي لا تظهر عليه اضطرابات استقلابية ظاهرية يواجه زيادة في خطر الإصابة بالسكري النوع 2 بمعامل 6 أضعاف بعد 20 سنة مقارنةً بأقرانه الطبيعيين.</p>
+
+<h2>الأغذية فائقة المعالجة (UPF) — الفهم العلمي الكامل</h2>
+<h3>ما هي الأغذية فائقة المعالجة؟</h3>
+<p>تصنيف NOVA (أبرز أنظمة تصنيف الأغذية بحسب درجة المعالجة) يُعرّف الأغذية فائقة المعالجة بأنها منتجات تحتوي على 5 مكوّنات أو أكثر من المواد الكيميائية الصناعية التي لا تُستخدم في الطبخ المنزلي: المُحسّنات، المُستحلبات، المُحلّيات الاصطناعية، الألوان، المنكّهات، الحافظات. تشمل: الوجبات السريعة، رقائق البطاطس، العصائر المُعلّبة، الحبوب المُحلاة، الحلويات الصناعية، البسكويت المُعبَّأ، معظم المشروبات الغازية.</p>
+
+<h3>آليات تسبّب السمنة — ما وراء السعرات الحرارية</h3>
+<p>الأغذية فائقة المعالجة لا تُسبّب السمنة فقط بزيادة السعرات — بل لها آليات مستقلة عنها:</p>
+
+<ol>
+<li><strong>فرط الاستساغة (Hyperpalatability):</strong><br>تحتوي على مزيج مُصمَّم بدقة من السكر والملح والدهون والمُنكّهات يُفعّل نظام المكافأة الدوباميني في الدماغ — بما يُشبه آلية الإدمان. هذا يُعطّل إشارات الشبع الطبيعية ويدفع الطفل للأكل رغم اكتمال السعرات.</li>
+<li><strong>تعطيل هرمونات الشهية:</strong><br>السكريات عالية الفركتوز في المشروبات الغازية والعصائر الصناعية تُقلّل إفراز اللبتين (هرمون الشبع) وتُرفع الغريلين (هرمون الجوع) — مما يخلق شهية مستمرة لا تتناسب مع احتياج الجسم الحقيقي.</li>
+<li><strong>تدمير الميكروبيوم المعوي:</strong><br>الحافظات والمُستحلبات الصناعية تُغيّر تركيب بكتيريا الأمعاء بشكل موثَّق — وهذا التغيّر بحدّ ذاته يرتبط بزيادة الوزن وضعف المناعة واضطرابات مزاجية.</li>
+<li><strong>السمنة مع نقص المغذيات — المفارقة:</strong><br>دراسة دراماتيكية على أطفال مصريين مصابين بالسمنة وجدت أن 80% منهم يعانون في الوقت ذاته من أنيميا نقص الحديد. الأغذية فائقة المعالجة تُوفّر سعرات وفيرة وتُفشل في توفير المغذيات الدقيقة — وهو "الجوع الخفي مع الوزن الزائد".</li>
+</ol>
+
+<h3>دراسة 2025 — الارتباط المستقل عن السعرات</h3>
+<p>تجدر الإشارة إلى دراسة مجموعة كبيرة (كوهورت) نُشرت في JAMA Network Open عام 2025 تتبّعت أطفالاً كنديين من عمر 3 إلى 5 سنوات، ووجدت أن استهلاك الأغذية فائقة المعالجة يرتبط بارتفاع BMI ومحيط الخصر وسماكة طيّات الجلد بشكل مستقل عن إجمالي السعرات الحرارية والسكريات والدهون المشبعة والصوديوم — مما يؤكد أن هناك تأثيراً فيزيولوجياً لفرط المعالجة بحد ذاته، بمعزل عن المحتوى الغذائي.</p>
+
+<h2>تشخيص الوزن الزائد — أداة BMI مقابل Z-Score</h2>
+<h3>حساب BMI للطفل</h3>
+<p>لا يُستخدم BMI للطفل بنفس المعايير الثابتة كالبالغين — بل يُقارن دائماً بعمره وجنسه:</p>
+
+<div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; text-align: center; border-radius: 12px; margin: 20px 0; font-family: monospace; font-size: 1.2em; direction: ltr;">
+BMI = Weight (kg) / Height (m)²
+</div>
+
+<p>ثم يُحدَّد موقع هذه القيمة على منحنى BMI-for-Age الخاص بعمر وجنس الطفل.</p>
+
+<h3>معايير منظمة الصحة العالمية للأطفال (Z-Score)</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>التصنيف</th><th>Z-Score للـ BMI/العمر</th><th>الإجراء</th></tr></thead>
+<tbody>
+<tr><td>نحيف (إشكالية)</td><td>أقل من −2</td><td>تقييم غذائي، قد يحتاج تدخلاً</td></tr>
+<tr><td>طبيعي</td><td>−2 إلى +1</td><td>استمرار المراقبة الدورية</td></tr>
+<tr><td>وزن زائد</td><td>أعلى من +1</td><td>تعديل نمط حياة وغذاء</td></tr>
+<tr><td>سمنة</td><td>أعلى من +2</td><td>تقييم طبي، فحوصات استقلابية</td></tr>
+<tr><td>سمنة شديدة</td><td>أعلى من +3</td><td>تحويل لفريق متخصص</td></tr>
+</tbody>
+</table>
+<p><strong>ملاحظة عملية:</strong> تشير دراسة مقارنة على أطفال صعيد مصر إلى أن اختيار المخطط المرجعي يُغيّر النسبة المُشخَّصة تغييراً كبيراً — مخططات CDC أظهرت نسباً أعلى من المخطط المصري المحلي في نفس العيّنة. لهذا تُوصي WHO باستخدام مخططاتها الموحَّدة لضمان المقارنة الدولية.</p>
+
+<h2>تشريح وجبة الطفل السريعة — ما يدخل الجسم فعلاً</h2>
+<p>برجر متوسط (كبير) + بطاطس مقلية + مشروب غازي (500 مل):</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>المكوّن</th><th>القيمة الغذائية</th><th>نسبة الاحتياج اليومي للطفل (6–10 سنوات)</th></tr></thead>
+<tbody>
+<tr><td>السعرات الحرارية</td><td>900–1,200 سعرة</td><td>60–80% من الاحتياج اليومي</td></tr>
+<tr><td>الصوديوم (ملح)</td><td>1,200–1,800 ملغ</td><td>150–220% (يتجاوز الحد الأقصى)</td></tr>
+<tr><td>الدهون المشبعة</td><td>15–25 جرام</td><td>200–300% من الحد اليومي الموصى به</td></tr>
+<tr><td>السكريات المُضافة</td><td>45–65 جرام</td><td>300–450% من الحد الموصى به للطفل</td></tr>
+<tr><td>الألياف</td><td>0–2 جرام</td><td>5–10% فقط من الاحتياج (14–25 جرام/يوم)</td></tr>
+<tr><td>الحديد</td><td>≤ 2 ملغ</td><td>20% من الاحتياج</td></tr>
+<tr><td>الكالسيوم</td><td>≤ 100 ملغ</td><td>10% من الاحتياج</td></tr>
+<tr><td>فيتامين أ</td><td>≤ 50 ميكروغرام</td><td>≤ 13% من الاحتياج</td></tr>
+</tbody>
+</table>
+<p><strong>الخلاصة الرقمية:</strong> وجبة واحدة تُعطي سعرات اليوم كله مع أقل من 15% من احتياج الألياف وأقل من 10–20% من احتياجات الكالسيوم والحديد وفيتامين أ.</p>
+
+<h2>العوامل التي ترفع خطر السمنة عند الطفل المصري</h2>
+<p>تتفاعل عدة عوامل في السياق المصري لتُفسّر الأرقام المرتفعة:</p>
+<ul>
+<li><strong>التحضّر وتغيّر نمط الغذاء:</strong> انتشار منافذ الوجبات السريعة وسهولة الحصول على الأغذية فائقة المعالجة بتكلفة منخفضة</li>
+<li><strong>تراجع النشاط البدني:</strong> الحياة المُستقرّة داخل المنازل، الوقت الطويل أمام الشاشات، قلة المساحات الآمنة للعب في المدن</li>
+<li><strong>التسويق الموجَّه للأطفال:</strong> الإعلانات التي تستهدف الأطفال مباشرةً على منصات الإنترنت والتلفاز برسائل تُضخّم جاذبية الأغذية فائقة المعالجة</li>
+<li><strong>الوزن المرتفع عند الولادة (>4 كجم):</strong> عامل خطر موثَّق في الدراسات المصرية</li>
+<li><strong>غياب ثقافة الرضاعة الطبيعية والتغذية التكميلية الصحيحة في الأشهر الأولى</strong></li>
+</ul>
+
+<h2>التدخل — ما يصلح وما لا يصلح</h2>
+<h3>ما لا يعمل: نهج "الحمية والتقييد"</h3>
+<p>تقييد الطعام عند طفل تحت الخامسة أو حتى السنوات العشر قد يُسبّب علاقة مرضية بالطعام — القلق حوله، الشراهة الخفية، الخزي المرتبط بالأكل. لا يوجد دليل علمي يدعم الحمية الصارمة عند الأطفال الصغار.</p>
+
+<h3>ما يعمل: نهج تعديل البيئة الغذائية</h3>
+<p>التدخل الأجدى ليس تعليم الطفل "هذا ممنوع" — بل إعادة هيكلة بيئة الطعام المنزلية:</p>
+<ul>
+<li><strong>إتاحة الخيار الصحي كخيار افتراضي:</strong> وضع الفاكهة والخضروات على طاولة في متناول اليد، وإبعاد الحلويات عن متناول البصر</li>
+<li><strong>الوجبات المُهيكلة:</strong> أوقات وجبات ثابتة ومُجلَسة بلا شاشات — الأكل أمام التلفاز يُزيد الاستهلاك ويُقلّل الوعي بإشارات الشبع</li>
+<li><strong>الأحجام المناسبة:</strong> أطباق أصغر، كميات معتدلة، وإعطاء الطفل حق اختيار متى يشبع</li>
+<li><strong>مشاركة الطفل في التحضير:</strong> الأطفال الذين يُشاركون في تحضير طعامهم يأكلون منه بشكل أكبر ويُطوّرون علاقة صحية مع الغذاء</li>
+<li><strong>النشاط البدني كممارسة عائلية:</strong> 60 دقيقة يومياً من النشاط المتوسط إلى المكثّف — لعب في الشارع، سباحة، ركوب دراجة</li>
+</ul>
+
+<p><strong>تنويه:</strong> إذا كان BMI الطفل فوق +2 انحراف معياري، فإن التقييم الطبي الشامل (ضغط الدم، سكر الدم، الكوليسترول، وظائف الكبد) هو الخطوة الأولى — وليس الحمية الذاتية.</p>
+
+</div>`,
+        content_en: `<div dir="ltr">
+<p>Childhood obesity has become a global health problem escalating at an alarming rate. In Egypt, 15.7% of children under 5 suffer from overweight — a rate that exceeds the African average (6.0%) by more than double. Children who suffer from obesity in childhood are more likely to develop type 2 diabetes, hypertension, heart disease, and depression later in life.[19][20][21]</p>
+
+<h2>How Do You Know If Your Child's Weight Is Concerning?</h2>
+<p>The scientific method is to calculate BMI-for-Age and compare it with WHO standards:[22][4]</p>
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<thead><tr><th>Classification</th><th>Z-score</th></tr></thead>
+<tbody>
+<tr><td>Underweight</td><td>Below −2</td></tr>
+<tr><td>Normal</td><td>−2 to +1</td></tr>
+<tr><td>Overweight</td><td>Above +1</td></tr>
+<tr><td>Obese</td><td>Above +2</td></tr>
+</tbody>
+</table>
+<p>You can use the BMI calculator tool on the NutriAware platform to determine your child's classification.</p>
+
+<h2>What Does Fast Food Actually Do?</h2>
+<p>A burger + French fries + medium soft drink = approximately 900–1,200 calories — representing 60–75% of a child's entire daily requirement in a single meal. The problem is not just the calories, but that this meal is:</p>
+<ul>
+<li>High in saturated and trans fats</li>
+<li>High in sodium (1,000–1,500 mg in a single meal)</li>
+<li>Very low in fiber, vitamins, and minerals</li>
+</ul>
+
+<h2>Practical Recommendations:</h2>
+<p>WHO recommends the following for preventing childhood obesity:[19]</p>
+<ul>
+<li>Increase consumption of fruits, vegetables, legumes, and whole grains</li>
+<li>Reduce portion sizes</li>
+<li>Reduce saturated fats and replace them with unsaturated fats</li>
+<li>Reduce added sugars</li>
+<li>At least 60 minutes of physical activity daily</li>
+</ul>
+</div>`,
+        sources_ar: [
+            'Global Nutrition Report. (2024). Egypt nutrition profile.',
+            'Bonsu, E. O., & Addo, I. Y. (2022). Prevalence and correlates of overweight and obesity among under-five children in Egypt. Frontiers in Public Health.',
+            'WHO. (2025). Childhood overweight and obesity Q&A.',
+        ],
+        sources_en: [
+            'Global Nutrition Report. (2024). Egypt nutrition profile.',
+            'Bonsu, E. O., & Addo, I. Y. (2022). Prevalence and correlates of overweight and obesity among under-five children in Egypt. Frontiers in Public Health.',
+            'WHO. (2025). Childhood overweight and obesity Q&A.',
+        ],
+        tags_ar: ['سمنة الأطفال', 'الوجبات السريعة', 'مؤشر كتلة الجسم', 'السكري', 'نشاط بدني', 'وزن زائد', 'تغذية الأطفال', 'حمية صحية', 'مصر', 'وقاية'],
+        tags_en: ['Childhood Obesity', 'Fast Food', 'BMI', 'Diabetes', 'Physical Activity', 'Overweight', 'Child Nutrition', 'Healthy Diet', 'Egypt', 'Prevention'],
+        meta: {
+            meta_title_ar: 'سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً',
+            meta_title_en: 'Childhood Obesity & Fast Food — When Weight Is Risky',
+            meta_description_ar: '15.7% من أطفال مصر يعانون من زيادة الوزن. تعرف على مخاطر الوجبات السريعة وطرق الوقاية من سمنة الأطفال وفقاً لتوصيات WHO.',
+            meta_description_en: '15.7% of Egyptian children are overweight. Learn about fast food dangers and WHO recommendations for preventing childhood obesity.',
+            reading_time_minutes: 4,
+            og_title_ar: 'سمنة الأطفال والوجبات السريعة — متى يصبح الوزن خطراً',
+            og_title_en: 'Childhood Obesity & Fast Food — When Weight Becomes a Danger',
+            og_description_ar: 'وجبة برجر واحدة = 75% من احتياج الطفل اليومي. تعرف على الحل العلمي.',
+            og_description_en: 'One burger meal = 75% of a child\'s daily needs. Learn the scientific solution.',
+        },
+        imageUrl: '/images/articles/childhood-obesity-fastfood.jpg',
+        category: 'overnutrition',
+    },
+];

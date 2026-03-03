@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
@@ -10,10 +10,20 @@ import {
   Activity
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackToolAccess, trackToolExit } from '@/services/activityTracker';
 
 const Services: React.FC = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
+
+  // Track tool access and exit
+  useEffect(() => {
+    trackToolAccess('Services Page');
+
+    return () => {
+      trackToolExit('Services Page');
+    };
+  }, []);
 
   const services = [
     {

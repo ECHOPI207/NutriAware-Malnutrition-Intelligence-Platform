@@ -28,38 +28,38 @@ const App: React.FC = () => {
         <ErrorBoundary>
           <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><LoadingSpinner size="lg" /></div>}>
             <Routes>
-            {/* Auth Routes */}
-            <Route element={<AuthLayout />}>
-              <Route path="/auth/login" element={<SimpleLogin />} />
-              <Route path="/auth/signup" element={<SimpleSignup />} />
-              <Route path="/auth/verify-email" element={<VerifyEmail />} />
-              <Route path="/auth/callback" element={<AuthCallback />} />
-              <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-              <Route path="/auth/update-password" element={<UpdatePassword />} />
-            </Route>
+              {/* Auth Routes */}
+              <Route element={<AuthLayout />}>
+                <Route path="/auth/login" element={<SimpleLogin />} />
+                <Route path="/auth/signup" element={<SimpleSignup />} />
+                <Route path="/auth/verify-email" element={<VerifyEmail />} />
+                <Route path="/auth/callback" element={<AuthCallback />} />
+                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                <Route path="/auth/update-password" element={<UpdatePassword />} />
+              </Route>
 
-            {/* Public Routes */}
-            <Route element={<PublicLayout />}>
-              {routes.filter(route => !route.path.startsWith('/auth/')).map((route, index) => {
-                const element = route.requiredRole ? (
-                  <ProtectedRoute requiredRole={route.requiredRole}>
-                    {route.element}
-                  </ProtectedRoute>
-                ) : (
-                  route.element
-                );
+              {/* Public Routes */}
+              <Route element={<PublicLayout />}>
+                {routes.filter(route => !route.path.startsWith('/auth/')).map((route, index) => {
+                  const element = route.requiredRole ? (
+                    <ProtectedRoute requiredRole={route.requiredRole}>
+                      {route.element}
+                    </ProtectedRoute>
+                  ) : (
+                    route.element
+                  );
 
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={element}
-                  />
-                );
-              })}
-            </Route>
-          </Routes>
-        </Suspense>
+                  return (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={element}
+                    />
+                  );
+                })}
+              </Route>
+            </Routes>
+          </Suspense>
         </ErrorBoundary>
       </AuthProvider>
     </Router>

@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/features/auth/firebase-auth-context';
 import { collection, query, orderBy, getDocs, doc, setDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { trackDataDeletion } from '@/services/activityTracker';
 import { articles as staticArticles } from '@/data/articles'; // Import static data
+import { interventionArticles } from '@/data/interventionArticles';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -28,7 +30,7 @@ interface Article {
   title: { ar: string; en: string };
   excerpt: { ar: string; en: string };
   content: { ar: string; en: string };
-  category: 'undernutrition' | 'overnutrition' | 'foodSafety';
+  category: 'undernutrition' | 'overnutrition' | 'foodSafety' | 'balancedNutrition' | 'micronutrients' | string;
   ageGroup: 'children' | 'adults' | 'all';
   keyTakeaways: { ar: string[]; en: string[] };
   status: 'draft' | 'published' | 'archived';
@@ -46,7 +48,7 @@ const modules = {
   toolbar: [
     [{ 'header': [1, 2, 3, false] }],
     ['bold', 'italic', 'underline', 'strike'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
     ['link', 'image'],
     ['clean'],
     [{ 'direction': 'rtl' }]
@@ -112,7 +114,43 @@ const ContentManagement: React.FC = () => {
     if (!confirm('This will import all static articles from articles.ts to Firestore. Continue?')) return;
     try {
       setLoading(true);
-      for (const staticArticle of staticArticles) {
+
+      // Prepare basic static articles
+      const allStaticData = [...staticArticles.map(a => ({
+        ...a,
+        isIntervention: false,
+      }))];
+
+      // Prepare intervention articles to match standard schema
+      const mappedInterventions = interventionArticles.map(article => {
+        let standardCategory = article.category || 'foodSafety';
+        if (!article.category) {
+          if (article.axis === 2) standardCategory = 'balancedNutrition';
+          if (article.axis === 3) standardCategory = 'micronutrients';
+        }
+
+        return {
+          id: article.slug_en || `article-${article.id}`,
+          title: { en: article.title_en, ar: article.title_ar },
+          excerpt: {
+            en: article.quick_summary_en?.[0] || article.content_en.substring(0, 100),
+            ar: article.quick_summary_ar?.[0] || article.content_ar.substring(0, 100)
+          },
+          content: { en: article.content_en, ar: article.content_ar },
+          category: standardCategory,
+          ageGroup: 'all' as 'all', // interventions focus on general parental guidance
+          keyTakeaways: {
+            en: [...(article.quick_summary_en || []), ...(article.practical_tips_en || [])],
+            ar: [...(article.quick_summary_ar || []), ...(article.practical_tips_ar || [])]
+          },
+          imageUrl: article.imageUrl || '',
+          isIntervention: true,
+        };
+      });
+
+      const combinedArticles = [...allStaticData, ...mappedInterventions];
+
+      for (const staticArticle of combinedArticles) {
         const articleRef = doc(db, 'articles', staticArticle.id);
         const articleData = {
           ...staticArticle,
@@ -124,7 +162,6 @@ const ContentManagement: React.FC = () => {
           // Ensure structure matches
           featuredImage: staticArticle.imageUrl,
           tags: { en: [], ar: [] }
-          // category, ageGroup, keyTakeaways map directly
         };
         // Use setDoc to overwrite/create with specific ID
         await setDoc(articleRef, articleData, { merge: true });
@@ -175,6 +212,10 @@ const ContentManagement: React.FC = () => {
     if (!confirm(isRTL ? 'تأكيد الحذف؟' : 'Confirm delete?')) return;
     try {
       await deleteDoc(doc(db, 'articles', id));
+      
+      // Track data deletion
+      trackDataDeletion('article', id);
+      
       setArticles(prev => prev.filter(a => a.id !== id));
     } catch (error) {
       console.error(error);
@@ -238,194 +279,196 @@ const ContentManagement: React.FC = () => {
   };
 
   if (userProfile?.role !== 'admin') {
-     return <div className="p-8 text-center">Unauthorized</div>;
+    return <div className="p-8 text-center">Unauthorized</div>;
   }
 
   return (
     <div className={`min-h-screen gradient-bg ${isRTL ? 'rtl' : 'ltr'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          
+
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
-             <div>
-                <h1 className="text-3xl font-bold gradient-text">{isRTL ? 'إدارة المحتوى' : 'Content Management'}</h1>
-                <p className="text-muted-foreground">{isRTL ? 'إدارة مقالات ومحتوى مركز المعرفة' : 'Manage Knowledge Center articles and content'}</p>
-             </div>
-             {!showForm && (
-                 <div className="flex flex-wrap gap-2 w-full md:w-auto">
-                    <Button variant="outline" onClick={importStaticArticles} className="flex-1 md:flex-none">
-                        <Download className="h-4 w-4 mr-2" />
-                        {isRTL ? 'استيراد المقالات الحالية' : 'Import Static Articles'}
-                    </Button>
-                    <Button onClick={() => setShowForm(true)} className="flex-1 md:flex-none">
-                        <Plus className="h-4 w-4 mr-2" />
-                        {isRTL ? 'مقال جديد' : 'New Article'}
-                    </Button>
-                 </div>
-             )}
+            <div>
+              <h1 className="text-3xl font-bold gradient-text">{isRTL ? 'إدارة المحتوى' : 'Content Management'}</h1>
+              <p className="text-muted-foreground">{isRTL ? 'إدارة مقالات ومحتوى مركز المعرفة' : 'Manage Knowledge Center articles and content'}</p>
+            </div>
+            {!showForm && (
+              <div className="flex flex-wrap gap-2 w-full md:w-auto">
+                <Button variant="outline" onClick={importStaticArticles} className="flex-1 md:flex-none">
+                  <Download className="h-4 w-4 mr-2" />
+                  {isRTL ? 'استيراد المقالات الحالية' : 'Import Static Articles'}
+                </Button>
+                <Button onClick={() => setShowForm(true)} className="flex-1 md:flex-none">
+                  <Plus className="h-4 w-4 mr-2" />
+                  {isRTL ? 'مقال جديد' : 'New Article'}
+                </Button>
+              </div>
+            )}
           </div>
 
           {!showForm ? (
             loading ? (
-                <div className="flex justify-center py-12">
-                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                </div>
+              <div className="flex justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              </div>
             ) : (
-            // LIST VIEW
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              // LIST VIEW
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {articles.map((article) => (
-                    <Card key={article.id} className="hover:shadow-lg transition-all card-medical shadow-medical-sm">
-                        <CardHeader className="pb-2">
-                            <div className="flex justify-between items-start">
-                                <Badge variant={article.status === 'published' ? 'default' : 'secondary'}>
-                                    {article.status}
-                                </Badge>
-                                <Badge variant="outline">{article.category}</Badge>
-                            </div>
-                            <CardTitle className="line-clamp-1 mt-2">{isRTL ? article.title.ar : article.title.en}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                             <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                                {isRTL ? article.excerpt?.ar : article.excerpt?.en}
-                             </p>
-                             <div className="flex gap-2 justify-end">
-                                 <Button variant="ghost" size="sm" onClick={() => editArticle(article)}><Edit className="h-4 w-4" /></Button>
-                                 <Button variant="ghost" size="sm" className="text-red-500" onClick={() => deleteArticle(article.id)}><Trash2 className="h-4 w-4" /></Button>
-                             </div>
-                        </CardContent>
-                    </Card>
+                  <Card key={article.id} className="hover:shadow-lg transition-all card-medical shadow-medical-sm">
+                    <CardHeader className="pb-2">
+                      <div className="flex justify-between items-start">
+                        <Badge variant={article.status === 'published' ? 'default' : 'secondary'}>
+                          {article.status}
+                        </Badge>
+                        <Badge variant="outline">{article.category}</Badge>
+                      </div>
+                      <CardTitle className="line-clamp-1 mt-2">{isRTL ? article.title.ar : article.title.en}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                        {isRTL ? article.excerpt?.ar : article.excerpt?.en}
+                      </p>
+                      <div className="flex gap-2 justify-end">
+                        <Button variant="ghost" size="sm" onClick={() => editArticle(article)}><Edit className="h-4 w-4" /></Button>
+                        <Button variant="ghost" size="sm" className="text-red-500" onClick={() => deleteArticle(article.id)}><Trash2 className="h-4 w-4" /></Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
-            </div>
-          )) : (
+              </div>
+            )) : (
             // EDITOR FORM
             <Card className="border-none shadow-xl">
-                <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <CardTitle>{editingArticle ? (isRTL ? 'تعديل مقال' : 'Edit Article') : (isRTL ? 'مقال جديد' : 'New Article')}</CardTitle>
-                        <Tabs value={activeLanguage} onValueChange={(v: any) => setActiveLanguage(v)} className="w-full md:w-[200px]">
-                            <TabsList className="grid w-full grid-cols-2">
-                                <TabsTrigger value="ar">العربية</TabsTrigger>
-                                <TabsTrigger value="en">English</TabsTrigger>
-                            </TabsList>
-                        </Tabs>
+              <CardHeader>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <CardTitle>{editingArticle ? (isRTL ? 'تعديل مقال' : 'Edit Article') : (isRTL ? 'مقال جديد' : 'New Article')}</CardTitle>
+                  <Tabs value={activeLanguage} onValueChange={(v: any) => setActiveLanguage(v)} className="w-full md:w-[200px]">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="ar">العربية</TabsTrigger>
+                      <TabsTrigger value="en">English</TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Common Fields (Metadata) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/20 p-4 rounded-lg">
+                  <div className="space-y-2">
+                    <Label>{isRTL ? 'الصورة الرئيسية (رابط)' : 'Featured Image (URL)'}</Label>
+                    <Input
+                      value={formData.featuredImage}
+                      onChange={(e) => setFormData(prev => ({ ...prev, featuredImage: e.target.value }))}
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-2">
+                      <Label>{isRTL ? 'التصنيف' : 'Category'}</Label>
+                      <select
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                        value={formData.category}
+                        onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
+                      >
+                        <option value="undernutrition">Undernutrition</option>
+                        <option value="overnutrition">Overnutrition</option>
+                        <option value="foodSafety">Food Safety</option>
+                        <option value="balancedNutrition">Balanced Nutrition</option>
+                        <option value="micronutrients">Micronutrients</option>
+                      </select>
                     </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    {/* Common Fields (Metadata) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/20 p-4 rounded-lg">
-                        <div className="space-y-2">
-                             <Label>{isRTL ? 'الصورة الرئيسية (رابط)' : 'Featured Image (URL)'}</Label>
-                             <Input 
-                                value={formData.featuredImage} 
-                                onChange={(e) => setFormData(prev => ({ ...prev, featuredImage: e.target.value }))}
-                                placeholder="https://..." 
-                             />
-                        </div>
-                        <div className="grid grid-cols-2 gap-2">
-                            <div className="space-y-2">
-                                <Label>{isRTL ? 'التصنيف' : 'Category'}</Label>
-                                <select 
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                                    value={formData.category}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
-                                >
-                                    <option value="undernutrition">Undernutrition</option>
-                                    <option value="overnutrition">Overnutrition</option>
-                                    <option value="foodSafety">Food Safety</option>
-                                </select>
-                            </div>
-                            <div className="space-y-2">
-                                <Label>{isRTL ? 'الفئة العمرية' : 'Age Group'}</Label>
-                                <select 
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
-                                    value={formData.ageGroup}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, ageGroup: e.target.value as any }))}
-                                >
-                                    <option value="all">All</option>
-                                    <option value="children">Children</option>
-                                    <option value="adults">Adults</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div className="space-y-2">
+                      <Label>{isRTL ? 'الفئة العمرية' : 'Age Group'}</Label>
+                      <select
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                        value={formData.ageGroup}
+                        onChange={(e) => setFormData(prev => ({ ...prev, ageGroup: e.target.value as any }))}
+                      >
+                        <option value="all">All</option>
+                        <option value="children">Children</option>
+                        <option value="adults">Adults</option>
+                      </select>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Translatable Fields */}
-                    <div className="space-y-4">
-                        <div className="space-y-2">
-                            <Label>{isRTL ? 'العنوان' : 'Title'} ({activeLanguage.toUpperCase()})</Label>
-                            <Input 
-                                value={formData.title[activeLanguage]} 
-                                onChange={(e) => setFormData(prev => ({ ...prev, title: { ...prev.title, [activeLanguage]: e.target.value } }))}
-                                dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
-                            />
-                        </div>
+                {/* Translatable Fields */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>{isRTL ? 'العنوان' : 'Title'} ({activeLanguage.toUpperCase()})</Label>
+                    <Input
+                      value={formData.title[activeLanguage]}
+                      onChange={(e) => setFormData(prev => ({ ...prev, title: { ...prev.title, [activeLanguage]: e.target.value } }))}
+                      dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
+                    />
+                  </div>
 
-                        <div className="space-y-2">
-                            <Label>{isRTL ? 'مقتطف (ملخص)' : 'Excerpt'} ({activeLanguage.toUpperCase()})</Label>
-                            <Textarea 
-                                value={formData.excerpt[activeLanguage]} 
-                                onChange={(e) => setFormData(prev => ({ ...prev, excerpt: { ...prev.excerpt, [activeLanguage]: e.target.value } }))}
-                                dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
-                                rows={2}
-                            />
-                        </div>
+                  <div className="space-y-2">
+                    <Label>{isRTL ? 'مقتطف (ملخص)' : 'Excerpt'} ({activeLanguage.toUpperCase()})</Label>
+                    <Textarea
+                      value={formData.excerpt[activeLanguage]}
+                      onChange={(e) => setFormData(prev => ({ ...prev, excerpt: { ...prev.excerpt, [activeLanguage]: e.target.value } }))}
+                      dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
+                      rows={2}
+                    />
+                  </div>
 
-                        {/* Rich Text Editor (React Quill) */}
-                        <div className="space-y-2">
-                            <Label>{isRTL ? 'المحتوى' : 'Content'} ({activeLanguage.toUpperCase()})</Label>
-                            <div className="bg-background" dir="ltr"> {/* Force LTR for toolbar, but content adjusts */}
-                                <ReactQuill 
-                                    theme="snow"
-                                    value={formData.content[activeLanguage]}
-                                    onChange={(value) => setFormData(prev => ({ ...prev, content: { ...prev.content, [activeLanguage]: value } }))}
-                                    modules={modules}
-                                    formats={formats}
-                                    className="h-[300px] mb-12" // Add margin for toolbar/footer overlap protection
-                                />
-                            </div>
-                        </div>
-
-                         {/* Dynamic Key Takeaways */}
-                         <div className="space-y-2">
-                            <Label>{isRTL ? 'النقاط الرئيسية' : 'Key Takeaways'} ({activeLanguage.toUpperCase()})</Label>
-                            {formData.keyTakeaways[activeLanguage].map((val, idx) => (
-                                <div key={idx} className="flex gap-2">
-                                     <div className="flex-1 p-2 bg-muted/50 rounded text-sm">{val}</div>
-                                     <Button type="button" variant="ghost" size="sm" className="text-red-500" onClick={() => removeTakeaway(idx)}>X</Button>
-                                </div>
-                            ))}
-                            <Input 
-                                placeholder={isRTL ? 'اضغط Enter لإضافة نقطة' : 'Press Enter to add point'}
-                                dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
-                                onKeyDown={(e) => {
-                                    if(e.key === 'Enter') {
-                                        e.preventDefault();
-                                        addTakeaway(e.currentTarget.value);
-                                        e.currentTarget.value = '';
-                                    }
-                                }}
-                            />
-                         </div>
+                  {/* Rich Text Editor (React Quill) */}
+                  <div className="space-y-2">
+                    <Label>{isRTL ? 'المحتوى' : 'Content'} ({activeLanguage.toUpperCase()})</Label>
+                    <div className="bg-background" dir="ltr"> {/* Force LTR for toolbar, but content adjusts */}
+                      <ReactQuill
+                        theme="snow"
+                        value={formData.content[activeLanguage]}
+                        onChange={(value) => setFormData(prev => ({ ...prev, content: { ...prev.content, [activeLanguage]: value } }))}
+                        modules={modules}
+                        formats={formats}
+                        className="h-[300px] mb-12" // Add margin for toolbar/footer overlap protection
+                      />
                     </div>
+                  </div>
 
-                    {/* Actions */}
-                    <div className="flex gap-3 justify-end pt-6 border-t">
-                        <Button variant="outline" onClick={resetForm}>{isRTL ? 'إلغاء' : 'Cancel'}</Button>
-                        <select 
-                            className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
-                            value={formData.status}
-                            onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as any }))}
-                        >
-                            <option value="draft">Draft</option>
-                            <option value="published">Published</option>
-                        </select>
-                        <Button onClick={saveArticle} className="btn-gradient">
-                            <Save className="h-4 w-4 mr-2" />
-                            {isRTL ? 'حفظ المقال' : 'Save Article'}
-                        </Button>
-                    </div>
-                </CardContent>
+                  {/* Dynamic Key Takeaways */}
+                  <div className="space-y-2">
+                    <Label>{isRTL ? 'النقاط الرئيسية' : 'Key Takeaways'} ({activeLanguage.toUpperCase()})</Label>
+                    {formData.keyTakeaways[activeLanguage].map((val, idx) => (
+                      <div key={idx} className="flex gap-2">
+                        <div className="flex-1 p-2 bg-muted/50 rounded text-sm">{val}</div>
+                        <Button type="button" variant="ghost" size="sm" className="text-red-500" onClick={() => removeTakeaway(idx)}>X</Button>
+                      </div>
+                    ))}
+                    <Input
+                      placeholder={isRTL ? 'اضغط Enter لإضافة نقطة' : 'Press Enter to add point'}
+                      dir={activeLanguage === 'ar' ? 'rtl' : 'ltr'}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addTakeaway(e.currentTarget.value);
+                          e.currentTarget.value = '';
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-3 justify-end pt-6 border-t">
+                  <Button variant="outline" onClick={resetForm}>{isRTL ? 'إلغاء' : 'Cancel'}</Button>
+                  <select
+                    className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    value={formData.status}
+                    onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value as any }))}
+                  >
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                  </select>
+                  <Button onClick={saveArticle} className="btn-gradient">
+                    <Save className="h-4 w-4 mr-2" />
+                    {isRTL ? 'حفظ المقال' : 'Save Article'}
+                  </Button>
+                </div>
+              </CardContent>
             </Card>
           )}
 

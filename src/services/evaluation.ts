@@ -3,23 +3,9 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export interface EvaluationData {
   consent: boolean;
-  demographics: {
-    relationship: string;
-    otherRelationship?: string;
-    parentAge: string;
-    education: string;
-    childrenCount: string;
-    childAge: string;
-  };
-  healthIndicators: {
-    gender: string;
-    weightPerception: string;
-    healthIssues: string[];
-    otherHealthIssue?: string;
-    infoSources: string[];
-    otherInfoSource?: string;
-  };
-  knowledge: Record<string, string>; // Values 1-5 as strings
+  demographics: Record<string, any>;
+  healthIndicators: Record<string, any>;
+  knowledge: Record<string, string>;
   practices: Record<string, string>;
   intervention: {
     stories: Record<string, string>;
@@ -32,15 +18,14 @@ export interface EvaluationData {
   };
   satisfaction: Record<string, string>;
   behavioralIntent: Record<string, string>;
+  nps?: string;
   retrospective: {
     knowledge: { before: string; after: string };
     practices: { before: string; after: string };
+    [key: string]: { before: string; after: string };
   };
-  openQuestions: {
-    likedMost: string;
-    challenges: string;
-    suggestions: string;
-  };
+  openQuestions: Record<string, string>;
+  _schemaVersion?: number;
 }
 
 export const saveEvaluation = async (data: EvaluationData) => {

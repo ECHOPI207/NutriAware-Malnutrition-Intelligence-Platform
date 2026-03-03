@@ -32,9 +32,9 @@ const ConsultationManagement: React.FC = () => {
     deleteItem,
     closeConsultation,
     toggleConsultationLock
-  } = useMessages({ 
-    enableMessages: false, 
-    enableConsultations: true 
+  } = useMessages({
+    enableMessages: false,
+    enableConsultations: true
   });
 
   // Local filter state for this page's specific tabs
@@ -79,13 +79,13 @@ const ConsultationManagement: React.FC = () => {
           <div className="flex items-center gap-3 mb-4">
             <Stethoscope className="h-8 w-8 text-primary" />
             <h1 className="text-3xl font-bold text-foreground">
-              {isRTL ? 'إدارة الاستشارات الطبية' : 'Medical Consultation Management'}
+              {isRTL ? 'إدارة التوجيهات الغذائية' : 'Nutritional Guidance Management'}
             </h1>
           </div>
           <p className="text-muted-foreground">
             {isRTL
-              ? 'إدارة والرد على الاستشارات الطبية من المرضى'
-              : 'Manage and respond to medical consultations from patients'
+              ? 'إدارة والرد على التوجيهات الغذائية من المرضى'
+              : 'Manage and respond to nutritional guidance requests from patients'
             }
           </p>
         </div>

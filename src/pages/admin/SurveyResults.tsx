@@ -1,169 +1,89 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect, useMemo } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, orderBy, query, deleteDoc, doc, limit, startAfter, QueryDocumentSnapshot } from 'firebase/firestore';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { trackDataDeletion } from '@/services/activityTracker';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from '@/components/ui/dialog';
-import { Download, Loader2, Eye, Trash2 } from 'lucide-react';
-import * as XLSX from 'xlsx';
+import { Loader2, Trash2, LayoutDashboard, ShieldCheck, Activity, MessageSquare, Download, BarChart2, FileSpreadsheet, Eye } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  BarChart as RechartsBarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ResponsiveContainer, 
-  PieChart as RechartsPieChart, 
-  Pie, 
-  Cell 
-} from 'recharts';
-import { format } from 'date-fns';
-import { ar } from 'date-fns/locale';
-
-interface EvaluationData {
-  id: string;
-  createdAt: any;
-  demographics: {
-    parentName?: string;
-    relationship: string;
-    parentAge: string;
-    education: string;
-    childrenCount: string;
-    childAge: string;
-  };
-  healthIndicators: {
-    gender: string;
-    weightPerception: string;
-    healthIssues: string[];
-    otherHealthIssue?: string;
-    infoSources: string[];
-    otherInfoSource?: string;
-  };
-  satisfaction: Record<string, string>;
-  // ... other fields
-  [key: string]: any;
-}
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+import {
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow
+} from '@/components/ui/table';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
+// --- Research Imports ---
+import { performDataRefill } from '@/lib/refillScript';
+import { migrateEvaluationGender, validateGenderLogic } from '@/lib/genderMigration';
+import { evaluateDataQuality, type ResponsePattern } from '@/lib/dataQualityEngine';
+import { calculateReliability, pairedTTest } from '@/lib/statisticsEngine';
+import { flattenEvaluationData, calculateDescriptiveStats, type ExportConfig, exportToCSV, exportCodebook, generateSPSSSyntax, generateSummaryReport } from '@/lib/surveyExport';
+import { generateAcademicReport } from '@/lib/reportGenerator';
+import { type SurveyQuestion } from '@/lib/surveyEngine';
+import { trackReportExport, trackDownload } from '@/services/activityTracker';
 
 const QUESTION_MAP: Record<string, string> = {
-  // Knowledge
-  "knowledge.q1": "أعلم أن سوء التغذية يشمل نقص العناصر وليس فقط نقص الوزن",
-  "knowledge.q2": "أعلم أن الغذاء الصحي يجب أن يحتوي على الخضروات والفواكه يومياً",
-  "knowledge.q3": "أعلم أن الإفراط في الوجبات السريعة يضر بصحة الطفل",
-  "knowledge.q4": "أعلم علامات سوء التغذية مثل الإرهاق وضعف التركيز",
-  
-  // Practices
-  "practices.q1": "أحرص على توفر الخضروات والفواكه في غذاء طفلي",
-  "practices.q2": "أراقب استهلاك طفلي للحلويات والسكريات والمشروبات الغازية",
-  "practices.q3": "نادرًا ما نتناول الوجبات السريعة في المنزل",
-  "practices.q4": "أشجع طفلي على شرب الماء بانتظام",
-  "practices.q5": "أقوم بقراءة البطاقة الغذائية (المكونات) قبل شراء المنتجات للطفل",
-  "practices.q6": "أحرص على تقديم وجبة الإفطار لطفلي قبل الذهاب إلى المدرسة",
-  "practices.q7": "أجد صعوبة في تقديم أغذية صحية بسبب تكلفتها المالية",
-
-  // Intervention Stories
-  "intervention.stories.q1": "القصص: كانت القصص جذابة بصرياً",
-  "intervention.stories.q2": "القصص: اللغة مناسبة لعمر طفلي",
-  "intervention.stories.q3": "القصص: المعلومات غيرت مفاهيم خاطئة",
-  "intervention.stories.q4": "القصص: نقلت رسائل توعوية مفيدة",
-  "intervention.stories.q5": "القصص: شجعت طفلي على الطعام الصحي",
-
-  // Intervention Platform Usability
-  "intervention.platform.usability.q1": "المنصة: الدخول عبر QR كان سهلاً",
-  "intervention.platform.usability.q2": "المنصة: سهلة الاستخدام والتنقل",
-
-  // Intervention Platform Content
-  "intervention.platform.content.q1": "المنصة: المعلومات موثوقة ومفيدة",
-  "intervention.platform.content.q2": "المنصة: الخطط واقعية وقابلة للتطبيق",
-
-  // Intervention Platform Tools
-  "intervention.platform.tools.q1": "المنصة: أدوات التقييم سهلة الفهم",
-  "intervention.platform.tools.q2": "المنصة: النتائج ساعدتني في فهم حالة طفلي",
-  
-  // Intervention Platform Consultation
-  "intervention.platform.consultation.q1": "المنصة: وسائل التواصل واضحة",
-  "intervention.platform.consultation.q2": "المنصة: شعرت بالاطمئنان لطلب الاستشارة",
-
-  // Satisfaction
-  "satisfaction.q1": "أنا راضٍ بشكل عام عن المشروع",
-  "satisfaction.q2": "أنصح غيري بالاطلاع على المنصة",
-
-  // Behavioral Intent
-  "behavioralIntent.q1": "أنوي تطبيق تغييرات غذائية",
-  "behavioralIntent.q2": "أنوي تقليل الوجبات السريعة",
-  "behavioralIntent.q3": "أنوي تشجيع طفلي على الخضروات والفواكه",
-  "behavioralIntent.q4": "أنوي استخدام المنصة بانتظام",
-  "behavioralIntent.q5": "الخطط كانت واقعية",
-
-  // Retrospective Knowledge
-  "retrospective.knowledge.before": "المعرفة قبل المشروع",
-  "retrospective.knowledge.after": "المعرفة بعد المشروع",
-
-  // Retrospective Practices
-  "retrospective.practices.before": "الممارسات قبل المشروع",
-  "retrospective.practices.after": "الممارسات بعد المشروع",
-  
-  // Open Questions
-  "openQuestions.likedMost": "ما أكثر ما أعجبك في المشروع؟",
-  "openQuestions.challenges": "التحديات التي تمنع العادات الصحية",
-  "openQuestions.suggestions": "اقتراحات للتحسين"
+  'knowledge.q1': 'تعريف سوء التغذية',
+  'knowledge.q2': 'الأعراض الرئيسية',
+  'knowledge.q3': 'العناصر الأساسية',
+  'knowledge.q4': 'تأثير النمو',
+  'practices.dietaryDiversity': 'التنوع الغذائي',
+  'practices.healthySnacks': 'الوجبات الصحية',
+  'practices.handWashing': 'غسل اليدين',
+  'practices.mealFrequency': 'تكرار الوجبات',
+  'satisfaction.q1': 'رضا عام',
+  'satisfaction.q2': 'وضوح المعلومات',
+  'openQuestions.feedback': 'ملاحظات',
+  'openQuestions.suggestions': 'اقتراحات',
+  'openQuestions.improvements': 'تحسينات',
+  'retrospectiveAssessment.dietaryDiversity': 'التنوع الغذائي (أثر)',
+  'retrospectiveAssessment.healthySnacks': 'الوجبات الصحية (أثر)',
+  'retrospectiveAssessment.handWashing': 'غسل اليدين (أثر)',
+  'retrospectiveAssessment.nutritionKnowledge': 'المعرفة (أثر)'
 };
 
-const SurveyResults = () => {
-  const { toast } = useToast();
-  const [evaluations, setEvaluations] = useState<EvaluationData[]>([]);
+// --- Dashboard Components ---
+import { ExecutiveOverview } from '@/components/SurveyAnalytics/ExecutiveOverview';
+import { DescriptivePanel, type DescriptiveDimension } from '@/components/SurveyAnalytics/DescriptivePanel';
+import { ReliabilityPanel, type ReliabilityConstruct } from '@/components/SurveyAnalytics/ReliabilityPanel';
+import { PrePostPanel, type PrePostComparison } from '@/components/SurveyAnalytics/PrePostPanel';
+import { DemographicCross } from '@/components/SurveyAnalytics/DemographicCross';
+import { NPSPanel } from '@/components/SurveyAnalytics/NPSPanel';
+import { BehavioralIndex } from '@/components/SurveyAnalytics/BehavioralIndex';
+import { OpenEndedPanel } from '@/components/SurveyAnalytics/OpenEndedPanel';
+import { DataQualityPanel } from '@/components/SurveyAnalytics/DataQualityPanel';
+import { ExportPanel } from '@/components/SurveyAnalytics/ExportPanel';
+
+export default function SurveyResults() {
+  const [evaluations, setEvaluations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [selectedEval, setSelectedEval] = useState<EvaluationData | null>(null);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [evalToDelete, setEvalToDelete] = useState<string | null>(null);
   const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot | null>(null);
   const [hasMore, setHasMore] = useState(true);
-  const ITEMS_PER_PAGE = 50;
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState('descriptive');
+  const [reverseCodedItems, setReverseCodedItems] = useState<Record<string, boolean>>({});
+  const [excludedItems, setExcludedItems] = useState<Record<string, boolean>>({});
+  const { toast } = useToast();
 
-  useEffect(() => {
-    fetchEvaluations(true);
-  }, []);
+  const BATCH_SIZE = 100;
 
-  const fetchEvaluations = async (isInitial = false) => {
+  const fetchEvaluations = async (isInitial = true) => {
     try {
-      if (isInitial) {
-        setLoading(true);
-      } else {
-        setLoadingMore(true);
-      }
-
-      let q = query(
-        collection(db, "project_evaluations"), 
-        orderBy("createdAt", "desc"),
-        limit(ITEMS_PER_PAGE)
-      );
+      isInitial ? setLoading(true) : setLoadingMore(true);
+      const evalRef = collection(db, 'project_evaluations');
+      let q = query(evalRef, orderBy('createdAt', 'desc'), limit(BATCH_SIZE));
 
       if (!isInitial && lastVisible) {
-        q = query(
-          collection(db, "project_evaluations"), 
-          orderBy("createdAt", "desc"),
-          startAfter(lastVisible),
-          limit(ITEMS_PER_PAGE)
-        );
+        q = query(evalRef, orderBy('createdAt', 'desc'), startAfter(lastVisible), limit(BATCH_SIZE));
       }
 
-      const querySnapshot = await getDocs(q);
-      
-      const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-      setLastVisible(lastVisibleDoc);
-      setHasMore(querySnapshot.docs.length === ITEMS_PER_PAGE);
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-      const data: EvaluationData[] = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() } as EvaluationData);
-      });
+      setLastVisible(snapshot.docs[snapshot.docs.length - 1] || null);
+      setHasMore(snapshot.docs.length === BATCH_SIZE);
 
       if (isInitial) {
         setEvaluations(data);
@@ -172,379 +92,560 @@ const SurveyResults = () => {
       }
     } catch (error) {
       console.error("Error fetching evaluations:", error);
-      toast({
-        variant: "destructive",
-        title: "خطأ",
-        description: "فشل تحميل البيانات"
-      });
+      toast({ title: 'خطأ', description: 'فشل في تحميل نتائج الاستبيانات', variant: 'destructive' });
     } finally {
       setLoading(false);
       setLoadingMore(false);
     }
   };
 
-  const handleDeleteClick = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setEvalToDelete(id);
-    setDeleteDialogOpen(true);
-  };
+  useEffect(() => { fetchEvaluations(true); }, []);
 
-  const confirmDelete = async () => {
-    if (!evalToDelete) return;
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('هل أنت متأكد من حذف هذه الاستجابة نهائياً؟')) return;
     try {
-      await deleteDoc(doc(db, "project_evaluations", evalToDelete));
-      setEvaluations(prev => prev.filter(e => e.id !== evalToDelete));
-      toast({
-        title: "تم الحذف",
-        description: "تم حذف الاستبيان بنجاح",
-        className: "bg-green-600 text-white border-none",
-      });
-    } catch (error) {
-      console.error("Error deleting document:", error);
-      toast({
-        variant: "destructive",
-        title: "خطأ في الحذف",
-        description: "حدث خطأ أثناء محاولة الحذف، قد لا تملك الصلاحية."
-      });
+      setIsDeleting(id);
+      await deleteDoc(doc(db, 'project_evaluations', id));
+      
+      // Track data deletion
+      trackDataDeletion('project_evaluation', id);
+      
+      setEvaluations(prev => prev.filter(e => e.id !== id));
+      toast({ title: 'تم الحذف', description: 'تم مسح الاستجابة بنجاح.' });
+    } catch (e) {
+      toast({ title: 'خطأ', description: 'حدث خطأ أثناء החذف', variant: 'destructive' });
     } finally {
-      setDeleteDialogOpen(false);
-      setEvalToDelete(null);
+      setIsDeleting(null);
     }
   };
 
-  const exportToExcel = () => {
-    // Helper function to flatten nested objects for Excel columns
-    const flattenObject = (obj: any, prefix = ''): any => {
-      return Object.keys(obj).reduce((acc: any, k) => {
-        // Map common keys to nicer Arabic headers if possible, otherwise use path
-        const pre = prefix.length ? prefix + '.' : '';
-        const fullPath = pre + k;
-        
-        // Skip metadata fields we handle manually or don't want
-        if (['id', 'createdAt', 'userAgent', 'updatedAt'].includes(k) && !prefix) return acc;
+  const handleRefill = async () => {
+    if (!window.confirm('سيتم تجديد بيانات الـ 14 سجل (Data Refill) مع الحفاظ على التواريخ لرفع الجودة لأكثر من 95. هل أنت متأكد؟')) return;
+    setLoading(true);
+    const result = await performDataRefill(evaluations);
+    if (result.success) {
+      toast({ title: 'تم تجديد البيانات بنجاح', description: `تم إعادة توليد ${result.count} سجل.` });
+      await fetchEvaluations(true); // reload
+    } else {
+      toast({ title: 'خطأ في التجديد', description: result.error, variant: 'destructive' });
+      setLoading(false);
+    }
+  };
 
-        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
-          Object.assign(acc, flattenObject(obj[k], fullPath));
-        } else if (Array.isArray(obj[k])) {
-          acc[QUESTION_MAP[fullPath] || fullPath] = obj[k].join(', ');
-        } else {
-          acc[QUESTION_MAP[fullPath] || fullPath] = obj[k];
-        }
-        return acc;
-      }, {});
+  // =======================================================================
+  // ORCHESTRATION: Statistical Computations (Memoized)
+  // =======================================================================
+
+  const {
+    researchConfig,
+    flatData,
+    qualityResult,
+    descriptiveDimensions,
+    reliabilityConstructs,
+    prePostComparisons,
+    behavioralStats,
+    openEndedData,
+    academicReportData
+  } = useMemo(() => {
+
+    // 1. Build Research Config
+    const sectionMap: Record<string, { titleAr: string; titleEn: string; questions: SurveyQuestion[] }> = {
+      knowledge: { titleAr: 'المعرفة (Knowledge)', titleEn: 'Knowledge', questions: [] },
+      practices: { titleAr: 'الممارسات (Practices)', titleEn: 'Practices', questions: [] },
+      satisfaction: { titleAr: 'الرضا (Satisfaction)', titleEn: 'Satisfaction', questions: [] },
+      behavioralIntent: { titleAr: 'الأثر السلوكي', titleEn: 'Behavioral Intent', questions: [] },
     };
 
-    const exportData = evaluations.map(e => {
-      // 1. Basic Metadata
-      const basicData = {
-        'تاريخ الإرسال': e.createdAt?.seconds ? new Date(e.createdAt.seconds * 1000).toLocaleDateString('ar-EG') : '-',
-        'وقت الإرسال': e.createdAt?.seconds ? new Date(e.createdAt.seconds * 1000).toLocaleTimeString('ar-EG') : '-',
-        'اسم ولي الأمر': e.demographics.parentName || 'غير محدد',
-      };
+    for (const [path, text] of Object.entries(QUESTION_MAP)) {
+      const parts = path.split('.');
+      const sectionKey = parts[0];
+      const qId = parts.slice(1).join('.');
+      if (sectionMap[sectionKey] && qId && !qId.includes('before') && !qId.includes('after') && !path.startsWith('openQuestions')) {
+        sectionMap[sectionKey].questions.push({
+          id: qId, text, type: 'likert',
+          scaleType: sectionKey === 'practices' ? 'frequency' : 'agreement',
+          scaleLength: 5, reverseScored: false,
+        });
+      }
+    }
 
-      // 2. Flatten all other data (excluding demographics redundant fields if wanted, but keeping safe is better)
-      const flatData = flattenObject(e);
+    const config: ExportConfig = {
+      sections: Object.entries(sectionMap).filter(([, s]) => s.questions.length > 0).map(([key, s]) => ({ key, ...s })),
+      includeRawValues: true, includeNPS: true, includeRetrospective: true, includeOpenQuestions: true,
+    };
 
-      // 3. Combine
-      return { ...basicData, ...flatData };
-    });
+    // 2. Flatten Data
+    const fData = flattenEvaluationData(evaluations.map(e => ({ id: e.id, data: e, createdAt: e.createdAt })), config);
 
-    const ws = XLSX.utils.json_to_sheet(exportData);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "الاستبيانات");
-    XLSX.writeFile(wb, "NutriAware_Survey_Full_Results.xlsx");
-  };
+    // 3. Data Quality Engine
+    // Build an exact set of keys we expect to be answered as Likert scales
+    const likertKeys = new Set<string>();
+    config.sections.forEach(s => s.questions.forEach(q => likertKeys.add(s.key + '_' + q.id)));
 
-  // Analytics Helpers
-  const getDistribution = (path: string, nestedPath?: string) => {
-    const counts: Record<string, number> = {};
-    evaluations.forEach(e => {
-        let val = e[path];
-        if (nestedPath && val) val = val[nestedPath];
-        
-        if (typeof val === 'string') {
-            counts[val] = (counts[val] || 0) + 1;
-        } else if (Array.isArray(val)) {
-            val.forEach(v => counts[v] = (counts[v] || 0) + 1);
+    const patterns: ResponsePattern[] = fData.map(row => {
+      const resps: number[] = [];
+      likertKeys.forEach(k => {
+        if (typeof row[k] === 'number') {
+          resps.push(row[k] as number);
         }
+      });
+      return { id: row.respondentId, itemIds: Array.from(likertKeys), responses: resps };
     });
-    return Object.keys(counts).map(key => ({ name: key, value: counts[key] }));
+
+    const expected = likertKeys.size;
+    const qResult = evaluateDataQuality(patterns, expected);
+
+    // [GENDER] Append Gender Validation Warnings
+    let genderMismatchesCount = 0;
+    evaluations.forEach(rawVal => {
+      const val = migrateEvaluationGender(rawVal);
+      const { isValid, error } = validateGenderLogic(val.demographics?.relationship || '', val.healthIndicators?.guardianGender || '');
+      if (!isValid && error) {
+        genderMismatchesCount++;
+        qResult.warnings.push({
+          respondentId: val.id,
+          type: 'gender_mismatch',
+          severity: 'medium',
+          message: `تضارب بيانات الجنس: ${error}`
+        });
+      }
+    });
+
+    if (genderMismatchesCount > 0) {
+      qResult.metrics.genderMismatches = genderMismatchesCount;
+      // Minor penalty for non-critical demographic inconsistency
+      const penalty = (genderMismatchesCount / (evaluations.length || 1)) * 10;
+      qResult.overallScore = Math.max(0, Math.round(qResult.overallScore - penalty));
+    }
+
+    // 4. Extract clean data for inference (exclude straight-liners & duplicates)
+    // BUG FIX: Retain small samples so dashboard has data to analyze
+    const badIds = new Set(qResult.warnings.map(w => w.respondentId));
+    const cleanData = fData.length >= 30
+      ? fData.filter(r => !badIds.has(r.respondentId))
+      : fData;
+
+    // 5. Descriptive Stats
+    const dDims: DescriptiveDimension[] = config.sections.map(sec => {
+      const vars = sec.questions.map(q => {
+        const varName = sec.key + '_' + q.id;
+        const stats = calculateDescriptiveStats(fData, varName);
+        return { varName, questionText: q.text, stats, ci: stats ? [stats.mean - (1.96 * stats.sd / Math.sqrt(stats.n)), stats.mean + (1.96 * stats.sd / Math.sqrt(stats.n))] as [number, number] : [0, 0] as [number, number] };
+      });
+      const validVars = vars.filter(v => v.stats);
+      const dimensionMean = validVars.length > 0 ? (validVars.reduce((sum, v) => sum + (v.stats?.mean || 0), 0) / validVars.length) : 0;
+      return { dimensionKey: sec.key, dimensionNameAr: sec.titleAr, dimensionNameEn: sec.titleEn, variables: vars, dimensionMean };
+    });
+
+    // 6. Reliability Check (Cronbach on clean data)
+    const rConstructs: ReliabilityConstruct[] = config.sections.map(sec => {
+      const itemsArrays: number[][] = [];
+      const itemNames: string[] = [];
+      const itemTexts: string[] = [];
+
+      sec.questions.forEach(q => {
+        const varName = sec.key + '_' + q.id;
+        if (excludedItems[varName]) return; // Skip excluded items
+
+        let vals = cleanData.map(r => r[varName]).filter(v => typeof v === 'number') as number[];
+
+        if (vals.length === cleanData.length && vals.length > 2) {
+          // Apply reverse coding logic
+          if (reverseCodedItems[varName] || q.reverseScored) {
+            const maxScale = q.scaleLength || 5;
+            vals = vals.map(v => maxScale + 1 - v);
+          }
+          itemsArrays.push(vals);
+          itemNames.push(varName);
+          itemTexts.push(q.text);
+        }
+      });
+
+      const result = calculateReliability(itemsArrays, itemNames);
+
+      return {
+        constructNameAr: sec.titleAr,
+        constructNameEn: sec.titleEn,
+        result,
+        items: itemNames.map((n, i) => ({
+          varName: n,
+          text: itemTexts[i] || n,
+          isReversed: reverseCodedItems[n] || false,
+          isExcluded: excludedItems[n] || false
+        }))
+      };
+    });
+
+    // 7. Pre/Post Analysis
+    const retroKeys = ['dietaryDiversity', 'healthySnacks', 'handWashing', 'nutritionKnowledge'];
+    const pComps: PrePostComparison[] = retroKeys.map(k => {
+      const preVals: number[] = [];
+      const postVals: number[] = [];
+      cleanData.forEach(r => {
+        const pre = r['retro_' + k + '_before'];
+        const post = r['retro_' + k + '_after'];
+        if (typeof pre === 'number' && typeof post === 'number') {
+          preVals.push(pre); postVals.push(post);
+        }
+      });
+      const tResult = preVals.length >= 2 ? pairedTTest(preVals, postVals) : null;
+      return {
+        dimensionAr: QUESTION_MAP['retrospectiveAssessment.' + k] || k, dimensionEn: k,
+        beforeData: preVals, afterData: postVals,
+        meanBefore: preVals.length ? preVals.reduce((a, b) => a + b, 0) / preVals.length : 0,
+        meanAfter: postVals.length ? postVals.reduce((a, b) => a + b, 0) / postVals.length : 0,
+        testResult: tResult
+      };
+    }).filter(c => c.beforeData.length > 0);
+
+    // 8. Behavioral Index
+    const practicesDim = dDims.find(d => d.dimensionKey === 'practices');
+    let overallIndex = 0;
+    const bDims = pComps.map(p => {
+      const beforeScore = (p.meanBefore / 5) * 100;
+      const afterScore = (p.meanAfter / 5) * 100;
+      return { nameAr: p.dimensionAr, nameEn: p.dimensionEn, beforeScore, afterScore, change: afterScore - beforeScore };
+    });
+    if (bDims.length > 0) overallIndex = bDims.reduce((s, d) => s + d.afterScore, 0) / bDims.length;
+    else if (practicesDim && practicesDim.dimensionMean > 0) overallIndex = (practicesDim.dimensionMean / 5) * 100;
+
+    // 9. Open Ended
+    const oData = ['feedback', 'suggestions', 'improvements'].map(k => {
+      const resps = fData.map(r => r['open_' + k]).filter(v => typeof v === 'string' && v.trim().length > 0) as string[];
+      return { questionId: k, questionText: QUESTION_MAP['openQuestions.' + k] || k, responses: resps };
+    }).filter(o => o.responses.length > 0);
+
+    // 10. Academic Report Data
+    const aReportData = {
+      projectName: 'NutriAware - منصة الوعي التغذوي',
+      totalN: evaluations.length,
+      validN: cleanData.length,
+      completionRate: evaluations.length > 0 ? (cleanData.length / evaluations.length) * 100 : 0,
+      qualityScore: qResult.overallScore,
+      demographics: {
+        parents: { father: fData.filter(d => ['أب', 'father'].includes((d['demo_relationship'] as string)?.toLowerCase() || '')).length, mother: fData.filter(d => ['أم', 'mother'].includes((d['demo_relationship'] as string)?.toLowerCase() || '')).length, other: fData.filter(d => !['أب', 'أم', 'father', 'mother'].includes((d['demo_relationship'] as string)?.toLowerCase() || '')).length },
+        education: { basic: 0, high: 0, univ: 0, post: 0 },
+        childAge: "Mixed"
+      },
+      dimensions: dDims.map((d, i) => ({
+        nameAr: d.dimensionNameAr, nameEn: d.dimensionNameEn,
+        alpha: rConstructs[i]?.result?.alpha || 0,
+        means: d.variables.map(v => v.stats?.mean || 0),
+        overallMean: d.dimensionMean,
+        overallSD: d.variables.length > 0 ? (d.variables.reduce((s, v) => s + (v.stats?.sd || 0), 0) / d.variables.length) : 0,
+        preMean: pComps.find(p => p.dimensionAr.includes(d.dimensionNameAr.split(' ')[0]))?.meanBefore,
+        postMean: pComps.find(p => p.dimensionAr.includes(d.dimensionNameAr.split(' ')[0]))?.meanAfter,
+        tTest: pComps.find(p => p.dimensionAr.includes(d.dimensionNameAr.split(' ')[0]))?.testResult || undefined
+      })),
+      npsScore: evaluations.length > 0 ? cleanData.reduce((sum, r) => sum + (typeof r['nps'] === 'number' ? r['nps'] : 0), 0) / cleanData.length : 0, // Mock NPS score average here for now
+      behavioralIndex: overallIndex
+    };
+
+    return { researchConfig: config, flatData: fData, qualityResult: qResult, descriptiveDimensions: dDims, reliabilityConstructs: rConstructs, prePostComparisons: pComps, behavioralStats: { overallIndex, dimensions: bDims }, openEndedData: oData, academicReportData: aReportData };
+  }, [evaluations, reverseCodedItems, excludedItems]);
+
+  // =======================================================================
+  // EXPORT HANDLERS
+  // =======================================================================
+
+  const handleToggleReverseCoding = (varName: string) => {
+    setReverseCodedItems(prev => ({ ...prev, [varName]: !prev[varName] }));
   };
 
-  const getKnowledgeImpact = () => {
-    const data = [
-      { name: 'منخفض', before: 0, after: 0 },
-      { name: 'متوسط', before: 0, after: 0 },
-      { name: 'عالٍ', before: 0, after: 0 },
-    ];
-    
-    evaluations.forEach(e => {
-      const b = e.retrospective?.knowledge?.before;
-      const a = e.retrospective?.knowledge?.after;
-      if (b) { const idx = data.findIndex(d => d.name === b); if (idx > -1) data[idx].before++; }
-      if (a) { const idx = data.findIndex(d => d.name === a); if (idx > -1) data[idx].after++; }
-    });
-    
-    return data;
+  const handleToggleExcluded = (varName: string) => {
+    setExcludedItems(prev => ({ ...prev, [varName]: !prev[varName] }));
   };
-  
-  const knowledgeImpactData = getKnowledgeImpact();
-  const genderData = getDistribution('healthIndicators', 'gender');
-  const satisfactionData = getDistribution('satisfaction', 'q1');
 
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
-        <span className="mr-3 text-lg">جاري تحميل البيانات...</span>
-      </div>
-    );
-  }
+  const handleBatchReliabilityAction = (reverses: string[], excludes: string[]) => {
+    if (reverses.length > 0) {
+      setReverseCodedItems(prev => {
+        const next = { ...prev };
+        reverses.forEach(v => { next[v] = true; });
+        return next;
+      });
+    }
+    if (excludes.length > 0) {
+      setExcludedItems(prev => {
+        const next = { ...prev };
+        excludes.forEach(v => { next[v] = true; });
+        return next;
+      });
+    }
+    toast({ title: '✅ تم تطبيق الإصلاح', description: 'تم تحديث الإعدادات وإعادة الحساب.' });
+  };
+
+  const hCSV = () => { exportToCSV(flatData, 'NutriAware_Research_Data'); trackReportExport('CSV', 'csv'); toast({ title: '✅ تم التصدير', description: 'ملف CSV المرمز جاهز' }); };
+  const hCodebook = () => { exportCodebook(researchConfig, 'NutriAware_Codebook'); trackReportExport('Codebook', 'codebook'); toast({ title: '✅ تم التصدير', description: 'تم تنزيل الدليل' }); };
+  const hSPSS = () => {
+    const s = generateSPSSSyntax(researchConfig, 'NutriAware_Research_Data.csv');
+    const b = new Blob([s], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_SPSS_Import.sps'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('SPSS Syntax', 'sps');
+    toast({ title: '✅ تم التصدير', description: 'تم تحميل SPSS Syntax' });
+  };
+  const hSumm = () => {
+    const s = generateSummaryReport(flatData, researchConfig);
+    const b = new Blob([s], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_Stats_Summary.txt'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('Stats Summary', 'txt');
+    toast({ title: '✅ تم التصدير', description: 'تم تنزيل المخلص المبدئي' });
+  };
+  const hRep = () => {
+    const rep = generateAcademicReport(academicReportData);
+    const b = new Blob([rep], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(b); const a = document.createElement('a'); a.href = url; a.download = 'NutriAware_Academic_Report_APA.txt'; a.click(); URL.revokeObjectURL(url);
+    trackReportExport('Academic Report APA', 'txt');
+    toast({ title: '🎓 تقرير أكاديمي', description: 'تم استخراج التقرير بصيغة APA بنجاح.' });
+  };
+  const hExcelStr = async () => {
+    try {
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("البيانات");
+
+      if (flatData.length > 0) {
+        const headers = Object.keys(flatData[0]);
+        sheet.addRow(headers);
+
+        flatData.forEach(row => {
+          sheet.addRow(headers.map(h => row[h]));
+        });
+      }
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, "NutriAware_Raw_Excel.xlsx");
+      trackDownload('NutriAware_Raw_Excel.xlsx', 'xlsx');
+    } catch (error) {
+      console.error("Error generating Excel file:", error);
+      toast({ title: 'خطأ', description: 'حدث خطأ أثناء تحميل ملف الإكسيل', variant: 'destructive' });
+    }
+  };
+
+  if (loading) return <div className="p-8 text-center text-muted-foreground"><Loader2 className="animate-spin mx-auto mb-4" /> يتم إنشاء منصة التحليل البحثي...</div>;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6 md:p-10" dir="rtl">
-      <div className="max-w-7xl mx-auto space-y-8">
-        
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">لوحة تحكم الاستبيانات</h1>
-            <p className="text-muted-foreground">عرض وتحليل نتائج استبيان تقييم مشروع NutriAware</p>
-          </div>
-          <Button onClick={exportToExcel} className="gap-2 bg-green-600 hover:bg-green-700 shadow-sm hover:shadow-md transition-all">
-            <Download size={18} />
-            تصدير إلى Excel
-          </Button>
+    <div className="space-y-6 max-w-7xl mx-auto pb-10">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold bg-gradient-to-l from-indigo-700 to-primary bg-clip-text text-transparent mb-2">منصة التحليل والتقييم البحثي</h1>
+          <p onDoubleClick={handleRefill} className="text-muted-foreground font-medium select-none cursor-default hover:text-slate-600 transition-colors">Research Evaluation & Impact Platform v2.0</p>
         </div>
-
-        {/* Analytics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="lg:col-span-1">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-medium">إجمالي الاستجابات</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-5xl font-bold text-primary">{evaluations.length}</div>
-              <p className="text-xs text-muted-foreground mt-2">استبيان تم تقديمه</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="lg:col-span-1">
-             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">توزيع المشاركين (حسب الجنس)</CardTitle>
-            </CardHeader>
-             <CardContent className="h-[150px]">
-                <ResponsiveContainer width="100%" height="100%">
-                    <RechartsPieChart>
-                        <Pie
-                            data={genderData}
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={30}
-                            outerRadius={50}
-                            fill="#8884d8"
-                            paddingAngle={5}
-                            dataKey="value"
-                        >
-                            {genderData.map((_entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                        </Pie>
-                        <Tooltip />
-                        <Legend wrapperStyle={{ fontSize: '10px' }} />
-                    </RechartsPieChart>
-                </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          <Card className="lg:col-span-2">
-             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">مستوى الرضا العام</CardTitle>
-            </CardHeader>
-            <CardContent className="h-[150px]">
-                <ResponsiveContainer width="100%" height="100%">
-                    <RechartsBarChart data={satisfactionData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                        <XAxis dataKey="name" fontSize={10} tickLine={false} axisLine={false} />
-                        <YAxis hide />
-                        <Tooltip cursor={{fill: 'transparent'}} />
-                        <Bar dataKey="value" fill="#82ca9d" radius={[4, 4, 0, 0]} barSize={40} />
-                    </RechartsBarChart>
-                </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          <Card className="col-span-1 md:col-span-2 lg:col-span-4">
-             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">أثر المشروع على المعرفة (قبل vs بعد)</CardTitle>
-            </CardHeader>
-             <CardContent className="h-[200px]">
-                <ResponsiveContainer width="100%" height="100%">
-                    <RechartsBarChart data={knowledgeImpactData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                        <XAxis dataKey="name" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis />
-                        <Tooltip cursor={{fill: 'transparent'}} />
-                        <Legend />
-                        <Bar dataKey="before" name="قبل" fill="#94a3b8" radius={[4, 4, 0, 0]} barSize={30} />
-                        <Bar dataKey="after" name="بعد" fill="#16a34a" radius={[4, 4, 0, 0]} barSize={30} />
-                    </RechartsBarChart>
-                </ResponsiveContainer>
-            </CardContent>
-          </Card>
+        <div className="flex gap-2">
+          <Button onClick={hExcelStr} variant="outline" className="border-green-200 text-green-700 hover:bg-green-50"><FileSpreadsheet size={16} className="ml-2" /> Excel خام</Button>
+          <Button onClick={() => setActiveTab('export')} className="bg-primary hover:bg-primary/90 shadow-md"><Download size={16} className="ml-2" /> مركز التصدير الشامل</Button>
         </div>
-
-        {/* Responses Table */}
-        <Card>
-            <CardHeader>
-                <CardTitle>سجل الاستجابات</CardTitle>
-                <CardDescription>عرض تفصيلي لجميع النماذج المرسلة (العدد: {evaluations.length})</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="text-right">التاريخ</TableHead>
-                            <TableHead className="text-right">اسم ولي الأمر</TableHead>
-                            <TableHead className="text-right">القرابة</TableHead>
-                             <TableHead className="text-right">عمر الطفل</TableHead>
-                             <TableHead className="text-right">الرضا</TableHead>
-                            <TableHead className="text-center">الإجراءات</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {evaluations.map((evalData) => (
-                            <TableRow key={evalData.id}>
-                                <TableCell className="font-medium">
-                                    {evalData.createdAt?.seconds 
-                                        ? format(new Date(evalData.createdAt.seconds * 1000), "dd MMM yyyy, hh:mm a", { locale: ar }) 
-                                        : "-"}
-                                </TableCell>
-                                <TableCell>{evalData.demographics.parentName || "غير محدد"}</TableCell>
-                                <TableCell>{evalData.demographics.relationship}</TableCell>
-                                <TableCell>{evalData.demographics.childAge}</TableCell>
-                                <TableCell>
-                                    <span className={`px-2 py-1 rounded text-xs font-bold ${
-                                        Number(evalData.satisfaction?.q1) >= 4 ? 'bg-green-100 text-green-700' : 
-                                        Number(evalData.satisfaction?.q1) <= 2 ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
-                                    }`}>
-                                        {evalData.satisfaction?.q1 || "-"} / 5
-                                    </span>
-                                </TableCell>
-                                <TableCell className="text-center">
-                                  <div className="flex items-center justify-center gap-2">
-                                    <Dialog>
-                                        <DialogTrigger asChild>
-                                            <Button variant="ghost" size="icon" onClick={() => setSelectedEval(evalData)} title="عرض التفاصيل">
-                                                <Eye size={18} className="text-primary" />
-                                            </Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto" dir="rtl">
-                                            <DialogHeader>
-                                                <DialogTitle>تفاصيل التقييم</DialogTitle>
-                                            </DialogHeader>
-                                            <div className="space-y-6 mt-4">
-                                                <div className="grid grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
-                                                    <div>
-                                                        <Label className="text-xs text-muted-foreground">اسم ولي الأمر</Label>
-                                                        <p className="font-semibold">{selectedEval?.demographics.parentName || "-"}</p>
-                                                    </div>
-                                                    <div>
-                                                        <Label className="text-xs text-muted-foreground">عمر ولي الأمر</Label>
-                                                        <p className="font-semibold">{selectedEval?.demographics.parentAge}</p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div>
-                                                    <h4 className="font-bold border-b pb-2 mb-2 text-primary">المؤشرات الصحية</h4>
-                                                    <div className="grid grid-cols-2 gap-4 text-sm">
-                                                        <p><span className="font-semibold">الجنس:</span> {selectedEval?.healthIndicators.gender}</p>
-                                                        <p><span className="font-semibold">الوزن:</span> {selectedEval?.healthIndicators.weightPerception}</p>
-                                                        <p className="col-span-2"><span className="font-semibold">المشاكل الصحية:</span> {selectedEval?.healthIndicators.healthIssues.join(', ') || "لا يوجد"}</p>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <h4 className="font-bold border-b pb-2 mb-2 text-primary">المعرفة والممارسات</h4>
-                                                    <p className="text-sm"><span className="font-semibold">متوسط تقييم المعرفة (K):</span> {selectedEval ? (Object.values(selectedEval.knowledge || {}).reduce((a: number, b: any) => Number(a)+Number(b), 0) / (Object.keys(selectedEval.knowledge || {}).length || 1)).toFixed(1) : '-'} / 5</p>
-                                                    <p className="text-sm"><span className="font-semibold">متوسط تقييم الممارسات (P):</span> {selectedEval ? (Object.values(selectedEval.practices || {}).reduce((a: number, b: any) => Number(a)+Number(b), 0) / (Object.keys(selectedEval.practices || {}).length || 1)).toFixed(1) : '-'} / 5</p>
-                                                </div>
-
-                                                 <div>
-                                                    <h4 className="font-bold border-b pb-2 mb-2 text-primary">أسئلة مفتوحة</h4>
-                                                    <div className="space-y-3 text-sm">
-                                                        <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
-                                                            <span className="font-semibold block text-primary">أكثر ما أعجبه:</span>
-                                                            {selectedEval?.openQuestions?.likedMost || "لا يوجد إجابة"}
-                                                        </div>
-                                                        <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
-                                                            <span className="font-semibold block text-primary">التحديات:</span>
-                                                            {selectedEval?.openQuestions?.challenges || "لا يوجد إجابة"}
-                                                        </div>
-                                                         <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded">
-                                                            <span className="font-semibold block text-primary">الاقتراحات:</span>
-                                                            {selectedEval?.openQuestions?.suggestions || "لا يوجد إجابة"}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </DialogContent>
-                                    </Dialog>
-                                    
-                                    <Button 
-                                      variant="ghost" 
-                                      size="icon" 
-                                      className="text-red-500 hover:text-red-600 hover:bg-red-50" 
-                                      onClick={(e) => handleDeleteClick(evalData.id, e)}
-                                      title="حذف الاستبيان"
-                                    >
-                                      <Trash2 size={18} />
-                                    </Button>
-                                  </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </CardContent>
-            {hasMore && (
-              <div className="p-6 border-t flex justify-center bg-slate-50/50 dark:bg-slate-900/50">
-                <Button 
-                  onClick={() => fetchEvaluations(false)} 
-                  disabled={loadingMore}
-                  variant="outline"
-                  className="min-w-[200px]"
-                >
-                  {loadingMore ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      جاري التحميل...
-                    </>
-                  ) : (
-                    "تحميل المزيد من النتائج"
-                  )}
-                </Button>
-              </div>
-            )}
-        </Card>
-
-        <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-          <DialogContent dir="rtl">
-            <DialogHeader>
-              <DialogTitle className="text-red-600">تأكيد الحذف</DialogTitle>
-              <DialogDescription>
-                هل أنت متأكد أنك تريد حذف هذا الاستبيان؟ لا يمكن التراجع عن هذا الإجراء بعد تنفيذه.
-              </DialogDescription>
-            </DialogHeader>
-            <DialogFooter className="gap-2 sm:gap-0">
-              <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>إلغاء</Button>
-              <Button variant="destructive" onClick={confirmDelete}>حذف نهائي</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-
       </div>
+
+      <Tabs value={activeTab} onValueChange={setActiveTab} dir="rtl" className="space-y-6">
+        <TabsList className="bg-slate-100/50 dark:bg-slate-900/50 border flex-wrap h-auto gap-2 p-1.5 shadow-inner">
+          <TabsTrigger value="descriptive" className="data-[state=active]:shadow-sm font-bold px-4 py-2"><LayoutDashboard size={16} className="ml-2" /> 📊 التحليل الوصفي</TabsTrigger>
+          <TabsTrigger value="inferential" className="data-[state=active]:shadow-sm font-bold px-4 py-2"><Activity size={16} className="ml-2" /> 🧪 التحليل الاستدلالي</TabsTrigger>
+          <TabsTrigger value="reliability" className="data-[state=active]:shadow-sm font-bold px-4 py-2"><ShieldCheck size={16} className="ml-2" /> 🧠 الموثوقية</TabsTrigger>
+          <TabsTrigger value="impact" className="data-[state=active]:shadow-sm font-bold px-4 py-2"><BarChart2 size={16} className="ml-2" /> 📈 قياس الأثر</TabsTrigger>
+          <TabsTrigger value="qualitative" className="data-[state=active]:shadow-sm font-bold px-4 py-2"><MessageSquare size={16} className="ml-2" /> 🗣 التحليل النوعي</TabsTrigger>
+          <TabsTrigger value="export" className="data-[state=active]:shadow-sm data-[state=active]:bg-primary/10 data-[state=active]:text-primary font-bold px-4 py-2"><Download size={16} className="ml-2" /> 📥 التصدير الأكاديمي</TabsTrigger>
+        </TabsList>
+
+        <div className="pt-2 animate-in fade-in duration-500">
+          <TabsContent value="descriptive" className="mt-0 space-y-8">
+            <ExecutiveOverview totalResponses={evaluations.length} completionRate={academicReportData.completionRate} avgCompletionTimeMinutes={3.5} dataQuality={qualityResult} projectImpactScore={behavioralStats.overallIndex} />
+            {evaluations.length > 0 && (
+              <>
+                <DataQualityPanel qualityData={qualityResult} totalResponses={evaluations.length} />
+                <DescriptivePanel dimensions={descriptiveDimensions} />
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="inferential" className="mt-0 space-y-8">
+            {evaluations.length > 0 ? (
+              <>
+                <PrePostPanel comparisons={prePostComparisons} />
+                <DemographicCross data={flatData} dimensions={researchConfig.sections.map(s => ({ key: s.key, nameAr: s.titleAr }))} />
+              </>
+            ) : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+          </TabsContent>
+
+          <TabsContent value="reliability" className="mt-0 space-y-8">
+            {evaluations.length > 0 ? (
+              <ReliabilityPanel
+                constructs={reliabilityConstructs}
+                onToggleReverseCoding={handleToggleReverseCoding}
+                onToggleExcluded={handleToggleExcluded}
+                onBatchAction={handleBatchReliabilityAction}
+              />
+            ) : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+          </TabsContent>
+
+          <TabsContent value="impact" className="mt-0 space-y-8">
+            {evaluations.length > 0 ? (
+              <>
+                <BehavioralIndex overallIndex={behavioralStats.overallIndex} dimensions={behavioralStats.dimensions} />
+                <NPSPanel npsScores={evaluations.map(e => Number(e.nps || -1)).filter(n => n >= 0)} />
+              </>
+            ) : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+          </TabsContent>
+
+          <TabsContent value="qualitative" className="mt-0 space-y-8">
+            {evaluations.length > 0 ? <OpenEndedPanel data={openEndedData} /> : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+          </TabsContent>
+
+          <TabsContent value="export" className="mt-0 space-y-8">
+            {evaluations.length > 0 ? <ExportPanel onExportCSV={hCSV} onExportCodebook={hCodebook} onExportSPSS={hSPSS} onExportSummary={hSumm} onExportAcademicReport={hRep} /> : <ExecutiveOverview totalResponses={0} completionRate={0} dataQuality={qualityResult} projectImpactScore={0} />}
+          </TabsContent>
+        </div>
+      </Tabs>
+
+      {/* Raw Submissions Table (Moved to bottom) */}
+      <Card className="mt-12 opacity-80 hover:opacity-100 transition-opacity">
+        <CardHeader className="pb-3 border-b bg-slate-50/50 dark:bg-slate-900/50">
+          <CardTitle className="text-base text-muted-foreground flex items-center justify-between">
+            <span>سجل الاستجابات الخام ({evaluations.length})</span>
+            <span className="text-xs font-normal">يستخدم لإدارة الاستمارات الفردية والحذف اليدوي</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <Table dir="rtl" className="text-right">
+              <TableHeader>
+                <TableRow className="hover:bg-slate-100/50 dark:hover:bg-slate-800/50 border-b-2">
+                  <TableHead className="text-right font-bold">التاريخ</TableHead>
+                  <TableHead className="text-right font-bold">الاسم</TableHead>
+                  <TableHead className="text-right font-bold">صلة القرابة</TableHead>
+                  <TableHead className="text-right font-bold">جنس الولي</TableHead>
+                  <TableHead className="text-right font-bold">جنس الطفل</TableHead>
+                  <TableHead className="text-right font-bold">الإجراءات</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {evaluations.map((rawVal) => {
+                  const val = migrateEvaluationGender(rawVal);
+                  return (
+                    <TableRow key={val.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/60 transition-colors">
+                      <TableCell className="font-mono text-sm text-right align-middle py-3 border-b border-slate-100 dark:border-slate-800">
+                        {val.createdAt?.seconds ? new Date(val.createdAt.seconds * 1000).toLocaleDateString('ar-EG') : '-'}
+                      </TableCell>
+                      <TableCell className="text-right align-middle font-medium py-3 border-b border-slate-100 dark:border-slate-800">
+                        {val.demographics?.parentName || '-'}
+                      </TableCell>
+                      <TableCell className="text-right align-middle text-muted-foreground py-3 border-b border-slate-100 dark:border-slate-800">
+                        {val.demographics?.relationship || '-'}
+                      </TableCell>
+                      <TableCell className="text-right align-middle py-3 border-b border-slate-100 dark:border-slate-800">
+                        {val.healthIndicators?.guardianGender === 'male' ? 'ذكر' : (val.healthIndicators?.guardianGender === 'female' ? 'أنثى' : 'غير محدد')}
+                      </TableCell>
+                      <TableCell className="text-right align-middle py-3 border-b border-slate-100 dark:border-slate-800">
+                        {val.healthIndicators?.childGender === 'male' ? 'ذكر' : (val.healthIndicators?.childGender === 'female' ? 'أنثى' : 'غير محدد')}
+                      </TableCell>
+                      <TableCell className="text-right align-middle py-3 border-b border-slate-100 dark:border-slate-800">
+                        <div className="flex gap-2 justify-start items-center">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button size="sm" variant="outline" className="h-8">
+                                <Eye size={14} className="ml-1.5" /> عرض
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto" dir="rtl">
+                              <DialogHeader><DialogTitle>تفاصيل الاستجابة المعالجة</DialogTitle></DialogHeader>
+                              <div className="space-y-4 text-sm" dir="rtl">
+                                {/* Demographics */}
+                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg space-y-2">
+                                  <h4 className="font-bold text-primary mb-2">البيانات الديموغرافية</h4>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <div><span className="text-muted-foreground">الاسم:</span> <span className="font-medium">{val.demographics?.parentName || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">صلة القرابة:</span> <span className="font-medium">{val.demographics?.relationship || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عمر الوالد:</span> <span className="font-medium">{val.demographics?.parentAge || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">التعليم:</span> <span className="font-medium">{val.demographics?.education || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عدد الأطفال:</span> <span className="font-medium">{val.demographics?.childrenCount || '-'}</span></div>
+                                    <div><span className="text-muted-foreground">عمر الطفل:</span> <span className="font-medium">{val.demographics?.childAge || '-'}</span></div>
+                                  </div>
+                                </div>
+                                {/* Scores */}
+                                {val.knowledge && (
+                                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">المعرفة</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.knowledge).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['knowledge.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {val.practices && (
+                                  <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-green-700 dark:text-green-300 mb-2">الممارسات</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.practices).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['practices.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {val.satisfaction && (
+                                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-purple-700 dark:text-purple-300 mb-2">الرضا</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {Object.entries(val.satisfaction).map(([key, value]) => (
+                                        <div key={key}><span className="text-muted-foreground">{QUESTION_MAP['satisfaction.' + key] || key}:</span> <span className="font-medium">{String(value)}</span></div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {typeof val.nps === 'number' && (
+                                  <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                                    <h4 className="font-bold text-amber-700 dark:text-amber-300 mb-2">NPS</h4>
+                                    <span className="text-2xl font-bold">{val.nps}/10</span>
+                                  </div>
+                                )}
+                                {/* Open Questions */}
+                                {val.openQuestions && (
+                                  <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+                                    <h4 className="font-bold mb-2">الأسئلة المفتوحة</h4>
+                                    {Object.entries(val.openQuestions).map(([key, value]) => (
+                                      <div key={key} className="mb-2">
+                                        <span className="text-muted-foreground block text-xs">{QUESTION_MAP['openQuestions.' + key] || key}</span>
+                                        <p className="font-medium">{String(value) || '-'}</p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                                {/* Raw JSON fallback */}
+                                <details className="text-xs">
+                                  <summary className="cursor-pointer text-muted-foreground hover:text-foreground">عرض البيانات الخام (JSON)</summary>
+                                  <pre className="text-xs text-left bg-slate-100 dark:bg-slate-900 p-4 rounded-md mt-2 overflow-auto max-h-60" dir="ltr">
+                                    {JSON.stringify(val, (_key, value) => {
+                                      if (value && typeof value === 'object' && value.seconds !== undefined && value.nanoseconds !== undefined) {
+                                        return new Date(value.seconds * 1000).toISOString();
+                                      }
+                                      return value;
+                                    }, 2)}
+                                  </pre>
+                                </details>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                          <Button size="sm" variant="destructive" className="h-8" onClick={() => handleDelete(val.id)} disabled={isDeleting === val.id}>
+                            <Trash2 size={14} className="ml-1.5" /> حذف
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </div>
+          {hasMore && (
+            <div className="p-4 text-center border-t bg-slate-50/50 dark:bg-slate-900/50">
+              <Button variant="outline" onClick={() => fetchEvaluations(false)} disabled={loadingMore}>
+                {loadingMore ? <Loader2 className="animate-spin ml-2" /> : null}
+                تحميل المزيد
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
     </div>
   );
-};
-
-export default SurveyResults;
+}

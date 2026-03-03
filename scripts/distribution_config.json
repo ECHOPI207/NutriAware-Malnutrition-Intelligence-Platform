@@ -1,0 +1,282 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "name": "nutriaware_seed_distributions",
+    "version": "1.0.0",
+    "demographics": {
+        "parentAge": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "أقل من 25 سنة",
+                    "weight": 0.15
+                },
+                {
+                    "value": "25 – 35 سنة",
+                    "weight": 0.50
+                },
+                {
+                    "value": "36 – 45 سنة",
+                    "weight": 0.25
+                },
+                {
+                    "value": "أكثر من 45 سنة",
+                    "weight": 0.10
+                }
+            ]
+        },
+        "education": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "أقل من ثانوي",
+                    "weight": 0.05
+                },
+                {
+                    "value": "ثانوي",
+                    "weight": 0.20
+                },
+                {
+                    "value": "دبلوم متوسط",
+                    "weight": 0.25
+                },
+                {
+                    "value": "جامعي",
+                    "weight": 0.40
+                },
+                {
+                    "value": "دراسات عليا",
+                    "weight": 0.10
+                }
+            ]
+        },
+        "childrenCount": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "طفل واحد",
+                    "weight": 0.35
+                },
+                {
+                    "value": "2-3 أطفال",
+                    "weight": 0.55
+                },
+                {
+                    "value": "4 أطفال فأكثر",
+                    "weight": 0.10
+                }
+            ]
+        },
+        "childAge": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "أقل من 3 سنوات",
+                    "weight": 0.2
+                },
+                {
+                    "value": "3 – 6 سنوات",
+                    "weight": 0.4
+                },
+                {
+                    "value": "7 – 10 سنوات",
+                    "weight": 0.25
+                },
+                {
+                    "value": "11 – 14 سنة",
+                    "weight": 0.1
+                },
+                {
+                    "value": "أكبر من 14 سنة",
+                    "weight": 0.05
+                }
+            ]
+        },
+        "relationship": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "أم",
+                    "weight": 0.70
+                },
+                {
+                    "value": "أب",
+                    "weight": 0.25
+                },
+                {
+                    "value": "أخرى",
+                    "weight": 0.05
+                }
+            ]
+        }
+    },
+    "healthIndicators": {
+        "gender": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "ذكر",
+                    "weight": 0.51
+                },
+                {
+                    "value": "أنثى",
+                    "weight": 0.49
+                }
+            ]
+        },
+        "weightPerception": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "طبيعي",
+                    "weight": 0.60
+                },
+                {
+                    "value": "نحيف جداً",
+                    "weight": 0.15
+                },
+                {
+                    "value": "وزن زائد",
+                    "weight": 0.20
+                },
+                {
+                    "value": "سمنة مفرطة",
+                    "weight": 0.05
+                },
+                {
+                    "value": "لا أعلم",
+                    "weight": 0.05
+                }
+            ]
+        },
+        "infoSources": {
+            "type": "weighted_choice",
+            "choices": [
+                {
+                    "value": "طبيب أطفال",
+                    "weight": 0.30
+                },
+                {
+                    "value": "أخصائي تغذية",
+                    "weight": 0.15
+                },
+                {
+                    "value": "الإنترنت ومواقع التواصل الاجتماعي",
+                    "weight": 0.40
+                },
+                {
+                    "value": "الأهل والأصدقاء",
+                    "weight": 0.10
+                },
+                {
+                    "value": "الكتب والمجلات العلمية",
+                    "weight": 0.05
+                }
+            ]
+        }
+    },
+    "personas": [
+        {
+            "name": "Engaged Mother / أم مهتمة",
+            "weight": 0.4,
+            "constraints": {
+                "relationship": "أم",
+                "knowledge_shift": "+1",
+                "practices_shift": "+1"
+            }
+        },
+        {
+            "name": "Busy Father / أب مشغول",
+            "weight": 0.2,
+            "constraints": {
+                "relationship": "أب",
+                "infoSources_mask": [
+                    "إنترنت/تواصل اجتماعي"
+                ],
+                "knowledge_shift": "0",
+                "practices_shift": "-1"
+            }
+        },
+        {
+            "name": "General Parent / العينة العامة",
+            "weight": 0.4,
+            "constraints": {}
+        }
+    ],
+    "openTextBanks": {
+        "challenges": [
+            {
+                "template": "أواجه صعوبة في {problem} بسبب {reason}",
+                "weight": 0.4
+            },
+            {
+                "template": "المشكلة الأساسية هي {problem}",
+                "weight": 0.3
+            },
+            {
+                "template": "بصراحة، {reason} يجعل من الصعب {problem}",
+                "weight": 0.3
+            }
+        ],
+        "likes": [
+            {
+                "template": "أكثر ما أعجبني هو {feature}",
+                "weight": 0.4
+            },
+            {
+                "template": "استفدت كثيراً من {feature} و {feature}",
+                "weight": 0.3
+            },
+            {
+                "template": "رائع، خاصة {feature}",
+                "weight": 0.3
+            }
+        ],
+        "suggestions": [
+            {
+                "template": "أتمنى إضافة {improvement}",
+                "weight": 0.5
+            },
+            {
+                "template": "سيكون أفضل لو تم {improvement}",
+                "weight": 0.3
+            },
+            {
+                "template": "لا يوجد، شكراً لكم",
+                "weight": 0.2
+            }
+        ],
+        "slots": {
+            "problem": [
+                "توفير وجبات صحية",
+                "إقناع طفلي بأكل الخضراوات",
+                "تنويع الأكل",
+                "منع طفلي عن السكريات",
+                "إيجاد وقت للطبخ",
+                "تحديد الكميات المناسبة"
+            ],
+            "reason": [
+                "ضيق الوقت",
+                "ارتفاع الأسعار",
+                "عملي لفترات طويلة",
+                "تأثير الإعلانات على طفلي",
+                "عدم تقبل الطفل للمذاق الجديد",
+                "قلة الخيارات المتاحة"
+            ],
+            "feature": [
+                "سهولة الاستخدام",
+                "المعلومات القيمة",
+                "التصميم الجذاب",
+                "المتابعة المستمرة",
+                "النصائح العملية",
+                "التقييم الشامل"
+            ],
+            "improvement": [
+                "فيديوهات توضيحية أكثر",
+                "وصفات صحية سريعة",
+                "تطبيق للهواتف",
+                "نظام تنبيهات للوجبات",
+                "استشارات مباشرة مع أطباء"
+            ]
+        }
+    }
+}
